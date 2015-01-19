@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9CD42A61-68BF-4CA8-B3FC-A815E5E3E405}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Core</RootNamespace>
+    <AssemblyName>HigLabo.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_4_0\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_4_0\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_0</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AppEnvironment.cs" />
+    <Compile Include="Core\Enum.cs" />
+    <Compile Include="Core\LocalizedDisplayNameAttribute.cs" />
+    <Compile Include="Core\Serializer.cs" />
+    <Compile Include="Core\TypeConverter.cs" />
+    <Compile Include="Core\XmlSerializer.cs" />
+    <Compile Include="Entity\EqualityFunc.cs" />
+    <Compile Include="Entity\EventArgs.cs" />
+    <Compile Include="Entity\ExceptionEventArgs.cs" />
+    <Compile Include="Entity\SequentialGuid.cs" />
+    <Compile Include="Entity\SequentialGuidDatabase.cs" />
+    <Compile Include="Entity\SequentialGuidType.cs" />
+    <Compile Include="Extensions\AesManagedExtensions.cs" />
+    <Compile Include="Extensions\AesManagedExtensionsSettings.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\INotifyPropertyChangedExtensions_Net_4_0.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
+    <Compile Include="Extensions\PropertyInfoExtensions.cs" />
+    <Compile Include="Extensions\RandomExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

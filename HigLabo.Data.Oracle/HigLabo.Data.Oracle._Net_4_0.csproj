@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7D2AFDB-E3C8-4309-B3F6-955CCE3FE65F}</ProjectGuid>
+    <ProjectGuid>{0F0CE0E5-EB11-44F6-90D7-7C384BDA6620}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HigLabo.Converter</RootNamespace>
-    <AssemblyName>HigLabo.Converter</AssemblyName>
+    <RootNamespace>HigLabo.Data.Oracle</RootNamespace>
+    <AssemblyName>HigLabo.Data.Oracle</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -18,44 +18,51 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\_Net_4_0\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;_Net_4_0,HigLabo_Converter</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;_Net_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;HigLabo_Converter</DefineConstants>
+    <OutputPath>bin\Release\_Net_4_0\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_0</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\Net4.0_32bit\Oracle\Oracle.DataAccess.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converter\Base64Converter.cs" />
-    <Compile Include="Converter\ByteConverter.cs" />
-    <Compile Include="Converter\ModifiedUtf7Converter.cs" />
-    <Compile Include="Converter\QuotedPrintableConverter.cs" />
-    <Compile Include="Converter\QuotedPrintableConvertMode.cs" />
-    <Compile Include="Converter\Rfc2047Converter.cs" />
-    <Compile Include="Converter\Rfc2231Converter.cs" />
-    <Compile Include="Core\Base64CharTable.cs" />
-    <Compile Include="Core\BufferByteArray.cs" />
-    <Compile Include="Core\EncodingDictionary.cs" />
-    <Compile Include="Core\EncodingExtensions.WinRT.cs" />
-    <Compile Include="Core\EnumExtensions.cs" />
-    <Compile Include="Core\Rcf2047Encoding.cs" />
+    <Compile Include="Oracle\OracleDatabase.cs" />
+    <Compile Include="Oracle\OracleDatabaseConnectionString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Data\HigLabo.Data._Net_3_5.csproj">
+      <Project>{141f3e91-eb12-4198-acc5-f1f194a6842c}</Project>
+      <Name>HigLabo.Data._Net_3_5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

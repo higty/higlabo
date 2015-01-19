@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{89E24872-799B-463F-B611-1112A00FC82F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Net</RootNamespace>
+    <AssemblyName>HigLabo.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AsciiCharCode.cs" />
+    <Compile Include="Core\AsyncHttpCallErrorEventArgs.cs" />
+    <Compile Include="Core\AsyncHttpContext.cs" />
+    <Compile Include="Core\AsyncSocketCallErrorEventArgs.cs" />
+    <Compile Include="Core\HttpWebRequestCreatedEventArgs.cs" />
+    <Compile Include="Core\ResponseEncodingDetectionMode.cs" />
+    <Compile Include="Core\StreamWriteContext.cs" />
+    <Compile Include="Core\XmlAttribute.cs" />
+    <Compile Include="Core\XmlData.cs" />
+    <Compile Include="Extensions\DictionaryParserExtensions.cs" />
+    <Compile Include="Extensions\EncodingExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\XmlParserExtensions.cs" />
+    <Compile Include="Http\HttpBodyFormData.cs" />
+    <Compile Include="Http\HttpBodyFormUrlEncodedData.cs" />
+    <Compile Include="Http\HttpBodyMultipartFormData.cs" />
+    <Compile Include="Http\HttpClient.Async.cs" />
+    <Compile Include="Http\HttpClient.AsyncCall.cs" />
+    <Compile Include="Http\HttpClient.cs" />
+    <Compile Include="Http\HttpClient.SyncCall.cs" />
+    <Compile Include="Http\HttpMethodName.cs" />
+    <Compile Include="Http\HttpProtocolType.cs" />
+    <Compile Include="Http\HttpRequestCommand.cs" />
+    <Compile Include="Http\HttpRequestUploadingEventArgs.cs" />
+    <Compile Include="Http\HttpResponse.cs" />
+    <Compile Include="Http\HttpResponseException.cs" />
+    <Compile Include="OAuth\1.0\GetRequestTokenCommand.cs" />
+    <Compile Include="OAuth\1.0\OAuth1AccessToken.cs" />
+    <Compile Include="OAuth\1.0\OAuth1AuthorizeInfo.cs" />
+    <Compile Include="OAuth\1.0\OAuth1Client.AsyncCall.cs" />
+    <Compile Include="OAuth\1.0\OAuth1Client.cs" />
+    <Compile Include="OAuth\1.0\OAuth1Client.InnerClass.cs" />
+    <Compile Include="OAuth\1.0\OAuth1Client.Static.cs" />
+    <Compile Include="OAuth\1.0\OAuth1Client.SyncCall.cs" />
+    <Compile Include="OAuth\1.0\OAuthMode.cs" />
+    <Compile Include="OAuth\1.0\OAuthSignatureTypes.cs" />
+    <Compile Include="OAuth\1.0\SignatureInfo.cs" />
+    <Compile Include="OAuth\2.0\OAuth2AccessToken.cs" />
+    <Compile Include="OAuth\2.0\OAuth2Client.Async.cs" />
+    <Compile Include="OAuth\2.0\OAuth2Client.AsyncCall.cs" />
+    <Compile Include="OAuth\2.0\OAuth2Client.SyncCall.cs" />
+    <Compile Include="OAuth\2.0\OAuthResponseType.cs" />
+    <Compile Include="OAuth\OAuthAccessTokenState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\OAuthAuthenticateException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Socket\BufferManager.cs" />
+    <Compile Include="Socket\DataReceiveContext.cs" />
+    <Compile Include="Socket\DataReceiveContextException.cs" />
+    <Compile Include="Socket\DataSendContext.cs" />
+    <Compile Include="Socket\DataTransferContext.cs" />
+    <Compile Include="Socket\PipeStream.cs" />
+    <Compile Include="Socket\PipeStreamContext.cs" />
+    <Compile Include="Socket\SocketClient.cs" />
+    <Compile Include="Socket\SocketClientDefaultSettings.cs" />
+    <Compile Include="Socket\SocketClientException.cs" />
+    <Compile Include="Socket\SocketClient_Net4.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj">
+      <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
+      <Name>HigLabo.Converter._Net_4_0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Net_4_5.csproj">
+      <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
+      <Name>HigLabo.Core._Net_4_5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

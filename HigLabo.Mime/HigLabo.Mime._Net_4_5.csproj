@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BEBCD297-E800-4957-A60B-360E8F0706EB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Mime</RootNamespace>
+    <AssemblyName>HigLabo.Mime</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\ContentDisposition.cs" />
+    <Compile Include="Core\ContentType.cs" />
+    <Compile Include="Core\DateTimeRfc2822.cs" />
+    <Compile Include="Core\TransferEncoding.cs" />
+    <Compile Include="Mail\MailAddress.cs" />
+    <Compile Include="Mail\MailAddressCollection.cs" />
+    <Compile Include="Mail\MailHeaderCollection.cs" />
+    <Compile Include="Mail\MailMessage.cs" />
+    <Compile Include="Mime\Internal\CheckBoundaryResult.cs" />
+    <Compile Include="Mime\Internal\EncodingExtensions.cs" />
+    <Compile Include="Mime\Internal\MimeContentByteArray.cs" />
+    <Compile Include="Mime\Internal\MimeHeaderBufferByteArray.cs" />
+    <Compile Include="Mime\Internal\MimeStreamBuffer.cs" />
+    <Compile Include="Mime\InvalidMimeFormatException.cs" />
+    <Compile Include="Mime\MimeContent.cs" />
+    <Compile Include="Mime\MimeHeader.cs" />
+    <Compile Include="Mime\MimeHeaderCollection.cs" />
+    <Compile Include="Mime\MimeHeaderParameter.cs" />
+    <Compile Include="Mime\MimeHeaderWithParameter.cs" />
+    <Compile Include="Mime\MimeMessage.cs" />
+    <Compile Include="Mime\MimeParser.cs" />
+    <Compile Include="Mime\MimeParserDefaultSettings.cs" />
+    <Compile Include="Mime\MimeParserFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj">
+      <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
+      <Name>HigLabo.Converter._Net_4_0</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
