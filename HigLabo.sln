@@ -51,6 +51,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle", "HigL
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net._Pcl", "HigLabo.Net\HigLabo.Net._Pcl.csproj", "{A44D816C-AC53-4C61-A4C5-4D92DC5A2C56}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss._Pcl", "HigLabo.Rss\HigLabo.Rss._Pcl.csproj", "{3B40F94F-9783-488D-BA36-503778A69CF0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -153,6 +155,10 @@ Global
 		{A44D816C-AC53-4C61-A4C5-4D92DC5A2C56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A44D816C-AC53-4C61-A4C5-4D92DC5A2C56}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A44D816C-AC53-4C61-A4C5-4D92DC5A2C56}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B40F94F-9783-488D-BA36-503778A69CF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B40F94F-9783-488D-BA36-503778A69CF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B40F94F-9783-488D-BA36-503778A69CF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B40F94F-9783-488D-BA36-503778A69CF0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B40F94F-9783-488D-BA36-503778A69CF0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Rss</RootNamespace>
+    <AssemblyName>HigLabo.Rss</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile336</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\Pcl\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Pcl</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Pcl\</OutputPath>
+    <DefineConstants>TRACE;Pcl</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\RssNamespace.cs" />
+    <Compile Include="Core\RssParseException.cs" />
+    <Compile Include="Core\RssXmlObject.cs" />
+    <Compile Include="Entity\0.90\RssChannel_0_90.cs" />
+    <Compile Include="Entity\0.90\RssImage_0_90.cs" />
+    <Compile Include="Entity\0.90\RssItem_0_90.cs" />
+    <Compile Include="Entity\0.90\RssTextInput_0_90.cs" />
+    <Compile Include="Entity\0.91\RssChannel_0_91.cs" />
+    <Compile Include="Entity\0.91\RssImage_0_91.cs" />
+    <Compile Include="Entity\0.91\RssItem_0_91.cs" />
+    <Compile Include="Entity\0.91\RssTextInput_0_91.cs" />
+    <Compile Include="Entity\0.92\RssChannel_0_92.cs" />
+    <Compile Include="Entity\0.92\RssImage_0_92.cs" />
+    <Compile Include="Entity\0.92\RssItem_0_92.cs" />
+    <Compile Include="Entity\0.92\RssTextInput_0_92.cs" />
+    <Compile Include="Entity\1.0\RssChannel_1_0.cs" />
+    <Compile Include="Entity\1.0\RssImage_1_0.cs" />
+    <Compile Include="Entity\1.0\RssItem_1_0.cs" />
+    <Compile Include="Entity\1.0\RssTextInput_1_0.cs" />
+    <Compile Include="Entity\2.0\RssChannel_2_0.cs" />
+    <Compile Include="Entity\2.0\RssImage_2_0.cs" />
+    <Compile Include="Entity\2.0\RssItem_2_0.cs" />
+    <Compile Include="Entity\2.0\RssTextInput_2_0.cs" />
+    <Compile Include="Entity\Atom\RssChannel_Atom.cs" />
+    <Compile Include="Entity\Atom\RssImage_Atom.cs" />
+    <Compile Include="Entity\Atom\RssItem_Atom.cs" />
+    <Compile Include="Entity\Atom\RssTextInput_Atom.cs" />
+    <Compile Include="Entity\Common\RssCategory.cs" />
+    <Compile Include="Entity\Common\RssChannel.cs" />
+    <Compile Include="Entity\Common\RssChannelItems.cs" />
+    <Compile Include="Entity\Common\RssCloud.cs" />
+    <Compile Include="Entity\Common\RssEnclosure.cs" />
+    <Compile Include="Entity\Common\RssFeed.cs" />
+    <Compile Include="Entity\Common\RssGuid.cs" />
+    <Compile Include="Entity\Common\RssImage.cs" />
+    <Compile Include="Entity\Common\RssItem.cs" />
+    <Compile Include="Entity\Common\RssResource.cs" />
+    <Compile Include="Entity\Common\RssSource.cs" />
+    <Compile Include="Entity\Common\RssTextInput.cs" />
+    <Compile Include="Entity\Common\RssVersion.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="Parser\AtomParser.cs" />
+    <Compile Include="Parser\IRssParser.cs" />
+    <Compile Include="Parser\RssParser.cs" />
+    <Compile Include="Parser\Rss_0_90_Parser.cs" />
+    <Compile Include="Parser\Rss_0_91_Parser.cs" />
+    <Compile Include="Parser\Rss_0_92_Parser.cs" />
+    <Compile Include="Parser\Rss_1_0_Parser.cs" />
+    <Compile Include="Parser\Rss_2_0_Parser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Writer\RssWriter.cs" />
+    <Compile Include="Writer\Rss_0_90_Writer.cs" />
+    <Compile Include="Writer\Rss_0_91_Writer.cs" />
+    <Compile Include="Writer\Rss_1_0_Writer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Pcl.csproj">
+      <Project>{75628e17-d8e2-458d-857f-2a1c96a327f5}</Project>
+      <Name>HigLabo.Core._Pcl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
