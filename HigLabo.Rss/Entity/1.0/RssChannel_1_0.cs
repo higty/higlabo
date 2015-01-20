@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Core;
+using HigLabo.Rss.Internal;
 
 namespace HigLabo.Rss
 {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Core;
 
 namespace HigLabo.Rss
 {
@@ -51,16 +51,5 @@ namespace HigLabo.Rss
             this.Summary = element.CastElementToString("summary");
             this.Description = element.CastElementToString("content");
         }
-        /*
-         <title>ツアーだツアーだっ (o・・o)</title>
-  <link rel="alternate" type="text/html" href="http://blog.nogizaka46.com/sayuri.matsumura/2014/08/019884.php" />
-  <id>tag:blog.nogizaka46.com,2014:/sayuri.matsumura//169.19884</id>
-  <published>2014-08-15T14:42:01Z</published>
-  <updated>2014-08-15T14:50:00Z</updated>
-  <summary><![CDATA[こんばんごっ(o・・o)さゆりんごっ(o・・o)&nbsp;&nbsp;&nbs...]]></summary>
-  <author>
-    <name>松村沙友理</name>
-  </author>
-  <content */
     }
 }

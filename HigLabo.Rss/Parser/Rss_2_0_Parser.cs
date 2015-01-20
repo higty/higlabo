@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Rss.Internal;
 
 namespace HigLabo.Rss
 {

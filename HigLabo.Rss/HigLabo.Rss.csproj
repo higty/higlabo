@@ -82,7 +82,9 @@
     <Compile Include="Entity\Common\RssSource.cs" />
     <Compile Include="Entity\Common\RssTextInput.cs" />
     <Compile Include="Entity\Common\RssVersion.cs" />
-    <Compile Include="Extensions\XmlExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Parser\AtomParser.cs" />
     <Compile Include="Parser\IRssParser.cs" />
     <Compile Include="Parser\RssParser.cs" />
@@ -106,6 +108,7 @@
   <ItemGroup>
     <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,5 +1,5 @@
 using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Core;
 
 namespace HigLabo.Rss
 {
@@ -44,8 +44,8 @@ namespace HigLabo.Rss
         /// <returns></returns>
         protected new void Parse(XElement element)
         {
-            Width = element.CastElementToInt32("width");
-            Height = element.CastElementToInt32("height");
+            Width = element.CastElementToString("width").ToInt32();
+            Height = element.CastElementToString("height").ToInt32();
         }
     }
 }

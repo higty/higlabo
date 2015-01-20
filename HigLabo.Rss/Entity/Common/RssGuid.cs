@@ -1,5 +1,5 @@
 ﻿using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Core;
 
 namespace HigLabo.Rss
 {
@@ -46,7 +46,7 @@ namespace HigLabo.Rss
         protected void Parse(XElement element)
         {
             ID = element.Value;
-            IsPermaLink = element.CastAttributeToBoolean("isPermaLink");
+            IsPermaLink = element.CastAttributeToString("isPermaLink").ToBoolean();
         }
     }
 }

@@ -1,5 +1,5 @@
 using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Rss.Internal;
 
 namespace HigLabo.Rss
 {

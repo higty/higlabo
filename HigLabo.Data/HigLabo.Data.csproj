@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62F12426-293B-43B8-A324-C135EB325F41}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Data</RootNamespace>
+    <AssemblyName>HigLabo.Data</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CommandCreatedEventArgs.cs" />
+    <Compile Include="Common\CommandErrorEventArgs.cs" />
+    <Compile Include="Common\CommandExecutedEventArgs.cs" />
+    <Compile Include="Common\CommandExecutingEventArgs.cs" />
+    <Compile Include="Common\CommandResult.cs" />
+    <Compile Include="Common\ConnectionCreatedEventArgs.cs" />
+    <Compile Include="Common\Database.cs" />
+    <Compile Include="Common\IConnectionString.cs" />
+    <Compile Include="Common\MethodName.cs" />
+    <Compile Include="Database\CompatibilityLevel.cs" />
+    <Compile Include="Database\CreateDatabaseStatement.cs" />
+    <Compile Include="Database\FileGrowthSizeUnit.cs" />
+    <Compile Include="Database\OdbcDatabase.cs" />
+    <Compile Include="Database\OleDbDatabase.cs" />
+    <Compile Include="Database\RecoveryModel.cs" />
+    <Compile Include="Database\SqlBulkCopyContext.cs" />
+    <Compile Include="Database\SqlServerDatabase.cs" />
+    <Compile Include="Database\SqlServerDatabaseConnectionString.cs" />
+    <Compile Include="Exception\ConnectionException.cs" />
+    <Compile Include="Exception\DatabaseException.cs" />
+    <Compile Include="Exception\DeadLockException.cs" />
+    <Compile Include="Exception\ForeignKeyException.cs" />
+    <Compile Include="Exception\LockTimeoutException.cs" />
+    <Compile Include="Exception\LoginException.cs" />
+    <Compile Include="Exception\TimeoutException.cs" />
+    <Compile Include="Exception\UniqueConstraintException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="SqlScript\HigLabo.Data.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

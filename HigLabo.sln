@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data._Net_3_5", "Hi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.MySql", "HigLabo.Data.MySql\HigLabo.Data.MySql.csproj", "{48B03E2E-72B8-4EDC-BCB1-BE19E23A6A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle_Net_4_0", "HigLabo.Data.Oracle\HigLabo.Data.Oracle_Net_4_0.csproj", "{0F0CE0E5-EB11-44F6-90D7-7C384BDA6620}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle._Net_4_0", "HigLabo.Data.Oracle\HigLabo.Data.Oracle._Net_4_0.csproj", "{0F0CE0E5-EB11-44F6-90D7-7C384BDA6620}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.PostgreSql", "HigLabo.Data.PostgreSql\HigLabo.Data.PostgreSql.csproj", "{35838DE8-FEDE-4464-97F2-82093E2E4A97}"
 EndProject
@@ -44,6 +44,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss", "HigLabo.Rss\HigLabo.Rss.csproj", "{7695B2C2-9977-41DD-8BF7-FA022C7582D8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss._Net_3_5", "HigLabo.Rss\HigLabo.Rss._Net_3_5.csproj", "{A81F5C44-AAC3-4858-ABC0-CFBC239BA79B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data", "HigLabo.Data\HigLabo.Data.csproj", "{62F12426-293B-43B8-A324-C135EB325F41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle", "HigLabo.Data.Oracle\HigLabo.Data.Oracle.csproj", "{6495D6F8-6D0C-44F5-B93A-6408DB04464F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +139,14 @@ Global
 		{A81F5C44-AAC3-4858-ABC0-CFBC239BA79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A81F5C44-AAC3-4858-ABC0-CFBC239BA79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A81F5C44-AAC3-4858-ABC0-CFBC239BA79B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F12426-293B-43B8-A324-C135EB325F41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F12426-293B-43B8-A324-C135EB325F41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F12426-293B-43B8-A324-C135EB325F41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F12426-293B-43B8-A324-C135EB325F41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6495D6F8-6D0C-44F5-B93A-6408DB04464F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6495D6F8-6D0C-44F5-B93A-6408DB04464F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6495D6F8-6D0C-44F5-B93A-6408DB04464F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6495D6F8-6D0C-44F5-B93A-6408DB04464F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

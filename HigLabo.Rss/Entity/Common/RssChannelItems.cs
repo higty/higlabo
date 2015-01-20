@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using HigLabo.Rss.Extensions;
+using HigLabo.Core;
+using HigLabo.Rss.Internal;
 
 namespace HigLabo.Rss
 {
