@@ -17,7 +17,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data._Net_3_5", "Hi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.MySql", "HigLabo.Data.MySql\HigLabo.Data.MySql.csproj", "{48B03E2E-72B8-4EDC-BCB1-BE19E23A6A1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle._Net_4_0", "HigLabo.Data.Oracle\HigLabo.Data.Oracle._Net_4_0.csproj", "{0F0CE0E5-EB11-44F6-90D7-7C384BDA6620}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle_Net_4_0", "HigLabo.Data.Oracle\HigLabo.Data.Oracle_Net_4_0.csproj", "{0F0CE0E5-EB11-44F6-90D7-7C384BDA6620}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.PostgreSql", "HigLabo.Data.PostgreSql\HigLabo.Data.PostgreSql.csproj", "{35838DE8-FEDE-4464-97F2-82093E2E4A97}"
 EndProject
@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net._Net_3_5", "Hig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core._Net_3_5", "HigLabo.Core\HigLabo.Core._Net_3_5.csproj", "{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter.Pcl", "HigLabo.Converter\HigLabo.Converter.Pcl.csproj", "{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter._Pcl", "HigLabo.Converter\HigLabo.Converter._Pcl.csproj", "{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter", "HigLabo.Converter\HigLabo.Converter.csproj", "{757964E0-B391-48EB-AD04-D9C41091CFB5}"
 EndProject
