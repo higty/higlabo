@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\Pcl\</OutputPath>
+    <OutputPath>bin\Debug\_Pcl_4_0_3\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Pcl</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\Pcl\</OutputPath>
+    <OutputPath>bin\Release\_Pcl_4_0_3\</OutputPath>
     <DefineConstants>TRACE;Pcl</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>

@@ -20,7 +20,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\Pcl\</OutputPath>
+    <OutputPath>bin\Debug\_Pcl_4_0_3\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Pcl</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,7 +28,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\Pcl\</OutputPath>
+    <OutputPath>bin\Release\_Pcl_4_0_3\</OutputPath>
     <DefineConstants>TRACE;Pcl</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -100,9 +100,9 @@
     <Compile Include="Writer\Rss_1_0_Writer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Pcl.csproj">
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Pcl_4_0_3.csproj">
       <Project>{75628e17-d8e2-458d-857f-2a1c96a327f5}</Project>
-      <Name>HigLabo.Core._Pcl</Name>
+      <Name>HigLabo.Core._Pcl_4_0_3</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

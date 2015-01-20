@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9CD42A61-68BF-4CA8-B3FC-A815E5E3E405}</ProjectGuid>
+    <ProjectGuid>{F954FF2E-0307-4EF6-A1E8-B4C01403CA68}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HigLabo.Core</RootNamespace>
-    <AssemblyName>HigLabo.Core</AssemblyName>
+    <RootNamespace>HigLabo.Net.Ftp</RootNamespace>
+    <AssemblyName>HigLabo.Net.Ftp</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,39 +38,37 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AppEnvironment.cs" />
-    <Compile Include="Core\Enum.cs" />
-    <Compile Include="Core\LocalizedDisplayNameAttribute.cs" />
-    <Compile Include="Core\Serializer.cs" />
-    <Compile Include="Core\TypeConverter.cs" />
-    <Compile Include="Core\XmlSerializer.cs" />
-    <Compile Include="Entity\EqualityFunc.cs" />
-    <Compile Include="Entity\EventArgs.cs" />
-    <Compile Include="Entity\ExceptionEventArgs.cs" />
-    <Compile Include="Entity\SequentialGuid.cs" />
-    <Compile Include="Entity\SequentialGuidDatabase.cs" />
-    <Compile Include="Entity\SequentialGuidType.cs" />
-    <Compile Include="Extensions\AesManagedExtensions.cs" />
-    <Compile Include="Extensions\AesManagedExtensionsSettings.cs" />
-    <Compile Include="Extensions\DictionaryExtensions.cs" />
-    <Compile Include="Extensions\EnumExtensions.cs" />
-    <Compile Include="Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Extensions\INotifyPropertyChangedExtensions_Net_4_0.cs" />
-    <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
-    <Compile Include="Extensions\PropertyInfoExtensions.cs" />
-    <Compile Include="Extensions\RandomExtensions.cs" />
-    <Compile Include="Extensions\StreamExtensions.cs" />
-    <Compile Include="Extensions\StringExtensions.cs" />
-    <Compile Include="Extensions\TypeExtensions.cs" />
-    <Compile Include="Extensions\XmlParserExtensions.cs" />
+    <Compile Include="Async\FtpDataReceiveContext.cs" />
+    <Compile Include="Core\FtpClient.Async.cs" />
+    <Compile Include="Core\FtpClient.cs" />
+    <Compile Include="Core\FtpClientDefaultSettings.cs" />
+    <Compile Include="Core\FtpClientException.cs" />
+    <Compile Include="Core\FtpCommandResultCode.cs" />
+    <Compile Include="Core\FtpConnectionMode.cs" />
+    <Compile Include="Core\FtpConnectionState.cs" />
+    <Compile Include="Core\FtpDataStructures.cs" />
+    <Compile Include="Core\FtpDataType.cs" />
+    <Compile Include="Core\FtpEntryType.cs" />
+    <Compile Include="Core\FtpTransferMode.cs" />
+    <Compile Include="Entity\FtpDirectory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\FtpCommandResult.cs" />
+    <Compile Include="Results\FtpCommandResultLine.cs" />
+    <Compile Include="Results\FtpDirectoryCommandResult.cs" />
+    <Compile Include="Results\FtpFileCommandResult.cs" />
+    <Compile Include="Results\FtpIPCommandResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Net_4_0.csproj">
+      <Project>{9cd42a61-68bf-4ca8-b3fc-a815e5e3e405}</Project>
+      <Name>HigLabo.Core._Net_4_0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net._Net_4_0.csproj">
+      <Project>{05151372-0456-44ca-b81e-3082869f1d8b}</Project>
+      <Name>HigLabo.Net._Net_4_0</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="HigLaboStrongNameKey.pfx" />

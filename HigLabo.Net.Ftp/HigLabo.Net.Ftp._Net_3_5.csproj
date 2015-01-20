@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7921CB4-6E11-4B67-B634-2DB4EDE27129}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Net.Ftp</RootNamespace>
+    <AssemblyName>HigLabo.Net.Ftp</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_3_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_3_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Async\FtpDataReceiveContext.cs" />
+    <Compile Include="Core\FtpClient.cs" />
+    <Compile Include="Core\FtpClientDefaultSettings.cs" />
+    <Compile Include="Core\FtpClientException.cs" />
+    <Compile Include="Core\FtpCommandResultCode.cs" />
+    <Compile Include="Core\FtpConnectionMode.cs" />
+    <Compile Include="Core\FtpConnectionState.cs" />
+    <Compile Include="Core\FtpDataStructures.cs" />
+    <Compile Include="Core\FtpDataType.cs" />
+    <Compile Include="Core\FtpEntryType.cs" />
+    <Compile Include="Core\FtpTransferMode.cs" />
+    <Compile Include="Entity\FtpDirectory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Results\FtpCommandResult.cs" />
+    <Compile Include="Results\FtpCommandResultLine.cs" />
+    <Compile Include="Results\FtpDirectoryCommandResult.cs" />
+    <Compile Include="Results\FtpFileCommandResult.cs" />
+    <Compile Include="Results\FtpIPCommandResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Net_3_5.csproj">
+      <Project>{c27c620b-59e3-4e7d-a7f4-85c9c7a76ede}</Project>
+      <Name>HigLabo.Core._Net_3_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net._Net_3_5.csproj">
+      <Project>{b8ea5e34-ca92-4b97-a486-2cf902f7de05}</Project>
+      <Name>HigLabo.Net._Net_3_5</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
