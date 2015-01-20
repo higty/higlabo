@@ -63,6 +63,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Rss._Net_4_0", "Hig
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Ftp._Net_4_0", "HigLabo.Net.Ftp\HigLabo.Net.Ftp._Net_4_0.csproj", "{F954FF2E-0307-4EF6-A1E8-B4C01403CA68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Web", "HigLabo.Web\HigLabo.Web.csproj", "{68E672D6-9C77-4352-BC74-B714222484B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Wpf", "HigLabo.Wpf\HigLabo.Wpf.csproj", "{BD040A0F-AE1E-48D8-902A-2770CF324C39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -189,6 +193,14 @@ Global
 		{F954FF2E-0307-4EF6-A1E8-B4C01403CA68}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F954FF2E-0307-4EF6-A1E8-B4C01403CA68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F954FF2E-0307-4EF6-A1E8-B4C01403CA68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68E672D6-9C77-4352-BC74-B714222484B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68E672D6-9C77-4352-BC74-B714222484B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68E672D6-9C77-4352-BC74-B714222484B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68E672D6-9C77-4352-BC74-B714222484B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD040A0F-AE1E-48D8-902A-2770CF324C39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD040A0F-AE1E-48D8-902A-2770CF324C39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD040A0F-AE1E-48D8-902A-2770CF324C39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD040A0F-AE1E-48D8-902A-2770CF324C39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
