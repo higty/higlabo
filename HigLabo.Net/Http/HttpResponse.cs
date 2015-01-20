@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
 using System.IO.Compression;
 #endif
 using System.Text.RegularExpressions;
@@ -106,7 +106,7 @@ namespace HigLabo.Net
         {
         }
         internal HttpResponse(HttpWebResponse response, HttpClient client)
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
             : this(response, client.ResponseEncodingDetectionMode, client.ResponseEncodingDetectionMaxLineNumber, client.ResponseEncoding, client.ResponseGZipDecompress)
 #else
             : this(response, client.ResponseEncodingDetectionMode, client.ResponseEncodingDetectionMaxLineNumber, client.ResponseEncoding, false)
@@ -124,7 +124,7 @@ namespace HigLabo.Net
             this.ContentType = res.ContentType;
             this.ContentLength = res.ContentLength;
             this.Cookies = res.Cookies;
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
             this.CharacterSet = res.CharacterSet;
             this.IsMutuallyAuthenticated = res.IsMutuallyAuthenticated;
             this.LastModified = res.LastModified;
@@ -145,7 +145,7 @@ namespace HigLabo.Net
 
             var stm = new MemoryStream(bb);
             StreamReader sr = null;
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
             if (detectionMode == ResponseEncodingDetectionMode.Auto &&
                 res.Headers["Content-Encoding"] == "gzip")
             {

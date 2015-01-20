@@ -252,8 +252,7 @@ namespace HigLabo.Net
             {
                 throw new ArgumentNullException("data");
             }
-            HMACSHA1 hash = new HMACSHA1();
-            hash.Key = OAuth1Client.GenerateSignatureEncoding.GetBytes(key);
+            HMACSHA1 hash = new HMACSHA1(OAuth1Client.GenerateSignatureEncoding.GetBytes(key));
 
             byte[] dataBuffer = OAuth1Client.GenerateSignatureEncoding.GetBytes(data);
             byte[] hashBytes = hash.ComputeHash(dataBuffer);

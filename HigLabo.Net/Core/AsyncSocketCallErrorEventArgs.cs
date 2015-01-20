@@ -8,7 +8,7 @@ namespace HigLabo.Net
     /// <summary>
     /// 
     /// </summary>
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
     [Serializable]
 #endif
     public class AsyncSocketCallErrorEventArgs : EventArgs

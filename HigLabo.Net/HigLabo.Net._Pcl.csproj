@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A44D816C-AC53-4C61-A4C5-4D92DC5A2C56}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Net</RootNamespace>
+    <AssemblyName>HigLabo.Net</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\Pcl\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Pcl</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\Pcl\</OutputPath>
+    <DefineConstants>TRACE;Pcl</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Pcl.csproj">
+      <Project>{75628e17-d8e2-458d-857f-2a1c96a327f5}</Project>
+      <Name>HigLabo.Core._Pcl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\AsciiCharCode.cs" />
+    <Compile Include="Core\AsyncHttpCallErrorEventArgs.cs" />
+    <Compile Include="Core\AsyncHttpContext.cs" />
+    <Compile Include="Core\AsyncSocketCallErrorEventArgs.cs" />
+    <Compile Include="Core\HttpWebRequestCreatedEventArgs.cs" />
+    <Compile Include="Core\ResponseEncodingDetectionMode.cs" />
+    <Compile Include="Core\StreamWriteContext.cs" />
+    <Compile Include="Core\XmlAttribute.cs" />
+    <Compile Include="Core\XmlData.cs" />
+    <Compile Include="Http\HttpBodyFormData.cs" />
+    <Compile Include="Http\HttpBodyFormUrlEncodedData.cs" />
+    <Compile Include="Http\HttpBodyMultipartFormData.cs" />
+    <Compile Include="Http\HttpClient.Async.cs" />
+    <Compile Include="Http\HttpClient.AsyncCall.cs" />
+    <Compile Include="Http\HttpClient.cs" />
+    <Compile Include="Http\HttpMethodName.cs" />
+    <Compile Include="Http\HttpProtocolType.cs" />
+    <Compile Include="Http\HttpRequestCommand.cs" />
+    <Compile Include="Http\HttpRequestUploadingEventArgs.cs" />
+    <Compile Include="Http\HttpResponse.cs" />
+    <Compile Include="Http\HttpResponseException.cs" />
+    <Compile Include="OAuth\1.0\GetRequestTokenCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuth1AccessToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuth1AuthorizeInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuth1Client.AsyncCall.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuth1Client.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuth1Client.InnerClass.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuth1Client.Static.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuthMode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\OAuthSignatureTypes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\1.0\SignatureInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\2.0\OAuth2AccessToken.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\2.0\OAuth2Client.Async.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\2.0\OAuth2Client.AsyncCall.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\2.0\OAuthResponseType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\OAuthAccessTokenState.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="OAuth\OAuthAuthenticateException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Portable.Security.Cryptography">
+      <HintPath>..\Reference\portable-net40+sl4+wp7+win8\Portable.Security.Cryptography.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

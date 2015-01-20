@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Net;
-#if !NETFX_CORE && !PCL
+#if !NETFX_CORE && !Pcl
 using System.Security.Cryptography.X509Certificates;
 #endif
 
@@ -16,7 +16,7 @@ namespace HigLabo.Net
     public partial class HttpClient
     {
         private static String UnreservedChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.~";
-#if SILVERLIGHT || NETFX_CORE || PCL
+#if SILVERLIGHT || NETFX_CORE || Pcl
         internal static readonly Encoding DefaultEncoding = Encoding.UTF8;
 #else
         internal static readonly Encoding DefaultEncoding = Encoding.GetEncoding("us-ascii");
@@ -62,7 +62,7 @@ namespace HigLabo.Net
         /// 
         /// </summary>
         public ICredentials Credentials { get; set; }
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
         /// <summary>
         /// 
         /// </summary>
@@ -110,13 +110,13 @@ namespace HigLabo.Net
             req.Accept = cm.Accept;
             req.ContentType = cm.ContentType;
             req.UseDefaultCredentials = cm.UseDefaultCredentials;
-#if !SILVERLIGHT && !PCL
+#if !SILVERLIGHT && !Pcl
             if (cm.Proxy != null)
             {
                 req.Proxy = cm.Proxy;
             }
 #endif
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
             if (cm.ContentLength > -1)
             {
                 req.ContentLength = cm.ContentLength;

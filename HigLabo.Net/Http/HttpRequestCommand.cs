@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Net;
 using System.IO;
-#if !NETFX_CORE && !PCL
+#if !NETFX_CORE && !Pcl
 using System.Security.Cryptography.X509Certificates;
 #endif
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
 using System.Net.Cache;
 #endif
 
@@ -16,7 +16,7 @@ namespace HigLabo.Net
     /// <summary>
     /// 
     /// </summary>
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
     [Serializable]
 #endif
     public class HttpRequestCommand
@@ -76,7 +76,7 @@ namespace HigLabo.Net
         //   System.InvalidOperationException:
         //     You attempted to set this property after the request was sent.
         public bool UseDefaultCredentials { get; set; }
-#if !SILVERLIGHT && !PCL
+#if !SILVERLIGHT && !Pcl
         //
         // Summary:
         //     Gets or sets proxy information for the request.
@@ -98,7 +98,7 @@ namespace HigLabo.Net
         //     The caller does not have permission for the requested operation.
         public IWebProxy Proxy { get; set; }
 #endif
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
         //
         // Summary:
         //     Gets or sets a value that indicates whether the request should follow redirection
@@ -466,7 +466,7 @@ namespace HigLabo.Net
             this.UrlEncodeFunction = HttpClient.UrlEncode;
             this.MethodName = HttpMethodName.Get;
             this.IsSendBodyStream = false;
-#if !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !SILVERLIGHT && !NETFX_CORE && !Pcl
             this.ClientCertificates = new X509CertificateCollection();
             this.ContentLength = -1;
             this.Pipelined = true;
