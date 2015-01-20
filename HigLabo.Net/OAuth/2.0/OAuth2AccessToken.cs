@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using HigLabo.Net.Extensions;
 
 namespace HigLabo.Net
 {
@@ -73,15 +72,15 @@ namespace HigLabo.Net
         {
             OAuth2AccessToken t = new OAuth2AccessToken();
             t.JsonText = jsonText;
-            var d = AppEnvironment.Settings.JsonSerializer.Deserialize<Dictionary<String, Object>>(jsonText);
+            var d = AppEnvironment.Settings.JsonSerializer.Deserialize<Dictionary<String, String>>(jsonText);
             foreach (var key in d.Keys)
             {
                 t.Values[key] = d[key].ToString();
             }
-            t.Value = d.ToString("access_token");
-            t.ExpiresIn = d.ToInt32("expired_in") ?? 0;
-            t.TokenType = d.ToString("token_type");
-            t.RefreshToken = d.ToString("refresh_token");
+            t.Value = d.GetValueOrDefault("access_token");
+            t.ExpiresIn = d.GetValueOrDefault("expired_in").ToInt32() ?? 0;
+            t.TokenType = d.GetValueOrDefault("token_type");
+            t.RefreshToken = d.GetValueOrDefault("refresh_token");
 
             if (String.IsNullOrEmpty(t.Value) == true)
             {

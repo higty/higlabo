@@ -11,6 +11,7 @@
     <AssemblyName>HigLabo.Net</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,8 +40,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +52,6 @@
     <Compile Include="Core\StreamWriteContext.cs" />
     <Compile Include="Core\XmlAttribute.cs" />
     <Compile Include="Core\XmlData.cs" />
-    <Compile Include="Extensions\DictionaryParserExtensions.cs" />
-    <Compile Include="Extensions\EncodingExtensions.cs" />
-    <Compile Include="Extensions\XmlParserExtensions.cs" />
     <Compile Include="Http\HttpBodyFormData.cs" />
     <Compile Include="Http\HttpBodyFormUrlEncodedData.cs" />
     <Compile Include="Http\HttpBodyMultipartFormData.cs" />
@@ -86,6 +82,9 @@
     <Compile Include="OAuth\OAuthAccessTokenState.cs" />
     <Compile Include="OAuth\OAuthAuthenticateException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rss\RssClient.AsyncCall.cs" />
+    <Compile Include="Rss\RssClient.cs" />
+    <Compile Include="Rss\RssClient.SyncCall.cs" />
     <Compile Include="Socket\BufferManager.cs" />
     <Compile Include="Socket\DataReceiveContext.cs" />
     <Compile Include="Socket\DataReceiveContextException.cs" />
@@ -106,7 +105,12 @@
       <Project>{c27c620b-59e3-4e7d-a7f4-85c9c7a76ede}</Project>
       <Name>HigLabo.Core._Net_3_5</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Rss\HigLabo.Rss._Net_3_5.csproj">
+      <Project>{a81f5c44-aac3-4858-abc0-cfbc239ba79b}</Project>
+      <Name>HigLabo.Rss._Net_3_5</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

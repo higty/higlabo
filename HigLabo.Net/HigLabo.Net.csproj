@@ -39,8 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -53,9 +51,6 @@
     <Compile Include="Core\StreamWriteContext.cs" />
     <Compile Include="Core\XmlAttribute.cs" />
     <Compile Include="Core\XmlData.cs" />
-    <Compile Include="Extensions\DictionaryParserExtensions.cs" />
-    <Compile Include="Extensions\EncodingExtensions.cs" />
-    <Compile Include="Extensions\XmlParserExtensions.cs" />
     <Compile Include="Http\HttpBodyFormData.cs" />
     <Compile Include="Http\HttpBodyFormUrlEncodedData.cs" />
     <Compile Include="Http\HttpBodyMultipartFormData.cs" />
@@ -92,6 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rss\RssClient.Async.cs" />
+    <Compile Include="Rss\RssClient.AsyncCall.cs" />
+    <Compile Include="Rss\RssClient.cs" />
+    <Compile Include="Rss\RssClient.SyncCall.cs" />
     <Compile Include="Socket\BufferManager.cs" />
     <Compile Include="Socket\DataReceiveContext.cs" />
     <Compile Include="Socket\DataReceiveContextException.cs" />
@@ -111,10 +110,15 @@
       <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
       <Name>HigLabo.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Rss\HigLabo.Rss.csproj">
+      <Project>{7695b2c2-9977-41dd-8bf7-fa022c7582d8}</Project>
+      <Name>HigLabo.Rss</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
