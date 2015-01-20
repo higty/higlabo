@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Xml;
 
 namespace HigLabo.Core
@@ -45,11 +44,11 @@ namespace HigLabo.Core
         {
             if (text == null) { return null; }
 
-            var sanitised = RegexList.Sanitize.Replace(text, match =>
+            var sanitised = RegexList.Sanitize.Replace(text, new MatchEvaluator(match =>
             {
                 var value = match.Groups[1].Value;
 
-#if !NETFX_CORE && !Pcl
+#if !NETFX_CORE && !Pcl && !_Net_3_5
                 int characterCode;
                 if (int.TryParse(value, NumberStyles.HexNumber, CultureInfo.InvariantCulture, out characterCode))
                 {
@@ -60,7 +59,7 @@ namespace HigLabo.Core
                 }
 #endif
                 return match.Value;
-            });
+            }));
 
             return sanitised;
         }

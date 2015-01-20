@@ -145,7 +145,7 @@ namespace HigLabo.Net
             req.UserAgent = cm.UserAgent;
             req.ClientCertificates.AddRange(this.ClientCertificates);
 #endif
-#if !NET3_5 && !SILVERLIGHT && !NETFX_CORE && !PCL
+#if !_Net_3_5 && !SILVERLIGHT && !NETFX_CORE && !Pcl
             req.Date = cm.Date;
             if (String.IsNullOrEmpty(cm.Host) == false)
             {

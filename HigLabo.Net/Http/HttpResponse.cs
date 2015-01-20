@@ -8,6 +8,7 @@ using System.IO;
 using System.IO.Compression;
 #endif
 using System.Text.RegularExpressions;
+using HigLabo.Core;
 
 namespace HigLabo.Net
 {

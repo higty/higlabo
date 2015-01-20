@@ -4,28 +4,29 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{441A7010-4948-4187-8688-AB964A70C7FE}</ProjectGuid>
+    <ProjectGuid>{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HigLabo.Core</RootNamespace>
     <AssemblyName>HigLabo.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <OutputPath>bin\Debug\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
-    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <OutputPath>bin\Release\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -44,9 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\AppEnvironment.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Core\AppEnvironment.cs" />
     <Compile Include="Core\Enum.cs" />
     <Compile Include="Core\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Core\Serializer.cs" />
@@ -61,12 +60,14 @@
     <Compile Include="Extensions\AesManagedExtensions.cs" />
     <Compile Include="Extensions\AesManagedExtensionsSettings.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\EncodingExtensions_WinRT.cs" />
+    <Compile Include="Extensions\EnumExtensions_Net_3_5.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
-    <Compile Include="Extensions\INotifyPropertyChangedExtensions.cs" />
+    <Compile Include="Extensions\INotifyPropertyChangedExtensions_Net_4_0.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
-    <Compile Include="Extensions\ObservableCollectionExtensions.cs" />
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

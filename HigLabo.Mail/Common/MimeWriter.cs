@@ -13,6 +13,7 @@ using Windows.Security.Cryptography;
 #else
 using System.Security.Cryptography.X509Certificates;
 #endif
+using HigLabo.Core;
 
 namespace HigLabo.Net.Smtp
 {

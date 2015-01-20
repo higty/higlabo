@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7D2AFDB-E3C8-4309-B3F6-955CCE3FE65F}</ProjectGuid>
+    <ProjectGuid>{FCA14D66-E5B9-4540-B936-688AE1C76564}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HigLabo.Converter</RootNamespace>
-    <AssemblyName>HigLabo.Converter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>HigLabo.Mime</RootNamespace>
+    <AssemblyName>HigLabo.Mime</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
@@ -17,8 +17,8 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\_Net_4_0\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;_Net_4_0</DefineConstants>
+    <OutputPath>bin\Debug\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -26,8 +26,8 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\_Net_4_0\</OutputPath>
-    <DefineConstants>TRACE;_Net_4_0</DefineConstants>
+    <OutputPath>bin\Release\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -47,21 +47,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converter\Base64Converter.cs" />
-    <Compile Include="Converter\ByteConverter.cs" />
-    <Compile Include="Converter\ModifiedUtf7Converter.cs" />
-    <Compile Include="Converter\QuotedPrintableConverter.cs" />
-    <Compile Include="Converter\QuotedPrintableConvertMode.cs" />
-    <Compile Include="Converter\Rfc2047Converter.cs" />
-    <Compile Include="Converter\Rfc2231Converter.cs" />
-    <Compile Include="Core\Base64CharTable.cs" />
-    <Compile Include="Core\BufferByteArray.cs" />
-    <Compile Include="Core\EncodingDictionary.cs" />
-    <Compile Include="Core\Rcf2047Encoding.cs" />
+    <Compile Include="Core\ContentDisposition.cs" />
+    <Compile Include="Core\ContentType.cs" />
+    <Compile Include="Core\DateTimeRfc2822.cs" />
+    <Compile Include="Core\TransferEncoding.cs" />
+    <Compile Include="Mail\MailAddress.cs" />
+    <Compile Include="Mail\MailAddressCollection.cs" />
+    <Compile Include="Mail\MailHeaderCollection.cs" />
+    <Compile Include="Mail\MailMessage.cs" />
+    <Compile Include="Mime\Internal\CheckBoundaryResult.cs" />
+    <Compile Include="Mime\Internal\EncodingExtensions.cs" />
+    <Compile Include="Mime\Internal\MimeContentByteArray.cs" />
+    <Compile Include="Mime\Internal\MimeHeaderBufferByteArray.cs" />
+    <Compile Include="Mime\Internal\MimeStreamBuffer.cs" />
+    <Compile Include="Mime\InvalidMimeFormatException.cs" />
+    <Compile Include="Mime\MimeContent.cs" />
+    <Compile Include="Mime\MimeHeader.cs" />
+    <Compile Include="Mime\MimeHeaderCollection.cs" />
+    <Compile Include="Mime\MimeHeaderParameter.cs" />
+    <Compile Include="Mime\MimeHeaderWithParameter.cs" />
+    <Compile Include="Mime\MimeMessage.cs" />
+    <Compile Include="Mime\MimeParser.cs" />
+    <Compile Include="Mime\MimeParserDefaultSettings.cs" />
+    <Compile Include="Mime\MimeParserFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_3_5.csproj">
+      <Project>{ebd73a16-7c6d-45cb-b31d-b66cbc928618}</Project>
+      <Name>HigLabo.Converter._Net_3_5</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -4,28 +4,29 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1B28456C-6678-4282-A4B6-5F6EB6E5F3A4}</ProjectGuid>
+    <ProjectGuid>{5223EF03-CF8A-4248-858B-BA4453C85912}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HigLabo.Mail</RootNamespace>
     <AssemblyName>HigLabo.Mail</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <OutputPath>bin\Debug\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
-    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <OutputPath>bin\Release\_Net_3_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_3_5</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -154,21 +155,25 @@
     <Compile Include="Smtp\SmtpResponseCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj">
-      <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
-      <Name>HigLabo.Converter._Net_4_0</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HigLabo.Mime\HigLabo.Mime._Net_4_5.csproj">
-      <Project>{bebcd297-e800-4957-a60b-360e8f0706eb}</Project>
-      <Name>HigLabo.Mime._Net_4_5</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net._Net_4_5.csproj">
-      <Project>{89e24872-799b-463f-b611-1112a00fc82f}</Project>
-      <Name>HigLabo.Net._Net_4_5</Name>
-    </ProjectReference>
+    <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="HigLaboStrongNameKey.pfx" />
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_3_5.csproj">
+      <Project>{ebd73a16-7c6d-45cb-b31d-b66cbc928618}</Project>
+      <Name>HigLabo.Converter._Net_3_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Net_3_5.csproj">
+      <Project>{c27c620b-59e3-4e7d-a7f4-85c9c7a76ede}</Project>
+      <Name>HigLabo.Core._Net_3_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Mime\HigLabo.Mime._Net_3_5.csproj">
+      <Project>{fca14d66-e5b9-4540-b936-688ae1c76564}</Project>
+      <Name>HigLabo.Mime._Net_3_5</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net._Net_3_5.csproj">
+      <Project>{b8ea5e34-ca92-4b97-a486-2cf902f7de05}</Project>
+      <Name>HigLabo.Net._Net_3_5</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

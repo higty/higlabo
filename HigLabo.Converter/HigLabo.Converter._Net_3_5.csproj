@@ -57,7 +57,6 @@
     <Compile Include="Core\Base64CharTable.cs" />
     <Compile Include="Core\BufferByteArray.cs" />
     <Compile Include="Core\EncodingDictionary.cs" />
-    <Compile Include="Core\EnumExtensions_Net_3_5.cs" />
     <Compile Include="Core\Rcf2047Encoding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

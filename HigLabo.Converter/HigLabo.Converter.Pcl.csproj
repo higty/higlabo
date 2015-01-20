@@ -2,49 +2,42 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D7D2AFDB-E3C8-4309-B3F6-955CCE3FE65F}</ProjectGuid>
+    <ProjectGuid>{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HigLabo.Converter</RootNamespace>
-    <AssemblyName>HigLabo.Converter</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <RootNamespace>HigLabo.Converter.Pcl</RootNamespace>
+    <AssemblyName>HigLabo.Converter.Pcl</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\_Net_4_0\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;_Net_4_0</DefineConstants>
+    <OutputPath>bin\Debug\Pcl\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Pcl</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\_Net_4_0\</OutputPath>
-    <DefineConstants>TRACE;_Net_4_0</DefineConstants>
+    <OutputPath>bin\Release\Pcl\</OutputPath>
+    <DefineConstants>TRACE;Pcl</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\Base64Converter.cs" />
@@ -52,18 +45,15 @@
     <Compile Include="Converter\ModifiedUtf7Converter.cs" />
     <Compile Include="Converter\QuotedPrintableConverter.cs" />
     <Compile Include="Converter\QuotedPrintableConvertMode.cs" />
-    <Compile Include="Converter\Rfc2047Converter.cs" />
     <Compile Include="Converter\Rfc2231Converter.cs" />
     <Compile Include="Core\Base64CharTable.cs" />
     <Compile Include="Core\BufferByteArray.cs" />
     <Compile Include="Core\EncodingDictionary.cs" />
+    <Compile Include="Core\EncodingExtensions_WinRT.cs" />
     <Compile Include="Core\Rcf2047Encoding.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="HigLaboStrongNameKey.pfx" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

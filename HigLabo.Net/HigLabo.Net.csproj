@@ -55,7 +55,6 @@
     <Compile Include="Core\XmlData.cs" />
     <Compile Include="Extensions\DictionaryParserExtensions.cs" />
     <Compile Include="Extensions\EncodingExtensions.cs" />
-    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="Extensions\XmlParserExtensions.cs" />
     <Compile Include="Http\HttpBodyFormData.cs" />
     <Compile Include="Http\HttpBodyFormUrlEncodedData.cs" />
@@ -108,13 +107,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj">
-      <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
-      <Name>HigLabo.Converter._Net_4_0</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core._Net_4_5.csproj">
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj">
       <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
-      <Name>HigLabo.Core._Net_4_5</Name>
+      <Name>HigLabo.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

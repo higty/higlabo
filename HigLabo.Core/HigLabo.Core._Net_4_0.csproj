@@ -60,6 +60,7 @@
     <Compile Include="Extensions\AesManagedExtensions.cs" />
     <Compile Include="Extensions\AesManagedExtensionsSettings.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\INotifyPropertyChangedExtensions_Net_4_0.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />

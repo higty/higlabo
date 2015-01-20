@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using HigLabo.Net.Internal;
+using HigLabo.Core;
 
 namespace HigLabo.Net.Imap
 {

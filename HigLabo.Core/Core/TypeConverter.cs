@@ -43,6 +43,24 @@ namespace HigLabo.Core
             }
             return null;
         }
+#if _Net_3_5
+        public virtual Guid? ToGuid(Object value)
+        {
+            if (value == null) return null;
+
+            var tp = value.GetType();
+            if (tp == typeof(Guid)) return (Guid)value;
+            if (tp == typeof(String))
+            {
+                try
+                {
+                    return new Guid((String)value);
+                }
+                catch { }
+            }
+            return null;
+        }
+#else
         public virtual Guid? ToGuid(Object value)
         {
             if (value == null) return null;
@@ -56,6 +74,7 @@ namespace HigLabo.Core
             }
             return null;
         }
+#endif
         public virtual SByte? ToSByte(Object value)
         {
             return ToSByte(value, this.IntergerNumberStyle, null);
@@ -753,7 +772,23 @@ namespace HigLabo.Core
         {
             return ToEnum<T>(value, true);
         }
-#if NETFX_CORE || Pcl
+#if _Net_3_5
+        public virtual T? ToEnum<T>(Object value, Boolean ignoreCase) where T : struct
+        {
+            if (value == null) return null;
+            var tp = value.GetType();
+            if (tp == typeof(T)) return (T)value;
+            if (tp == typeof(String))
+            {
+                try
+                {
+                    return (T)Enum.Parse(typeof(T), (String)value, ignoreCase);
+                }
+                catch { }
+            }
+            return null;
+        }
+#elif NETFX_CORE || Pcl
         public virtual T? ToEnum<T>(Object value, Boolean ignoreCase) where T : struct
         {
             if (value == null) return null;

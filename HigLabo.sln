@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter._Net_4_0"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter._Net_3_5", "HigLabo.Converter\HigLabo.Converter._Net_3_5.csproj", "{EBD73A16-7C6D-45CB-B31D-B66CBC928618}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core._Net_4_5", "HigLabo.Core\HigLabo.Core._Net_4_5.csproj", "{441A7010-4948-4187-8688-AB964A70C7FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core", "HigLabo.Core\HigLabo.Core.csproj", "{441A7010-4948-4187-8688-AB964A70C7FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core._Net_4_0", "HigLabo.Core\HigLabo.Core._Net_4_0.csproj", "{9CD42A61-68BF-4CA8-B3FC-A815E5E3E405}"
 EndProject
@@ -15,19 +15,31 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core._Pcl", "HigLab
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data._Net_3_5", "HigLabo.Data\HigLabo.Data._Net_3_5.csproj", "{141F3E91-EB12-4198-ACC5-F1F194A6842C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.MySql._Net_4_5", "HigLabo.Data.MySql\HigLabo.Data.MySql._Net_4_5.csproj", "{48B03E2E-72B8-4EDC-BCB1-BE19E23A6A1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.MySql", "HigLabo.Data.MySql\HigLabo.Data.MySql.csproj", "{48B03E2E-72B8-4EDC-BCB1-BE19E23A6A1C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Oracle._Net_4_0", "HigLabo.Data.Oracle\HigLabo.Data.Oracle._Net_4_0.csproj", "{0F0CE0E5-EB11-44F6-90D7-7C384BDA6620}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.PostgreSql._Net_4_5", "HigLabo.Data.PostgreSql\HigLabo.Data.PostgreSql._Net_4_5.csproj", "{35838DE8-FEDE-4464-97F2-82093E2E4A97}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.PostgreSql", "HigLabo.Data.PostgreSql\HigLabo.Data.PostgreSql.csproj", "{35838DE8-FEDE-4464-97F2-82093E2E4A97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.SQLite", "HigLabo.Data.SQLite\HigLabo.Data.SQLite.csproj", "{B191A07D-CF5D-4E5F-AC2A-0B7C0B57A685}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mail._Net_4_5", "HigLabo.Mail\HigLabo.Mail._Net_4_5.csproj", "{1B28456C-6678-4282-A4B6-5F6EB6E5F3A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mail", "HigLabo.Mail\HigLabo.Mail.csproj", "{1B28456C-6678-4282-A4B6-5F6EB6E5F3A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net._Net_4_5", "HigLabo.Net\HigLabo.Net._Net_4_5.csproj", "{89E24872-799B-463F-B611-1112A00FC82F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net", "HigLabo.Net\HigLabo.Net.csproj", "{89E24872-799B-463F-B611-1112A00FC82F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mime._Net_4_5", "HigLabo.Mime\HigLabo.Mime._Net_4_5.csproj", "{BEBCD297-E800-4957-A60B-360E8F0706EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mime", "HigLabo.Mime\HigLabo.Mime.csproj", "{BEBCD297-E800-4957-A60B-360E8F0706EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mime._Net_3_5", "HigLabo.Mime\HigLabo.Mime._Net_3_5.csproj", "{FCA14D66-E5B9-4540-B936-688AE1C76564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mail._Net_3_5", "HigLabo.Mail\HigLabo.Mail._Net_3_5.csproj", "{5223EF03-CF8A-4248-858B-BA4453C85912}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net._Net_3_5", "HigLabo.Net\HigLabo.Net._Net_3_5.csproj", "{B8EA5E34-CA92-4B97-A486-2CF902F7DE05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core._Net_3_5", "HigLabo.Core\HigLabo.Core._Net_3_5.csproj", "{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter.Pcl", "HigLabo.Converter\HigLabo.Converter.Pcl.csproj", "{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter", "HigLabo.Converter\HigLabo.Converter.csproj", "{757964E0-B391-48EB-AD04-D9C41091CFB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +99,30 @@ Global
 		{BEBCD297-E800-4957-A60B-360E8F0706EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEBCD297-E800-4957-A60B-360E8F0706EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEBCD297-E800-4957-A60B-360E8F0706EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCA14D66-E5B9-4540-B936-688AE1C76564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCA14D66-E5B9-4540-B936-688AE1C76564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCA14D66-E5B9-4540-B936-688AE1C76564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCA14D66-E5B9-4540-B936-688AE1C76564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5223EF03-CF8A-4248-858B-BA4453C85912}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5223EF03-CF8A-4248-858B-BA4453C85912}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5223EF03-CF8A-4248-858B-BA4453C85912}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5223EF03-CF8A-4248-858B-BA4453C85912}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8EA5E34-CA92-4B97-A486-2CF902F7DE05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8EA5E34-CA92-4B97-A486-2CF902F7DE05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8EA5E34-CA92-4B97-A486-2CF902F7DE05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8EA5E34-CA92-4B97-A486-2CF902F7DE05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C27C620B-59E3-4E7D-A7F4-85C9C7A76EDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B39B485-FD79-44A5-A7B5-1B43A5ADC616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757964E0-B391-48EB-AD04-D9C41091CFB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757964E0-B391-48EB-AD04-D9C41091CFB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757964E0-B391-48EB-AD04-D9C41091CFB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757964E0-B391-48EB-AD04-D9C41091CFB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,6 +19,7 @@ using HigLabo.Net.Internal;
 using HigLabo.Net.Pop3;
 using HigLabo.Mime;
 using HigLabo.Converter;
+using HigLabo.Core;
 
 namespace HigLabo.Net.Smtp
 {

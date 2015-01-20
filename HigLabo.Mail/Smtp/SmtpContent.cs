@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
+using System.Globalization;
 using HigLabo.Mime;
 using HigLabo.Converter;
-using System.Globalization;
+using HigLabo.Core;
 
 namespace HigLabo.Net.Smtp
 {

@@ -53,6 +53,7 @@
     <Compile Include="Entity\EventArgs.cs" />
     <Compile Include="Entity\ExceptionEventArgs.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions_WinRT.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\INotifyPropertyChangedExtensions_Net_4_0.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
