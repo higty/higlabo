@@ -39,9 +39,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -154,9 +151,9 @@
     <Compile Include="Smtp\SmtpResponseCode.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj">
-      <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
-      <Name>HigLabo.Converter._Net_4_0</Name>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj">
+      <Project>{757964e0-b391-48eb-ad04-d9c41091cfb5}</Project>
+      <Name>HigLabo.Converter</Name>
     </ProjectReference>
     <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj">
       <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
