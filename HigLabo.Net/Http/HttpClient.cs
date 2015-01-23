@@ -228,6 +228,7 @@ namespace HigLabo.Net
         /// <returns></returns>
         public static string UrlEncode(String value, Encoding encode)
         {
+            if (String.IsNullOrEmpty(value) == true) return value;
             StringBuilder result = new StringBuilder();
             byte[] data = encode.GetBytes(value);
             int len = data.Length;

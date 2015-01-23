@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3B2C4135-4706-4E74-8677-54CEBEA1AC4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.CodeGenerator</RootNamespace>
+    <AssemblyName>HigLabo.CodeGenerator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CodeGenerator\CSharpSourceCodeGenerator.cs" />
+    <Compile Include="CodeGenerator\SourceCodeGenerator.cs" />
+    <Compile Include="CodeGenerator\SourceCodeGeneratorDefaultSettings.cs" />
+    <Compile Include="CodeGenerator\SourceCodeLanguage.cs" />
+    <Compile Include="CodeGenerator\VisualBasicSourceCodeGenerator.cs" />
+    <Compile Include="MetaData\AccessModifier.cs" />
+    <Compile Include="MetaData\Class.cs" />
+    <Compile Include="MetaData\ClassModifier.cs" />
+    <Compile Include="MetaData\CodeBlock.cs" />
+    <Compile Include="MetaData\CodeBlockCollection.cs" />
+    <Compile Include="MetaData\CodeBlockWithLanguage.cs" />
+    <Compile Include="MetaData\Constructor.cs" />
+    <Compile Include="MetaData\ConstructorModifier.cs" />
+    <Compile Include="MetaData\Field.cs" />
+    <Compile Include="MetaData\FieldModifier.cs" />
+    <Compile Include="MetaData\Interface.cs" />
+    <Compile Include="MetaData\InterfaceMethod.cs" />
+    <Compile Include="MetaData\InterfaceProperty.cs" />
+    <Compile Include="MetaData\Method.cs" />
+    <Compile Include="MetaData\MethodAccessModifier.cs" />
+    <Compile Include="MetaData\MethodModifier.cs" />
+    <Compile Include="MetaData\MethodParameter.cs" />
+    <Compile Include="MetaData\MethodPolymophism.cs" />
+    <Compile Include="MetaData\Namespace.cs" />
+    <Compile Include="MetaData\Property.cs" />
+    <Compile Include="MetaData\PropertyBody.cs" />
+    <Compile Include="MetaData\PropertyBodyType.cs" />
+    <Compile Include="MetaData\SourceCode.cs" />
+    <Compile Include="MetaData\TypeName.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
