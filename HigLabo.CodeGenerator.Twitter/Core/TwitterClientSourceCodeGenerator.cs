@@ -17,8 +17,8 @@ namespace HigLabo.CodeGenerator.Twitter
     {
         public void GenerateSourceCode(String folderPath)
         {
-            var d = new Dictionary<String, SourceCode>();
-            var documentUrls = new List<string>();
+            var d = new Dictionary<TwitterApiEndpointInfo, SourceCode>();
+            var documentUrls = new List<String>();
             var cl = new HttpClient();
             var html = cl.GetBodyText("https://dev.twitter.com/rest/public");
             HtmlDocument doc = new HtmlDocument();
@@ -29,41 +29,59 @@ namespace HigLabo.CodeGenerator.Twitter
             foreach (var a in nodes)
             {
                 var documentUrl = WebUtility.UrlDecode(a.Attributes["href"].Value);
-                documentUrl = "/rest/reference/get/application/rate_limit_status";
+                //This endpoint has been DEPRECATED.So we skip this endpoint
+                if (documentUrl == "/rest/reference/post/statuses/update_with_media") { continue; }
+                
+                //documentUrl = "/rest/reference/get/friendships/no_retweets/ids";//Use when debug...
                 if (documentUrls.Contains(documentUrl) == true) { continue; }
                 documentUrls.Add(documentUrl);
 
                 var apiInfo = CreateApiInfo(documentUrl);
 
+                //statuses/mentions_timeline
                 //statuses/update_with_media
                 //application/rate_limit_status
                 //user/profile_banner
+                //friendships/no_retweets/ids
                 //geo/reverse_geocode
                 var sc = GenerateApiEntityClasses("https://dev.twitter.com" + apiInfo.DocumentUrl, apiInfo);
-                var fileName = String.Format("{0}.{1}.Result", apiInfo.Name1, apiInfo.Name2);
-                d.Add(fileName, sc);
+                d.Add(apiInfo, sc);
                 apiInfoList.AddIfNotExist(apiInfo);
 
+                Console.WriteLine(apiInfo.DocumentUrl);
+            }
+            this.EnsureDirectory(folderPath);
+            
+            var sc1 = GenerateApiEndpointClasses(apiInfoList);
+            this.CreateSourceCodeFile(Path.Combine(folderPath, "ApiEndpoints.Api.cs"), sc1);
+
+            foreach (var apiInfo in d.Keys)
+            {
+                var sc = d[apiInfo];
+                var fileName = String.Format("{0}.{1}.cs", apiInfo.Name1, apiInfo.Name2);
+                this.EnsureDirectory(Path.Combine(folderPath, apiInfo.Name1));
+                var filePath = Path.Combine(folderPath, apiInfo.Name1, fileName);
+                this.CreateSourceCodeFile(filePath, sc);
                 Console.WriteLine(fileName);
             }
-            var sc1 = GenerateApiEndpointClasses(apiInfoList);
-            d.Add("ApiEndpoints.Api", sc1);
-
+            Console.WriteLine("Completed...Please press enter key");
+            Console.ReadLine();
+        }
+        private void CreateSourceCodeFile(String filePath, SourceCode sourceCode)
+        {
+            using (var stm = new FileStream(filePath, FileMode.Create))
+            {
+                var cs = new CSharpSourceCodeGenerator(new StreamWriter(stm));
+                cs.Write(sourceCode);
+                cs.Flush();
+                stm.Close();
+            }
+        }
+        private void EnsureDirectory(String folderPath)
+        {
             if (Directory.Exists(folderPath) == false)
             {
                 Directory.CreateDirectory(folderPath);
-            }
-            foreach (var key in d.Keys)
-            {
-                var filePath = Path.Combine(folderPath, key + ".cs");
-                using (var stm = new FileStream(filePath, FileMode.Create))
-                {
-                    var cs = new CSharpSourceCodeGenerator(new StreamWriter(stm));
-                    cs.Write(d[key]);
-                    cs.Flush();
-                    stm.Close();
-                }
-                Console.WriteLine(key + ".cs");
             }
         }
         private TwitterApiEndpointInfo CreateApiInfo(String url)
@@ -147,52 +165,6 @@ namespace HigLabo.CodeGenerator.Twitter
                 }
             }
             return sb.ToString();
-        }
-        private SourceCode GenerateApiEndpointClasses(List<TwitterApiEndpointInfo> apiList)
-        {
-            SourceCode sc = new SourceCode();
-            sc.UsingNamespaces.Add("System");
-
-            Namespace ns = new Namespace("HigLabo.Net.Twitter.Api_1_1");
-            sc.Namespaces.Add(ns);
-
-            Class apiEndpointsClass = new Class(AccessModifier.Public, "ApiEndpoints");
-            apiEndpointsClass.Modifier.Partial = true;
-            ns.Classes.Add(apiEndpointsClass);
-
-            foreach (var apiName1 in apiList.Select(el => el.Name1).Distinct())
-            {
-                apiEndpointsClass.Fields.Add(new Field("Api_" + apiName1, "_" + apiName1));
-                var p = new Property("Api_" + apiName1, apiName1);
-                p.Get.Body.Add(SourceCodeLanguage.CSharp, "if (_{0} == null) _{0} = new Api_{0}(this);", apiName1);
-                p.Get.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", apiName1);
-                p.Set = null;
-                apiEndpointsClass.Properties.Add(p);
-
-                Class apiClass = new Class(AccessModifier.Public, "Api_" + apiName1);
-                apiClass.Modifier.Partial = true;
-                apiEndpointsClass.Classes.Add(apiClass);
-
-                apiClass.Fields.Add(new Field("ApiEndpoints", "_ApiEndpoints"));
-                var ct = new Constructor(AccessModifier.Public, "Api_" + apiName1);
-                ct.Parameters.Add(new MethodParameter("ApiEndpoints", "apiEndpoints"));
-                ct.Body.Add(SourceCodeLanguage.CSharp, "_ApiEndpoints = apiEndpoints;");
-                apiClass.Constructors.Add(ct);
-
-                foreach (var apiName2 in apiList.Where(el => el.Name1 == apiName1).Select(el => el.Name2))
-                {
-                    var apiInfo = apiList.Find(el => el.Name1 == apiName1 && el.Name2 == apiName2);
-                    if (apiInfo.HasResult == false) { continue; }
-
-                    var md = new Method(MethodAccessModifier.Public, apiName2);
-                    md.ReturnTypeName = new TypeName(String.Format("{0}.{1}.Result[]", apiName1, apiName2));
-                    md.Parameters.Add(new MethodParameter(String.Format("{0}.{1}.Command", apiName1, apiName2), "command"));
-                    md.Body.Add(SourceCodeLanguage.CSharp
-                        , "return _ApiEndpoints._Client.GetResult<{0}.{1}.Command, {0}.{1}.Result[]>(command);", apiName1, apiName2);
-                    apiClass.Methods.Add(md);
-                }
-            }
-            return sc;
         }
         private SourceCode GenerateApiEntityClasses(String url, TwitterApiEndpointInfo apiInfo)
         {
@@ -296,19 +268,70 @@ namespace HigLabo.CodeGenerator.Twitter
             //Result class
             var exampleNode = doc.DocumentNode.SelectSingleNode("//article[@id='main-content']"
                 + "//pre[@class='brush: jscript' or @class='brush: javascript']");
-            if (exampleNode == null)
-            {
-                apiInfo.HasResult = false;
-                return;
-            }
-            apiInfo.HasResult = true;
+            if (exampleNode == null) { return; }
 
             var json = exampleNode.InnerText;
             json = json.Replace(".json\";", ".json\"");//https://dev.twitter.com/rest/reference/post/geo/place
             json = json.Replace("  ...", "");//https://dev.twitter.com/rest/reference/get/trends/available
             JsonParser parser = new JsonParser();
             var resultClass = parser.Parse(json, "Result");
-            api2.Classes.Add(resultClass);
+            //friendships/no_retweets/ids
+            if (apiInfo.Name1 == "Friendships" && apiInfo.Name2 == "No_Retweets_Ids")
+            {
+                apiInfo.ResultClassName = "String";
+            }
+            else
+            {
+                api2.Classes.Add(resultClass);
+                apiInfo.ResultClassName = String.Format("{0}.{1}.Result", apiInfo.Name1, apiInfo.Name2);
+            }
+        }
+
+        private SourceCode GenerateApiEndpointClasses(List<TwitterApiEndpointInfo> apiList)
+        {
+            SourceCode sc = new SourceCode();
+            sc.UsingNamespaces.Add("System");
+
+            Namespace ns = new Namespace("HigLabo.Net.Twitter.Api_1_1");
+            sc.Namespaces.Add(ns);
+
+            Class apiEndpointsClass = new Class(AccessModifier.Public, "ApiEndpoints");
+            apiEndpointsClass.Modifier.Partial = true;
+            ns.Classes.Add(apiEndpointsClass);
+
+            foreach (var apiName1 in apiList.Select(el => el.Name1).Distinct())
+            {
+                apiEndpointsClass.Fields.Add(new Field("Api_" + apiName1, "_" + apiName1));
+                var p = new Property("Api_" + apiName1, apiName1);
+                p.Get.Body.Add(SourceCodeLanguage.CSharp, "if (_{0} == null) _{0} = new Api_{0}(this);", apiName1);
+                p.Get.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", apiName1);
+                p.Set = null;
+                apiEndpointsClass.Properties.Add(p);
+
+                Class apiClass = new Class(AccessModifier.Public, "Api_" + apiName1);
+                apiClass.Modifier.Partial = true;
+                apiEndpointsClass.Classes.Add(apiClass);
+
+                apiClass.Fields.Add(new Field("ApiEndpoints", "_ApiEndpoints"));
+                var ct = new Constructor(AccessModifier.Public, "Api_" + apiName1);
+                ct.Parameters.Add(new MethodParameter("ApiEndpoints", "apiEndpoints"));
+                ct.Body.Add(SourceCodeLanguage.CSharp, "_ApiEndpoints = apiEndpoints;");
+                apiClass.Constructors.Add(ct);
+
+                foreach (var apiName2 in apiList.Where(el => el.Name1 == apiName1).Select(el => el.Name2))
+                {
+                    var apiInfo = apiList.Find(el => el.Name1 == apiName1 && el.Name2 == apiName2);
+                    if (apiInfo.HasResult == false) { continue; }
+
+                    var md = new Method(MethodAccessModifier.Public, apiName2);
+                    md.ReturnTypeName = new TypeName(String.Format("{0}[]", apiInfo.ResultClassName));
+                    md.Parameters.Add(new MethodParameter(String.Format("{0}.{1}.Command", apiName1, apiName2), "command"));
+                    md.Body.Add(SourceCodeLanguage.CSharp
+                        , "return _ApiEndpoints._Client.GetResult<{0}.{1}.Command, {2}[]>(command);", apiName1, apiName2, apiInfo.ResultClassName);
+                    apiClass.Methods.Add(md);
+                }
+            }
+            return sc;
         }
     }
 }

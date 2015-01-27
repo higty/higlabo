@@ -12,11 +12,21 @@ namespace HigLabo.CodeGenerator.Twitter
         public String DocumentUrl { get; set; }
         public String Name1 { get; set; }
         public String Name2 { get; set; }
-        public Boolean HasResult { get; set; }
+        public Boolean HasResult
+        {
+            get
+            {
+                if (String.IsNullOrEmpty(this.ResultClassName) == true)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
+        public String ResultClassName { get; set; }
 
         public TwitterApiEndpointInfo()
         {
-            this.HasResult = false;
         }
     }
 }

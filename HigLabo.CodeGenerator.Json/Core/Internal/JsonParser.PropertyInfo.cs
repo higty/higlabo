@@ -14,7 +14,15 @@ namespace HigLabo.CodeGenerator.Json
             public String MapName { get; set; }
             public String Name { get; set; }
             public JsonTypeInfo TypeInfo { get; set; }
-            public String TypeName { get; set; }
+            public ClassInfo ClassInfo { get; set; }
+            public String TypeName
+            {
+                get
+                {
+                    if (this.ClassInfo == null) { return ""; }
+                    return this.ClassInfo.Name;
+                }
+            }
             public Int32 ArrayDimension { get; set; }
             public Boolean Nullable { get; set; }
 

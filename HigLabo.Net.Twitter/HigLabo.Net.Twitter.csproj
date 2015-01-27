@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A63FCBEC-5013-4EE8-A923-28863F6A82AE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.Net.Twitter</RootNamespace>
+    <AssemblyName>HigLabo.Net.Twitter</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\_Net_4_5\</OutputPath>
+    <DefineConstants>TRACE;_Net_4_5</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\Net4.5\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Api\ApiEndpoints.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Remove_Profile_Banner.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Settings_Get.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Settings_Post.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Delivery_Device.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Background_Image.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Banner.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Image.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Verify_Credentials.cs" />
+    <Compile Include="Api\Endpoint\Generated\ApiEndpoints.Api.cs" />
+    <Compile Include="Api\Endpoint\Generated\Application\Application.Rate_Limit_Status.cs" />
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Ids.cs" />
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Get.cs" />
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.New.cs" />
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Sent.cs" />
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Followers\Followers.Ids.cs" />
+    <Compile Include="Api\Endpoint\Generated\Followers\Followers.List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Incoming.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Lookup.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.No_Retweets_Ids.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Outgoing.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Update.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friends\Friends.Ids.cs" />
+    <Compile Include="Api\Endpoint\Generated\Friends\Friends.List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Id_Place_Id.cs" />
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Place.cs" />
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Reverse_Geocode.cs" />
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Search.cs" />
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Configuration.cs" />
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Languages.cs" />
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Privacy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Tos.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Memberships.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Create_All.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Destroy_All.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Ownerships.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Statuses.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscriptions.cs" />
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Update.cs" />
+    <Compile Include="Api\Endpoint\Generated\Media\Media.Upload.cs" />
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Ids.cs" />
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Create.cs" />
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.List.cs" />
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Search\Search.Tweets.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Destroy.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Home_Timeline.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Lookup.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Mentions_Timeline.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Oembed.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweet.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweeters_Ids.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweets.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweets_Of_Me.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Update.cs" />
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.User_Timeline.cs" />
+    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Available.cs" />
+    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Closest.cs" />
+    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Place.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Lookup.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Profile_Banner.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Report_Spam.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Search.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Show.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions_Category.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions_Category_Members.cs" />
+    <Compile Include="Core\TwitterClient.cs" />
+    <Compile Include="Core\TwitterClient.SyncCall.cs" />
+    <Compile Include="Core\TwitterCommand.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj">
+      <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
+      <Name>HigLabo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj">
+      <Project>{937adaaa-3b53-446a-91d6-07673be9948c}</Project>
+      <Name>HigLabo.Mapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net.csproj">
+      <Project>{89e24872-799b-463f-b611-1112a00fc82f}</Project>
+      <Name>HigLabo.Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
