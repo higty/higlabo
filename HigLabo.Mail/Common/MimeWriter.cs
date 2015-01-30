@@ -198,7 +198,7 @@ namespace HigLabo.Net.Smtp
             }
             else
             {
-                if (ct.ContentType.IsText == true)
+                if (ct.ContentType.IsText == true && String.IsNullOrEmpty(ct.BodyText) == false)
                 {
                     this.WriteEncodedBodyText(stream, ct.BodyText, ct.ContentTransferEncoding, ct.ContentType.CharsetEncoding, 74);
                 }
