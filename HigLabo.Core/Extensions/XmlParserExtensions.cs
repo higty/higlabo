@@ -80,12 +80,11 @@ namespace HigLabo.Core
         /// 
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="key"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static String CastElementToString(this XElement element, String key)
+        public static string CastElementToString(this XElement element, String name)
         {
-            if (element.Element(key) == null) { return ""; }
-            return element.Element(key).Value;
+            return element.CastElementToString("", name);
         }
         /// <summary>
         /// 
@@ -103,12 +102,11 @@ namespace HigLabo.Core
         /// 
         /// </summary>
         /// <param name="element"></param>
-        /// <param name="key"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
-        public static String CastAttributeToString(this XElement element, String key)
+        public static string CastAttributeToString(this XElement element, String name)
         {
-            if (element.Attribute(key) == null) { return ""; }
-            return element.Attribute(key).Value;
+            return element.CastAttributeToString("", name);
         }
         /// <summary>
         /// 
