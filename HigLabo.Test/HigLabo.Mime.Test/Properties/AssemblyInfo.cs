@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("HigLabo.Mime")]
+[assembly: AssemblyTitle("HigLabo.Mime.Test")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hewlett-Packard Company")]
-[assembly: AssemblyProduct("HigLabo.Mime")]
+[assembly: AssemblyProduct("HigLabo.Mime.Test")]
 [assembly: AssemblyCopyright("Copyright © Hewlett-Packard Company 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("9b49313a-af74-429f-8ab4-50bfe7ee0d7c")]
+[assembly: Guid("37572277-1787-45db-84d0-305bc3daf01d")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,4 +34,3 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-[assembly: InternalsVisibleTo("HigLabo.Mime.Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100f7c6d7f4d642a32e40d5b092459958bb1975e6c198783c4ea9490e901d46b76551c3c8ced52ee1e37eaf2621c028166be42d84a4f1de90eb960b86aca6b273440cde864cd7e48cb8bf800673ccc6b1e818340b4ca0e1442b5a4a66cdac5a4b6ed559c7c50330b78c51548a1b285b9a425f798b79df73f5a1ac3f9f33c89b3398")]
