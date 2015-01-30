@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{44F3CE19-AD5E-4C37-B272-B66B4C24B934}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.DbSharp.Service</RootNamespace>
+    <AssemblyName>HigLabo.DbSharp.Service</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HigLabo.CodeGenerator">
+      <HintPath>..\Reference\HigLabo.CodeGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.MySql">
+      <HintPath>..\Reference\HigLabo.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.Oracle">
+      <HintPath>..\Reference\HigLabo.Data.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.PostgreSql">
+      <HintPath>..\Reference\HigLabo.Data.PostgreSql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.SqLite">
+      <HintPath>..\Reference\HigLabo.Data.SqLite.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NpgSql">
+      <HintPath>..\Reference\NpgSql.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Command\DbSharpCommand.cs" />
+    <Compile Include="Command\DbSharpCommandContext.cs" />
+    <Compile Include="Command\DeleteObjectCommand.cs" />
+    <Compile Include="Command\GenerateSourceCodeCommand.cs" />
+    <Compile Include="Command\ImportSchemaCommand.cs" />
+    <Compile Include="Command\ImportStoredProcedureCommand.cs" />
+    <Compile Include="Command\ImportTableCommand.cs" />
+    <Compile Include="Command\ImportUserDefinedTableTypeCommand.cs" />
+    <Compile Include="Core\CommandCompletedEventArgs.cs" />
+    <Compile Include="Core\ImportObjectGenerateFileEventArgs.cs" />
+    <Compile Include="Core\ImportObjectGenerateFileProcessType.cs" />
+    <Compile Include="Core\ProcessProgressEventArgs.cs" />
+    <Compile Include="Service\CommandService.cs" />
+    <Compile Include="Service\DeleteObjectCommandService.cs" />
+    <Compile Include="Service\ImportObjectCommandService.cs" />
+    <Compile Include="Service\ImportObjectGenerateFileCommandService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.DbSharp.CodeGenerator\HigLabo.DbSharp.CodeGenerator.csproj">
+      <Project>{1c97a1ed-ec16-4358-83fc-4291d9f5b7e6}</Project>
+      <Name>HigLabo.DbSharp.CodeGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.DbSharp.SchemaData\HigLabo.DbSharp.SchemaData.csproj">
+      <Project>{4e5f1660-b172-43b2-8a5d-d53e5b5dd102}</Project>
+      <Name>HigLabo.DbSharp.SchemaData</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

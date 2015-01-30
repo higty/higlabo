@@ -1,0 +1,257 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DAE56463-9FC3-43E2-9ACD-2C0E3B730B52}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLabo.DbSharpApplication</RootNamespace>
+    <AssemblyName>DbSharpApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HigLabo.CodeGenerator">
+      <HintPath>..\Reference\HigLabo.CodeGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.MySql">
+      <HintPath>..\Reference\HigLabo.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.Oracle">
+      <HintPath>..\Reference\HigLabo.Data.Oracle.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.PostgreSql">
+      <HintPath>..\Reference\HigLabo.Data.PostgreSql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.SqLite">
+      <HintPath>..\Reference\HigLabo.Data.SqLite.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Wpf">
+      <HintPath>..\Reference\HigLabo.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NpgSql">
+      <HintPath>..\Reference\NpgSql.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>..\Reference\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="Properties\Resources.ja-JP.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.ja-JP.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\DeleteObjectWindow.xaml.cs">
+      <DependentUpon>DeleteObjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditConnectionStringWindow.xaml.cs">
+      <DependentUpon>EditConnectionStringWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\EditSettingsWindow.xaml.cs">
+      <DependentUpon>EditSettingsWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GenerateSourceCodeWindow.xaml.cs">
+      <DependentUpon>GenerateSourceCodeWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\GenerateSqlScriptWindow.xaml.cs">
+      <DependentUpon>GenerateSqlScriptWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportObjectGenerateFileWindow.xaml.cs">
+      <DependentUpon>ImportObjectGenerateFileWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImportObjectWindow.xaml.cs">
+      <DependentUpon>ImportObjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindowState.cs" />
+    <Compile Include="Windows\ManageConnectionStringWindow.xaml.cs">
+      <DependentUpon>ManageConnectionStringWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ProgressWindow.xaml.cs">
+      <DependentUpon>ProgressWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Config\ConfigData.cs" />
+    <Compile Include="Config\ConnectionStringInfo.cs" />
+    <Compile Include="Config\MainWindowStateInfo.cs" />
+    <Compile Include="Config\SchemaFileInfo.cs" />
+    <Compile Include="Converter\DataTypeLengthConverter.cs" />
+    <Compile Include="Core\AValue.cs" />
+    <Compile Include="Core\DbSharpApplicationException.cs" />
+    <Compile Include="Core\ProgressListBoxDataTemplateSelector.cs" />
+    <Compile Include="Core\StoredProcedureFilter.cs" />
+    <Page Include="Styles\Button.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\Common.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Styles\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\DeleteObjectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EditConnectionStringWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\EditSettingsWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\GenerateSourceCodeWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\GenerateSqlScriptWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ImportObjectGenerateFileWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ImportObjectWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ManageConnectionStringWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ProgressWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.ja-JP.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.ja-JP.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.DbSharp.CodeGenerator\HigLabo.DbSharp.CodeGenerator.csproj">
+      <Project>{1c97a1ed-ec16-4358-83fc-4291d9f5b7e6}</Project>
+      <Name>HigLabo.DbSharp.CodeGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.DbSharp.SchemaData\HigLabo.DbSharp.SchemaData.csproj">
+      <Project>{4e5f1660-b172-43b2-8a5d-d53e5b5dd102}</Project>
+      <Name>HigLabo.DbSharp.SchemaData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.DbSharp.Service\HigLabo.DbSharp.Service.csproj">
+      <Project>{44f3ce19-ad5e-4c37-b272-b66b4c24b934}</Project>
+      <Name>HigLabo.DbSharp.Service</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icon\DbSharp.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

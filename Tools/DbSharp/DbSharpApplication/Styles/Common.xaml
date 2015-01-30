@@ -1,0 +1,30 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <SolidColorBrush x:Key="WindowBackgroundBrush" Color="#FFFFFFFF" />
+
+    <LinearGradientBrush x:Key="NormalBorderBrush" EndPoint="0.5,0" StartPoint="0.5,1">
+        <GradientStop Color="#FF84B2D4" />
+        <GradientStop Color="#FFADC7DE" Offset="1" />
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="NormalHighlightBrush" Color="#FFFFFFFF"/>
+    <SolidColorBrush x:Key="MouseOverBrush" Color="#a0eaf0"></SolidColorBrush>
+    <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#6699ff"></SolidColorBrush>
+    <SolidColorBrush x:Key="MouseOverHighlightBrush" Color="#FFFFFFFB"></SolidColorBrush>
+    <LinearGradientBrush x:Key="PressedBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFC3BCAE" Offset="0" />
+        <GradientStop Color="#FFD5F3FF" Offset="0.046" />
+        <GradientStop Color="#FF9BDFFF" Offset="0.724" />
+        <GradientStop Color="#FFB5C6F5" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PressedBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FF8E8165" Offset="0" />
+        <GradientStop Color="#FFC3BCAE" Offset="1" />
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="PressedHighlightBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+        <GradientStop Color="#FFFFFFFF" Offset="0.665" />
+        <GradientStop Color="#FFC3BCAE" Offset="0" />
+    </LinearGradientBrush>
+
+</ResourceDictionary>
