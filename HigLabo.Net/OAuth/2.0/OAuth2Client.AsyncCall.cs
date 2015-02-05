@@ -65,7 +65,7 @@ namespace HigLabo.Net
             var cm = this.CreateGetAccessTokenCommand(code);
             this.GetBodyText(cm, text =>
             {
-                var t = OAuth2AccessToken.Create(this.ClientID, text);
+                var t = OAuth2AccessToken.Create(text);
                 callback(t);
             });
         }

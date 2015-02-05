@@ -205,9 +205,9 @@ namespace HigLabo.Net.Twitter.Api_1_1
             {
                 return _ApiEndpoints._Client.GetResult<Statuses.Destroy.Command, Statuses.Destroy.Result[]>(command);
             }
-            public Statuses.Update.Result[] Update(Statuses.Update.Command command)
+            public Statuses.Update.Result Update(Statuses.Update.Command command)
             {
-                return _ApiEndpoints._Client.GetResult<Statuses.Update.Command, Statuses.Update.Result[]>(command);
+                return _ApiEndpoints._Client.GetResult<Statuses.Update.Command, Statuses.Update.Result>(command);
             }
             public Statuses.Retweet.Result[] Retweet(Statuses.Retweet.Command command)
             {

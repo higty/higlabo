@@ -73,6 +73,12 @@ namespace HigLabo.Core
         {
             return this.Map(source, target, new MappingContext());
         }
+        public TTarget MapOrNull<TSource, TTarget>(TSource source, TTarget target)
+            where TTarget : class
+        {
+            if (source == null) return null;
+            return this.Map(source, target, new MappingContext());
+        }
         [ObjectMapConfigMethodAttribute(Name = "Map")]
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {

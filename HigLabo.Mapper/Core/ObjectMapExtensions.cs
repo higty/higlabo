@@ -15,6 +15,11 @@ namespace HigLabo.Core
         {
             return ObjectMapConfig.Current.Map(source, target);
         }
+        public static TTarget MapOrNull<TSource, TTarget>(this TSource source, TTarget target)
+            where TTarget : class
+        {
+            return ObjectMapConfig.Current.MapOrNull(source, target);
+        }
         public static IEnumerable<TTarget> Map<TSource, TTarget>(this IEnumerable<TSource> source, Func<TTarget> constructor)
         {
             return ObjectMapConfig.Current.Map(source, constructor);

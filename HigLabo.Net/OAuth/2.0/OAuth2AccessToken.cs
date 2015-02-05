@@ -65,10 +65,9 @@ namespace HigLabo.Net
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="clientID"></param>
         /// <param name="jsonText"></param>
         /// <returns></returns>
-        public static OAuth2AccessToken Create(String clientID, String jsonText)
+        public static OAuth2AccessToken Create(String jsonText)
         {
             OAuth2AccessToken t = new OAuth2AccessToken();
             t.JsonText = jsonText;
