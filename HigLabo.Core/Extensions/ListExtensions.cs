@@ -64,6 +64,20 @@ namespace HigLabo.Core
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <param name="item"></param>
+        /// <param name="selectorFunc"></param>
+        public static void AddIfNotExist<T, TProperty>(this List<T> list, T item, Func<T, TProperty> selectorFunc)
+        {
+            if (list.Exists(el => Object.Equals(selectorFunc(item), selectorFunc(el))) == false)
+            {
+                list.Add(item);
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="item"></param>
         /// <param name="equalityFunc"></param>
         public static void AddIfNotExist<T>(this List<T> list, T item, Func<T, T, Boolean> equalityFunc)
         {
