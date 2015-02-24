@@ -64,20 +64,6 @@
     <Compile Include="TestCase\MimeParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\Mail_BodyText_BeforeBoundary.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\Mail_BodyText_Content.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\Mail_InvalidCharset.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TestData\Mail_Shift_jis_8bit.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj">
       <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
       <Name>HigLabo.Converter._Net_4_0</Name>
@@ -89,6 +75,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HigLaboStrongNameKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestData\Mail_BodyText_BeforeBoundary.txt" />
+    <Content Include="TestData\Mail_BodyText_Content.txt" />
+    <Content Include="TestData\Mail_InvalidCharset.txt" />
+    <Content Include="TestData\Mail_Shift_jis_8bit.txt" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
