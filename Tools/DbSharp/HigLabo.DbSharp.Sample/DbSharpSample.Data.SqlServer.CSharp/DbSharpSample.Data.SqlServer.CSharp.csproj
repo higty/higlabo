@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E24380B4-AABB-48B2-88BE-748917AB7B1F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLaboSample.Data.SqlServer.CSharp</RootNamespace>
+    <AssemblyName>HigLaboSample.Data.SqlServer.CSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core, Version=1.1.4.2, Culture=neutral, PublicKeyToken=20abaee7662647f3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data, Version=2.0.2.0, Culture=neutral, PublicKeyToken=20abaee7662647f3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp, Version=0.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\MyEnum.cs" />
+    <Compile Include="GeneratedFiles\StoredProcedure\Usp_OutputParameter.cs" />
+    <Compile Include="GeneratedFiles\StoredProcedure\Usp_SelectMultiTable.cs" />
+    <Compile Include="GeneratedFiles\StoredProcedure\Usp_Structure.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\AllDataTypeTableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\AllDataTypeTableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\AllDataTypeTableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\AllDataTypeTableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\AllDataTypeTableUpdate.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\IdentityTableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\IdentityTableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\IdentityTableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\IdentityTableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\IdentityTableUpdate.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\MultiPkTableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\MultiPkTableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\MultiPkTableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\MultiPkTableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\MultiPkTableUpdate.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\RowGuidColTableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\RowGuidColTableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\RowGuidColTableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\RowGuidColTableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\RowGuidColTableUpdate.cs" />
+    <Compile Include="GeneratedFiles\Table\AllDataTypeTable.cs" />
+    <Compile Include="GeneratedFiles\Table\AllDataTypeTable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\AllDataTypeTable.Record.cs" />
+    <Compile Include="GeneratedFiles\Table\IdentityTable.cs" />
+    <Compile Include="GeneratedFiles\Table\IdentityTable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\IdentityTable.Record.cs" />
+    <Compile Include="GeneratedFiles\Table\MultiPkTable.cs" />
+    <Compile Include="GeneratedFiles\Table\MultiPkTable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\MultiPkTable.Record.cs" />
+    <Compile Include="GeneratedFiles\Table\RowGuidColTable.cs" />
+    <Compile Include="GeneratedFiles\Table\RowGuidColTable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\RowGuidColTable.Record.cs" />
+    <Compile Include="GeneratedFiles\UserDefinedTableType\MyTableType.cs" />
+    <Compile Include="GeneratedFiles\UserDefinedTableType\MyTableType1.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbSharp_SqlServer.sql" />
+    <Content Include="DbSharp_SqlServer.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
