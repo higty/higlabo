@@ -77,10 +77,18 @@
     <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="TestData\Mail_BodyText_BeforeBoundary.txt" />
-    <Content Include="TestData\Mail_BodyText_Content.txt" />
-    <Content Include="TestData\Mail_InvalidCharset.txt" />
-    <Content Include="TestData\Mail_Shift_jis_8bit.txt" />
+    <Content Include="TestData\Mail_BodyText_BeforeBoundary.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Mail_BodyText_Content.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Mail_InvalidCharset.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Mail_Shift_jis_8bit.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

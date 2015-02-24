@@ -40,7 +40,7 @@
   <ItemGroup>
     <Reference Include="HigLabo.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=20abaee7662647f3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Visual Studio 2012\Projects\Higuchi\@Joytter\Reference\HigLabo.Data.dll</HintPath>
+      <HintPath>..\HigLabo.Data\bin\Debug\_Net_4_5\HigLabo.Data.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
