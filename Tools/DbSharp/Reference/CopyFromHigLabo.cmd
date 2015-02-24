@@ -1,5 +1,5 @@
-SET path="C:\Users\F03006\Documents\Visual Studio 2013\Projects\HigLabo\
-SET targetPath="C:\Users\F03006\Documents\Visual Studio 2013\Projects\HigLabo\Tools\DbSharp\Reference\
+SET path="C:\GitHub\Higty\HigLabo\
+SET targetPath="C:\GitHub\Higty\HigLabo\Tools\DbSharp\Reference\
 
 Copy %path%Reference\Net4.5\Newtonsoft.Json.dll" %targetPath%Newtonsoft.Json.dll
 
