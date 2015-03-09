@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HigLabo.Wpf._Net_4_5</id>
+    <version>1.0.0.0</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
+    <projectUrl>https://github.com/higty/higlabo</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Get HigLabo.Web library for .NET4.5 hosted on GitHub.</description>
+    <releaseNotes>Initial release on GitHub.Moved from https://higlabo.codeplex.com/.</releaseNotes>
+    <copyright>HigLabo</copyright>
+    <tags>HigLabo</tags>
+    <dependencies>
+      <dependency id="HigLabo.CoreLibrary._Net_4_5" version="1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Reference\_Net_4_5\HigLabo.Wpf.dll" target="lib\net45"></file>
+  </files>
+</package>

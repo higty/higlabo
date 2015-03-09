@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>HigLabo.Mail._Net_4_5</id>
+    <version>1.0.0.0</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
+    <projectUrl>https://github.com/higty/higlabo</projectUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>Get HigLabo.Mail library for .NET4.5 hosted on GitHub.This library provide Imap,Pop3,Smtp feature.</description>
+    <releaseNotes>Initial release on GitHub.Moved from https://higlabo.codeplex.com/.</releaseNotes>
+    <copyright>HigLabo</copyright>
+    <tags>HigLabo</tags>
+    <dependencies>
+      <dependency id="HigLabo.CoreLibrary._Net_4_5" version="1.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Reference\_Net_4_5\HigLabo.Mime.dll" target="lib\net45"></file>
+    <file src="Reference\_Net_4_5\HigLabo.Mail.dll" target="lib\net45"></file>
+  </files>
+</package>
