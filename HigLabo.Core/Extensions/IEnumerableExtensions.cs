@@ -15,6 +15,29 @@ namespace HigLabo.Core
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
+        /// <param name="value"></param>
+        /// <param name="equalityFunc"></param>
+        /// <returns></returns>
+        public static Boolean Contains<T>(this IEnumerable<T> source, T value, Func<T, T, Boolean> equalityFunc)
+        {
+            return source.Contains(value, new EqualityFunc<T>(equalityFunc));
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public static Boolean Exists<T>(this IEnumerable<T> source, Func<T, Boolean> predicate)
+        {
+            return source.FirstOrDefault(predicate) != null;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
         /// <param name="equalityFunc"></param>
         /// <returns></returns>
         public static IEnumerable<T> Distinct<T>(this IEnumerable<T> source, Func<T, T, Boolean> equalityFunc)
