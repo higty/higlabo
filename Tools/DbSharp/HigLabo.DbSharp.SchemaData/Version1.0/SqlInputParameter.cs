@@ -12,6 +12,7 @@ namespace HigLabo.DbSharp.MetaData
     {
         private String _UserTableTypeName = "";
         private ParameterDirection _ParameterDirection = ParameterDirection.Input;
+        private String _ValueForTest = "";
 
         public String UserTableTypeName
         {
@@ -22,6 +23,11 @@ namespace HigLabo.DbSharp.MetaData
         {
             get { return this._ParameterDirection; }
             set { this.SetPropertyValue(ref _ParameterDirection, value, GetPropertyChangedEventHandler()); }
+        }
+        public String ValueForTest
+        {
+            get { return this._ValueForTest; }
+            set { this.SetPropertyValue(ref _ValueForTest, value, GetPropertyChangedEventHandler()); }
         }
 
         public SqlInputParameter()

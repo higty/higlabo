@@ -156,6 +156,7 @@
                                                 <StaticResource ResourceKey="DataTypeUserTableTypeName"/>
                                                 <StaticResource ResourceKey="DataTypeUdtTypeName"/>
                                                 <StaticResource ResourceKey="DataTypeEnumName"/>
+                                                <StaticResource ResourceKey="DataTypeValueForTest"/>
                                             </DataGrid.Columns>
                                         </DataGrid>
                                     </Grid>

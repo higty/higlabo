@@ -9,6 +9,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class SchemaData
     {
+        public String VersionNumber { get; set; }
         public DatabaseServer DatabaseServer { get; set; }
         public String NamespaceName { get; set; }
         public String DatabaseKey { get; set; }
@@ -21,6 +22,7 @@ namespace HigLabo.DbSharp.MetaData
 
         public SchemaData()
         {
+            this.VersionNumber = "1.1";
             this.Tables = new ObservableCollection<Table>();
             this.StoredProcedures = new ObservableCollection<StoredProcedure>();
             this.UserDefinedTableTypes = new ObservableCollection<UserDefinedTableType>();

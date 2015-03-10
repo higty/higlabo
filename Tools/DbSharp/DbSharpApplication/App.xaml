@@ -40,6 +40,7 @@
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeUdtTypeName" Header="UdtType" Binding="{Binding Path=UdtTypeName}" IsReadOnly="True" Width="120"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeEnumName" Header="{x:Static p:Resources.EnumName}" Binding="{Binding Path=EnumName}" Width="120"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeEnumValues" Header="{x:Static p:Resources.EnumValues}" Binding="{Binding Path=EnumValues}" IsReadOnly="True" Width="120"></ctrl:DataGridTextColumn>
+            <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeValueForTest" Header="{x:Static p:Resources.ValueForTest}" Binding="{Binding Path=ValueForTest}" IsReadOnly="True" Width="120"></ctrl:DataGridTextColumn>
 
             <ctrl:DataGridTextColumn x:Shared="False" x:Key="DataTypeAllowNull" Header="{x:Static p:Resources.AllowNull}" Binding="{Binding Path=AllowNull, Converter={StaticResource DataTypeBooleanTextConverter}}" IsReadOnly="True"></ctrl:DataGridTextColumn>
             <ctrl:DataGridTemplateColumn x:Shared="False" x:Key="DataTypeAllowNullEditable" Header="{x:Static p:Resources.AllowNull}">

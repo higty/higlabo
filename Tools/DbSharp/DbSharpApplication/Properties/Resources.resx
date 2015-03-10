@@ -297,4 +297,7 @@
   <data name="UserDefinedTableType" xml:space="preserve">
     <value>UserDefinedTableType</value>
   </data>
+  <data name="ValueForTest" xml:space="preserve">
+    <value>Value for test</value>
+  </data>
 </root>
