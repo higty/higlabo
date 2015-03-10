@@ -41,6 +41,8 @@ namespace HigLabo.DbSharpApplication.Core
         public WindowStateInfo DeleteObjectWindow { get; set; }
         public WindowStateInfo ImportObjectGenerateFileWindow { get; set; }
         public WindowStateInfo ProgressWindow { get; set; }
+        public WindowStateInfo MessageWindow { get; set; }
+        public WindowStateInfo ManageIgnoreObjectWindow { get; set; }
 
         public ConfigData()
         {
@@ -56,6 +58,8 @@ namespace HigLabo.DbSharpApplication.Core
             this.ImportObjectGenerateFileWindow = new WindowStateInfo(600, 300);
             this.GenerateSourceCodeWindow = new WindowStateInfo(800, 600);
             this.ProgressWindow = new WindowStateInfo(900, 700);
+            this.MessageWindow = new WindowStateInfo(700, 400);
+            this.ManageIgnoreObjectWindow = new WindowStateInfo(800, 600);
         }
         public void Save()
         {

@@ -205,6 +205,15 @@ namespace HigLabo.DbSharpApplication.Properties {
         }
         
         /// <summary>
+        ///   Add to Ignore list に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Menu_AddToIgnoreList {
+            get {
+                return ResourceManager.GetString("Menu_AddToIgnoreList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   _Close に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Menu_Close {
@@ -349,6 +358,15 @@ namespace HigLabo.DbSharpApplication.Properties {
         }
         
         /// <summary>
+        ///   Manage Ignore list に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Menu_ManageIgnoreList {
+            get {
+                return ResourceManager.GetString("Menu_ManageIgnoreList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   _New に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Menu_New {
@@ -390,6 +408,15 @@ namespace HigLabo.DbSharpApplication.Properties {
         public static string Menu_RecentFiles {
             get {
                 return ResourceManager.GetString("Menu_RecentFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   _Remove from list に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Menu_RemoveFromList {
+            get {
+                return ResourceManager.GetString("Menu_RemoveFromList", resourceCulture);
             }
         }
         

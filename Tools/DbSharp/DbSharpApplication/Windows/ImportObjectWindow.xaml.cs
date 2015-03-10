@@ -16,7 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using HigLabo.Core;
 namespace HigLabo.DbSharpApplication
 {
     /// <summary>
@@ -73,16 +73,21 @@ namespace HigLabo.DbSharpApplication
         }
         private void ImportTable(String connectionString, Int32 offsetHour)
         {
+            var l = new List<DatabaseObject>();
             DatabaseSchemaReader db = DatabaseSchemaReader.Create(AValue.SchemaData.DatabaseServer, connectionString);
-            var l = db.GetTables();
-            foreach (var item in l)
+
+            foreach (var item in db.GetTables())
             {
+                if (this.ImportAllCheckBox.IsChecked == false &&
+                    item.LastAlteredTime > AValue.SchemaData.LastExecuteTimeOfImportTable)
+                { continue; }
+                if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == item.Name) == true)
+                { continue; }
+
                 item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
+                l.Add(item);
             }
-            if (this.ImportAllCheckBox.IsChecked == false)
-            {
-                l = l.Where(el => el.LastAlteredTime > AValue.SchemaData.LastExecuteTimeOfImportTable).ToList();
-            }
+
             _Tables.Clear();
             foreach (var item in l.Select(el => CheckedItem.Create(el)))
             {
@@ -93,16 +98,21 @@ namespace HigLabo.DbSharpApplication
         }
         private void ImportStoredProcedure(String connectionString, Int32 offsetHour)
         {
+            var l = new List<DatabaseObject>();
             DatabaseSchemaReader db = DatabaseSchemaReader.Create(AValue.SchemaData.DatabaseServer, connectionString);
-            var l = db.GetStoredProcedures();
-            foreach (var item in l)
+            
+            foreach (var item in db.GetStoredProcedures())
             {
+                if (this.ImportAllCheckBox.IsChecked == false &&
+                    item.LastAlteredTime > AValue.SchemaData.LastExecuteTimeOfImportStoredProcedure)
+                { continue; }
+                if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == item.Name) == true)
+                { continue; }
+                
                 item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
+                l.Add(item);
             }
-            if (this.ImportAllCheckBox.IsChecked == false)
-            {
-                l = l.Where(el => el.LastAlteredTime > AValue.SchemaData.LastExecuteTimeOfImportStoredProcedure).ToList();
-            }
+
             _StoredProcedures.Clear();
             foreach (var item in l.Select(el => CheckedItem.Create(el)))
             {
@@ -113,16 +123,20 @@ namespace HigLabo.DbSharpApplication
         }
         private void ImportUserDefinedTableType(String connectionString, Int32 offsetHour)
         {
+            var l = new List<DatabaseObject>();
             DatabaseSchemaReader db = DatabaseSchemaReader.Create(AValue.SchemaData.DatabaseServer, connectionString);
-            var l = db.GetUserDefinedTableTypes();
-            foreach (var item in l)
+            
+            foreach (var item in db.GetStoredProcedures())
             {
+                if (this.ImportAllCheckBox.IsChecked == false &&
+                    item.LastAlteredTime > AValue.SchemaData.LastExecuteTimeOfImportUserDefinedTableType)
+                { continue; }
+                if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == item.Name) == true)
+                { continue; }
+
                 item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
             }
-            if (this.ImportAllCheckBox.IsChecked == false)
-            {
-                l = l.Where(el => el.LastAlteredTime > AValue.SchemaData.LastExecuteTimeOfImportTable).ToList();
-            }
+
             _UserDefinedTableTypes.Clear();
             foreach (var item in l.Select(el => CheckedItem.Create(el)))
             {
@@ -152,7 +166,16 @@ namespace HigLabo.DbSharpApplication
                 item.IsChecked = this.UserDefinedTableTypeSelectAllCheckBox.IsChecked == true;
             }
         }
-  
+
+        private void AddToIgnoreListButton_Click(object sender, RoutedEventArgs e)
+        {
+            var l = new List<DatabaseObject>();
+            l.AddRange(_Tables.Where(el => el.IsChecked).Select(el => el.Item));
+            l.AddRange(_StoredProcedures.Where(el => el.IsChecked).Select(el => el.Item));
+            l.AddRange(_UserDefinedTableTypes.Where(el => el.IsChecked).Select(el => el.Item));
+            var w = new ManageIgnoreObjectWindow(l);
+            w.ShowDialog();
+        }
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.ConnectionStringComboBox.SelectedIndex == -1)
@@ -186,5 +209,6 @@ namespace HigLabo.DbSharpApplication
         {
             this.Close();
         }
+
     }
 }

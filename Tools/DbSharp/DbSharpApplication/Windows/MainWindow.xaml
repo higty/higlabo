@@ -41,6 +41,7 @@
                 <MenuItem Name="m0104" Header="{x:Static p:Resources.Menu_DeleteObject}" Click="m0104_Click"></MenuItem>
                 <MenuItem Name="m0105" Header="{x:Static p:Resources.Menu_GenerateCSharpCode}" Click="m0105_Click"></MenuItem>
                 <MenuItem Name="m0106" Header="{x:Static p:Resources.Menu_GenerateSqlScript}" Click="m0106_Click"></MenuItem>
+                <MenuItem Name="m0107" Header="{x:Static p:Resources.Menu_ManageIgnoreList}" Click="m0107_Click"></MenuItem>
                 <MenuItem Name="m0110" Header="{x:Static p:Resources.Menu_ImportUpdatedObjectAndGenerateFiles}" Click="m0110_Click"></MenuItem>
             </MenuItem>
             <MenuItem Name="m0200" Header="{x:Static p:Resources.Menu_View}">

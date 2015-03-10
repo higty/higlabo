@@ -165,6 +165,9 @@
   <data name="Menu_Add" xml:space="preserve">
     <value>_Add</value>
   </data>
+  <data name="Menu_AddToIgnoreList" xml:space="preserve">
+    <value>Add to Ignore list</value>
+  </data>
   <data name="Menu_Close" xml:space="preserve">
     <value>_Close</value>
   </data>
@@ -213,6 +216,9 @@
   <data name="Menu_ManageConnection" xml:space="preserve">
     <value>Manage _Connection</value>
   </data>
+  <data name="Menu_ManageIgnoreList" xml:space="preserve">
+    <value>Manage Ignore list</value>
+  </data>
   <data name="Menu_New" xml:space="preserve">
     <value>_New</value>
   </data>
@@ -227,6 +233,9 @@
   </data>
   <data name="Menu_RecentFiles" xml:space="preserve">
     <value>_Recent Files</value>
+  </data>
+  <data name="Menu_RemoveFromList" xml:space="preserve">
+    <value>_Remove from list</value>
   </data>
   <data name="Menu_Save" xml:space="preserve">
     <value>_Save</value>
