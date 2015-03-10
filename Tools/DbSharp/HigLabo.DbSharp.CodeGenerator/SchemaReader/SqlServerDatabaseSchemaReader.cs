@@ -30,15 +30,16 @@ namespace HigLabo.DbSharp.MetaData
             return new SqlServerDatabase(this.ConnectionString);
         }
 
-        public override List<StoredProcedureResultSetColumn> GetResultSetsList(StoredProcedure sp, IEnumerable<SqlInputParameter> parameters)
+        public override void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values)
         {
             List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
             StoredProcedureResultSetColumn resultSets = null;
             List<DataTable> schemaDataTableList = new List<DataTable>();
             DataType c = null;
-            var cm = GetTestExecutingSqlCommand(sp.Name, parameters);
+            var cm = CreateTestSqlCommand<SqlCommand>(sp, values);
+
             //UserDefinedTableType
-            foreach (var item in parameters.Where(el => el.DbType.SqlServerDbType == SqlServer2012DbType.Structured))
+            foreach (var item in sp.Parameters.Where(el => el.DbType.SqlServerDbType == SqlServer2012DbType.Structured))
             {
                 var dt = cm.Parameters[item.Name].Value as DataTable;
                 var udt = this.GetUserDefinedTableType(item.UserTableTypeName);
@@ -64,7 +65,7 @@ namespace HigLabo.DbSharp.MetaData
                     using (IDataReader r = db.ExecuteReader(cm))
                     {
                         var schemaDataTable = r.GetSchemaTable();
-                        if (schemaDataTable == null) return resultSetsList;
+                        if (schemaDataTable == null) return;
                         schemaDataTableList.Add(schemaDataTable);
                         //TableNameSelectAllストアドの場合はスキップ
                         if (String.IsNullOrEmpty(sp.TableName) == true ||
@@ -91,7 +92,7 @@ namespace HigLabo.DbSharp.MetaData
                 }
             }
 
-            if (schemaDataTableList.Count == 0) return resultSetsList;
+            if (schemaDataTableList.Count == 0) return;
 
             Int32 index = 0;
             foreach (var schemaDataTable in schemaDataTableList)
@@ -144,18 +145,11 @@ namespace HigLabo.DbSharp.MetaData
                 resultSetsList.Add(resultSets);
                 index += 1;
             }
-            return resultSetsList;
-        }
-        private DbCommand GetTestExecutingSqlCommand(String storedProcedureName, IEnumerable<SqlInputParameter> parameters)
-        {
-            var cm = new SqlCommand(storedProcedureName) { CommandType = CommandType.StoredProcedure };
-            foreach (var p in parameters)
+            foreach (var item in resultSetsList)
             {
-                cm.Parameters.Add(p.CreateParameter());
+                sp.ResultSets.Add(item);
             }
-            return cm;
         }
-
         public override List<DatabaseObject> GetUserDefinedTableTypes()
         {
             var l = new List<DatabaseObject>();

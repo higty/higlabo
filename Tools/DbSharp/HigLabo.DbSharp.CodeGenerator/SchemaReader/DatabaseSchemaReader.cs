@@ -160,10 +160,6 @@ namespace HigLabo.DbSharp.MetaData
             {
                 sp.Parameters.Add(parameter);
             }
-            foreach (var resultSets in this.GetResultSetsList(sp, sp.Parameters))
-            {
-                sp.ResultSets.Add(resultSets);
-            }
             return sp;
         }
         public virtual List<SqlInputParameter> GetParameters(String storedProcedureName)
@@ -214,7 +210,24 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public abstract List<StoredProcedureResultSetColumn> GetResultSetsList(StoredProcedure sp, IEnumerable<SqlInputParameter> parameters);
+        public abstract void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values);
+        protected T CreateTestSqlCommand<T>(StoredProcedure sp, Dictionary<String, Object> values)
+            where T : DbCommand, new()
+        {
+            T cm = new T();
+            cm.CommandText = sp.Name;
+            cm.CommandType = CommandType.StoredProcedure;
+            foreach (var item in sp.Parameters)
+            {
+                var p = item.CreateParameter();
+                if (values.ContainsKey(item.Name) == true)
+                {
+                    p.Value = values[item.Name];
+                }
+                cm.Parameters.Add(p);
+            }
+            return cm;
+        }
         public virtual List<DatabaseObject> GetUserDefinedTableTypes()
         {
             throw new NotSupportedException();
