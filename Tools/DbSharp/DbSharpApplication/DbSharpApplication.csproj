@@ -127,6 +127,12 @@
     <Compile Include="Windows\ManageConnectionStringWindow.xaml.cs">
       <DependentUpon>ManageConnectionStringWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\ManageIgnoreObjectWindow.xaml.cs">
+      <DependentUpon>ManageIgnoreObjectWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MessageWindow.xaml.cs">
+      <DependentUpon>MessageWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
@@ -190,6 +196,14 @@
     <Page Include="Windows\ManageConnectionStringWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\ManageIgnoreObjectWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\ProgressWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

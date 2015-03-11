@@ -48,10 +48,6 @@ namespace HigLabo.DbSharpApplication.Core
                 {
                     AValue.ConfigData.SchemaFilePath = "";
                 }
-                catch 
-                {
-                    AValue.ConfigData.SchemaFilePath = "";
-                }
             }
             if (AValue.SchemaData == null)
             {
@@ -64,6 +60,8 @@ namespace HigLabo.DbSharpApplication.Core
         {
             e.Handled = true;
             AValue.AddErrorLog(e.Exception);
+            var w = new MessageWindow(e.Exception.ToString());
+            w.ShowDialog();
         }
         private static void CreateErrorLogFolder()
         {

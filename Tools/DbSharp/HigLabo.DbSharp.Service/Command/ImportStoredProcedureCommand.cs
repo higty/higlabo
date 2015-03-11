@@ -28,6 +28,8 @@ namespace HigLabo.DbSharp.Service
                 var name = names[i];
                 var spExisted = this.SchemaData.StoredProcedures.FirstOrDefault(el => el.Name == name);
                 var sp = r.GetStoredProcedure(name);
+                var d = new Dictionary<String, Object>();
+                r.SetResultSetsList(sp, d);
 
                 if (spExisted == null)
                 {
@@ -35,6 +37,8 @@ namespace HigLabo.DbSharp.Service
                 }
                 else if (spExisted.StoredProcedureType == StoredProcedureType.Custom)
                 {
+                    d = spExisted.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
+                        .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
                     sp.TableName = spExisted.TableName;
                     sp.StoredProcedureType = spExisted.StoredProcedureType;
                     foreach (var parameter in sp.Parameters)
@@ -44,6 +48,7 @@ namespace HigLabo.DbSharp.Service
                         parameter.AllowNull = p.AllowNull;
                         parameter.EnumName = p.EnumName;
                         parameter.EnumValues = p.EnumValues;
+                        parameter.ValueForTest = p.ValueForTest;
                     }
                     Int32 index = -1;
                     foreach (var resultSets in sp.ResultSets)

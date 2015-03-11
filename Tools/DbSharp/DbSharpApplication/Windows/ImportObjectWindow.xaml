@@ -57,6 +57,7 @@
             </Grid>
         </Grid>
         <Grid Grid.Row="2">
+            <Button Name="AddToIgnoreListButton" Content="{x:Static p:Resources.Menu_AddToIgnoreList}" Margin="10,0,0,10" VerticalAlignment="Bottom" Height="40" Click="AddToIgnoreListButton_Click" HorizontalAlignment="Left" Width="120"/>
             <Button Name="ExecuteButton" Content="{x:Static p:Resources.Menu_Execute}" Margin="0,0,92,10" VerticalAlignment="Bottom" Height="40" Click="ExecuteButton_Click" HorizontalAlignment="Right" Width="76"/>
             <Button Name="QuitButton" Content="{x:Static p:Resources.Menu_Quit}" Margin="0,0,16,10" Click="QuitButton_Click" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="76"/>
         </Grid>

@@ -41,6 +41,7 @@ namespace HigLabo.DbSharpApplication
         private String GetSelectedConnectionString()
         {
             var ci = this.ConnectionStringComboBox.SelectedValue as ConnectionStringInfo;
+            if (ci == null) { return ""; }
             return ci.ConnectionString;
         }
 

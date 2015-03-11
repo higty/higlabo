@@ -165,6 +165,9 @@
   <data name="Menu_Add" xml:space="preserve">
     <value>追加(_A)</value>
   </data>
+  <data name="Menu_AddToIgnoreList" xml:space="preserve">
+    <value>無視リストに追加</value>
+  </data>
   <data name="Menu_Close" xml:space="preserve">
     <value>閉じる(_C)</value>
   </data>
@@ -213,6 +216,9 @@
   <data name="Menu_ManageConnection" xml:space="preserve">
     <value>接続先の管理(_C)</value>
   </data>
+  <data name="Menu_ManageIgnoreList" xml:space="preserve">
+    <value>無視リストの管理</value>
+  </data>
   <data name="Menu_New" xml:space="preserve">
     <value>新規(_N)</value>
   </data>
@@ -227,6 +233,9 @@
   </data>
   <data name="Menu_RecentFiles" xml:space="preserve">
     <value>最近使用したファイル(_R)</value>
+  </data>
+  <data name="Menu_RemoveFromList" xml:space="preserve">
+    <value>リストから削除</value>
   </data>
   <data name="Menu_Save" xml:space="preserve">
     <value>保存(_S)</value>
@@ -296,5 +305,8 @@
   </data>
   <data name="UserDefinedTableType" xml:space="preserve">
     <value>ユーザー定義型</value>
+  </data>
+  <data name="ValueForTest" xml:space="preserve">
+    <value>テスト用の値</value>
   </data>
 </root>

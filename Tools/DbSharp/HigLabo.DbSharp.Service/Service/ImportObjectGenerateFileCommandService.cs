@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HigLabo.Core;
 
 namespace HigLabo.DbSharp.Service
 {
@@ -37,16 +38,19 @@ namespace HigLabo.DbSharp.Service
             {
                 var cm = new ImportTableCommand(sc, connectionString);
                 cm.Names.AddRange(tt.Where(el => this.ImportAllObject == true || el.LastAlteredTime > sc.LastExecuteTimeOfImportTable).Select(el => el.Name));
+                cm.Names.RemoveAll(name => sc.IgnoreObjects.Exists(el => el.Name == name));
                 sv.Commands.Add(cm);
             }
             {
                 var cm = new ImportStoredProcedureCommand(sc, connectionString);
                 cm.Names.AddRange(ss.Where(el => this.ImportAllObject == true || el.LastAlteredTime > sc.LastExecuteTimeOfImportStoredProcedure).Select(el => el.Name));
+                cm.Names.RemoveAll(name => sc.IgnoreObjects.Exists(el => el.Name == name));
                 sv.Commands.Add(cm);
             }
             {
                 var cm = new ImportUserDefinedTableTypeCommand(sc, connectionString);
                 cm.Names.AddRange(uu.Where(el => this.ImportAllObject == true || el.LastAlteredTime > sc.LastExecuteTimeOfImportUserDefinedTableType).Select(el => el.Name));
+                cm.Names.RemoveAll(name => sc.IgnoreObjects.Exists(el => el.Name == name));
                 sv.Commands.Add(cm);
             }
 

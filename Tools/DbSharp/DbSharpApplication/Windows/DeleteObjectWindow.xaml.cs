@@ -132,6 +132,16 @@ namespace HigLabo.DbSharpApplication
                 item.IsChecked = this.UserDefinedTableTypeSelectAllCheckBox.IsChecked == true;
             }
         }
+
+        private void AddToIgnoreListButton_Click(object sender, RoutedEventArgs e)
+        {
+            var l = new List<DatabaseObject>();
+            l.AddRange(_Tables.Where(el => el.IsChecked).Select(el => el.Item));
+            l.AddRange(_StoredProcedures.Where(el => el.IsChecked).Select(el => el.Item));
+            l.AddRange(_UserDefinedTableTypes.Where(el => el.IsChecked).Select(el => el.Item));
+            var w = new ManageIgnoreObjectWindow(l);
+            w.ShowDialog();
+        }
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             var tNames = _Tables.Where(el => el.IsChecked).Select(el => el.Item.Name).ToList();
@@ -154,5 +164,6 @@ namespace HigLabo.DbSharpApplication
         {
             this.Close();
         }
+
     }
 }

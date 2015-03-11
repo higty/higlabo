@@ -28,13 +28,13 @@ namespace HigLabo.DbSharp.MetaData
             return new MySqlDatabase(this.ConnectionString);
         }
 
-        public override List<StoredProcedureResultSetColumn> GetResultSetsList(StoredProcedure sp, IEnumerable<SqlInputParameter> parameters)
+        public override void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values)
         {
             List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
             StoredProcedureResultSetColumn resultSets = null;
             List<DataTable> schemaDataTableList = new List<DataTable>();
             DataType c = null;
-            var cm = GetTestExecutingSqlCommand(sp.Name, parameters);
+            var cm = CreateTestSqlCommand<MySqlCommand>(sp, values);
 
             //処理の実行によってデータの変更などの副作用が起きないようにRollBackする。
             using (var db = this.CreateDatabase())
@@ -47,7 +47,7 @@ namespace HigLabo.DbSharp.MetaData
                     using (IDataReader r = db.ExecuteReader(cm))
                     {
                         var schemaDataTable = r.GetSchemaTable();
-                        if (schemaDataTable == null) return resultSetsList;
+                        if (schemaDataTable == null) return;
                         schemaDataTableList.Add(schemaDataTable);
                         //TableNameSelectAllストアドの場合はスキップ
                         if (String.IsNullOrEmpty(sp.TableName) == true ||
@@ -74,7 +74,7 @@ namespace HigLabo.DbSharp.MetaData
                 }
             }
 
-            if (schemaDataTableList.Count == 0) return resultSetsList;
+            if (schemaDataTableList.Count == 0) return;
 
             Int32 index = 0;
             foreach (var schemaDataTable in schemaDataTableList)
@@ -120,7 +120,10 @@ namespace HigLabo.DbSharp.MetaData
                 resultSetsList.Add(resultSets);
                 index += 1;
             }
-            return resultSetsList;
+            foreach (var item in resultSetsList)
+            {
+                sp.ResultSets.Add(item);
+            }
         }
         private DbCommand GetTestExecutingSqlCommand(String storedProcedureName, IEnumerable<SqlInputParameter> parameters)
         {

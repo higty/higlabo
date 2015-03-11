@@ -217,6 +217,11 @@ namespace HigLabo.DbSharpApplication
             var w = new GenerateSqlScriptWindow();
             w.ShowDialog();
         }
+        private void m0107_Click(object sender, RoutedEventArgs e)
+        {
+            var w = new ManageIgnoreObjectWindow(new DatabaseObject[0]);
+            w.ShowDialog();
+        }
         private void m0110_Click(object sender, RoutedEventArgs e)
         {
             var w = new ImportObjectGenerateFileWindow();
@@ -461,5 +466,6 @@ namespace HigLabo.DbSharpApplication
                 }
             }
         }
+
     }
 }
