@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>HigLabo.Wpf._Net_4_5</id>
-    <version>1.0.1.0</version>
+    <version>1.0.1.1</version>
     <authors>Higty</authors>
     <owners>Higty</owners>
     <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
@@ -13,7 +13,7 @@
     <copyright>HigLabo</copyright>
     <tags>HigLabo</tags>
     <dependencies>
-      <dependency id="HigLabo.CoreLibrary._Net_4_5" version="1.0" />
+      <dependency id="HigLabo.CoreLibrary._Net_4_5" version="1.0.1" />
     </dependencies>
   </metadata>
   <files>
