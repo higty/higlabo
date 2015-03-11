@@ -97,14 +97,10 @@ namespace HigLabo.Core
             }
             catch (TargetInvocationException ex)
             {
-#if DEBUG
-                throw;
-#else
                 throw new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
                     + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to auther."
                     + "We will fix it."
                     , source, target, ex.InnerException);
-#endif
             }
         }
         public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, Func<TTarget> constructor)
