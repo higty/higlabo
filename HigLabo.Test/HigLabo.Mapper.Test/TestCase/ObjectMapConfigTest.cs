@@ -197,9 +197,9 @@ namespace HigLabo.Mapper.Test
                 Assert.AreEqual(23.4m, u2.Decimal);
             }
             {
-                //u1.Value = "Friday";
-                //var u2 = config.Map(u1, new User());
-                //Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+                u1.Value = "Friday";
+                var u2 = config.Map(u1, new User());
+                Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
             }
         }
         [TestMethod]
