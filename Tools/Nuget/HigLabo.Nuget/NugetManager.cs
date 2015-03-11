@@ -21,7 +21,6 @@ namespace HigLabo.Nuget
 
             l.Add("HigLabo.CodeGenerator");
             l.Add("HigLabo.CodeGenerator.Json");
-            l.Add("HigLabo.CodeGenerator.Twitter");
             l.Add("HigLabo.Converter");
             l.Add("HigLabo.Core");
             l.Add("HigLabo.Data");
@@ -41,29 +40,39 @@ namespace HigLabo.Nuget
 
             return l;
         }
+        private List<string> CreateHigLaboDbSharpProjectNames()
+        {
+            var l = new List<string>();
+
+            l.Add("HigLabo.DbSharp");
+            l.Add("HigLabo.DbSharp.SqlServer");
+
+            return l;
+        }
         public void CopyDll()
         {
-            var l = CreateHigLaboProjectNames();
             var targetFolderPath = Path.Combine(this.FolderPath, @"Tools\Nuget\HigLabo.Nuget\Reference\_Net_4_5\");
-            for (int i = 0; i < l.Count; i++)
+            foreach (var item in CreateHigLaboProjectNames())
             {
-                var fileName = l[i] + ".dll";
-                var path = Path.Combine(this.FolderPath, l[i], @"bin\Release\_Net_4_5\", fileName);
-
-                if (File.Exists(path) == true)
-                {
-                    File.Copy(path, Path.Combine(targetFolderPath, fileName), true);
-                }
+                var fileName = item + ".dll";
+                var srcPath = Path.Combine(this.FolderPath, item, @"bin\Release\_Net_4_5\", fileName);
+                var targetPath = Path.Combine(targetFolderPath, fileName);
+                File.Copy(srcPath, targetPath, true);
             }
-
-            var dbSharpFilePath = Path.Combine(this.FolderPath, @"Tools\DbSharp\HigLabo.DbSharp\bin\Release\HigLabo.DbSharp.dll");
-            File.Copy(dbSharpFilePath, Path.Combine(targetFolderPath, "HigLabo.DbSharp.dll"), true);
+            foreach (var item in CreateHigLaboDbSharpProjectNames())
+            {
+                var fileName = item + ".dll";
+                var srcPath = Path.Combine(this.FolderPath, @"Tools\DbSharp\", item, @"bin\Release\", fileName);
+                var targetPath = Path.Combine(targetFolderPath, fileName);
+                File.Copy(srcPath, targetPath, true);
+            }
         }
         public void CreatePackageFile()
         {
             this.CreatePackageFile("CoreLibrary");
             this.CreatePackageFile("Mail");
             this.CreatePackageFile("DbSharp");
+            this.CreatePackageFile("DbSharp.SqlServer");
             this.CreatePackageFile("Net.Twitter");
             this.CreatePackageFile("Web");
             this.CreatePackageFile("Wpf");
@@ -85,17 +94,18 @@ namespace HigLabo.Nuget
         }
         public void UploadPackageFiles()
         {
-            this.UploadPackageFiles("CoreLibrary");
-            this.UploadPackageFiles("Mail");
-            this.UploadPackageFiles("DbSharp");
-            //this.UploadPackageFiles("Net.Twitter");
-            this.UploadPackageFiles("Web");
-            this.UploadPackageFiles("Wpf");
+            this.UploadPackageFiles("CoreLibrary", "1.0.0.0");
+            this.UploadPackageFiles("Mail", "1.0.0.0");
+            this.UploadPackageFiles("DbSharp", "1.0.1.0");
+            this.UploadPackageFiles("DbSharp.SqlServer", "1.0.0.0");
+            //this.UploadPackageFiles("Net.Twitter", "1.0.0.0");
+            this.UploadPackageFiles("Web", "1.0.0.0");
+            this.UploadPackageFiles("Wpf", "1.0.0.0");
         }
-        public void UploadPackageFiles(String packageName)
+        public void UploadPackageFiles(String packageName, String version)
         {
             var exePath = Path.Combine(this.FolderPath, @"Tools\Nuget\nuget.exe");
-            var pkgName = String.Format(@"HigLabo.{0}._Net_4_5.1.0.0.0.nupkg", packageName);
+            var pkgName = String.Format(@"HigLabo.{0}._Net_4_5.{1}.nupkg", packageName, version);
             var apiKey = File.ReadAllText(this.FolderPath + @"Tools\Nuget\NugetKey.txt");
             
             var startInfo = new ProcessStartInfo();

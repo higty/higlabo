@@ -48,6 +48,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="HigLabo.CoreLibrary._Net_4_5.nuspec" />
+    <None Include="HigLabo.DbSharp.SqlServer._Net_4_5.nuspec" />
     <None Include="HigLabo.DbSharp._Net_4_5.nuspec" />
     <None Include="HigLabo.Mail._Net_4_5.nuspec" />
     <None Include="HigLabo.Net.Twitter._Net_4_5.nuspec" />
