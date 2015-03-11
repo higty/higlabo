@@ -2,14 +2,14 @@
 <package >
   <metadata>
     <id>HigLabo.Mail._Net_4_5</id>
-    <version>1.0.0.0</version>
+    <version>1.0.1.0</version>
     <authors>Higty</authors>
     <owners>Higty</owners>
     <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
     <projectUrl>https://github.com/higty/higlabo</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Get HigLabo.Mail library for .NET4.5 hosted on GitHub.This library provide Imap,Pop3,Smtp feature.</description>
-    <releaseNotes>Initial release on GitHub.Moved from https://higlabo.codeplex.com/.</releaseNotes>
+    <releaseNotes>HigLabo.Core updated 1.0.1.0.</releaseNotes>
     <copyright>HigLabo</copyright>
     <tags>HigLabo</tags>
     <dependencies>

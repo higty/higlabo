@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" >
   <metadata>
     <id>HigLabo.CoreLibrary._Net_4_5</id>
-    <version>1.0.0.0</version>
+    <version>1.0.1.0</version>
     <authors>Higty</authors>
     <owners>Higty</owners>
     <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
     <projectUrl>https://github.com/higty/higlabo</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>All HigLabo Library for .NET4.5 hosted on GitHub.</description>
-    <releaseNotes>Initial release on GitHub.Moved from https://higlabo.codeplex.com/.</releaseNotes>
+    <releaseNotes>Add Contains,Exists method to IEnumerableExtensions class.</releaseNotes>
     <copyright>HigLabo</copyright>
     <tags>HigLabo</tags>
   </metadata>
