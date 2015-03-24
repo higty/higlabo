@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
@@ -36,7 +37,6 @@ namespace HigLabo.Core
         private MethodInfo _MapMethod = null;
         private MethodInfo _ConvertClassMethod = null;
         private MethodInfo _ConvertStructureMethod = null;
-        private MethodInfo _DictionaryExtensionsSetValuesMethod = null;
         private List<MapPostAction> _PostActions = new List<MapPostAction>();
         private ConcurrentDictionary<Type, Delegate> _ClassConverters = new ConcurrentDictionary<Type, Delegate>();
         private ConcurrentDictionary<Type, Delegate> _StructConverters = new ConcurrentDictionary<Type, Delegate>();
@@ -44,6 +44,7 @@ namespace HigLabo.Core
         public List<PropertyMappingRule> PropertyMapRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
         public Int32 MaxCallStack { get; set; }
+        public Boolean DictionaryKeyIgnoreCase { get; set; }
 
         static ObjectMapConfig()
         {
@@ -59,10 +60,10 @@ namespace HigLabo.Core
             this.AddConverter<Object>(o => o);
 
             this.MaxCallStack = 100;
+            this.DictionaryKeyIgnoreCase = true;
             _MapMethod = this.GetMethodInfo("Map");
             _ConvertClassMethod = this.GetMethodInfo("ConvertClass");
             _ConvertStructureMethod = this.GetMethodInfo("ConvertStructure");
-            _DictionaryExtensionsSetValuesMethod = typeof(DictionaryExtensions).GetMethod("SetValues");
         }
         private MethodInfo GetMethodInfo(String name)
         {
@@ -82,6 +83,20 @@ namespace HigLabo.Core
         [ObjectMapConfigMethodAttribute(Name = "Map")]
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
+            if (source is System.Data.IDataReader)
+            {
+                Dictionary<String, Object> d = null;
+                if (this.DictionaryKeyIgnoreCase == true)
+                {
+                    d = new Dictionary<String, Object>(StringComparer.InvariantCultureIgnoreCase);
+                }
+                else
+                {
+                    d = new Dictionary<String, Object>();
+                }
+                d.SetValues((System.Data.IDataReader)source);
+                return this.Map(d, target, context);
+            }
             if (source == null || target == null) { return target; }
             if (context.CallStackCount > this.MaxCallStack)
             {
@@ -218,8 +233,24 @@ namespace HigLabo.Core
         private List<PropertyMap> CreatePropertyMaps(Type sourceType, Type targetType)
         {
             List<PropertyMap> l = new List<PropertyMap>();
-            List<PropertyInfo> sourceProperties = new List<PropertyInfo>(sourceType.GetProperties(BindingFlags.Public | BindingFlags.Instance));
-            List<PropertyInfo> targetProperties = targetType.GetProperties(BindingFlags.Public | BindingFlags.Instance).ToList();
+            var sourceTypes = new List<Type>();
+            sourceTypes.Add(sourceType);
+            sourceTypes.AddRange(sourceType.GetBaseClasses());
+            sourceTypes.AddRange(sourceType.GetInterfaces());
+            var targetTypes = new List<Type>();
+            targetTypes.Add(targetType);
+            targetTypes.AddRange(targetType.GetBaseClasses());
+            targetTypes.AddRange(targetType.GetInterfaces());
+            List<PropertyInfo> sourceProperties = new List<PropertyInfo>();
+            List<PropertyInfo> targetProperties = new List<PropertyInfo>();
+            foreach (var item in sourceTypes)
+            {
+                sourceProperties.AddRange(item.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            }
+            foreach (var item in targetTypes)
+            {
+                targetProperties.AddRange(item.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+            }
             //Find target property by rules...
             foreach (PropertyMappingRule rule in this.PropertyMapRules)
             {
@@ -317,31 +348,12 @@ namespace HigLabo.Core
             DynamicMethod dm = new DynamicMethod("SetProperty", null, new[] { typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext) });
             ILGenerator il = dm.GetILGenerator();
             var mapConfigTypeConverterGetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
-            LocalBuilder dictionaryForDataReader = null;
 
             il.DeclareLocal(typeof(TypeConverter));
             il.Emit(OpCodes.Nop);
             il.Emit(OpCodes.Ldarg_0);
             il.Emit(OpCodes.Callvirt, mapConfigTypeConverterGetMethod);
             il.Emit(OpCodes.Stloc_0);//ObjectMapConfig.TypeConverter
-
-
-            #region Copy values to Dictionary<String, Objcet> from source DataReader
-            if (sourceType.IsInheritanceFrom(typeof(System.Data.IDataRecord)) == true)
-            {
-                var dictionaryType = typeof(Dictionary<String, Object>);
-                dictionaryForDataReader = il.DeclareLocal(dictionaryType);
-
-                il.Emit(OpCodes.Newobj, dictionaryType.GetConstructor(new Type[0]));
-                il.Emit(OpCodes.Stloc_S, dictionaryForDataReader);
-
-                il.Emit(OpCodes.Ldnull);
-                il.Emit(OpCodes.Ldloc_S, dictionaryForDataReader);
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Call, _DictionaryExtensionsSetValuesMethod);
-                il.Emit(OpCodes.Pop);
-            }
-            #endregion
 
             foreach (var item in propertyMapInfo)
             {
@@ -365,25 +377,15 @@ namespace HigLabo.Core
                 {
                     #region Dictionary<String, String> or Dictionary<String, Object>
                     //Call TryGetValue method to avoid KeyNotFoundException
-                    if (sourceType.IsInheritanceFrom(typeof(System.Data.IDataRecord)) == true ||
-                        sourceType.IsInheritanceFrom(typeof(Dictionary<String, String>)) == true ||
+                    if (sourceType.IsInheritanceFrom(typeof(Dictionary<String, String>)) == true ||
                         sourceType.IsInheritanceFrom(typeof(Dictionary<String, Object>)) == true)
                     {
                         MethodInfo tryGetValue = null;
                         LocalBuilder outValue = null;
                         //Call TryGetValue method
-                        if (sourceType.IsInheritanceFrom(typeof(System.Data.IDataRecord)) == true)
-                        {
-                            tryGetValue = typeof(Dictionary<String, Object>).GetMethod("TryGetValue");
-                            outValue = il.DeclareLocal(typeof(Object));
-                            il.Emit(OpCodes.Ldloc_S, dictionaryForDataReader);
-                        }
-                        else
-                        {
-                            tryGetValue = sourceType.GetMethod("TryGetValue");
-                            outValue = il.DeclareLocal(item.Source.PropertyType);
-                            il.Emit(OpCodes.Ldarg_1);
-                        }
+                        tryGetValue = sourceType.GetMethod("TryGetValue");
+                        outValue = il.DeclareLocal(item.Source.PropertyType);
+                        il.Emit(OpCodes.Ldarg_1);
                         il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
                         il.Emit(OpCodes.Ldloca_S, outValue);
                         //TryGetValue(item.Source.IndexedPropertyKey, sourceVal) --> Boolean

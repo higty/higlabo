@@ -31,5 +31,17 @@ namespace HigLabo.Core
             //リストに含まれているかどうかチェック
             return parentTypes.Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == parentType);
         }
+        public static Type[] GetBaseClasses(this Type type)
+        {
+            List<Type> l = new List<Type>();
+            var tp = type;
+            while (true)
+            {
+                tp = tp.BaseType;
+                if (tp == null) { break; }
+                l.Add(tp);
+            }
+            return l.ToArray();
+        }
     }
 }
