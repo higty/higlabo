@@ -171,12 +171,16 @@ namespace HigLabo.CodeGenerator.Json
             var tp = ClassInfo.GetJsonTypeInfo(jValue);
             switch (tp)
             {
-                case JsonTypeInfo.String:
                 case JsonTypeInfo.Boolean:
                 case JsonTypeInfo.Int32:
                 case JsonTypeInfo.Int64:
                 case JsonTypeInfo.Double:
                 case JsonTypeInfo.DateTime:
+                    {
+                        pi.ClassInfo = new ClassInfo(tp.ToStringFromEnum() + "?");
+                    }
+                    break;
+                case JsonTypeInfo.String:
                 case JsonTypeInfo.Object:
                     {
                         pi.ClassInfo = new ClassInfo(tp.ToStringFromEnum());

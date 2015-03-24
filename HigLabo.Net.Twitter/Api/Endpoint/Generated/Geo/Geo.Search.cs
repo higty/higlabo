@@ -49,15 +49,15 @@ namespace HigLabo.Net.Twitter.Api_1_1
                     public class Param
                     {
                         [JsonProperty("accuracy")]
-                        public Int64 accuracy { get; set; }
+                        public Int64? accuracy { get; set; }
                         [JsonProperty("autocomplete")]
-                        public Boolean autocomplete { get; set; }
+                        public Boolean? autocomplete { get; set; }
                         [JsonProperty("granularity")]
                         public String granularity { get; set; }
                         [JsonProperty("query")]
                         public String query { get; set; }
                         [JsonProperty("trim_place")]
-                        public Boolean trim_place { get; set; }
+                        public Boolean? trim_place { get; set; }
                     }
                 }
                 public class Class_Result
@@ -94,7 +94,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         public class Bounding_Box
                         {
                             [JsonProperty("coordinates")]
-                            public Double[][][] coordinates { get; set; }
+                            public Double?[][][] coordinates { get; set; }
                             [JsonProperty("type")]
                             public String type { get; set; }
                         }
@@ -125,7 +125,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                             public class Bounding_Box
                             {
                                 [JsonProperty("coordinates")]
-                                public Double[][][] coordinates { get; set; }
+                                public Double?[][][] coordinates { get; set; }
                                 [JsonProperty("type")]
                                 public String type { get; set; }
                             }

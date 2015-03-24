@@ -19,5 +19,9 @@ namespace HigLabo.CodeGenerator
             this.Properties = new List<InterfaceProperty>();
             this.Methods = new List<InterfaceMethod>();
         }
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

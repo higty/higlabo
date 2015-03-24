@@ -60,7 +60,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 public class Bounding_Box
                 {
                     [JsonProperty("coordinates")]
-                    public Double[][][] coordinates { get; set; }
+                    public Double?[][][] coordinates { get; set; }
                     [JsonProperty("type")]
                     public String type { get; set; }
                 }
@@ -93,7 +93,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                     public class Bounding_Box
                     {
                         [JsonProperty("coordinates")]
-                        public Double[][][] coordinates { get; set; }
+                        public Double?[][][] coordinates { get; set; }
                         [JsonProperty("type")]
                         public String type { get; set; }
                     }
@@ -101,7 +101,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 public class Geometry
                 {
                     [JsonProperty("coordinates")]
-                    public Double[] coordinates { get; set; }
+                    public Double?[] coordinates { get; set; }
                     [JsonProperty("type")]
                     public String type { get; set; }
                 }

@@ -24,20 +24,20 @@ namespace HigLabo.Net.Twitter.Api_1_1
             public class Result
             {
                 [JsonProperty("media_id")]
-                public Int64 media_id { get; set; }
+                public Int64? media_id { get; set; }
                 [JsonProperty("media_id_string")]
                 public String media_id_string { get; set; }
                 [JsonProperty("size")]
-                public Int64 size { get; set; }
+                public Int64? size { get; set; }
                 [JsonProperty("image")]
                 public Image image { get; set; }
 
                 public class Image
                 {
                     [JsonProperty("w")]
-                    public Int64 w { get; set; }
+                    public Int64? w { get; set; }
                     [JsonProperty("h")]
-                    public Int64 h { get; set; }
+                    public Int64? h { get; set; }
                     [JsonProperty("image_type")]
                     public String image_type { get; set; }
                 }

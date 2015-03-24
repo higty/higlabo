@@ -28,7 +28,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 [JsonProperty("slug")]
                 public String slug { get; set; }
                 [JsonProperty("size")]
-                public Int64 size { get; set; }
+                public Int64? size { get; set; }
             }
         }
     }

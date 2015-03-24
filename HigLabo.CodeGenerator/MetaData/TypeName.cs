@@ -16,5 +16,26 @@ namespace HigLabo.CodeGenerator
             this.Name = name;
             this.GenericTypes = new List<TypeName>();
         }
+        public override string ToString()
+        {
+            if (this.GenericTypes.Count == 0)
+            {
+                return this.Name;
+            }
+            StringBuilder sb = new StringBuilder();
+            sb.Append(this.Name);
+            sb.Append("<");
+            for (int i = 0; i < this.GenericTypes.Count; i++)
+            {
+                sb.Append(this.GenericTypes[i].ToString());
+                if (i < this.GenericTypes.Count - 1)
+                {
+                    sb.Append(", ");
+                }
+            }
+            sb.Append(">");
+
+            return sb.ToString();
+        }
     }
 }

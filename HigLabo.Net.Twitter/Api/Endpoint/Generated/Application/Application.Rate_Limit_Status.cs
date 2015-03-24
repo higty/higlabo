@@ -68,83 +68,83 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         public class Users_Profile_Banner
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Suggestions_Slug_Member
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Show_Id
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Suggestion
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Lookup
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Search
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Contributor
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Contributee
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Users_Suggestions_Slug
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                     }
                     public class Statuse
@@ -171,83 +171,83 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         public class Statuses_Mentions_Timeline
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Lookup
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Show_Id
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Oembed
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Retweeters_Id
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Home_Timeline
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_User_Timeline
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Retweets_Id
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Statuses_Retweets_Of_Me
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                     }
                     public class Help
@@ -264,38 +264,38 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         public class Help_Privacy
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Help_To
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Help_Configuration
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                         public class Help_Language
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                     }
                     public class Search
@@ -306,11 +306,11 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         public class Search_Tweet
                         {
                             [JsonProperty("limit")]
-                            public Int64 limit { get; set; }
+                            public Int64? limit { get; set; }
                             [JsonProperty("remaining")]
-                            public Int64 remaining { get; set; }
+                            public Int64? remaining { get; set; }
                             [JsonProperty("reset")]
-                            public Int64 reset { get; set; }
+                            public Int64? reset { get; set; }
                         }
                     }
                 }

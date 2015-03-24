@@ -24,7 +24,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 [JsonProperty("created_at")]
                 public String created_at { get; set; }
                 [JsonProperty("id")]
-                public Int64 id { get; set; }
+                public Int64? id { get; set; }
                 [JsonProperty("id_str")]
                 public String id_str { get; set; }
                 [JsonProperty("name")]

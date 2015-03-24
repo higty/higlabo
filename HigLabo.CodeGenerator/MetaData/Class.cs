@@ -43,5 +43,9 @@ namespace HigLabo.CodeGenerator
             p.Set.IsAutomaticProperty = true;
             this.Properties.Add(p);
         }
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

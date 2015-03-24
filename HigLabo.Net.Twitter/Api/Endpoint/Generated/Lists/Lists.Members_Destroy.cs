@@ -12,7 +12,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
             {
                 public String list_id { get; set; }
                 public String slug { get; set; }
-                public String user_id { get; set; }
+                public Int64? user_id { get; set; }
                 public String screen_name { get; set; }
                 public String owner_screen_name { get; set; }
                 public String owner_id { get; set; }

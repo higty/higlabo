@@ -27,5 +27,9 @@ namespace HigLabo.CodeGenerator
             this.Get = new PropertyBody(PropertyBodyType.Get);
             this.Set = new PropertyBody(PropertyBodyType.Set);
         }
+        public override string ToString()
+        {
+            return String.Format("{0}:{1}", this.Name, this.TypeName.ToString());
+        }
     }
 }

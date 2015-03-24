@@ -25,9 +25,9 @@ namespace HigLabo.Net.Twitter.Api_1_1
             public class Result
             {
                 [JsonProperty("as_of")]
-                public DateTime as_of { get; set; }
+                public DateTime? as_of { get; set; }
                 [JsonProperty("created_at")]
-                public DateTime created_at { get; set; }
+                public DateTime? created_at { get; set; }
                 [JsonProperty("locations")]
                 public Location[] locations { get; set; }
                 [JsonProperty("trends")]
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                     [JsonProperty("name")]
                     public String name { get; set; }
                     [JsonProperty("woeid")]
-                    public Int64 woeid { get; set; }
+                    public Int64? woeid { get; set; }
                 }
                 public class Trend
                 {

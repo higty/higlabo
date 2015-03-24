@@ -41,18 +41,18 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         [JsonProperty("id_str")]
                         public String id_str { get; set; }
                         [JsonProperty("id")]
-                        public Int64 id { get; set; }
+                        public Int64? id { get; set; }
                         [JsonProperty("screen_name")]
                         public String screen_name { get; set; }
                         [JsonProperty("following")]
-                        public Boolean following { get; set; }
+                        public Boolean? following { get; set; }
                         [JsonProperty("followed_by")]
-                        public Boolean followed_by { get; set; }
+                        public Boolean? followed_by { get; set; }
                     }
                     public class Source
                     {
                         [JsonProperty("can_dm")]
-                        public Boolean can_dm { get; set; }
+                        public Boolean? can_dm { get; set; }
                         [JsonProperty("blocking")]
                         public String blocking { get; set; }
                         [JsonProperty("muting")]
@@ -64,15 +64,15 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         [JsonProperty("want_retweets")]
                         public String want_retweets { get; set; }
                         [JsonProperty("id")]
-                        public Int64 id { get; set; }
+                        public Int64? id { get; set; }
                         [JsonProperty("marked_spam")]
                         public String marked_spam { get; set; }
                         [JsonProperty("screen_name")]
                         public String screen_name { get; set; }
                         [JsonProperty("following")]
-                        public Boolean following { get; set; }
+                        public Boolean? following { get; set; }
                         [JsonProperty("followed_by")]
-                        public Boolean followed_by { get; set; }
+                        public Boolean? followed_by { get; set; }
                         [JsonProperty("notifications_enabled")]
                         public String notifications_enabled { get; set; }
                     }

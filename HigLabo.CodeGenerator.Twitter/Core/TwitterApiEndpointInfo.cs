@@ -23,10 +23,15 @@ namespace HigLabo.CodeGenerator.Twitter
                 return true;
             }
         }
+
+        public List<TwitterApiCommandParameterInfo> CommandParameters { get; private set; }
         public String ResultClassName { get; set; }
+        public Boolean ResultIsArray { get; set; }
 
         public TwitterApiEndpointInfo()
         {
+            this.CommandParameters = new List<TwitterApiCommandParameterInfo>();
+            this.ResultIsArray = true;
         }
     }
 }

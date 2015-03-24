@@ -31,18 +31,18 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 [JsonProperty("name")]
                 public String name { get; set; }
                 [JsonProperty("parentid")]
-                public Int64 parentid { get; set; }
+                public Int64? parentid { get; set; }
                 [JsonProperty("placeType")]
                 public PlaceType placeType { get; set; }
                 [JsonProperty("url")]
                 public String url { get; set; }
                 [JsonProperty("woeid")]
-                public Int64 woeid { get; set; }
+                public Int64? woeid { get; set; }
 
                 public class PlaceType
                 {
                     [JsonProperty("code")]
-                    public Int64 code { get; set; }
+                    public Int64? code { get; set; }
                     [JsonProperty("name")]
                     public String name { get; set; }
                 }

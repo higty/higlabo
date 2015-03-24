@@ -46,101 +46,291 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\ApiEndpoints.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Remove_Profile_Banner.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Settings_Get.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Settings_Post.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Delivery_Device.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Background_Image.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Banner.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Image.cs" />
-    <Compile Include="Api\Endpoint\Generated\Account\Account.Verify_Credentials.cs" />
-    <Compile Include="Api\Endpoint\Generated\ApiEndpoints.Api.cs" />
-    <Compile Include="Api\Endpoint\Generated\Application\Application.Rate_Limit_Status.cs" />
-    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Ids.cs" />
-    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Get.cs" />
-    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.New.cs" />
-    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Sent.cs" />
-    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Followers\Followers.Ids.cs" />
-    <Compile Include="Api\Endpoint\Generated\Followers\Followers.List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Incoming.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Lookup.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.No_Retweets_Ids.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Outgoing.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Update.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friends\Friends.Ids.cs" />
-    <Compile Include="Api\Endpoint\Generated\Friends\Friends.List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Id_Place_Id.cs" />
-    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Place.cs" />
-    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Reverse_Geocode.cs" />
-    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Search.cs" />
-    <Compile Include="Api\Endpoint\Generated\Help\Help.Configuration.cs" />
-    <Compile Include="Api\Endpoint\Generated\Help\Help.Languages.cs" />
-    <Compile Include="Api\Endpoint\Generated\Help\Help.Privacy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Help\Help.Tos.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Memberships.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Create_All.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Destroy_All.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Ownerships.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Statuses.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscriptions.cs" />
-    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Update.cs" />
-    <Compile Include="Api\Endpoint\Generated\Media\Media.Upload.cs" />
-    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Ids.cs" />
-    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Create.cs" />
-    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.List.cs" />
-    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Search\Search.Tweets.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Destroy.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Home_Timeline.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Lookup.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Mentions_Timeline.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Oembed.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweet.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweeters_Ids.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweets.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweets_Of_Me.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Update.cs" />
-    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.User_Timeline.cs" />
-    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Available.cs" />
-    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Closest.cs" />
-    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Place.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Lookup.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Profile_Banner.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Report_Spam.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Search.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Show.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions_Category.cs" />
-    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions_Category_Members.cs" />
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Remove_Profile_Banner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Settings_Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Settings_Post.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Delivery_Device.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Background_Image.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Banner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Update_Profile_Image.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Account\Account.Verify_Credentials.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\ApiEndpoints.Api.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Application\Application.Rate_Limit_Status.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.Ids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Blocks\Blocks.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.New.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Sent.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Direct_Messages\Direct_Messages.Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Favorites\Favorites.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Followers\Followers.Ids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Followers\Followers.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Incoming.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Lookup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.No_Retweets_Ids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Outgoing.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friendships\Friendships.Update.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friends\Friends.Ids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Friends\Friends.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Id_Place_Id.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Place.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Reverse_Geocode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Geo\Geo.Search.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Configuration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Languages.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Privacy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Help\Help.Tos.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Memberships.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Create_All.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Destroy_All.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Members_Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Ownerships.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Statuses.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscribers_Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Subscriptions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Lists\Lists.Update.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Media\Media.Upload.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_Ids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Mutes\Mutes.Users_List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Create.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.List.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Saved_Searches\Saved_Searches.Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Search\Search.Tweets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Destroy.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Home_Timeline.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Lookup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Mentions_Timeline.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Oembed.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweeters_Ids.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweets.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Retweets_Of_Me.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.Update.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Statuses\Statuses.User_Timeline.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Available.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Closest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Trends\Trends.Place.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Lookup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Profile_Banner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Report_Spam.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Search.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Show.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions_Category.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Users\Users.Suggestions_Category_Members.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Core\TwitterClient.cs" />
     <Compile Include="Core\TwitterClient.SyncCall.cs" />
     <Compile Include="Core\TwitterCommand.cs" />

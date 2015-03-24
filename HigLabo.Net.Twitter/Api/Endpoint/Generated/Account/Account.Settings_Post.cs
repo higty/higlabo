@@ -31,21 +31,21 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 [JsonProperty("sleep_time")]
                 public Sleep_Time sleep_time { get; set; }
                 [JsonProperty("use_cookie_personalization")]
-                public Boolean use_cookie_personalization { get; set; }
+                public Boolean? use_cookie_personalization { get; set; }
                 [JsonProperty("trend_location")]
                 public Trend_Location[] trend_location { get; set; }
                 [JsonProperty("language")]
                 public String language { get; set; }
                 [JsonProperty("discoverable_by_email")]
-                public Boolean discoverable_by_email { get; set; }
+                public Boolean? discoverable_by_email { get; set; }
                 [JsonProperty("always_use_https")]
-                public Boolean always_use_https { get; set; }
+                public Boolean? always_use_https { get; set; }
                 [JsonProperty("protected")]
-                public Boolean @protected { get; set; }
+                public Boolean? @protected { get; set; }
                 [JsonProperty("geo_enabled")]
-                public Boolean geo_enabled { get; set; }
+                public Boolean? geo_enabled { get; set; }
                 [JsonProperty("show_all_inline_media")]
-                public Boolean show_all_inline_media { get; set; }
+                public Boolean? show_all_inline_media { get; set; }
                 [JsonProperty("screen_name")]
                 public String screen_name { get; set; }
 
@@ -54,7 +54,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                     [JsonProperty("end_time")]
                     public String end_time { get; set; }
                     [JsonProperty("enabled")]
-                    public Boolean enabled { get; set; }
+                    public Boolean? enabled { get; set; }
                     [JsonProperty("start_time")]
                     public String start_time { get; set; }
                 }
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                     [JsonProperty("placeType")]
                     public PlaceType placeType { get; set; }
                     [JsonProperty("woeid")]
-                    public Int64 woeid { get; set; }
+                    public Int64? woeid { get; set; }
                     [JsonProperty("country")]
                     public String country { get; set; }
                     [JsonProperty("url")]
@@ -73,14 +73,14 @@ namespace HigLabo.Net.Twitter.Api_1_1
                     [JsonProperty("countryCode")]
                     public String countryCode { get; set; }
                     [JsonProperty("parentid")]
-                    public Int64 parentid { get; set; }
+                    public Int64? parentid { get; set; }
 
                     public class PlaceType
                     {
                         [JsonProperty("name")]
                         public String name { get; set; }
                         [JsonProperty("code")]
-                        public Int64 code { get; set; }
+                        public Int64? code { get; set; }
                     }
                 }
             }

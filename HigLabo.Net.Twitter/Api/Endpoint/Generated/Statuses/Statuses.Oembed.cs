@@ -19,6 +19,8 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 public String align { get; set; }
                 public String related { get; set; }
                 public String lang { get; set; }
+                public String widget_type { get; set; }
+                public String hide_tweet { get; set; }
 
                 public override String GetApiEndpointUrl()
                 {
@@ -52,7 +54,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 [JsonProperty("height")]
                 public String height { get; set; }
                 [JsonProperty("width")]
-                public Int64 width { get; set; }
+                public Int64? width { get; set; }
             }
         }
     }

@@ -11,7 +11,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
             public class Command : TwitterCommand
             {
                 public String screen_name { get; set; }
-                public String user_id { get; set; }
+                public Int64? user_id { get; set; }
                 public String device { get; set; }
                 public String retweets { get; set; }
 
@@ -41,38 +41,38 @@ namespace HigLabo.Net.Twitter.Api_1_1
                         [JsonProperty("id_str")]
                         public String id_str { get; set; }
                         [JsonProperty("id")]
-                        public Int64 id { get; set; }
+                        public Int64? id { get; set; }
                         [JsonProperty("followed_by")]
-                        public Boolean followed_by { get; set; }
+                        public Boolean? followed_by { get; set; }
                         [JsonProperty("screen_name")]
                         public String screen_name { get; set; }
                         [JsonProperty("following")]
-                        public Boolean following { get; set; }
+                        public Boolean? following { get; set; }
                     }
                     public class Source
                     {
                         [JsonProperty("can_dm")]
-                        public Boolean can_dm { get; set; }
+                        public Boolean? can_dm { get; set; }
                         [JsonProperty("blocking")]
-                        public Boolean blocking { get; set; }
+                        public Boolean? blocking { get; set; }
                         [JsonProperty("id_str")]
                         public String id_str { get; set; }
                         [JsonProperty("all_replies")]
-                        public Boolean all_replies { get; set; }
+                        public Boolean? all_replies { get; set; }
                         [JsonProperty("want_retweets")]
-                        public Boolean want_retweets { get; set; }
+                        public Boolean? want_retweets { get; set; }
                         [JsonProperty("id")]
-                        public Int64 id { get; set; }
+                        public Int64? id { get; set; }
                         [JsonProperty("marked_spam")]
-                        public Boolean marked_spam { get; set; }
+                        public Boolean? marked_spam { get; set; }
                         [JsonProperty("followed_by")]
-                        public Boolean followed_by { get; set; }
+                        public Boolean? followed_by { get; set; }
                         [JsonProperty("notifications_enabled")]
-                        public Boolean notifications_enabled { get; set; }
+                        public Boolean? notifications_enabled { get; set; }
                         [JsonProperty("screen_name")]
                         public String screen_name { get; set; }
                         [JsonProperty("following")]
-                        public Boolean following { get; set; }
+                        public Boolean? following { get; set; }
                     }
                 }
             }

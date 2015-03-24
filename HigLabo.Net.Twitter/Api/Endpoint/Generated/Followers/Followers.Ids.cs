@@ -10,7 +10,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
         {
             public class Command : TwitterCommand
             {
-                public String user_id { get; set; }
+                public Int64? user_id { get; set; }
                 public String screen_name { get; set; }
                 public String cursor { get; set; }
                 public Boolean? stringify_ids { get; set; }

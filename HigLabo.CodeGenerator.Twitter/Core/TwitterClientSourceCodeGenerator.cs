@@ -15,6 +15,21 @@ namespace HigLabo.CodeGenerator.Twitter
 {
     public class TwitterClientSourceCodeGenerator
     {
+        private static List<String> _CommandParameterNames = new List<string>();
+
+        static TwitterClientSourceCodeGenerator()
+        {
+            InitializeCommandParameterNames();
+        }
+        private static void InitializeCommandParameterNames()
+        {
+            var l = _CommandParameterNames;
+            //l.Add("user_id");
+            l.Add("screen_name");
+            l.Add("id");
+            l.Add("list_id");
+        }
+
         public void GenerateSourceCode(String folderPath)
         {
             var d = new Dictionary<TwitterApiEndpointInfo, SourceCode>();
@@ -31,8 +46,8 @@ namespace HigLabo.CodeGenerator.Twitter
                 var documentUrl = WebUtility.UrlDecode(a.Attributes["href"].Value);
                 //This endpoint has been DEPRECATED.So we skip this endpoint
                 if (documentUrl == "/rest/reference/post/statuses/update_with_media") { continue; }
-                
-                //documentUrl = "/rest/reference/get/friendships/no_retweets/ids";//Use when debug...
+
+                //documentUrl = "/rest/reference/get/lists/members";//Use when debug...
                 if (documentUrls.Contains(documentUrl) == true) { continue; }
                 documentUrls.Add(documentUrl);
 
@@ -198,10 +213,47 @@ namespace HigLabo.CodeGenerator.Twitter
             api2.Modifier.Partial = true;
             api1.Classes.Add(api2);
 
+            api2.Classes.Add(this.CreateCommandClass(doc, apiInfo));
 
-            //Command class
-            var commandClass = new Class(AccessModifier.Public, "Command");
-            commandClass.BaseClass = new TypeName("TwitterCommand");
+            //Result class
+            var exampleNode = doc.DocumentNode.SelectSingleNode("//article[@id='main-content']"
+                + "//pre[@class='brush: jscript' or @class='brush: javascript']");
+            if (exampleNode == null) { return; }
+
+            var json = exampleNode.InnerText.Trim();
+            json = json.Replace(".json\";", ".json\"");//https://dev.twitter.com/rest/reference/post/geo/place
+            json = json.Replace("  ...", "");//https://dev.twitter.com/rest/reference/get/trends/available
+            JsonParser parser = new JsonParser();
+            var resultClass = parser.Parse(json, "Result");
+            //friendships/no_retweets/ids
+            if (apiInfo.Name1 == "Friendships" && apiInfo.Name2 == "No_Retweets_Ids")
+            {
+                apiInfo.ResultClassName = "String";
+            }
+            else
+            {
+                api2.Classes.Add(resultClass);
+                apiInfo.ResultClassName = String.Format("{0}.{1}.Result", apiInfo.Name1, apiInfo.Name2);
+            }
+            if (json.StartsWith("[") == true)
+            {
+                apiInfo.ResultIsArray = true;
+            }
+            else if (json.StartsWith("{") == true)
+            {
+                apiInfo.ResultIsArray = false;
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+        }
+        private Class CreateCommandClass(HtmlDocument document, TwitterApiEndpointInfo apiInfo)
+        {
+            var doc = document;
+            var c = new Class(AccessModifier.Public, "Command");
+
+            c.BaseClass = new TypeName("TwitterCommand");
             {
                 var md = new Method(MethodAccessModifier.Public, "GetApiEndpointUrl");
                 md.ReturnTypeName = new TypeName("String");
@@ -219,18 +271,15 @@ namespace HigLabo.CodeGenerator.Twitter
                 {
                     md.Body.Add(SourceCodeLanguage.CSharp, String.Format("return \"{0}\";", apiUrl));
                 }
-                commandClass.Methods.Add(md);
+                c.Methods.Add(md);
             }
             {
                 var md = new Method(MethodAccessModifier.Public, "GetHttpMethodName");
                 md.ReturnTypeName = new TypeName("HttpMethodName");
                 md.Modifier.Polymophism = MethodPolymophism.Override;
                 md.Body.Add(SourceCodeLanguage.CSharp, "return HttpMethodName.{0};", apiInfo.HttpMethodName);
-                commandClass.Methods.Add(md);
+                c.Methods.Add(md);
             }
-
-            api2.Classes.Add(commandClass);
-
 
             var paramsNode = doc.DocumentNode.SelectNodes("//article[@id='main-content']//div[@class='parameter']");
             if (paramsNode != null)
@@ -240,51 +289,77 @@ namespace HigLabo.CodeGenerator.Twitter
                     var span = div.SelectSingleNode("child::span[@class='param']");
                     var description = div.SelectSingleNode("child::p[position()=1]").InnerText;
                     var exampleValueNode = div.SelectSingleNode("child::p[position()=2]");
+                    var requiredNode = div.SelectNodes("descendant::span")
+                        .FirstOrDefault(el => String.Equals(el.InnerHtml.Trim(), "required", StringComparison.OrdinalIgnoreCase));
+                    var required = requiredNode != null && requiredNode.InnerText.Trim() == "required";
 
+                    var pName = span.FirstChild.InnerText.Trim();
+                    pName = pName.Replace(":", "_");
                     var typeName = "String";
-                    if (description.StartsWith("Specifies the number of"))
+                    #region
+                    if (pName == "user_id" ||
+                        description.StartsWith("Specifies the number of"))
                     {
-                        typeName = "Int64?";
+                        if (required == true)
+                        {
+                            typeName = "Int64";
+                        }
+                        else
+                        {
+                            typeName = "Int64?";
+                        }
+                    }
+                    else if (pName == "count")
+                    {
+                        if (required == true)
+                        {
+                            typeName = "Int32";
+                        }
+                        else
+                        {
+                            typeName = "Int32?";
+                        }
                     }
                     else if (exampleValueNode != null)
                     {
                         if (exampleValueNode.InnerText == "Example Values: true" ||
                             exampleValueNode.InnerText == "Example Values: false")
                         {
-                            typeName = "Boolean?";
+                            if (required == true)
+                            {
+                                typeName = "Boolean";
+                            }
+                            else
+                            {
+                                typeName = "Boolean?";
+                            }
                         }
                     }
+                    #endregion
 
-                    var pName = span.FirstChild.InnerText.Trim();
-                    pName = pName.Replace(":", "_");
                     var p = new Property(typeName, pName);
                     p.Get.IsAutomaticProperty = true;
                     p.Set.IsAutomaticProperty = true;
-                    commandClass.Properties.Add(p);
+                    c.Properties.Add(p);
+
+                    apiInfo.CommandParameters.Add(new TwitterApiCommandParameterInfo(p.Name, p.TypeName, required));
                 }
             }
 
-
-            //Result class
-            var exampleNode = doc.DocumentNode.SelectSingleNode("//article[@id='main-content']"
-                + "//pre[@class='brush: jscript' or @class='brush: javascript']");
-            if (exampleNode == null) { return; }
-
-            var json = exampleNode.InnerText;
-            json = json.Replace(".json\";", ".json\"");//https://dev.twitter.com/rest/reference/post/geo/place
-            json = json.Replace("  ...", "");//https://dev.twitter.com/rest/reference/get/trends/available
-            JsonParser parser = new JsonParser();
-            var resultClass = parser.Parse(json, "Result");
-            //friendships/no_retweets/ids
-            if (apiInfo.Name1 == "Friendships" && apiInfo.Name2 == "No_Retweets_Ids")
+            apiInfo.CommandParameters.Sort(el =>
             {
-                apiInfo.ResultClassName = "String";
-            }
-            else
+                if (el.Required) return "0";
+                if (el.Name == "count") return "1";
+                if (el.Name == "since_id") return "2";
+                if (el.Name == "max_id") return "3";
+                return "9";
+            });
+            //Replace C# keyword
+            foreach (var item in apiInfo.CommandParameters.Where(el => el.Name == "long"))
             {
-                api2.Classes.Add(resultClass);
-                apiInfo.ResultClassName = String.Format("{0}.{1}.Result", apiInfo.Name1, apiInfo.Name2);
+                item.Name = "@long";
             }
+            return c;
         }
 
         private SourceCode GenerateApiEndpointClasses(List<TwitterApiEndpointInfo> apiList)
@@ -323,15 +398,94 @@ namespace HigLabo.CodeGenerator.Twitter
                     var apiInfo = apiList.Find(el => el.Name1 == apiName1 && el.Name2 == apiName2);
                     if (apiInfo.HasResult == false) { continue; }
 
-                    var md = new Method(MethodAccessModifier.Public, apiName2);
-                    md.ReturnTypeName = new TypeName(String.Format("{0}[]", apiInfo.ResultClassName));
-                    md.Parameters.Add(new MethodParameter(String.Format("{0}.{1}.Command", apiName1, apiName2), "command"));
-                    md.Body.Add(SourceCodeLanguage.CSharp
-                        , "return _ApiEndpoints._Client.GetResult<{0}.{1}.Command, {2}[]>(command);", apiName1, apiName2, apiInfo.ResultClassName);
-                    apiClass.Methods.Add(md);
+                    apiClass.Methods.Add(this.CreateApiMethod(apiInfo));
+                    if (apiInfo.CommandParameters.Count > 0)
+                    {
+                        apiClass.Methods.AddRange(this.CreateApiMethod1(apiInfo));
+                    }
                 }
             }
             return sc;
+        }
+        private Method CreateApiMethod(TwitterApiEndpointInfo apiInfo)
+        {
+            var arrayText = "";
+            if (apiInfo.ResultIsArray == true)
+            {
+                arrayText = "[]";
+            }
+            var md = new Method(MethodAccessModifier.Public, apiInfo.Name2);
+            md.ReturnTypeName = new TypeName(String.Format("{0}{1}", apiInfo.ResultClassName, arrayText));
+            md.Parameters.Add(new MethodParameter(String.Format("{0}.{1}.Command", apiInfo.Name1, apiInfo.Name2), "command"));
+            md.Body.Add(SourceCodeLanguage.CSharp
+                , "return _ApiEndpoints._Client.GetResult<{0}.{1}.Command, {2}{3}>(command);"
+                , apiInfo.Name1, apiInfo.Name2, apiInfo.ResultClassName, arrayText);
+
+            return md;
+        }
+        private List<Method> CreateApiMethod1(TwitterApiEndpointInfo apiInfo)
+        {
+            var l = new List<Method>();
+            var pp = new List<List<TwitterApiCommandParameterInfo>>();
+            if (apiInfo.CommandParameters.Count(el => el.Name == "screen_name" || el.Name == "user_id") == 2)
+            {
+                pp.Add(apiInfo.CommandParameters.Where(el => el.Name != "screen_name").ToList());
+                pp.Add(apiInfo.CommandParameters.Where(el => el.Name != "user_id").ToList());
+            }
+            else
+            {
+                pp.Add(apiInfo.CommandParameters.ToList());
+            }
+            if (apiInfo.CommandParameters.Exists(el => el.Required == false) == true)
+            {
+                var p1 = apiInfo.CommandParameters.Where(el => el.Required).ToList();
+                foreach (var p in p1)
+                {
+                    if (p.TypeName.Name.EndsWith("?") == true)
+                    {
+                        p.TypeName.Name = p.TypeName.Name.Replace("?", "");
+                    }
+                }
+                if (p1.Count > 0 || p1.All(el => el.Required == false))
+                {
+                    pp.Add(p1);
+                }
+
+                var p2 = apiInfo.CommandParameters.Where(el => el.Required ||
+                    el.Name == "since_id" || el.Name == "max_id").ToList();
+                if (p1.Count != p2.Count)
+                {
+                    pp.Add(p2);
+                }
+            }
+            foreach (var p in pp)
+            {
+                l.Add(this.CreateApiMethod1(apiInfo, p));
+            }
+            l.Sort(el => el.Parameters.Count);
+
+            return l;
+        }
+        private Method CreateApiMethod1(TwitterApiEndpointInfo apiInfo, IEnumerable<TwitterApiCommandParameterInfo> parameters)
+        {
+            var arrayText = "";
+            if (apiInfo.ResultIsArray == true)
+            {
+                arrayText = "[]";
+            }
+            var md = new Method(MethodAccessModifier.Public, apiInfo.Name2);
+            md.ReturnTypeName = new TypeName(String.Format("{0}{1}", apiInfo.ResultClassName, arrayText));
+
+            var commandClassName = String.Format("{0}.{1}.Command", apiInfo.Name1, apiInfo.Name2);
+            md.Body.Add(SourceCodeLanguage.CSharp, "var cm = new {0}();", commandClassName);
+            foreach (var p in parameters)
+            {
+                md.Parameters.Add(new MethodParameter(p.TypeName.ToString(), p.Name.ToLower()));
+                md.Body.Add(SourceCodeLanguage.CSharp, "cm.{0} = {0};", p.Name);
+            }
+            md.Body.Add(SourceCodeLanguage.CSharp, "return this.{0}(cm);", apiInfo.Name2);
+
+            return md;
         }
     }
 }

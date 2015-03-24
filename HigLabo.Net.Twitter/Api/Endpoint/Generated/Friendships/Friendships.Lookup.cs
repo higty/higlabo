@@ -11,7 +11,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
             public class Command : TwitterCommand
             {
                 public String screen_name { get; set; }
-                public String user_id { get; set; }
+                public Int64? user_id { get; set; }
 
                 public override String GetApiEndpointUrl()
                 {
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Twitter.Api_1_1
                 [JsonProperty("screen_name")]
                 public String screen_name { get; set; }
                 [JsonProperty("id")]
-                public Int64 id { get; set; }
+                public Int64? id { get; set; }
                 [JsonProperty("id_str")]
                 public String id_str { get; set; }
                 [JsonProperty("connections")]
