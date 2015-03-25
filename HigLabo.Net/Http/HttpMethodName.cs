@@ -33,5 +33,9 @@
         /// 
         /// </summary>
         Copy,
+        /// <summary>
+        /// 
+        /// </summary>
+        Patch,
     }
 }

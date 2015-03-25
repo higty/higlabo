@@ -126,6 +126,15 @@ namespace HigLabo.CodeGenerator
             throw new NotImplementedException();
         }
 
+        public override void Write(Enum @enum)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Write(EnumValue enumValue)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void Write(InterfaceProperty property)
         {
             throw new NotImplementedException();

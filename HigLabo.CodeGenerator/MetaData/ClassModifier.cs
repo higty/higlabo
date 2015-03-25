@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace HigLabo.CodeGenerator
 {
@@ -22,6 +21,16 @@ namespace HigLabo.CodeGenerator
             this.Static = false;
             this.Abstract = false;
             this.Partial = false;
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append(this.AccessModifier.ToString().ToLower());
+            if (this.Static) { sb.Append(" static"); }
+            if (this.Abstract) { sb.Append(" abstract"); }
+            if (this.Partial) { sb.Append(" partial"); }
+            
+            return sb.ToString();
         }
     }
 }

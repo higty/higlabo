@@ -66,7 +66,9 @@ namespace HigLabo.Core
                 sb.Append(key);
                 sb.Append("=");
                 sb.Append(UrlEncoder(values[key]));
+                sb.Append("&");
             }
+            sb.Length = sb.Length - 1;
             return sb.ToString();
         }
     }

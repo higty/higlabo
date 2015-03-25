@@ -59,6 +59,16 @@ namespace HigLabo.Core
             }
             return text.Substring(startIndex, text.Length - startIndex);
         }
+        public static Boolean IsNullOrEmpty(this String text)
+        {
+            return String.IsNullOrEmpty(text);
+        }
+#if _Net_4_0 || _Net_4_5
+        public static Boolean IsNullOrWhiteSpace(this String text)
+        {
+            return String.IsNullOrWhiteSpace(text);
+        }
+#endif
 
         public static Boolean? ToBoolean(this String value)
         {

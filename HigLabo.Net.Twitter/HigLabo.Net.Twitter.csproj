@@ -38,7 +38,7 @@
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reference\Net4.5\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Dev\Joytter\Reference\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -332,7 +332,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Core\TwitterClient.cs" />
-    <Compile Include="Core\TwitterClient.SyncCall.cs" />
     <Compile Include="Core\TwitterCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

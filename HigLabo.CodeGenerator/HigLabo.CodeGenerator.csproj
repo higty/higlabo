@@ -54,6 +54,12 @@
     <Compile Include="MetaData\CodeBlockWithLanguage.cs" />
     <Compile Include="MetaData\Constructor.cs" />
     <Compile Include="MetaData\ConstructorModifier.cs" />
+    <Compile Include="MetaData\Enum.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MetaData\EnumValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MetaData\Field.cs" />
     <Compile Include="MetaData\FieldModifier.cs" />
     <Compile Include="MetaData\Interface.cs" />

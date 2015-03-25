@@ -446,6 +446,7 @@ namespace HigLabo.CodeGenerator
             hasElement = this.Write(c.Methods, hasElement, this.Write);
             hasElement = this.Write(c.Interfaces, hasElement, this.Write);
             hasElement = this.Write(c.Classes, hasElement, this.Write);
+            hasElement = this.Write(c.Enums, hasElement, this.Write);
 
             this.WriteIndent();
             writer.WriteLine("}");
@@ -465,6 +466,47 @@ namespace HigLabo.CodeGenerator
                 this.CurrentIndentLevel -= 1;
             }
             return hasElement == true || items.Count > 0;
+        }
+
+        public override void Write(Enum @enum)
+        {
+            var writer = this.TextWriter;
+            var em = @enum;
+
+            this.WriteIndent();
+            this.Write(em.Modifier);
+            writer.Write("enum ");
+            this.WriteElementName(em.Name);
+            if (String.IsNullOrEmpty(em.BaseClass) == false)
+            {
+                writer.Write(" : ");
+                writer.Write(em.BaseClass);
+            }
+
+            this.WriteLineAndIndent();
+            writer.WriteLine("{");
+            foreach (var item in em.Values)
+            {
+                this.CurrentIndentLevel += 1;
+                this.Write(item);
+                writer.WriteLine();
+                this.CurrentIndentLevel -= 1;
+            }
+            this.WriteIndent();
+            writer.WriteLine("}");
+        }
+        public override void Write(EnumValue enumValue)
+        {
+            var writer = this.TextWriter;
+
+            this.WriteIndent();
+            writer.Write(enumValue.Text);
+            if (enumValue.Value.HasValue)
+            {
+                writer.Write(" = ");
+                writer.Write(enumValue.Value.ToString());
+            }
+            writer.Write(",");
         }
 
         public override void Write(InterfaceProperty property)

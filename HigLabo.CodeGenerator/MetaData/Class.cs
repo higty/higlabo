@@ -18,6 +18,7 @@ namespace HigLabo.CodeGenerator
         public List<Method> Methods { get; private set; }
         public List<Interface> Interfaces { get; private set; }
         public List<Class> Classes { get; private set; }
+        public List<Enum> Enums { get; private set; }
 
         public Class(AccessModifier modifier, String name)
         {
@@ -30,6 +31,7 @@ namespace HigLabo.CodeGenerator
             this.Methods = new List<Method>();
             this.Interfaces = new List<Interface>();
             this.Classes = new List<Class>();
+            this.Enums = new List<Enum>();
         }
         public void AddPropertyAndField(String typeName, String name)
         {
@@ -45,7 +47,7 @@ namespace HigLabo.CodeGenerator
         }
         public override string ToString()
         {
-            return this.Name;
+            return String.Format("{0} {1}", this.Modifier.ToString(), this.Name);
         }
     }
 }

@@ -40,9 +40,12 @@ namespace HigLabo.CodeGenerator
         
         public abstract void Write(PropertyBody propertyBody);
         public abstract void Write(Property property);
-        
+
         public abstract void Write(ClassModifier modifier);
         public abstract void Write(Class @class);
+
+        public abstract void Write(Enum @enum);
+        public abstract void Write(EnumValue enumValue);
 
         public abstract void Write(InterfaceProperty property);
         public abstract void Write(InterfaceMethod method);

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{51E416CC-B237-4033-B6CA-20834F1D90FE}</ProjectGuid>
+    <ProjectGuid>{2A404663-88FA-445D-83A6-3E6EBE2BCFAB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HigLabo.CodeGenerator.Twitter</RootNamespace>
-    <AssemblyName>HigLabo.CodeGenerator.Twitter</AssemblyName>
+    <RootNamespace>HigLabo.Net.Vimeo</RootNamespace>
+    <AssemblyName>HigLabo.Net.Vimeo</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,35 +36,56 @@
     <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HtmlAgilityPack">
-      <HintPath>..\Reference\Net4.5\HtmlAgilityPack.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reference\Net4.5\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\Dev\Joytter\Reference\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\TwitterApiCommandParameterInfo.cs" />
-    <Compile Include="Core\TwitterApiEndpointInfo.cs" />
-    <Compile Include="Core\TwitterClientSourceCodeGenerator.cs" />
+    <Compile Include="Api\ApiEndpoints.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\ApiEndpoints.Api.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Channels\Channels.ChannelID_Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Channels\Channels.Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Videos\Videos.Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Api\Endpoint\Generated\Videos\Videos.VideoID_Get.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\VimeoClient.cs" />
+    <Compile Include="Core\VimeoCommand.cs" />
+    <Compile Include="Core\VimeoParameterName.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HigLabo.CodeGenerator.Json\HigLabo.CodeGenerator.Json.csproj">
-      <Project>{2b8acd14-8c3d-436b-9868-83d2e2741aba}</Project>
-      <Name>HigLabo.CodeGenerator.Json</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj">
-      <Project>{3b2c4135-4706-4e74-8677-54cebea1ac4d}</Project>
-      <Name>HigLabo.CodeGenerator</Name>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj">
+      <Project>{757964e0-b391-48eb-ad04-d9c41091cfb5}</Project>
+      <Name>HigLabo.Converter</Name>
     </ProjectReference>
     <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj">
       <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
       <Name>HigLabo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj">
+      <Project>{937adaaa-3b53-446a-91d6-07673be9948c}</Project>
+      <Name>HigLabo.Mapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\HigLabo.Net\HigLabo.Net.csproj">
       <Project>{89e24872-799b-463f-b611-1112a00fc82f}</Project>

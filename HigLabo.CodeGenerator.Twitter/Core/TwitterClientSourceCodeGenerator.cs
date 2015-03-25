@@ -15,21 +15,6 @@ namespace HigLabo.CodeGenerator.Twitter
 {
     public class TwitterClientSourceCodeGenerator
     {
-        private static List<String> _CommandParameterNames = new List<string>();
-
-        static TwitterClientSourceCodeGenerator()
-        {
-            InitializeCommandParameterNames();
-        }
-        private static void InitializeCommandParameterNames()
-        {
-            var l = _CommandParameterNames;
-            //l.Add("user_id");
-            l.Add("screen_name");
-            l.Add("id");
-            l.Add("list_id");
-        }
-
         public void GenerateSourceCode(String folderPath)
         {
             var d = new Dictionary<TwitterApiEndpointInfo, SourceCode>();
