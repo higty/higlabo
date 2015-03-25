@@ -13,9 +13,11 @@ namespace HigLabo.Net.Dailymotion
     public partial class DailymotionClient : OAuth2Client
     {
         public ApiEndpoints Api { get; set; }
-        
-        public DailymotionClient(String consumerKey, String consumerSecret)
+
+        public DailymotionClient(String clientID, String clientSecret)
         {
+            this.ClientID = clientID;
+            this.ClientSecret = clientSecret;
             this.Api = new ApiEndpoints(this);
         }
         public override string GetAuthorizeUrl(OAuth2ResponseType responseType)

@@ -13,9 +13,11 @@ namespace HigLabo.Net.Vimeo
     public partial class VimeoClient : OAuth2Client
     {
         public ApiEndpoints Api { get; set; }
-        
-        public VimeoClient(String consumerKey, String consumerSecret)
+
+        public VimeoClient(String clientID, String clientSecret)
         {
+            this.ClientID = clientID;
+            this.ClientSecret = clientSecret;
             this.Api = new ApiEndpoints(this);
         }
         public override string GetAuthorizeUrl(OAuth2ResponseType responseType)
