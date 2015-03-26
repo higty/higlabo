@@ -51,15 +51,12 @@ namespace HigLabo.Net.Vimeo
             if (this.AccessToken == null) throw new OAuthAuthenticateException("", "AccessToken does not set.");
             OAuth2Client cl = this;
             Dictionary<String, String> d = new Dictionary<string, string>();
-            var url = command.GetApiEndpointUrl();
+            var url = "https://api.vimeo.com/" + command.GetApiEndpointUrl();
             var methodName = command.GetHttpMethodName();
-            var cm = new HttpRequestCommand(url);
-            cm.Accept = "application/vnd.vimeo.*+json;version=3.2";
-            cm.MethodName = methodName;
-
+         
             if (command != null)
             {
-                d =  command.Map(new Dictionary<String, String>());
+                d = command.Map(new Dictionary<String, String>());
                 var keys = d.Where(el => String.IsNullOrEmpty(el.Value)).Select(el => el.Key).ToList();
                 foreach (var key in keys)
                 {
@@ -67,7 +64,19 @@ namespace HigLabo.Net.Vimeo
                 }
             }
             d["access_token"] = this.AccessToken.Value;
-            cm.SetBodyStream(new HttpBodyFormUrlEncodedData(d));
+
+            if (methodName == HttpMethodName.Get)
+            {
+                var cv = new QueryStringConverter();
+                url = String.Format("{0}?{1}", url, cv.Write(d));
+            }
+            var cm = new HttpRequestCommand(url);
+            cm.Accept = "application/vnd.vimeo.*+json;version=3.2";
+            cm.MethodName = methodName;
+            if (methodName != HttpMethodName.Get)
+            {
+                cm.SetBodyStream(new HttpBodyFormUrlEncodedData(d));
+            }
 
             var res = cl.GetResponse(cm);
             if (res.StatusCode != HttpStatusCode.OK

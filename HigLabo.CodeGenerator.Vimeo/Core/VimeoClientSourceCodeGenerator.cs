@@ -272,12 +272,32 @@ namespace HigLabo.CodeGenerator.Vimeo
             var c = new Class(AccessModifier.Public, "Command");
 
             c.BaseClass = new TypeName("VimeoCommand");
+
+            var returnApiPath = "\"" + apiInfo.ApiPath + "\"";
+            foreach (var item in _IDParameterNames)
+            {
+                if (apiInfo.ApiPath.Contains("{" + item + "}") == true)
+                {
+                    returnApiPath = returnApiPath.Replace("{" + item + "}", "\" + this." + item + " + \"");
+
+                    apiInfo.CommandParameters.Add(new VimeoApiCommandParameterInfo(item, new TypeName("String"), true));
+
+                    var p = new Property("String", item);
+                    p.Get.IsAutomaticProperty = true;
+                    p.Set.IsAutomaticProperty = true;
+                    c.Properties.Add(p);
+                }
+            }
             {
                 var md = new Method(MethodAccessModifier.Public, "GetApiEndpointUrl");
                 md.ReturnTypeName = new TypeName("String");
                 md.Modifier.Polymophism = MethodPolymophism.Override;
 
-                md.Body.Add(SourceCodeLanguage.CSharp, String.Format("return \"{0}\";", apiInfo.ApiPath));
+                if (returnApiPath.EndsWith(" + \"\""))
+                {
+                    returnApiPath = returnApiPath.Replace(" + \"\"", "");
+                }
+                md.Body.Add(SourceCodeLanguage.CSharp, String.Format("return {0};", returnApiPath));
 
                 c.Methods.Add(md);
             }
@@ -287,14 +307,6 @@ namespace HigLabo.CodeGenerator.Vimeo
                 md.Modifier.Polymophism = MethodPolymophism.Override;
                 md.Body.Add(SourceCodeLanguage.CSharp, "return HttpMethodName.{0};", apiInfo.HttpMethodName);
                 c.Methods.Add(md);
-            }
-
-            foreach (var item in _IDParameterNames)
-            {
-                if (apiInfo.Name2.Contains("{" + item + "}") == true)
-                {
-                    apiInfo.CommandParameters.Add(new VimeoApiCommandParameterInfo(item, new TypeName("String"), true));
-                }
             }
 
             var xPath = String.Format("//section[@id='{0}']//table[@class='params']//tbody//tr", apiInfo.HttpMethodName.ToUpper());

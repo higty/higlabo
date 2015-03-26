@@ -10,9 +10,11 @@ namespace HigLabo.Net.Vimeo.Api_3_2
         {
             public class Command : VimeoCommand
             {
+                public String channel_id { get; set; }
+
                 public override String GetApiEndpointUrl()
                 {
-                    return "channels/{channel_id}";
+                    return "channels/" + this.channel_id;
                 }
                 public override HttpMethodName GetHttpMethodName()
                 {

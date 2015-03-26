@@ -57,6 +57,12 @@ namespace HigLabo.Net.Vimeo.Api_3_2
             {
                 return _ApiEndpoints._Client.GetResult<Channels.ChannelID_Get.Command, Channels.ChannelID_Get.Result>(command);
             }
+            public Channels.ChannelID_Get.Result ChannelID_Get(String channel_id)
+            {
+                var cm = new Channels.ChannelID_Get.Command();
+                cm.channel_id = channel_id;
+                return this.ChannelID_Get(cm);
+            }
         }
         public partial class Api_Videos
         {
@@ -91,6 +97,12 @@ namespace HigLabo.Net.Vimeo.Api_3_2
             public Videos.VideoID_Get.Result VideoID_Get(Videos.VideoID_Get.Command command)
             {
                 return _ApiEndpoints._Client.GetResult<Videos.VideoID_Get.Command, Videos.VideoID_Get.Result>(command);
+            }
+            public Videos.VideoID_Get.Result VideoID_Get(String video_id)
+            {
+                var cm = new Videos.VideoID_Get.Command();
+                cm.video_id = video_id;
+                return this.VideoID_Get(cm);
             }
         }
     }
