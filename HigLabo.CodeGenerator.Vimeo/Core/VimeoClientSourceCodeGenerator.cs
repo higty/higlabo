@@ -29,8 +29,8 @@ namespace HigLabo.CodeGenerator.Vimeo
             var l = _IDParameterNames;
             var d = _IDParameterValues;
 
-            l.Add("video_id");d["video_id"] = "122959827";
-            l.Add("user_id");
+            l.Add("video_id"); d["video_id"] = "122959827"; d["video_id"] = "53332757";
+            l.Add("user_id"); d["user_id"] = "user34273722"; d["user_id"] = "user26726486";
             l.Add("follow_user_id");
             l.Add("channel_id"); d["channel_id"] = "staffpicks";
             l.Add("album_id");
@@ -65,6 +65,8 @@ namespace HigLabo.CodeGenerator.Vimeo
             }
             playgroundUrls = playgroundUrls.Distinct().ToList();
 
+            playgroundUrls.Add("https://developer.vimeo.com/api/playground/users/");
+            playgroundUrls.Add("https://developer.vimeo.com/api/playground/users/{user_id}");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/channels/");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/channels/{channel_id}");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/videos/");

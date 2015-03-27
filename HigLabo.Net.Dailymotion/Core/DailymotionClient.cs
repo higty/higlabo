@@ -75,7 +75,14 @@ namespace HigLabo.Net.Dailymotion
                 throw new HttpResponseException(res);
             }
             var json = res.BodyText;
-            return JsonConvert.DeserializeObject<TResult>(json);
+            try
+            {
+                return JsonConvert.DeserializeObject<TResult>(json, new JsonSerializerSettings() { MissingMemberHandling = MissingMemberHandling.Ignore });
+            }
+            catch (JsonReaderException)
+            {
+                throw new HttpResponseException(res);
+            }
         }
     }
 }

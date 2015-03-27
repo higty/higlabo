@@ -4,9 +4,18 @@ namespace HigLabo.Net.Vimeo.Api_3_2
 {
     public partial class ApiEndpoints
     {
+        private Api_Users _Users;
         private Api_Channels _Channels;
         private Api_Videos _Videos;
 
+        public Api_Users Users
+        {
+            get
+            {
+                if (_Users == null) _Users = new Api_Users(this);
+                return _Users;
+            }
+        }
         public Api_Channels Channels
         {
             get
@@ -24,6 +33,46 @@ namespace HigLabo.Net.Vimeo.Api_3_2
             }
         }
 
+        public partial class Api_Users
+        {
+            private ApiEndpoints _ApiEndpoints;
+
+            public Api_Users(ApiEndpoints apiEndpoints)
+            {
+                _ApiEndpoints = apiEndpoints;
+            }
+
+            public Users.Get.Result Get(Users.Get.Command command)
+            {
+                return _ApiEndpoints._Client.GetResult<Users.Get.Command, Users.Get.Result>(command);
+            }
+            public Users.Get.Result Get(String query)
+            {
+                var cm = new Users.Get.Command();
+                cm.query = query;
+                return this.Get(cm);
+            }
+            public Users.Get.Result Get(Int32 page, Int32 per_page, String query, Users.Get.Command.SortValues sort, Users.Get.Command.DirectionValues direction)
+            {
+                var cm = new Users.Get.Command();
+                cm.page = page;
+                cm.per_page = per_page;
+                cm.query = query;
+                cm.sort = sort;
+                cm.direction = direction;
+                return this.Get(cm);
+            }
+            public Users.UserID_Get.Result UserID_Get(Users.UserID_Get.Command command)
+            {
+                return _ApiEndpoints._Client.GetResult<Users.UserID_Get.Command, Users.UserID_Get.Result>(command);
+            }
+            public Users.UserID_Get.Result UserID_Get(String user_id)
+            {
+                var cm = new Users.UserID_Get.Command();
+                cm.user_id = user_id;
+                return this.UserID_Get(cm);
+            }
+        }
         public partial class Api_Channels
         {
             private ApiEndpoints _ApiEndpoints;

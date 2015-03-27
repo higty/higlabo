@@ -52,7 +52,7 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 [JsonProperty("pictures")]
                 public Picture pictures { get; set; }
                 [JsonProperty("tags")]
-                public Object[] tags { get; set; }
+                public Tag[] tags { get; set; }
                 [JsonProperty("stats")]
                 public Stat stats { get; set; }
                 [JsonProperty("metadata")]
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 [JsonProperty("status")]
                 public String status { get; set; }
                 [JsonProperty("embed_presets")]
-                public String embed_presets { get; set; }
+                public Embed_Preset embed_presets { get; set; }
 
                 public class Privacy
                 {
@@ -98,10 +98,45 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                         public String link { get; set; }
                     }
                 }
+                public class Tag
+                {
+                    [JsonProperty("uri")]
+                    public String uri { get; set; }
+                    [JsonProperty("name")]
+                    public String name { get; set; }
+                    [JsonProperty("tag")]
+                    public String tag { get; set; }
+                    [JsonProperty("canonical")]
+                    public String canonical { get; set; }
+                    [JsonProperty("metadata")]
+                    public Metadata metadata { get; set; }
+
+                    public class Metadata
+                    {
+                        [JsonProperty("connections")]
+                        public Connection connections { get; set; }
+
+                        public class Connection
+                        {
+                            [JsonProperty("videos")]
+                            public Video videos { get; set; }
+
+                            public class Video
+                            {
+                                [JsonProperty("uri")]
+                                public String uri { get; set; }
+                                [JsonProperty("options")]
+                                public String[] options { get; set; }
+                                [JsonProperty("total")]
+                                public Int64? total { get; set; }
+                            }
+                        }
+                    }
+                }
                 public class Stat
                 {
                     [JsonProperty("plays")]
-                    public String plays { get; set; }
+                    public Int64? plays { get; set; }
                 }
                 public class Metadata
                 {
@@ -399,6 +434,310 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                                 public String added_time { get; set; }
                                 [JsonProperty("uri")]
                                 public String uri { get; set; }
+                            }
+                        }
+                    }
+                }
+                public class Embed_Preset
+                {
+                    [JsonProperty("uri")]
+                    public String uri { get; set; }
+                    [JsonProperty("name")]
+                    public String name { get; set; }
+                    [JsonProperty("settings")]
+                    public Setting settings { get; set; }
+                    [JsonProperty("metadata")]
+                    public Metadata metadata { get; set; }
+                    [JsonProperty("user")]
+                    public User user { get; set; }
+
+                    public class Setting
+                    {
+                        [JsonProperty("buttons")]
+                        public Button buttons { get; set; }
+                        [JsonProperty("logos")]
+                        public Logo logos { get; set; }
+                        [JsonProperty("outro")]
+                        public String outro { get; set; }
+                        [JsonProperty("portrait")]
+                        public String portrait { get; set; }
+                        [JsonProperty("title")]
+                        public String title { get; set; }
+                        [JsonProperty("byline")]
+                        public String byline { get; set; }
+                        [JsonProperty("badge")]
+                        public Boolean? badge { get; set; }
+                        [JsonProperty("byline_badge")]
+                        public Boolean? byline_badge { get; set; }
+                        [JsonProperty("playbar")]
+                        public Boolean? playbar { get; set; }
+                        [JsonProperty("volume")]
+                        public Boolean? volume { get; set; }
+                        [JsonProperty("fullscreen_button")]
+                        public Boolean? fullscreen_button { get; set; }
+                        [JsonProperty("scaling_button")]
+                        public Boolean? scaling_button { get; set; }
+                        [JsonProperty("autoplay")]
+                        public Boolean? autoplay { get; set; }
+                        [JsonProperty("autopause")]
+                        public Boolean? autopause { get; set; }
+                        [JsonProperty("loop")]
+                        public Boolean? loop { get; set; }
+                        [JsonProperty("color")]
+                        public String color { get; set; }
+                        [JsonProperty("link")]
+                        public Boolean? link { get; set; }
+
+                        public class Button
+                        {
+                            [JsonProperty("like")]
+                            public Boolean? like { get; set; }
+                            [JsonProperty("watchlater")]
+                            public Boolean? watchlater { get; set; }
+                            [JsonProperty("share")]
+                            public Boolean? share { get; set; }
+                            [JsonProperty("embed")]
+                            public Boolean? embed { get; set; }
+                            [JsonProperty("vote")]
+                            public Boolean? vote { get; set; }
+                            [JsonProperty("hd")]
+                            public Boolean? hd { get; set; }
+                        }
+                        public class Logo
+                        {
+                            [JsonProperty("vimeo")]
+                            public Boolean? vimeo { get; set; }
+                            [JsonProperty("custom")]
+                            public Boolean? custom { get; set; }
+                            [JsonProperty("sticky_custom")]
+                            public Boolean? sticky_custom { get; set; }
+                        }
+                    }
+                    public class Metadata
+                    {
+                        [JsonProperty("connections")]
+                        public Connection connections { get; set; }
+
+                        public class Connection
+                        {
+                            [JsonProperty("videos")]
+                            public Video videos { get; set; }
+
+                            public class Video
+                            {
+                                [JsonProperty("uri")]
+                                public String uri { get; set; }
+                                [JsonProperty("options")]
+                                public String[] options { get; set; }
+                                [JsonProperty("total")]
+                                public Int64? total { get; set; }
+                            }
+                        }
+                    }
+                    public class User
+                    {
+                        [JsonProperty("uri")]
+                        public String uri { get; set; }
+                        [JsonProperty("name")]
+                        public String name { get; set; }
+                        [JsonProperty("link")]
+                        public String link { get; set; }
+                        [JsonProperty("location")]
+                        public String location { get; set; }
+                        [JsonProperty("bio")]
+                        public String bio { get; set; }
+                        [JsonProperty("created_time")]
+                        public DateTime? created_time { get; set; }
+                        [JsonProperty("account")]
+                        public String account { get; set; }
+                        [JsonProperty("pictures")]
+                        public Picture pictures { get; set; }
+                        [JsonProperty("websites")]
+                        public Website[] websites { get; set; }
+                        [JsonProperty("metadata")]
+                        public Metadata metadata { get; set; }
+
+                        public class Picture
+                        {
+                            [JsonProperty("uri")]
+                            public String uri { get; set; }
+                            [JsonProperty("active")]
+                            public Boolean? active { get; set; }
+                            [JsonProperty("sizes")]
+                            public Size[] sizes { get; set; }
+
+                            public class Size
+                            {
+                                [JsonProperty("width")]
+                                public Int64? width { get; set; }
+                                [JsonProperty("height")]
+                                public Int64? height { get; set; }
+                                [JsonProperty("link")]
+                                public String link { get; set; }
+                            }
+                        }
+                        public class Website
+                        {
+                            [JsonProperty("name")]
+                            public String name { get; set; }
+                            [JsonProperty("link")]
+                            public String link { get; set; }
+                            [JsonProperty("description")]
+                            public String description { get; set; }
+                        }
+                        public class Metadata
+                        {
+                            [JsonProperty("connections")]
+                            public Connection connections { get; set; }
+                            [JsonProperty("interactions")]
+                            public Interaction interactions { get; set; }
+
+                            public class Connection
+                            {
+                                [JsonProperty("activities")]
+                                public Activity activities { get; set; }
+                                [JsonProperty("albums")]
+                                public Album albums { get; set; }
+                                [JsonProperty("channels")]
+                                public Channel channels { get; set; }
+                                [JsonProperty("feed")]
+                                public Feed feed { get; set; }
+                                [JsonProperty("followers")]
+                                public Follower followers { get; set; }
+                                [JsonProperty("following")]
+                                public Following following { get; set; }
+                                [JsonProperty("groups")]
+                                public Group groups { get; set; }
+                                [JsonProperty("likes")]
+                                public Like likes { get; set; }
+                                [JsonProperty("portfolios")]
+                                public Portfolio portfolios { get; set; }
+                                [JsonProperty("videos")]
+                                public Video videos { get; set; }
+                                [JsonProperty("shared")]
+                                public Shared shared { get; set; }
+                                [JsonProperty("pictures")]
+                                public Picture pictures { get; set; }
+
+                                public class Activity
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                }
+                                public class Album
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Channel
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Feed
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                }
+                                public class Follower
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Following
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Group
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Like
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Portfolio
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Video
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Shared
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                                public class Picture
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
+                                }
+                            }
+                            public class Interaction
+                            {
+                                [JsonProperty("follow")]
+                                public Follow follow { get; set; }
+
+                                public class Follow
+                                {
+                                    [JsonProperty("added")]
+                                    public Boolean? added { get; set; }
+                                    [JsonProperty("added_time")]
+                                    public String added_time { get; set; }
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                }
                             }
                         }
                     }

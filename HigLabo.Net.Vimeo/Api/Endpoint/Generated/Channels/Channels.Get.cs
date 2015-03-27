@@ -121,24 +121,14 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                         [JsonProperty("metadata")]
                         public Metadata metadata { get; set; }
 
-                        public class Picture
+                        public class Website
                         {
-                            [JsonProperty("uri")]
-                            public String uri { get; set; }
-                            [JsonProperty("active")]
-                            public Boolean? active { get; set; }
-                            [JsonProperty("sizes")]
-                            public Size[] sizes { get; set; }
-
-                            public class Size
-                            {
-                                [JsonProperty("width")]
-                                public Int64? width { get; set; }
-                                [JsonProperty("height")]
-                                public Int64? height { get; set; }
-                                [JsonProperty("link")]
-                                public String link { get; set; }
-                            }
+                            [JsonProperty("name")]
+                            public String name { get; set; }
+                            [JsonProperty("link")]
+                            public String link { get; set; }
+                            [JsonProperty("description")]
+                            public String description { get; set; }
                         }
                         public class Metadata
                         {
@@ -295,33 +285,24 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                                 }
                             }
                         }
-                        public class Website
+                        public class Picture
                         {
-                            [JsonProperty("name")]
-                            public String name { get; set; }
-                            [JsonProperty("link")]
-                            public String link { get; set; }
-                            [JsonProperty("description")]
-                            public String description { get; set; }
-                        }
-                    }
-                    public class Picture
-                    {
-                        [JsonProperty("uri")]
-                        public String uri { get; set; }
-                        [JsonProperty("active")]
-                        public Boolean? active { get; set; }
-                        [JsonProperty("sizes")]
-                        public Size[] sizes { get; set; }
+                            [JsonProperty("uri")]
+                            public String uri { get; set; }
+                            [JsonProperty("active")]
+                            public Boolean? active { get; set; }
+                            [JsonProperty("sizes")]
+                            public Size[] sizes { get; set; }
 
-                        public class Size
-                        {
-                            [JsonProperty("width")]
-                            public Int64? width { get; set; }
-                            [JsonProperty("height")]
-                            public Int64? height { get; set; }
-                            [JsonProperty("link")]
-                            public String link { get; set; }
+                            public class Size
+                            {
+                                [JsonProperty("width")]
+                                public Int64? width { get; set; }
+                                [JsonProperty("height")]
+                                public Int64? height { get; set; }
+                                [JsonProperty("link")]
+                                public String link { get; set; }
+                            }
                         }
                     }
                     public class Privacy
@@ -378,6 +359,25 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                                 [JsonProperty("uri")]
                                 public String uri { get; set; }
                             }
+                        }
+                    }
+                    public class Picture
+                    {
+                        [JsonProperty("uri")]
+                        public String uri { get; set; }
+                        [JsonProperty("active")]
+                        public Boolean? active { get; set; }
+                        [JsonProperty("sizes")]
+                        public Size[] sizes { get; set; }
+
+                        public class Size
+                        {
+                            [JsonProperty("width")]
+                            public Int64? width { get; set; }
+                            [JsonProperty("height")]
+                            public Int64? height { get; set; }
+                            [JsonProperty("link")]
+                            public String link { get; set; }
                         }
                     }
                     public class Header
