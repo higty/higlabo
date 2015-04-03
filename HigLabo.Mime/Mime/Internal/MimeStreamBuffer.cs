@@ -185,7 +185,7 @@ namespace HigLabo.Mime.Internal
         }
         public Boolean IsEnd()
         {
-            return this._Current == this._End || _IsLastOfLine; 
+            return this._Current >= this._End || _IsLastOfLine; 
         }
         public Byte[] GetLastLine()
         {

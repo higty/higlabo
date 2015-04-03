@@ -15,7 +15,7 @@ namespace HigLabo.Core
         {
             return (this.Type == null ||
                 (this.TypeFilterCondition == TypeFilterCondition.Equal && this.Type == type) ||
-                (this.TypeFilterCondition == TypeFilterCondition.Inherit && this.Type.IsInheritanceFrom(type)));
+                (this.TypeFilterCondition == TypeFilterCondition.Inherit && type.IsInheritanceFrom(this.Type)));
         }
     }
 }

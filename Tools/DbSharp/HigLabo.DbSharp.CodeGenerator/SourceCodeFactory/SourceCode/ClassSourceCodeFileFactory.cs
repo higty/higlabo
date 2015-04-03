@@ -25,7 +25,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 f = new Field(parameter.GetClassName(), "_" + pName);
                 if (f.TypeName.Name == "String")
                 {
-                    f.Initializer = "\"\"";
+                    f.Initializer = "null";
                 }
                 else if (parameter.DbType.IsUserDefinedTableType() == true)
                 {

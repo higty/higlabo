@@ -32,6 +32,7 @@ namespace HigLabo.Rss
         public RssFeed Parse(String xml)
         {
             var feed = new RssFeed();
+            feed.Version = this.Version;
             var doc = XDocument.Parse(xml);
             var element = doc.Root;
 

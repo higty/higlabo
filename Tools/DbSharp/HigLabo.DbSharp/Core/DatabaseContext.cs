@@ -19,11 +19,12 @@ namespace HigLabo.DbSharp
         public static event EventHandler<EventArgs> TransactionStarted;
 
         /// <summary>
-        /// 
+        /// Thread固有なのでロックは不要。
+        /// ここでnewするとこのスレッドだけしか値がセットされないのでContextsプロパティ内部でインスタンスをセットする。
+        /// Lock in unnecessary because of thread static.
+        /// We will set instance inside Contexts property to ensure each thread has instance.
         /// </summary>
         [ThreadStatic]
-        // Thread固有なのでロックは不要。
-        // ここでnewするとこのスレッドだけしか値がセットされないのでGetDatabasesメソッドでインスタンスをセットする。
         private static Dictionary<String, DatabaseContext> _Contexts = null;
         private static Dictionary<String, DatabaseContext> Contexts
         {
