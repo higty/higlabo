@@ -16,6 +16,7 @@ namespace HigLabo.DbSharp.Service
 
         public Dispatcher Dispatcher { get; set; }
         public List<DbSharpCommand> Commands { get; private set; }
+        public Exception Exception { get; set; }
 
         public CommandService()
         {
@@ -28,25 +29,39 @@ namespace HigLabo.DbSharp.Service
         }
         private void Execute()
         {
-            if (this.Commands.Count == 0)
+            try
             {
-                this.OnCompleted();
-                return;
-            }
+                if (this.Commands.Count == 0)
+                {
+                    this.OnCompleted();
+                    return;
+                }
 
-            Double d = 1 / this.Commands.Count;
-            var count = this.Commands.Count;
-            var cx = new CommandServiceContext(this);
-            for (int i = 0; i < count; i++)
-            {
-                var cm = this.Commands[i];
-                var progressed = d * i;
-                cm.ProcessProgress += (o, e) =>  this.OnProcessProgress(new ProcessProgressEventArgs(e.Message, progressed + e.Progress / count));
-                cm.Completed += (o, e) => this.OnCommandCompleted(new CommandCompletedEventArgs(o as DbSharpCommand));
-                cm.Execute(cx);
-                cx.PreviousCommand = cm;
+                Double d = 1 / this.Commands.Count;
+                var count = this.Commands.Count;
+                var cx = new CommandServiceContext(this);
+                for (int i = 0; i < count; i++)
+                {
+                    var cm = this.Commands[i];
+                    var progressed = d * i;
+                    cm.ProcessProgress += (o, e) => this.OnProcessProgress(new ProcessProgressEventArgs(e.Message, progressed + e.Progress / count));
+                    cm.Completed += (o, e) => this.OnCommandCompleted(new CommandCompletedEventArgs(o as DbSharpCommand));
+                    cm.Execute(cx);
+                    cx.PreviousCommand = cm;
+                }
+                this.OnCompleted();
             }
-            this.OnCompleted();
+            catch (Exception ex)
+            {
+                this.Exception = ex;
+            }
+        }
+        public void ThrowException()
+        {
+            if (this.Exception != null)
+            {
+                throw this.Exception;
+            }
         }
 
         protected void OnProcessProgress(ProcessProgressEventArgs e)

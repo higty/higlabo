@@ -257,7 +257,12 @@ namespace HigLabo.DbSharp.CodeGenerator
                             }
                             break;
                         case SqlParameterConvertType.Enum:
-                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0}.ToStringFromEnum();", pName); break;
+                            var methodName = "ToStringFromEnum";
+                            if (parameter.AllowNull == true)
+                            {
+                                methodName = "ToStringOrNullFromEnum";
+                            }
+                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0}.{1}();", pName, methodName); break;
                         default: throw new InvalidOperationException();
                     }
                     yield return new CodeBlock(SourceCodeLanguage.CSharp, "cm.Parameters.Add(p);");

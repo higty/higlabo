@@ -101,6 +101,7 @@ namespace HigLabo.DbSharpApplication
 
             var w = new ProgressWindow(sv);
             w.ShowDialog();
+            sv.ThrowException();
 
             this.Close();
         }
