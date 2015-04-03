@@ -95,8 +95,8 @@ namespace HigLabo.Nuget
         public void UploadPackageFiles()
         {
             //this.UploadPackageFiles("CoreLibrary", "1.0.1.0");
-            this.UploadPackageFiles("DbSharp", "1.1.0.1");
-            this.UploadPackageFiles("DbSharp.SqlServer", "1.1.0.1");
+            this.UploadPackageFiles("DbSharp", "1.1.0.2");
+            this.UploadPackageFiles("DbSharp.SqlServer", "1.1.0.2");
             //this.UploadPackageFiles("Mail", "1.0.1.1");
             //this.UploadPackageFiles("Net.Twitter", "1.0.0.0");
             //this.UploadPackageFiles("Web", "1.0.1.1");

@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" >
   <metadata>
     <id>HigLabo.DbSharp._Net_4_5</id>
-    <version>1.1.0.1</version>
+    <version>1.1.0.2</version>
     <authors>Higty</authors>
     <owners>Higty</owners>
     <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
     <projectUrl>https://github.com/higty/higlabo</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Get HigLabo.DbSharp for .NET4.5 hosted on GitHub.</description>
-    <releaseNotes>HigLabo.Core updated 1.0.1.0.</releaseNotes>
+    <releaseNotes>Bug fix when loading dll.</releaseNotes>
     <copyright>HigLabo</copyright>
     <tags>HigLabo</tags>
     <dependencies>

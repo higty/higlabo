@@ -2,18 +2,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd" >
   <metadata>
     <id>HigLabo.DbSharp.SqlServer._Net_4_5</id>
-    <version>1.1.0.1</version>
+    <version>1.1.0.2</version>
     <authors>Higty</authors>
     <owners>Higty</owners>
     <licenseUrl>https://github.com/higty/higlabo</licenseUrl>
     <projectUrl>https://github.com/higty/higlabo</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Get HigLabo.DbSharp.SqlServer for .Net4.5 hosted on GitHub.</description>
-    <releaseNotes>Modify to use dependency to HigLabo.DbSharp._Net_4_5.1.1.1.0.</releaseNotes>
+    <releaseNotes>Bug fix when loading dll.</releaseNotes>
     <copyright>HigLabo</copyright>
     <tags>HigLabo</tags>
     <dependencies>
-      <dependency id="HigLabo.DbSharp._Net_4_5" version="1.1.0.1" />
+      <dependency id="HigLabo.DbSharp._Net_4_5" version="1.1.0.2" />
     </dependencies>
   </metadata>
   <files>
