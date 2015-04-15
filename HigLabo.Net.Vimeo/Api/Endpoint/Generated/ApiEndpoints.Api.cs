@@ -52,7 +52,7 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 cm.query = query;
                 return this.Get(cm);
             }
-            public Users.Get.Result Get(Int32 page, Int32 per_page, String query, Users.Get.Command.SortValues sort, Users.Get.Command.DirectionValues direction)
+            public Users.Get.Result Get(Int32? page, Int32? per_page, String query, Users.Get.Command.SortValues sort, Users.Get.Command.DirectionValues direction)
             {
                 var cm = new Users.Get.Command();
                 cm.page = page;
@@ -71,6 +71,30 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 var cm = new Users.UserID_Get.Command();
                 cm.user_id = user_id;
                 return this.UserID_Get(cm);
+            }
+            public Users.UserID_Videos_Get.Result UserID_Videos_Get(Users.UserID_Videos_Get.Command command)
+            {
+                return _ApiEndpoints._Client.GetResult<Users.UserID_Videos_Get.Command, Users.UserID_Videos_Get.Result>(command);
+            }
+            public Users.UserID_Videos_Get.Result UserID_Videos_Get(String user_id)
+            {
+                var cm = new Users.UserID_Videos_Get.Command();
+                cm.user_id = user_id;
+                return this.UserID_Videos_Get(cm);
+            }
+            public Users.UserID_Videos_Get.Result UserID_Videos_Get(String user_id, Int32? page, Int32? per_page, String query, Users.UserID_Videos_Get.Command.FilterValues filter, Users.UserID_Videos_Get.Command.Filter_EmbeddableValues filter_embeddable, Users.UserID_Videos_Get.Command.Filter_PlayableValues filter_playable, Users.UserID_Videos_Get.Command.SortValues sort, Users.UserID_Videos_Get.Command.DirectionValues direction)
+            {
+                var cm = new Users.UserID_Videos_Get.Command();
+                cm.user_id = user_id;
+                cm.page = page;
+                cm.per_page = per_page;
+                cm.query = query;
+                cm.filter = filter;
+                cm.filter_embeddable = filter_embeddable;
+                cm.filter_playable = filter_playable;
+                cm.sort = sort;
+                cm.direction = direction;
+                return this.UserID_Videos_Get(cm);
             }
         }
         public partial class Api_Channels
@@ -91,7 +115,7 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 var cm = new Channels.Get.Command();
                 return this.Get(cm);
             }
-            public Channels.Get.Result Get(Int32 page, Int32 per_page, String query, Channels.Get.Command.SortValues sort, Channels.Get.Command.DirectionValues direction, Channels.Get.Command.FilterValues filter)
+            public Channels.Get.Result Get(Int32? page, Int32? per_page, String query, Channels.Get.Command.SortValues sort, Channels.Get.Command.DirectionValues direction, Channels.Get.Command.FilterValues filter)
             {
                 var cm = new Channels.Get.Command();
                 cm.page = page;
@@ -111,6 +135,29 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 var cm = new Channels.ChannelID_Get.Command();
                 cm.channel_id = channel_id;
                 return this.ChannelID_Get(cm);
+            }
+            public Channels.ChannelID_Videos_Get.Result ChannelID_Videos_Get(Channels.ChannelID_Videos_Get.Command command)
+            {
+                return _ApiEndpoints._Client.GetResult<Channels.ChannelID_Videos_Get.Command, Channels.ChannelID_Videos_Get.Result>(command);
+            }
+            public Channels.ChannelID_Videos_Get.Result ChannelID_Videos_Get(String channel_id)
+            {
+                var cm = new Channels.ChannelID_Videos_Get.Command();
+                cm.channel_id = channel_id;
+                return this.ChannelID_Videos_Get(cm);
+            }
+            public Channels.ChannelID_Videos_Get.Result ChannelID_Videos_Get(String channel_id, Int32? page, Int32? per_page, String query, Channels.ChannelID_Videos_Get.Command.FilterValues filter, Channels.ChannelID_Videos_Get.Command.Filter_EmbeddableValues filter_embeddable, Channels.ChannelID_Videos_Get.Command.SortValues sort, Channels.ChannelID_Videos_Get.Command.DirectionValues direction)
+            {
+                var cm = new Channels.ChannelID_Videos_Get.Command();
+                cm.channel_id = channel_id;
+                cm.page = page;
+                cm.per_page = per_page;
+                cm.query = query;
+                cm.filter = filter;
+                cm.filter_embeddable = filter_embeddable;
+                cm.sort = sort;
+                cm.direction = direction;
+                return this.ChannelID_Videos_Get(cm);
             }
         }
         public partial class Api_Videos
@@ -132,7 +179,7 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 cm.query = query;
                 return this.Get(cm);
             }
-            public Videos.Get.Result Get(Int32 page, Int32 per_page, String query, Videos.Get.Command.SortValues sort, Videos.Get.Command.DirectionValues direction, Videos.Get.Command.FilterValues filter)
+            public Videos.Get.Result Get(Int32? page, Int32? per_page, String query, Videos.Get.Command.SortValues sort, Videos.Get.Command.DirectionValues direction, Videos.Get.Command.FilterValues filter)
             {
                 var cm = new Videos.Get.Command();
                 cm.page = page;

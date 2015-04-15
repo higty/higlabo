@@ -58,11 +58,13 @@
     <Compile Include="Api\Endpoint\Generated\Channels\Channels.ChannelID_Get.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Api\Endpoint\Generated\Channels\Channels.ChannelID_Videos_Get.cs" />
     <Compile Include="Api\Endpoint\Generated\Channels\Channels.Get.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Api\Endpoint\Generated\Users\Users.Get.cs" />
     <Compile Include="Api\Endpoint\Generated\Users\Users.UserID_Get.cs" />
+    <Compile Include="Api\Endpoint\Generated\Users\Users.UserID_Videos_Get.cs" />
     <Compile Include="Api\Endpoint\Generated\Videos\Videos.Get.cs">
       <SubType>Code</SubType>
     </Compile>

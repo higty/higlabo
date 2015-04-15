@@ -211,5 +211,18 @@ namespace HigLabo.DbSharpApplication
             this.Close();
         }
 
+        private void ToggleListBoxItemChecked(object sender, KeyEventArgs e)
+        {
+            var lx = sender as System.Windows.Controls.ListBox;
+            if (e.Key == Key.Return &&
+                lx.SelectedItems.Count > 0)
+            {
+                var isChecked = ((CheckedItem<DatabaseObject>)lx.SelectedItems[0]).IsChecked;
+                foreach (CheckedItem<DatabaseObject> item in lx.SelectedItems)
+                {
+                    item.IsChecked = !isChecked;
+                }
+            }
+        }
     }
 }

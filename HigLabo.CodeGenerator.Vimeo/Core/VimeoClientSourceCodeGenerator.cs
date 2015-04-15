@@ -69,6 +69,8 @@ namespace HigLabo.CodeGenerator.Vimeo
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/users/{user_id}");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/channels/");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/channels/{channel_id}");
+            playgroundUrls.Add("https://developer.vimeo.com/api/playground/channels/{channel_id}/videos");
+            playgroundUrls.Add("https://developer.vimeo.com/api/playground/users/{user_id}/videos");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/videos/");
             playgroundUrls.Add("https://developer.vimeo.com/api/playground/videos/{video_id}");
 
@@ -336,12 +338,11 @@ namespace HigLabo.CodeGenerator.Vimeo
                     var tx = typeNode.SelectSingleNode("child::input[@type='text']");
                     if (tx != null)
                     {
-                        typeName = this.GetCSharpTypeName(tx.Attributes["placeholder"].Value.Trim());
+                        typeName = this.GetCSharpTypeName(tx.Attributes["placeholder"].Value.Trim(), required);
                     }
                     var dl = typeNode.SelectSingleNode("child::select");
                     if (dl != null)
                     {
-                        typeName = "String";
                         //Enum
                         var em = new Enum(AccessModifier.Public, ToPascalCase(pName + "Values"));
                         var options = dl.SelectNodes("child::option");
@@ -349,7 +350,7 @@ namespace HigLabo.CodeGenerator.Vimeo
                         {
                             if (item.Attributes["value"].Value.IsNullOrEmpty()) { continue; }
                             var eValue = item.Attributes["value"].Value.Replace("-", "_").Replace(" ", "");
-                            if (eValue == "true" || eValue == "false")
+                            if (eValue == "true" || eValue == "false" || eValue == "default")
                             {
                                 eValue = "@" + eValue;
                             }
@@ -368,15 +369,6 @@ namespace HigLabo.CodeGenerator.Vimeo
                     apiInfo.CommandParameters.Add(new VimeoApiCommandParameterInfo(p.Name, p.TypeName, required));
                 }
             }
-
-            //apiInfo.CommandParameters.Sort(el =>
-            //{
-            //    if (el.Required) return "0";
-            //    if (el.Name == "count") return "1";
-            //    if (el.Name == "since_id") return "2";
-            //    if (el.Name == "max_id") return "3";
-            //    return "9";
-            //});
             return c;
         }
         private Class CreateResultClass(VimeoApiEndpointInfo apiInfo)
@@ -424,10 +416,17 @@ namespace HigLabo.CodeGenerator.Vimeo
             var json = cl.GetBodyText(cm);
             return json;
         }
-        private String GetCSharpTypeName(String typeName)
+        private String GetCSharpTypeName(String typeName, Boolean required)
         {
             if (typeName == "string") { return "String"; }
-            if (typeName == "int") { return "Int32"; }
+            if (typeName == "int")
+            {
+                if (required == true)
+                {
+                    return "Int32";
+                }
+                return "Int32?";
+            }
             throw new InvalidOperationException();
         }
 

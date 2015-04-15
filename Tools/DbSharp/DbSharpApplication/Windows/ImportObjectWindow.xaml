@@ -35,6 +35,7 @@
             	Checked="TableSelectAllCheckBox_Checked"
             	Unchecked="TableSelectAllCheckBox_Checked" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
                 <ListBox Name="TableListBox" SelectionMode="Extended" Margin="0,24,0,0"
+                         KeyDown="ToggleListBoxItemChecked"
                          ItemTemplate="{StaticResource ResourceKey=DatabaseObjectDataTemplate}">
                 </ListBox>
             </Grid>
@@ -43,6 +44,7 @@
                           Checked="StoredProcedureSelectAllCheckBox_Checked"
                           Unchecked="StoredProcedureSelectAllCheckBox_Checked" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
                 <ListBox Name="StoredProcedureListBox" SelectionMode="Extended" Margin="0,24,0,0"
+                         KeyDown="ToggleListBoxItemChecked"
                          ItemTemplate="{StaticResource ResourceKey=DatabaseObjectDataTemplate}">
                 </ListBox>
             </Grid>
@@ -51,6 +53,7 @@
             	Checked="UserDefinedTableTypeSelectAllCheckBox_Checked"
             	Unchecked="UserDefinedTableTypeSelectAllCheckBox_Checked" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
                 <ListBox Name="UserDefinedTableTypeListBox" SelectionMode="Extended" Margin="0,24,0,0"
+                         KeyDown="ToggleListBoxItemChecked"
                          ItemTemplate="{StaticResource ResourceKey=DatabaseObjectDataTemplate}">
                 </ListBox>
 

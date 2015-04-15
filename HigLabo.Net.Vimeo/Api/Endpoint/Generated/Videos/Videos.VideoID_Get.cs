@@ -39,6 +39,8 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 public String language { get; set; }
                 [JsonProperty("height")]
                 public Int64? height { get; set; }
+                [JsonProperty("embed")]
+                public Embed embed { get; set; }
                 [JsonProperty("created_time")]
                 public DateTime? created_time { get; set; }
                 [JsonProperty("modified_time")]
@@ -66,6 +68,11 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                 [JsonProperty("embed_presets")]
                 public Embed_Preset embed_presets { get; set; }
 
+                public class Embed
+                {
+                    [JsonProperty("html")]
+                    public String html { get; set; }
+                }
                 public class Privacy
                 {
                     [JsonProperty("view")]

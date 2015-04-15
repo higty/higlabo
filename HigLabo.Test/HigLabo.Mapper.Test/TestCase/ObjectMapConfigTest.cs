@@ -206,7 +206,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_CustomClassConverter()
         {
             var config = new ObjectMapConfig();
-            config.AddConverter(MapPointConverter);
+            config.AddConverter<MapPoint>(MapPointConverter);
 
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
@@ -237,8 +237,52 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
         }
+        [TestMethod]
+        public void ObjectMapConfig_Map_ArrayProperty()
+        {
+            var config = new ObjectMapConfig();
+            config.AddConverter<String[]>(o =>
+            {
+                if (o is String[])
+                {
+                    return new ConvertResult<String[]>(true, o as String[]);
+                }
+                return new ConvertResult<String[]>();
+            });
 
-        private MapPoint MapPointConverter(Object obj)
+            var u1 = new User();
+            u1.Tags = new String[2];
+            u1.Tags[0] = "News";
+            u1.Tags[1] = "Sports";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
+            Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_ListProperty()
+        {
+            var config = new ObjectMapConfig();
+            config.AddConverter<String[]>(o =>
+            {
+                if (o is String[])
+                {
+                    return new ConvertResult<String[]>(true, o as String[]);
+                }
+                return new ConvertResult<String[]>();
+            });
+
+            var u1 = new User();
+            for (int i = 0; i < 3; i++)
+            {
+                u1.Users.Add(new User("TestUser" + i.ToString()));
+            }
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(0, u2.Users.Count);
+        }
+
+        private ConvertResult<MapPoint> MapPointConverter(Object obj)
         {
             if (obj is String && (String)obj != null)
             {
@@ -248,28 +292,29 @@ namespace HigLabo.Mapper.Test
                     var p = new MapPoint();
                     p.Latitude = Decimal.Parse(ss[0].Trim());
                     p.Longitude = Decimal.Parse(ss[1].Trim());
-                    return p;
+                    return new ConvertResult<MapPoint>(true, p);
                 }
             }
-            return null;
+            return new ConvertResult<MapPoint>();
         }
-        private DayOfWeek? DayOfWeekConverter(Object obj)
+        private ConvertResult<DayOfWeek> DayOfWeekConverter(Object obj)
         {
+            DayOfWeek? dw = null;
             if (obj is String && (String)obj != null)
             {
                 switch (obj.ToString())
                 {
-                    case "Monday": return DayOfWeek.Monday;
-                    case "Tuesday": return DayOfWeek.Tuesday;
-                    case "Wednesday": return DayOfWeek.Wednesday;
-                    case "Thursday": return DayOfWeek.Thursday;
-                    case "Friday": return DayOfWeek.Friday;
-                    case "Saturday": return DayOfWeek.Saturday;
-                    case "Sunday": return DayOfWeek.Sunday;
+                    case "Monday": dw = DayOfWeek.Monday; break;
+                    case "Tuesday": dw = DayOfWeek.Tuesday; break;
+                    case "Wednesday": dw = DayOfWeek.Wednesday; break;
+                    case "Thursday": dw = DayOfWeek.Thursday; break;
+                    case "Friday": dw = DayOfWeek.Friday; break;
+                    case "Saturday": dw = DayOfWeek.Saturday; break;
+                    case "Sunday": dw = DayOfWeek.Sunday; break;
                     default: throw new InvalidOperationException();
                 }
             }
-            return null;
+            return ConvertResult.Create(dw);
         }
     }
 }

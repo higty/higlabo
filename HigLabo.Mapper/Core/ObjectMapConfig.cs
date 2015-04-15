@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
@@ -19,27 +20,15 @@ namespace HigLabo.Core
         {
             public String Name { get; set; }
         }
-        public class MappingContext
-        {
-            internal List<KeyValuePair<Object, Object>> MappedObjectPair { get; private set; }
-            public Int32 CallStackCount { get; internal set; }
-
-            internal MappingContext()
-            {
-                this.MappedObjectPair = new List<KeyValuePair<Object, Object>>();
-            }
-        }
 
         public static ObjectMapConfig Current { get; private set; }
 
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Delegate> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Delegate>();
 
         private MethodInfo _MapMethod = null;
-        private MethodInfo _ConvertClassMethod = null;
-        private MethodInfo _ConvertStructureMethod = null;
+        private MethodInfo _ConvertMethod = null;
         private List<MapPostAction> _PostActions = new List<MapPostAction>();
-        private ConcurrentDictionary<Type, Delegate> _ClassConverters = new ConcurrentDictionary<Type, Delegate>();
-        private ConcurrentDictionary<Type, Delegate> _StructConverters = new ConcurrentDictionary<Type, Delegate>();
+        private ConcurrentDictionary<Type, Delegate> _Converters = new ConcurrentDictionary<Type, Delegate>();
 
         public List<PropertyMappingRule> PropertyMapRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
@@ -57,50 +46,44 @@ namespace HigLabo.Core
             this.PropertyMapRules = new List<PropertyMappingRule>();
             this.PropertyMapRules.Add(new DefaultPropertyMappingRule());
             this.PropertyMapRules.Add(new DictionaryToObjectMappingRule());
-            this.AddConverter<Object>(o => o);
-
+            this.AddConverter<Object>(o => new ConvertResult<Object>(o != null, o));
+            
             this.MaxCallStack = 100;
             this.DictionaryKeyIgnoreCase = true;
             _MapMethod = this.GetMethodInfo("Map");
-            _ConvertClassMethod = this.GetMethodInfo("ConvertClass");
-            _ConvertStructureMethod = this.GetMethodInfo("ConvertStructure");
+            _ConvertMethod = this.GetMethodInfo("Convert");
         }
         private MethodInfo GetMethodInfo(String name)
         {
             return typeof(ObjectMapConfig).GetMethods().Where(el => el.GetCustomAttributes().Any(attr => attr is ObjectMapConfigMethodAttribute && ((ObjectMapConfigMethodAttribute)attr).Name == name)).FirstOrDefault();
         }
+        private MappingContext CreateMappingContext()
+        {
+            return new MappingContext(this.DictionaryKeyIgnoreCase);
+        }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
-            return this.Map(source, target, new MappingContext());
+            return this.Map(source, target, this.CreateMappingContext());
         }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, TTarget target)
             where TTarget : class
         {
             if (source == null) return null;
-            return this.Map(source, target, new MappingContext());
+            return this.Map(source, target, this.CreateMappingContext());
         }
         [ObjectMapConfigMethodAttribute(Name = "Map")]
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
-            if (source is System.Data.IDataReader)
-            {
-                Dictionary<String, Object> d = null;
-                if (this.DictionaryKeyIgnoreCase == true)
-                {
-                    d = new Dictionary<String, Object>(StringComparer.InvariantCultureIgnoreCase);
-                }
-                else
-                {
-                    d = new Dictionary<String, Object>();
-                }
-                d.SetValues((System.Data.IDataReader)source);
-                return this.Map(d, target, context);
-            }
             if (source == null || target == null) { return target; }
             if (context.CallStackCount > this.MaxCallStack)
             {
                 throw new InvalidOperationException("Map method recursively called over " + this.MaxCallStack + ".");
+            }
+
+            if (source is System.Data.IDataReader)
+            {
+                return this.MapIDataReader(source as IDataReader, target, context);
             }
             var md = this.GetMethod<TSource, TTarget>();
             try
@@ -120,11 +103,25 @@ namespace HigLabo.Core
         }
         public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, Func<TTarget> constructor)
         {
-            return Map(source, constructor, new MappingContext());
+            return Map(source, constructor, this.CreateMappingContext());
         }
         private IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, Func<TTarget> constructor, MappingContext context)
         {
             return source.Select(el => el.Map(constructor()));
+        }
+        private TTarget MapIDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
+        {
+            Dictionary<String, Object> d = null;
+            if (context.DictionaryKeyIgnoreCase == true)
+            {
+                d = new Dictionary<String, Object>(StringComparer.InvariantCultureIgnoreCase);
+            }
+            else
+            {
+                d = new Dictionary<String, Object>();
+            }
+            d.SetValues((System.Data.IDataReader)source);
+            return this.Map(d, target, context);
         }
 
         public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> targetPropertyNames, Action<TSource, TTarget> action)
@@ -163,33 +160,23 @@ namespace HigLabo.Core
             this.AddPostAction(action);
         }
 
-        public void AddConverter<T>(Func<Object, Nullable<T>> converter) where T : struct
+        public void AddConverter<T>(Func<Object, ConvertResult<T>> converter)
         {
-            _StructConverters[typeof(T)] = converter;
+            _Converters[typeof(T)] = converter;
         }
-        public void AddConverter<T>(Func<Object, T> converter) where T : class
-        {
-            _ClassConverters[typeof(T)] = converter;
-        }
-        [ObjectMapConfigMethodAttribute(Name = "ConvertStructure")]
-        public Boolean Convert<T>(Object value, out Nullable<T> convertedValue) where T : struct
+        [ObjectMapConfigMethodAttribute(Name = "Convert")]
+        public Boolean Convert<T>(Object value, out T convertedValue)
         {
             convertedValue = default(T);
             Delegate converterDelegate = null;
-            if (_StructConverters.TryGetValue(typeof(T), out converterDelegate) == false) return false;
-            var converter = (Func<Object, Nullable<T>>)converterDelegate;
-            convertedValue = converter(value);
-            return convertedValue.HasValue;
-        }
-        [ObjectMapConfigMethodAttribute(Name = "ConvertClass")]
-        public Boolean Convert<T>(Object value, out T convertedValue) where T : class
-        {
-            convertedValue = default(T);
-            Delegate converterDelegate = null;
-            if (_ClassConverters.TryGetValue(typeof(T), out converterDelegate) == false) return false;
-            var converter = (Func<Object, T>)converterDelegate;
-            convertedValue = converter(value);
-            return convertedValue != null;
+            if (_Converters.TryGetValue(typeof(T), out converterDelegate) == false) return false;
+            var converter = (Func<Object, ConvertResult<T>>)converterDelegate;
+            var result = converter(value);
+            if (result.Success == true)
+            {
+                convertedValue = result.Value;
+            }
+            return result.Success;
         }
 
         public void AddPostAction<TSource, TTarget>(Action<TSource, TTarget> action)
@@ -526,66 +513,44 @@ namespace HigLabo.Core
                 #endregion
 
                 #region Call custom convert method or Map method when convert failed. //ObjectMapConfig.Current.Convert<T>(...)
-                if (convertedVal != null)
+                il.MarkLabel(customConvertStartLabel);
+                convertedVal = il.DeclareLocal(item.Target.ActualType);
+                //Set up parameter for ObjectMapConfig.Convert<>(sourceVal, convertedVal)
+                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                il.Emit(OpCodes.Ldloc_S, sourceVal);
+                if (item.Source.ActualType.IsValueType == true)
                 {
-                    il.MarkLabel(customConvertStartLabel);
-                    //Set up parameter for ObjectMapConfig.Convert<>(sourceVal, convertedVal)
+                    //Boxing to Object
+                    il.Emit(OpCodes.Box, item.Source.ActualType);
+                }
+                il.Emit(OpCodes.Ldloca_S, convertedVal);
+
+                //public Boolean Convert<T>(Object value, out T convertedValue)
+                il.Emit(OpCodes.Call, _ConvertMethod.MakeGenericMethod(item.Target.ActualType));
+                var convertResult = il.DeclareLocal(typeof(Boolean));
+                il.Emit(OpCodes.Stloc_S, convertResult);
+                il.Emit(OpCodes.Ldloc_S, convertedVal);
+                il.Emit(OpCodes.Stloc_S, targetVal);
+                
+                il.Emit(OpCodes.Ldloc_S, convertResult);
+                il.Emit(OpCodes.Brtrue, setValueStartLabel);
+                if (item.Target.IsIndexedProperty == false)
+                {
+                    //Try Map method when convert failed
+                    #region source.P1.Map(target.P1); //Call Map method
+                    var targetObj = il.DeclareLocal(item.Target.PropertyType);
+                    il.Emit(OpCodes.Ldarg_2);
+                    il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
+                    il.Emit(OpCodes.Stloc_S, targetObj);
+
                     il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                    if (item.Source.ActualType.IsValueType == true)
-                    {
-                        il.Emit(OpCodes.Ldloc_S, sourceVal);
-                        il.Emit(OpCodes.Box, item.Source.ActualType);
-                        il.Emit(OpCodes.Ldloca_S, convertedVal);
-                    }
-                    else
-                    {
-                        il.Emit(OpCodes.Ldloc_S, sourceVal);
-                        il.Emit(OpCodes.Ldloca_S, convertedVal);
-                    }
-
-                    var convertResult = il.DeclareLocal(typeof(Boolean));
-                    ////Structure (Int32, Decimal, Int32?, Enum...etc)
-                    if (item.Target.IsNullableT == true ||
-                        item.Target.CanBeNull == false)
-                    {
-                        il.Emit(OpCodes.Call, _ConvertStructureMethod.MakeGenericMethod(item.Target.ActualType));
-                        il.Emit(OpCodes.Stloc_S, convertResult);
-                        //GetValueOrDefault
-                        if (item.Target.CanBeNull == false)
-                        {
-                            il.Emit(OpCodes.Ldloca_S, convertedVal);
-                            il.Emit(OpCodes.Call, typeof(Nullable<>).MakeGenericType(item.Target.ActualType).GetMethod("GetValueOrDefault", Type.EmptyTypes));
-                            il.Emit(OpCodes.Stloc_S, targetVal);
-                        }
-                    }
-                    else
-                    {
-                        //Class
-                        il.Emit(OpCodes.Call, _ConvertClassMethod.MakeGenericMethod(item.Target.ActualType));
-                        il.Emit(OpCodes.Stloc_S, convertResult);
-                        il.Emit(OpCodes.Ldloc_S, convertedVal);
-                        il.Emit(OpCodes.Stloc_S, targetVal);
-                    }
-                    il.Emit(OpCodes.Ldloc_S, convertResult);
-                    il.Emit(OpCodes.Brtrue, setValueStartLabel);
-                    if (item.Target.IsIndexedProperty == false)
-                    {
-                        //Try Map method when convert failed
-                        #region source.P1.Map(target.P1); //Call Map method
-                        var targetObj = il.DeclareLocal(item.Target.PropertyType);
-                        il.Emit(OpCodes.Ldarg_2);
-                        il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
-                        il.Emit(OpCodes.Stloc_S, targetObj);
-
-                        il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                        il.Emit(OpCodes.Ldloc_S, sourceVal);
-                        il.Emit(OpCodes.Ldloc_S, targetObj);
-                        il.Emit(OpCodes.Ldarg_3);//MappingContext
-                        il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
-                        il.Emit(OpCodes.Pop);
-                        il.Emit(OpCodes.Br, endOfCode);
-                        #endregion
-                    }
+                    il.Emit(OpCodes.Ldloc_S, sourceVal);
+                    il.Emit(OpCodes.Ldloc_S, targetObj);
+                    il.Emit(OpCodes.Ldarg_3);//MappingContext
+                    il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
+                    il.Emit(OpCodes.Pop);
+                    il.Emit(OpCodes.Br, endOfCode);
+                    #endregion
                 }
                 #endregion
 

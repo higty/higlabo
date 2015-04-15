@@ -22,17 +22,22 @@ namespace HigLabo.Mapper.Test
 
         public User ParentUser { get; set; }
         public List<User> Users { get; set; }
+        public String[] Tags { get; set; }
 
         public User()
+            : this("TestUser")
         {
-            this.Users = new List<User>();
-            this.MapPoint = new MapPoint();
-
-            this.Name = "TestUser1";
+        }
+        public User(String name)
+        {
+            this.Name = name;
             this.Int32 = 3;
             this.DateTime = new DateTime(2014, 12, 16);
             this.Decimal = 20.4m;
-            this.DayOfWeek = DayOfWeek.Monday; 
+            this.DayOfWeek = DayOfWeek.Monday;
+            this.MapPoint = new MapPoint();
+
+            this.Users = new List<User>();
         }
     }
 }

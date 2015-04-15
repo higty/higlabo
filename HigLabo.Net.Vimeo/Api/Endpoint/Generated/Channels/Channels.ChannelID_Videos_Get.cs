@@ -4,59 +4,61 @@ using Newtonsoft.Json;
 
 namespace HigLabo.Net.Vimeo.Api_3_2
 {
-    public partial class Videos
+    public partial class Channels
     {
-        public partial class Get
+        public partial class ChannelID_Videos_Get
         {
             public class Command : VimeoCommand
             {
+                public String channel_id { get; set; }
                 [VimeoParameterName("page")]
                 public Int32? page { get; set; }
                 [VimeoParameterName("per_page")]
                 public Int32? per_page { get; set; }
                 [VimeoParameterName("query")]
                 public String query { get; set; }
-                [VimeoParameterName("sort")]
-                public Videos.Get.Command.SortValues sort { get; set; }
-                [VimeoParameterName("direction")]
-                public Videos.Get.Command.DirectionValues direction { get; set; }
                 [VimeoParameterName("filter")]
-                public Videos.Get.Command.FilterValues filter { get; set; }
+                public Channels.ChannelID_Videos_Get.Command.FilterValues filter { get; set; }
+                [VimeoParameterName("filter_embeddable")]
+                public Channels.ChannelID_Videos_Get.Command.Filter_EmbeddableValues filter_embeddable { get; set; }
+                [VimeoParameterName("sort")]
+                public Channels.ChannelID_Videos_Get.Command.SortValues sort { get; set; }
+                [VimeoParameterName("direction")]
+                public Channels.ChannelID_Videos_Get.Command.DirectionValues direction { get; set; }
 
                 public override String GetApiEndpointUrl()
                 {
-                    return "videos/";
+                    return "channels/" + this.channel_id + "/videos";
                 }
                 public override HttpMethodName GetHttpMethodName()
                 {
                     return HttpMethodName.Get;
                 }
 
+                public enum FilterValues
+                {
+                    embeddable,
+                }
+                public enum Filter_EmbeddableValues
+                {
+                    @true,
+                    @false,
+                }
                 public enum SortValues
                 {
-                    relevant,
                     date,
                     alphabetical,
                     plays,
                     likes,
                     comments,
                     duration,
+                    added,
+                    modified_time,
                 }
                 public enum DirectionValues
                 {
                     asc,
                     desc,
-                }
-                public enum FilterValues
-                {
-                    CC,
-                    CC_BY,
-                    CC_BY_SA,
-                    CC_BY_ND,
-                    CC_BY_NC,
-                    CC_BY_NC_SA,
-                    CC_BY_NC_ND,
-                    in_progress,
                 }
             }
             public class Result
@@ -165,41 +167,6 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                             public Int64? height { get; set; }
                             [JsonProperty("link")]
                             public String link { get; set; }
-                        }
-                    }
-                    public class Tag
-                    {
-                        [JsonProperty("uri")]
-                        public String uri { get; set; }
-                        [JsonProperty("name")]
-                        public String name { get; set; }
-                        [JsonProperty("tag")]
-                        public String tag { get; set; }
-                        [JsonProperty("canonical")]
-                        public String canonical { get; set; }
-                        [JsonProperty("metadata")]
-                        public Metadata metadata { get; set; }
-
-                        public class Metadata
-                        {
-                            [JsonProperty("connections")]
-                            public Connection connections { get; set; }
-
-                            public class Connection
-                            {
-                                [JsonProperty("videos")]
-                                public Video videos { get; set; }
-
-                                public class Video
-                                {
-                                    [JsonProperty("uri")]
-                                    public String uri { get; set; }
-                                    [JsonProperty("options")]
-                                    public String[] options { get; set; }
-                                    [JsonProperty("total")]
-                                    public Int64? total { get; set; }
-                                }
-                            }
                         }
                     }
                     public class Stat
@@ -528,6 +495,12 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                             public Logo logos { get; set; }
                             [JsonProperty("outro")]
                             public String outro { get; set; }
+                            [JsonProperty("portrait")]
+                            public String portrait { get; set; }
+                            [JsonProperty("title")]
+                            public String title { get; set; }
+                            [JsonProperty("byline")]
+                            public String byline { get; set; }
                             [JsonProperty("badge")]
                             public Boolean? badge { get; set; }
                             [JsonProperty("byline_badge")]
@@ -550,20 +523,6 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                             public String color { get; set; }
                             [JsonProperty("link")]
                             public Boolean? link { get; set; }
-                            [JsonProperty("custom_logo_url")]
-                            public String custom_logo_url { get; set; }
-                            [JsonProperty("logo_width")]
-                            public Int64? logo_width { get; set; }
-                            [JsonProperty("logo_height")]
-                            public Int64? logo_height { get; set; }
-                            [JsonProperty("custom_logo_link_url")]
-                            public String custom_logo_link_url { get; set; }
-                            [JsonProperty("portrait")]
-                            public String portrait { get; set; }
-                            [JsonProperty("title")]
-                            public String title { get; set; }
-                            [JsonProperty("byline")]
-                            public String byline { get; set; }
                             [JsonProperty("color_original")]
                             public String color_original { get; set; }
 
@@ -817,6 +776,41 @@ namespace HigLabo.Net.Vimeo.Api_3_2
                                         [JsonProperty("uri")]
                                         public String uri { get; set; }
                                     }
+                                }
+                            }
+                        }
+                    }
+                    public class Tag
+                    {
+                        [JsonProperty("uri")]
+                        public String uri { get; set; }
+                        [JsonProperty("name")]
+                        public String name { get; set; }
+                        [JsonProperty("tag")]
+                        public String tag { get; set; }
+                        [JsonProperty("canonical")]
+                        public String canonical { get; set; }
+                        [JsonProperty("metadata")]
+                        public Metadata metadata { get; set; }
+
+                        public class Metadata
+                        {
+                            [JsonProperty("connections")]
+                            public Connection connections { get; set; }
+
+                            public class Connection
+                            {
+                                [JsonProperty("videos")]
+                                public Video videos { get; set; }
+
+                                public class Video
+                                {
+                                    [JsonProperty("uri")]
+                                    public String uri { get; set; }
+                                    [JsonProperty("options")]
+                                    public String[] options { get; set; }
+                                    [JsonProperty("total")]
+                                    public Int64? total { get; set; }
                                 }
                             }
                         }

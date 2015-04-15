@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\ConvertResult.cs" />
     <Compile Include="Core\MappingCondition.cs" />
+    <Compile Include="Core\MappingContext.cs" />
     <Compile Include="Core\MapPostAction.cs" />
     <Compile Include="Core\ObjectMap.cs" />
     <Compile Include="Core\ObjectMapConfig.cs" />

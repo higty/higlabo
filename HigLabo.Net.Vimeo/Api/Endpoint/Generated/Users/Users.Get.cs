@@ -11,9 +11,9 @@ namespace HigLabo.Net.Vimeo.Api_3_2
             public class Command : VimeoCommand
             {
                 [VimeoParameterName("page")]
-                public Int32 page { get; set; }
+                public Int32? page { get; set; }
                 [VimeoParameterName("per_page")]
-                public Int32 per_page { get; set; }
+                public Int32? per_page { get; set; }
                 [VimeoParameterName("query")]
                 public String query { get; set; }
                 [VimeoParameterName("sort")]

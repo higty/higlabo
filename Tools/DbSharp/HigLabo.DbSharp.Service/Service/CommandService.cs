@@ -49,12 +49,12 @@ namespace HigLabo.DbSharp.Service
                     cm.Execute(cx);
                     cx.PreviousCommand = cm;
                 }
-                this.OnCompleted();
             }
             catch (Exception ex)
             {
                 this.Exception = ex;
             }
+            this.OnCompleted();
         }
         public void ThrowException()
         {
