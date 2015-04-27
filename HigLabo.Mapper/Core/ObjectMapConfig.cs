@@ -374,11 +374,11 @@ namespace HigLabo.Core
                         outValue = il.DeclareLocal(item.Source.PropertyType);
                         il.Emit(OpCodes.Ldarg_1);
                         il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
-                        il.Emit(OpCodes.Ldloca_S, outValue);
+                        il.LoadLocala(outValue);
                         //TryGetValue(item.Source.IndexedPropertyKey, sourceVal) --> Boolean
                         il.Emit(OpCodes.Callvirt, tryGetValue);
                         il.Emit(OpCodes.Pop);
-                        il.Emit(OpCodes.Ldloc_S, outValue);
+                        il.LoadLocal(outValue);
                     }
                     else
                     {
@@ -403,12 +403,12 @@ namespace HigLabo.Core
                         #region if (source.P1.HasValue == false)
                         var sourceValN = il.DeclareLocal(item.Source.PropertyType);
 
-                        il.Emit(OpCodes.Stloc_S, sourceValN);
+                        il.SetLocal(sourceValN);
                         //if (sourceValue.HasValue == true)
-                        il.Emit(OpCodes.Ldloca_S, sourceValN);
+                        il.LoadLocala(sourceValN);
                         il.Emit(OpCodes.Call, item.Source.PropertyType.GetProperty("HasValue").GetGetMethod());
                         il.Emit(OpCodes.Brfalse, setNullToTargetLabel); //null --> set target null
-                        il.Emit(OpCodes.Ldloca_S, sourceValN);
+                        il.LoadLocala(sourceValN);
                         //sourceVal.Value
                         il.Emit(OpCodes.Call, item.Source.PropertyType.GetMethod("GetValueOrDefault", Type.EmptyTypes));
                         #endregion
@@ -418,13 +418,13 @@ namespace HigLabo.Core
                         #region if (source.P1 == null)
                         Type sourceTypeN = item.Source.ActualType;
                         var sourceValN = il.DeclareLocal(sourceTypeN);
-                        il.Emit(OpCodes.Stloc_S, sourceValN);
+                        il.SetLocal(sourceValN);
                         //if (sourceValue == null)
-                        il.Emit(OpCodes.Ldloc_S, sourceValN);
+                        il.LoadLocal(sourceValN);
                         il.Emit(OpCodes.Ldnull);
                         il.Emit(OpCodes.Ceq);
                         il.Emit(OpCodes.Brtrue, setNullToTargetLabel); //null --> set target null
-                        il.Emit(OpCodes.Ldloc_S, sourceValN);
+                        il.LoadLocal(sourceValN);
                         #endregion
                     }
                 }
@@ -432,7 +432,7 @@ namespace HigLabo.Core
 
                 il.MarkLabel(sourceHasValueLabel);
                 //store sourceVal (never be null)
-                il.Emit(OpCodes.Stloc_S, sourceVal);
+                il.SetLocal(sourceVal);
                 #endregion
 
                 #region Convert value to target type.
@@ -444,8 +444,8 @@ namespace HigLabo.Core
                         item.Source.ActualType == item.Target.ActualType)
                     {
                         #region target.Struct = source.Struct;
-                        il.Emit(OpCodes.Ldloc_S, sourceVal);
-                        il.Emit(OpCodes.Stloc_S, targetVal);
+                        il.LoadLocal(sourceVal);
+                        il.LoadLocal(targetVal);
                         #endregion
                     }
                     else
@@ -459,7 +459,7 @@ namespace HigLabo.Core
                     #region var convertedValue = TypeConverter.ToXXX(sourceVal);
                     //Call TypeConverter.ToXXX(sourceVal);
                     il.Emit(OpCodes.Ldloc_0);//MapConfig.Current.TypeConverter
-                    il.Emit(OpCodes.Ldloc_S, sourceVal);
+                    il.LoadLocal(sourceVal);
                     if (item.Source.ActualType.IsValueType == true)
                     {
                         il.Emit(OpCodes.Box, item.Source.ActualType);
@@ -477,8 +477,8 @@ namespace HigLabo.Core
                     if (item.Target.ActualType == typeof(String))
                     {
                         convertedVal = il.DeclareLocal(item.Target.ActualType);
-                        il.Emit(OpCodes.Stloc_S, targetVal);
-                        il.Emit(OpCodes.Ldloc_S, targetVal);
+                        il.SetLocal(targetVal);
+                        il.LoadLocal(targetVal);
                         il.Emit(OpCodes.Ldnull);
                         il.Emit(OpCodes.Ceq);
                         il.Emit(OpCodes.Brfalse_S, ifConvertedValueNotNullBlock);
@@ -493,8 +493,8 @@ namespace HigLabo.Core
                         Type targetTypeN = typeof(Nullable<>).MakeGenericType(item.Target.ActualType);
                         convertedVal = il.DeclareLocal(targetTypeN);
                         //SetValue to TargetObject
-                        il.Emit(OpCodes.Stloc_S, convertedVal);
-                        il.Emit(OpCodes.Ldloca_S, convertedVal);
+                        il.SetLocal(convertedVal);
+                        il.LoadLocala(convertedVal);
                         il.Emit(OpCodes.Call, targetTypeN.GetProperty("HasValue").GetGetMethod());
                         il.Emit(OpCodes.Brtrue_S, ifConvertedValueNotNullBlock);
                         {
@@ -503,9 +503,9 @@ namespace HigLabo.Core
                         }
                         il.MarkLabel(ifConvertedValueNotNullBlock);
                         //GetValue
-                        il.Emit(OpCodes.Ldloca_S, convertedVal);
+                        il.LoadLocala(convertedVal);
                         il.Emit(OpCodes.Call, targetTypeN.GetMethod("GetValueOrDefault", Type.EmptyTypes));
-                        il.Emit(OpCodes.Stloc_S, targetVal);
+                        il.SetLocal(targetVal);
                     }
                     #endregion
                 }
@@ -517,22 +517,22 @@ namespace HigLabo.Core
                 convertedVal = il.DeclareLocal(item.Target.ActualType);
                 //Set up parameter for ObjectMapConfig.Convert<>(sourceVal, convertedVal)
                 il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                il.Emit(OpCodes.Ldloc_S, sourceVal);
+                il.LoadLocal(sourceVal);
                 if (item.Source.ActualType.IsValueType == true)
                 {
                     //Boxing to Object
                     il.Emit(OpCodes.Box, item.Source.ActualType);
                 }
-                il.Emit(OpCodes.Ldloca_S, convertedVal);
+                il.LoadLocala(convertedVal);
 
                 //public Boolean Convert<T>(Object value, out T convertedValue)
                 il.Emit(OpCodes.Call, _ConvertMethod.MakeGenericMethod(item.Target.ActualType));
                 var convertResult = il.DeclareLocal(typeof(Boolean));
-                il.Emit(OpCodes.Stloc_S, convertResult);
-                il.Emit(OpCodes.Ldloc_S, convertedVal);
-                il.Emit(OpCodes.Stloc_S, targetVal);
+                il.SetLocal(convertResult);
+                il.LoadLocal(convertedVal);
+                il.SetLocal(targetVal);
                 
-                il.Emit(OpCodes.Ldloc_S, convertResult);
+                il.LoadLocal(convertResult);
                 il.Emit(OpCodes.Brtrue, setValueStartLabel);
                 if (item.Target.IsIndexedProperty == false)
                 {
@@ -541,11 +541,11 @@ namespace HigLabo.Core
                     var targetObj = il.DeclareLocal(item.Target.PropertyType);
                     il.Emit(OpCodes.Ldarg_2);
                     il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
-                    il.Emit(OpCodes.Stloc_S, targetObj);
+                    il.SetLocal(targetObj);
 
                     il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                    il.Emit(OpCodes.Ldloc_S, sourceVal);
-                    il.Emit(OpCodes.Ldloc_S, targetObj);
+                    il.LoadLocal(sourceVal);
+                    il.LoadLocal(targetObj);
                     il.Emit(OpCodes.Ldarg_3);//MappingContext
                     il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
                     il.Emit(OpCodes.Pop);
@@ -568,9 +568,9 @@ namespace HigLabo.Core
                         if (item.Target.IsNullableT == true)
                         {
                             var targetValN = il.DeclareLocal(item.Target.PropertyType);
-                            il.Emit(OpCodes.Ldloca_S, targetValN);
+                            il.LoadLocala(targetValN);
                             il.Emit(OpCodes.Initobj, item.Target.PropertyType);
-                            il.Emit(OpCodes.Ldloc_S, targetValN);
+                            il.LoadLocal(targetValN);
                         }
                         else
                         {
@@ -590,7 +590,7 @@ namespace HigLabo.Core
                     //target["P1"] = source.P1;
                     il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
                 }
-                il.Emit(OpCodes.Ldloc_S, targetVal);
+                il.LoadLocal(targetVal);
                 if (item.Target.IsNullableT == true)
                 {
                     //new Nullable<T>(new T());

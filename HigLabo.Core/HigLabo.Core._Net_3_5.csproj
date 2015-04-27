@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\AppEnvironment.cs" />
+    <Compile Include="Core\BinarySerializer.cs" />
     <Compile Include="Core\Enum.cs" />
     <Compile Include="Core\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Core\Serializer.cs" />

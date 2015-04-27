@@ -281,6 +281,13 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(0, u2.Users.Count);
         }
+        [TestMethod]
+        public void ObjectMapConfig_Map_ManyProperty()
+        {
+            var config = new ObjectMapConfig();
+            var p1 = new Person();
+            var p2 = p1.Map(new Person());
+        }
 
         private ConvertResult<MapPoint> MapPointConverter(Object obj)
         {

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\ConvertResult.cs" />
+    <Compile Include="Core\ILGeneratorExtensions.cs" />
     <Compile Include="Core\MappingCondition.cs" />
     <Compile Include="Core\MappingContext.cs" />
     <Compile Include="Core\MapPostAction.cs" />

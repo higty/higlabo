@@ -86,5 +86,34 @@ namespace HigLabo.Core
                 list.Add(item);
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public static T Pop<T>(this List<T> source, Int32 index)
+        {
+            var o = source[index];
+            source.RemoveAt(index);
+            return o;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <param name="selector"></param>
+        /// <returns></returns>
+        public static List<T> Pop<T>(this List<T> source, Func<T, Boolean> selector)
+        {
+            var l = source.Where(selector).ToList();
+            for (int i = 0; i < l.Count; i++)
+            {
+                source.Remove(l[i]);
+            }
+            return l;
+        }
     }
 }

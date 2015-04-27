@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.DbSharp", "HigLabo.DbSharp\HigLabo.DbSharp.csproj", "{94F14331-7015-44E8-BDA2-65A827124092}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.DbSharp.SqlServer", "HigLabo.DbSharp.SqlServer\HigLabo.DbSharp.SqlServer.csproj", "{F3107FBF-16C4-4B6D-8A7B-AEA5BAEFE4B3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbSharpApplication", "DbSharpApplication\DbSharpApplication.csproj", "{DAE56463-9FC3-43E2-9ACD-2C0E3B730B52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.DbSharp.Redis", "HigLabo.DbSharp.Redis\HigLabo.DbSharp.Redis.csproj", "{63D5829D-41CC-48A6-BE2B-F341D8350DE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{DAE56463-9FC3-43E2-9ACD-2C0E3B730B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAE56463-9FC3-43E2-9ACD-2C0E3B730B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAE56463-9FC3-43E2-9ACD-2C0E3B730B52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63D5829D-41CC-48A6-BE2B-F341D8350DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D5829D-41CC-48A6-BE2B-F341D8350DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D5829D-41CC-48A6-BE2B-F341D8350DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D5829D-41CC-48A6-BE2B-F341D8350DE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
