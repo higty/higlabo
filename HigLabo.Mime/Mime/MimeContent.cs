@@ -79,6 +79,7 @@ namespace HigLabo.Mime
         public String BodyText { get; set; }
         public String BodyRawText { get; set; }
         public String TextBeforeContent { get; set; }
+        public MailMessage MailMessage { get; internal set; }
 
         public MimeContent()
         {

@@ -31,6 +31,15 @@ namespace HigLabo.Mime
         {
             get { return String.Equals(this.MainValue, "image", StringComparison.OrdinalIgnoreCase); }
         }
+        public Boolean IsRfc822
+        {
+            get
+            {
+                return String.Equals(this.MainValue, "message", StringComparison.OrdinalIgnoreCase) &&
+                    String.Equals(this.SubValue, "rfc822", StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
         public ContentType()
         {
             this.Value = "";

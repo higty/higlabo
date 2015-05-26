@@ -68,6 +68,16 @@ namespace HigLabo.Mime
                 return this.GetMimeContents().Where(el => el.ContentType.IsHtml == true);
             }
         }
+        /// <summary>
+        /// Get all transfered message as ContentType="message/rfc822" by recursive aggregate from Contents property
+        /// </summary>
+        public IEnumerable<MailMessage> TransferedMailMessages
+        {
+            get
+            {
+                return this.GetMimeContents().Where(el => el.MailMessage != null).Select(el => el.MailMessage);
+            }
+        }
 
         public ContentType ContentType
         {
