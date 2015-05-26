@@ -68,6 +68,10 @@
       <Project>{d7d2afdb-e3c8-4309-b3f6-955cce3fe65f}</Project>
       <Name>HigLabo.Converter._Net_4_0</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\HigLabo.Core\HigLabo.Core.csproj">
+      <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
+      <Name>HigLabo.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HigLabo.Mime\HigLabo.Mime.csproj">
       <Project>{bebcd297-e800-4957-a60b-360e8f0706eb}</Project>
       <Name>HigLabo.Mime</Name>
@@ -77,6 +81,12 @@
     <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestData\Mail_Codeplex_21851.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TestData\Mail_Rfc822.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TestData\Mail_BodyText_BeforeBoundary.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

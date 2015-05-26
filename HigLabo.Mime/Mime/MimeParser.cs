@@ -744,6 +744,12 @@ namespace HigLabo.Mime
                 }
             }
             mc.BodyData = bodyBytes;
+
+            if (mc.ContentType.IsRfc822)
+            {
+                var mg = this.Parse<MailMessage>(new MemoryStream(mc.BodyData), new MailMessage());
+                mc.MailMessage = mg;
+            }
         }
         private Byte[] CreateBoundary(String value)
         {

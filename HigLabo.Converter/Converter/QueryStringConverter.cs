@@ -8,9 +8,16 @@ namespace HigLabo.Core
 {
     public class QueryStringConverter
     {
-        public Func<String, String> UrlEncoder = WebUtility.UrlEncode;
-        public Func<String, String> UrlDecoder = WebUtility.UrlDecode;
+        public Func<String, String> UrlEncoder = s => s;
+        public Func<String, String> UrlDecoder = s => s;
 
+        public QueryStringConverter()
+        {
+#if !Pcl
+            this.UrlEncoder = WebUtility.UrlEncode;
+            this.UrlDecoder = WebUtility.UrlDecode;
+#endif
+        }
         public Dictionary<String, String> Parse(String queryString)
         {
             var d = new Dictionary<String, String>();

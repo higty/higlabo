@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="Converter\Base64Converter.cs" />
     <Compile Include="Converter\ByteConverter.cs" />
+    <Compile Include="Converter\ISO8601Parser.cs" />
     <Compile Include="Converter\ModifiedUtf7Converter.cs" />
+    <Compile Include="Converter\QueryStringConverter.cs" />
     <Compile Include="Converter\QuotedPrintableConverter.cs" />
     <Compile Include="Converter\QuotedPrintableConvertMode.cs" />
     <Compile Include="Converter\Rfc2231Converter.cs" />

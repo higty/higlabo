@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.IO;
+using HigLabo.Core;
 
 namespace HigLabo.Mime.Test
 {
@@ -50,6 +51,27 @@ Is test result green?
         {
             var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_BodyText_BeforeBoundary.txt");
             Assert.AreEqual(BodyText, mg.BodyText);
+        }
+        [TestMethod]
+        public void Mail_Rfc822()
+        {
+            var mg = GetMailMessage(Environment.CurrentDirectory + "\\TestData\\Mail_Rfc822.txt");
+
+            Assert.AreEqual(mg.AttachmentFiles.Count(), 1);
+
+        }
+        [TestMethod]
+        public void Mail_CodePlex_21851()
+        {
+            var mailText = File.ReadAllText(Environment.CurrentDirectory + "\\TestData\\Mail_CodePlex_21851.txt");
+            MimeParser parser = new MimeParser();
+            var mg = parser.ToMailMessage(mailText.UnifyLineFeed());
+
+            Assert.AreEqual(mg.AttachmentFiles.Count(), 1);
+            var messages = mg.TransferedMailMessages.ToList();
+            Assert.AreEqual(messages.Count, 1);
+            var tmg = messages[0];
+            Assert.AreEqual(tmg.Subject, "Inner email subject");
         }
         private MailMessage GetMailMessage(String filePath)
         {
