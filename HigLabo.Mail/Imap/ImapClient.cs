@@ -1503,6 +1503,7 @@ namespace HigLabo.Net.Imap
             List<MailHeaderCollection> l = new List<MailHeaderCollection>();
             StringReader sr = new StringReader(text);
             Boolean readingHeader = false;
+            Boolean endHeader = false;
             String endOfLine = String.Format("{0} OK FETCH Completed", this.Tag);
             Boolean loadContents = this.MimeParser.Filter.LoadContents;
 
@@ -1516,11 +1517,17 @@ namespace HigLabo.Net.Imap
                 {
                     sb.Length = 0;
                     readingHeader = true;
+                    endHeader = false;
                     continue;
                 }
                 if (readingHeader == true)
                 {
-                    if (line == ")")
+                    //Блок может быть завершен или 
+                    //)
+                    //или
+                    //  FLAGS (\Seen))
+                    //пичаль с if (line.EndsWith(")") == true) в том что бывают даты ... (GMT+00:00)
+                    if ((line.EndsWith(")") == true) && endHeader)
                     {
                         var mg = this.MimeParser.ToMailMessage(sb.ToString());
                         l.Add(mg.Headers);
@@ -1531,6 +1538,8 @@ namespace HigLabo.Net.Imap
                     {
                         sb.AppendLine(line);
                     }
+                    if (String.IsNullOrEmpty(line))
+                        endHeader = true;
                 }
                 if (String.Equals(line, endOfLine, StringComparison.OrdinalIgnoreCase) == true) { break; }
                 if (sr.Peek() == -1) { break; }
