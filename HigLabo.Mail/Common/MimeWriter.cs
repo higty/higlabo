@@ -64,7 +64,6 @@ namespace HigLabo.Net.Smtp
             }
         }
         public static readonly String NewLine = "\r\n";
-        private static String _DateTimeFormatString = "ddd, dd MMM yyyy HH:mm:ss +0000";
         private static Action<MimeWriter> _Initialize = null;
         public static readonly MimeWriterDefaultSettings Default = new MimeWriterDefaultSettings();
         public static readonly Int32 MaxCharCountPerRow = 76;
@@ -835,7 +834,11 @@ namespace HigLabo.Net.Smtp
         }
         public static String DateTimeOffsetString(DateTimeOffset dateTime)
         {
-            return dateTime.ToString(_DateTimeFormatString, new CultureInfo("en-US"));
+            //http://tools.ietf.org/html/rfc1123
+            //instead of ddd, dd MMM yyyy HH:mm:ss +0000
+            //1. dateTime.ToString("r"); timeZone -> GMT
+            //2. time + timezone .ToString("hhmm")
+            return dateTime.ToString("ddd, dd MMM yyyy HH:mm:ss", CultureInfo.InvariantCulture) + " " + (dateTime.Offset.TotalMinutes >= 0 ? "+" : "-") + dateTime.Offset.Hours.ToString("00") + dateTime.Offset.Minutes.ToString("00");
         }
         private static Boolean AsciiCharOnly(String text)
         {

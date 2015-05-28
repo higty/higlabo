@@ -23,6 +23,12 @@ namespace HigLabo.Mime
             if (DateTimeOffset.TryParse(dateTimePart, out dtime) == false) { throw new FormatException(); }
             //(CST) or CST or +0600 (Three letter military timezone)
             var timeZonePart = input.Substring(timezoneStartIndex + 1).Trim();//+0600 or GMT (Three letter military timezone)
+
+            //Бывает еще вот такая ерунда Thu, 10 Apr 2014 04:27:37 +0000 (GMT+00:00)
+            var timezoneEndIndex = timeZonePart.IndexOf(" ", StringComparison.OrdinalIgnoreCase);
+            if (timezoneEndIndex != -1)
+                timeZonePart = timeZonePart.Substring(0, timezoneEndIndex);
+
             if (timeZonePart[0] == '+' || timeZonePart[0] == '-')
             {
                 if (timeZonePart.Length < 5) { throw new FormatException(); }
