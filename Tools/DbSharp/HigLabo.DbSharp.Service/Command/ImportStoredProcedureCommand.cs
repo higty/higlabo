@@ -29,50 +29,63 @@ namespace HigLabo.DbSharp.Service
                 var spExisted = this.SchemaData.StoredProcedures.FirstOrDefault(el => el.Name == name);
                 var sp = r.GetStoredProcedure(name);
                 var d = new Dictionary<String, Object>();
-                r.SetResultSetsList(sp, d);
 
                 if (spExisted == null)
                 {
+                    r.SetResultSetsList(sp, d);
                     ss.Add(sp);
                 }
-                else if (spExisted.StoredProcedureType == StoredProcedureType.Custom)
+                else
                 {
-                    d = spExisted.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
-                        .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
+                    if (spExisted.StoredProcedureType == StoredProcedureType.Custom ||
+                        spExisted.StoredProcedureType == StoredProcedureType.SelectAll ||
+                        spExisted.StoredProcedureType == StoredProcedureType.SelectByPrimaryKey)
+                    {
+                        r.SetResultSetsList(sp, d);
+                    }
                     sp.TableName = spExisted.TableName;
                     sp.StoredProcedureType = spExisted.StoredProcedureType;
-                    foreach (var parameter in sp.Parameters)
+                    
+                    if (spExisted.StoredProcedureType == StoredProcedureType.Custom)
                     {
-                        var p = spExisted.Parameters.Find(el => el.Name == parameter.Name);
-                        if (p == null) { continue; }
-                        parameter.AllowNull = p.AllowNull;
-                        parameter.EnumName = p.EnumName;
-                        parameter.EnumValues = p.EnumValues;
-                        parameter.ValueForTest = p.ValueForTest;
-                    }
-                    Int32 index = -1;
-                    foreach (var resultSets in sp.ResultSets)
-                    {
-                        index += 1;
-                        if (index == sp.ResultSets.Count) { continue; }
-                        if (index >= spExisted.ResultSets.Count) { continue; }
-                        var resultSetsExisted = spExisted.ResultSets[index];
-                        resultSets.Name = resultSetsExisted.Name;
-                        resultSets.TableName = resultSetsExisted.TableName;
-                        foreach (var column in resultSets.Columns)
+                        d = spExisted.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
+                            .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
+                        foreach (var parameter in sp.Parameters)
                         {
-                            var c = resultSetsExisted.Columns.Find(el => el.Name == column.Name);
-                            if (c == null) { continue; }
-                            column.AllowNull = c.AllowNull;
-                            column.EnumName = c.EnumName;
-                            column.EnumValues = c.EnumValues;
+                            var p = spExisted.Parameters.Find(el => el.Name == parameter.Name);
+                            if (p == null) { continue; }
+                            parameter.AllowNull = p.AllowNull;
+                            parameter.EnumName = p.EnumName;
+                            parameter.EnumValues = p.EnumValues;
+                            parameter.ValueForTest = p.ValueForTest;
+                        }
+                        Int32 index = -1;
+                        foreach (var resultSets in sp.ResultSets)
+                        {
+                            index += 1;
+                            if (index == sp.ResultSets.Count) { continue; }
+                            if (index >= spExisted.ResultSets.Count) { continue; }
+                            var resultSetsExisted = spExisted.ResultSets[index];
+                            resultSets.Name = resultSetsExisted.Name;
+                            resultSets.TableName = resultSetsExisted.TableName;
+                            foreach (var column in resultSets.Columns)
+                            {
+                                var c = resultSetsExisted.Columns.Find(el => el.Name == column.Name);
+                                if (c == null) { continue; }
+                                column.AllowNull = c.AllowNull;
+                                column.EnumName = c.EnumName;
+                                column.EnumValues = c.EnumValues;
+                            }
+                        }
+                        ss.Add(sp);
+                    }
+                    else
+                    {
+                        if (spExisted.LastAlteredTime < sp.LastAlteredTime)
+                        {
+                            ss.Add(sp);
                         }
                     }
-                    ss.Add(sp);
-                }
-                else if (spExisted.LastAlteredTime < sp.LastAlteredTime)
-                {
-                    ss.Add(sp);
                 }
                 this.OnProcessProgress(new ProcessProgressEventArgs(name, i / totalCount));
             }

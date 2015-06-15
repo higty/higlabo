@@ -29,6 +29,8 @@ namespace HigLabo.DbSharp.Service
         }
         private void Execute()
         {
+            var cx = new CommandServiceContext(this);
+
             try
             {
                 if (this.Commands.Count == 0)
@@ -39,7 +41,6 @@ namespace HigLabo.DbSharp.Service
 
                 Double d = 1 / this.Commands.Count;
                 var count = this.Commands.Count;
-                var cx = new CommandServiceContext(this);
                 for (int i = 0; i < count; i++)
                 {
                     var cm = this.Commands[i];
