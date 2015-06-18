@@ -244,12 +244,15 @@ namespace HigLabo.DbSharp.CodeGenerator
                         case SqlParameterConvertType.Default:
                             if (parameter.DbType.IsUserDefinedTableType() == true)
                             {
-                                yield return new CodeBlock(SourceCodeLanguage.CSharp, "var dt = this.{0}.CreateDataTable();", pName);
+                                var dtCodeBlock = new CodeBlock(SourceCodeLanguage.CSharp, "");
+                                dtCodeBlock.CurlyBracket = true;
+                                dtCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "var dt = this.{0}.CreateDataTable();", pName));
                                 var foreachCodeBlock = new CodeBlock(SourceCodeLanguage.CSharp, "foreach (var item in this.{0}.Records)", pName);
                                 foreachCodeBlock.CurlyBracket = true;
                                 foreachCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "dt.Rows.Add(item.GetValues());"));
-                                yield return foreachCodeBlock;
-                                yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = dt;");
+                                dtCodeBlock.CodeBlocks.Add(foreachCodeBlock);
+                                dtCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = dt;"));
+                                yield return dtCodeBlock;
                             }
                             else
                             {
