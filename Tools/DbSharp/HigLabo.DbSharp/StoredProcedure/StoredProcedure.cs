@@ -21,6 +21,11 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        public event EventHandler<CommandExecutingEventArgs> CommandExecuting;
+
+        /// <summary>
+        /// 
+        /// </summary>
         String IDatabaseContext.TransactionKey { get; set; }
         /// <summary>
         /// 
@@ -60,6 +65,7 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand();
+                this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, database.ConnectionString, cm));
                 affectedRecordCount = database.ExecuteCommand(cm);
                 this.SetOutputParameterValue(cm);
             }
@@ -105,6 +111,7 @@ namespace HigLabo.DbSharp
             throw new InvalidEnumDataException(typeof(T), value);
         }
         public abstract String GetDatabaseKey();
+
         protected PropertyChangedEventHandler GetPropertyChangedEventHandler()
         {
             return this.PropertyChanged;
@@ -115,6 +122,14 @@ namespace HigLabo.DbSharp
             if (eh != null)
             {
                 eh(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        protected void OnCommandExecuting(CommandExecutingEventArgs e)
+        {
+            var eh = this.CommandExecuting;
+            if (eh != null)
+            {
+                eh(this, e);
             }
         }
     }
