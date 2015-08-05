@@ -31,8 +31,7 @@ namespace HigLabo.Net
             String url = this.RequestTokenUrl;
             var cm = new GetRequestTokenCommand(this.ConsumerKey, this.ConsumerSecret, "", "", HttpMethodName.Post);
             SignatureInfo si = OAuth1Client.GenerateSignature(new Uri(url), cm, OAuthSignatureTypes.HMACSHA1);
-            HttpRequestCommand command =
-                new HttpRequestCommand(String.Format("{0}?{1}&oauth_signature={2}", url, si.NormalizedRequestParameters, si.Signature), HttpMethodName.Post);
+            HttpRequestCommand command = this.CreateHttpRequestCommand(HttpMethodName.Post, url, "", "");
             String bodyText = this.GetBodyText(command);
             //正規表現でoauth_token,oauth_token_secret取得
             return OAuth1AuthorizeInfo.Create(this.AuthorizeUrl, bodyText);

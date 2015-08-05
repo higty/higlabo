@@ -100,7 +100,7 @@ namespace HigLabo.Net
                 pp.Add(p.Key, p.Value);
             }
             var u = new Uri(HttpClient.CreateQueryString(url, pp, OAuth1Client.UrlEncode));
-            SignatureInfo si = GenerateSignature(u, cm);
+            SignatureInfo si = OAuth1Client.GenerateSignature(u, cm);
             pp.Add("oauth_signature", OAuth1Client.UrlEncode(si.Signature));
             HttpRequestCommand cl = new HttpRequestCommand(HttpClient.CreateQueryString(url, pp, HttpClient.UrlEncode));
             cl.MethodName = methodName;
@@ -111,7 +111,7 @@ namespace HigLabo.Net
             var cm = new GetRequestTokenCommand(this.ConsumerKey, this.ConsumerSecret, token, tokenSecret, methodName);
             Dictionary<String, String> pp = OAuth1Client.GenerateParameters(cm);
             var u = new Uri(HttpClient.CreateQueryString(url, queryString, OAuth1Client.UrlEncode));
-            SignatureInfo si = GenerateSignature(u, cm);
+            SignatureInfo si = OAuth1Client.GenerateSignature(u, cm);
             pp.Add("oauth_signature", OAuth1Client.UrlEncode(si.Signature));
             HttpRequestCommand cl = new HttpRequestCommand(HttpClient.CreateQueryString(url, queryString, HttpClient.UrlEncode));
             cl.MethodName = methodName;
