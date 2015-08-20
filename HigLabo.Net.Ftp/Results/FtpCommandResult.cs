@@ -52,5 +52,9 @@ namespace HigLabo.Net.Ftp
             }
             this.Text = sb.ToString();
         }
+        public override string ToString()
+        {
+            return this.Text;
+        }
     }
 }

@@ -14,8 +14,8 @@ namespace HigLabo.Net.Ftp
 	{
 		private class RegexList
 		{
-			public static readonly Regex IpAddress = new Regex("[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}");
-			public static readonly Regex FtpDirectoryWindows = new Regex("(?<CreateDate>.*)(?<DIR>DIR))(?<Name>.*)");
+            public static readonly Regex IpAddress = new Regex("[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}.[0-9]{1-3}", RegexOptions.IgnoreCase);
+            public static readonly Regex FileSize = new Regex("((?<Size>[0-9]*) bytes)", RegexOptions.IgnoreCase);
 		}
         public new static readonly FtpClientDefaultSettings Default = new FtpClientDefaultSettings();
 		private SocketClient _DataSocket = null;
@@ -239,7 +239,7 @@ namespace HigLabo.Net.Ftp
 				this._DataSocket = null;
 			}
 		}
-		public Int64 UploadFile(String localFilePath, String remoteFilePath)
+		public Int64 UploadFile(String localFilePath, String remoteFileName)
 		{
 			FtpCommandResult rs = null;
 			Int64 fileSize = 0;
@@ -261,7 +261,7 @@ namespace HigLabo.Net.Ftp
 
                 if (this.Resume == true)
                 {
-                    Int64 size = this.GetFileSize(remoteFilePath);
+                    Int64 size = this.GetFileSize(remoteFileName);
                     rs = this.ExecuteRest(size);
 
                     if (rs.StatusCode == FtpCommandResultCode.RequestedFileActionPendingFurtherInformation)
@@ -269,7 +269,7 @@ namespace HigLabo.Net.Ftp
                         stm.Seek(size, SeekOrigin.Begin);
                     }
                 }
-                rs = this.ExecuteStor(remoteFilePath);
+                rs = this.ExecuteStor(remoteFileName);
 
                 switch (rs.StatusCode)
                 {
@@ -289,11 +289,11 @@ namespace HigLabo.Net.Ftp
             }            
             return fileSize;
 		}
-		public void DownloadFile(String fileName)
-		{
-			this.DownloadFile(fileName, fileName);
-		}
-		public Int64 DownloadFile(String remoteFilePath, String localFilePath)
+        public void DownloadFile(String fileName)
+        {
+            this.DownloadFile(fileName, fileName);
+        }
+        public Int64 DownloadFile(String remoteFileName, String localFilePath)
 		{
 			FtpCommandResult rs = null;
 			FileStream stm = null;
@@ -309,13 +309,14 @@ namespace HigLabo.Net.Ftp
 			rs = this.ExecuteType(this.DataType);
 
 			OpenDataSocket();
-			rs = this.ExecuteRetr(remoteFilePath);
+			rs = this.ExecuteRetr(remoteFileName);
 			switch (rs.StatusCode)
 			{
 				case FtpCommandResultCode.DataConnectionAlreadyOpenTransferStarting: break;
 				case FtpCommandResultCode.FileStatusOkayAboutToOpenDataConnection: break;
 				default: throw new FtpClientException(rs);
 			}
+            var fileSize = this.GetFileSize(rs);
 
 			ConnectDataSocket();
 			try
@@ -335,7 +336,14 @@ namespace HigLabo.Net.Ftp
 				{
 					stm = new FileStream(localFilePath, FileMode.Create);
 				}
-				this._DataSocket.GetResponseStream(stm);
+                if (fileSize.HasValue)
+                {
+                    this.GetResponseStream(new FtpDataDownloadContext(stm, this.ResponseEncoding, fileSize.Value));
+                }
+                else
+                {
+                    this._DataSocket.GetResponseStream(stm);
+                }
 				size = stm.Length;
 				stm.Flush();
 			}
@@ -350,6 +358,18 @@ namespace HigLabo.Net.Ftp
 
 			return size;
 		}
+        private Int32? GetFileSize(FtpCommandResult result)
+        {
+            var rx = RegexList.FileSize;
+            var m = rx.Match(result.Text);
+            if (m.Success == false) { return null; }
+            Int32 size = 0;
+            if (Int32.TryParse(m.Groups["Size"].Value, out size) == true)
+            {
+                return size;
+            }
+            return null;
+        }
 		public Int64 GetFileSize(String fileName)
 		{
 			this.EnsureOpen();
@@ -358,6 +378,16 @@ namespace HigLabo.Net.Ftp
 
 			return Int64.Parse(rs.Text.Substring(4));
 		}
+
+        /// <summary>
+        /// Change remote directory.
+        /// </summary>
+        /// <param name="directoryName"></param>
+        /// <returns></returns>
+        public FtpCommandResult ChangeDirectory(String directoryName)
+        {
+            return this.ExecuteCwd(directoryName);
+        }
         /// FTPサーバーへCWDコマンドを送信します。
         /// <summary>
         /// Send cwd command to ftp server.
@@ -365,10 +395,10 @@ namespace HigLabo.Net.Ftp
         /// </summary>
         /// <param name="pathName">指定したディレクトリ名</param>
         /// <returns></returns>
-        public FtpCommandResult ExecuteCwd(String pathName)
+        public FtpCommandResult ExecuteCwd(String directoryName)
 		{
             this.EnsureOpen();
-            var rs = this.Execute("Cwd " + pathName);
+            var rs = this.Execute("Cwd " + directoryName);
 			return rs;
 		}
         /// FTPサーバーへCDUPコマンドを送信します。
@@ -502,9 +532,10 @@ namespace HigLabo.Net.Ftp
         /// <summary>
         /// Send mode command to ftp server.
         /// FTPサーバーへMODEコマンドを送信します。
+        /// </summary>
         /// <param name="mode">転送モード</param>
         /// <returns></returns>
-		public FtpCommandResult ExecuteMode(FtpTransferMode mode)
+        public FtpCommandResult ExecuteMode(FtpTransferMode mode)
 		{
             switch (mode)
             {

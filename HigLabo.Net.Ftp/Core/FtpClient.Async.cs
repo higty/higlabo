@@ -64,11 +64,11 @@ namespace HigLabo.Net.Ftp
         /// 
         /// </summary>
         /// <param name="localFilePath"></param>
-        /// <param name="remoteFilePath"></param>
+        /// <param name="remoteFileName"></param>
         /// <returns></returns>
-        public Task<Int64> UploadFileAsync(String localFilePath, String remoteFilePath)
+        public Task<Int64> UploadFileAsync(String localFilePath, String remoteFileName)
 		{
-            return CreateNewTask<Int64>(() => this.UploadFile(localFilePath, remoteFilePath));
+            return CreateNewTask<Int64>(() => this.UploadFile(localFilePath, remoteFileName));
 		}
         /// <summary>
         /// 
@@ -81,12 +81,12 @@ namespace HigLabo.Net.Ftp
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="remoteFilePath"></param>
+        /// <param name="remoteFileName"></param>
         /// <param name="localFilePath"></param>
         /// <returns></returns>
-        public Task<Int64> DownloadFileAsync(String remoteFilePath, String localFilePath)
+        public Task<Int64> DownloadFileAsync(String remoteFileName, String localFilePath)
 		{
-            return CreateNewTask<Int64>(() => this.DownloadFile(remoteFilePath, localFilePath));
+            return CreateNewTask<Int64>(() => this.DownloadFile(remoteFileName, localFilePath));
 		}
         /// <summary>
         /// 

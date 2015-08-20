@@ -40,6 +40,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Async\FtpDataDownloadContext.cs" />
     <Compile Include="Async\FtpDataReceiveContext.cs" />
     <Compile Include="Core\FtpClient.Async.cs" />
     <Compile Include="Core\FtpClient.cs" />

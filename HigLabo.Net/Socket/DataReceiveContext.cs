@@ -14,6 +14,8 @@ namespace HigLabo.Net.Internal
     {
         private Action<String> _EndGetResponse = null;
         private Int32 _ReadCount = 0;
+
+        public Int32 ReadBytes { get; private set; }
         /// <summary>
         /// 
         /// </summary>
@@ -48,6 +50,7 @@ namespace HigLabo.Net.Internal
         {
             if (size == 0) { return false; }
             var bl = this.ParseBuffer(size);
+            this.ReadBytes += size;
             this._ReadCount += 1;
             if (this._ReadCount > 1000000) { throw new SocketClientException("Too much read count.Perhaps parser could not parse correctly."); }
             return bl;

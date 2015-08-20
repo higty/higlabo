@@ -238,7 +238,7 @@ namespace HigLabo.Net
         /// <param name="command"></param>
         public void Send(String command)
         {
-            this.Send(Encoding.ASCII.GetBytes(command + SocketClient.NewLine));
+            this.Send(Encoding.UTF8.GetBytes(command + SocketClient.NewLine));
         }
         /// <summary>
         /// 
