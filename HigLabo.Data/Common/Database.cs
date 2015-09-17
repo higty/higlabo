@@ -192,10 +192,13 @@ namespace HigLabo.Data
             DbCommand cm = command;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
+
             try
             {
                 var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.GetDataSet, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return null; }
+                ec = e.ExecutionContext;
 
                 this.Open();
                 da = this.CreateDataAdapter();
@@ -208,7 +211,7 @@ namespace HigLabo.Data
             }
             catch (Exception ex)
             {
-                this.CatchException(new CommandErrorEventArgs(MethodName.GetDataSet, this.ConnectionString, ex, cm));
+                this.CatchException(new CommandErrorEventArgs(MethodName.GetDataSet, this.ConnectionString, ex, ec, cm));
             }
             finally
             {
@@ -217,7 +220,8 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataSet, this.ConnectionString, startTime.Value, endTime.Value, cm));
+                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataSet, this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, cm));
             }
             return ds;
         }
@@ -244,11 +248,13 @@ namespace HigLabo.Data
             DbCommand cm = command;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
 
             try
             {
                 var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.GetDataTable, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return null; }
+                ec = e.ExecutionContext;
 
                 this.Open();
                 da = this.CreateDataAdapter();
@@ -261,7 +267,7 @@ namespace HigLabo.Data
             }
             catch (Exception ex)
             {
-                this.CatchException(new CommandErrorEventArgs(MethodName.GetDataTable, this.ConnectionString, ex, cm));
+                this.CatchException(new CommandErrorEventArgs(MethodName.GetDataTable, this.ConnectionString, ex, ec, cm));
             }
             finally
             {
@@ -270,7 +276,8 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataTable, this.ConnectionString, startTime.Value, endTime.Value, cm));
+                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.GetDataTable, this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, cm));
             }
             return dt;
         }
@@ -316,11 +323,13 @@ namespace HigLabo.Data
             DbCommand cm = command;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
 
             try
             {
                 var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteReader, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return null; }
+                ec = e.ExecutionContext;
 
                 this.Open();
                 cm.Connection = this.Connection;
@@ -332,11 +341,12 @@ namespace HigLabo.Data
             catch (Exception ex)
             {
                 this.Close();
-                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteReader, this.ConnectionString, ex, cm));
+                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteReader, this.ConnectionString, ex, ec, cm));
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteReader, this.ConnectionString, startTime.Value, endTime.Value, cm));
+                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteReader, this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, cm));
             }
             return dr;
         }
@@ -363,10 +373,13 @@ namespace HigLabo.Data
             DbCommand cm = command;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
+
             try
             {
                 var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteScalar, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return null; }
+                ec = e.ExecutionContext;
 
                 this.Open();
                 cm.Connection = this.Connection;
@@ -377,7 +390,7 @@ namespace HigLabo.Data
             }
             catch (Exception ex)
             {
-                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteScalar, this.ConnectionString, ex, cm));
+                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteScalar, this.ConnectionString, ex, ec, cm));
             }
             finally
             {
@@ -388,7 +401,8 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteScalar, this.ConnectionString, startTime.Value, endTime.Value, cm));
+                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteScalar, this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, cm));
             }
             return o;
         }
@@ -417,10 +431,13 @@ namespace HigLabo.Data
             DbCommand cm = command;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
+
             try
             {
                 var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, this.ConnectionString, cm));
                 if (e != null && e.Cancel == true) { return -1; }
+                ec = e.ExecutionContext;
 
                 this.Open();
                 cm.Connection = this.Connection;
@@ -431,7 +448,7 @@ namespace HigLabo.Data
             }
             catch (Exception ex)
             {
-                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteCommand, this.ConnectionString, ex, cm));
+                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteCommand, this.ConnectionString, ex, ec, cm));
             }
             finally
             {
@@ -442,7 +459,8 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommand, this.ConnectionString, startTime.Value, endTime.Value, cm));
+                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommand, this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, cm));
             }
             return affectRecordNumber;
         }
@@ -476,6 +494,8 @@ namespace HigLabo.Data
             ConnectionState state = this.ConnectionState;
             DbCommand cm = null;
             CommandExecutingEventArgs e;
+            Object ec = null;
+
             try
             {
                 this.Open();
@@ -485,13 +505,15 @@ namespace HigLabo.Data
                     cm = commands[i];
                     e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommandList, this.ConnectionString, cm));
                     if (e != null && e.Cancel == true) { continue; }
+                    ec = e.ExecutionContext;
 
                     cm.Connection = this.Connection;
                     cm.Transaction = this.Transaction;
                     var startTime = DateTimeOffset.Now;
                     affectRecordNumber[i] = cm.ExecuteNonQuery();
                     var endTime = DateTimeOffset.Now;
-                    Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommandList, this.ConnectionString, startTime, endTime, cm));
+                    Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.ExecuteCommandList, this.ConnectionString
+                        , startTime, endTime, ec, cm));
                 }
                 this.Transaction.Commit();
             }
@@ -501,7 +523,7 @@ namespace HigLabo.Data
                 {
                     this.Transaction.Rollback();
                 }
-                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteCommandList, this.ConnectionString, ex, cm));
+                this.CatchException(new CommandErrorEventArgs(MethodName.ExecuteCommandList, this.ConnectionString, ex, ec, cm));
             }
             finally
             {
@@ -524,11 +546,13 @@ namespace HigLabo.Data
             int affectedRecordCount = -1;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
 
             try
             {
                 var e = Database.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.Save, ConnectionString, dataAdapter));
                 if (e != null && e.Cancel == true) { return -1; }
+                ec = e.ExecutionContext;
 
                 Open();
                 if (dataAdapter.InsertCommand != null)
@@ -552,7 +576,7 @@ namespace HigLabo.Data
             }
             catch (Exception ex)
             {
-                this.CatchException(new CommandErrorEventArgs(MethodName.Save, ConnectionString, ex, dataAdapter));
+                this.CatchException(new CommandErrorEventArgs(MethodName.Save, ConnectionString, ex, ec, dataAdapter));
             }
             finally
             {
@@ -564,7 +588,8 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.Save, ConnectionString, startTime.Value, endTime.Value, dataAdapter));
+                Database.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.Save, ConnectionString
+                    , startTime.Value, endTime.Value, ec, dataAdapter));
             }
             return affectedRecordCount;
         }
@@ -583,7 +608,7 @@ namespace HigLabo.Data
                 ex.ConnectionString = e.ConnectionString;
                 ex.Command = e.Command;
                 ex.DataAdapter = e.DataAdapter;
-                ex.Data["SqlBulkCopyContext"] = e.Context;
+                ex.Data["SqlBulkCopyContext"] = e.SqlBulkCopyContext;
             }
             return exception;
         }

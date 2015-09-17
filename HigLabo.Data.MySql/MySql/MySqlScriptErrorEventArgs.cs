@@ -10,8 +10,8 @@ namespace HigLabo.Data
     public class MySqlScriptErrorEventArgs : CommandErrorEventArgs
     {
         public MySqlScript MySqlScript { get; private set; }
-        public MySqlScriptErrorEventArgs(String connectionString, Exception exception, MySqlScript script)
-            : base(MethodName.ExecuteCommand, connectionString, exception)
+        public MySqlScriptErrorEventArgs(String connectionString, Exception exception, Object executionContext, MySqlScript script)
+            : base(MethodName.ExecuteCommand, connectionString, exception, executionContext)
         {
             this.MySqlScript = script;
         }

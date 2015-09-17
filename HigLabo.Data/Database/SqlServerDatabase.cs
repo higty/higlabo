@@ -167,30 +167,32 @@ namespace HigLabo.Data
         /// </summary>
         /// <param name="context"></param>
         /// <param name="reader"></param>
-        public void BulkCopy(SqlBulkCopyContext context, IDataReader reader)
+        public void BulkCopy(SqlBulkCopyContext sqlBulkCopyContext, IDataReader reader)
         {
             var dr = reader;
             var state = ConnectionState;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
 
-            if (context.Connection == null)
+            if (sqlBulkCopyContext.Connection == null)
             {
-                if (this.ConnectionString != context.ConnectionString) { throw new InvalidOperationException(); }
+                if (this.ConnectionString != sqlBulkCopyContext.ConnectionString) { throw new InvalidOperationException(); }
             }
             else
             {
-                if (this.Connection != context.Connection) { throw new InvalidOperationException(); }
+                if (this.Connection != sqlBulkCopyContext.Connection) { throw new InvalidOperationException(); }
             }
-            if (context.Transaction != null && this.Transaction != context.Transaction) { throw new InvalidOperationException(); }
+            if (sqlBulkCopyContext.Transaction != null && this.Transaction != sqlBulkCopyContext.Transaction) { throw new InvalidOperationException(); }
 
             try
             {
-                var e = SqlServerDatabase.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.BulkCopy, ConnectionString, context));
+                var e = SqlServerDatabase.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.BulkCopy, ConnectionString, sqlBulkCopyContext));
                 if (e != null && e.Cancel == true) { return; }
+                ec = e.ExecutionContext;
 
                 Open();
-                var bc = context.SqlBulkCopy;
+                var bc = sqlBulkCopyContext.SqlBulkCopy;
                 startTime = DateTimeOffset.Now;
                 bc.WriteToServer(dr);
                 endTime = DateTimeOffset.Now;
@@ -198,7 +200,7 @@ namespace HigLabo.Data
             }
             catch (Exception exception)
             {
-                this.CatchException(MethodName.BulkCopy, this.ConnectionString, context, exception);
+                this.CatchException(MethodName.BulkCopy, this.ConnectionString, exception, ec, sqlBulkCopyContext);
             }
             finally
             {
@@ -206,17 +208,18 @@ namespace HigLabo.Data
                 {
                     this.Close();
                 }
-                ((IDisposable)context.SqlBulkCopy).Dispose();
+                ((IDisposable)sqlBulkCopyContext.SqlBulkCopy).Dispose();
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                SqlServerDatabase.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.BulkCopy, this.ConnectionString, startTime.Value, endTime.Value, context));
+                SqlServerDatabase.OnCommandExecuted(new CommandExecutedEventArgs(MethodName.BulkCopy, this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, sqlBulkCopyContext));
             }
         }
 
-        private void CatchException(MethodName methodName, String connectionString, SqlBulkCopyContext context, Exception exception)
+        private void CatchException(MethodName methodName, String connectionString, Exception exception, Object executionContext, SqlBulkCopyContext sqlBulkCopyContext)
         {
-            var e = new CommandErrorEventArgs(methodName, connectionString, exception, context);
+            var e = new CommandErrorEventArgs(methodName, connectionString, exception, executionContext, sqlBulkCopyContext);
             SqlServerDatabase.OnCommandError(e);
             if (e.ThrowException == true)
             {

@@ -15,18 +15,22 @@ namespace HigLabo.Core
             }
             return random.NextArray(source, resultCount);
         }
+        public static T[] NextArray<T>(this Random random, List<T> source)
+        {
+            return NextArray(random, source, source.Count);
+        }
         public static T[] NextArray<T>(this Random random, IEnumerable<T> source, Int32 resultCount)
         {
             var rdm = random;
             var sourceList = source.ToList();
-            var resultList = new T[resultCount];
+            var resultList = new List<T>();
             for (int i = 0; i < resultCount; i++)
             {
                 var index = rdm.Next(sourceList.Count);
-                resultList[i] = sourceList[index];
+                resultList.Add(sourceList[index]);
                 sourceList.RemoveAt(index);
             }
-            return resultList;
+            return resultList.ToArray();
         }
     }
 }

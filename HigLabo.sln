@@ -79,9 +79,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.CodeGenerator.Twitt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Vimeo", "HigLabo.Net.Vimeo\HigLabo.Net.Vimeo.csproj", "{2A404663-88FA-445D-83A6-3E6EBE2BCFAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.CodeGenerator.Vimeo", "HigLabo.CodeGenerator.Vimeo\HigLabo.CodeGenerator.Vimeo.csproj", "{173E1242-ADCB-4EB9-8443-A49807B7D093}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Dailymotion", "HigLabo.Net.Dailymotion\HigLabo.Net.Dailymotion.csproj", "{25606E8F-DF35-4701-8FDC-323C1FAF5ECD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.CodeGenerator.Vimeo", "HigLabo.CodeGenerator.Vimeo\HigLabo.CodeGenerator.Vimeo.csproj", "{173E1242-ADCB-4EB9-8443-A49807B7D093}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -241,14 +241,14 @@ Global
 		{2A404663-88FA-445D-83A6-3E6EBE2BCFAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A404663-88FA-445D-83A6-3E6EBE2BCFAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A404663-88FA-445D-83A6-3E6EBE2BCFAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25606E8F-DF35-4701-8FDC-323C1FAF5ECD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25606E8F-DF35-4701-8FDC-323C1FAF5ECD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25606E8F-DF35-4701-8FDC-323C1FAF5ECD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25606E8F-DF35-4701-8FDC-323C1FAF5ECD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

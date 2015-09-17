@@ -54,12 +54,18 @@ namespace HigLabo.Data
         /// <summary>
         /// 
         /// </summary>
-        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime)
+        public Object ExecutionContext { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        protected CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, Object executionContext)
         {
             this.MethodName = methodName;
             this.ConnectionString = connectionString;
             this.StartTime = startTime;
             this.EndTime = endTime;
+            this.ExecutionContext = executionContext;
         }
         /// <summary>
         /// 
@@ -67,8 +73,8 @@ namespace HigLabo.Data
         /// <param name="methodName"></param>
         /// <param name="connectionString"></param>
         /// <param name="command"></param>
-        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, DbCommand command)
-            : this(methodName, connectionString, startTime, endTime)
+        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, Object executionContext, DbCommand command)
+            : this(methodName, connectionString, startTime, endTime, executionContext)
         {
             this.Command = command;
         }
@@ -78,8 +84,8 @@ namespace HigLabo.Data
         /// <param name="methodName"></param>
         /// <param name="connectionString"></param>
         /// <param name="dataAdapter"></param>
-        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, DbDataAdapter dataAdapter)
-            : this(methodName, connectionString, startTime, endTime)
+        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, Object executionContext, DbDataAdapter dataAdapter)
+            : this(methodName, connectionString, startTime, endTime, executionContext)
         {
             this.DataAdapter = dataAdapter;
         }
@@ -89,10 +95,10 @@ namespace HigLabo.Data
         /// <param name="methodName"></param>
         /// <param name="connectionString"></param>
         /// <param name="context"></param>
-        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, SqlBulkCopyContext context)
-            : this(methodName, connectionString, startTime, endTime)
+        public CommandExecutedEventArgs(MethodName methodName, String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, Object executionContext, SqlBulkCopyContext sqlBulkCopyContext)
+            : this(methodName, connectionString, startTime, endTime, executionContext)
         {
-            this.Context = context;
+            this.Context = sqlBulkCopyContext;
         }
         /// <summary>
         /// 

@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6EBA123F-08CE-4348-B05E-AE302622CDF6}</ProjectGuid>
+    <ProjectGuid>{173E1242-ADCB-4EB9-8443-A49807B7D093}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>HigLabo.CodeGenerator.Vimeo</RootNamespace>

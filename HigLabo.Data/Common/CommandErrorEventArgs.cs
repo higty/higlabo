@@ -33,7 +33,12 @@ namespace HigLabo.Data
         /// <summary>
         /// 実行されたバルクコピーのコンテキストを取得します。
         /// </summary>
-        public SqlBulkCopyContext Context { get; private set; }
+        public SqlBulkCopyContext SqlBulkCopyContext { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Object ExecutionContext { get; set; }
 
         /// <summary>
         /// 発生した例外を取得します。
@@ -51,12 +56,13 @@ namespace HigLabo.Data
         /// <param name="methodName"></param>
         /// <param name="connectionString"></param>
         /// <param name="exception"></param>
-        protected CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception)
+        protected CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, Object executionContext)
         {
             this.MethodName = methodName;
             this.ConnectionString = connectionString;
             this.Exception = exception;
             this.ThrowException = true;
+            this.ExecutionContext = executionContext;
         }
         /// <summary>
         /// 
@@ -65,8 +71,8 @@ namespace HigLabo.Data
         /// <param name="connectionString"></param>
         /// <param name="command"></param>
         /// <param name="exception"></param>
-        public CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, DbCommand command)
-            : this(methodName, connectionString, exception)
+        public CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, Object executionContext, DbCommand command)
+            : this(methodName, connectionString, exception, executionContext)
         {
             this.Command = command;
         }
@@ -77,8 +83,8 @@ namespace HigLabo.Data
         /// <param name="connectionString"></param>
         /// <param name="dataAdapter"></param>
         /// <param name="exception"></param>
-        public CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, DbDataAdapter dataAdapter)
-            : this(methodName, connectionString, exception)
+        public CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, Object executionContext, DbDataAdapter dataAdapter)
+            : this(methodName, connectionString, exception, executionContext)
         {
             this.DataAdapter = dataAdapter;
         }
@@ -89,10 +95,10 @@ namespace HigLabo.Data
         /// <param name="connectionString"></param>
         /// <param name="context"></param>
         /// <param name="exception"></param>
-        public CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, SqlBulkCopyContext context)
-            : this(methodName, connectionString, exception)
+        public CommandErrorEventArgs(MethodName methodName, String connectionString, Exception exception, Object executionContext, SqlBulkCopyContext sqlBulkCopyContext)
+            : this(methodName, connectionString, exception, executionContext)
         {
-            this.Context = context;
+            this.SqlBulkCopyContext = sqlBulkCopyContext;
         }
         /// <summary>
         /// 

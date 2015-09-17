@@ -33,7 +33,12 @@ namespace HigLabo.Data
         /// <summary>
         /// 実行されたバルクコピーのコンテキストを取得します。
         /// </summary>
-        public SqlBulkCopyContext Context { get; private set; }
+        public SqlBulkCopyContext SqlBulkCopyContext { get; private set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Object ExecutionContext { get; set; }
 
         /// <summary>
         /// 
@@ -45,7 +50,7 @@ namespace HigLabo.Data
         /// </summary>
         /// <param name="methodName"></param>
         /// <param name="connectionString"></param>
-        protected CommandExecutingEventArgs(MethodName methodName, String connectionString)
+        public CommandExecutingEventArgs(MethodName methodName, String connectionString)
         {
             MethodName = methodName;
             ConnectionString = connectionString;
@@ -80,11 +85,11 @@ namespace HigLabo.Data
         /// <param name="methodName"></param>
         /// <param name="connectionString"></param>
         /// <param name="context"></param>
-        public CommandExecutingEventArgs(MethodName methodName, String connectionString, SqlBulkCopyContext context)
+        public CommandExecutingEventArgs(MethodName methodName, String connectionString, SqlBulkCopyContext sqlBulkCopyContext)
             : this(methodName, connectionString)
         {
             Cancel = false;
-            Context = context;
+            this.SqlBulkCopyContext = sqlBulkCopyContext;
         }
 
 

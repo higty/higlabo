@@ -101,11 +101,13 @@ namespace HigLabo.Data
             ConnectionState state = this.ConnectionState;
             DateTimeOffset? startTime = null;
             DateTimeOffset? endTime = null;
+            Object ec = null;
 
             try
             {
                 var e = Database.OnCommandExecuting(new MySqlScriptExecutingEventArgs(this.ConnectionString, script));
                 if (e != null && e.Cancel == true) { return -1; }
+                ec = e.ExecutionContext;
 
                 this.Open();
                 script.Connection = this.Connection as MySqlConnection;
@@ -115,7 +117,7 @@ namespace HigLabo.Data
             }
             catch (Exception ex)
             {
-                this.CatchException(new MySqlScriptErrorEventArgs(this.ConnectionString, ex, script));
+                this.CatchException(new MySqlScriptErrorEventArgs(this.ConnectionString, ex, ec, script));
             }
             finally
             {
@@ -126,7 +128,8 @@ namespace HigLabo.Data
             }
             if (startTime.HasValue == true && endTime.HasValue == true)
             {
-                Database.OnCommandExecuted(new MySqlScriptExecutedEventArgs(this.ConnectionString, startTime.Value, endTime.Value, script));
+                Database.OnCommandExecuted(new MySqlScriptExecutedEventArgs(this.ConnectionString
+                    , startTime.Value, endTime.Value, ec, script));
             }
             return affectRecordNumber;
         }

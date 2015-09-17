@@ -10,8 +10,8 @@ namespace HigLabo.Data
     public class MySqlScriptExecutedEventArgs : CommandExecutedEventArgs
     {
         public MySqlScript MySqlScript { get; private set; }
-        public MySqlScriptExecutedEventArgs(String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, MySqlScript script)
-            : base(MethodName.ExecuteCommand, connectionString, startTime, endTime)
+        public MySqlScriptExecutedEventArgs(String connectionString, DateTimeOffset startTime, DateTimeOffset endTime, Object executionContext, MySqlScript script)
+            : base(MethodName.ExecuteCommand, connectionString, startTime, endTime, executionContext)
         {
             this.MySqlScript = script;
         }
