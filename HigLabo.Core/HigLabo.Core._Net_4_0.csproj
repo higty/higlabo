@@ -60,6 +60,7 @@
     <Compile Include="Entity\SequentialGuidType.cs" />
     <Compile Include="Extensions\AesManagedExtensions.cs" />
     <Compile Include="Extensions\AesManagedExtensionsSettings.cs" />
+    <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
