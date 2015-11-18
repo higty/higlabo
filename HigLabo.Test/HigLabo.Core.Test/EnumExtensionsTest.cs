@@ -27,8 +27,18 @@ namespace HigLabo.Core.Test
             V1620100 = 1620100,
             V23372036854775807 = 23372036854775807,
         }
+        [FlagsAttribute]
+        enum FlagsEnum
+        {
+            None = 0x00, // 0000 0000
+            One = 0x01, // 0000 0001
+            Two = 0x02, // 0000 0010 
+            Three = 0x04, // 0000 0100
+            Four = 0x08, // 0000 1000
+            All = 0x0F // 0000 1111
+        }
         [TestMethod]
-        public void BasicEnum()
+        public void BasicEnumTest()
         {
             Assert.AreEqual(DayOfWeek.Friday.ToStringFromEnum(), "Friday");
             Assert.AreEqual(DayOfWeek.Wednesday.ToStringFromEnum(), "Wednesday");
@@ -54,6 +64,14 @@ namespace HigLabo.Core.Test
             Assert.AreEqual(LongEnum.V2.ToStringFromEnum(), "V2");
             Assert.AreEqual(LongEnum.V1620100.ToStringFromEnum(), "V1620100");
             Assert.AreEqual(LongEnum.V23372036854775807.ToStringFromEnum(), "V23372036854775807");
+        }
+        [TestMethod]
+        public void FlagEnumTest()
+        {
+            Assert.AreEqual(FlagsEnum.One.ToStringFromEnum(), "One");
+            Assert.AreEqual((FlagsEnum.One | FlagsEnum.Two).ToStringFromEnum(), "One,Two");
+            Assert.AreEqual(FlagsEnum.Three.ToStringFromEnum(), "Three");
+            Assert.AreEqual(FlagsEnum.Four.ToStringFromEnum(), "Four");
         }
     }
 }
