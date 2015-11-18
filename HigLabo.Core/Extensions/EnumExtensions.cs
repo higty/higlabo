@@ -50,32 +50,56 @@ namespace HigLabo.Core
             var tp = typeof(T);
             DynamicMethod dm = new DynamicMethod("ToStringFromEnum", typeof(String), new[] { tp });
             ILGenerator il = dm.GetILGenerator();
-            Label defaultCase = il.DefineLabel();
-            Label endOfMethod = il.DefineLabel();
 
+            var values = ((T[])Enum.GetValues(tp)).Select(el => Convert.ToInt64(el)).ToList();
             var names = Enum.GetNames(tp);
-            var caseLabels = new Label[names.Length + 1];
-            for (int i = 0; i < names.Length; i++)
+
+            //Have any value different from index number
+            if (values.Where((el, i) => el != i).Any())
             {
-                caseLabels[i] = il.DefineLabel();
+                var caseLabels = new Label[names.Length];
+                for (int i = 0; i < names.Length; i++)
+                {
+                    caseLabels[i] = il.DefineLabel();
+                }
+                il.Emit(OpCodes.Nop);
+                for (int i = 0; i < values.Count; i++)
+                {
+                    il.Emit(OpCodes.Ldarg_0);
+                    il.Emit(OpCodes.Conv_I8);
+                    il.Emit(OpCodes.Ldc_I8, values[i]);
+                    il.Emit(OpCodes.Ceq);
+                    il.Emit(OpCodes.Brtrue_S, caseLabels[i]);
+                }
+                for (int i = 0; i < names.Length; i++)
+                {
+                    il.MarkLabel(caseLabels[i]);
+                    il.Emit(OpCodes.Ldstr, names[i]);
+                    il.Emit(OpCodes.Ret);
+                }
             }
-            caseLabels[names.Length] = defaultCase;
-
-            il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Switch, caseLabels);
-
-            for (int i = 0; i < names.Length; i++)
+            else
             {
-                // Case ??: return "";
-                il.MarkLabel(caseLabels[i]);
-                il.Emit(OpCodes.Ldstr, names[i]);
-                il.Emit(OpCodes.Ret);
-            }
-            il.MarkLabel(defaultCase);
-            il.ThrowException(typeof(InvalidOperationException));
+                Label defaultCase = il.DefineLabel();
+                var caseLabels = new Label[names.Length + 1];
+                for (int i = 0; i < names.Length; i++)
+                {
+                    caseLabels[i] = il.DefineLabel();
+                }
+                caseLabels[names.Length] = defaultCase;
 
-            il.MarkLabel(endOfMethod);
-            il.Emit(OpCodes.Ret);
+                il.Emit(OpCodes.Ldarg_0);
+                il.Emit(OpCodes.Switch, caseLabels);
+                for (int i = 0; i < names.Length; i++)
+                {
+                    // Case ??: return "";
+                    il.MarkLabel(caseLabels[i]);
+                    il.Emit(OpCodes.Ldstr, names[i]);
+                    il.Emit(OpCodes.Ret);
+                }
+                il.MarkLabel(defaultCase);
+                il.ThrowException(typeof(InvalidOperationException));
+            }
 
             var f = typeof(Func<,>);
             var gf = f.MakeGenericType(tp, typeof(String));
