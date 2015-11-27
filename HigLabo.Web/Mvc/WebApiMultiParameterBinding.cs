@@ -84,14 +84,13 @@ namespace HigLabo.Web.Mvc
         }
         private Dictionary<String, String> GetDataSource(HttpActionContext context, ParameterDataProvider provider)
         {
-            var d = new Dictionary<String, String>();
             var req = context.Request;
             Object o = null;
             var cacheKey = CacheKeyPrefix + provider.GetCacheKey();
 
             if (req.Properties.TryGetValue(cacheKey, out o)) { return o as Dictionary<String, String>; }
 
-            d = provider.GetDataSource(context);
+            var d = provider.GetDataSource(context);
             req.Properties.Add(cacheKey, d);
 
             return d;

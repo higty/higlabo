@@ -21,7 +21,7 @@ namespace HigLabo.Web.Mvc
 
         public override Dictionary<String, String> GetDataSource(HttpActionContext context)
         {
-            var d = new Dictionary<String, String>();
+            var d = new Dictionary<String, String>(StringComparer.OrdinalIgnoreCase);
             var req = context.Request;
 
             MediaTypeHeaderValue contentType = req.Content.Headers.ContentType;
@@ -35,7 +35,7 @@ namespace HigLabo.Web.Mvc
                     {
                         var bodyText = req.Content.ReadAsStringAsync().Result;
                         var values = JsonConvert.DeserializeObject<Dictionary<String, String>>(bodyText);
-                        d = values.Aggregate(new Dictionary<String, String>(), (seed, current) =>
+                        d = values.Aggregate(d, (seed, current) =>
                         {
                             seed[current.Key] = current.Value;
                             return seed;
@@ -47,10 +47,7 @@ namespace HigLabo.Web.Mvc
                         var dd = req.Content.ReadAsFormDataAsync().Result;
                         foreach (var key in dd.AllKeys)
                         {
-                            if (d.ContainsKey(key) == false)
-                            {
-                                d[key] = dd[key];
-                            }
+                            d[key] = dd[key];
                         }
                     }
                     break;
@@ -59,10 +56,9 @@ namespace HigLabo.Web.Mvc
                         var result = req.Content.ReadAsMultipartAsync().Result;
                         foreach (var content in result.Contents)
                         {
-                            foreach (var header in content.Headers.Where(el => el.Value.Any())
-                                .ToDictionary(el => el.Key, el => el.Value.FirstOrDefault()))
+                            foreach (var header in content.Headers.Where(el => el.Value.Any()))
                             {
-                                d[header.Key] = header.Value;
+                                d[header.Key] = header.Value.LastOrDefault();
                             }
                         }
                     }

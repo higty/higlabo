@@ -16,7 +16,11 @@ namespace HigLabo.Web.Mvc
         }
         public override Dictionary<String, String> GetDataSource(HttpActionContext context)
         {
-            var d = context.Request.Headers.Where(el => el.Value.Any()).ToDictionary(el => el.Key, el => el.Value.FirstOrDefault());
+            var d = new Dictionary<String, String>(StringComparer.OrdinalIgnoreCase);
+            foreach (var item in context.Request.Headers.Where(el => el.Value.Any()))
+            {
+                d[item.Key] = item.Value.FirstOrDefault();
+            }
             return d;
         }
     }
