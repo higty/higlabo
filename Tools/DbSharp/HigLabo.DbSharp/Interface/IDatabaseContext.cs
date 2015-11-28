@@ -18,7 +18,7 @@ namespace HigLabo.DbSharp
         {
             Database db = null;
             var dc = DatabaseContext.GetDatabaseContext(context.TransactionKey);
-            if (db == null)
+            if (dc == null)
             {
                 if (context.TransactionKey == "")
                 {
