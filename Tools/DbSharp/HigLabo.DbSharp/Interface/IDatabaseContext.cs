@@ -12,6 +12,7 @@ namespace HigLabo.DbSharp
         String GetDatabaseKey();
         String TransactionKey { get; set; }
     }
+
     public static class IDatabaseContextExtensions
     {
         public static Database GetDatabase(this IDatabaseContext context)
