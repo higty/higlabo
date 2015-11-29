@@ -12,13 +12,14 @@ namespace HigLabo.DbSharp
         String GetDatabaseKey();
         String TransactionKey { get; set; }
     }
+
     public static class IDatabaseContextExtensions
     {
         public static Database GetDatabase(this IDatabaseContext context)
         {
             Database db = null;
             var dc = DatabaseContext.GetDatabaseContext(context.TransactionKey);
-            if (db == null)
+            if (dc == null)
             {
                 if (context.TransactionKey == "")
                 {
