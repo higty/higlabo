@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HigLabo.Core
 {
-    public static class StringExtensions
+    public static partial class StringExtensions
     {
         public static String UnifyLineFeed(this String text)
         {
@@ -63,13 +63,6 @@ namespace HigLabo.Core
         {
             return String.IsNullOrEmpty(text);
         }
-#if _Net_4_0 || _Net_4_5
-        public static Boolean IsNullOrWhiteSpace(this String text)
-        {
-            return String.IsNullOrWhiteSpace(text);
-        }
-#endif
-
         public static Boolean? ToBoolean(this String value)
         {
             return AppEnvironment.Settings.TypeConverter.ToBoolean(value);

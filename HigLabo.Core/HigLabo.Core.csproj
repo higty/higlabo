@@ -50,6 +50,7 @@
     <Compile Include="Core\Enum.cs" />
     <Compile Include="Core\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Core\Serializer.cs" />
+    <Compile Include="Core\TypeConverter._Net_4_0.cs" />
     <Compile Include="Core\TypeConverter.cs" />
     <Compile Include="Core\XmlSerializer.cs" />
     <Compile Include="Entity\EqualityFunc.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Extensions\PropertyInfoExtensions.cs" />
     <Compile Include="Extensions\RandomExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\StringExtensions._Net_4_0.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="Extensions\TypeExtensions.cs" />
     <Compile Include="Extensions\XmlParserExtensions.cs" />

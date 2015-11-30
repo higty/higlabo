@@ -39,42 +39,53 @@ namespace HigLabo.Web.Mvc
                     break;
                 }
             }
-            if (s != null)
-            {
-                Object pValue = null;
+            
+            Object pValue = null;
 
-                if (Descriptor.ParameterType == typeof(String)) { pValue = s; }
-                if (Descriptor.ParameterType == typeof(Guid)) { pValue = s.ToGuid(); }
-                if (Descriptor.ParameterType == typeof(Int16)) { pValue = s.ToInt16(); }
-                if (Descriptor.ParameterType == typeof(Int32)) { pValue = s.ToInt32(); }
-                if (Descriptor.ParameterType == typeof(Int64)) { pValue = s.ToInt64(); }
-                if (Descriptor.ParameterType == typeof(UInt16)) { pValue = s.ToUInt16(); }
-                if (Descriptor.ParameterType == typeof(UInt32)) { pValue = s.ToUInt32(); }
-                if (Descriptor.ParameterType == typeof(UInt64)) { pValue = s.ToUInt64(); }
-                if (Descriptor.ParameterType == typeof(Byte)) { pValue = s.ToByte(); }
-                if (Descriptor.ParameterType == typeof(SByte)) { pValue = s.ToSByte(); }
-                if (Descriptor.ParameterType == typeof(Single)) { pValue = s.ToSingle(); }
-                if (Descriptor.ParameterType == typeof(Double)) { pValue = s.ToDouble(); }
-                if (Descriptor.ParameterType == typeof(Decimal)) { pValue = s.ToDecimal(); }
-                if (Descriptor.ParameterType == typeof(DateTime)) { pValue = s.ToDateTime(); }
-                if (Descriptor.ParameterType == typeof(DateTimeOffset)) { pValue = s.ToDateTimeOffset(); }
-                if (Descriptor.ParameterType.IsEnum) {  }
-                if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)
+            if (Descriptor.ParameterType == typeof(String)) { pValue = s; }
+            else if (Descriptor.ParameterType == typeof(Boolean) || Descriptor.ParameterType == typeof(Boolean?)) { pValue = s.ToBoolean(); }
+            else if (Descriptor.ParameterType == typeof(Guid) || Descriptor.ParameterType == typeof(Guid?)) { pValue = s.ToGuid(); }
+            else if (Descriptor.ParameterType == typeof(Int16) || Descriptor.ParameterType == typeof(Int16?)) { pValue = s.ToInt16(); }
+            else if (Descriptor.ParameterType == typeof(Int32) || Descriptor.ParameterType == typeof(Int32?)) { pValue = s.ToInt32(); }
+            else if (Descriptor.ParameterType == typeof(Int64) || Descriptor.ParameterType == typeof(Int64?)) { pValue = s.ToInt64(); }
+            else if (Descriptor.ParameterType == typeof(UInt16) || Descriptor.ParameterType == typeof(UInt16?)) { pValue = s.ToUInt16(); }
+            else if (Descriptor.ParameterType == typeof(UInt32) || Descriptor.ParameterType == typeof(UInt32?)) { pValue = s.ToUInt32(); }
+            else if (Descriptor.ParameterType == typeof(UInt64) || Descriptor.ParameterType == typeof(UInt64?)) { pValue = s.ToUInt64(); }
+            else if (Descriptor.ParameterType == typeof(Byte) || Descriptor.ParameterType == typeof(Byte?)) { pValue = s.ToByte(); }
+            else if (Descriptor.ParameterType == typeof(SByte) || Descriptor.ParameterType == typeof(SByte?)) { pValue = s.ToSByte(); }
+            else if (Descriptor.ParameterType == typeof(Single) || Descriptor.ParameterType == typeof(Single?)) { pValue = s.ToSingle(); }
+            else if (Descriptor.ParameterType == typeof(Double) || Descriptor.ParameterType == typeof(Double?)) { pValue = s.ToDouble(); }
+            else if (Descriptor.ParameterType == typeof(Decimal) || Descriptor.ParameterType == typeof(Decimal?)) { pValue = s.ToDecimal(); }
+            else if (Descriptor.ParameterType == typeof(DateTime) || Descriptor.ParameterType == typeof(DateTime?)) { pValue = s.ToDateTime(); }
+            else if (Descriptor.ParameterType == typeof(DateTimeOffset) || Descriptor.ParameterType == typeof(DateTimeOffset?)) { pValue = s.ToDateTimeOffset(); }
+            else if (Descriptor.ParameterType.IsEnum) { pValue = Enum.Parse(Descriptor.ParameterType, s); }
+            else if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)
+            {
+                try
                 {
-                    try
-                    {
-                        pValue = Convert.ChangeType(s, Descriptor.ParameterType);
-                    }
-                    catch { }
+                    pValue = Convert.ChangeType(s, Descriptor.ParameterType);
                 }
-                if (pValue == null)
+                catch { }
+            }
+            else if (pValue == null)
+            {
+                try
                 {
-                    try
-                    {
-                        pValue = this.JsonSerializer.Deserialize(new StringReader(s), Descriptor.ParameterType);
-                    }
-                    catch { }
+                    pValue = this.JsonSerializer.Deserialize(new StringReader(s), Descriptor.ParameterType);
                 }
+                catch { }
+            }
+
+            if (pValue == null)
+            {
+                if (Descriptor.ParameterType.IsInheritanceFrom(typeof(Nullable<>)) ||
+                    Descriptor.ParameterType.IsClass)
+                {
+                    this.SetValue(actionContext, pValue);
+                }
+            }
+            else
+            {
                 this.SetValue(actionContext, pValue);
             }
 
@@ -82,7 +93,7 @@ namespace HigLabo.Web.Mvc
             tcs.SetResult(null);
             return tcs.Task;
         }
-        private Dictionary<String, String> GetDataSource(HttpActionContext context, ParameterDataProvider provider)
+        protected Dictionary<String, String> GetDataSource(HttpActionContext context, ParameterDataProvider provider)
         {
             var req = context.Request;
             Object o = null;

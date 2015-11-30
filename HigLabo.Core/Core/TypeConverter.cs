@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 
 namespace HigLabo.Core
 {
-    public class TypeConverter
+    public partial class TypeConverter
     {
         public NumberStyles IntergerNumberStyle { get; set; }
         public NumberStyles SingleNumberStyle { get; set; }

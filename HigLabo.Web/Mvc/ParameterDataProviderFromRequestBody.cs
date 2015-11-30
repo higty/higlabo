@@ -56,10 +56,8 @@ namespace HigLabo.Web.Mvc
                         var result = req.Content.ReadAsMultipartAsync().Result;
                         foreach (var content in result.Contents)
                         {
-                            foreach (var header in content.Headers.Where(el => el.Value.Any()))
-                            {
-                                d[header.Key] = header.Value.LastOrDefault();
-                            }
+                            var name = content.Headers.ContentDisposition.Name;
+                            d[name] = content.ReadAsStringAsync().Result;
                         }
                     }
                     break;
