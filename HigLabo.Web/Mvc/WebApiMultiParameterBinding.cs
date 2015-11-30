@@ -58,7 +58,7 @@ namespace HigLabo.Web.Mvc
             else if (Descriptor.ParameterType == typeof(Decimal) || Descriptor.ParameterType == typeof(Decimal?)) { pValue = s.ToDecimal(); }
             else if (Descriptor.ParameterType == typeof(DateTime) || Descriptor.ParameterType == typeof(DateTime?)) { pValue = s.ToDateTime(); }
             else if (Descriptor.ParameterType == typeof(DateTimeOffset) || Descriptor.ParameterType == typeof(DateTimeOffset?)) { pValue = s.ToDateTimeOffset(); }
-            else if (Descriptor.ParameterType.IsEnum) { pValue = Enum.Parse(Descriptor.ParameterType, s); }
+            else if (Descriptor.ParameterType.IsEnum) { pValue = s.ToEnum(Descriptor.ParameterType); }
             else if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)
             {
                 try
