@@ -11,9 +11,8 @@ namespace HigLabo.Web.Mvc
 {
     public class EmbedResourceController : Controller
     {
-        private static Assembly CurrentAssembly = Assembly.GetExecutingAssembly();
+        private static List<Assembly> AssemblyList = new List<Assembly>();
 
-        public static readonly IReadOnlyCollection<String> ResourceNames = new List<string>(CurrentAssembly.GetManifestResourceNames());
         public static Dictionary<String, String> ContentTypeMap = new Dictionary<String, String>();
         public static Func<String, Stream> GetStreamFunc = null;
 
@@ -30,6 +29,10 @@ namespace HigLabo.Web.Mvc
             d[".png"] = "image/png";
             d[".gif"] = "image/gif";
         }
+        public static void AddAssembly(Assembly assembly)
+        {
+            AssemblyList.Add(assembly);
+        }
 
         [Route("EmbedResource")]
         public FileStreamResult Download(String name, String contentType = null)
@@ -43,8 +46,11 @@ namespace HigLabo.Web.Mvc
             }
             if (stm == null)
             {
-                String resourceName = ResourceNames.FirstOrDefault(f => f.EndsWith(name));
-                stm = CurrentAssembly.GetManifestResourceStream(resourceName);
+                foreach (var item in AssemblyList)
+                {
+                    String resourceName = item.GetManifestResourceNames().FirstOrDefault(f => f.EndsWith(name));
+                    stm = item.GetManifestResourceStream(resourceName);
+                }
             }
             return new FileStreamResult(stm, tp);
         }

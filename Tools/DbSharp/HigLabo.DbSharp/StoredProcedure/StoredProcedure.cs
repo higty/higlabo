@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Data;
+using HigLabo.Core;
 using HigLabo.Data;
 using System.Data.SqlClient;
 using System.Data.Common;
@@ -14,6 +15,12 @@ namespace HigLabo.DbSharp
 {
     public abstract class StoredProcedure : INotifyPropertyChanged, IDatabaseContext
     {
+        public static HigLabo.Core.TypeConverter TypeConverter { get; set; }
+
+        static StoredProcedure()
+        {
+            TypeConverter = new HigLabo.Core.TypeConverter();
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -99,16 +106,7 @@ namespace HigLabo.DbSharp
         protected static T? ToEnum<T>(Object value)
             where T : struct
         {
-            if (value == null) return null;
-            if (typeof(T).IsEnum == false) throw new ArgumentException("T must be Enum type");
-            T result;
-            var tp = value.GetType();
-            if (tp == typeof(T)) return (T)value;
-            if (tp == typeof(String) && Enum.TryParse((String)value, true, out result))
-            {
-                return result;
-            }
-            throw new InvalidEnumDataException(typeof(T), value);
+            return TypeConverter.ToEnum<T>(value);
         }
         public abstract String GetDatabaseKey();
 
