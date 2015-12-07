@@ -825,5 +825,70 @@ namespace HigLabo.Core
             return null;
         }
 #endif
+
+#if !NETFX_CORE && !Pcl && !_Net_3_5
+        public virtual Object ToEnum(Object value, Type type, StringComparison comparison)
+        {
+            if (value == null) return null;
+            var TP = type;
+            if (TP.IsEnum == false) throw new ArgumentException("T must be Enum type");
+            var tp = value.GetType();
+            if (tp == TP) return value;
+            if (tp == typeof(String))
+            {
+                var s = (String)value;
+                return s.ToEnum(type, comparison);
+            }
+            if (tp.IsValueType == true)
+            {
+                var enumUnderlyingType = TP.GetEnumUnderlyingType();
+                if (enumUnderlyingType == typeof(SByte) && (tp == typeof(SByte))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(Int16) && (tp == typeof(SByte) || tp == typeof(Int16))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(Int32) && (tp == typeof(SByte) || tp == typeof(Int16) || tp == typeof(Int32))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(Int64) && (tp == typeof(SByte) || tp == typeof(Int16) || tp == typeof(Int32) || tp == typeof(Int64))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(Byte) && (tp == typeof(Byte))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(UInt16) && (tp == typeof(Byte) || tp == typeof(UInt16))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(UInt32) && (tp == typeof(Byte) || tp == typeof(UInt16) || tp == typeof(UInt32))) return Enum.ToObject(type, value);
+                if (enumUnderlyingType == typeof(UInt64) && (tp == typeof(Byte) || tp == typeof(UInt16) || tp == typeof(UInt32) || tp == typeof(UInt64))) return Enum.ToObject(type, value);
+            }
+            return null;
+        }
+        public virtual Object Cast(Object value, Type type)
+        {
+            return Cast(value, type, StringComparison.OrdinalIgnoreCase);
+        }
+        public virtual Object Cast(Object value, Type type, StringComparison comparison)
+        {
+            var tp = type;
+            Object o = null;
+
+            if (tp == typeof(String)) { o = (String)value; }
+            else if (tp == typeof(Boolean) || tp == typeof(Boolean?)) { o = this.ToBoolean(value); }
+            else if (tp == typeof(Guid) || tp == typeof(Guid?)) { o = this.ToGuid(value); }
+            else if (tp == typeof(Int16) || tp == typeof(Int16?)) { o = this.ToInt16(value); }
+            else if (tp == typeof(Int32) || tp == typeof(Int32?)) { o = this.ToInt32(value); }
+            else if (tp == typeof(Int64) || tp == typeof(Int64?)) { o = this.ToInt64(value); }
+            else if (tp == typeof(UInt16) || tp == typeof(UInt16?)) { o = this.ToUInt16(value); }
+            else if (tp == typeof(UInt32) || tp == typeof(UInt32?)) { o = this.ToUInt32(value); }
+            else if (tp == typeof(UInt64) || tp == typeof(UInt64?)) { o = this.ToUInt64(value); }
+            else if (tp == typeof(Byte) || tp == typeof(Byte?)) { o = this.ToByte(value); }
+            else if (tp == typeof(SByte) || tp == typeof(SByte?)) { o = this.ToSByte(value); }
+            else if (tp == typeof(Single) || tp == typeof(Single?)) { o = this.ToSingle(value); }
+            else if (tp == typeof(Double) || tp == typeof(Double?)) { o = this.ToDouble(value); }
+            else if (tp == typeof(Decimal) || tp == typeof(Decimal?)) { o = this.ToDecimal(value); }
+            else if (tp == typeof(DateTime) || tp == typeof(DateTime?)) { o = this.ToDateTime(value); }
+            else if (tp == typeof(DateTimeOffset) || tp == typeof(DateTimeOffset?)) { o = this.ToDateTimeOffset(value); }
+            else if (tp.IsEnum) { o = this.ToEnum(value, tp, comparison); }
+            else if (tp.IsPrimitive || tp.IsValueType)
+            {
+                try
+                {
+                    o = Convert.ChangeType(value, tp);
+                }
+                catch { }
+            }
+            return o;
+        }
+#endif
     }
 }

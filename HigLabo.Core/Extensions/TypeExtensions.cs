@@ -43,5 +43,29 @@ namespace HigLabo.Core
             }
             return l.ToArray();
         }
+        public static String GetTypeName(this Type type)
+        {
+            var l = type.GetGenericArguments();
+            if (l.Length == 0)
+            {
+                return type.Name;
+            }
+            else
+            {
+                var sb = new StringBuilder();
+                sb.Append(type.Name.ExtractString(null, '`'));
+                sb.Append("<");
+                for (int i = 0; i < l.Length; i++)
+                {
+                    sb.Append(l[i].GetTypeName());
+                    if (i < l.Length - 1)
+                    {
+                        sb.Append(", ");
+                    }
+                }
+                sb.Append(">");
+                return sb.ToString();
+            }
+        }
     }
 }
