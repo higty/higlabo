@@ -85,6 +85,14 @@ namespace HigLabo.Core.Test
             Assert.AreEqual("Three", FlagsEnum.Three.ToStringFromEnum());
             Assert.AreEqual("Four", FlagsEnum.Four.ToStringFromEnum());
         }
+
+        [TestMethod]
+        public void ManyValueEnumTest()
+        {
+            Assert.AreEqual("TemperatureC", DataTypeName.TemperatureC.ToStringFromEnum());
+            Assert.AreEqual("Velocity", DataTypeName.Velocity.ToStringFromEnum());
+            Assert.AreEqual("Gps", DataTypeName.Gps.ToStringFromEnum());
+        }
         [TestMethod]
         public void HttpStatusCodeEnumTest()
         {
@@ -94,6 +102,23 @@ namespace HigLabo.Core.Test
             Assert.AreEqual("InternalServerError", HttpStatusCode.InternalServerError.ToStringFromEnum());
             Assert.AreEqual("OK", ((HttpStatusCode)(200)).ToStringFromEnum());
         }
+    }
+    public enum DataTypeName
+    {
+        Unknown,
+        TemperatureC,
+        TemperatureF,
+        Humidity,
+        WaterVolume,
+        WindSpeed,
+        WindBearing,
+        Velocity,
+        Luminance,
+        Illuminance,
+        Decibel,
+        Weight,
+        Pressure,
+        Gps,
     }
 
     public enum HttpStatusCode

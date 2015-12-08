@@ -68,7 +68,7 @@ namespace HigLabo.Core
                     il.Emit(OpCodes.Ceq);
 
                     var label = il.DefineLabel();
-                    il.Emit(OpCodes.Brfalse_S, label);
+                    il.Emit(OpCodes.Brfalse, label);
 
                     il.Emit(OpCodes.Ldstr, names[i]);
                     il.Emit(OpCodes.Stloc, result);
@@ -89,14 +89,14 @@ namespace HigLabo.Core
                 il.Emit(OpCodes.Ldc_I4, 0);
                 il.Emit(OpCodes.Conv_I8);
                 il.Emit(OpCodes.Clt);
-                il.Emit(OpCodes.Brtrue_S, returnLabel);
+                il.Emit(OpCodes.Brtrue, returnLabel);
 
                 il.Emit(OpCodes.Ldarg_0);
                 il.Emit(OpCodes.Conv_I8);
                 il.Emit(OpCodes.Ldc_I4, names.Length - 1);
                 il.Emit(OpCodes.Conv_I8);
                 il.Emit(OpCodes.Cgt);
-                il.Emit(OpCodes.Brtrue_S, returnLabel);
+                il.Emit(OpCodes.Brtrue, returnLabel);
 
                 il.Emit(OpCodes.Ldarg_0);
                 var caseLabels = new Label[names.Length + 1];
