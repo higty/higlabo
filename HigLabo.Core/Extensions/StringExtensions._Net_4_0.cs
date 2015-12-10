@@ -17,7 +17,7 @@ namespace HigLabo.Core
         }
         public static Object ToEnum(this String value, Type type, StringComparison comparisonType)
         {
-            return AppEnvironment.Settings.TypeConverter.ToEnum(type, value, comparisonType);
+            return AppEnvironment.Settings.TypeConverter.ToEnum(value, type, comparisonType);
         }
     }
 }

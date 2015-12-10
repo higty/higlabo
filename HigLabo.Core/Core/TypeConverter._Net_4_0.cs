@@ -13,7 +13,7 @@ namespace HigLabo.Core
     {
         private static ConcurrentDictionary<Type, MulticastDelegate> _ToEnumMethods = new ConcurrentDictionary<Type, MulticastDelegate>();
 
-        public Object ToEnum(Type type, String value, StringComparison comparisonType)
+        public Object ToEnum(String value, Type type, StringComparison comparisonType)
         {
             var tp = type;
             if (tp.IsEnum == false) throw new ArgumentException("value must be a enum type");
@@ -58,7 +58,7 @@ namespace HigLabo.Core
             {
                 il.MarkLabel(retLabels[i]);
                 var eValue = values.GetValue(i);
-                il.Emit(OpCodes.Ldc_I4, Convert.ToInt32(eValue));
+                il.Emit(OpCodes.Ldc_I4, System.Convert.ToInt32(eValue));
                 il.Emit(OpCodes.Box, tp);
                 il.Emit(OpCodes.Ret);
             }
