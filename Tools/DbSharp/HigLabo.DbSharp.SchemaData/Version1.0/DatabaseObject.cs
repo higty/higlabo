@@ -42,6 +42,9 @@ namespace HigLabo.DbSharp.MetaData
             get { return this._LastAlteredTime; }
             set { this.SetPropertyValue(ref _LastAlteredTime, value, PropertyChanged); }
         }
+        public DatabaseObject()
+        {
+        }
         public DatabaseObject(DatabaseObjectType objectType)
         {
             this.ObjectType = objectType;

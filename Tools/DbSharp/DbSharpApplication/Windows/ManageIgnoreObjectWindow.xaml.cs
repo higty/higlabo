@@ -62,6 +62,7 @@ namespace HigLabo.DbSharpApplication
             foreach (var item in l)
             {
                 _IgnoreObjects.Remove(item);
+                AValue.SchemaData.IgnoreObjects.Remove(item.Item);
             }
         }
 

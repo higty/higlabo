@@ -202,6 +202,40 @@ namespace HigLabo.DbSharpApplication
             w.ShowDialog();
             this.MainTabTable.IsSelected = true;
         }
+        private void m0103_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseObject o = null;
+
+            switch (this.MainTab.SelectedIndex)
+            {
+                case 0:
+                    var t = this.TableListBox.SelectedItem as Table;
+                    if (t == null) { return; }
+                    o = t;
+                    AValue.SchemaData.Tables.Remove(t);
+                    break;
+                case 1:
+                    var sp = this.StoredProcedureListBox.SelectedItem as StoredProcedure;
+                    if (sp == null) { return; }
+                    o = sp;
+                    AValue.SchemaData.StoredProcedures.Remove(sp);
+                    break;
+                case 2:
+                    var ud = this.UserDefinedTableTypeListBox.SelectedItem as UserDefinedTableType;
+                    if (ud == null) { return; }
+                    o = ud;
+                    AValue.SchemaData.UserDefinedTableTypes.Remove(ud);
+                    break;
+                default: break;
+            }
+            if (o != null)
+            {
+                if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == o.Name) == false)
+                {
+                    AValue.SchemaData.IgnoreObjects.Add(o);
+                }
+            }
+        }
         private void m0104_Click(object sender, RoutedEventArgs e)
         {
             var w = new DeleteObjectWindow();

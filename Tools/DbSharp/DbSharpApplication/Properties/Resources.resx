@@ -180,6 +180,9 @@
   <data name="Menu_DeleteObject" xml:space="preserve">
     <value>_Delete Object</value>
   </data>
+  <data name="Menu_DeleteObjectAndAddToIgnoreList" xml:space="preserve">
+    <value>Delete _Object and Add to ignore list.</value>
+  </data>
   <data name="Menu_Edit" xml:space="preserve">
     <value>_Edit</value>
   </data>
