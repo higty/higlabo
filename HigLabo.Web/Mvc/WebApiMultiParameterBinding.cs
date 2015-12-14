@@ -76,6 +76,10 @@ namespace HigLabo.Web.Mvc
                 catch { }
             }
 
+            if (pValue == null && Descriptor.DefaultValue != null)
+            {
+                pValue = Descriptor.DefaultValue;
+            }
             if (pValue == null)
             {
                 if (Descriptor.ParameterType.IsInheritanceFrom(typeof(Nullable<>)) ||
