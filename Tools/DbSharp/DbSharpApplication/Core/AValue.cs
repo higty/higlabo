@@ -44,6 +44,10 @@ namespace HigLabo.DbSharpApplication.Core
                     String xml = File.ReadAllText(AValue.ConfigData.SchemaFilePath);
                     AValue.LoadSchemaData(xml);
                 }
+                catch (DirectoryNotFoundException)
+                {
+                    AValue.ConfigData.SchemaFilePath = "";
+                }
                 catch (FileNotFoundException)
                 {
                     AValue.ConfigData.SchemaFilePath = "";
