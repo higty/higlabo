@@ -98,9 +98,9 @@
     <Compile Include="HttpModule\DosAttackProtect\RequestHeaderDenyCondition.cs" />
     <Compile Include="Mvc\EmbedResourceController.cs" />
     <Compile Include="Mvc\ParameterDataProvider.cs" />
+    <Compile Include="Mvc\ParameterDataProviderFromHttpRouteData.cs" />
     <Compile Include="Mvc\ParameterDataProviderFromRequestHeader.cs" />
     <Compile Include="Mvc\ParameterDataProviderFromRequestBody.cs" />
-    <Compile Include="Mvc\ParameterDataProviderFromHttpRouteData.cs" />
     <Compile Include="Mvc\ParameterDataProviderFromQueryString.cs" />
     <Compile Include="Mvc\RssResult.cs" />
     <Compile Include="Mvc\ViewType.cs" />
