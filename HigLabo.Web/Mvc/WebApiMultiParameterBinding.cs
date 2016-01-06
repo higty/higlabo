@@ -27,15 +27,20 @@ namespace HigLabo.Web.Mvc
         }
         public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
-            Dictionary<String, String> d = null;
+            Dictionary<String, String> d = new Dictionary<string, string>();
             String s = null;
 
             foreach (var item in this.DataProviders)
             {
-                d = this.GetDataSource(actionContext, item);
-                if (d.ContainsKey(Descriptor.ParameterName) == true)
+                var ds = this.GetDataSource(actionContext, item);
+                foreach (var key in ds.Keys)
                 {
-                    s = d[Descriptor.ParameterName];
+                    if (d.ContainsKey(key) == true) { continue; }
+                    d[key] = ds[key];
+                }
+                if (ds.ContainsKey(Descriptor.ParameterName) == true)
+                {
+                    s = ds[Descriptor.ParameterName];
                     break;
                 }
             }
@@ -67,11 +72,13 @@ namespace HigLabo.Web.Mvc
                 }
                 catch { }
             }
-            else if (pValue == null)
+            else if (Descriptor.ParameterType.IsClass)
             {
                 try
                 {
-                    pValue = this.JsonSerializer.Deserialize(new StringReader(s), Descriptor.ParameterType);
+                    var o = Activator.CreateInstance(Descriptor.ParameterType);
+                    d.Map(o);
+                    pValue = o;
                 }
                 catch { }
             }
@@ -117,6 +124,7 @@ namespace HigLabo.Web.Mvc
             if (md.Contains(HttpMethod.Post) || md.Contains(HttpMethod.Put))
             {
                 var bd = new WebApiMultiParameterBinding(descriptor);
+                bd.DataProviders.Add(new ParameterDataProviderFromHttpRouteData());
                 bd.DataProviders.Add(new ParameterDataProviderFromQueryString());
                 bd.DataProviders.Add(new ParameterDataProviderFromRequestHeader());
                 bd.DataProviders.Add(new ParameterDataProviderFromRequestBody());

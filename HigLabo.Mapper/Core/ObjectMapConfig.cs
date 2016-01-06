@@ -85,7 +85,7 @@ namespace HigLabo.Core
             {
                 return this.MapIDataReader(source as IDataReader, target, context);
             }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source.GetType(), target.GetType());
             try
             {
                 context.CallStackCount++;
@@ -154,7 +154,7 @@ namespace HigLabo.Core
             var mappings = this.CreatePropertyMaps(key.Source, key.Target);
             var om = new ObjectMap(mappings);
             mapConfiguration(om);
-            var md = this.CreateMethod<TSource, TTarget>(om.PropertyMaps);
+            var md = this.CreateMethod<TSource, TTarget>(key.Source, key.Target, om.PropertyMaps);
             _Methods[key] = md;
 
             this.AddPostAction(action);
@@ -204,14 +204,14 @@ namespace HigLabo.Core
             }
         }
 
-        private Delegate GetMethod<TSource, TTarget>()
+        private Delegate GetMethod<TSource, TTarget>(Type sourceType, Type targetType)
         {
             Delegate md = null;
-            var key = new ObjectMapTypeInfo(typeof(TSource), typeof(TTarget));
+            var key = new ObjectMapTypeInfo(sourceType, targetType);
             if (_Methods.TryGetValue(key, out md) == false)
             {
                 var l = this.CreatePropertyMaps(key.Source, key.Target);
-                md = this.CreateMethod<TSource, TTarget>(l);
+                md = this.CreateMethod<TSource, TTarget>(key.Source, key.Target, l);
                 _Methods[key] = md;
             }
             return md;
@@ -273,9 +273,9 @@ namespace HigLabo.Core
             }
             return l;
         }
-        private Delegate CreateMethod<T, TResult>(IEnumerable<PropertyMap> propertyMapInfo)
+        private Delegate CreateMethod<T, TResult>(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
         {
-            var action = this.CreateSetPropertyMethod<T, TResult>(propertyMapInfo);
+            var action = this.CreateSetPropertyMethod(sourceType, targetType, propertyMapInfo);
 
             Func<T, TResult, MappingContext, TResult> func = (source, target, context) =>
             {
@@ -284,7 +284,7 @@ namespace HigLabo.Core
                 if (context.MappedObjectPair.Contains(kv) == true) { return target; }
                 context.MappedObjectPair.Add(kv);
 
-                action(this, source, target, context);
+                action.DynamicInvoke(this, source, target, context);
 
                 this.CallPostAction(source, target);
 
@@ -328,10 +328,8 @@ namespace HigLabo.Core
         /// <typeparam name="TTarget"></typeparam>
         /// <param name="propertyMapInfo"></param>
         /// <returns></returns>
-        private Action<ObjectMapConfig, TSource, TTarget, MappingContext> CreateSetPropertyMethod<TSource, TTarget>(IEnumerable<PropertyMap> propertyMapInfo)
+        private Delegate CreateSetPropertyMethod(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
         {
-            var sourceType = typeof(TSource);
-            var targetType = typeof(TTarget);
             DynamicMethod dm = new DynamicMethod("SetProperty", null, new[] { typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext) });
             ILGenerator il = dm.GetILGenerator();
             var mapConfigTypeConverterGetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
@@ -606,7 +604,7 @@ namespace HigLabo.Core
 
             var f = typeof(Action<,,,>);
             var gf = f.MakeGenericType(typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext));
-            return (Action<ObjectMapConfig, TSource, TTarget, MappingContext>)dm.CreateDelegate(gf);
+            return dm.CreateDelegate(gf);
         }
         private static String GetMethodName(Type type)
         {
