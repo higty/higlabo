@@ -64,6 +64,14 @@ namespace HigLabo.Web.Mvc
             else if (Descriptor.ParameterType == typeof(DateTime) || Descriptor.ParameterType == typeof(DateTime?)) { pValue = s.ToDateTime(); }
             else if (Descriptor.ParameterType == typeof(DateTimeOffset) || Descriptor.ParameterType == typeof(DateTimeOffset?)) { pValue = s.ToDateTimeOffset(); }
             else if (Descriptor.ParameterType.IsEnum) { pValue = s.ToEnum(Descriptor.ParameterType); }
+            else if (Descriptor.ParameterType.IsInheritanceFrom(typeof(Nullable<>)) == true)
+            {
+                var tp = Descriptor.ParameterType.GetGenericArguments()[0];
+                if (tp.IsEnum)
+                {
+                    pValue = s.ToEnum(tp);
+                }
+            }
             else if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)
             {
                 try
