@@ -128,18 +128,13 @@ namespace HigLabo.Web.Mvc
 
         public static WebApiMultiParameterBinding Create(HttpParameterDescriptor descriptor)
         {
-            var md = descriptor.ActionDescriptor.SupportedHttpMethods;
-            if (md.Contains(HttpMethod.Post) || md.Contains(HttpMethod.Put))
-            {
-                var bd = new WebApiMultiParameterBinding(descriptor);
-                bd.DataProviders.Add(new ParameterDataProviderFromHttpRouteData());
-                bd.DataProviders.Add(new ParameterDataProviderFromQueryString());
-                bd.DataProviders.Add(new ParameterDataProviderFromRequestHeader());
-                bd.DataProviders.Add(new ParameterDataProviderFromRequestBody());
+            var bd = new WebApiMultiParameterBinding(descriptor);
+            bd.DataProviders.Add(new ParameterDataProviderFromHttpRouteData());
+            bd.DataProviders.Add(new ParameterDataProviderFromQueryString());
+            bd.DataProviders.Add(new ParameterDataProviderFromRequestHeader());
+            bd.DataProviders.Add(new ParameterDataProviderFromRequestBody());
 
-                return bd;
-            }
-            return null;
+            return bd;
         }
     }
 }
