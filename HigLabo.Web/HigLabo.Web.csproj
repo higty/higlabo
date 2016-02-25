@@ -117,9 +117,10 @@
     <Compile Include="HttpModule\DosAttackProtect\RequestHeaderDenyCondition.cs" />
     <Compile Include="Mvc\EmbedResourceController.cs" />
     <Compile Include="Mvc\ParameterDataProvider.cs" />
-    <Compile Include="Mvc\ParameterDataProviderFromQueryString.cs" />
-    <Compile Include="Mvc\ParameterDataProviderFromRequestBody.cs" />
+    <Compile Include="Mvc\ParameterDataProviderFromHttpRouteData.cs" />
     <Compile Include="Mvc\ParameterDataProviderFromRequestHeader.cs" />
+    <Compile Include="Mvc\ParameterDataProviderFromRequestBody.cs" />
+    <Compile Include="Mvc\ParameterDataProviderFromQueryString.cs" />
     <Compile Include="Mvc\RssResult.cs" />
     <Compile Include="Mvc\ViewType.cs" />
     <Compile Include="Mvc\WadlController.cs" />
@@ -136,6 +137,10 @@
     <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj">
       <Project>{441a7010-4948-4187-8688-ab964a70c7fe}</Project>
       <Name>HigLabo.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj">
+      <Project>{937adaaa-3b53-446a-91d6-07673be9948c}</Project>
+      <Name>HigLabo.Mapper</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

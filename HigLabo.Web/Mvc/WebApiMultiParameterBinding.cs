@@ -27,15 +27,20 @@ namespace HigLabo.Web.Mvc
         }
         public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
-            Dictionary<String, String> d = null;
+            Dictionary<String, String> d = new Dictionary<string, string>();
             String s = null;
 
             foreach (var item in this.DataProviders)
             {
-                d = this.GetDataSource(actionContext, item);
-                if (d.ContainsKey(Descriptor.ParameterName) == true)
+                var ds = this.GetDataSource(actionContext, item);
+                foreach (var key in ds.Keys)
                 {
-                    s = d[Descriptor.ParameterName];
+                    if (d.ContainsKey(key) == true) { continue; }
+                    d[key] = ds[key];
+                }
+                if (ds.ContainsKey(Descriptor.ParameterName) == true)
+                {
+                    s = ds[Descriptor.ParameterName];
                     break;
                 }
             }
@@ -59,6 +64,14 @@ namespace HigLabo.Web.Mvc
             else if (Descriptor.ParameterType == typeof(DateTime) || Descriptor.ParameterType == typeof(DateTime?)) { pValue = s.ToDateTime(); }
             else if (Descriptor.ParameterType == typeof(DateTimeOffset) || Descriptor.ParameterType == typeof(DateTimeOffset?)) { pValue = s.ToDateTimeOffset(); }
             else if (Descriptor.ParameterType.IsEnum) { pValue = s.ToEnum(Descriptor.ParameterType); }
+            else if (Descriptor.ParameterType.IsInheritanceFrom(typeof(Nullable<>)) == true)
+            {
+                var tp = Descriptor.ParameterType.GetGenericArguments()[0];
+                if (tp.IsEnum)
+                {
+                    pValue = s.ToEnum(tp);
+                }
+            }
             else if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)
             {
                 try
@@ -67,15 +80,21 @@ namespace HigLabo.Web.Mvc
                 }
                 catch { }
             }
-            else if (pValue == null)
+            else if (Descriptor.ParameterType.IsClass)
             {
                 try
                 {
-                    pValue = this.JsonSerializer.Deserialize(new StringReader(s), Descriptor.ParameterType);
+                    var o = Activator.CreateInstance(Descriptor.ParameterType);
+                    d.Map(o);
+                    pValue = o;
                 }
                 catch { }
             }
 
+            if (pValue == null && Descriptor.DefaultValue != null)
+            {
+                pValue = Descriptor.DefaultValue;
+            }
             if (pValue == null)
             {
                 if (Descriptor.ParameterType.IsInheritanceFrom(typeof(Nullable<>)) ||
@@ -109,17 +128,13 @@ namespace HigLabo.Web.Mvc
 
         public static WebApiMultiParameterBinding Create(HttpParameterDescriptor descriptor)
         {
-            var md = descriptor.ActionDescriptor.SupportedHttpMethods;
-            if (md.Contains(HttpMethod.Post) || md.Contains(HttpMethod.Put))
-            {
-                var bd = new WebApiMultiParameterBinding(descriptor);
-                bd.DataProviders.Add(new ParameterDataProviderFromQueryString());
-                bd.DataProviders.Add(new ParameterDataProviderFromRequestHeader());
-                bd.DataProviders.Add(new ParameterDataProviderFromRequestBody());
+            var bd = new WebApiMultiParameterBinding(descriptor);
+            bd.DataProviders.Add(new ParameterDataProviderFromHttpRouteData());
+            bd.DataProviders.Add(new ParameterDataProviderFromQueryString());
+            bd.DataProviders.Add(new ParameterDataProviderFromRequestHeader());
+            bd.DataProviders.Add(new ParameterDataProviderFromRequestBody());
 
-                return bd;
-            }
-            return null;
+            return bd;
         }
     }
 }

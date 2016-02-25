@@ -8,18 +8,18 @@ using System.Web.Http.Controllers;
 
 namespace HigLabo.Web.Mvc
 {
-    public class ParameterDataProviderFromQueryString : ParameterDataProvider
+    public class ParameterDataProviderFromHttpRouteData : ParameterDataProvider
     {
         public override string Name
         {
-            get { return "ParameterDataProviderFromQueryString"; }
+            get { return "ParameterDataProviderFromHttpRouteData"; }
         }
         public override Dictionary<string, string> GetDataSource(HttpActionContext context)
         {
             var d = new Dictionary<String, String>(StringComparer.OrdinalIgnoreCase);
-            foreach (var item in context.Request.GetQueryNameValuePairs())
+            foreach (var item in context.ControllerContext.RouteData.Values)
             {
-                d[item.Key] = item.Value;
+                d[item.Key] = item.Value.ToString();
             }
             return d;
         }

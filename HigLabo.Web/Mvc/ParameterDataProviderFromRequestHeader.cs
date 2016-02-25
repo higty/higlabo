@@ -8,18 +8,25 @@ using System.Web.Http.Controllers;
 
 namespace HigLabo.Web.Mvc
 {
-    public class ParameterDataProviderFromQueryString : ParameterDataProvider
+    public class ParameterDataProviderFromRequestHeader : ParameterDataProvider
     {
         public override string Name
         {
-            get { return "ParameterDataProviderFromQueryString"; }
+            get { return "ParameterDataProviderFromRequestHeader"; }
         }
-        public override Dictionary<string, string> GetDataSource(HttpActionContext context)
+        public List<String> Keys { get; private set; }
+
+        public ParameterDataProviderFromRequestHeader()
+        {
+            this.Keys = new List<string>();
+        }
+        public override Dictionary<String, String> GetDataSource(HttpActionContext context)
         {
             var d = new Dictionary<String, String>(StringComparer.OrdinalIgnoreCase);
-            foreach (var item in context.Request.GetQueryNameValuePairs())
+            foreach (var item in context.Request.Headers.Where(el => el.Value.Any()))
             {
-                d[item.Key] = item.Value;
+                if (this.Keys.Contains(item.Key, StringComparer.OrdinalIgnoreCase) == false) { continue; }
+                d[item.Key] = item.Value.FirstOrDefault();
             }
             return d;
         }
