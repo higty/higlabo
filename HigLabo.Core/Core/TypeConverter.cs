@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Text;
 
 namespace HigLabo.Core
 {
@@ -890,5 +891,18 @@ namespace HigLabo.Core
             return o;
         }
 #endif
+        public virtual Encoding ToEncoding(Object value)
+        {
+            try
+            {
+                var s = value as String;
+                if (s == null) { return null; }
+                return Encoding.GetEncoding(s);
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

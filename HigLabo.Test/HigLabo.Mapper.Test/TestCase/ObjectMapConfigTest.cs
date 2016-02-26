@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HigLabo.Core;
 using System.Collections.Generic;
+using System.Text;
 
 namespace HigLabo.Mapper.Test
 {
@@ -116,6 +117,19 @@ namespace HigLabo.Mapper.Test
             var u2 = config.Map(u1, new User());
 
             Assert.AreEqual(23m, u2.Decimal);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_Dictionary_Encoding()
+        {
+            var config = new ObjectMapConfig();
+
+            var d = new Dictionary<String, String>();
+            d["Encoding"] = "UTF-8";
+            var p1 = new TextParser();
+            p1.Encoding = Encoding.ASCII;
+            var p2 = config.Map(d, p1);
+
+            Assert.AreEqual(Encoding.UTF8, p2.Encoding);
         }
         [TestMethod]
         public void ObjectMapConfig_Map_List_List()

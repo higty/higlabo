@@ -365,33 +365,17 @@ namespace HigLabo.Core
                     if (sourceType.IsInheritanceFrom(typeof(Dictionary<String, String>)) == true ||
                         sourceType.IsInheritanceFrom(typeof(Dictionary<String, Object>)) == true)
                     {
-                        MethodInfo tryGetValue = null;
-                        LocalBuilder outValue = null;
-                        //Call ContainsKey method
+                        //Call ContainsKey method.If key does not exist, exit method.
                         var containsKey = sourceType.GetMethod("ContainsKey");
                         il.Emit(OpCodes.Ldarg_1);
                         il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
                         il.Emit(OpCodes.Callvirt, containsKey);
                         il.Emit(OpCodes.Brfalse, endOfCode); //ContainsKey=false --> Exit method without do anything.
-
-                        //Call TryGetValue method
-                        tryGetValue = sourceType.GetMethod("TryGetValue");
-                        outValue = il.DeclareLocal(item.Source.PropertyType);
-                        il.Emit(OpCodes.Ldarg_1);
-                        il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
-                        il.LoadLocala(outValue);
-                        //TryGetValue(item.Source.IndexedPropertyKey, sourceVal) --> Boolean
-                        il.Emit(OpCodes.Callvirt, tryGetValue);
-                        il.Emit(OpCodes.Pop);
-                        il.LoadLocal(outValue);
                     }
-                    else
-                    {
-                        //source[string key]
-                        il.Emit(OpCodes.Ldarg_1);
-                        il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
-                        il.Emit(OpCodes.Callvirt, getMethod);
-                    }
+                    //source[string key]
+                    il.Emit(OpCodes.Ldarg_1);
+                    il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
+                    il.Emit(OpCodes.Callvirt, getMethod);
                     #endregion
                 }
                 else
@@ -479,7 +463,8 @@ namespace HigLabo.Core
                     }
 
                     Label ifConvertedValueNotNullBlock = il.DefineLabel();
-                    if (item.Target.ActualType == typeof(String))
+                    if (item.Target.ActualType == typeof(String) ||
+                        item.Target.ActualType == typeof(Encoding))
                     {
                         convertedVal = il.DeclareLocal(item.Target.ActualType);
                         il.SetLocal(targetVal);
@@ -632,6 +617,7 @@ namespace HigLabo.Core
             if (type == typeof(TimeSpan)) return "ToTimeSpan";
             if (type == typeof(DateTime)) return "ToDateTime";
             if (type == typeof(DateTimeOffset)) return "ToDateTimeOffset";
+            if (type == typeof(Encoding)) return "ToEncoding";
             return null;
         }
     }
