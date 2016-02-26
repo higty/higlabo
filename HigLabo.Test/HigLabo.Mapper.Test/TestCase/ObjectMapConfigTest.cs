@@ -37,8 +37,11 @@ namespace HigLabo.Mapper.Test
             d["Decimal"] = "46.46";
             d["DateTime"] = "2014/12/17";
             d["DayOfWeek"] = "Friday";
-            var u2 = config.Map(d, new User());
+            var u1 = new User();
+            u1.Value = "Value1";
+            var u2 = config.Map(d, u1);
 
+            Assert.AreEqual("Value1", u2.Value);
             Assert.AreEqual("N", u2.Name);
             Assert.AreEqual(46, u2.Int32);
             Assert.AreEqual(46.46m, u2.Decimal);

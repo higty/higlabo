@@ -367,6 +367,13 @@ namespace HigLabo.Core
                     {
                         MethodInfo tryGetValue = null;
                         LocalBuilder outValue = null;
+                        //Call ContainsKey method
+                        var containsKey = sourceType.GetMethod("ContainsKey");
+                        il.Emit(OpCodes.Ldarg_1);
+                        il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
+                        il.Emit(OpCodes.Callvirt, containsKey);
+                        il.Emit(OpCodes.Brfalse, endOfCode); //ContainsKey=false --> Exit method without do anything.
+
                         //Call TryGetValue method
                         tryGetValue = sourceType.GetMethod("TryGetValue");
                         outValue = il.DeclareLocal(item.Source.PropertyType);
