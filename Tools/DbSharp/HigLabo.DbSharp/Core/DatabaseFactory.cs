@@ -30,7 +30,8 @@ namespace HigLabo.DbSharp
                 return func();
             }
             throw new InvalidOperationException("You must set up DatabaseFactory class."
-            + "Please call SetCreateDatabaseMethod method of HigLabo.DbSharp.DatabaseFactory class.");
+            + "Please call SetCreateDatabaseMethod method of HigLabo.DbSharp.DatabaseFactory class." + Environment.NewLine
+            + "DatabaseKey=" + databaseKey);
         }
         public DatabaseContext CreateDatabaseContext(String databaseKey)
         {

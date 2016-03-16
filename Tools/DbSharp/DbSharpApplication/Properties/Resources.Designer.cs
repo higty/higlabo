@@ -403,6 +403,15 @@ namespace HigLabo.DbSharpApplication.Properties {
         }
         
         /// <summary>
+        ///   Menu_Other に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Menu_Other {
+            get {
+                return ResourceManager.GetString("Menu_Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   _Quit に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Menu_Quit {

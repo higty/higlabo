@@ -202,7 +202,7 @@ namespace HigLabo.DbSharpApplication
             w.ShowDialog();
             this.MainTabTable.IsSelected = true;
         }
-        private void m0103_Click(object sender, RoutedEventArgs e)
+        private void m0191_Click(object sender, RoutedEventArgs e)
         {
             DatabaseObject o = null;
 

@@ -38,12 +38,14 @@
             <MenuItem Name="m0100" Header="{x:Static p:Resources.Menu_Edit}">
                 <MenuItem Name="m0101" Header="{x:Static p:Resources.Menu_ManageConnection}" Click="m0101_Click"></MenuItem>
                 <MenuItem Name="m0102" Header="{x:Static p:Resources.Menu_ImportObject}" Click="m0102_Click"></MenuItem>
-                <MenuItem Name="m0103" Header="{x:Static p:Resources.Menu_DeleteObjectAndAddToIgnoreList}" Click="m0103_Click"></MenuItem>
                 <MenuItem Name="m0104" Header="{x:Static p:Resources.Menu_DeleteObject}" Click="m0104_Click"></MenuItem>
                 <MenuItem Name="m0105" Header="{x:Static p:Resources.Menu_GenerateCSharpCode}" Click="m0105_Click"></MenuItem>
                 <MenuItem Name="m0106" Header="{x:Static p:Resources.Menu_GenerateSqlScript}" Click="m0106_Click"></MenuItem>
                 <MenuItem Name="m0107" Header="{x:Static p:Resources.Menu_ManageIgnoreList}" Click="m0107_Click"></MenuItem>
                 <MenuItem Name="m0110" Header="{x:Static p:Resources.Menu_ImportUpdatedObjectAndGenerateFiles}" Click="m0110_Click"></MenuItem>
+                <MenuItem Name="m0190" Header="{x:Static p:Resources.Menu_Other}">
+                    <MenuItem Name="m0191" Header="{x:Static p:Resources.Menu_DeleteObjectAndAddToIgnoreList}" Click="m0191_Click"></MenuItem>
+                </MenuItem>
             </MenuItem>
             <MenuItem Name="m0200" Header="{x:Static p:Resources.Menu_View}">
                 <MenuItem Name="m0201" Header="{x:Static p:Resources.Menu_Table}" Click="m0201_Click"></MenuItem>

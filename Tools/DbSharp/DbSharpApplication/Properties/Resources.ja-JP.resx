@@ -228,6 +228,9 @@
   <data name="Menu_Options" xml:space="preserve">
     <value>オプション(_O)</value>
   </data>
+  <data name="Menu_Other" xml:space="preserve">
+    <value>その他のメニュー</value>
+  </data>
   <data name="Menu_Quit" xml:space="preserve">
     <value>終了(_Q)</value>
   </data>
