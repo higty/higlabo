@@ -77,6 +77,10 @@ namespace HigLabo.DbSharp.CodeGenerator
             }
             c.Fields.Add(CreateNameConstField());
 
+            if (sp.Parameters.Exists(el => el.Name == "DatabaseKey") == false)
+            {
+                c.Properties.Add(CreateDatabaseKeyProperty());
+            }
             if (sp.Parameters.Exists(el => el.Name == "TransactionKey") == false)
             {
                 c.Properties.Add(CreateTransactionKeyProperty());
@@ -86,7 +90,6 @@ namespace HigLabo.DbSharp.CodeGenerator
 
             c.Constructors.Add(CreateConstructor());
 
-            c.Methods.Add(CreateGetDatabaseKeyMethod(this.DatabaseKey));
             c.Methods.Add(CreateGetStoredProcedureNameMethod());
             c.Methods.Add(new Method(MethodAccessModifier.Partial, "ConstructorExecuted"));
             c.Methods.Add(CreateCreateCommandMethod());
@@ -133,6 +136,15 @@ namespace HigLabo.DbSharp.CodeGenerator
             f.Initializer = String.Format("\"{0}\"", this.StoredProcedure.Name);
             return f;
         }
+        public Property CreateDatabaseKeyProperty()
+        {
+            Property p = new Property("String", "DatabaseKey");
+            p.Modifier.AccessModifier = MethodAccessModifier.Public;
+            p.Get.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).DatabaseKey;");
+            p.Set.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = value;");
+
+            return p;
+        }
         public Property CreateTransactionKeyProperty()
         {
             Property p = new Property("String", "TransactionKey");
@@ -159,20 +171,9 @@ namespace HigLabo.DbSharp.CodeGenerator
             var sp = this.StoredProcedure;
             Constructor ct = new Constructor(AccessModifier.Public, sp.Name);
 
+            ct.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = \"{0}\";", this.DatabaseKey);
             ct.Body.Add(SourceCodeLanguage.CSharp, "ConstructorExecuted();");
             return ct;
-        }
-
-        public Method CreateGetDatabaseKeyMethod(String databaseKey)
-        {
-            var sp = this.StoredProcedure;
-            Method md = new Method(MethodAccessModifier.Public, "GetDatabaseKey");
-            md.Modifier.Polymophism = MethodPolymophism.Override;
-            md.ReturnTypeName = new TypeName("String");
-
-            md.Body.Add(SourceCodeLanguage.CSharp, String.Format("return \"{0}\";", databaseKey));
-
-            return md;
         }
 
         public Method CreateCreateCommandMethod()

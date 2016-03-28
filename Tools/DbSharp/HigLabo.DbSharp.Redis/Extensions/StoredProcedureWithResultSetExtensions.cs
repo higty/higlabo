@@ -13,7 +13,8 @@ namespace HigLabo.Core
             where T : StoredProcedureResultSet, new()
         {
             var sp = storedProcedure;
-            return sp.GetDatabaseKey() + Environment.NewLine + sp.ToString();
+            var idx = sp as IDatabaseContext;
+            return idx.DatabaseKey + Environment.NewLine + sp.ToString();
         }
         public static TimeSpan? GetCacheLiveTime<T>(this StoredProcedureWithResultSet<T> storedProcedure, RedisClient redisClient)
             where T : StoredProcedureResultSet, new()

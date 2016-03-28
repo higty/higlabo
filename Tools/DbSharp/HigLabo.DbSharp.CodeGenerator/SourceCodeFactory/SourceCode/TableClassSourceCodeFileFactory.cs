@@ -51,7 +51,8 @@ namespace HigLabo.DbSharp.CodeGenerator
             c.Fields.Add(CreateNameConstField());
             c.Properties.Add(CreateStoredProcedureNameProperty());
 
-            c.Methods.Add(CreateGetDatabaseKeyMethod(this.DatabaseKey));
+            c.Constructors.Add(CreateConstructor());
+
             c.Methods.Add(CreateCreateRecordMethod());
             c.Methods.Add(CreateSetRecordPropertyMethod());
             c.Methods.Add(CreateSetOutputParameterValueMethod());
@@ -96,17 +97,15 @@ namespace HigLabo.DbSharp.CodeGenerator
             return p;
         }
 
-        public Method CreateGetDatabaseKeyMethod(String databaseKey)
+        public Constructor CreateConstructor()
         {
             var t = this.Table;
-            Method md = new Method(MethodAccessModifier.Public, "GetDatabaseKey");
-            md.Modifier.Polymophism = MethodPolymophism.Override;
-            md.ReturnTypeName = new TypeName("String");
+            Constructor ct = new Constructor(AccessModifier.Public, t.Name);
 
-            md.Body.Add(SourceCodeLanguage.CSharp, String.Format("return \"{0}\";", databaseKey));
-
-            return md;
+            ct.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = \"{0}\";", this.DatabaseKey);
+            return ct;
         }
+
         public Method CreateCreateRecordMethod()
         {
             var t = this.Table;

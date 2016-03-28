@@ -15,6 +15,7 @@ namespace HigLabo.DbSharp
         where T : TableRecord, new()
     {
         public abstract String TableName { get; }
+        public String DatabaseKey { get; set; }
         public String TransactionKey { get; set; }
 
         public Table()
@@ -22,7 +23,6 @@ namespace HigLabo.DbSharp
             this.TransactionKey = "";
         }
 
-        public abstract String GetDatabaseKey();
         public abstract T CreateRecord();
         protected abstract void SetRecordProperty(StoredProcedureResultSet source, T target);
         protected abstract void SetOutputParameterValue(T record, StoredProcedure storedProcedure);

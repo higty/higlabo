@@ -33,6 +33,10 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        String IDatabaseContext.DatabaseKey { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         String IDatabaseContext.TransactionKey { get; set; }
         /// <summary>
         /// 
@@ -108,7 +112,6 @@ namespace HigLabo.DbSharp
         {
             return TypeConverter.ToEnum<T>(value);
         }
-        public abstract String GetDatabaseKey();
 
         protected PropertyChangedEventHandler GetPropertyChangedEventHandler()
         {

@@ -9,7 +9,7 @@ namespace HigLabo.DbSharp
 {
     public interface IDatabaseContext
     {
-        String GetDatabaseKey();
+        String DatabaseKey { get; set; }
         String TransactionKey { get; set; }
     }
 
@@ -23,7 +23,7 @@ namespace HigLabo.DbSharp
             {
                 if (context.TransactionKey == "")
                 {
-                    db = DatabaseFactory.Current.CreateDatabase(context.GetDatabaseKey());
+                    db = DatabaseFactory.Current.CreateDatabase(context.DatabaseKey);
                 }
                 else
                 {

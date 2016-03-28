@@ -150,7 +150,10 @@ namespace HigLabo.DbSharpApplication.Core
         public void SetOutputDirectoryPath(String path)
         {
             var fi = this.GetCurrentRecentSchemaFile();
-            fi.OutputDirectoryPath = path;
+            if (fi != null)
+            {
+                fi.OutputDirectoryPath = path;
+            }
         }
         public SchemaFileInfo GetCurrentRecentSchemaFile()
         {
