@@ -81,6 +81,33 @@ namespace HigLabo.DbSharp.Service
                     }
                     else
                     {
+                        var t = SchemaData.Tables.FirstOrDefault(el => el.Name == sp.TableName);
+                        if (t != null)
+                        {
+                            foreach (var parameter in sp.Parameters)
+                            {
+                                var pName = parameter.GetNameWithoutAtmark().Replace("PK_", "");
+                                var p = t.Columns.Find(el => el.Name == pName);
+                                if (p == null) { continue; }
+                                parameter.AllowNull = p.AllowNull;
+                                parameter.EnumName = p.EnumName;
+                                parameter.EnumValues = p.EnumValues;
+                            }
+                            foreach (var resultSets in sp.ResultSets)
+                            {
+
+                                resultSets.TableName = t.Name;
+                                foreach (var column in resultSets.Columns)
+                                {
+                                    var c = t.Columns.Find(el => el.Name == column.Name);
+                                    if (c == null) { continue; }
+                                    column.AllowNull = c.AllowNull;
+                                    column.EnumName = c.EnumName;
+                                    column.EnumValues = c.EnumValues;
+                                }
+                            }
+                        }
+
                         if (spExisted.LastAlteredTime < sp.LastAlteredTime)
                         {
                             ss.Add(sp);
