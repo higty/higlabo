@@ -51,7 +51,7 @@ namespace HigLabo.DbSharp
         public T SelectByPrimaryKey(Database database, T record)
         {
             var r = this.SelectByPrimaryKeyOrNull(database, record);
-            if (r == null) throw new TableRecordNotFoundException();
+            if (r == null) throw new TableRecordNotFoundException(this.TableName);
             return r;
         }
         public T SelectByPrimaryKeyOrNull(T record)

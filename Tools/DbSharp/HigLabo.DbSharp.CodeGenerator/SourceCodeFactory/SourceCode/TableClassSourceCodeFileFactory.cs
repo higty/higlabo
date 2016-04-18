@@ -207,7 +207,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 isFirst = false;
             }
             md.Body.Add(SourceCodeLanguage.CSharp, "var r = this.SelectByPrimaryKeyOrNull(database, {0});", sb.ToString());
-            md.Body.Add(SourceCodeLanguage.CSharp, "if (r == null) throw new TableRecordNotFoundException();");
+            md.Body.Add(SourceCodeLanguage.CSharp, "if (r == null) throw new TableRecordNotFoundException(Name, {0});", sb.ToString());
             md.Body.Add(SourceCodeLanguage.CSharp, "return r;");
 
             return md;
