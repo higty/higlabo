@@ -15,6 +15,8 @@ namespace HigLabo.DbSharp
 {
     public abstract class StoredProcedure : INotifyPropertyChanged, IDatabaseContext
     {
+        public static event EventHandler<StoredProcedureExecutingEventArgs> Executing;
+        public static event EventHandler<StoredProcedureExecutedEventArgs> Executed;
         public static HigLabo.Core.TypeConverter TypeConverter { get; set; }
 
         static StoredProcedure()
@@ -25,10 +27,6 @@ namespace HigLabo.DbSharp
         /// 
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
-        /// <summary>
-        /// 
-        /// </summary>
-        public event EventHandler<CommandExecutingEventArgs> CommandExecuting;
 
         /// <summary>
         /// 
@@ -76,7 +74,9 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand();
-                this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteCommand, database.ConnectionString, cm));
+                var e = new StoredProcedureExecutingEventArgs(this);
+                StoredProcedure.OnExecuting(e);
+                if (e.Cancel == true) { return affectedRecordCount; }
                 affectedRecordCount = database.ExecuteCommand(cm);
                 this.SetOutputParameterValue(cm);
             }
@@ -85,6 +85,7 @@ namespace HigLabo.DbSharp
                 if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
                 if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
             }
+            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return affectedRecordCount;
         }
         /// <summary>
@@ -125,12 +126,20 @@ namespace HigLabo.DbSharp
                 eh(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        protected void OnCommandExecuting(CommandExecutingEventArgs e)
+        protected static void OnExecuting(StoredProcedureExecutingEventArgs e)
         {
-            var eh = this.CommandExecuting;
+            var eh = StoredProcedure.Executing;
             if (eh != null)
             {
-                eh(this, e);
+                eh(null, e);
+            }
+        }
+        protected static void OnExecuted(StoredProcedureExecutedEventArgs e)
+        {
+            var eh = StoredProcedure.Executed;
+            if (eh != null)
+            {
+                eh(null, e);
             }
         }
     }

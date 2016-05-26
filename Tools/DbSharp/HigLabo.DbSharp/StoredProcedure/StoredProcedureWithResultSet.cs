@@ -83,7 +83,8 @@ namespace HigLabo.DbSharp
             {
                 var resultsets = new List<StoredProcedureResultSet>();
                 var cm = CreateCommand();
-                this.OnCommandExecuting(new CommandExecutingEventArgs(MethodName.ExecuteReader, database.ConnectionString, cm));
+                var e = new StoredProcedureExecutingEventArgs(this);
+                StoredProcedure.OnExecuting(e);
                 dr = database.ExecuteReader(cm);
                 while (dr.Read())
                 {
@@ -100,6 +101,7 @@ namespace HigLabo.DbSharp
                 if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
                 if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
             }
+            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
         }
         /// <summary>
         /// 
