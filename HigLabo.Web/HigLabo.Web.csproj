@@ -115,6 +115,7 @@
     <Compile Include="HttpModule\DosAttackProtect\IPAddressDenyCondition.cs" />
     <Compile Include="HttpModule\DosAttackProtect\IPAddress_v4.cs" />
     <Compile Include="HttpModule\DosAttackProtect\RequestHeaderDenyCondition.cs" />
+    <Compile Include="Mvc\BrowserRequestCanceledMessageHandler.cs" />
     <Compile Include="Mvc\EmbedResourceController.cs" />
     <Compile Include="Mvc\ParameterDataProvider.cs" />
     <Compile Include="Mvc\ParameterDataProviderFromHttpRouteData.cs" />

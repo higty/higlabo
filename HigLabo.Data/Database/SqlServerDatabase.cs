@@ -224,6 +224,7 @@ namespace HigLabo.Data
             if (e.ThrowException == true)
             {
                 var ex = CreateException(e);
+                throw ex;
             }
         }
 
