@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Web.Http.Controllers;
+using HigLabo.Core;
 
 namespace HigLabo.Web.Mvc
 {
@@ -14,14 +15,18 @@ namespace HigLabo.Web.Mvc
         {
             get { return "ParameterDataProviderFromQueryString"; }
         }
+        public QueryStringConverter QueryStringConverter { get; private set; }
+
+        public ParameterDataProviderFromQueryString()
+        {
+            this.QueryStringConverter = new QueryStringConverter();
+        }
+
         public override Dictionary<string, string> GetDataSource(HttpActionContext context)
         {
             var d = new Dictionary<String, String>(StringComparer.OrdinalIgnoreCase);
-            foreach (var item in context.Request.GetQueryNameValuePairs())
-            {
-                d[item.Key] = item.Value;
-            }
-            return d;
+            var cv = this.QueryStringConverter;
+            return cv.Parse(context.Request.RequestUri.Query);
         }
     }
 }

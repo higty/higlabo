@@ -14,7 +14,7 @@ namespace HigLabo.Web
         }
         public void Authenticate(String id, DateTime expireTime, Boolean isPersistent)
         {
-            var ticket = new FormsAuthenticationTicket(1, id, expireTime, expireTime, isPersistent, "");
+            var ticket = new FormsAuthenticationTicket(1, id, DateTime.Now, expireTime, isPersistent, "");
             this.Authenticate(ticket);
         }
         public void Authenticate(FormsAuthenticationTicket ticket)

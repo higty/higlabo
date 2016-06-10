@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace HigLabo.Mime
+namespace HigLabo.Converter
 {
-    public class DateTimeRfc2822
+    public class Rfc2822Converter
     {
-        public static DateTimeOffset Parse(String input)
+        public DateTimeOffset Parse(String input)
         {
             DateTimeOffset dtime = DateTimeOffset.Now;
             TimeSpan ts = TimeSpan.Zero;

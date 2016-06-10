@@ -48,7 +48,6 @@
   <ItemGroup>
     <Compile Include="Core\ContentDisposition.cs" />
     <Compile Include="Core\ContentType.cs" />
-    <Compile Include="Core\DateTimeRfc2822.cs" />
     <Compile Include="Core\TransferEncoding.cs" />
     <Compile Include="Mail\MailAddress.cs" />
     <Compile Include="Mail\MailAddressCollection.cs" />

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using HigLabo.Converter;
 
 namespace HigLabo.Mime
 {
     public class MailHeaderCollection : MimeHeaderCollection
     {
+        public static readonly Rfc2822Converter Rfc2822Converter = new Rfc2822Converter();
+
         private DateTimeOffset? _Date = null;
         private String _Subject = null;
         private String _MessageID = null;
@@ -26,7 +29,7 @@ namespace HigLabo.Mime
                 if (_Date == null)
                 {
                     var date = this["Date"];
-                    _Date = DateTimeRfc2822.Parse(date);
+                    _Date = MailHeaderCollection.Rfc2822Converter.Parse(date);
                 }
                 return _Date.Value;
             }

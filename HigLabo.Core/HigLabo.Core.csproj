@@ -84,6 +84,12 @@
   <ItemGroup>
     <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj">
+      <Project>{757964e0-b391-48eb-ad04-d9c41091cfb5}</Project>
+      <Name>HigLabo.Converter</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,9 +10,11 @@ namespace HigLabo.Core
     {
         public Func<String, String> UrlEncoder = s => s;
         public Func<String, String> UrlDecoder = s => s;
+        public StringComparer StringComparer { get; set; }
 
         public QueryStringConverter()
         {
+            this.StringComparer = StringComparer.OrdinalIgnoreCase;
 #if !Pcl
             this.UrlEncoder = WebUtility.UrlEncode;
             this.UrlDecoder = WebUtility.UrlDecode;
@@ -20,7 +22,7 @@ namespace HigLabo.Core
         }
         public Dictionary<String, String> Parse(String url)
         {
-            var d = new Dictionary<String, String>();
+            var d = new Dictionary<String, String>(this.StringComparer);
             var queryString = url;
             var index = url.IndexOf("?");
             if (index > -1)
