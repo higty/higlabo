@@ -83,7 +83,7 @@ namespace HigLabo.DbSharp
             {
                 var resultsets = new List<StoredProcedureResultSet>();
                 var cm = CreateCommand();
-                var e = new StoredProcedureExecutingEventArgs(this);
+                var e = new StoredProcedureExecutingEventArgs(this, cm);
                 StoredProcedure.OnExecuting(e);
                 dr = database.ExecuteReader(cm);
                 while (dr.Read())

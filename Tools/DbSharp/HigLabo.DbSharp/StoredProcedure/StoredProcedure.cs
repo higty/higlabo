@@ -74,7 +74,7 @@ namespace HigLabo.DbSharp
             try
             {
                 var cm = CreateCommand();
-                var e = new StoredProcedureExecutingEventArgs(this);
+                var e = new StoredProcedureExecutingEventArgs(this, cm);
                 StoredProcedure.OnExecuting(e);
                 if (e.Cancel == true) { return affectedRecordCount; }
                 affectedRecordCount = database.ExecuteCommand(cm);

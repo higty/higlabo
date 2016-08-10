@@ -52,6 +52,7 @@
     <Compile Include="Entity\EqualityFunc.cs" />
     <Compile Include="Entity\EventArgs.cs" />
     <Compile Include="Entity\ExceptionEventArgs.cs" />
+    <Compile Include="Entity\IPAddress_v4.cs" />
     <Compile Include="Extensions\DateTimeOffsetExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions_WinRT.cs" />

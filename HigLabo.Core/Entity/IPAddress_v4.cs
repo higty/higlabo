@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace HigLabo.Web.Module
+namespace HigLabo.Core
 {
     public class IPAddress_v4
     {
@@ -41,13 +40,19 @@ namespace HigLabo.Web.Module
         {
             return (Int32)this.Value;
         }
-
+        /// <summary>
+        /// IP Address or IP Address with port number
+        /// xxx.xxx.xxx.xxx, xxx.xxx.xxx.xxx:80
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static IPAddress_v4 TryCreate(String value)
         {
+            if (String.IsNullOrEmpty(value)) { return null; }
             String[] ss = null;
             String ip = "";
 
-            if (value.Contains(':') == true)
+            if (value.Contains(":") == true)
             {
                 ss = value.Split(':');
                 ip = ss[0];
@@ -58,6 +63,7 @@ namespace HigLabo.Web.Module
             }
             ss = ip.Split('.');
             Byte[] xx = new Byte[4];
+            if (xx.Length != 4) { return null; }
             for (int i = 0; i < ss.Length; i++)
             {
                 if (Byte.TryParse(ss[i], out xx[i]) == false) { return null; }

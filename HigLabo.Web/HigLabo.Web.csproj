@@ -113,7 +113,6 @@
     <Compile Include="HttpModule\DosAttackProtect\IDosAttackProtectCondition.cs" />
     <Compile Include="HttpModule\DosAttackProtect\IPAddressCondition.cs" />
     <Compile Include="HttpModule\DosAttackProtect\IPAddressDenyCondition.cs" />
-    <Compile Include="HttpModule\DosAttackProtect\IPAddress_v4.cs" />
     <Compile Include="HttpModule\DosAttackProtect\RequestHeaderDenyCondition.cs" />
     <Compile Include="Mvc\BrowserRequestCanceledMessageHandler.cs" />
     <Compile Include="Mvc\EmbedResourceController.cs" />
