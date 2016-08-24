@@ -18,12 +18,14 @@ namespace HigLabo.Web.Mvc
         private const String CacheKeyPrefix = "WebApiMultiParameterBinding";
         public List<ParameterDataProvider> DataProviders { get; private set; }
         public JsonSerializer JsonSerializer { get; set; }
+        public Boolean IsUnifyLineFeed { get; set; }
 
         public WebApiMultiParameterBinding(HttpParameterDescriptor descriptor)
             : base(descriptor)
         {
             this.DataProviders = new List<ParameterDataProvider>();
             this.JsonSerializer = new JsonSerializer();
+            this.IsUnifyLineFeed = true;
         }
         public override Task ExecuteBindingAsync(ModelMetadataProvider metadataProvider, HttpActionContext actionContext, CancellationToken cancellationToken)
         {
@@ -47,7 +49,17 @@ namespace HigLabo.Web.Mvc
             
             Object pValue = null;
 
-            if (Descriptor.ParameterType == typeof(String)) { pValue = s; }
+            if (Descriptor.ParameterType == typeof(String))
+            {
+                if (this.IsUnifyLineFeed == true)
+                {
+                    pValue = s.UnifyLineFeed();
+                }
+                else
+                {
+                    pValue = s;
+                }
+            }
             else if (Descriptor.ParameterType == typeof(Boolean) || Descriptor.ParameterType == typeof(Boolean?)) { pValue = s.ToBoolean(); }
             else if (Descriptor.ParameterType == typeof(Guid) || Descriptor.ParameterType == typeof(Guid?)) { pValue = s.ToGuid(); }
             else if (Descriptor.ParameterType == typeof(Int16) || Descriptor.ParameterType == typeof(Int16?)) { pValue = s.ToInt16(); }
