@@ -9,6 +9,8 @@ namespace HigLabo.Core
     {
         public static String UnifyLineFeed(this String text)
         {
+            if (text == null) { return text; }
+
             var nextChar = '\0';
             var sb = new StringBuilder(text.Length);
 

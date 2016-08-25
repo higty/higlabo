@@ -47,83 +47,18 @@ namespace HigLabo.Web.Mvc
                     break;
                 }
             }
-            
-            Object pValue = null;
 
-            if (Descriptor.ParameterType == typeof(String))
+            if (this.IsUnifyLineFeed == true)
             {
-                if (this.IsUnifyLineFeed == true)
-                {
-                    pValue = s.UnifyLineFeed();
-                }
-                else
-                {
-                    pValue = s;
-                }
+                s = s.UnifyLineFeed();
             }
-            else if (Descriptor.ParameterType == typeof(Boolean) || Descriptor.ParameterType == typeof(Boolean?)) { pValue = s.ToBoolean(); }
-            else if (Descriptor.ParameterType == typeof(Guid) || Descriptor.ParameterType == typeof(Guid?)) { pValue = s.ToGuid(); }
-            else if (Descriptor.ParameterType == typeof(Int16) || Descriptor.ParameterType == typeof(Int16?)) { pValue = s.ToInt16(); }
-            else if (Descriptor.ParameterType == typeof(Int32) || Descriptor.ParameterType == typeof(Int32?)) { pValue = s.ToInt32(); }
-            else if (Descriptor.ParameterType == typeof(Int64) || Descriptor.ParameterType == typeof(Int64?)) { pValue = s.ToInt64(); }
-            else if (Descriptor.ParameterType == typeof(UInt16) || Descriptor.ParameterType == typeof(UInt16?)) { pValue = s.ToUInt16(); }
-            else if (Descriptor.ParameterType == typeof(UInt32) || Descriptor.ParameterType == typeof(UInt32?)) { pValue = s.ToUInt32(); }
-            else if (Descriptor.ParameterType == typeof(UInt64) || Descriptor.ParameterType == typeof(UInt64?)) { pValue = s.ToUInt64(); }
-            else if (Descriptor.ParameterType == typeof(Byte) || Descriptor.ParameterType == typeof(Byte?)) { pValue = s.ToByte(); }
-            else if (Descriptor.ParameterType == typeof(SByte) || Descriptor.ParameterType == typeof(SByte?)) { pValue = s.ToSByte(); }
-            else if (Descriptor.ParameterType == typeof(Single) || Descriptor.ParameterType == typeof(Single?)) { pValue = s.ToSingle(); }
-            else if (Descriptor.ParameterType == typeof(Double) || Descriptor.ParameterType == typeof(Double?)) { pValue = s.ToDouble(); }
-            else if (Descriptor.ParameterType == typeof(Decimal) || Descriptor.ParameterType == typeof(Decimal?)) { pValue = s.ToDecimal(); }
-            else if (Descriptor.ParameterType == typeof(DateTime) || Descriptor.ParameterType == typeof(DateTime?)) { pValue = s.ToDateTime(); }
-            else if (Descriptor.ParameterType == typeof(DateTimeOffset) || Descriptor.ParameterType == typeof(DateTimeOffset?)) { pValue = s.ToDateTimeOffset(); }
-            else if (Descriptor.ParameterType.IsEnum) { pValue = s.ToEnum(Descriptor.ParameterType); }
-            else if (Descriptor.ParameterType.IsInheritanceFrom(typeof(Nullable<>)) == true)
+            var pValue = GetValue(Descriptor.ParameterType, s);
+
+            if (pValue == null && Descriptor.DefaultValue != null)
             {
-                var tp = Descriptor.ParameterType.GetGenericArguments()[0];
-                if (tp.IsEnum)
-                {
-                    pValue = s.ToEnum(tp);
-                }
+                pValue = Descriptor.DefaultValue;
             }
-            else if (Descriptor.ParameterType.IsInheritanceFrom(typeof(IEnumerable<>)))
-            {
-                if (s.Trim().StartsWith("["))
-                {
-                    var oo = JsonConvert.DeserializeObject(s.Trim());
-                    if (oo is JArray)
-                    {
-                        Type tp = Descriptor.ParameterType.GetGenericArguments()[0];
-                        var ltp = typeof(List<>).MakeGenericType(tp);
-                        var md = ltp.GetMethod("Add");
-                        var pp = Activator.CreateInstance(ltp);
-                        foreach (var o in oo as JArray)
-                        {
-                            if (o is JObject)
-                            {
-                                var dd = new Dictionary<String, String>();
-                                var jo = o as JObject;
-                                foreach (var property in jo.Properties())
-                                {
-                                    dd[property.Name] = jo[property.Name].ToString();
-                                }
-                                var o1 = Activator.CreateInstance(tp);
-                                dd.Map(o1);
-                                md.Invoke(pp, new Object[] { o1 });
-                            }
-                        }
-                        pValue = pp;
-                    }
-                }
-            }
-            else if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)
-            {
-                try
-                {
-                    pValue = Convert.ChangeType(s, Descriptor.ParameterType);
-                }
-                catch { }
-            }
-            else if (Descriptor.ParameterType.IsClass)
+            if (pValue == null && Descriptor.ParameterType.IsClass)
             {
                 try
                 {
@@ -132,11 +67,6 @@ namespace HigLabo.Web.Mvc
                     pValue = o;
                 }
                 catch { }
-            }
-
-            if (pValue == null && Descriptor.DefaultValue != null)
-            {
-                pValue = Descriptor.DefaultValue;
             }
             if (pValue == null)
             {
@@ -154,6 +84,84 @@ namespace HigLabo.Web.Mvc
             TaskCompletionSource<Object> tcs = new TaskCompletionSource<Object>();
             tcs.SetResult(null);
             return tcs.Task;
+        }
+        private static Object GetValue(Type type, String value)
+        {
+            Object pValue = null;
+            var s = value;
+
+            if (type == typeof(String))
+            {
+                pValue = s;
+            }
+            else if (type == typeof(Boolean) || type == typeof(Boolean?)) { pValue = s.ToBoolean(); }
+            else if (type == typeof(Guid) || type == typeof(Guid?)) { pValue = s.ToGuid(); }
+            else if (type == typeof(Int16) || type == typeof(Int16?)) { pValue = s.ToInt16(); }
+            else if (type == typeof(Int32) || type == typeof(Int32?)) { pValue = s.ToInt32(); }
+            else if (type == typeof(Int64) || type == typeof(Int64?)) { pValue = s.ToInt64(); }
+            else if (type == typeof(UInt16) || type == typeof(UInt16?)) { pValue = s.ToUInt16(); }
+            else if (type == typeof(UInt32) || type == typeof(UInt32?)) { pValue = s.ToUInt32(); }
+            else if (type == typeof(UInt64) || type == typeof(UInt64?)) { pValue = s.ToUInt64(); }
+            else if (type == typeof(Byte) || type == typeof(Byte?)) { pValue = s.ToByte(); }
+            else if (type == typeof(SByte) || type == typeof(SByte?)) { pValue = s.ToSByte(); }
+            else if (type == typeof(Single) || type == typeof(Single?)) { pValue = s.ToSingle(); }
+            else if (type == typeof(Double) || type == typeof(Double?)) { pValue = s.ToDouble(); }
+            else if (type == typeof(Decimal) || type == typeof(Decimal?)) { pValue = s.ToDecimal(); }
+            else if (type == typeof(DateTime) || type == typeof(DateTime?)) { pValue = s.ToDateTime(); }
+            else if (type == typeof(DateTimeOffset) || type == typeof(DateTimeOffset?)) { pValue = s.ToDateTimeOffset(); }
+            else if (type.IsEnum) { pValue = s.ToEnum(type); }
+            else if (type.IsInheritanceFrom(typeof(Nullable<>)) == true)
+            {
+                var tp = type.GetGenericArguments()[0];
+                if (tp.IsEnum)
+                {
+                    pValue = s.ToEnum(tp);
+                }
+            }
+            else if (type.IsInheritanceFrom(typeof(IEnumerable<>)))
+            {
+                if (s.Trim().StartsWith("["))
+                {
+                    var oo = JsonConvert.DeserializeObject(s.Trim());
+                    if (oo is JArray)
+                    {
+                        Type tp = type.GetGenericArguments()[0];
+                        var ltp = typeof(List<>).MakeGenericType(tp);
+                        var md = ltp.GetMethod("Add");
+                        var pp = Activator.CreateInstance(ltp);
+                        foreach (var o in oo as JArray)
+                        {
+                            if (o is JObject)
+                            {
+                                var dd = new Dictionary<String, String>();
+                                var jo = o as JObject;
+                                foreach (var property in jo.Properties())
+                                {
+                                    dd[property.Name] = jo[property.Name].ToString();
+                                }
+                                var o1 = Activator.CreateInstance(tp);
+                                dd.Map(o1);
+                                md.Invoke(pp, new Object[] { o1 });
+                            }
+                            else if (o is JToken)
+                            {
+                                var o1 = GetValue(tp, o.ToString());
+                                md.Invoke(pp, new Object[] { o1 });
+                            }
+                        }
+                        pValue = pp;
+                    }
+                }
+            }
+            else if (type.IsPrimitive || type.IsValueType)
+            {
+                try
+                {
+                    pValue = Convert.ChangeType(s, type);
+                }
+                catch { }
+            }
+            return pValue;
         }
         protected Dictionary<String, String> GetDataSource(HttpActionContext context, ParameterDataProvider provider)
         {
