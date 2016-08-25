@@ -10,6 +10,7 @@ using HigLabo.Core;
 using Newtonsoft.Json;
 using System.IO;
 using System.Net.Http;
+using Newtonsoft.Json.Linq;
 
 namespace HigLabo.Web.Mvc
 {
@@ -82,6 +83,36 @@ namespace HigLabo.Web.Mvc
                 if (tp.IsEnum)
                 {
                     pValue = s.ToEnum(tp);
+                }
+            }
+            else if (Descriptor.ParameterType.IsInheritanceFrom(typeof(IEnumerable<>)))
+            {
+                if (s.Trim().StartsWith("["))
+                {
+                    var oo = JsonConvert.DeserializeObject(s.Trim());
+                    if (oo is JArray)
+                    {
+                        Type tp = Descriptor.ParameterType.GetGenericArguments()[0];
+                        var ltp = typeof(List<>).MakeGenericType(tp);
+                        var md = ltp.GetMethod("Add");
+                        var pp = Activator.CreateInstance(ltp);
+                        foreach (var o in oo as JArray)
+                        {
+                            if (o is JObject)
+                            {
+                                var dd = new Dictionary<String, String>();
+                                var jo = o as JObject;
+                                foreach (var property in jo.Properties())
+                                {
+                                    dd[property.Name] = jo[property.Name].ToString();
+                                }
+                                var o1 = Activator.CreateInstance(tp);
+                                dd.Map(o1);
+                                md.Invoke(pp, new Object[] { o1 });
+                            }
+                        }
+                        pValue = pp;
+                    }
                 }
             }
             else if (Descriptor.ParameterType.IsPrimitive || Descriptor.ParameterType.IsValueType)

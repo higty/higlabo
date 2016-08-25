@@ -33,13 +33,16 @@ namespace HigLabo.Web.Mvc
             {
                 case "application/json":
                     {
-                        var bodyText = req.Content.ReadAsStringAsync().Result;
-                        var values = JsonConvert.DeserializeObject<Dictionary<String, String>>(bodyText);
-                        d = values.Aggregate(d, (seed, current) =>
+                        var bodyText = req.Content.ReadAsStringAsync().Result.Trim();
+                        if (bodyText.StartsWith("{"))
                         {
-                            seed[current.Key] = current.Value;
-                            return seed;
-                        });
+                            var values = JsonConvert.DeserializeObject<Dictionary<String, Object>>(bodyText);
+                            d = values.Aggregate(d, (seed, current) =>
+                            {
+                                seed[current.Key] = current.Value.ToString();
+                                return seed;
+                            });
+                        }
                     }
                     break;
                 case "application/x-www-form-urlencoded":
