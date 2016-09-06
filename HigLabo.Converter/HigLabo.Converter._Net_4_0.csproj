@@ -51,6 +51,7 @@
     <Compile Include="Converter\ByteConverter.cs" />
     <Compile Include="Converter\ISO8601Parser.cs" />
     <Compile Include="Converter\ModifiedUtf7Converter.cs" />
+    <Compile Include="Converter\PunycodeConverter.cs" />
     <Compile Include="Converter\QuotedPrintableConverter.cs" />
     <Compile Include="Converter\QuotedPrintableConvertMode.cs" />
     <Compile Include="Converter\Rfc2047Converter.cs" />
