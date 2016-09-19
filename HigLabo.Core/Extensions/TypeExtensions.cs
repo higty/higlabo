@@ -7,7 +7,7 @@ namespace HigLabo.Core
 {
     public static class TypeExtensions
     {
-        public static bool IsInheritanceFrom(this Type type, Type parentType)
+        public static Boolean IsInheritanceFrom(this Type type, Type parentType)
         {
             if (parentType.IsGenericTypeDefinition == false)
             {
@@ -30,6 +30,22 @@ namespace HigLabo.Core
             }
             //リストに含まれているかどうかチェック
             return parentTypes.Any(x => x.IsGenericType && x.GetGenericTypeDefinition() == parentType);
+        }
+        public static Boolean IsNumber(this Type type)
+        {
+            if (type == typeof(SByte)) { return true; }
+            if (type == typeof(Int16)) { return true; }
+            if (type == typeof(Int32)) { return true; }
+            if (type == typeof(Int64)) { return true; }
+            if (type == typeof(Byte)) { return true; }
+            if (type == typeof(UInt16)) { return true; }
+            if (type == typeof(UInt32)) { return true; }
+            if (type == typeof(UInt64)) { return true; }
+            if (type == typeof(Single)) { return true; }
+            if (type == typeof(Double)) { return true; }
+            if (type == typeof(Decimal)) { return true; }
+
+            return false;
         }
         public static Type[] GetBaseClasses(this Type type)
         {

@@ -73,7 +73,14 @@ namespace HigLabo.DbSharp
             DatabaseContext.SetDatabaseContext(this.TransactionKey, this);
             if (isolationLevel.HasValue == true)
             {
-                this.BeginTransaction(isolationLevel.Value);
+                try
+                {
+                    this.BeginTransaction(isolationLevel.Value);
+                }
+                finally
+                {
+                    this.Dispose();
+                }
             }
         }
         /// <summary>
