@@ -15,6 +15,8 @@ namespace HigLabo.Net.Smtp
     /// </summary>
     public class SmtpContent
     {
+        public static readonly SmtpContentDefaultSettings Default = new SmtpContentDefaultSettings();
+
         private List<SmtpContent> _Contents;
         public SmtpMailHeaderCollection Headers { get; private set; }
         public List<SmtpContent> Contents
@@ -52,16 +54,8 @@ namespace HigLabo.Net.Smtp
             this._Contents = new List<SmtpContent>();
 
             this.ContentType = new ContentType("application/octet-stream");
-            if (CultureInfo.CurrentCulture.TwoLetterISOLanguageName == "ja")
-            {
-                this.ContentType.CharsetEncoding = Encoding.GetEncoding("iso-2022-jp");
-                this.ContentTransferEncoding = TransferEncoding.Base64;
-            }
-            else
-            {
-                this.ContentType.CharsetEncoding = Encoding.UTF8;
-                this.ContentTransferEncoding = TransferEncoding.QuotedPrintable;
-            }
+            this.ContentType.CharsetEncoding = Default.ContentTypeCharsetEncoding;
+            this.ContentTransferEncoding = Default.ContentTransferEncoding;
             this.ContentDisposition = new ContentDisposition();
         }
 

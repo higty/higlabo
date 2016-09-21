@@ -147,6 +147,7 @@
     <Compile Include="Smtp\SmtpMessageCreate\SmtpMessageCreateCondition.cs" />
     <Compile Include="Smtp\SmtpMessageCreate\SmtpMessageCreateMode.cs" />
     <Compile Include="Smtp\SmtpMessageCreate\SmtpMessageReplyMode.cs" />
+    <Compile Include="Smtp\SmtpContentDefaultSettings.cs" />
     <Compile Include="Smtp\SmtpMessageDefaultSettings.cs" />
     <Compile Include="Smtp\SmtpResponseCode.cs" />
   </ItemGroup>
