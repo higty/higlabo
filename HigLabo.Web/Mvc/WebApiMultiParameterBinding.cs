@@ -90,6 +90,8 @@ namespace HigLabo.Web.Mvc
             Object pValue = null;
             var s = value;
 
+            if (s == null) { return pValue; }
+
             if (type == typeof(String))
             {
                 pValue = s;
