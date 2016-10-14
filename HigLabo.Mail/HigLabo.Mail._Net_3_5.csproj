@@ -130,6 +130,7 @@
     <Compile Include="Smtp\SmtpClientDefaultSettings.cs" />
     <Compile Include="Smtp\SmtpConnectionState.cs" />
     <Compile Include="Smtp\SmtpContent.cs" />
+    <Compile Include="Smtp\SmtpContentDefaultSettings.cs" />
     <Compile Include="Smtp\SmtpEncryptedCommunication.cs" />
     <Compile Include="Smtp\SmtpMailHeader.cs" />
     <Compile Include="Smtp\SmtpMailHeaderCollection.cs" />
