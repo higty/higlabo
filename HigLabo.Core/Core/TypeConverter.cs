@@ -784,7 +784,7 @@ namespace HigLabo.Core
             var firstColonIndex = value.IndexOf(":", StringComparison.OrdinalIgnoreCase);
             if (firstColonIndex == -1) { return null; }
             var timezoneStartIndex = value.IndexOf(" ", firstColonIndex, StringComparison.OrdinalIgnoreCase);
-
+            if (timezoneStartIndex == -1) { return null; }
             var dateTimePart = value.Substring(0, timezoneStartIndex);//Tue, 25 Oct 2011 20:44:24
             if (DateTimeOffset.TryParse(dateTimePart, out dtime) == false) { return null; }
             //(CST) or CST or +0600 (Three letter military timezone)
