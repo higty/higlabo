@@ -101,6 +101,7 @@
     <Compile Include="Core\HttpContext.Generic.cs" />
     <Compile Include="Core\HttpDefaultContext.cs" />
     <Compile Include="Core\HttpResponseStream.cs" />
+    <Compile Include="Extensions\ApiControllerExtensions.cs" />
     <Compile Include="Extensions\ControlExtensions.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\HtmlHelperExtensions.cs" />
