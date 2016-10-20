@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 
-namespace HigLabo.Core
+namespace HigLabo.Web.Mvc
 {
     public class ApiJsonReslut<T> : IHttpActionResult
     {
