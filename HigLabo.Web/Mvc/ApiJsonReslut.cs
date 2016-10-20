@@ -12,10 +12,17 @@ using System.Web.Http;
 
 namespace HigLabo.Web.Mvc
 {
-    public class ApiJsonReslut<T> : IHttpActionResult
+    public class ApiJsonReslut
     {
         public static JsonSerializerSettings JsonSerializerSettings { get; set; }
 
+        static ApiJsonReslut()
+        {
+            JsonSerializerSettings = new JsonSerializerSettings();
+        }
+    }
+    public class ApiJsonReslut<T> : IHttpActionResult
+    {
         private HttpRequestMessage _Request = null;
 
         public HttpStatusCode StatusCode { get; set; }
@@ -24,7 +31,6 @@ namespace HigLabo.Web.Mvc
 
         static ApiJsonReslut()
         {
-            JsonSerializerSettings = new JsonSerializerSettings();
         }
         public ApiJsonReslut(HttpRequestMessage request, HttpStatusCode statusCode, T data)
         {
@@ -39,7 +45,11 @@ namespace HigLabo.Web.Mvc
         }
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
-            var json = JsonConvert.SerializeObject(this.Data, this.Formatting, JsonSerializerSettings);
+            if (ApiJsonReslut.JsonSerializerSettings == null)
+            {
+                throw new InvalidOperationException("You must set ApiJsonReslut.JsonSerializerSettings property.");
+            }
+            var json = JsonConvert.SerializeObject(this.Data, this.Formatting, ApiJsonReslut.JsonSerializerSettings);
             var res = new HttpResponseMessage(this.StatusCode);
             res.Content = new StringContent(json, Encoding.UTF8, "application/json");
             return Task.FromResult(res);
