@@ -36,12 +36,19 @@ namespace HigLabo.Web.Mvc
                         var bodyText = req.Content.ReadAsStringAsync().Result.Trim();
                         if (bodyText.StartsWith("{"))
                         {
-                            var values = JsonConvert.DeserializeObject<Dictionary<String, Object>>(bodyText);
-                            d = values.Aggregate(d, (seed, current) =>
+                            try
                             {
-                                seed[current.Key] = current.Value.ToString();
-                                return seed;
-                            });
+                                var values = JsonConvert.DeserializeObject<Dictionary<String, Object>>(bodyText);
+                                d = values.Aggregate(d, (seed, current) =>
+                                {
+                                    if (current.Key != null && current.Value != null)
+                                    {
+                                        seed[current.Key] = current.Value.ToString();
+                                    }
+                                    return seed;
+                                });
+                            }
+                            catch { }
                         }
                     }
                     break;

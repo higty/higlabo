@@ -7,6 +7,10 @@ namespace HigLabo.Core
 {
     public static class TypeExtensions
     {
+        public static Boolean IsImplementInterface(this Type type, Type interfaceType)
+        {
+            return type.GetInterfaces().Any(x => x == interfaceType);
+        }
         public static Boolean IsInheritanceFrom(this Type type, Type parentType)
         {
             if (parentType.IsGenericTypeDefinition == false)
