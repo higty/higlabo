@@ -38,10 +38,10 @@ namespace HigLabo.Core
             var values = Enum.GetValues(tp);
             var names = Enum.GetNames(tp).ToArray();
 
-            var retLabels = new Label[names.Length];
+            var skipLabels = new Label[names.Length];
             for (int i = 0; i < names.Length; i++)
             {
-                retLabels[i] = il.DefineLabel();
+                skipLabels[i] = il.DefineLabel();
             }
             for (int i = 0; i < names.Length; i++)
             {
@@ -49,19 +49,18 @@ namespace HigLabo.Core
                 il.Emit(OpCodes.Ldstr, names[i]);
                 il.Emit(OpCodes.Ldarg_1);//StringComparison
                 il.Emit(OpCodes.Call, stringEqualsMethod);
-                il.Emit(OpCodes.Brtrue_S, retLabels[i]);
+                il.Emit(OpCodes.Brfalse_S, skipLabels[i]);
+                {
+                    var eValue = values.GetValue(i);
+                    il.Emit(OpCodes.Ldc_I4, System.Convert.ToInt32(eValue));
+                    il.Emit(OpCodes.Box, tp);
+                    il.Emit(OpCodes.Ret);
+                }
+                il.MarkLabel(skipLabels[i]);
             }
             il.Emit(OpCodes.Ldnull);
             il.Emit(OpCodes.Ret);
 
-            for (int i = 0; i < names.Length; i++)
-            {
-                il.MarkLabel(retLabels[i]);
-                var eValue = values.GetValue(i);
-                il.Emit(OpCodes.Ldc_I4, System.Convert.ToInt32(eValue));
-                il.Emit(OpCodes.Box, tp);
-                il.Emit(OpCodes.Ret);
-            }
             var f = typeof(Func<String, StringComparison, Object>);
             return (Func<String, StringComparison, Object>)dm.CreateDelegate(f);
         }

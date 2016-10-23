@@ -56,6 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="StringConverterTest.cs" />
     <Compile Include="TypeConverterTest.cs" />
     <Compile Include="EnumExtensionsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
