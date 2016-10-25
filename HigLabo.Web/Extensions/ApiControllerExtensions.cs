@@ -13,5 +13,9 @@ namespace HigLabo.Web.Mvc
         {
             return new ApiJsonReslut<T>(controller.Request, statusCode, data);
         }
+        public static JsonTextReslut JsonTextReslut(this ApiController controller, HttpStatusCode statusCode, String json)
+        {
+            return new JsonTextReslut(controller.Request, statusCode, json);
+        }
     }
 }

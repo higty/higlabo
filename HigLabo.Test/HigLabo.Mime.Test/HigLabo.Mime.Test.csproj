@@ -58,7 +58,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCase\Base64ConverterTest.cs" />
-    <Compile Include="TestCase\DateTimeRfc2822Test.cs" />
+    <Compile Include="TestCase\Rfc2822ConverterTest.cs" />
     <Compile Include="TestCase\MailAddressTest.cs" />
     <Compile Include="TestCase\MimeHeaderTest.cs" />
     <Compile Include="TestCase\MimeParserTest.cs" />

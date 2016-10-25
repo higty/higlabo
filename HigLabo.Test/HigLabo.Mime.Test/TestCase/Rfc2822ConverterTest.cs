@@ -4,16 +4,17 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Text;
 using System.IO;
+using HigLabo.Converter;
 
 namespace HigLabo.Mime.Test
 {
     [TestClass]
-    public class DateTimeRfc2822Test
+    public class Rfc2822ConverterTest
     {
         [TestMethod]
-        public void DateTimeRfc2822_Basic1()
+        public void Rfc2822Converter_Basic1()
         {
-            var d = DateTimeRfc2822.Parse("Tue, 8 Oct 2013 07:37:49 +0430");
+            var d = new Rfc2822Converter().Parse("Tue, 8 Oct 2013 07:37:49 +0430");
 
             Assert.AreEqual(d.Year, 2013);
             Assert.AreEqual(d.Month, 10);
@@ -25,9 +26,9 @@ namespace HigLabo.Mime.Test
             Assert.AreEqual(d.Offset.Minutes, 30);
         }
         [TestMethod]
-        public void DateTimeRfc2822_Basic2()
+        public void Rfc2822Converter_Basic2()
         {
-            var d = DateTimeRfc2822.Parse("Tue, 8 Oct 2013 07:37:49 +0900 (JST)");
+            var d = new Rfc2822Converter().Parse("Tue, 8 Oct 2013 07:37:49 +0900 (JST)");
 
             Assert.AreEqual(d.Year, 2013);
             Assert.AreEqual(d.Month, 10);
@@ -39,9 +40,9 @@ namespace HigLabo.Mime.Test
             Assert.AreEqual(d.Offset.Minutes, 0);
         }
         [TestMethod]
-        public void DateTimeRfc2822_Basic3()
+        public void Rfc2822Converter_Basic3()
         {
-            var d = DateTimeRfc2822.Parse("Tue, 8 Oct 2013 07:37:49 (JST)");
+            var d = new Rfc2822Converter().Parse("Tue, 8 Oct 2013 07:37:49 (JST)");
 
             Assert.AreEqual(d.Year, 2013);
             Assert.AreEqual(d.Month, 10);
