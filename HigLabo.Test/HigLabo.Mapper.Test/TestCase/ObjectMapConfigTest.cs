@@ -166,7 +166,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
         [TestMethod]
-        public void ObjectMapConfig_CustomPropertyMappingRule()
+        public void ObjectMapConfig_SuffixPropertyMappingRule()
         {
             var config = new ObjectMapConfig();
             config.PropertyMapRules.Clear();
@@ -183,12 +183,9 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeekNullable);
         }
         [TestMethod]
-        public void ObjectMapConfig_DefaultTypeConverter()
+        public void ObjectMapConfig_CustomPropertyMappingRule()
         {
             var config = new ObjectMapConfig();
-            var rules = config.PropertyMapRules.ToArray();
-            config.PropertyMapRules.Clear();
-
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
             rule.PropertyNameMaps.Add("Value", "Int32");
