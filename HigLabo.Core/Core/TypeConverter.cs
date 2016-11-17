@@ -69,6 +69,20 @@ namespace HigLabo.Core
             {
                 return g;
             }
+            if (tp == typeof (String))
+            {
+                var s = (String)value;
+                if (s != null)
+                {
+                    try
+                    {
+                        s = s.Replace("_", "/").Replace("-", "+");
+                        byte[] buffer = Convert.FromBase64String(s + "==");
+                        return new Guid(buffer);
+                    }
+                    catch { }
+                }
+            }
             return null;
         }
 #endif
