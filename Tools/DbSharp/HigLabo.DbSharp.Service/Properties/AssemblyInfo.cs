@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HigLabo.DbSharp.Service")]
-[assembly: AssemblyDescription("HigLabo library hosted on GitHub")]
+[assembly: AssemblyDescription("HigLabo.DbSharp.Service provide services to process code generation.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HigLabo.DbSharp.Service")]

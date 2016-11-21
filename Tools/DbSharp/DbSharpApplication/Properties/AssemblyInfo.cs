@@ -8,7 +8,7 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DbSharpApplication")]
-[assembly: AssemblyDescription("HigLabo library hosted on GitHub")]
+[assembly: AssemblyDescription("DbSharpApplication is a tool to generate C# code to access Database,Table,StoredProcedure.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DbSharpApplication")]

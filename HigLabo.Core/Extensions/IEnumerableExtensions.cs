@@ -15,6 +15,26 @@ namespace HigLabo.Core
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> source)
+        {
+            return source.OrderBy(el => el);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static IEnumerable<T> OrderByDescending<T>(this IEnumerable<T> source)
+        {
+            return source.OrderByDescending(el => el);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"></param>
         /// <param name="value"></param>
         /// <param name="equalityFunc"></param>
         /// <returns></returns>

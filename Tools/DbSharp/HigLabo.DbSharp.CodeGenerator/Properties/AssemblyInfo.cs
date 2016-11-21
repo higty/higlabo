@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HigLabo.DbSharp.CodeGenerator")]
-[assembly: AssemblyDescription("HigLabo library hosted on GitHub")]
+[assembly: AssemblyDescription("HigLabo.DbSharp.CodeGenerator provide a feature to generate C# code from database schema of Table,StoredProcedure,UserDefinedType.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HigLabo.DbSharp.CodeGenerator")]

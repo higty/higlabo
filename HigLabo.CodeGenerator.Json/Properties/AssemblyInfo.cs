@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HigLabo.CodeGenerator.Json")]
-[assembly: AssemblyDescription("HigLabo library hosted on GitHub")]
+[assembly: AssemblyDescription("HigLabo.CodeGenerator.Json is a library to generate classes from json format.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HigLabo.CodeGenerator.Json")]

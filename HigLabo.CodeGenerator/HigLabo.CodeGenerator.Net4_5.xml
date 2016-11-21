@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2016/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.CodeGenerator.Net4_5</id>
+    <version>1.0.1.1</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <projectUrl>https://github.com/higty/higlabo</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>See on GitHub(https://github.com/higty/higlabo).Please find commint same version number.</releaseNotes>
+
+    <!-- The description can be used in package manager UI. Note that the
+         nuget.org gallery uses information you add in the portal. -->
+    <description>Core utility functions for web applications</description>
+    <copyright>Copyright ©2016 Higty</copyright>
+    <tags>HigLabo library provide features of Mail, Ftp, Rss, ObjectMapper, Converter, ORM, ASP.NET Mvc...etc </tags>
+    <dependencies>
+    </dependencies>
+  </metadata>
+
+  <!-- A readme.txt will be displayed when the package is installed -->
+  <files>
+    <file src="readme.txt" target="" />
+  </files>
+</package>

@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("HigLabo.Mail")]
-[assembly: AssemblyDescription("HigLabo library hosted on GitHub")]
+[assembly: AssemblyDescription("HigLabo.Mail provide Mail client feature for SMTP,POP3,IMAP.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("HigLabo.Mail")]

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter._Net_4_0", "HigLabo.Converter\HigLabo.Converter._Net_4_0.csproj", "{D7D2AFDB-E3C8-4309-B3F6-955CCE3FE65F}"
 EndProject
@@ -82,6 +82,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Dailymotion", "HigLabo.Net.Dailymotion\HigLabo.Net.Dailymotion.csproj", "{25606E8F-DF35-4701-8FDC-323C1FAF5ECD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.CodeGenerator.Vimeo", "HigLabo.CodeGenerator.Vimeo\HigLabo.CodeGenerator.Vimeo.csproj", "{173E1242-ADCB-4EB9-8443-A49807B7D093}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.NugetManagementApplication", "HigLabo.NugetManagementApplication\HigLabo.NugetManagementApplication.csproj", "{10FB5EF5-9C9D-4AB1-A3F9-F0D23F59B960}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -249,6 +251,10 @@ Global
 		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{173E1242-ADCB-4EB9-8443-A49807B7D093}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FB5EF5-9C9D-4AB1-A3F9-F0D23F59B960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FB5EF5-9C9D-4AB1-A3F9-F0D23F59B960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FB5EF5-9C9D-4AB1-A3F9-F0D23F59B960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FB5EF5-9C9D-4AB1-A3F9-F0D23F59B960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
