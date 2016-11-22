@@ -28,6 +28,19 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
         [TestMethod]
+        public void ObjectMapConfig_MapOrNull()
+        {
+            var config = new ObjectMapConfig();
+
+            var u1 = new User();
+            User u2 = null;
+            var u3 = config.MapOrNull(u1, () => new User() { Int32 = 3 });
+            var u4 = config.MapOrNull(u2, () => new User() { Int32 = 3 });
+
+            Assert.AreEqual(u3.Int32, 3);
+            Assert.AreEqual(u4, null);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Object()
         {
             var config = new ObjectMapConfig();

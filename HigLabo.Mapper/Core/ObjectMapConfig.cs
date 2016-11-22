@@ -66,6 +66,12 @@ namespace HigLabo.Core
         {
             return this.Map(source, target, this.CreateMappingContext());
         }
+        public TTarget MapOrNull<TSource, TTarget>(TSource source, Func<TTarget> targetConstructor)
+            where TTarget : class
+        {
+            if (source == null) return null;
+            return this.Map(source, targetConstructor(), this.CreateMappingContext());
+        }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, TTarget target)
             where TTarget : class
         {
@@ -81,7 +87,7 @@ namespace HigLabo.Core
                 throw new InvalidOperationException("Map method recursively called over " + this.MaxCallStack + ".");
             }
 
-            if (source is System.Data.IDataReader)
+            if (source is IDataReader)
             {
                 return this.MapIDataReader(source as IDataReader, target, context);
             }
@@ -120,14 +126,13 @@ namespace HigLabo.Core
             {
                 d = new Dictionary<String, Object>();
             }
-            d.SetValues((System.Data.IDataReader)source);
+            d.SetValues((IDataReader)source);
             return this.Map(d, target, context);
         }
 
-        public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> targetPropertyNames, Action<TSource, TTarget> action)
+        public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> removePropertyNames, Action<TSource, TTarget> action)
         {
-            var l = new List<String>(targetPropertyNames);
-            this.RemovePropertyMap<TSource, TTarget>(propertyMap => targetPropertyNames.Contains(propertyMap.Target.Name), action);
+            this.RemovePropertyMap<TSource, TTarget>(objectMap => removePropertyNames.Contains(objectMap.Target.Name), action);
         }
         public void RemovePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector)
         {
@@ -135,25 +140,25 @@ namespace HigLabo.Core
         }
         public void RemovePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector, Action<TSource, TTarget> action)
         {
-            this.ReplaceMap(map =>
+            this.ReplaceMap(objectMap =>
             {
-                var l = map.PropertyMaps.Where(selector).ToList();
+                var l = objectMap.PropertyMaps.Where(selector).ToList();
                 for (int i = 0; i < l.Count; i++)
                 {
-                    map.PropertyMaps.Remove(l[i]);
+                    objectMap.PropertyMaps.Remove(l[i]);
                 }
             }, action);
         }
-        private void ReplaceMap<TSource, TTarget>(Action<ObjectMap> mapConfiguration)
+        private void ReplaceMap<TSource, TTarget>(Action<ObjectMap> objectMapAction)
         {
-            ReplaceMap<TSource, TTarget>(mapConfiguration, null);
+            ReplaceMap<TSource, TTarget>(objectMapAction, null);
         }
-        private void ReplaceMap<TSource, TTarget>(Action<ObjectMap> mapConfiguration, Action<TSource, TTarget> action)
+        private void ReplaceMap<TSource, TTarget>(Action<ObjectMap> objectMapAction, Action<TSource, TTarget> action)
         {
             var key = new ObjectMapTypeInfo(typeof(TSource), typeof(TTarget));
             var mappings = this.CreatePropertyMaps(key.Source, key.Target);
             var om = new ObjectMap(mappings);
-            mapConfiguration(om);
+            objectMapAction(om);
             var md = this.CreateMethod<TSource, TTarget>(key.Source, key.Target, om.PropertyMaps);
             _Methods[key] = md;
 

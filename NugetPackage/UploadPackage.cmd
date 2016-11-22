@@ -26,6 +26,7 @@ nuget push HigLabo.DbSharp.SqlServer.1.1.0.0.nupkg -Source https://nuget.org -Ap
 nuget push HigLabo.Mail._Net_3_5.1.0.2.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mail.1.0.2.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mapper.1.2.0.3.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
+nuget push HigLabo.Mapper.1.2.0.4.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mime._Net_3_5.1.0.2.2.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mime.1.0.2.2.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Net._Net_3_5.1.0.2.1.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
@@ -37,6 +38,7 @@ nuget push HigLabo.Net.Ftp._Net_3_5.1.0.2.0.nupkg -Source https://nuget.org -Api
 nuget push HigLabo.Net.Ftp._Net_4_0.1.0.2.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Net.Ftp.1.0.2.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Net.Twitter.0.1.1.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
+nuget push HigLabo.Net.Twitter.1.0.1.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Net.Vimeo.0.1.0.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Rss._Net_3_5.1.0.2.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Rss._Net_4_0.1.0.2.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3

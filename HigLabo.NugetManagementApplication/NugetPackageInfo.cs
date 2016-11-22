@@ -14,11 +14,6 @@ namespace HigLabo.NugetManagementApplication
 {
     public class NugetPackageInfo
     {
-        private static class RegexList
-        {
-            public static readonly Regex VersionNumber = new Regex("(?<Version>[0-9]+.[0-9]+.[0-9]+.[0-9]+)", RegexOptions.IgnorePatternWhitespace);
-        }
-
         private static readonly Dictionary<String, String> FrameworkVersions = new Dictionary<string, string>();
         private static readonly Dictionary<String, FrameworkName> FrameworkNames = new Dictionary<string, FrameworkName>();
 
@@ -97,8 +92,7 @@ namespace HigLabo.NugetManagementApplication
                     var line = sr.ReadLine();
                     if (line.StartsWith("[assembly: AssemblyVersion("))
                     {
-                        var m = RegexList.VersionNumber.Match(line);
-                        n.Nuspec.Version = m.Groups["Version"].Value;
+                        n.Nuspec.Version = line.ExtractString('"', '"');
                     }
                     if (line.StartsWith("[assembly: AssemblyDescription("))
                     {
@@ -140,21 +134,21 @@ namespace HigLabo.NugetManagementApplication
                     var u = new Uri(new Uri(projectFilePath), path);
                     LoadDependencyPackages(n.DependencyPackages, u.LocalPath);
                 }
+                var dd = new List<PackageDependency>();
                 foreach (var item in n.DependencyPackages)
                 {
-                    var dd = new List<PackageDependency>();
                     VersionSpec sVersion = new VersionSpec();
                     sVersion.MinVersion = new SemanticVersion(item.Nuspec.Version);
                     sVersion.IsMinInclusive = true;
                     dd.Add(new PackageDependency(item.Nuspec.Id, sVersion));
-                    var fName = FrameworkNames[item.TargetFrameworkVersion];
-                    n.PackageBuilder.DependencySets.Add(new PackageDependencySet(fName, dd));
                 }
+                n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
             }
 
             var referenceNodes = doc.DocumentNode.SelectNodes("//itemgroup//reference");
             if (referenceNodes != null)
             {
+                var dd = new List<PackageDependency>();
                 foreach (var node in referenceNodes)
                 {
                     if (node.Attributes["Include"] == null) { continue; }
@@ -162,13 +156,12 @@ namespace HigLabo.NugetManagementApplication
                     var p = ProjectReferenceInfo.Parse(include);
                     if (String.IsNullOrEmpty(p.Version)) { continue; }
 
-                    var dd = new List<PackageDependency>();
                     VersionSpec sVersion = new VersionSpec();
                     sVersion.MinVersion = new SemanticVersion(p.Version);
                     sVersion.IsMinInclusive = true;
                     dd.Add(new PackageDependency(p.ID, sVersion));
-                    n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
                 }
+                n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
             }
             var ff = new List<ManifestFile>();
             var f = new ManifestFile();
@@ -188,7 +181,7 @@ namespace HigLabo.NugetManagementApplication
             packages.Add(dependencyPackage);
         }
 
-        public void CreateNuspecFile(String filePath)
+        public void CreateNupkgFile(String filePath)
         {
             using (FileStream stream = File.Open(filePath, FileMode.OpenOrCreate))
             {

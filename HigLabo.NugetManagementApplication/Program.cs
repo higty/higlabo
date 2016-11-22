@@ -29,13 +29,14 @@ namespace HigLabo.NugetManagementApplication
         {
             foreach (var path in Directory.EnumerateFiles(RootFolderPath, "*.csproj", SearchOption.AllDirectories).OrderBy(el => el))
             {
+                if (path.Contains("_Pcl_")) { continue; }
                 var package = NugetPackageInfo.Create(path);
                 if (package == null) { continue; }
                 if (package.PackageBuilder.Files.Count == 0) { continue; }
                 var fileName = String.Format("C:\\GitHub\\higty\\HigLabo\\NugetPackage\\{0}.{1}.nupkg", package.Nuspec.Id, package.Nuspec.Version);
                 if (File.Exists(fileName) == false)
                 {
-                    package.CreateNuspecFile(fileName);
+                    package.CreateNupkgFile(fileName);
                     Console.WriteLine("Created: " + fileName);
                 }
                 System.Threading.Thread.Sleep(100);
