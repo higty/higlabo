@@ -290,14 +290,19 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_ListProperty()
         {
             var config = new ObjectMapConfig();
-            config.AddConverter<String[]>(o =>
+            var u1 = new User();
+            for (int i = 0; i < 3; i++)
             {
-                if (o is String[])
-                {
-                    return new ConvertResult<String[]>(true, o as String[]);
-                }
-                return new ConvertResult<String[]>();
-            });
+                u1.Users.Add(new User("TestUser" + i.ToString()));
+            }
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(0, u2.Users.Count);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_ListProperty_WithCustomConverter()
+        {
+            var config = new ObjectMapConfig();
 
             var u1 = new User();
             for (int i = 0; i < 3; i++)

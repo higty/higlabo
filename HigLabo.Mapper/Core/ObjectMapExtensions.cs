@@ -15,6 +15,16 @@ namespace HigLabo.Core
         {
             return ObjectMapConfig.Current.Map(source, target);
         }
+        public static ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+            where TTarget : new()
+        {
+            return ObjectMapConfig.Current.Map(source, target, () => new TTarget());
+        }
+        public static ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target
+            , Func<TTarget> targetConstructor)
+        {
+            return ObjectMapConfig.Current.Map(source, target, targetConstructor);
+        }
         public static TTarget MapOrNull<TSource, TTarget>(this TSource source, Func<TTarget> targetConstructor)
             where TTarget : class
         {
@@ -24,10 +34,6 @@ namespace HigLabo.Core
             where TTarget : class
         {
             return ObjectMapConfig.Current.MapOrNull(source, target);
-        }
-        public static IEnumerable<TTarget> Map<TSource, TTarget>(this IEnumerable<TSource> source, Func<TTarget> constructor)
-        {
-            return ObjectMapConfig.Current.Map(source, constructor);
         }
         public static TTarget MapFrom<TTarget, TSource>(this TTarget target, TSource source)
         {

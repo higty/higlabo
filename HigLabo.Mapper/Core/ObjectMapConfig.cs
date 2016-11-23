@@ -25,8 +25,10 @@ namespace HigLabo.Core
 
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Delegate> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Delegate>();
 
-        private MethodInfo _MapMethod = null;
-        private MethodInfo _ConvertMethod = null;
+        private static readonly MethodInfo _MapMethod = null;
+        private static readonly MethodInfo _ConvertMethod = null;
+        private static readonly MethodInfo _ObjectMapConfigTypeConverterPropertyGetMethod = null;
+
         private List<MapPostAction> _PostActions = new List<MapPostAction>();
         private ConcurrentDictionary<Type, Delegate> _Converters = new ConcurrentDictionary<Type, Delegate>();
 
@@ -38,6 +40,9 @@ namespace HigLabo.Core
         static ObjectMapConfig()
         {
             Current = new ObjectMapConfig();
+            _MapMethod = GetMethodInfo("Map");
+            _ConvertMethod = GetMethodInfo("Convert");
+            _ObjectMapConfigTypeConverterPropertyGetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
         }
         public ObjectMapConfig()
         {
@@ -50,10 +55,8 @@ namespace HigLabo.Core
             
             this.MaxCallStack = 100;
             this.DictionaryKeyIgnoreCase = true;
-            _MapMethod = this.GetMethodInfo("Map");
-            _ConvertMethod = this.GetMethodInfo("Convert");
         }
-        private MethodInfo GetMethodInfo(String name)
+        private static MethodInfo GetMethodInfo(String name)
         {
             return typeof(ObjectMapConfig).GetMethods().Where(el => el.GetCustomAttributes().Any(attr => attr is ObjectMapConfigMethodAttribute && ((ObjectMapConfigMethodAttribute)attr).Name == name)).FirstOrDefault();
         }
@@ -64,6 +67,21 @@ namespace HigLabo.Core
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
+            return this.Map(source, target, this.CreateMappingContext());
+        }
+        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+            where TTarget : new()
+        {
+            return this.Map(source, target, () => new TTarget());
+        }
+        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target
+            , Func<TTarget> targetConstructor)
+        {
+            foreach (var item in source)
+            {
+                var o = this.Map(item, targetConstructor());
+                target.Add(o);
+            }
             return this.Map(source, target, this.CreateMappingContext());
         }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, Func<TTarget> targetConstructor)
@@ -86,16 +104,15 @@ namespace HigLabo.Core
             {
                 throw new InvalidOperationException("Map method recursively called over " + this.MaxCallStack + ".");
             }
-
             if (source is IDataReader)
             {
                 return this.MapIDataReader(source as IDataReader, target, context);
             }
-            var md = this.GetMethod<TSource, TTarget>(source.GetType(), target.GetType());
+            Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> md = this.GetMethod<TSource, TTarget>(source, target);
             try
             {
                 context.CallStackCount++;
-                var result = (TTarget)md.DynamicInvoke(source, target, context);
+                var result = md(this, source, target, context);
                 context.CallStackCount--;
                 return result;
             }
@@ -140,26 +157,25 @@ namespace HigLabo.Core
         }
         public void RemovePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector, Action<TSource, TTarget> action)
         {
-            this.ReplaceMap(objectMap =>
-            {
-                var l = objectMap.PropertyMaps.Where(selector).ToList();
-                for (int i = 0; i < l.Count; i++)
-                {
-                    objectMap.PropertyMaps.Remove(l[i]);
-                }
-            }, action);
+            this.ReplaceMap(selector, action);
         }
-        private void ReplaceMap<TSource, TTarget>(Action<ObjectMap> objectMapAction)
+        private void ReplaceMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector)
         {
-            ReplaceMap<TSource, TTarget>(objectMapAction, null);
+            ReplaceMap<TSource, TTarget>(selector, null);
         }
-        private void ReplaceMap<TSource, TTarget>(Action<ObjectMap> objectMapAction, Action<TSource, TTarget> action)
+        private void ReplaceMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector, Action<TSource, TTarget> action)
         {
             var key = new ObjectMapTypeInfo(typeof(TSource), typeof(TTarget));
             var mappings = this.CreatePropertyMaps(key.Source, key.Target);
-            var om = new ObjectMap(mappings);
-            objectMapAction(om);
-            var md = this.CreateMethod<TSource, TTarget>(key.Source, key.Target, om.PropertyMaps);
+            var startIndex = mappings.Count - 1;
+            for (int i = startIndex; i > -1; i--)
+            {
+                if (selector(mappings[i]) == true)
+                {
+                    mappings.RemoveAt(i);
+                }
+            }
+            var md = this.CreateMethod<TSource, TTarget>(key, mappings);
             _Methods[key] = md;
 
             this.AddPostAction(action);
@@ -209,17 +225,17 @@ namespace HigLabo.Core
             }
         }
 
-        private Delegate GetMethod<TSource, TTarget>(Type sourceType, Type targetType)
+        private Func<ObjectMapConfig,TSource,TTarget,MappingContext,TTarget> GetMethod<TSource, TTarget>(TSource source, TTarget target)
         {
             Delegate md = null;
-            var key = new ObjectMapTypeInfo(sourceType, targetType);
+            var key = new ObjectMapTypeInfo(source.GetType(), target.GetType());
             if (_Methods.TryGetValue(key, out md) == false)
             {
                 var l = this.CreatePropertyMaps(key.Source, key.Target);
-                md = this.CreateMethod<TSource, TTarget>(key.Source, key.Target, l);
+                md = this.CreateMethod<TSource, TTarget>(key, l);
                 _Methods[key] = md;
             }
-            return md;
+            return (Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget>)md;
         }
 
         private List<PropertyMap> CreatePropertyMaps(Type sourceType, Type targetType)
@@ -278,24 +294,9 @@ namespace HigLabo.Core
             }
             return l;
         }
-        private Delegate CreateMethod<T, TResult>(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
+        private Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> CreateMethod<TSource, TTarget>(ObjectMapTypeInfo key, IEnumerable<PropertyMap> propertyMapInfo)
         {
-            var action = this.CreateSetPropertyMethod(sourceType, targetType, propertyMapInfo);
-
-            Func<T, TResult, MappingContext, TResult> func = (source, target, context) =>
-            {
-                var kv = new KeyValuePair<object, object>(source, target);
-                //Prevent from StackOverFlowException by decursive object chain.
-                if (context.MappedObjectPair.Contains(kv) == true) { return target; }
-                context.MappedObjectPair.Add(kv);
-
-                action.DynamicInvoke(this, source, target, context);
-
-                this.CallPostAction(source, target);
-
-                return target;
-            };
-            return (Delegate)func;
+            return (Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget>)this.CreateMethod(key.Source, key.Target, propertyMapInfo);
         }
         /// <summary>
         /// ***********************************************************************
@@ -333,17 +334,27 @@ namespace HigLabo.Core
         /// <typeparam name="TTarget"></typeparam>
         /// <param name="propertyMapInfo"></param>
         /// <returns></returns>
-        private Delegate CreateSetPropertyMethod(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
+        private Delegate CreateMethod(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
         {
-            DynamicMethod dm = new DynamicMethod("SetProperty", null, new[] { typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext) });
+            DynamicMethod dm = new DynamicMethod("SetProperty", targetType, new[] { typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext) });
             ILGenerator il = dm.GetILGenerator();
-            var mapConfigTypeConverterGetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
+            Label methodEnd = il.DefineLabel();
 
-            il.DeclareLocal(typeof(TypeConverter));
-            il.Emit(OpCodes.Nop);
+            //var keyValuePairVal = il.DeclareLocal(typeof(KeyValuePair<Object, Object>));
+            //il.Emit(OpCodes.Ldarg_1);
+            //il.Emit(OpCodes.Ldarg_2);
+            //il.Emit(OpCodes.Newobj, typeof(KeyValuePair<Object, Object>).GetConstructor(new Type[] { typeof(Object), typeof(Object) }));
+            //il.SetLocal(keyValuePairVal);
+
+            //il.Emit(OpCodes.Ldarg_3);
+            //il.LoadLocal(keyValuePairVal);
+            //il.Emit(OpCodes.Callvirt, typeof(MappingContext).GetMethod("Exists", new Type[] { typeof(KeyValuePair<Object, Object>) }));//context.Exists(keyValuePair)
+            //il.Emit(OpCodes.Brtrue, methodEnd);
+
+            var typeConverterVal = il.DeclareLocal(typeof(TypeConverter));
             il.Emit(OpCodes.Ldarg_0);
-            il.Emit(OpCodes.Callvirt, mapConfigTypeConverterGetMethod);
-            il.Emit(OpCodes.Stloc_0);//ObjectMapConfig.TypeConverter
+            il.Emit(OpCodes.Callvirt, _ObjectMapConfigTypeConverterPropertyGetMethod);
+            il.SetLocal(typeConverterVal);//ObjectMapConfig.TypeConverter
 
             foreach (var item in propertyMapInfo)
             {
@@ -356,7 +367,6 @@ namespace HigLabo.Core
                 Label setValueStartLabel = il.DefineLabel();
                 Label endOfCode = il.DefineLabel();
                 Label setNullToTargetLabel = il.DefineLabel();
-                Label sourceHasValueLabel = il.DefineLabel();
                 #endregion
                 var sourceVal = il.DeclareLocal(item.Source.ActualType);
                 var targetVal = il.DeclareLocal(item.Target.ActualType);
@@ -422,9 +432,6 @@ namespace HigLabo.Core
                         #endregion
                     }
                 }
-                il.Emit(OpCodes.Br, sourceHasValueLabel);
-
-                il.MarkLabel(sourceHasValueLabel);
                 //store sourceVal (never be null)
                 il.SetLocal(sourceVal);
                 #endregion
@@ -432,7 +439,14 @@ namespace HigLabo.Core
                 #region Convert value to target type.
                 LocalBuilder convertedVal = null;
                 var methodName = GetMethodName(item.Target.ActualType);
-                if (item.Target.ActualType.IsEnum == false && methodName == null)
+                if (item.Source.ActualType == item.Target.ActualType &&
+                    methodName != null && methodName != "ToEncoding")
+                {
+                    il.LoadLocal(sourceVal);
+                    il.SetLocal(targetVal);
+                    il.Emit(OpCodes.Br_S, setValueStartLabel);
+                }
+                else if (item.Target.ActualType.IsEnum == false && methodName == null)
                 {
                     if (item.Target.PropertyType.IsValueType == true &&
                         item.Source.ActualType == item.Target.ActualType)
@@ -452,7 +466,7 @@ namespace HigLabo.Core
                 {
                     #region var convertedValue = TypeConverter.ToXXX(sourceVal);
                     //Call TypeConverter.ToXXX(sourceVal);
-                    il.Emit(OpCodes.Ldloc_0);//MapConfig.Current.TypeConverter
+                    il.LoadLocal(typeConverterVal);//MapConfig.TypeConverter
                     il.LoadLocal(sourceVal);
                     if (item.Source.ActualType.IsValueType == true)
                     {
@@ -597,10 +611,12 @@ namespace HigLabo.Core
                 il.MarkLabel(endOfCode);
                 il.Emit(OpCodes.Nop);
             }
+            il.MarkLabel(methodEnd);
+            il.Emit(OpCodes.Ldarg_2);
             il.Emit(OpCodes.Ret);
 
-            var f = typeof(Action<,,,>);
-            var gf = f.MakeGenericType(typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext));
+            var f = typeof(Func<,,,,>);
+            var gf = f.MakeGenericType(typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext), targetType);
             return dm.CreateDelegate(gf);
         }
         private static String GetMethodName(Type type)

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Converter", "..\HigLabo.Converter\HigLabo.Converter.csproj", "{757964E0-B391-48EB-AD04-D9C41091CFB5}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.CodeGenerator.Test", "HigLabo.CodeGenerator.Test\HigLabo.CodeGenerator.Test.csproj", "{B85C3E4D-7178-48D8-B841-33948E7641D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Core.Test", "HigLabo.Core.Test\HigLabo.Core.Test.csproj", "{6CC485AB-9B9C-4054-AFD0-AAB3EF403F7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Mapper.PerformanceTest", "HigLabo.Mapper.PerformanceTest\HigLabo.Mapper.PerformanceTest.csproj", "{19728F71-DD23-4B31-A8D5-438FEE91ED53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{6CC485AB-9B9C-4054-AFD0-AAB3EF403F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CC485AB-9B9C-4054-AFD0-AAB3EF403F7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CC485AB-9B9C-4054-AFD0-AAB3EF403F7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19728F71-DD23-4B31-A8D5-438FEE91ED53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19728F71-DD23-4B31-A8D5-438FEE91ED53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19728F71-DD23-4B31-A8D5-438FEE91ED53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19728F71-DD23-4B31-A8D5-438FEE91ED53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

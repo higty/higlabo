@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AgileObjects.ReadableExpressions</name>
+    </assembly>
+    <members>
+        <member name="T:AgileObjects.ReadableExpressions.ExpressionExtensions">
+            <summary>
+            Provides the Expression translation extension method.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.ExpressionExtensions.ToReadableString(System.Linq.Expressions.Expression)">
+            <summary>
+            Translates the given <paramref name="expression"/> to source-code string.
+            </summary>
+            <param name="expression">The Expression to translate.</param>
+            <returns>The translated <paramref name="expression"/>.</returns>
+        </member>
+        <member name="T:AgileObjects.ReadableExpressions.ReadableExpression">
+            <summary>
+            A factory class providing the Comment Expression
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.ReadableExpression.Comment(System.String)">
+            <summary>
+            Create a <see cref="T:System.Linq.Expressions.ConstantExpression"/> representing a code comment with the 
+            given <paramref name="text"/>.
+            </summary>
+            <param name="text">The text of the comment to create, without slashes or /* */.</param>
+            <returns>A <see cref="T:System.Linq.Expressions.ConstantExpression"/> representing a code comment.</returns>
+        </member>
+        <member name="T:AgileObjects.ReadableExpressions.TranslationContext">
+            <summary>
+            Contains information about an <see cref="T:System.Linq.Expressions.Expression"/> being translated.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.TranslationContext.For(System.Linq.Expressions.Expression,AgileObjects.ReadableExpressions.Translators.Translator)">
+            <summary>
+            Creates a <see cref="T:AgileObjects.ReadableExpressions.TranslationContext"/> containing information about the given
+            <paramref name="expression"/>.
+            </summary>
+            <param name="expression">
+            The <see cref="T:System.Linq.Expressions.Expression"/> for which to create the <see cref="T:AgileObjects.ReadableExpressions.TranslationContext"/>.
+            </param>
+            <param name="globalTranslator">
+            A global <see cref="T:AgileObjects.ReadableExpressions.Translators.Translator"/> delegate with which to perform translations.
+            </param>
+            <returns>A <see cref="T:AgileObjects.ReadableExpressions.TranslationContext"/> for the given<paramref name="expression"/>.</returns>
+        </member>
+        <member name="P:AgileObjects.ReadableExpressions.TranslationContext.JoinedAssignmentVariables">
+            <summary>
+            Gets the variables in the translated <see cref="T:System.Linq.Expressions.Expression"/> which should be declared in the
+            same statement in which they are assigned.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.TranslationContext.Translate(System.Linq.Expressions.Expression)">
+            <summary>
+            Translates the given <paramref name="expression"/> to readable source code.
+            </summary>
+            <param name="expression">The <see cref="T:System.Linq.Expressions.Expression"/> to translate.</param>
+            <returns>A source code translation of the given <paramref name="expression"/>.</returns>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.TranslationContext.IsNotJoinedAssignment(System.Linq.Expressions.Expression)">
+            <summary>
+            Returns a value indicating whether the given <paramref name="expression"/> represents an assignment 
+            where the assigned variable is declared as part of the assignment statement.
+            </summary>
+            <param name="expression">The <see cref="T:System.Linq.Expressions.Expression"/> to evaluate.</param>
+            <returns>
+            True if the given <paramref name="expression"/> represents an assignment where the assigned variable 
+            is declared as part of the assignment statement, otherwise false.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.TranslationContext.IsReferencedByGoto(System.Linq.Expressions.LabelTarget)">
+            <summary>
+            Returns a value indicating whether the given <paramref name="labelTarget"/> is referenced by a
+            <see cref="T:System.Linq.Expressions.GotoExpression"/>.
+            </summary>
+            <param name="labelTarget">The <see cref="T:System.Linq.Expressions.LabelTarget"/> to evaluate.</param>
+            <returns>
+            True if the given <paramref name="labelTarget"/> is referenced by a <see cref="T:System.Linq.Expressions.GotoExpression"/>,
+            otherwise false.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.TranslationContext.IsPartOfMethodCallChain(System.Linq.Expressions.Expression)">
+            <summary>
+            Returns a value indicating whether the given <paramref name="methodCall"/> is part of a chain
+            of multiple method calls.
+            </summary>
+            <param name="methodCall">The <see cref="T:System.Linq.Expressions.Expression"/> to evaluate.</param>
+            <returns>
+            True if the given <paramref name="methodCall"/> is part of a chain of multiple method calls,
+            otherwise false.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.ReadableExpressions.Extensions.PublicExpressionExtensions">
+            <summary>
+            Provides a set of static extension methods for Expression information.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.Extensions.PublicExpressionExtensions.GetSubject(System.Linq.Expressions.MethodCallExpression)">
+            <summary>
+            Returns the Expression representing the subject of the given <paramref name="methodCall"/>.
+            </summary>
+            <param name="methodCall">
+            The Expression representing the method call the subject of which should be retrieved.
+            </param>
+            <returns>
+            The Expression representing the subject of the given <paramref name="methodCall"/>.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.Extensions.PublicExpressionExtensions.GetParentOrNull(System.Linq.Expressions.Expression)">
+            <summary>
+            Gets the parent Expression for the given <paramref name="expression"/>.
+            </summary>
+            <param name="expression">The Expression for which to retrieve the parent.</param>
+            <returns>The given <paramref name="expression"/>'s parent Expression.</returns>
+        </member>
+        <member name="T:AgileObjects.ReadableExpressions.Extensions.PublicTypeExtensions">
+            <summary>
+            Provides a set of static extension methods for type information.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.Extensions.PublicTypeExtensions.GetFriendlyName(System.Type)">
+            <summary>
+            Returns a friendly, readable version of the name of the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve a friendly, readable name.</param>
+            <returns>A friendly, readable version of the name of the given <paramref name="type"/>.</returns>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.Extensions.PublicTypeExtensions.CanBeNull(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> can be null.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> can be null, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.Extensions.PublicTypeExtensions.IsNullableType(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is a Nullable&lt;T&gt;.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is a Nullable&lt;T&gt;, otherwise false.</returns>
+        </member>
+        <member name="T:AgileObjects.ReadableExpressions.Translators.Translator">
+            <summary>
+            Defines a method which translates an <see cref="T:System.Linq.Expressions.Expression"/> into a source code string.
+            </summary>
+            <param name="expression">The <see cref="T:System.Linq.Expressions.Expression"/> to translate.</param>
+            <param name="context">
+            The <see cref="T:AgileObjects.ReadableExpressions.TranslationContext"/> for the root <see cref="T:System.Linq.Expressions.Expression"/> being translated.
+            </param>
+            <returns>A source code translation of the given <paramref name="expression"/>.</returns>
+        </member>
+        <member name="T:AgileObjects.ReadableExpressions.Translators.IExpressionTranslator">
+            <summary>
+            Implementing classes will translate a particular type of Expression.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.ReadableExpressions.Translators.IExpressionTranslator.NodeTypes">
+            <summary>
+            Gets the <see cref="T:System.Linq.Expressions.ExpressionType"/>s translated by the <see cref="T:AgileObjects.ReadableExpressions.Translators.IExpressionTranslator"/>.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.ReadableExpressions.Translators.IExpressionTranslator.Translate(System.Linq.Expressions.Expression,AgileObjects.ReadableExpressions.TranslationContext)">
+            <summary>
+            Translates the given <paramref name="expression"/> into readable source code.
+            </summary>
+            <param name="expression">The <see cref="T:System.Linq.Expressions.Expression"/> to translate.</param>
+            <param name="context">
+            The <see cref="T:AgileObjects.ReadableExpressions.TranslationContext"/> for the root <see cref="T:System.Linq.Expressions.Expression"/> being translated.
+            </param>
+            <returns>A source code translation of the given <paramref name="expression"/>.</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AgileObjects.NetStandardPolyfills</name>
+    </assembly>
+    <members>
+        <member name="T:AgileObjects.NetStandardPolyfills.NetStandardTypeCode">
+            <summary>
+            Provides a replacement for the TypeCode enum, which is missing in .NETStandard 1.0.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Empty">
+            <summary>
+            0. A null reference.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Object">
+            <summary>
+            1. A general type representing any reference or value type not explicitly represented 
+            by another TypeCode.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.DBNull">
+            <summary>
+            2. A database null (column) value.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Boolean">
+            <summary>
+            3. A simple type representing Boolean values of true or false.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Char">
+            <summary>
+            4. An integral type representing unsigned 16-bit integers with values between 0 and 65535. 
+            The set of possible values for the System.TypeCode.Char type corresponds to the Unicode 
+            character set.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.SByte">
+            <summary>
+            5. An integral type representing signed 8-bit integers with values between -128 and 127.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Byte">
+            <summary>
+            6. An integral type representing unsigned 8-bit integers with values between 0 and 255.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Int16">
+            <summary>
+            7. An integral type representing signed 16-bit integers with values between -32768 and 32767.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.UInt16">
+            <summary>
+            8. An integral type representing unsigned 16-bit integers with values between 0 and 65535.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Int32">
+            <summary>
+            9. An integral type representing signed 32-bit integers with values between -2147483648 and 2147483647.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.UInt32">
+            <summary>
+            10. An integral type representing unsigned 32-bit integers with values between 0 and 4294967295.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Int64">
+            <summary>
+            11. An integral type representing signed 64-bit integers with values between -9223372036854775808 and 
+            9223372036854775807.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.UInt64">
+            <summary>
+            12. An integral type representing unsigned 64-bit integers with values between 0 and 
+            18446744073709551615.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Single">
+            <summary>
+            13. A floating point type representing values ranging from approximately 1.5 x 10 -45 
+            to 3.4 x 10 38 with a precision of 7 digits.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Double">
+            <summary>
+            14. A floating point type representing values ranging from approximately 5.0 x 10 -324 to 
+            1.7 x 10 308 with a precision of 15-16 digits.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.Decimal">
+            <summary>
+            15. A simple type representing values ranging from 1.0 x 10 -28 to approximately 
+            7.9 x 10 28 with 28-29 significant digits.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.DateTime">
+            <summary>
+            16. A type representing a date and time value.
+            </summary>
+        </member>
+        <member name="F:AgileObjects.NetStandardPolyfills.NetStandardTypeCode.String">
+            <summary>
+            18. A sealed class type representing Unicode character strings.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill">
+            <summary>
+            Provides a set of static methods methods for obtaining reflection information in .NET Standard 1.0.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.IsParamsArray(System.Reflection.ParameterInfo)">
+            <summary>
+            Returns a value indicating if the given <paramref name="parameter"/> is a params array.
+            </summary>
+            <param name="parameter">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="parameter"/> is a params array, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicInstanceConstructors(System.Type)">
+            <summary>
+            Gets the public, instance-scoped constructors for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the constructors.</param>
+            <returns>The given <paramref name="type"/>'s public, instance-scoped constructors.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetNonPublicInstanceConstructors(System.Type)">
+            <summary>
+            Gets the non-public, instance-scoped constructors for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the constructors.</param>
+            <returns>The given <paramref name="type"/>'s non-public, instance-scoped constructors.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicInstanceMember(System.Type,System.String)">
+            <summary>
+            Gets the public, instance-scoped member with the given <paramref name="name"/>
+            from the given <paramref name="type"/>, or null if none exists.
+            </summary>
+            <param name="type">The type for which to retrieve the member.</param>
+            <param name="name">The name of the method to find.</param>
+            <returns>
+            The public, instance-scoped member with the given <paramref name="name"/> from 
+            the given <paramref name="type"/>, or null if none exists.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicInstanceFields(System.Type)">
+            <summary>
+            Gets the public, instance-scoped fields for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the fields.</param>
+            <returns>The given <paramref name="type"/>'s public, instance-scoped fields.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicInstanceProperties(System.Type)">
+            <summary>
+            Gets the public, instance-scoped properties for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the properties.</param>
+            <returns>The given <paramref name="type"/>'s public, instance-scoped properties.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicInstanceProperty(System.Type,System.String)">
+            <summary>
+            Gets the public, instance-scoped property with the given <paramref name="name"/>
+            from the given <paramref name="type"/>, or null if none exists.
+            </summary>
+            <param name="type">The type for which to retrieve the property.</param>
+            <param name="name">The name of the method to find.</param>
+            <returns>
+            The public, instance-scoped property with the given <paramref name="name"/> from 
+            the given <paramref name="type"/>, or null if none exists.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicInstanceMethods(System.Type)">
+            <summary>
+            Gets the public, instance-scoped methods for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the methods.</param>
+            <returns>The given <paramref name="type"/>'s public, instance-scoped methods.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetNonPublicInstanceMethods(System.Type)">
+            <summary>
+            Gets the non-public, instance-scoped methods for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the methods.</param>
+            <returns>The given <paramref name="type"/>'s non-public, instance-scoped methods.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicStaticMethods(System.Type)">
+            <summary>
+            Gets the public, static-scoped methods for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the methods.</param>
+            <returns>The given <paramref name="type"/>'s public, static-scoped methods.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetPublicStaticMethod(System.Type,System.String)">
+            <summary>
+            Gets the public, static-scoped method with the given <paramref name="name"/>
+            from the given <paramref name="type"/>, or null if none exists.
+            </summary>
+            <param name="type">The type for which to retrieve the method.</param>
+            <param name="name">The name of the method to find.</param>
+            <returns>
+            The public, static-scoped method with the given <paramref name="name"/> from 
+            the given <paramref name="type"/>, or null if none exists.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.ReflectionExtensionsPolyfill.GetNonPublicStaticMethod(System.Type,System.String)">
+            <summary>
+            Gets the non-public, static-scoped method with the given <paramref name="name"/>
+            from the given <paramref name="type"/>, or null if none exists.
+            </summary>
+            <param name="type">The type for which to retrieve the method.</param>
+            <param name="name">The name of the method to find.</param>
+            <returns>
+            The non-public, static-scoped method with the given <paramref name="name"/> from 
+            the given <paramref name="type"/>, or null if none exists.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill">
+            <summary>
+            Provides a set of static methods for obtaining type information in .NET Standard 1.0.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsClass(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is a class.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is a class, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsValueType(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is a value type.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is a value type, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsInterface(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is an interface.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is an interface, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsSealed(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is sealed.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is sealed, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsAbstract(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is abstract.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is abstract, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsAnonymous(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is an
+            anonymous type. See http://stackoverflow.com/questions/2483023/how-to-test-if-a-type-is-anonymous
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>
+            True if the given <paramref name="type"/> is an anonymous type, otherwise false.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsEnum(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is an enum.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is an enum, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsGenericType(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> is a generic type.
+            </summary>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>True if the given <paramref name="type"/> is a generic type, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.GetAssembly(System.Type)">
+            <summary>
+            Gets the Assembly to which the given <paramref name="type"/> belongs.
+            </summary>
+            <param name="type">The type for which to retrieve the Assembly.</param>
+            <returns>The Assembly to which the given <paramref name="type"/> belongs.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.GetBaseType(System.Type)">
+            <summary>
+            Gets the given <paramref name="type"/>'s base type or null if there is none.
+            </summary>
+            <param name="type">The type for which to retrieve the base type.</param>
+            <returns>The given <paramref name="type"/>'s base type or null if there is none.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.IsDerivedFrom(System.Type,System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="childType"/> is derived from
+            the given <paramref name="parentType"/>.
+            </summary>
+            <param name="childType">The descendant type for which to make the determination.</param>
+            <param name="parentType">The ancestor type for which to make the determination.</param>
+            <returns>
+            True if the given <paramref name="childType"/> is derived from the given 
+            <paramref name="parentType"/>, otherwise false.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.HasAttribute``1(System.Type)">
+            <summary>
+            Returns a value indicating if the given <paramref name="type"/> has the Attribute
+            given in the <typeparamref name="TAttribute"/> type argument.
+            </summary>
+            <typeparam name="TAttribute">The Attribute type for which to make the determination.</typeparam>
+            <param name="type">The type for which to make the determination.</param>
+            <returns>
+            True if the given <paramref name="type"/> has the given <typeparamref name="TAttribute"/>,
+            otherwise false.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.GetAttributes(System.Type)">
+            <summary>
+            Gets the TypeAttributes value applied to the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the TypeAttributes value.</param>
+            <returns>The TypeAttributes value applied to the given <paramref name="type"/>.</returns>
+        </member>
+        <member name="M:AgileObjects.NetStandardPolyfills.TypeExtensionsPolyfill.GetTypeCode(System.Type)">
+            <summary>
+            Gets the appropriate <see cref="T:AgileObjects.NetStandardPolyfills.NetStandardTypeCode"/> value for the given <paramref name="type"/>.
+            </summary>
+            <param name="type">The type for which to retrieve the <see cref="T:AgileObjects.NetStandardPolyfills.NetStandardTypeCode"/>.</param>
+            <returns>The appropriate <see cref="T:AgileObjects.NetStandardPolyfills.NetStandardTypeCode"/> value.</returns>
+        </member>
+    </members>
+</doc>

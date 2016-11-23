@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExpressMapper</name>
+    </assembly>
+    <members>
+        <member name="T:ExpressMapper.CollectionTypes">
+            <summary>
+            Enumeration for determining collection type
+            </summary>
+        </member>
+        <member name="F:ExpressMapper.FlattenLinqMethod._methodName">
+            <summary>
+            Method name 
+            </summary>
+        </member>
+        <member name="F:ExpressMapper.FlattenLinqMethod._checkReturnType">
+            <summary>
+            If true then the return type should be checked to get the right version of the method
+            </summary>
+        </member>
+        <member name="M:ExpressMapper.FlattenLinqMethod.EnumerableEndMatchsWithLinqMethod(System.String,System.StringComparison)">
+            <summary>
+            This can be called on enumerable properly to see if the ending is a valid Linq method
+            </summary>
+            <param name="endOfName"></param>
+            <param name="stringComparison"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ExpressMapper.FlattenMemberInfo._destMember">
+            <summary>
+            The Destination property in the DTO
+            </summary>
+        </member>
+        <member name="F:ExpressMapper.FlattenMemberInfo._sourcePathMembers">
+            <summary>
+            The list of properties in order to get to the source property we want
+            </summary>
+        </member>
+        <member name="F:ExpressMapper.FlattenMemberInfo._linqMethodSuffix">
+            <summary>
+            Optional Linq Method to apply to an enumerable source (null if no Linq method on the end)
+            </summary>
+        </member>
+        <member name="T:ExpressMapper.ICustomTypeMapper`2">
+            <summary>
+            Interface to implement custom mapperd
+            </summary>
+        </member>
+        <member name="T:ExpressMapper.IMemberConfiguration`2">
+            <summary>
+            Interface to extend the mapping
+            </summary>
+            <typeparam name="T">source</typeparam>
+            <typeparam name="TN">destination</typeparam>
+        </member>
+        <member name="T:ExpressMapper.ITypeMapper`2">
+            <summary>
+            Interface that implements internals of mapping
+            </summary>
+            <typeparam name="T">source</typeparam>
+            <typeparam name="TN">destination</typeparam>
+        </member>
+        <member name="T:ExpressMapper.MapNotImplementedException">
+            <summary>
+            Mapping not implemented exception
+            </summary>
+            Serializable turned off - PCL support
+        </member>
+        <member name="M:ExpressMapper.MappingServiceProvider.MapExists(System.Type,System.Type)">
+            <summary>
+            This returns true if ExpressMapper already contains a map between the source and destination types
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ExpressMapper.MemberConfiguration`2.Flatten">
+            <summary>
+            This will apply the flattening algorithm to the source. 
+            This allow properties in nested source classes to be assigned to a top level destination property.
+            Matching is done by concatenated names, and also a few Linq commands
+            e.g. dest.NestedClassMyProperty would contain the property src.NestedClass.MyProperty (as long as types match)
+            and  dest.MyCollectionCount would contain the count (int) of the Collection.
+            </summary>
+        </member>
+        <member name="T:ExpressMapper.NullCheckNestedMemberVisitor">
+            <summary>
+            NullCheckNestedMemberVisitor
+            </summary>
+        </member>
+        <member name="M:ExpressMapper.NullCheckNestedMemberVisitor.#ctor(System.Boolean)">
+            <summary>
+            NullCheckNestedMemberVisitor constructor
+            </summary>
+            <param name="isNull"></param>
+        </member>
+        <member name="P:ExpressMapper.NullCheckNestedMemberVisitor.CheckNullExpression">
+            <summary>
+            CheckNullExpression
+            </summary>
+        </member>
+    </members>
+</doc>
