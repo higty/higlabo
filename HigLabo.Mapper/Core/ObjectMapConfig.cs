@@ -111,12 +111,12 @@ namespace HigLabo.Core
                 return this.MapIDataReader(source as IDataReader, target, context);
             }
             var md = this.GetMethod<TSource, TTarget>(source, target);
+            TTarget result = default(TTarget);
             try
             {
                 context.CallStackCount++;
-                var result = md(this, source, target, context);
+                result = md(this, source, target, context);
                 context.CallStackCount--;
-                return result;
             }
             catch (TargetInvocationException ex)
             {
@@ -125,6 +125,9 @@ namespace HigLabo.Core
                     + "We will fix it."
                     , source, target, ex.InnerException);
             }
+            this.CallPostAction(source, target);
+
+            return result;
         }
         public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, Func<TTarget> constructor)
         {
@@ -215,7 +218,8 @@ namespace HigLabo.Core
             var targetType = target.GetType();
             foreach (var item in _PostActions.Where(el => el.Condition.Match(sourceType, targetType)))
             {
-                item.Action.DynamicInvoke(source, target);
+                var f = (Action<TSource, TTarget>)item.Action;
+                f(source, target);
             }
         }
 

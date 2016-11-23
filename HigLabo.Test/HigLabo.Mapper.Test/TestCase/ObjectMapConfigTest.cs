@@ -297,21 +297,14 @@ namespace HigLabo.Mapper.Test
             }
             var u2 = config.Map(u1, new User());
 
-            Assert.AreEqual(0, u2.Users.Count);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_ListProperty_WithCustomConverter()
-        {
-            var config = new ObjectMapConfig();
-
-            var u1 = new User();
-            for (int i = 0; i < 3; i++)
+            config.AddPostAction<User, User>((source, target) =>
             {
-                u1.Users.Add(new User("TestUser" + i.ToString()));
-            }
-            var u2 = config.Map(u1, new User());
+                target.Users.AddRange(source.Users);
+            });
+            var u3 = config.Map(u1, new User());
 
             Assert.AreEqual(0, u2.Users.Count);
+            Assert.AreEqual(3, u3.Users.Count);
         }
 
         private ConvertResult<MapPoint> MapPointConverter(Object obj)
