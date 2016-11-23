@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AgileObjects;
+using BenchmarkDotNet.Running;
 
 namespace HigLabo.Mapper.PerformanceTest
 {
@@ -20,7 +22,13 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         static void Main(string[] args)
         {
-            //HigLaboMapperTest0(10000);
+            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
+            Console.WriteLine(summary);
+            Console.ReadLine();
+        }
+        static void OldTest()
+        {
+            //HigLaboMapperTest(Customer.Create(), 1);
             //return;
 
             TinyMapper.Bind<Customer, CustomerDTO>();
@@ -29,10 +37,10 @@ namespace HigLabo.Mapper.PerformanceTest
                 config.CreateMap<Customer, CustomerDTO>();
                 config.CreateMap<Address, AddressDTO>();
             });
+            Warmup();
             {
                 var l = new List<TestResult>();
                 var customer = Customer.Create();
-                TinyMapperTest(customer, 1);
 
                 for (int i = 0; i < 6; i++)
                 {
@@ -49,7 +57,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var l = new List<TestResult>();
                 var customer = Customer.Create();
 
-                HigLaboMapperTest(customer, 1);
                 for (int i = 0; i < 6; i++)
                 {
                     var count = (Int32)Math.Pow(10, i);
@@ -65,7 +72,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var l = new List<TestResult>();
                 var customer = Customer.Create();
 
-                MapsterTest(customer, 1);
                 for (int i = 0; i < 6; i++)
                 {
                     var count = (Int32)Math.Pow(10, i);
@@ -80,7 +86,6 @@ namespace HigLabo.Mapper.PerformanceTest
             {
                 var l = new List<TestResult>();
                 var customer = Customer.Create();
-                AutoMapperTest(customer, 1);
 
                 for (int i = 0; i < 6; i++)
                 {
@@ -96,7 +101,6 @@ namespace HigLabo.Mapper.PerformanceTest
             {
                 var l = new List<TestResult>();
                 var customer = Customer.Create();
-                FastMapperTest(customer, 1);
 
                 for (int i = 0; i < 6; i++)
                 {
@@ -111,6 +115,18 @@ namespace HigLabo.Mapper.PerformanceTest
             }
             Console.WriteLine("Press enter...");
             Console.ReadLine();
+        }
+        private static void Warmup()
+        {
+            var customer = Customer.Create();
+            for (int i = 0; i < 100; i++)
+            {
+                HigLaboMapperTest(customer, 1);
+                TinyMapperTest(customer, 1);
+                MapsterTest(customer, 1);
+                AutoMapperTest(customer, 1);
+                FastMapperTest(customer, 1);
+            }
         }
         private static void HigLaboMapperTest0(Int32 count)
         {
@@ -158,6 +174,24 @@ namespace HigLabo.Mapper.PerformanceTest
 
             return result;
         }
+        private static TestResult MapsterTest(Customer customer, Int32 count)
+        {
+            var l = new List<TestResult>();
+            var sw = new Stopwatch();
+            var result = new TestResult();
+            result.ExecuteCount = count;
+
+            sw.Restart();
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = Mapster.TypeAdapter.Adapt<CustomerDTO>(customer);
+            }
+            sw.Stop();
+
+            result.ElapsedTicks = sw.ElapsedTicks;
+
+            return result;
+        }
         private static TestResult FastMapperTest(Customer customer, Int32 count)
         {
             var l = new List<TestResult>();
@@ -187,24 +221,6 @@ namespace HigLabo.Mapper.PerformanceTest
             for (int i = 0; i < count; i++)
             {
                 var customerDto = TinyMapper.Map<CustomerDTO>(customer);
-            }
-            sw.Stop();
-
-            result.ElapsedTicks = sw.ElapsedTicks;
-
-            return result;
-        }
-        private static TestResult MapsterTest(Customer customer, Int32 count)
-        {
-            var l = new List<TestResult>();
-            var sw = new Stopwatch();
-            var result = new TestResult();
-            result.ExecuteCount = count;
-
-            sw.Restart();
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = Mapster.TypeAdapter.Adapt<CustomerDTO>(customer);
             }
             sw.Stop();
 

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BenchmarkDotNet.Toolchains.Roslyn</name>
+    </assembly>
+    <members>
+        <member name="T:BenchmarkDotNet.Toolchains.RoslynToolchain">
+            <summary>
+            Build a benchmark program with the Roslyn compiler.
+            </summary>
+        </member>
+    </members>
+</doc>

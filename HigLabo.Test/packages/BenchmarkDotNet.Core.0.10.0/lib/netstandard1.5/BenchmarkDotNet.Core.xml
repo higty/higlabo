@@ -1,0 +1,1367 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BenchmarkDotNet.Core</name>
+    </assembly>
+    <members>
+        <member name="T:BenchmarkDotNet.Attributes.CleanupAttribute">
+            <summary>
+            Marks method to be executed after benchmark.
+            <remarks>It's going to be executed only once, after all benchmark runs.</remarks>
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Attributes.SetupAttribute">
+            <summary>
+            Marks method to be executed before benchmark. 
+            <remarks>It's going to be executed only once, just before warm up.</remarks>
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Attributes.Columns.NamespaceColumnAttribute">
+            <summary>
+            Add a column with the target method namespace.
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Characteristics.IResolver">
+            <summary>
+            An entity which can resolve default values of <see cref="T:BenchmarkDotNet.Characteristics.Characteristic`1"/>.
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Code.GenericTaskDeclarationsProvider">
+            <summary>
+            declarations provider for <see cref="T:System.Threading.Tasks.Task`1" /> and <see cref="T:System.Threading.Tasks.ValueTask`1" />
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Columns.IColumn.Id">
+            <summary>
+            An unique identificator of the column.
+            <remarks>If there are several columns with the same Id, only one of them will be shown in the summary.</remarks>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Columns.IColumn.ColumnName">
+            <summary>
+            Display column title in the summary.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Columns.IColumn.PriorityInCategory">
+            <summary>
+            Defines order of column in the same category.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Configs.IConfig.KeepBenchmarkFiles">
+            <summary>
+            determines if all auto-generated files should be kept or removed after running benchmarks
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Diagnosers.IDiagnoser.BeforeAnythingElse(System.Diagnostics.Process,BenchmarkDotNet.Running.Benchmark)">
+            <summary>
+            before jitting, warmup
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Diagnosers.IDiagnoser.AfterSetup(System.Diagnostics.Process,BenchmarkDotNet.Running.Benchmark)">
+            <summary>
+            after setup, before run
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Diagnosers.IDiagnoser.BeforeCleanup">
+            <summary>
+            after run, before cleanup
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Engines.EnginePilotStage.Run">
+            <returns>Perfect invocation count</returns>
+        </member>
+        <member name="M:BenchmarkDotNet.Engines.EnginePilotStage.RunAuto">
+            <summary>
+            A case where we don't have specific iteration time.
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Engines.EnginePilotStage.RunSpecific">
+            <summary>
+            A case where we have specific iteration time.
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Engines.IEngine.PreAllocate">
+            <summary>
+            must provoke all static ctors and perform any other necessary allocations 
+            so Run() has 0 exclusive allocations and our Memory Diagnostics is 100% accurate!
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Engines.IEngine.Jitting">
+            <summary>
+            must perform jitting via warmup calls
+            <remarks>is called after first call to Setup, from the auto-generated benchmark process</remarks>
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.Pilot">
+            <summary>
+            <seealso href="https://en.wikipedia.org/wiki/Pilot_experiment"/>
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.IdleWarmup">
+            <summary>
+            Warmup for idle method (overhead)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.IdleTarget">
+            <summary>
+            Idle method (overhead)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.MainWarmup">
+            <summary>
+            Warmup for main benchmark iteration (with overhead)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.MainTarget">
+            <summary>
+            Main benchmark iteration (with overhead)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.Result">
+            <summary>
+            Target - TargetIdle (without overhead)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.IterationMode.Unknown">
+            <summary>
+            Unknown 
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.RunStrategy.ColdStart">
+            <summary>
+            A mode without overhead evaluating and warmup, with single invocation.
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Engines.RunStrategy.Throughput">
+            <summary>
+            Throughput mode.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Environments.HostEnvironmentInfo.ProcessorName">
+            <summary>
+            is expensive to call (1s)
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Environments.HostEnvironmentInfo.DotNetCliVersion">
+            <summary>
+            is expensive to call (creates new process)
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Environments.HostEnvironmentInfo.ChronometerFrequency">
+            <summary>
+            The frequency of the timer as the number of ticks per second.
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Jit.LegacyJit">
+            <summary>
+            LegacyJIT
+            <remarks>Supported only for Full Framework</remarks>
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Jit.RyuJit">
+            <summary>
+            RyuJIT
+            <remarks>Supported only for x64; Full Framework or CoreCLR</remarks>
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Jit.Llvm">
+            <summary>
+            LLVM
+            <remarks>Supported only for Mono</remarks>
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Platform.AnyCpu">
+            <summary>
+            AnyCPU
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Platform.X86">
+            <summary>
+            x86
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Platform.X64">
+            <summary>
+            x64
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Runtime.Clr">
+            <summary>
+            Full .NET Framework (Windows only)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Runtime.Mono">
+            <summary>
+            Mono
+            See also: http://www.mono-project.com/
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Environments.Runtime.Core">
+            <summary>
+            Cross-platform Core CLR runtime
+            See also: https://docs.microsoft.com/en-us/dotnet/
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Exporters.IExporterDependancies">
+            <summary>
+            This is an internal interface, it allows Exporters to specify that 
+            they depends on another Exporter (see RPlotExporter for example)
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Exporters.Csv.CsvSeparator.Comma">
+            <summary>
+            ',' will be used as the CSV separator.
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Exporters.Csv.CsvSeparator.Semicolon">
+            <summary>
+            ';' will be used as the CSV separator.
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Exporters.Csv.CsvSeparator.CurrentCulture">
+             <summary>
+            
+             </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Exporters.Csv.CsvSeparatorExtensions.ToRealSeparator(BenchmarkDotNet.Exporters.Csv.CsvSeparator)">
+            <summary>
+            Return a string which represent real CSV separator which can be used as plain text.
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Extensions.StringAndTextExtensions.AsValidFileName(System.String)">
+            <summary>
+            replaces all invalid file name chars with their number representation
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Extensions.StringAndTextExtensions.Wrap(System.String,System.Int32)">
+            <summary>
+            From http://bryan.reynoldslive.com/post/Wrapping-string-data.aspx
+            Returns a list of strings no larger than the max length sent in.
+            </summary>
+            <remarks>useful function used to wrap string text for reporting.</remarks>
+            <param name="text">Text to be wrapped into of List of Strings</param>
+            <param name="maxLength">Max length you want each line to be.</param>
+            <returns>List of strings</returns>
+        </member>
+        <member name="F:BenchmarkDotNet.Horology.HardwareTimerKind.System">
+            <summary>
+            System timer
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Horology.HardwareTimerKind.Tsc">
+            <summary>
+            Time Stamp Counter
+            <seealso href="https://en.wikipedia.org/wiki/Time_Stamp_Counter"/>
+            </summary>
+        </member>
+        <member name="F:BenchmarkDotNet.Horology.HardwareTimerKind.Hpet">
+            <summary>
+            High Precision Event Timer
+            <seealso href="https://en.wikipedia.org/wiki/High_Precision_Event_Timer"/>
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Horology.TimeSpanExtensions.ToFormattedTotalTime(System.TimeSpan)">
+            <summary>
+            Time in the following format: {th}:{mm}:{ss} ({ts} sec)
+            
+            where
+              {th}: total hours (two digits)
+              {mm}: minutes (two digits)
+              {ss}: seconds (two digits)
+              {ts}: total seconds
+            </summary>
+            <example>TimeSpan.FromSeconds(2362) -> "00:39:22 (2362 sec)"</example>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BenchmarkDotNet.Horology.TimeUnit.GetBestTimeUnit(System.Double[])">
+            <summary>
+            This method chooses the best time unit for representing a set of time measurements. 
+            </summary>
+            <param name="values">The list of time measurements in nanoseconds.</param>
+            <returns>Best time unit.</returns>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.EnvMode.Platform">
+            <summary>
+            Platform (x86 or x64)
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.EnvMode.Jit">
+            <summary>
+            JIT (Just-In-Time compiler)
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.EnvMode.Runtime">
+            <summary>
+            Runtime
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.EnvMode.Affinity">
+            <summary>
+            ProcessorAffinity for the benchmark process.
+            See also: https://msdn.microsoft.com/library/system.diagnostics.process.processoraffinity.aspx
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.EnvMode.Gc">
+            <summary>
+            GcMode
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.GcMode.Server">
+            <summary>
+            Specifies whether the common language runtime runs server garbage collection.
+            <value>false: Does not run server garbage collection. This is the default.</value>
+            <value>true: Runs server garbage collection.</value>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.GcMode.Concurrent">
+            <summary>
+            Specifies whether the common language runtime runs garbage collection on a separate thread.
+            <value>false: Does not run garbage collection concurrently.</value>
+            <value>true: Runs garbage collection concurrently. This is the default.</value>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.GcMode.CpuGroups">
+            <summary>
+            Specifies whether garbage collection supports multiple CPU groups.
+            <value>false: Garbage collection does not support multiple CPU groups. This is the default.</value>
+            <value>true: Garbage collection supports multiple CPU groups, if server garbage collection is enabled.</value>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.GcMode.Force">
+            <summary>
+            Specifies whether the BenchmarkDotNet's benchmark runner forces full garbage collection after each benchmark invocation
+            <value>false: Does not force garbage collection.</value>
+            <value>true: Forces full garbage collection after each benchmark invocation. This is the default.</value>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.GcMode.AllowVeryLargeObjects">
+            <summary>
+            On 64-bit platforms, enables arrays that are greater than 2 gigabytes (GB) in total size.
+            <value>false: Arrays greater than 2 GB in total size are not enabled. This is the default.</value>
+            <value>true: Arrays greater than 2 GB in total size are enabled on 64-bit platforms.</value>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.InfrastructureMode.EngineFactory">
+            <summary>
+            this type will be used in the auto-generated program to create engine in separate process
+            <remarks>it must have parameterless constructor</remarks>
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.RunStrategy">
+            <summary>
+            Available values: Throughput and ColdStart.
+                Throughput: default strategy which allows to get good precision level.
+                ColdStart: should be used only for measuring cold start of the application or testing purpose.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.LaunchCount">
+            <summary>
+            How many times we should launch process with target benchmark.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.WarmupCount">
+            <summary>
+            How many warmup iterations should be performed.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.TargetCount">
+            <summary>
+            How many target iterations should be performed
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.IterationTime">
+            <summary>
+            Desired time of execution of an iteration.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.InvocationCount">
+            <summary>
+            Invocation count in a single iteration.
+            If specified, <see cref="P:BenchmarkDotNet.Jobs.RunMode.IterationTime"/> will be ignored.
+            If specified, it must be a multiple of <see cref="P:BenchmarkDotNet.Jobs.RunMode.UnrollFactor"/>.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Jobs.RunMode.UnrollFactor">
+            <summary>
+            How many times the benchmark method will be invoked per one iteration of a generated loop.
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Loggers.LoggerWithPrefix">
+            <summary>
+            Adds prefix for each line
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.MathHelper.Gauss(System.Double)">
+            <summary>
+            ACM Algorithm 209: Gauss
+            
+            Calculates $(1/\sqrt{2\pi}) \int_{-\infty}^x e^{-u^2 / 2} du$
+            by means of polynomial approximations due to A. M. Murray of Aberdeen University;
+            
+            See: http://dl.acm.org/citation.cfm?id=367664
+            </summary>        
+            <param name="x">-infinity..+infinity</param>        
+            <returns>Area under the Standard Normal Curve from -infinity to x</returns>
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.MathHelper.Student(System.Double,System.Double)">
+            <summary>
+            ACM Algorithm 395: Student's t-distribution
+            
+            Evaluates the two-tail probability P(t|n) that t is exceeded 
+            in magnitude for Student's t-distribution with n degrees of freedom.
+            
+            http://dl.acm.org/citation.cfm?id=355599
+            </summary>
+            <param name="t">t-value</param>
+            <param name="n">Degree of freedom, n >= 20</param>
+            <returns>2-tail p-value</returns>
+        </member>
+        <member name="T:BenchmarkDotNet.Mathematics.MeasurementsStatistics">
+            <summary>
+            the goal of this struct is to avoid any heap allocations, please keep it in mind
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.PercentileValues.Percentile(System.Collections.Generic.List{System.Double},System.Int32)">
+            <summary>
+            Calculates the Nth percentile from the set of values
+            </summary>
+            <remarks>
+            The implementation is expected to be consitent with the one from Excel.
+            It's a quite common to export bench output into .csv for further analysis 
+            And it's a good idea to have same results from all tools being used.
+            </remarks>
+            <param name="sortedValues">Sequence of the values to be calculated</param>
+            <param name="percentile">Value in range 0..100</param>
+            <returns>Percentile from the set of values</returns>
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.CanBeInverted">
+            <summary>
+            Returns true, if this statistics can be inverted (see <see cref="M:BenchmarkDotNet.Mathematics.Statistics.Invert"/>).
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.Invert">
+            <summary>
+            Statistics for [1/X]. If Min is less then or equal to 0, returns null.
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.Sqr">
+            <summary>
+            Statistics for [X^2].
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.MulMean(BenchmarkDotNet.Mathematics.Statistics,BenchmarkDotNet.Mathematics.Statistics)">
+            <summary>
+            Mean for [X*Y].
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.DivMean(BenchmarkDotNet.Mathematics.Statistics,BenchmarkDotNet.Mathematics.Statistics)">
+            <summary>
+            Mean for [X/Y].
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.MulVariance(BenchmarkDotNet.Mathematics.Statistics,BenchmarkDotNet.Mathematics.Statistics)">
+            <summary>
+            Variance for [X*Y].
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.Statistics.DivVariance(BenchmarkDotNet.Mathematics.Statistics,BenchmarkDotNet.Mathematics.Statistics)">
+            <summary>
+            Variance for [X/Y].
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Mathematics.WelchTTest.Calc(BenchmarkDotNet.Mathematics.Statistics,BenchmarkDotNet.Mathematics.Statistics)">
+            <summary>
+            Welch's Two Sample t-test
+            </summary>
+        </member>
+        <member name="T:BenchmarkDotNet.Reports.Measurement">
+            <summary>
+            The basic captured statistics for a benchmark.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Reports.Measurement.Operations">
+            <summary>
+            Gets the number of operations performed.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Reports.Measurement.Nanoseconds">
+            <summary>
+            Gets the total number of nanoseconds it took to perform all operations.
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Reports.Measurement.#ctor(System.Int32,BenchmarkDotNet.Engines.IterationMode,System.Int32,System.Int64,System.Double)">
+            <summary>
+            Creates an instance of <see cref="T:BenchmarkDotNet.Reports.Measurement"/> struct.
+            </summary>
+            <param name="launchIndex"></param>
+            <param name="iterationMode"></param>
+            <param name="iterationIndex"></param>
+            <param name="operations">The number of operations performed.</param>
+            <param name="nanoseconds">The total number of nanoseconds it took to perform all operations.</param>
+        </member>
+        <member name="M:BenchmarkDotNet.Reports.Measurement.Parse(BenchmarkDotNet.Loggers.ILogger,System.String,System.Int32)">
+            <summary>
+            Parses the benchmark statistics from the plain text line.
+            
+            E.g. given the input <paramref name="line"/>:
+            
+                Target 1: 10 op, 1005842518 ns
+            
+            Will extract the number of <see cref="P:BenchmarkDotNet.Reports.Measurement.Operations"/> performed and the 
+            total number of <see cref="P:BenchmarkDotNet.Reports.Measurement.Nanoseconds"/> it took to perform them.
+            </summary>
+            <param name="logger">The logger to write any diagnostic messages to.</param>
+            <param name="line">The line to parse.</param>
+            <param name="processIndex"></param>
+            <returns>An instance of <see cref="T:BenchmarkDotNet.Reports.Measurement"/> if parsed successfully. <c>Null</c> in case of any trouble.</returns>
+        </member>
+        <member name="M:BenchmarkDotNet.Reports.MeasurementExtensions.GetOpsPerSecond(BenchmarkDotNet.Reports.Measurement)">
+            <summary>
+            Gets the number of operations performed per second (ops/sec).
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Reports.MeasurementExtensions.GetAverageNanoseconds(BenchmarkDotNet.Reports.Measurement)">
+            <summary>
+            Gets the average duration of one operation in nanoseconds.
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Reports.Summary.Item(BenchmarkDotNet.Running.Benchmark)">
+            <summary>
+            Returns a report for the given benchmark or null if there is no a corresponded report.
+            </summary>        
+        </member>
+        <member name="M:BenchmarkDotNet.Toolchains.GeneratorBase.GetProgramName(BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Configs.IConfig)">
+            <summary>
+            when config is set to KeepBenchmarkFiles we use benchmark.ShortInfo as name,
+            otherwise (default) "BDN.Generated", mostly to prevent PathTooLongException
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Toolchains.DotNetCli.DotNetCliBuilder.Build(BenchmarkDotNet.Toolchains.Results.GenerateResult,BenchmarkDotNet.Loggers.ILogger,BenchmarkDotNet.Running.Benchmark,BenchmarkDotNet.Characteristics.IResolver)">
+            <summary>
+            generates project.lock.json that tells compiler where to take dlls and source from
+            and builds executable and copies all required dll's
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Toolchains.DotNetCli.DotNetCliGenerator.GetBuildArtifactsDirectoryPath(BenchmarkDotNet.Running.Benchmark,System.String)">
+            <summary>
+            we need our folder to be on the same level as the project that we want to reference
+            we are limited by xprojs (by default compiles all .cs files in all subfolders, Program.cs could be doubled and fail the build)
+            and also by nuget internal implementation like looking for global.json file in parent folders
+            </summary>
+        </member>
+        <member name="M:BenchmarkDotNet.Toolchains.DotNetCli.DotNetCliGenerator.GetBinariesDirectoryPath(System.String)">
+            <summary>
+            we use custom output path in order to avoid any future problems related to dotnet cli ArtifactsPaths changes
+            </summary>
+        </member>
+        <member name="P:BenchmarkDotNet.Validators.CompositeValidator.TreatsWarningsAsErrors">
+            <summary>
+            returns true if any of the validators has TreatsWarningsAsErrors == true
+            </summary>
+        </member>
+        <member name="T:SimpleJson.JsonArray">
+            <summary>
+            Represents the json array.
+            </summary>
+        </member>
+        <member name="M:SimpleJson.JsonArray.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleJson.JsonArray"/> class. 
+            </summary>
+        </member>
+        <member name="M:SimpleJson.JsonArray.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the <see cref="T:SimpleJson.JsonArray"/> class. 
+            </summary>
+            <param name="capacity">The capacity of the json array.</param>
+        </member>
+        <member name="M:SimpleJson.JsonArray.ToString">
+            <summary>
+            The json representation of the array.
+            </summary>
+            <returns>The json representation of the array.</returns>
+        </member>
+        <member name="T:SimpleJson.JsonObject">
+            <summary>
+            Represents the json object.
+            </summary>
+        </member>
+        <member name="F:SimpleJson.JsonObject._members">
+            <summary>
+            The internal member dictionary.
+            </summary>
+        </member>
+        <member name="M:SimpleJson.JsonObject.#ctor">
+            <summary>
+            Initializes a new instance of <see cref="T:SimpleJson.JsonObject"/>.
+            </summary>
+        </member>
+        <member name="M:SimpleJson.JsonObject.#ctor(System.Collections.Generic.IEqualityComparer{System.String})">
+            <summary>
+            Initializes a new instance of <see cref="T:SimpleJson.JsonObject"/>.
+            </summary>
+            <param name="comparer">The <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> implementation to use when comparing keys, or null to use the default <see cref="T:System.Collections.Generic.EqualityComparer`1"/> for the type of the key.</param>
+        </member>
+        <member name="P:SimpleJson.JsonObject.Item(System.Int32)">
+            <summary>
+            Gets the <see cref="T:System.Object"/> at the specified index.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:SimpleJson.JsonObject.Add(System.String,System.Object)">
+            <summary>
+            Adds the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:SimpleJson.JsonObject.ContainsKey(System.String)">
+            <summary>
+            Determines whether the specified key contains key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns>
+                <c>true</c> if the specified key contains key; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="P:SimpleJson.JsonObject.Keys">
+            <summary>
+            Gets the keys.
+            </summary>
+            <value>The keys.</value>
+        </member>
+        <member name="M:SimpleJson.JsonObject.Remove(System.String)">
+            <summary>
+            Removes the specified key.
+            </summary>
+            <param name="key">The key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJson.JsonObject.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Tries the get value.
+            </summary>
+            <param name="key">The key.</param>
+            <param name="value">The value.</param>
+            <returns></returns>
+        </member>
+        <member name="P:SimpleJson.JsonObject.Values">
+            <summary>
+            Gets the values.
+            </summary>
+            <value>The values.</value>
+        </member>
+        <member name="P:SimpleJson.JsonObject.Item(System.String)">
+            <summary>
+            Gets or sets the <see cref="T:System.Object"/> with the specified key.
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:SimpleJson.JsonObject.Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Adds the specified item.
+            </summary>
+            <param name="item">The item.</param>
+        </member>
+        <member name="M:SimpleJson.JsonObject.Clear">
+            <summary>
+            Clears this instance.
+            </summary>
+        </member>
+        <member name="M:SimpleJson.JsonObject.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Determines whether [contains] [the specified item].
+            </summary>
+            <param name="item">The item.</param>
+            <returns>
+            	<c>true</c> if [contains] [the specified item]; otherwise, <c>false</c>.
+            </returns>
+        </member>
+        <member name="M:SimpleJson.JsonObject.CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.Int32)">
+            <summary>
+            Copies to.
+            </summary>
+            <param name="array">The array.</param>
+            <param name="arrayIndex">Index of the array.</param>
+        </member>
+        <member name="P:SimpleJson.JsonObject.Count">
+            <summary>
+            Gets the count.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="P:SimpleJson.JsonObject.IsReadOnly">
+            <summary>
+            Gets a value indicating whether this instance is read only.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is read only; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="M:SimpleJson.JsonObject.Remove(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Removes the specified item.
+            </summary>
+            <param name="item">The item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJson.JsonObject.GetEnumerator">
+            <summary>
+            Gets the enumerator.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SimpleJson.JsonObject.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"/> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:SimpleJson.JsonObject.ToString">
+            <summary>
+            Returns a json <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            A json <see cref="T:System.String"/> that represents the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="T:SimpleJson.SimpleJson">
+            <summary>
+            This class encodes and decodes JSON strings.
+            Spec. details, see http://www.json.org/
+            
+            JSON uses Arrays and Objects. These correspond here to the datatypes JsonArray(IList&lt;object>) and JsonObject(IDictionary&lt;string,object>).
+            All numbers are parsed to doubles.
+            </summary>
+        </member>
+        <member name="M:SimpleJson.SimpleJson.DeserializeObject(System.String)">
+            <summary>
+            Parses the string json into a value
+            </summary>
+            <param name="json">A JSON string.</param>
+            <returns>An IList&lt;object>, a IDictionary&lt;string,object>, a double, a string, null, true, or false</returns>
+        </member>
+        <member name="M:SimpleJson.SimpleJson.TryDeserializeObject(System.String,System.Object@)">
+            <summary>
+            Try parsing the json string into a value.
+            </summary>
+            <param name="json">
+            A JSON string.
+            </param>
+            <param name="obj">
+            The object.
+            </param>
+            <returns>
+            Returns true if successfull otherwise false.
+            </returns>
+        </member>
+        <member name="M:SimpleJson.SimpleJson.SerializeObject(System.Object,SimpleJson.IJsonSerializerStrategy)">
+            <summary>
+            Converts a IDictionary&lt;string,object> / IList&lt;object> object into a JSON string
+            </summary>
+            <param name="json">A IDictionary&lt;string,object> / IList&lt;object></param>
+            <param name="jsonSerializerStrategy">Serializer strategy to use</param>
+            <returns>A JSON encoded string, or null if object 'json' is not serializable</returns>
+        </member>
+        <member name="M:SimpleJson.SimpleJson.IsNumeric(System.Object)">
+            <summary>
+            Determines if a given object is numeric in any way
+            (can be integer, double, null, etc).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.CanBeNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could be <c>null</c> sometimes,
+            so the check for <c>null</c> is necessary before its usage.
+            </summary>
+            <example><code>
+            [CanBeNull] object Test() => null;
+            
+            void UseTest() {
+              var p = Test();
+              var s = p.ToString(); // Warning: Possible 'System.NullReferenceException'
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.NotNullAttribute">
+            <summary>
+            Indicates that the value of the marked element could never be <c>null</c>.
+            </summary>
+            <example><code>
+            [NotNull] object Foo() {
+              return null; // Warning: Possible 'null' assignment
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.ItemNotNullAttribute">
+            <summary>
+            Can be appplied to symbols of types derived from IEnumerable as well as to symbols of Task
+            and Lazy classes to indicate that the value of a collection item, of the Task.Result property
+            or of the Lazy.Value property can never be null.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ItemCanBeNullAttribute">
+            <summary>
+            Can be appplied to symbols of types derived from IEnumerable as well as to symbols of Task
+            and Lazy classes to indicate that the value of a collection item, of the Task.Result property
+            or of the Lazy.Value property can be null.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ImplicitNotNullAttribute">
+            <summary>
+            Implicitly apply [NotNull]/[ItemNotNull] annotation to all the of type members and parameters
+            in particular scope where this annotation is used (type declaration or whole assembly).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.StringFormatMethodAttribute">
+            <summary>
+            Indicates that the marked method builds string by format pattern and (optional) arguments.
+            Parameter, which contains format string, should be given in constructor. The format string
+            should be in <see cref="M:System.String.Format(System.IFormatProvider,System.String,System.Object[])"/>-like form.
+            </summary>
+            <example><code>
+            [StringFormatMethod("message")]
+            void ShowError(string message, params object[] args) { /* do something */ }
+            
+            void Foo() {
+              ShowError("Failed: {0}"); // Warning: Non-existing argument in format string
+            }
+            </code></example>
+        </member>
+        <member name="M:JetBrains.Annotations.StringFormatMethodAttribute.#ctor(System.String)">
+            <param name="formatParameterName">
+            Specifies which parameter of an annotated method should be treated as format-string
+            </param>
+        </member>
+        <member name="T:JetBrains.Annotations.ValueProviderAttribute">
+            <summary>
+            For a parameter that is expected to be one of the limited set of values.
+            Specify fields of which type should be used as values for this parameter.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.InvokerParameterNameAttribute">
+            <summary>
+            Indicates that the function argument should be string literal and match one
+            of the parameters of the caller function. For example, ReSharper annotates
+            the parameter of <see cref="T:System.ArgumentNullException"/>.
+            </summary>
+            <example><code>
+            void Foo(string param) {
+              if (param == null)
+                throw new ArgumentNullException("par"); // Warning: Cannot resolve symbol
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.NotifyPropertyChangedInvocatorAttribute">
+             <summary>
+             Indicates that the method is contained in a type that implements
+             <c>System.ComponentModel.INotifyPropertyChanged</c> interface and this method
+             is used to notify that some property value changed.
+             </summary>
+             <remarks>
+             The method should be non-static and conform to one of the supported signatures:
+             <list>
+             <item><c>NotifyChanged(string)</c></item>
+             <item><c>NotifyChanged(params string[])</c></item>
+             <item><c>NotifyChanged{T}(Expression{Func{T}})</c></item>
+             <item><c>NotifyChanged{T,U}(Expression{Func{T,U}})</c></item>
+             <item><c>SetProperty{T}(ref T, T, string)</c></item>
+             </list>
+             </remarks>
+             <example><code>
+             public class Foo : INotifyPropertyChanged {
+               public event PropertyChangedEventHandler PropertyChanged;
+             
+               [NotifyPropertyChangedInvocator]
+               protected virtual void NotifyChanged(string propertyName) { ... }
+            
+               string _name;
+             
+               public string Name {
+                 get { return _name; }
+                 set { _name = value; NotifyChanged("LastName"); /* Warning */ }
+               }
+             }
+             </code>
+             Examples of generated notifications:
+             <list>
+             <item><c>NotifyChanged("Property")</c></item>
+             <item><c>NotifyChanged(() =&gt; Property)</c></item>
+             <item><c>NotifyChanged((VM x) =&gt; x.Property)</c></item>
+             <item><c>SetProperty(ref myField, value, "Property")</c></item>
+             </list>
+             </example>
+        </member>
+        <member name="T:JetBrains.Annotations.ContractAnnotationAttribute">
+            <summary>
+            Describes dependency between method input and output.
+            </summary>
+            <syntax>
+            <p>Function Definition Table syntax:</p>
+            <list>
+            <item>FDT      ::= FDTRow [;FDTRow]*</item>
+            <item>FDTRow   ::= Input =&gt; Output | Output &lt;= Input</item>
+            <item>Input    ::= ParameterName: Value [, Input]*</item>
+            <item>Output   ::= [ParameterName: Value]* {halt|stop|void|nothing|Value}</item>
+            <item>Value    ::= true | false | null | notnull | canbenull</item>
+            </list>
+            If method has single input parameter, it's name could be omitted.<br/>
+            Using <c>halt</c> (or <c>void</c>/<c>nothing</c>, which is the same)
+            for method output means that the methos doesn't return normally.<br/>
+            <c>canbenull</c> annotation is only applicable for output parameters.<br/>
+            You can use multiple <c>[ContractAnnotation]</c> for each FDT row,
+            or use single attribute with rows separated by semicolon.<br/>
+            </syntax>
+            <examples><list>
+            <item><code>
+            [ContractAnnotation("=> halt")]
+            public void TerminationMethod()
+            </code></item>
+            <item><code>
+            [ContractAnnotation("halt &lt;= condition: false")]
+            public void Assert(bool condition, string text) // regular assertion method
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null => true")]
+            public bool IsNullOrEmpty(string s) // string.IsNullOrEmpty()
+            </code></item>
+            <item><code>
+            // A method that returns null if the parameter is null,
+            // and not null if the parameter is not null
+            [ContractAnnotation("null => null; notnull => notnull")]
+            public object Transform(object data) 
+            </code></item>
+            <item><code>
+            [ContractAnnotation("s:null=>false; =>true,result:notnull; =>false, result:null")]
+            public bool TryParse(string s, out Person result)
+            </code></item>
+            </list></examples>
+        </member>
+        <member name="T:JetBrains.Annotations.LocalizationRequiredAttribute">
+            <summary>
+            Indicates that marked element should be localized or not.
+            </summary>
+            <example><code>
+            [LocalizationRequiredAttribute(true)]
+            class Foo {
+              string str = "my string"; // Warning: Localizable string
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.CannotApplyEqualityOperatorAttribute">
+            <summary>
+            Indicates that the value of the marked type (or its derivatives)
+            cannot be compared using '==' or '!=' operators and <c>Equals()</c>
+            should be used instead. However, using '==' or '!=' for comparison
+            with <c>null</c> is always permitted.
+            </summary>
+            <example><code>
+            [CannotApplyEqualityOperator]
+            class NoEquality { }
+            
+            class UsesNoEquality {
+              void Test() {
+                var ca1 = new NoEquality();
+                var ca2 = new NoEquality();
+                if (ca1 != null) { // OK
+                  bool condition = ca1 == ca2; // Warning
+                }
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.BaseTypeRequiredAttribute">
+            <summary>
+            When applied to a target attribute, specifies a requirement for any type marked
+            with the target attribute to implement or inherit specific type or types.
+            </summary>
+            <example><code>
+            [BaseTypeRequired(typeof(IComponent)] // Specify requirement
+            class ComponentAttribute : Attribute { }
+            
+            [Component] // ComponentAttribute requires implementing IComponent interface
+            class MyComponent : IComponent { }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.UsedImplicitlyAttribute">
+            <summary>
+            Indicates that the marked symbol is used implicitly (e.g. via reflection, in external library),
+            so this symbol will not be marked as unused (as well as by other usage inspections).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.MeansImplicitUseAttribute">
+            <summary>
+            Should be used on attributes and causes ReSharper to not mark symbols marked with such attributes
+            as unused (as well as by other usage inspections)
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Access">
+            <summary>Only entity marked with attribute considered used.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.Assign">
+            <summary>Indicates implicit assignment to a member.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedWithFixedConstructorSignature">
+            <summary>
+            Indicates implicit instantiation of a type with fixed constructor signature.
+            That means any unused constructor parameters won't be reported as such.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseKindFlags.InstantiatedNoFixedConstructorSignature">
+            <summary>Indicates implicit instantiation of a type.</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ImplicitUseTargetFlags">
+            <summary>
+            Specify what is considered used implicitly when marked
+            with <see cref="T:JetBrains.Annotations.MeansImplicitUseAttribute"/> or <see cref="T:JetBrains.Annotations.UsedImplicitlyAttribute"/>.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.Members">
+            <summary>Members of entity marked with attribute are considered used.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.ImplicitUseTargetFlags.WithMembers">
+            <summary>Entity marked with attribute and all its members considered used.</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.PublicAPIAttribute">
+            <summary>
+            This attribute is intended to mark publicly available API
+            which should not be removed and so is treated as used.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.InstantHandleAttribute">
+            <summary>
+            Tells code analysis engine if the parameter is completely handled when the invoked method is on stack.
+            If the parameter is a delegate, indicates that delegate is executed while the method is executed.
+            If the parameter is an enumerable, indicates that it is enumerated while the method is executed.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.PureAttribute">
+            <summary>
+            Indicates that a method does not make any observable state changes.
+            The same as <c>System.Diagnostics.Contracts.PureAttribute</c>.
+            </summary>
+            <example><code>
+            [Pure] int Multiply(int x, int y) => x * y;
+            
+            void M() {
+              Multiply(123, 42); // Waring: Return value of pure method is not used
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.MustUseReturnValueAttribute">
+            <summary>
+            Indicates that the return value of method invocation must be used.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.ProvidesContextAttribute">
+            <summary>
+            Indicates the type member or parameter of some type, that should be used instead of all other ways
+            to get the value that type. This annotation is useful when you have some "context" value evaluated
+            and stored somewhere, meaning that all other ways to get this value must be consolidated with existing one.
+            </summary>
+            <example><code>
+            class Foo {
+              [ProvidesContext] IBarService _barService = ...;
+            
+              void ProcessNode(INode node) {
+                DoSomething(node, node.GetGlobalServices().Bar);
+                //              ^ Warning: use value of '_barService' field
+              }
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.PathReferenceAttribute">
+            <summary>
+            Indicates that a parameter is a path to a file or a folder within a web project.
+            Path can be relative or absolute, starting from web root (~).
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.SourceTemplateAttribute">
+            <summary>
+            An extension method marked with this attribute is processed by ReSharper code completion
+            as a 'Source Template'. When extension method is completed over some expression, it's source code
+            is automatically expanded like a template at call site.
+            </summary>
+            <remarks>
+            Template method body can contain valid source code and/or special comments starting with '$'.
+            Text inside these comments is added as source code when the template is applied. Template parameters
+            can be used either as additional method parameters or as identifiers wrapped in two '$' signs.
+            Use the <see cref="T:JetBrains.Annotations.MacroAttribute"/> attribute to specify macros for parameters.
+            </remarks>
+            <example>
+            In this example, the 'forEach' method is a source template available over all values
+            of enumerable types, producing ordinary C# 'foreach' statement and placing caret inside block:
+            <code>
+            [SourceTemplate]
+            public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; xs) {
+              foreach (var x in xs) {
+                 //$ $END$
+              }
+            }
+            </code>
+            </example>
+        </member>
+        <member name="T:JetBrains.Annotations.MacroAttribute">
+            <summary>
+            Allows specifying a macro for a parameter of a <see cref="T:JetBrains.Annotations.SourceTemplateAttribute">source template</see>.
+            </summary>
+            <remarks>
+            You can apply the attribute on the whole method or on any of its additional parameters. The macro expression
+            is defined in the <see cref="P:JetBrains.Annotations.MacroAttribute.Expression"/> property. When applied on a method, the target
+            template parameter is defined in the <see cref="P:JetBrains.Annotations.MacroAttribute.Target"/> property. To apply the macro silently
+            for the parameter, set the <see cref="P:JetBrains.Annotations.MacroAttribute.Editable"/> property value = -1.
+            </remarks>
+            <example>
+            Applying the attribute on a source template method:
+            <code>
+            [SourceTemplate, Macro(Target = "item", Expression = "suggestVariableName()")]
+            public static void forEach&lt;T&gt;(this IEnumerable&lt;T&gt; collection) {
+              foreach (var item in collection) {
+                //$ $END$
+              }
+            }
+            </code>
+            Applying the attribute on a template method parameter:
+            <code>
+            [SourceTemplate]
+            public static void something(this Entity x, [Macro(Expression = "guid()", Editable = -1)] string newguid) {
+              /*$ var $x$Id = "$newguid$" + x.ToString();
+              x.DoSomething($x$Id); */
+            }
+            </code>
+            </example>
+        </member>
+        <member name="P:JetBrains.Annotations.MacroAttribute.Expression">
+            <summary>
+            Allows specifying a macro that will be executed for a <see cref="T:JetBrains.Annotations.SourceTemplateAttribute">source template</see>
+            parameter when the template is expanded.
+            </summary>
+        </member>
+        <member name="P:JetBrains.Annotations.MacroAttribute.Editable">
+            <summary>
+            Allows specifying which occurrence of the target parameter becomes editable when the template is deployed.
+            </summary>
+            <remarks>
+            If the target parameter is used several times in the template, only one occurrence becomes editable;
+            other occurrences are changed synchronously. To specify the zero-based index of the editable occurrence,
+            use values >= 0. To make the parameter non-editable when the template is expanded, use -1.
+            </remarks>>
+        </member>
+        <member name="P:JetBrains.Annotations.MacroAttribute.Target">
+            <summary>
+            Identifies the target parameter of a <see cref="T:JetBrains.Annotations.SourceTemplateAttribute">source template</see> if the
+            <see cref="T:JetBrains.Annotations.MacroAttribute"/> is applied on a template method.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcActionAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC action. If applied to a method, the MVC action name is calculated
+            implicitly from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcAreaAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC area.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcControllerAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is
+            an MVC controller. If applied to a method, the MVC controller name is calculated
+            implicitly from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.ChildActionExtensions.RenderAction(HtmlHelper, String, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcMasterAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC Master. Use this attribute
+            for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcModelTypeAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC model type. Use this attribute
+            for custom wrappers similar to <c>System.Web.Mvc.Controller.View(String, Object)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcPartialViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC
+            partial view. If applied to a method, the MVC partial view name is calculated implicitly
+            from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.RenderPartialExtensions.RenderPartial(HtmlHelper, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcSuppressViewErrorAttribute">
+            <summary>
+            ASP.NET MVC attribute. Allows disabling inspections for MVC views within a class or a method.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcDisplayTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC display template.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.Mvc.Html.DisplayExtensions.DisplayForModel(HtmlHelper, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcEditorTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC editor template.
+            Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Html.EditorExtensions.EditorForModel(HtmlHelper, String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcTemplateAttribute">
+            <summary>
+            ASP.NET MVC attribute. Indicates that a parameter is an MVC template.
+            Use this attribute for custom wrappers similar to
+            <c>System.ComponentModel.DataAnnotations.UIHintAttribute(System.String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC view component. If applied to a method, the MVC view name is calculated implicitly
+            from the context. Use this attribute for custom wrappers similar to
+            <c>System.Web.Mvc.Controller.View(Object)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcViewComponentAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC view component name.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcViewComponentViewAttribute">
+            <summary>
+            ASP.NET MVC attribute. If applied to a parameter, indicates that the parameter
+            is an MVC view component view. If applied to a method, the MVC view component view name is default.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AspMvcActionSelectorAttribute">
+            <summary>
+            ASP.NET MVC attribute. When applied to a parameter of an attribute,
+            indicates that this parameter is an MVC action name.
+            </summary>
+            <example><code>
+            [ActionName("Foo")]
+            public ActionResult Login(string returnUrl) {
+              ViewBag.ReturnUrl = Url.Action("Foo"); // OK
+              return RedirectToAction("Bar"); // Error: Cannot resolve action
+            }
+            </code></example>
+        </member>
+        <member name="T:JetBrains.Annotations.RazorSectionAttribute">
+            <summary>
+            Razor attribute. Indicates that a parameter or a method is a Razor section.
+            Use this attribute for custom wrappers similar to 
+            <c>System.Web.WebPages.WebPageBase.RenderSection(String)</c>.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.CollectionAccessAttribute">
+            <summary>
+            Indicates how method, constructor invocation or property access
+            over collection type affects content of the collection.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.None">
+            <summary>Method does not use or modify content of the collection.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.Read">
+            <summary>Method only reads content of the collection but does not modify it.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.ModifyExistingContent">
+            <summary>Method can change content of the collection but does not add new elements.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.CollectionAccessType.UpdatedContent">
+            <summary>Method can add new elements to the collection.</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionMethodAttribute">
+            <summary>
+            Indicates that the marked method is assertion method, i.e. it halts control flow if
+            one of the conditions is satisfied. To set the condition, mark one of the parameters with 
+            <see cref="T:JetBrains.Annotations.AssertionConditionAttribute"/> attribute.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionConditionAttribute">
+            <summary>
+            Indicates the condition parameter of the assertion method. The method itself should be
+            marked by <see cref="T:JetBrains.Annotations.AssertionMethodAttribute"/> attribute. The mandatory argument of
+            the attribute is the assertion type.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.AssertionConditionType">
+            <summary>
+            Specifies assertion type. If the assertion method argument satisfies the condition,
+            then the execution continues. Otherwise, execution is assumed to be halted.
+            </summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_TRUE">
+            <summary>Marked parameter should be evaluated to true.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_FALSE">
+            <summary>Marked parameter should be evaluated to false.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_NULL">
+            <summary>Marked parameter should be evaluated to null value.</summary>
+        </member>
+        <member name="F:JetBrains.Annotations.AssertionConditionType.IS_NOT_NULL">
+            <summary>Marked parameter should be evaluated to not null value.</summary>
+        </member>
+        <member name="T:JetBrains.Annotations.TerminatesProgramAttribute">
+            <summary>
+            Indicates that the marked method unconditionally terminates control flow execution.
+            For example, it could unconditionally throw exception.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.LinqTunnelAttribute">
+            <summary>
+            Indicates that method is pure LINQ method, with postponed enumeration (like Enumerable.Select,
+            .Where). This annotation allows inference of [InstantHandle] annotation for parameters
+            of delegate type by analyzing LINQ method chains.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.NoEnumerationAttribute">
+            <summary>
+            Indicates that IEnumerable, passed as parameter, is not enumerated.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.RegexPatternAttribute">
+            <summary>
+            Indicates that parameter is regular expression pattern.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.XamlItemsControlAttribute">
+            <summary>
+            XAML attribute. Indicates the type that has <c>ItemsSource</c> property and should be treated
+            as <c>ItemsControl</c>-derived type, to enable inner items <c>DataContext</c> type resolve.
+            </summary>
+        </member>
+        <member name="T:JetBrains.Annotations.XamlItemBindingOfItemsControlAttribute">
+            <summary>
+            XAML attribute. Indicates the property of some <c>BindingBase</c>-derived type, that
+            is used to bind some item of <c>ItemsControl</c>-derived type. This annotation will
+            enable the <c>DataContext</c> type resolve for XAML bindings for such properties.
+            </summary>
+            <remarks>
+            Property should have the tree ancestor of the <c>ItemsControl</c> type or
+            marked with the <see cref="T:JetBrains.Annotations.XamlItemsControlAttribute"/> attribute.
+            </remarks>
+        </member>
+        <member name="T:JetBrains.Annotations.NoReorder">
+            <summary>
+            Prevents the Member Reordering feature from tossing members of the marked class.
+            </summary>
+            <remarks>
+            The attribute must be mentioned in your member reordering patterns
+            </remarks>
+        </member>
+    </members>
+</doc>

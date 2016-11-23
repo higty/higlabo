@@ -100,6 +100,8 @@ namespace HigLabo.Core
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
             if (source == null || target == null) { return target; }
+            var kv = new KeyValuePair<object, object>(source, target);
+            if (context.Exists(kv)) { return target; }
             if (context.CallStackCount > this.MaxCallStack)
             {
                 throw new InvalidOperationException("Map method recursively called over " + this.MaxCallStack + ".");
@@ -108,7 +110,7 @@ namespace HigLabo.Core
             {
                 return this.MapIDataReader(source as IDataReader, target, context);
             }
-            Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> md = this.GetMethod<TSource, TTarget>(source, target);
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             try
             {
                 context.CallStackCount++;
@@ -147,9 +149,9 @@ namespace HigLabo.Core
             return this.Map(d, target, context);
         }
 
-        public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> removePropertyNames, Action<TSource, TTarget> action)
+        public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> propertyNames, Action<TSource, TTarget> action)
         {
-            this.RemovePropertyMap<TSource, TTarget>(objectMap => removePropertyNames.Contains(objectMap.Target.Name), action);
+            this.RemovePropertyMap<TSource, TTarget>(objectMap => propertyNames.Contains(objectMap.Target.Name), action);
         }
         public void RemovePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector)
         {
@@ -340,17 +342,6 @@ namespace HigLabo.Core
             ILGenerator il = dm.GetILGenerator();
             Label methodEnd = il.DefineLabel();
 
-            //var keyValuePairVal = il.DeclareLocal(typeof(KeyValuePair<Object, Object>));
-            //il.Emit(OpCodes.Ldarg_1);
-            //il.Emit(OpCodes.Ldarg_2);
-            //il.Emit(OpCodes.Newobj, typeof(KeyValuePair<Object, Object>).GetConstructor(new Type[] { typeof(Object), typeof(Object) }));
-            //il.SetLocal(keyValuePairVal);
-
-            //il.Emit(OpCodes.Ldarg_3);
-            //il.LoadLocal(keyValuePairVal);
-            //il.Emit(OpCodes.Callvirt, typeof(MappingContext).GetMethod("Exists", new Type[] { typeof(KeyValuePair<Object, Object>) }));//context.Exists(keyValuePair)
-            //il.Emit(OpCodes.Brtrue, methodEnd);
-
             var typeConverterVal = il.DeclareLocal(typeof(TypeConverter));
             il.Emit(OpCodes.Ldarg_0);
             il.Emit(OpCodes.Callvirt, _ObjectMapConfigTypeConverterPropertyGetMethod);
@@ -440,7 +431,7 @@ namespace HigLabo.Core
                 LocalBuilder convertedVal = null;
                 var methodName = GetMethodName(item.Target.ActualType);
                 if (item.Source.ActualType == item.Target.ActualType &&
-                    methodName != null && methodName != "ToEncoding")
+                    IsDirectSetValue(item.Source.ActualType))
                 {
                     il.LoadLocal(sourceVal);
                     il.SetLocal(targetVal);
@@ -618,6 +609,27 @@ namespace HigLabo.Core
             var f = typeof(Func<,,,,>);
             var gf = f.MakeGenericType(typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext), targetType);
             return dm.CreateDelegate(gf);
+        }
+        private static Boolean IsDirectSetValue(Type type)
+        {
+            if (type == typeof(String)) return true;
+            if (type == typeof(Boolean)) return true;
+            if (type == typeof(Guid)) return true;
+            if (type == typeof(SByte)) return true;
+            if (type == typeof(Int16)) return true;
+            if (type == typeof(Int32)) return true;
+            if (type == typeof(Int64)) return true;
+            if (type == typeof(Byte)) return true;
+            if (type == typeof(UInt16)) return true;
+            if (type == typeof(UInt32)) return true;
+            if (type == typeof(UInt64)) return true;
+            if (type == typeof(Single)) return true;
+            if (type == typeof(Double)) return true;
+            if (type == typeof(Decimal)) return true;
+            if (type == typeof(TimeSpan)) return true;
+            if (type == typeof(DateTime)) return true;
+            if (type == typeof(DateTimeOffset)) return true;
+            return false;
         }
         private static String GetMethodName(Type type)
         {
