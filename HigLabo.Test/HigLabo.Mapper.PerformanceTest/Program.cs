@@ -23,7 +23,7 @@ namespace HigLabo.Mapper.PerformanceTest
         static void Main(string[] args)
         {
             var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
-            Console.WriteLine(summary);
+            //Console.WriteLine(summary);
             Console.ReadLine();
         }
         static void OldTest()

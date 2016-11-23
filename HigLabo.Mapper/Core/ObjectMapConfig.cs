@@ -35,7 +35,7 @@ namespace HigLabo.Core
         public List<PropertyMappingRule> PropertyMapRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
         public Int32 MaxCallStack { get; set; }
-        public Boolean DictionaryKeyIgnoreCase { get; set; }
+        public StringComparer DictionaryKeyStringComparer { get; set; }
 
         static ObjectMapConfig()
         {
@@ -54,7 +54,7 @@ namespace HigLabo.Core
             this.AddConverter<Object>(o => new ConvertResult<Object>(o != null, o));
             
             this.MaxCallStack = 100;
-            this.DictionaryKeyIgnoreCase = true;
+            this.DictionaryKeyStringComparer = StringComparer.InvariantCultureIgnoreCase;
         }
         private static MethodInfo GetMethodInfo(String name)
         {
@@ -62,7 +62,7 @@ namespace HigLabo.Core
         }
         private MappingContext CreateMappingContext()
         {
-            return new MappingContext(this.DictionaryKeyIgnoreCase);
+            return new MappingContext(this.DictionaryKeyStringComparer);
         }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
@@ -136,15 +136,7 @@ namespace HigLabo.Core
         }
         private TTarget MapIDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
         {
-            Dictionary<String, Object> d = null;
-            if (context.DictionaryKeyIgnoreCase == true)
-            {
-                d = new Dictionary<String, Object>(StringComparer.InvariantCultureIgnoreCase);
-            }
-            else
-            {
-                d = new Dictionary<String, Object>();
-            }
+            Dictionary<String, Object> d = new Dictionary<String, Object>(context.DictionaryKeyStringComparer);
             d.SetValues((IDataReader)source);
             return this.Map(d, target, context);
         }

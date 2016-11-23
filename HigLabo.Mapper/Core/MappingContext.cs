@@ -11,11 +11,11 @@ namespace HigLabo.Core
         private List<KeyValuePair<Object, Object>> _MappedObjectPair = new List<KeyValuePair<object, object>>();
 
         internal Int32 CallStackCount { get; set; }
-        public Boolean DictionaryKeyIgnoreCase { get; set; }
+        public StringComparer DictionaryKeyStringComparer { get; set; }
 
-        public MappingContext(Boolean dictionaryKeyIgnoreCase)
+        public MappingContext(StringComparer stringComparer)
         {
-            this.DictionaryKeyIgnoreCase = dictionaryKeyIgnoreCase;
+            this.DictionaryKeyStringComparer = stringComparer;
         }
         public Boolean Exists(KeyValuePair<Object, Object> value)
         {
