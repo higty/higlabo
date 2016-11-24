@@ -660,14 +660,16 @@ namespace HigLabo.Core
             var sType = propertyMap.Source.ActualType;
             var tType = propertyMap.Target.ActualType;
 
-            return this.CollectionElementMapMode != CollectionElementMapMode.None &&
-                propertyMap.Source.IsIndexedProperty == false && propertyMap.Target.IsIndexedProperty == false &&
-                sType.GenericTypeArguments.Length > 0 &&
-                tType.GenericTypeArguments.Length > 0 &&
-                sType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1)) &&
-                tType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_ICollection_1)) &&
-                (this.CollectionElementMapMode == CollectionElementMapMode.NewObject && tType.GenericTypeArguments[0].GetConstructor(new Type[] { }) != null) &&
-                (this.CollectionElementMapMode == CollectionElementMapMode.CopyReference && sType.IsInheritanceFrom(tType));
+            if (this.CollectionElementMapMode == CollectionElementMapMode.None) { return false; }
+            if (propertyMap.Source.IsIndexedProperty == true || propertyMap.Target.IsIndexedProperty == true) { return false; }
+            if (sType.GenericTypeArguments.Length == 0 || tType.GenericTypeArguments.Length == 0) { return false; }
+            if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject && tType.GenericTypeArguments[0].GetConstructor(Type.EmptyTypes) == null) { return false; }
+            if (this.CollectionElementMapMode == CollectionElementMapMode.CopyReference && 
+                sType.GenericTypeArguments[0].IsInheritanceFrom(tType.GenericTypeArguments[0]) == false) { return false; }
+            if (sType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1)) &&
+                tType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_ICollection_1)))
+            { return true; }
+            return false;
         }
         private static Boolean IsDirectSetValue(Type type)
         {
