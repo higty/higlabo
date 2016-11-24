@@ -15,15 +15,15 @@ namespace HigLabo.Core
         {
             return ObjectMapConfig.Current.Map(source, target);
         }
-        public static ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+        public static ICollection<TTarget> MapCollection<TSource, TTarget>(this IEnumerable<TSource> source, ICollection<TTarget> target)
             where TTarget : new()
         {
-            return ObjectMapConfig.Current.Map(source, target, () => new TTarget());
+            return ObjectMapConfig.Current.MapCollection(source, target, () => new TTarget());
         }
-        public static ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target
-            , Func<TTarget> targetConstructor)
+        public static ICollection<TTarget> MapCollection<TSource, TTarget>(this IEnumerable<TSource> source, ICollection<TTarget> target
+            , Func<TTarget> elementConstructor)
         {
-            return ObjectMapConfig.Current.Map(source, target, targetConstructor);
+            return ObjectMapConfig.Current.MapCollection(source, target, elementConstructor);
         }
         public static TTarget MapOrNull<TSource, TTarget>(this TSource source, Func<TTarget> targetConstructor)
             where TTarget : class

@@ -313,6 +313,8 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_ListProperty()
         {
             var config = new ObjectMapConfig();
+            config.CollectionElementMapMode = CollectionElementMapMode.None;
+
             var u1 = new User();
             for (int i = 0; i < 3; i++)
             {
@@ -330,18 +332,56 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(3, u3.Users.Count);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_ListProperty1()
+        public void ObjectMapConfig_Map_CollectionElement_NewObject()
         {
             var config = new ObjectMapConfig();
+            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+
             var u1 = new User();
             for (int i = 0; i < 3; i++)
             {
                 u1.Users.Add(new User("TestUser" + i.ToString()));
             }
             var u2 = config.Map(u1, new User());
-            u1.Users.MapTo<User>();
+            u1.Users[0].Name = "Test20";
 
-            Assert.AreEqual(0, u2.Users.Count);
+            Assert.AreEqual(3, u2.Users.Count);
+            Assert.AreNotEqual("Test20", u2.Users[0].Name);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_CollectionElement_Reference()
+        {
+            var config = new ObjectMapConfig();
+            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+
+            var u1 = new User();
+            for (int i = 0; i < 3; i++)
+            {
+                u1.Users.Add(new User("TestUser" + i.ToString()));
+            }
+            var u2 = config.Map(u1, new User());
+            u1.Users[0].Name = "Test20";
+
+            Assert.AreEqual(3, u2.Users.Count);
+            Assert.AreEqual("Test20", u2.Users[0].Name);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_MapCollection_CopyReference()
+        {
+            var config = new ObjectMapConfig();
+            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+
+            var u1 = new VipUserListInfo();
+            var u2 = new UserListInfo();
+            for (int i = 0; i < 3; i++)
+            {
+                u1.Users.Add(new VipUser("TestUser" + i.ToString()));
+            }
+            config.Map(u1, u2);
+            u1.Users[0].Name = "Test20";
+
+            Assert.AreEqual(3, u2.Users.Count);
+            Assert.AreEqual("Test20", u2.Users[0].Name);
         }
 
         private ConvertResult<MapPoint> MapPointConverter(Object obj)

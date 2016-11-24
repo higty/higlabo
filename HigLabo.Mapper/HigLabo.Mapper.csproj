@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\CollectionElementMapMode.cs" />
     <Compile Include="Core\ConvertResult.cs" />
     <Compile Include="Core\IEnumerableExtensions.cs" />
     <Compile Include="Core\ILGeneratorExtensions.cs" />
