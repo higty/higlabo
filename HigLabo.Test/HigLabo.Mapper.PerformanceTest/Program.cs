@@ -26,5 +26,12 @@ namespace HigLabo.Mapper.PerformanceTest
             //Console.WriteLine(summary);
             Console.ReadLine();
         }
+        private static void Test()
+        {
+            var customer = Customer.Create();
+            var config = ObjectMapConfig.Current;
+            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+            var customerDto = config.Map(customer, new CustomerDTO());
+        }
     }
 }

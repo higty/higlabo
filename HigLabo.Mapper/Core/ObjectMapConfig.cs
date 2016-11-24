@@ -657,13 +657,17 @@ namespace HigLabo.Core
         }
         private Boolean IsEnumerableToCollection(PropertyMap propertyMap)
         {
+            var sType = propertyMap.Source.ActualType;
+            var tType = propertyMap.Target.ActualType;
+
             return this.CollectionElementMapMode != CollectionElementMapMode.None &&
                 propertyMap.Source.IsIndexedProperty == false && propertyMap.Target.IsIndexedProperty == false &&
-                propertyMap.Source.ActualType.GenericTypeArguments.Length > 0 &&
-                propertyMap.Target.ActualType.GenericTypeArguments.Length > 0 &&
-                propertyMap.Source.ActualType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1)) &&
-                propertyMap.Target.ActualType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_ICollection_1)) &&
-                propertyMap.Target.ActualType.GenericTypeArguments[0].GetConstructor(new Type[] { }) != null;
+                sType.GenericTypeArguments.Length > 0 &&
+                tType.GenericTypeArguments.Length > 0 &&
+                sType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1)) &&
+                tType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_ICollection_1)) &&
+                (this.CollectionElementMapMode == CollectionElementMapMode.NewObject && tType.GenericTypeArguments[0].GetConstructor(new Type[] { }) != null) &&
+                (this.CollectionElementMapMode == CollectionElementMapMode.CopyReference && sType.IsInheritanceFrom(tType));
         }
         private static Boolean IsDirectSetValue(Type type)
         {
