@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HigLabo.Core;
 using System.Collections.Generic;
 using System.Text;
+using System.Dynamic;
 
 namespace HigLabo.Mapper.Test
 {
@@ -26,6 +27,9 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
+
+            Assert.AreEqual(u1.Vector2.X, u2.Vector2.X);
+            Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
         }
         [TestMethod]
         public void ObjectMapConfig_MapOrNull()
@@ -145,6 +149,25 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(Encoding.UTF8, p2.Encoding);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_DynamicObject_Object()
+        {
+            var config = new ObjectMapConfig();
+
+            dynamic u1 = new User();
+            u1.Name = "TestUser";
+            u1.Int32 = 23;
+            u1.MapPoint.Latitude = 32.44m;
+            u1.MapPoint.Longitude = 139.22m;
+
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Name, u2.Name);
+            Assert.AreEqual(u1.Int32, u2.Int32);
+
+            Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
+            Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_List_List()
         {
             var config = new ObjectMapConfig();
@@ -164,7 +187,7 @@ namespace HigLabo.Mapper.Test
             config.PropertyMapRules.Clear();
             var rule = new SuffixPropertyMappingRule("Nullable");
             config.PropertyMapRules.Add(rule);
-            config.RemovePropertyMap<User, User>(new String[] { "DecimalNullable", "DateTimeNullable", "DayOfWeekNullable" }, null);
+            config.RemovePropertyMap<User, User>(new String[] { nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable" }, null);
             
             var u1 = new User();
             var u2 = config.Map(u1, new User());
@@ -265,7 +288,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_ArrayProperty()
+        public void ObjectMapConfig_Map_ArrayProperty_ByConverter()
         {
             var config = new ObjectMapConfig();
             config.AddConverter<String[]>(o =>
@@ -305,6 +328,20 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(0, u2.Users.Count);
             Assert.AreEqual(3, u3.Users.Count);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_ListProperty1()
+        {
+            var config = new ObjectMapConfig();
+            var u1 = new User();
+            for (int i = 0; i < 3; i++)
+            {
+                u1.Users.Add(new User("TestUser" + i.ToString()));
+            }
+            var u2 = config.Map(u1, new User());
+            u1.Users.MapTo<User>();
+
+            Assert.AreEqual(0, u2.Users.Count);
         }
 
         private ConvertResult<MapPoint> MapPointConverter(Object obj)

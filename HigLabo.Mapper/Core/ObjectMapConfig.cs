@@ -122,20 +122,13 @@ namespace HigLabo.Core
             {
                 throw new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
                     + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to auther."
-                    + "We will fix it."
+                    + "We will fix it." + Environment.NewLine
+                    + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
                     , source, target, ex.InnerException);
             }
             this.CallPostAction(source, target);
 
             return result;
-        }
-        public IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, Func<TTarget> constructor)
-        {
-            return Map(source, constructor, this.CreateMappingContext());
-        }
-        private IEnumerable<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, Func<TTarget> constructor, MappingContext context)
-        {
-            return source.Select(el => el.Map(constructor()));
         }
         private TTarget MapIDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
         {
@@ -609,22 +602,7 @@ namespace HigLabo.Core
         private static Boolean IsDirectSetValue(Type type)
         {
             if (type == typeof(String)) return true;
-            if (type == typeof(Boolean)) return true;
-            if (type == typeof(Guid)) return true;
-            if (type == typeof(SByte)) return true;
-            if (type == typeof(Int16)) return true;
-            if (type == typeof(Int32)) return true;
-            if (type == typeof(Int64)) return true;
-            if (type == typeof(Byte)) return true;
-            if (type == typeof(UInt16)) return true;
-            if (type == typeof(UInt32)) return true;
-            if (type == typeof(UInt64)) return true;
-            if (type == typeof(Single)) return true;
-            if (type == typeof(Double)) return true;
-            if (type == typeof(Decimal)) return true;
-            if (type == typeof(TimeSpan)) return true;
-            if (type == typeof(DateTime)) return true;
-            if (type == typeof(DateTimeOffset)) return true;
+            if (type.IsValueType) return true;
             return false;
         }
         private static String GetMethodName(Type type)

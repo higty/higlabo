@@ -9,7 +9,6 @@ namespace HigLabo.Mapper.Test
     {
         public String Value { get; set; }
         public String Name { get; set; }
-        public MapPoint MapPoint { get; set; }
         
         public Int32 Int32 { get; set; }
         public Int32? Int32Nullable { get; set; }
@@ -20,6 +19,8 @@ namespace HigLabo.Mapper.Test
         public DayOfWeek DayOfWeek { get; set; }
         public DayOfWeek? DayOfWeekNullable { get; set; }
 
+        public MapPoint MapPoint { get; set; }
+        public Vector2 Vector2 { get; set; }
         public User ParentUser { get; set; }
         public List<User> Users { get; set; }
         public String[] Tags { get; set; }
@@ -35,6 +36,8 @@ namespace HigLabo.Mapper.Test
             this.DateTime = new DateTime(2014, 12, 16);
             this.Decimal = 20.4m;
             this.DayOfWeek = DayOfWeek.Monday;
+
+            this.Vector2 = new Vector2(2m, 4m);
             this.MapPoint = new MapPoint();
 
             this.Users = new List<User>();

@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -53,6 +54,7 @@
     <Compile Include="Core\MapPoint.cs" />
     <Compile Include="Core\TextParser.cs" />
     <Compile Include="Core\User.cs" />
+    <Compile Include="Core\Vector2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCase\ObjectMapConfigTest.cs" />
   </ItemGroup>
