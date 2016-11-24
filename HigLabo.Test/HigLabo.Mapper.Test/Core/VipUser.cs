@@ -21,6 +21,7 @@ namespace HigLabo.Mapper.Test
     }
     public class UserListInfo
     {
+        public String GroupName { get; set; }
         public List<User> Users { get; set; }
 
         public UserListInfo()
@@ -30,6 +31,7 @@ namespace HigLabo.Mapper.Test
     }
     public class VipUserListInfo
     {
+        public String GroupName { get; set; }
         public List<VipUser> Users { get; set; }
 
         public VipUserListInfo()

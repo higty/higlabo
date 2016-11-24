@@ -366,12 +366,13 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
-        public void ObjectMapConfig_MapCollection_CopyReference()
+        public void ObjectMapConfig_MapCollection_MapAndCopyReference()
         {
             var config = new ObjectMapConfig();
             config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
 
             var u1 = new VipUserListInfo();
+            u1.GroupName = "Group1";
             var u2 = new UserListInfo();
             for (int i = 0; i < 3; i++)
             {
@@ -381,6 +382,7 @@ namespace HigLabo.Mapper.Test
             u1.Users[0].Name = "Test20";
 
             Assert.AreEqual(3, u2.Users.Count);
+            Assert.AreEqual("Group1", u2.GroupName);
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
 

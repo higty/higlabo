@@ -365,8 +365,6 @@ namespace HigLabo.Core
             {
                 var getMethod = item.Source.PropertyInfo.GetGetMethod();
                 var setMethod = item.Target.PropertyInfo.GetSetMethod();
-                //Target property is readonly
-                if (setMethod == null) { continue; }
                 #region DefineLabel
                 Label customConvertStartLabel = il.DefineLabel();
                 Label setValueStartLabel = il.DefineLabel();
@@ -599,6 +597,7 @@ namespace HigLabo.Core
 
                 #region target.P1 = null. //Set Null to Target property.
                 il.MarkLabel(setNullToTargetLabel);
+                if (setMethod != null)
                 {
                     if (item.Target.CanBeNull == true)
                     {
@@ -627,19 +626,22 @@ namespace HigLabo.Core
 
                 #region target.P1 = source.P1; //Set value to TargetProperty
                 il.MarkLabel(setValueStartLabel);
-                il.Emit(OpCodes.Ldarg_2);
-                if (item.Target.IsIndexedProperty == true)
+                if (setMethod != null)
                 {
-                    //target["P1"] = source.P1;
-                    il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                    il.Emit(OpCodes.Ldarg_2);
+                    if (item.Target.IsIndexedProperty == true)
+                    {
+                        //target["P1"] = source.P1;
+                        il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                    }
+                    il.LoadLocal(targetVal);
+                    if (item.Target.IsNullableT == true)
+                    {
+                        //new Nullable<T>(new T());
+                        il.Emit(OpCodes.Newobj, item.Target.PropertyType.GetConstructor(new Type[] { item.Target.ActualType }));
+                    }
+                    il.Emit(OpCodes.Callvirt, setMethod);
                 }
-                il.LoadLocal(targetVal);
-                if (item.Target.IsNullableT == true)
-                {
-                    //new Nullable<T>(new T());
-                    il.Emit(OpCodes.Newobj, item.Target.PropertyType.GetConstructor(new Type[] { item.Target.ActualType }));
-                }
-                il.Emit(OpCodes.Callvirt, setMethod);
                 #endregion
 
                 il.MarkLabel(endOfCode);
