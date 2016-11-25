@@ -316,33 +316,33 @@ namespace HigLabo.Core
         }
         /// <summary>
         /// ***********************************************************************
-        /// V1: Not nullable object. ex) Int32, DateTime, Point, DayOfWeek
-        /// P1: Nullable object. ex) String, class, Nullable<T>
-        /// -----------------------------------------------------------------------
-        /// src.V1 --> tgt.V1;
-        /// var converted = converter.ToXXX(src.V1);
-        /// if (converted == null) return; // DoNothing...
-        /// tgt.V1 = converted.Value;
-        /// 
-        /// -----------------------------------------------------------------------
-        /// src.V1 --> tgt.P1;
-        /// var converted = converter.ToXXX(src.V1);
-        /// if (converted == null) return; // DoNothing...
-        /// tgt.P1 = converted;
-        /// 
-        /// -----------------------------------------------------------------------
-        /// src.P1 --> tgt.V1;
-        /// if (src.P1 == null) return; // DoNothing...
-        /// var converted = converter.ToXXX(src.P1);
-        /// if (converted.HasValue == false) return; // DoNothing...
-        /// tgt.V1 = converted;
-        /// 
-        /// -----------------------------------------------------------------------
-        /// src.P1 --> tgt.P1;
-        /// if (src.P1 == null) tgt.P1 = null; 
-        /// var converted = converter.ToXXX(src.P1);
-        /// if (converted.HasValue == false) return; // DoNothing...
-        /// tgt.P1 = converted;
+        /// source.P1 --> target.P1;
+        /// if (type of source.P1 == type of target.P1)
+        /// {
+        ///     target.P1 = source.P1;
+        ///     return;
+        /// }
+        /// var converted = converter.ToXXX(source.P1);
+        /// if (converted == null) 
+        /// {
+        ///     var convertResult = ObjectMapConfig.Convert<>(sourceVal, out convertedVal);
+        ///     if (convertResult == false)
+        ///     {
+        ///         source.V1.Map(target.P1);
+        ///         return;
+        ///     }
+        /// }
+        /// if (converted == null)
+        /// {
+        ///     if (target.P1 is Nullable or Class)
+        ///     {
+        ///         target.P1 = null;
+        ///     }
+        /// }
+        /// else
+        /// {
+        ///     target.P1 = converted.Value;
+        /// }
         /// 
         /// *************************************************************************/
         /// </summary>
@@ -520,7 +520,7 @@ namespace HigLabo.Core
                 il.Emit(OpCodes.Br_S, setValueStartLabel);
                 #endregion
 
-                #region ObjectMapConfig.Current.Convert<T>(sourceVal). //Call custom convert method.
+                #region ObjectMapConfig.Convert<>(sourceVal, out convertedVal); //Call custom convert method.
                 il.MarkLabel(customConvertStartLabel);
                 convertedVal = il.DeclareLocal(item.Target.ActualType);
                 //Set up parameter for ObjectMapConfig.Convert<>(sourceVal, out convertedVal)

@@ -29,6 +29,47 @@ namespace HigLabo.Mapper.PerformanceTest
 
         }
         [Benchmark]
+        public static void HandwriteMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+            var config = ObjectMapConfig.Current;
+            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = new CustomerDTO();
+                customerDto.Id = customer.Id;
+                customerDto.Name = customer.Name;
+                customerDto.Address = new Address();
+                customerDto.Address.Id = customer.Address.Id;
+                customerDto.Address.Street = customer.Address.Street;
+                customerDto.Address.City = customer.Address.City;
+                customerDto.Address.Country = customer.Address.Country;
+                customerDto.Addresses = new AddressDTO[customer.Addresses.Length];
+                for (int aIndex = 0; aIndex < customer.Addresses.Length; aIndex++)
+                {
+                    customerDto.Addresses[aIndex] = new AddressDTO();
+                    customerDto.Addresses[aIndex].Id = customer.Addresses[aIndex].Id;
+                    customerDto.Addresses[aIndex].City = customer.Addresses[aIndex].City;
+                    customerDto.Addresses[aIndex].Country = customer.Addresses[aIndex].Country;
+                }
+                customerDto.HomeAddress = new AddressDTO();
+                customerDto.HomeAddress.Id = customerDto.HomeAddress.Id;
+                customerDto.HomeAddress.City = customerDto.HomeAddress.City;
+                customerDto.HomeAddress.Country = customerDto.HomeAddress.Country;
+                customerDto.WorkAddresses = new List<AddressDTO>();
+                foreach (var item in customer.WorkAddresses)
+                {
+                    customerDto.WorkAddresses.Add(new AddressDTO()
+                    {
+                        Id = item.Id,
+                        City = item.City,
+                        Country = item.Country,
+                    });
+                }
+            }
+        }
+        [Benchmark]
         public static void HigLaboMapperTest()
         {
             var customer = Customer.Create();
