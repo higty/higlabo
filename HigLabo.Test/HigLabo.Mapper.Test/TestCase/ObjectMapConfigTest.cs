@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using HigLabo.Core;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 using System.Dynamic;
 
 namespace HigLabo.Mapper.Test
@@ -384,6 +385,32 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(3, u2.Users.Count);
             Assert.AreEqual("Group1", u2.GroupName);
             Assert.AreEqual("Test20", u2.Users[0].Name);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_Flatten()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<User, UserFlatten>((source, target) =>
+            {
+                source.Vector2.Map(target);
+                source.MapPoint.Map(target);
+            });
+            var u1 = new User();
+            var u2 = config.Map(u1, new UserFlatten());
+
+            Assert.AreEqual(u1.MapPoint.Latitude, u2.Latitude);
+            Assert.AreEqual(u1.MapPoint.Longitude, u2.Longitude);
+            Assert.AreEqual(u1.Vector2.X, u2.X);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_Vector2_UserFlatten()
+        {
+            var config = new ObjectMapConfig();
+
+            var v1 = new Vector2(3, 6);
+            var u1 = config.Map(v1, new UserFlatten());
+
+            Assert.AreEqual(u1.X, v1.X);
         }
 
         private ConvertResult<MapPoint> MapPointConverter(Object obj)

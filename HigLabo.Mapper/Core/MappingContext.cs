@@ -8,14 +8,16 @@ namespace HigLabo.Core
 {
     public class MappingContext
     {
-        private List<KeyValuePair<Object, Object>> _MappedObjectPair = new List<KeyValuePair<object, object>>();
+        private List<KeyValuePair<Object, Object>> _MappedObjectPair = new List<KeyValuePair<Object, Object>>();
 
         internal Int32 CallStackCount { get; set; }
         public StringComparer DictionaryKeyStringComparer { get; set; }
+        public CollectionElementMapMode CollectionElementMapMode { get; set; }
 
-        public MappingContext(StringComparer stringComparer)
+        public MappingContext(StringComparer stringComparer, CollectionElementMapMode collectionElementMapMode)
         {
             this.DictionaryKeyStringComparer = stringComparer;
+            this.CollectionElementMapMode = collectionElementMapMode;
         }
         public Boolean Exists(KeyValuePair<Object, Object> value)
         {

@@ -37,13 +37,13 @@ namespace HigLabo.Mapper.Test
             this.Decimal = 20.4m;
             this.DayOfWeek = DayOfWeek.Monday;
 
-            this.Vector2 = new Vector2(2m, 4m);
+            this.Vector2 = new Vector2(2, 4);
             this.MapPoint = new MapPoint();
 
             this.Users = new List<User>();
         }
     }
-    public class UserFratten
+    public class UserFlatten
     {
         public String Value { get; set; }
         public String Name { get; set; }
@@ -59,8 +59,8 @@ namespace HigLabo.Mapper.Test
 
         public Decimal Longitude { get; set; }
         public Decimal Latitude { get; set; }
-        public Decimal X { get; private set; }
-        public Decimal Y { get; private set; }
+        public Int32 X { get; set; }
+        public Int32 Y { get; set; }
 
         public String Users { get; set; }
         public String Tags { get; set; }
