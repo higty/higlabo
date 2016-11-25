@@ -665,7 +665,8 @@ namespace HigLabo.Core
                 #region target.P1 = source.P1; //Set value to TargetProperty
                 if (setMethod != null)
                 {
-                    il.Emit(OpCodes.Ldarg_2);
+                    if (targetType.IsClass) { il.Emit(OpCodes.Ldarg_2); }
+                    else if (targetType.IsValueType) { il.Emit(OpCodes.Ldarga_S, 2); }
                     if (item.Target.IsIndexedProperty == true)
                     {
                         //target["P1"] = source.P1;
@@ -677,7 +678,8 @@ namespace HigLabo.Core
                         //new Nullable<T>(new T());
                         il.Emit(OpCodes.Newobj, item.Target.PropertyType.GetConstructor(new Type[] { item.Target.ActualType }));
                     }
-                    il.Emit(OpCodes.Callvirt, setMethod);
+                    if (targetType.IsClass) { il.Emit(OpCodes.Callvirt, setMethod); }
+                    else if (targetType.IsValueType) { il.Emit(OpCodes.Call, setMethod); }
                 }
                 #endregion
 

@@ -33,6 +33,29 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_ValueType_Object()
+        {
+            var config = new ObjectMapConfig();
+
+            var v1 = new Vector2(3, 6);
+            var u1 = config.Map(v1, new UserFlatten());
+
+            Assert.AreEqual(u1.X, v1.X);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_Object_ValueType()
+        {
+            var config = new ObjectMapConfig();
+
+            var u1 = new UserFlatten();
+            u1.X = 5;
+            u1.Y = 7;
+            var v1 = config.Map(u1, new Vector2(3, 6));
+
+            Assert.AreEqual(v1.X, u1.X);
+            Assert.AreEqual(v1.Y, u1.Y);
+        }
+        [TestMethod]
         public void ObjectMapConfig_MapOrNull()
         {
             var config = new ObjectMapConfig();
@@ -401,16 +424,6 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Latitude, u2.Latitude);
             Assert.AreEqual(u1.MapPoint.Longitude, u2.Longitude);
             Assert.AreEqual(u1.Vector2.X, u2.X);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_Vector2_UserFlatten()
-        {
-            var config = new ObjectMapConfig();
-
-            var v1 = new Vector2(3, 6);
-            var u1 = config.Map(v1, new UserFlatten());
-
-            Assert.AreEqual(u1.X, v1.X);
         }
 
         private ConvertResult<MapPoint> MapPointConverter(Object obj)

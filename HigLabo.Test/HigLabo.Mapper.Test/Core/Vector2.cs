@@ -8,8 +8,8 @@ namespace HigLabo.Mapper.Test
 {
     public struct Vector2
     {
-        public Int32 X { get; private set; }
-        public Int32 Y { get; private set; }
+        public Int32 X { get; set; }
+        public Int32 Y { get; set; }
 
         public Vector2(Int32 x, Int32 y)
         {
