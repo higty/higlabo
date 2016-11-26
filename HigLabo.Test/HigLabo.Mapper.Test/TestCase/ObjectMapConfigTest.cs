@@ -479,6 +479,39 @@ namespace HigLabo.Mapper.Test
             //Same object
             Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
         }
+        [TestMethod]
+        public void ObjectMapConfig_Map_NullListProperty_NewObject()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser");
+            var u2 = new User();
+            u2.Users = null;
+            config.Map(u1, u2);
+
+            Assert.IsNotNull(u2.Users);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_NullListProperty_CopyReference_AddElement()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser");
+            var u2 = new User();
+            u2.Users = null;
+            config.Map(u1, u2);
+
+            Assert.IsNotNull(u2.Users);
+
+            u1.Users.Add(new User("ChildUser1"));
+            Assert.AreEqual(1, u2.Users.Count);
+            Assert.AreEqual("ChildUser1", u2.Users[0].Name);
+
+            u1.Users[0].Name = "ChildUser2";
+            Assert.AreEqual("ChildUser2", u2.Users[0].Name);
+        }
 
         private MapPoint MapPointConverter(Object obj)
         {
