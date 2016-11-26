@@ -305,15 +305,6 @@ namespace HigLabo.Core
         ///     return;
         /// }
         /// var converted = converter.ToXXX(source.P1);
-        /// if (converted == null) 
-        /// {
-        ///     var convertResult = ObjectMapConfig.Convert<>(sourceVal, out convertedVal);
-        ///     if (convertResult == false)
-        ///     {
-        ///         source.V1.Map(target.P1);
-        ///         return;
-        ///     }
-        /// }
         /// if (converted == null)
         /// {
         ///     if (target.P1 is Nullable or Class)
@@ -325,7 +316,34 @@ namespace HigLabo.Core
         /// {
         ///     target.P1 = converted.Value;
         /// }
-        /// 
+        /// *************************************************************************/
+        /// source["P1"] --> target.P1;
+        /// var converted = converter.ToXXX(source["P1"]);
+        /// if (converted == null)
+        /// {
+        ///     if (target.P1 is Nullable or Class)
+        ///     {
+        ///         target.P1 = null;
+        ///     }
+        /// }
+        /// else
+        /// {
+        ///     target.P1 = converted.Value;
+        /// }
+        /// *************************************************************************/
+        /// source.P1 --> target["P1"];
+        /// var converted = converter.ToXXX(source.P1);
+        /// if (converted == null)
+        /// {
+        ///     if (target.P1 is Nullable or Class)
+        ///     {
+        ///         target.P1 = null;
+        ///     }
+        /// }
+        /// else
+        /// {
+        ///     target["P1"] = converted.Value;
+        /// }
         /// *************************************************************************/
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
@@ -342,6 +360,11 @@ namespace HigLabo.Core
             il.Emit(OpCodes.Ldarg_0);
             il.Emit(OpCodes.Callvirt, _ObjectMapConfig_TypeConverterProperty_GetMethod);
             il.SetLocal(typeConverterVal);//ObjectMapConfig.TypeConverter
+
+            var mapMode = il.DeclareLocal(typeof(CollectionElementMapMode));
+            il.Emit(OpCodes.Ldarg_3);//MappingContext
+            il.Emit(OpCodes.Callvirt, _MappingContext_CollectionElementMapMode_GetMethod);
+            il.SetLocal(mapMode);
 
             foreach (var item in propertyMapInfo)
             {
@@ -524,21 +547,13 @@ namespace HigLabo.Core
                 #region source.P1.Map(target.P1); //Call Map method
                 if (item.Target.IsIndexedProperty == false)
                 {
+                    var targetObj = il.DeclareLocal(item.Target.PropertyType);
+                    il.Emit(OpCodes.Ldarg_2);
+                    il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
+                    il.SetLocal(targetObj);
+
                     if (this.IsEnumerableToCollection(item))
                     {
-                        #region source.P1.MapTo(target.P1); //Call MapTo or MapReference method
-                        var targetObj = il.DeclareLocal(item.Target.PropertyType);
-                        il.Emit(OpCodes.Ldarg_2);
-                        il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
-                        il.SetLocal(targetObj);
-
-                        #region var mapMode = mapContext.CollectionElementMapMode;
-                        var mapMode = il.DeclareLocal(typeof(CollectionElementMapMode));
-                        il.Emit(OpCodes.Ldarg_3);//MappingContext
-                        il.Emit(OpCodes.Callvirt, _MappingContext_CollectionElementMapMode_GetMethod);
-                        il.SetLocal(mapMode);
-                        #endregion
-
                         #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
                         il.LoadLocal(mapMode);
                         il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.NewObject);
@@ -573,18 +588,11 @@ namespace HigLabo.Core
                         }
                         il.MarkLabel(ifMapModeIsNotCopyReference);
                         #endregion
-
-                        il.Emit(OpCodes.Br, endOfCode);
-                        #endregion
                     }
                     else 
                     {
                         //Call Map method when convert failed try to get target value.
                         #region source.P1.Map(target.P1); //Call Map method
-                        var targetObj = il.DeclareLocal(item.Target.PropertyType);
-                        il.Emit(OpCodes.Ldarg_2);
-                        il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
-                        il.SetLocal(targetObj);
 
                         il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
                         il.LoadLocal(sourceVal);
@@ -592,9 +600,9 @@ namespace HigLabo.Core
                         il.Emit(OpCodes.Ldarg_3);//MappingContext
                         il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
                         il.Emit(OpCodes.Pop);
-                        il.Emit(OpCodes.Br, endOfCode);
                         #endregion
                     }
+                    il.Emit(OpCodes.Br, endOfCode);
                 }
                 #endregion
 

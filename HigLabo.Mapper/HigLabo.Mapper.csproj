@@ -52,6 +52,7 @@
     <Compile Include="Core\ObjectMapFailureException.cs" />
     <Compile Include="Core\PropertyMap.cs" />
     <Compile Include="Core\PropertyMapInfo.cs" />
+    <Compile Include="Core\PropertyMapMode.cs" />
     <Compile Include="Core\TypeFilterCondition.cs" />
     <Compile Include="Core\TypeMatchCondition.cs" />
     <Compile Include="Internal\ObjectMapTypeInfo.cs" />
