@@ -453,7 +453,26 @@ namespace HigLabo.Mapper.Test
             var u2 = new User();
             u2.ParentUser = null;
             config.Map(u1, u2);
-            
+
+            Assert.IsNotNull(u2.ParentUser);
+
+            u1.ParentUser.Name = "ParentUserChanged";
+            //Same object
+            Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_NullProperty_CopyReference_By_MapContext()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser");
+            var u2 = new User();
+            u2.ParentUser = null;
+            config.Map(u1, u2
+                , new MappingContext(config.DictionaryKeyStringComparer
+                , NullPropertyMapMode.CopyReference, config.CollectionElementMapMode));
+
             Assert.IsNotNull(u2.ParentUser);
 
             u1.ParentUser.Name = "ParentUserChanged";
