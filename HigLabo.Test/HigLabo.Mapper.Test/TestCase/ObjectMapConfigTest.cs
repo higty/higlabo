@@ -280,8 +280,10 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_CustomClassConverter()
         {
             var config = new ObjectMapConfig();
-            config.AddConverter<MapPoint>(MapPointConverter);
-
+            config.AddPostAction<User>((source, target) =>
+            {
+                target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
+            });
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
             rule.PropertyNameMaps.Add("Value", "MapPoint");
@@ -298,7 +300,10 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_CustomStructConverter()
         {
             var config = new ObjectMapConfig();
-            config.AddConverter(DayOfWeekConverter);
+            config.AddPostAction<User>((source, target) =>
+            {
+                target.DayOfWeek = DayOfWeekConverter(source.Value) ?? target.DayOfWeek;
+            });
 
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
@@ -315,13 +320,9 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_ArrayProperty_ByConverter()
         {
             var config = new ObjectMapConfig();
-            config.AddConverter<String[]>(o =>
+            config.AddPostAction<User>((source, target) =>
             {
-                if (o is String[])
-                {
-                    return new ConvertResult<String[]>(true, o as String[]);
-                }
-                return new ConvertResult<String[]>();
+                target.Tags = source.Tags.ToArray();
             });
 
             var u1 = new User();
@@ -426,7 +427,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Vector2.X, u2.X);
         }
 
-        private ConvertResult<MapPoint> MapPointConverter(Object obj)
+        private MapPoint MapPointConverter(Object obj)
         {
             if (obj is String && (String)obj != null)
             {
@@ -436,12 +437,12 @@ namespace HigLabo.Mapper.Test
                     var p = new MapPoint();
                     p.Latitude = Decimal.Parse(ss[0].Trim());
                     p.Longitude = Decimal.Parse(ss[1].Trim());
-                    return new ConvertResult<MapPoint>(true, p);
+                    return p;
                 }
             }
-            return new ConvertResult<MapPoint>();
+            return null;
         }
-        private ConvertResult<DayOfWeek> DayOfWeekConverter(Object obj)
+        private DayOfWeek? DayOfWeekConverter(Object obj)
         {
             DayOfWeek? dw = null;
             if (obj is String && (String)obj != null)
@@ -458,7 +459,7 @@ namespace HigLabo.Mapper.Test
                     default: throw new InvalidOperationException();
                 }
             }
-            return ConvertResult.Create(dw);
+            return dw;
         }
     }
 }

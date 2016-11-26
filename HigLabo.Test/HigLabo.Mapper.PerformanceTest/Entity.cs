@@ -43,6 +43,7 @@ namespace HigLabo.Mapper.PerformanceTest
 
     public class Customer
     {
+        public static readonly Random Random = new Random();
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal? Credit { get; set; }
@@ -56,57 +57,61 @@ namespace HigLabo.Mapper.PerformanceTest
             Customer customer = new Customer()
             {
                 Id = 1,
-                Name = "Timucin Kivanc",
+                Name = "Timucin Kivanc " + GetRandomNumber(),
                 Credit = 234.7m,
                 Address = new Address()
                 {
-                    City = "Istanbul",
-                    Country = "Turkey",
+                    City = "Istanbul " + GetRandomNumber(),
+                    Country = "Turkey " + GetRandomNumber(),
                     Id = 1,
-                    Street = "Istiklal cad."
+                    Street = "Istiklal cad. " + GetRandomNumber()
                 }
             };
             customer.HomeAddress = new Address()
             {
-                City = "Istanbul",
-                Country = "Turkey",
+                City = "Istanbul " + GetRandomNumber(),
+                Country = "Turkey " + GetRandomNumber(),
                 Id = 2,
-                Street = "Istiklal cad."
+                Street = "Istiklal cad. " + GetRandomNumber()
             };
             customer.WorkAddresses = new Address[]
             {
             new Address() {
-                City = "Istanbul",
-                Country = "Turkey",
+                City = "Istanbul " + GetRandomNumber(),
+                Country = "Turkey " + GetRandomNumber(),
                 Id = 5,
-                Street = "Istiklal cad."
+                Street = "Istiklal cad. " + GetRandomNumber()
             },
             new Address() {
-                City = "Izmir",
-                Country = "Turkey",
+                City = "Izmir " + GetRandomNumber(),
+                Country = "Turkey " + GetRandomNumber(),
                 Id = 6,
-                Street = "Konak"
+                Street = "Konak " + GetRandomNumber()
             }
             };
             customer.Addresses = new Address[]
             {
             new Address()
             {
-                City = "Istanbul",
-                Country = "Turkey",
+                City = "Istanbul " + GetRandomNumber(),
+                Country = "Turkey " + GetRandomNumber(),
                 Id = 3,
-                Street = "Istiklal cad."
+                Street = "Istiklal cad. " + GetRandomNumber()
             },
             new Address()
             {
-                City = "Izmir",
-                Country = "Turkey",
+                City = "Izmir " + GetRandomNumber(),
+                Country = "Turkey " + GetRandomNumber(),
                 Id = 4,
-                Street = "Konak"
+                Street = "Konak " + GetRandomNumber()
             }
             };
 
             return customer;
+        }
+        private static Int32 GetRandomNumber()
+        {
+            return Random.Next(100);
         }
     }
 

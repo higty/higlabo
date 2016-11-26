@@ -30,13 +30,10 @@ namespace HigLabo.Core
         private static readonly MethodInfo _MapMethod = null;
         private static readonly MethodInfo _MapToMethod = null;
         private static readonly MethodInfo _MapReferenceMethod = null;
-        private static readonly MethodInfo _ConvertMethod = null;
         private static readonly MethodInfo _MappingContext_CollectionElementMapMode_GetMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
 
         private List<MapPostAction> _PostActions = new List<MapPostAction>();
-        private ConcurrentDictionary<Type, Delegate> _Converters = new ConcurrentDictionary<Type, Delegate>();
-        private ConcurrentDictionary<Type, Delegate> _Constructors = new ConcurrentDictionary<Type, Delegate>();
 
         public List<PropertyMappingRule> PropertyMapRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
@@ -50,7 +47,6 @@ namespace HigLabo.Core
             _MapMethod = GetMethodInfo("Map");
             _MapToMethod = GetMethodInfo("MapTo");
             _MapReferenceMethod = GetMethodInfo("MapReference");
-            _ConvertMethod = GetMethodInfo("Convert");
             _MappingContext_CollectionElementMapMode_GetMethod = typeof(MappingContext).GetProperty("CollectionElementMapMode", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
         }
@@ -61,7 +57,6 @@ namespace HigLabo.Core
             this.PropertyMapRules = new List<PropertyMappingRule>();
             this.PropertyMapRules.Add(new DefaultPropertyMappingRule());
             this.PropertyMapRules.Add(new DictionaryToObjectMappingRule());
-            this.AddConverter<Object>(o => new ConvertResult<Object>(o != null, o));
             
             this.MaxCallStack = 100;
             this.DictionaryKeyStringComparer = StringComparer.InvariantCultureIgnoreCase;
@@ -198,25 +193,10 @@ namespace HigLabo.Core
             this.AddPostAction(action);
         }
 
-        public void AddConverter<T>(Func<Object, ConvertResult<T>> converter)
+        public void AddPostAction<T>(Action<T, T> action)
         {
-            _Converters[typeof(T)] = converter;
+            this.AddPostAction<T, T>(action);
         }
-        [ObjectMapConfigMethod(Name = "Convert")]
-        public Boolean Convert<T>(Object value, out T convertedValue)
-        {
-            convertedValue = default(T);
-            Delegate converterDelegate = null;
-            if (_Converters.TryGetValue(typeof(T), out converterDelegate) == false) return false;
-            var converter = (Func<Object, ConvertResult<T>>)converterDelegate;
-            var result = converter(value);
-            if (result.Success == true)
-            {
-                convertedValue = result.Value;
-            }
-            return result.Success;
-        }
-
         public void AddPostAction<TSource, TTarget>(Action<TSource, TTarget> action)
         {
             this.AddPostAction(TypeFilterCondition.Inherit, TypeFilterCondition.Inherit, action);
@@ -368,7 +348,7 @@ namespace HigLabo.Core
                 var getMethod = item.Source.PropertyInfo.GetGetMethod();
                 var setMethod = item.Target.PropertyInfo.GetSetMethod();
                 #region DefineLabel
-                Label customConvertStartLabel = il.DefineLabel();
+                Label mapStartLabel = il.DefineLabel();
                 Label setValueStartLabel = il.DefineLabel();
                 Label setNullToTargetLabel = il.DefineLabel();
                 Label endOfCode = il.DefineLabel();
@@ -493,7 +473,7 @@ namespace HigLabo.Core
                         il.Emit(OpCodes.Brfalse_S, ifConvertedValueNotNullBlock);
                         {
                             //DoNothing when convert failed
-                            il.Emit(OpCodes.Br_S, customConvertStartLabel);
+                            il.Emit(OpCodes.Br_S, mapStartLabel);
                         }
                         il.MarkLabel(ifConvertedValueNotNullBlock);
                     }
@@ -508,7 +488,7 @@ namespace HigLabo.Core
                         il.Emit(OpCodes.Brtrue_S, ifConvertedValueNotNullBlock);
                         {
                             //Try custom convert when convert failed
-                            il.Emit(OpCodes.Br_S, customConvertStartLabel);
+                            il.Emit(OpCodes.Br_S, mapStartLabel);
                         }
                         il.MarkLabel(ifConvertedValueNotNullBlock);
                         //GetValue
@@ -522,38 +502,24 @@ namespace HigLabo.Core
                 {
                     #region Convert failed.
                     convertedVal = il.DeclareLocal(item.Target.ActualType);
-                    il.Emit(OpCodes.Br_S, customConvertStartLabel);
+                    if (item.Target.IsIndexedProperty)
+                    {
+                        il.LoadLocal(sourceVal);
+                        if (item.Source.ActualType.IsValueType == true)
+                        {
+                            //Boxing to Object
+                            il.Emit(OpCodes.Box, item.Source.ActualType);
+                        }
+                        il.SetLocal(targetVal);
+                        il.Emit(OpCodes.Br_S, setValueStartLabel);
+                    }
+                    il.Emit(OpCodes.Br_S, mapStartLabel);
                     #endregion
                 }
                 il.Emit(OpCodes.Br_S, setValueStartLabel);
                 #endregion
 
-                il.MarkLabel(customConvertStartLabel);
-                #region ObjectMapConfig.Convert<>(sourceVal, out convertedVal); //Call custom convert method.
-                if (setMethod != null)
-                {
-                    convertedVal = il.DeclareLocal(item.Target.ActualType);
-                    //Set up parameter for ObjectMapConfig.Convert<>(sourceVal, out convertedVal)
-                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                    il.LoadLocal(sourceVal);
-                    if (item.Source.ActualType.IsValueType == true)
-                    {
-                        //Boxing to Object
-                        il.Emit(OpCodes.Box, item.Source.ActualType);
-                    }
-                    il.LoadLocala(convertedVal);
-
-                    //public Boolean Convert<T>(Object value, out T convertedValue)
-                    il.Emit(OpCodes.Call, _ConvertMethod.MakeGenericMethod(item.Target.ActualType));
-                    var convertResult = il.DeclareLocal(typeof(Boolean));
-                    il.SetLocal(convertResult);
-                    il.LoadLocal(convertedVal);
-                    il.SetLocal(targetVal);
-
-                    il.LoadLocal(convertResult);
-                    il.Emit(OpCodes.Brtrue, setValueStartLabel);
-                }
-                #endregion
+                il.MarkLabel(mapStartLabel);
 
                 #region source.P1.Map(target.P1); //Call Map method
                 if (item.Target.IsIndexedProperty == false)
@@ -611,7 +577,7 @@ namespace HigLabo.Core
                         il.Emit(OpCodes.Br, endOfCode);
                         #endregion
                     }
-                    else if (item.Source.ActualType.IsClass && item.Target.ActualType.IsClass)
+                    else 
                     {
                         //Call Map method when convert failed try to get target value.
                         #region source.P1.Map(target.P1); //Call Map method
