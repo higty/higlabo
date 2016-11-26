@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Core
 {
-    public enum PropertyMapMode
+    public enum NullPropertyMapMode
     {
         None,
         NewObject,

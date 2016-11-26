@@ -12,11 +12,13 @@ namespace HigLabo.Core
 
         internal Int32 CallStackCount { get; set; }
         public StringComparer DictionaryKeyStringComparer { get; set; }
+        public NullPropertyMapMode NullPropertyMapMode { get; set; }
         public CollectionElementMapMode CollectionElementMapMode { get; set; }
 
-        public MappingContext(StringComparer stringComparer, CollectionElementMapMode collectionElementMapMode)
+        public MappingContext(StringComparer stringComparer, NullPropertyMapMode nullPropertyMapMode, CollectionElementMapMode collectionElementMapMode)
         {
             this.DictionaryKeyStringComparer = stringComparer;
+            this.NullPropertyMapMode = nullPropertyMapMode;
             this.CollectionElementMapMode = collectionElementMapMode;
         }
         public Boolean Exists(KeyValuePair<Object, Object> value)
