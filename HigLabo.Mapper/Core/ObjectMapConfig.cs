@@ -361,10 +361,10 @@ namespace HigLabo.Core
             il.Emit(OpCodes.Callvirt, _ObjectMapConfig_TypeConverterProperty_GetMethod);
             il.SetLocal(typeConverterVal);//ObjectMapConfig.TypeConverter
 
-            var mapMode = il.DeclareLocal(typeof(CollectionElementMapMode));
+            var collectionMapMode = il.DeclareLocal(typeof(CollectionElementMapMode));
             il.Emit(OpCodes.Ldarg_3);//MappingContext
             il.Emit(OpCodes.Callvirt, _MappingContext_CollectionElementMapMode_GetMethod);
-            il.SetLocal(mapMode);
+            il.SetLocal(collectionMapMode);
 
             foreach (var item in propertyMapInfo)
             {
@@ -555,7 +555,7 @@ namespace HigLabo.Core
                     if (this.IsEnumerableToCollection(item))
                     {
                         #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
-                        il.LoadLocal(mapMode);
+                        il.LoadLocal(collectionMapMode);
                         il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.NewObject);
                         il.Emit(OpCodes.Ceq);
                         Label ifMapModeIsNotNewObject = il.DefineLabel();
@@ -572,7 +572,7 @@ namespace HigLabo.Core
                         #endregion
 
                         #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
-                        il.LoadLocal(mapMode);
+                        il.LoadLocal(collectionMapMode);
                         il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
                         il.Emit(OpCodes.Ceq);
                         Label ifMapModeIsNotCopyReference = il.DefineLabel();
