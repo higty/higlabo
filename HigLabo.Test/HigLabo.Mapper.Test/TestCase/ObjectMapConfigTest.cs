@@ -117,22 +117,6 @@ namespace HigLabo.Mapper.Test
             Assert.IsNull(u2.DecimalNullable);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_Object_Object_Convert_Failure()
-        {
-            var config = new ObjectMapConfig();
-            config.PropertyMapRules.Clear();
-
-            var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "Decimal");
-            config.PropertyMapRules.Add(rule);
-
-            var u1 = new User();
-            u1.Value = "abc";
-            var u2 = config.Map(u1, new User());
-            //Not changed...
-            Assert.AreEqual(20.4m, u2.Decimal);
-        }
-        [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Object_Convert_Failure()
         {
             var config = new ObjectMapConfig();
@@ -205,99 +189,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(100, l2.Capacity);
         }
         [TestMethod]
-        public void ObjectMapConfig_RemovePropertyMap()
-        {
-            var config = new ObjectMapConfig();
-            config.PropertyMapRules.Clear();
-            var rule = new SuffixPropertyMappingRule("Nullable");
-            config.PropertyMapRules.Add(rule);
-            config.RemovePropertyMap<User, User>(new String[] { nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable" }, null);
-            
-            var u1 = new User();
-            var u2 = config.Map(u1, new User());
-
-            Assert.AreEqual(u1.Name, u2.Name);
-            Assert.AreEqual(u1.Int32, u2.Int32Nullable);
-            Assert.IsNull(u2.DecimalNullable);
-            Assert.IsNull(u2.DateTimeNullable);
-            Assert.IsNull(u2.DayOfWeekNullable);
-
-            Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
-            Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_SuffixPropertyMappingRule()
-        {
-            var config = new ObjectMapConfig();
-            config.PropertyMapRules.Clear();
-            var rule = new SuffixPropertyMappingRule("Nullable");
-            config.PropertyMapRules.Add(rule);
-
-            var u1 = new User();
-            var u2 = config.Map(u1, new User());
-
-            Assert.AreEqual(u1.Name, u2.Name);
-            Assert.AreEqual(u1.Int32, u2.Int32Nullable);
-            Assert.AreEqual(u1.Decimal, u2.DecimalNullable);
-            Assert.AreEqual(u1.DateTime, u2.DateTimeNullable);
-            Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeekNullable);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_CustomPropertyMappingRule()
-        {
-            var config = new ObjectMapConfig();
-            config.PropertyMapRules.Clear();
-            var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "Int32");
-            rule.PropertyNameMaps.Add("Value", "DateTime");
-            rule.PropertyNameMaps.Add("Value", "Decimal");
-            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
-            config.PropertyMapRules.Add(rule);
-
-            var u1 = new User();
-            {
-                u1.Value = "23";
-                var u2 = config.Map(u1, new User());
-                Assert.AreEqual(23, u2.Int32);
-            }
-            {
-                u1.Value = "2014/12/17 00:00:00";
-                var u2 = config.Map(u1, new User());
-                Assert.AreEqual(new DateTime(2014, 12, 17), u2.DateTime);
-            }
-            {
-                u1.Value = "23.4";
-                var u2 = config.Map(u1, new User());
-                Assert.AreEqual(23.4m, u2.Decimal);
-            }
-            {
-                u1.Value = "Friday";
-                var u2 = config.Map(u1, new User());
-                Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
-            }
-        }
-        [TestMethod]
-        public void ObjectMapConfig_CustomClassConverter()
-        {
-            var config = new ObjectMapConfig();
-            config.AddPostAction<User>((source, target) =>
-            {
-                target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
-            });
-            config.PropertyMapRules.Clear();
-            var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "MapPoint");
-            config.PropertyMapRules.Add(rule);
-
-            var u1 = new User();
-            u1.Value = "23, 45";
-            var u2 = config.Map(u1, new User());
-
-            Assert.AreEqual(23m, u2.MapPoint.Latitude);
-            Assert.AreEqual(45m, u2.MapPoint.Longitude);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_CustomStructConverter()
+        public void ObjectMapConfig_AddPostAction_Enum()
         {
             var config = new ObjectMapConfig();
             config.AddPostAction<User>((source, target) =>
@@ -317,7 +209,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_ArrayProperty_ByConverter()
+        public void ObjectMapConfig_AddPostAction_Collection()
         {
             var config = new ObjectMapConfig();
             config.AddPostAction<User>((source, target) =>
@@ -511,6 +403,115 @@ namespace HigLabo.Mapper.Test
 
             u1.Users[0].Name = "ChildUser2";
             Assert.AreEqual("ChildUser2", u2.Users[0].Name);
+        }
+
+        [TestMethod]
+        public void PropertyNameMappingRule_Failure()
+        {
+            var config = new ObjectMapConfig();
+            config.PropertyMapRules.Clear();
+
+            var rule = new PropertyNameMappingRule();
+            rule.PropertyNameMaps.Add("Value", "Decimal");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Value = "abc";
+            var u2 = config.Map(u1, new User());
+            //Not changed...
+            Assert.AreEqual(20.4m, u2.Decimal);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_RemovePropertyMap()
+        {
+            var config = new ObjectMapConfig();
+            config.PropertyMapRules.Clear();
+            var rule = new SuffixPropertyMappingRule("Nullable");
+            config.PropertyMapRules.Add(rule);
+            config.RemovePropertyMap<User, User>(new String[] { nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable" }, null);
+
+            var u1 = new User();
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Name, u2.Name);
+            Assert.AreEqual(u1.Int32, u2.Int32Nullable);
+            Assert.IsNull(u2.DecimalNullable);
+            Assert.IsNull(u2.DateTimeNullable);
+            Assert.IsNull(u2.DayOfWeekNullable);
+
+            Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
+            Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_SuffixPropertyMappingRule()
+        {
+            var config = new ObjectMapConfig();
+            config.PropertyMapRules.Clear();
+            var rule = new SuffixPropertyMappingRule("Nullable");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Name, u2.Name);
+            Assert.AreEqual(u1.Int32, u2.Int32Nullable);
+            Assert.AreEqual(u1.Decimal, u2.DecimalNullable);
+            Assert.AreEqual(u1.DateTime, u2.DateTimeNullable);
+            Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeekNullable);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_CustomPropertyMappingRule()
+        {
+            var config = new ObjectMapConfig();
+            config.PropertyMapRules.Clear();
+            var rule = new PropertyNameMappingRule();
+            rule.PropertyNameMaps.Add("Value", "Int32");
+            rule.PropertyNameMaps.Add("Value", "DateTime");
+            rule.PropertyNameMaps.Add("Value", "Decimal");
+            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            {
+                u1.Value = "23";
+                var u2 = config.Map(u1, new User());
+                Assert.AreEqual(23, u2.Int32);
+            }
+            {
+                u1.Value = "2014/12/17 00:00:00";
+                var u2 = config.Map(u1, new User());
+                Assert.AreEqual(new DateTime(2014, 12, 17), u2.DateTime);
+            }
+            {
+                u1.Value = "23.4";
+                var u2 = config.Map(u1, new User());
+                Assert.AreEqual(23.4m, u2.Decimal);
+            }
+            {
+                u1.Value = "Friday";
+                var u2 = config.Map(u1, new User());
+                Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+            }
+        }
+        [TestMethod]
+        public void ObjectMapConfig_CustomPropertyMappingRule_AddPostAction()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<User>((source, target) =>
+            {
+                target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
+            });
+            config.PropertyMapRules.Clear();
+            var rule = new PropertyNameMappingRule();
+            rule.PropertyNameMaps.Add("Value", "MapPoint");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Value = "23, 45";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(23m, u2.MapPoint.Latitude);
+            Assert.AreEqual(45m, u2.MapPoint.Longitude);
         }
 
         private MapPoint MapPointConverter(Object obj)

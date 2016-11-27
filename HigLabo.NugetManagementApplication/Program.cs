@@ -30,6 +30,7 @@ namespace HigLabo.NugetManagementApplication
             foreach (var path in Directory.EnumerateFiles(RootFolderPath, "*.csproj", SearchOption.AllDirectories).OrderBy(el => el))
             {
                 if (path.Contains("_Pcl_")) { continue; }
+                if (path.Contains(".Test.")) { continue; }
                 var package = NugetPackageInfo.Create(path);
                 if (package == null) { continue; }
                 if (package.PackageBuilder.Files.Count == 0) { continue; }
