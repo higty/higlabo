@@ -179,7 +179,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_List_List()
         {
             var config = new ObjectMapConfig();
-            
+
             var l1 = new List<User>();
             l1.Capacity = 100;
             l1.Add(new User());
@@ -187,44 +187,6 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(0, l2.Count);
             Assert.AreEqual(100, l2.Capacity);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_AddPostAction_Enum()
-        {
-            var config = new ObjectMapConfig();
-            config.AddPostAction<User>((source, target) =>
-            {
-                target.DayOfWeek = DayOfWeekConverter(source.Value) ?? target.DayOfWeek;
-            });
-
-            config.PropertyMapRules.Clear();
-            var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
-            config.PropertyMapRules.Add(rule);
-
-            var u1 = new User();
-            u1.Value = "Friday";
-            var u2 = config.Map(u1, new User());
-
-            Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_AddPostAction_Collection()
-        {
-            var config = new ObjectMapConfig();
-            config.AddPostAction<User>((source, target) =>
-            {
-                target.Tags = source.Tags.ToArray();
-            });
-
-            var u1 = new User();
-            u1.Tags = new String[2];
-            u1.Tags[0] = "News";
-            u1.Tags[1] = "Sports";
-            var u2 = config.Map(u1, new User());
-
-            Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
-            Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
         }
         [TestMethod]
         public void ObjectMapConfig_Map_ListProperty()
@@ -403,6 +365,45 @@ namespace HigLabo.Mapper.Test
 
             u1.Users[0].Name = "ChildUser2";
             Assert.AreEqual("ChildUser2", u2.Users[0].Name);
+        }
+
+        [TestMethod]
+        public void ObjectMapConfig_AddPostAction_Enum()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<User>((source, target) =>
+            {
+                target.DayOfWeek = DayOfWeekConverter(source.Value) ?? target.DayOfWeek;
+            });
+
+            config.PropertyMapRules.Clear();
+            var rule = new PropertyNameMappingRule();
+            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Value = "Friday";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_AddPostAction_Collection()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<User>((source, target) =>
+            {
+                target.Tags = source.Tags.ToArray();
+            });
+
+            var u1 = new User();
+            u1.Tags = new String[2];
+            u1.Tags[0] = "News";
+            u1.Tags[1] = "Sports";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
+            Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
         }
 
         [TestMethod]
