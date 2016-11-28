@@ -235,9 +235,14 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_IDataReader_Object()
+        public void ObjectMapConfig_Map_IDataReader_Object_With_PostAction()
         {
             var config = new ObjectMapConfig();
+            //IDataReader converted to Dictionary<String, Object> and Map to target.
+            config.AddPostAction<Dictionary<String, Object>, Sys_Database>((source, target) =>
+            {
+                target.DatabaseID = (Int32)source["database_id"];
+            });
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
             {
