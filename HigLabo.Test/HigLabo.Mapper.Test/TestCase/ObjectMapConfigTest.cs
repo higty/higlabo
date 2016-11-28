@@ -403,6 +403,24 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
             Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
         }
+        [TestMethod]
+        public void ObjectMapConfig_RemovePropertyMap()
+        {
+            var config = new ObjectMapConfig();
+            config.RemovePropertyMap<User, User>(new String[] { nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable" }, null);
+
+            var u1 = new User();
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Name, u2.Name);
+            Assert.AreEqual(u1.Int32, u2.Int32);
+            Assert.IsNull(u2.DecimalNullable);
+            Assert.IsNull(u2.DateTimeNullable);
+            Assert.IsNull(u2.DayOfWeekNullable);
+
+            Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
+            Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
+        }
 
         [TestMethod]
         public void PropertyNameMappingRule_Failure()
@@ -419,27 +437,6 @@ namespace HigLabo.Mapper.Test
             var u2 = config.Map(u1, new User());
             //Not changed...
             Assert.AreEqual(20.4m, u2.Decimal);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_RemovePropertyMap()
-        {
-            var config = new ObjectMapConfig();
-            config.PropertyMapRules.Clear();
-            var rule = new SuffixPropertyMappingRule("Nullable");
-            config.PropertyMapRules.Add(rule);
-            config.RemovePropertyMap<User, User>(new String[] { nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable" }, null);
-
-            var u1 = new User();
-            var u2 = config.Map(u1, new User());
-
-            Assert.AreEqual(u1.Name, u2.Name);
-            Assert.AreEqual(u1.Int32, u2.Int32Nullable);
-            Assert.IsNull(u2.DecimalNullable);
-            Assert.IsNull(u2.DateTimeNullable);
-            Assert.IsNull(u2.DayOfWeekNullable);
-
-            Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
-            Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
         [TestMethod]
         public void ObjectMapConfig_SuffixPropertyMappingRule()
