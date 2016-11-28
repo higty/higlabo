@@ -495,14 +495,13 @@ namespace HigLabo.Core
                 #region var convertedVal = TypeConverter.ToXXX(sourceVal); //Convert value to target type.
                 LocalBuilder convertedVal = null;
                 var methodName = GetMethodName(item.Target.ActualType);
-                var directSetValue = false;
                 if (item.Source.ActualType == item.Target.ActualType &&
                     IsDirectSetValue(item.Source.ActualType))
                 {
                     #region var convertedVal = sourceVal;
-                    directSetValue = true;
                     il.LoadLocal(sourceVal);
                     il.SetLocal(targetVal);
+                    il.Emit(OpCodes.Br_S, setValueStartLabel);
                     #endregion
                 }
                 else if (item.Target.ActualType.IsEnum == true || methodName != null)
@@ -584,141 +583,138 @@ namespace HigLabo.Core
                 il.Emit(OpCodes.Br_S, setValueStartLabel);
                 #endregion
 
-                if (directSetValue == false)
+                il.MarkLabel(nullPropertyMapLabel);
+                #region if (target.P1 ==null) { ... }
+                il.Emit(OpCodes.Ldarg_2);
+                il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
+                il.SetLocal(targetVal);
+
+                if (item.Target.CanBeNull)
                 {
-                    il.MarkLabel(nullPropertyMapLabel);
-                    #region if (target.P1 ==null) { ... }
-                    il.Emit(OpCodes.Ldarg_2);
-                    il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
-                    il.SetLocal(targetVal);
-
-                    if (item.Target.CanBeNull)
+                    il.LoadLocal(targetVal);
+                    il.Emit(OpCodes.Ldnull);
+                    il.Emit(OpCodes.Ceq);
+                    Label ifTargetIsNotNull = il.DefineLabel();
+                    il.Emit(OpCodes.Brfalse, ifTargetIsNotNull);
                     {
-                        il.LoadLocal(targetVal);
-                        il.Emit(OpCodes.Ldnull);
+                        #region if (context.NullPropertyMapMode == NullPropertyMapMode.NewObjec) { target = new TTarget(); }
+                        il.LoadLocal(nullPropertyMapMode);
+                        il.Emit(OpCodes.Ldc_I4, (Int32)NullPropertyMapMode.NewObject);
                         il.Emit(OpCodes.Ceq);
-                        Label ifTargetIsNotNull = il.DefineLabel();
-                        il.Emit(OpCodes.Brfalse, ifTargetIsNotNull);
+                        Label ifNullMapModeIsNotNewObject = il.DefineLabel();
+                        il.Emit(OpCodes.Brfalse, ifNullMapModeIsNotNewObject);
                         {
-                            #region if (context.NullPropertyMapMode == NullPropertyMapMode.NewObjec) { target = new TTarget(); }
+                            var constructor = item.Target.PropertyType.GetConstructor(Type.EmptyTypes);
+                            if (constructor != null && constructor.IsPublic)
+                            {
+                                il.Emit(OpCodes.Newobj, constructor);
+                                il.SetLocal(targetVal);
+                                if (item.Target.ActualType.FullName.StartsWith(System_Collections_Generic_Dictionary_2))
+                                {
+                                    il.Emit(OpCodes.Ldarg_2);
+                                    il.LoadLocal(targetVal);
+                                    il.Emit(OpCodes.Callvirt, setMethod);
+                                }
+                            }
+                        }
+                        il.MarkLabel(ifNullMapModeIsNotNewObject);
+                        #endregion
+
+                        #region if (context.NullPropertyMapMode == NullPropertyMapMode.CopyReference) { target = source; }
+                        if (item.Source.ActualType.IsInheritanceFrom(item.Target.ActualType))
+                        {
                             il.LoadLocal(nullPropertyMapMode);
-                            il.Emit(OpCodes.Ldc_I4, (Int32)NullPropertyMapMode.NewObject);
+                            il.Emit(OpCodes.Ldc_I4, (Int32)NullPropertyMapMode.CopyReference);
                             il.Emit(OpCodes.Ceq);
-                            Label ifNullMapModeIsNotNewObject = il.DefineLabel();
-                            il.Emit(OpCodes.Brfalse, ifNullMapModeIsNotNewObject);
+                            Label ifNullMapModeIsNotCopyReference = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse, ifNullMapModeIsNotCopyReference);
                             {
-                                var constructor = item.Target.PropertyType.GetConstructor(Type.EmptyTypes);
-                                if (constructor != null && constructor.IsPublic)
-                                {
-                                    il.Emit(OpCodes.Newobj, constructor);
-                                    il.SetLocal(targetVal);
-                                    if (item.Target.ActualType.FullName.StartsWith(System_Collections_Generic_Dictionary_2))
-                                    {
-                                        il.Emit(OpCodes.Ldarg_2);
-                                        il.LoadLocal(targetVal);
-                                        il.Emit(OpCodes.Callvirt, setMethod);
-                                    }
-                                }
+                                il.LoadLocal(sourceVal);
+                                il.SetLocal(targetVal);
                             }
-                            il.MarkLabel(ifNullMapModeIsNotNewObject);
-                            #endregion
-
-                            #region if (context.NullPropertyMapMode == NullPropertyMapMode.CopyReference) { target = source; }
-                            if (item.Source.ActualType.IsInheritanceFrom(item.Target.ActualType))
-                            {
-                                il.LoadLocal(nullPropertyMapMode);
-                                il.Emit(OpCodes.Ldc_I4, (Int32)NullPropertyMapMode.CopyReference);
-                                il.Emit(OpCodes.Ceq);
-                                Label ifNullMapModeIsNotCopyReference = il.DefineLabel();
-                                il.Emit(OpCodes.Brfalse, ifNullMapModeIsNotCopyReference);
-                                {
-                                    il.LoadLocal(sourceVal);
-                                    il.SetLocal(targetVal);
-                                }
-                                il.MarkLabel(ifNullMapModeIsNotCopyReference);
-                            }
-                            #endregion
+                            il.MarkLabel(ifNullMapModeIsNotCopyReference);
                         }
-                        il.MarkLabel(ifTargetIsNotNull);
-                    }
-                    #endregion
-
-                    #region source.P1.Map(target.P1); //Call Map method
-                    if (this.IsEnumerableToCollection(item))
-                    {
-                        var sInterface = item.Source.ActualType.GetInterfaces().FirstOrDefault(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
-                        var tInterface = item.Target.ActualType.GetInterfaces().FirstOrDefault(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
-                        if (sInterface != null && tInterface != null)
-                        {
-                            var sourceElementType = sInterface.GenericTypeArguments[0];
-                            var targetElementType = tInterface.GenericTypeArguments[0];
-                            if (targetElementType.GetConstructor(Type.EmptyTypes) != null)
-                            {
-                                #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
-                                il.LoadLocal(collectionMapMode);
-                                il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.NewObject);
-                                il.Emit(OpCodes.Ceq);
-                                Label ifMapModeIsNotNewObject = il.DefineLabel();
-                                il.Emit(OpCodes.Brfalse, ifMapModeIsNotNewObject); //_MapToMethod
-                                {
-                                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                    il.LoadLocal(sourceVal);
-                                    il.LoadLocal(targetVal);
-                                    il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.Emit(OpCodes.Pop);
-                                }
-                                il.MarkLabel(ifMapModeIsNotNewObject);
-                                #endregion
-                            }
-
-                            if (sourceElementType.IsInheritanceFrom(targetElementType))
-                            {
-                                #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
-                                il.LoadLocal(collectionMapMode);
-                                il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
-                                il.Emit(OpCodes.Ceq);
-                                Label ifMapModeIsNotCopyReference = il.DefineLabel();
-                                il.Emit(OpCodes.Brfalse, ifMapModeIsNotCopyReference); //_MapReferenceMethod
-                                {
-                                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                    il.LoadLocal(sourceVal);
-                                    il.LoadLocal(targetVal);
-                                    il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.Emit(OpCodes.Pop);
-                                }
-                                il.MarkLabel(ifMapModeIsNotCopyReference);
-                                #endregion
-                            }
-                        }
-                    }
-                    else
-                    {
-                        //Call Map method when convert failed try to get target value.
-                        #region source.P1.Map(target.P1); //Call Map method
-
-                        il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                        il.LoadLocal(sourceVal);
-                        il.LoadLocal(targetVal);
-                        il.Emit(OpCodes.Ldarg_3);//MappingContext
-                        il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
-                        il.SetLocal(targetVal);
-                        il.Emit(OpCodes.Br, setValueStartLabel);
                         #endregion
                     }
-                    if (item.Target.CanBeNull)
+                    il.MarkLabel(ifTargetIsNotNull);
+                }
+                #endregion
+
+                #region source.P1.Map(target.P1); //Call Map method
+                if (this.IsEnumerableToCollection(item))
+                {
+                    var sInterface = item.Source.ActualType.GetInterfaces().FirstOrDefault(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
+                    var tInterface = item.Target.ActualType.GetInterfaces().FirstOrDefault(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
+                    if (sInterface != null && tInterface != null)
                     {
-                        il.LoadLocal(targetVal);
-                        il.Emit(OpCodes.Ldnull);
-                        il.Emit(OpCodes.Ceq);
-                        il.Emit(OpCodes.Brtrue, endOfCode);
-                        il.Emit(OpCodes.Br, setValueStartLabel);
+                        var sourceElementType = sInterface.GenericTypeArguments[0];
+                        var targetElementType = tInterface.GenericTypeArguments[0];
+                        if (targetElementType.GetConstructor(Type.EmptyTypes) != null)
+                        {
+                            #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
+                            il.LoadLocal(collectionMapMode);
+                            il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.NewObject);
+                            il.Emit(OpCodes.Ceq);
+                            Label ifMapModeIsNotNewObject = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse, ifMapModeIsNotNewObject); //_MapToMethod
+                            {
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.LoadLocal(targetVal);
+                                il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.Emit(OpCodes.Pop);
+                            }
+                            il.MarkLabel(ifMapModeIsNotNewObject);
+                            #endregion
+                        }
+
+                        if (sourceElementType.IsInheritanceFrom(targetElementType))
+                        {
+                            #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
+                            il.LoadLocal(collectionMapMode);
+                            il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
+                            il.Emit(OpCodes.Ceq);
+                            Label ifMapModeIsNotCopyReference = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse, ifMapModeIsNotCopyReference); //_MapReferenceMethod
+                            {
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.LoadLocal(targetVal);
+                                il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.Emit(OpCodes.Pop);
+                            }
+                            il.MarkLabel(ifMapModeIsNotCopyReference);
+                            #endregion
+                        }
                     }
-                    else
-                    {
-                        il.Emit(OpCodes.Br, endOfCode);
-                    }
+                }
+                else
+                {
+                    //Call Map method when convert failed try to get target value.
+                    #region source.P1.Map(target.P1); //Call Map method
+
+                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                    il.LoadLocal(sourceVal);
+                    il.LoadLocal(targetVal);
+                    il.Emit(OpCodes.Ldarg_3);//MappingContext
+                    il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
+                    il.SetLocal(targetVal);
+                    il.Emit(OpCodes.Br, setValueStartLabel);
                     #endregion
                 }
+                if (item.Target.CanBeNull)
+                {
+                    il.LoadLocal(targetVal);
+                    il.Emit(OpCodes.Ldnull);
+                    il.Emit(OpCodes.Ceq);
+                    il.Emit(OpCodes.Brtrue, endOfCode);
+                    il.Emit(OpCodes.Br, setValueStartLabel);
+                }
+                else
+                {
+                    il.Emit(OpCodes.Br, endOfCode);
+                }
+                #endregion
 
                 il.MarkLabel(setValueStartLabel);
                 #region target.P1 = source.P1; //Set value to TargetProperty
