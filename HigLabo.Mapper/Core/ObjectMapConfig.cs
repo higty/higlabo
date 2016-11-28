@@ -25,6 +25,7 @@ namespace HigLabo.Core
 
         private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
         private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
+        private static readonly String System_Collections_Generic_Dictionary_2 = "System.Collections.Generic.Dictionary`2";
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Delegate> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Delegate>();
 
         private static readonly MethodInfo _MapMethod = null;
@@ -600,6 +601,12 @@ namespace HigLabo.Core
                             {
                                 il.Emit(OpCodes.Newobj, constructor);
                                 il.SetLocal(targetVal);
+                                if (item.Target.ActualType.FullName.StartsWith(System_Collections_Generic_Dictionary_2))
+                                {
+                                    il.Emit(OpCodes.Ldarg_2);
+                                    il.LoadLocal(targetVal);
+                                    il.Emit(OpCodes.Callvirt, setMethod);
+                                }
                             }
                         }
                         il.MarkLabel(ifNullMapModeIsNotNewObject);
@@ -626,11 +633,14 @@ namespace HigLabo.Core
                 #endregion
 
                 #region source.P1.Map(target.P1); //Call Map method
+                if (this.IsEnumerableToCollection(item))
                 {
-                    if (this.IsEnumerableToCollection(item))
+                    var sInterface = item.Source.ActualType.GetInterfaces().FirstOrDefault(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
+                    var tInterface = item.Target.ActualType.GetInterfaces().FirstOrDefault(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
+                    if (sInterface != null && tInterface != null)
                     {
-                        var sourceElementType = item.Source.ActualType.GenericTypeArguments[0];
-                        var targetElementType = item.Target.ActualType.GenericTypeArguments[0];
+                        var sourceElementType = sInterface.GenericTypeArguments[0];
+                        var targetElementType = tInterface.GenericTypeArguments[0];
                         if (targetElementType.GetConstructor(Type.EmptyTypes) != null)
                         {
                             #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
@@ -669,32 +679,32 @@ namespace HigLabo.Core
                             #endregion
                         }
                     }
-                    else 
-                    {
-                        //Call Map method when convert failed try to get target value.
-                        #region source.P1.Map(target.P1); //Call Map method
+                }
+                else
+                {
+                    //Call Map method when convert failed try to get target value.
+                    #region source.P1.Map(target.P1); //Call Map method
 
-                        il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                        il.LoadLocal(sourceVal);
-                        il.LoadLocal(targetVal);
-                        il.Emit(OpCodes.Ldarg_3);//MappingContext
-                        il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
-                        il.SetLocal(targetVal);
-                        il.Emit(OpCodes.Br, setValueStartLabel);
-                        #endregion
-                    }
-                    if (item.Target.CanBeNull)
-                    {
-                        il.LoadLocal(targetVal);
-                        il.Emit(OpCodes.Ldnull);
-                        il.Emit(OpCodes.Ceq);
-                        il.Emit(OpCodes.Brtrue, endOfCode);
-                        il.Emit(OpCodes.Br, setValueStartLabel);
-                    }
-                    else
-                    {
-                        il.Emit(OpCodes.Br, endOfCode);
-                    }
+                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                    il.LoadLocal(sourceVal);
+                    il.LoadLocal(targetVal);
+                    il.Emit(OpCodes.Ldarg_3);//MappingContext
+                    il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
+                    il.SetLocal(targetVal);
+                    il.Emit(OpCodes.Br, setValueStartLabel);
+                    #endregion
+                }
+                if (item.Target.CanBeNull)
+                {
+                    il.LoadLocal(targetVal);
+                    il.Emit(OpCodes.Ldnull);
+                    il.Emit(OpCodes.Ceq);
+                    il.Emit(OpCodes.Brtrue, endOfCode);
+                    il.Emit(OpCodes.Br, setValueStartLabel);
+                }
+                else
+                {
+                    il.Emit(OpCodes.Br, endOfCode);
                 }
                 #endregion
 

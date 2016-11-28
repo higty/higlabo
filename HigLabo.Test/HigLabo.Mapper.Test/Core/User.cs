@@ -24,6 +24,7 @@ namespace HigLabo.Mapper.Test
         public User ParentUser { get; set; }
         public List<User> Users { get; set; }
         public String[] Tags { get; set; }
+        public Dictionary<String, String> Dictionary { get; set; }
 
         public User()
             : this("TestUser")

@@ -75,11 +75,13 @@ namespace HigLabo.Mapper.Test
             config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             var u1 = new User();
             u1.ParentUser = new User("ParentUser");
+            u1.Dictionary = new Dictionary<string, string>();
             var u2 = new User();
             u2.ParentUser = null;
             config.Map(u1, u2);
 
             Assert.IsNotNull(u2.ParentUser);
+            Assert.IsNotNull(u2.Dictionary);
 
             u1.ParentUser.Name = "ParentUserChanged";
             //Difference object
