@@ -23,13 +23,16 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         private static void Test()
         {
+            ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
             var customer = Customer.Create();
+            var count = 100;
             var config = ObjectMapConfig.Current;
-            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
-            for (int i = 0; i < 1000; i++)
+            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            for (int i = 0; i < count; i++)
             {
                 var customerDto = config.Map(customer, new CustomerDTO());
             }
+            return;
         }
     }
 }

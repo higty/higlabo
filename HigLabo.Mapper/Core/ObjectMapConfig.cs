@@ -244,9 +244,10 @@ namespace HigLabo.Core
         {
             var sourceType = source.GetType();
             var targetType = target.GetType();
-            foreach (var item in _PostActions.Where(el => el.Condition.Match(sourceType, targetType)))
+            for (int i = 0; i < _PostActions.Count; i++)
             {
-                var f = (Func<TSource, TTarget, TTarget>)item.Action;
+                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
+                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
                 return f(source, target);
             }
             return target;
