@@ -333,11 +333,12 @@ namespace HigLabo.Core
         /// source.P1 --> target["P1"];
         /// source["P1"] --> target.P1;
         /// source["P1"] --> target["P1"];
+        /// context --> MappingContext.
         /// if (typeof(source) == typeof(target))
         /// {
         ///     target.P1 = source.P1;
         /// }
-        /// else if (Use TypeConverter)
+        /// else if (Use TypeConverter for primitive types)
         /// {
         ///     var converted = converter.ToXXX(source.P1);
         ///     if (converted != null)
@@ -346,9 +347,9 @@ namespace HigLabo.Core
         ///     }
         ///     return;
         /// }
-        /// else if (Map)
+        /// else if (Map for other case...)
         /// {
-        ///     switch (this.NullPropertyMapMode)
+        ///     switch (context.NullPropertyMapMode)
         ///     {
         ///         case NullPropertyMapMode.NewObject: target.P1 = new XXX(); break;
         ///         case NullPropertyMapMode.CopyReference: 
@@ -365,10 +366,17 @@ namespace HigLabo.Core
         ///     {
         ///         target.P1 = null;
         ///     }
+        ///     else if (source is IEnumerable and target is ICollection)
+        ///     {
+        ///         switch (context.collectionelementmapmode)
+        ///         {
+        ///             case collectionelementmapmode.newobject: this.mapto(source, target); break;
+        ///             case collectionelementmapmode.copyreference: this.mapreference(source, target); break;
+        ///         }
+        ///     }
         ///     else
         ///     {
         ///         source.P1.Map(target.P1);
-        ///         return;
         ///     }
         /// }
         /// </summary>
