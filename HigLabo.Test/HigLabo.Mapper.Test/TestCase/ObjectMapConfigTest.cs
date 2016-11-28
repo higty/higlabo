@@ -384,9 +384,9 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_AddPostAction_Enum()
         {
             var config = new ObjectMapConfig();
-            config.AddPostAction<User>((source, target) =>
+            config.AddPostAction<String, DayOfWeek>((source, target) =>
             {
-                target.DayOfWeek = DayOfWeekConverter(source.Value) ?? target.DayOfWeek;
+                return DayOfWeekConverter(source) ?? target;
             });
 
             config.PropertyMapRules.Clear();

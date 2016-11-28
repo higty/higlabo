@@ -578,16 +578,15 @@ namespace HigLabo.Core
                 #region source.P1.Map(target.P1); //Call Map method
                 if (item.Target.IsIndexedProperty == false)
                 {
-                    var targetObj = il.DeclareLocal(item.Target.PropertyType);
                     il.Emit(OpCodes.Ldarg_2);
                     il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
-                    il.SetLocal(targetObj);
+                    il.SetLocal(targetVal);
 
                     //NullPropertyMapMode feature
                     if (item.Target.CanBeNull)
                     {
                         #region if (target.P1 ==null) { ... }
-                        il.LoadLocal(targetObj);
+                        il.LoadLocal(targetVal);
                         il.Emit(OpCodes.Ldnull);
                         il.Emit(OpCodes.Ceq);
                         Label ifTargetIsNotNull = il.DefineLabel();
@@ -603,12 +602,11 @@ namespace HigLabo.Core
                                 if (constructor != null && constructor.IsPublic)
                                 {
                                     il.Emit(OpCodes.Newobj, constructor);
-                                    il.SetLocal(targetObj);
-                                    il.LoadLocal(targetObj);
                                     il.SetLocal(targetVal);
                                 }
                             }
                             il.MarkLabel(ifNullMapModeIsNotNewObject);
+
                             if (item.Source.ActualType.IsInheritanceFrom(item.Target.ActualType))
                             {
                                 il.LoadLocal(nullPropertyMapMode);
@@ -618,7 +616,7 @@ namespace HigLabo.Core
                                 il.Emit(OpCodes.Brfalse, ifNullMapModeIsNotCopyReference);
                                 {
                                     il.LoadLocal(sourceVal);
-                                    il.SetLocal(targetObj);
+                                    il.SetLocal(targetVal);
                                 }
                                 il.MarkLabel(ifNullMapModeIsNotCopyReference);
                             }
@@ -642,7 +640,7 @@ namespace HigLabo.Core
                             {
                                 il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
                                 il.LoadLocal(sourceVal);
-                                il.LoadLocal(targetObj);
+                                il.LoadLocal(targetVal);
                                 il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
                                 il.Emit(OpCodes.Pop);
                             }
@@ -657,12 +655,11 @@ namespace HigLabo.Core
                             il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
                             il.Emit(OpCodes.Ceq);
                             Label ifMapModeIsNotCopyReference = il.DefineLabel();
-                            il.Emit(OpCodes.Brfalse, ifMapModeIsNotCopyReference); //_MapToMethod
+                            il.Emit(OpCodes.Brfalse, ifMapModeIsNotCopyReference); //_MapReferenceMethod
                             {
-
                                 il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
                                 il.LoadLocal(sourceVal);
-                                il.LoadLocal(targetObj);
+                                il.LoadLocal(targetVal);
                                 il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
                                 il.Emit(OpCodes.Pop);
                             }
@@ -677,7 +674,7 @@ namespace HigLabo.Core
 
                         il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
                         il.LoadLocal(sourceVal);
-                        il.LoadLocal(targetObj);
+                        il.LoadLocal(targetVal);
                         il.Emit(OpCodes.Ldarg_3);//MappingContext
                         il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
                         il.SetLocal(targetVal);
@@ -767,15 +764,19 @@ namespace HigLabo.Core
             var sType = propertyMap.Source.ActualType;
             var tType = propertyMap.Target.ActualType;
 
-            if (this.CollectionElementMapMode == CollectionElementMapMode.None) { return false; }
             if (propertyMap.Source.IsIndexedProperty == true || propertyMap.Target.IsIndexedProperty == true) { return false; }
             if (sType.GenericTypeArguments.Length == 0 || tType.GenericTypeArguments.Length == 0) { return false; }
-            if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject && tType.GenericTypeArguments[0].GetConstructor(Type.EmptyTypes) == null) { return false; }
-            if (this.CollectionElementMapMode == CollectionElementMapMode.CopyReference && 
-                sType.GenericTypeArguments[0].IsInheritanceFrom(tType.GenericTypeArguments[0]) == false) { return false; }
-            if (sType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_IEnumerable_1)) &&
-                tType.GetInterfaces().Exists(el => el.FullName.StartsWith(System_Collections_Generic_ICollection_1)))
-            { return true; }
+            //Never use lambda expresion to improve performance.To avoid object creation.
+            foreach (var sInterface in sType.GetInterfaces())
+            {
+                if (sInterface.FullName.StartsWith(System_Collections_Generic_IEnumerable_1))
+                {
+                    foreach (var tInterface in tType.GetInterfaces())
+                    {
+                        if (tInterface.FullName.StartsWith(System_Collections_Generic_ICollection_1)) { return true; }
+                    }
+                }
+            }
             return false;
         }
         private static Boolean IsDirectSetValue(Type type)
