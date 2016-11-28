@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Dynamic;
+using System.Data.SqlClient;
+using System.IO;
+using System.Data;
 
 namespace HigLabo.Mapper.Test
 {
@@ -198,6 +201,7 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(23m, u2.Decimal);
         }
+
         [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Encoding()
         {
@@ -230,6 +234,25 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
+        [TestMethod]
+        public void ObjectMapConfig_Map_IDataReader_Object()
+        {
+            var config = new ObjectMapConfig();
+            var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
+            using (SqlConnection cn = new SqlConnection(connectionString))
+            {
+                var cm = new SqlCommand("select * from sys.databases where name = 'master'", cn);
+                cn.Open();
+                var dr = cm.ExecuteReader();
+                while (dr.Read())
+                {
+                    var s1 = config.MapFromDataReader(dr, new Sys_Database());
+                    //May be because we connect to database.
+                    Assert.AreEqual("master", s1.Name);
+                }
+            }
+        }
+
         [TestMethod]
         public void ObjectMapConfig_Map_List_List()
         {
