@@ -26,6 +26,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 config.CreateMap<Address, AddressDTO>();
             });
             TinyMapper.Bind<Customer, CustomerDTO>();
+            //ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
 
         }
         [Benchmark]
@@ -75,7 +76,7 @@ namespace HigLabo.Mapper.PerformanceTest
             var customer = Customer.Create();
             var count = ExecuteCount;
             var config = ObjectMapConfig.Current;
-            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             for (int i = 0; i < count; i++)
             {
                 var customerDto = config.Map(customer, new CustomerDTO());

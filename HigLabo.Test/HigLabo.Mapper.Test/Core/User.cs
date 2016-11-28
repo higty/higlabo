@@ -78,6 +78,13 @@ namespace HigLabo.Mapper.Test
 
         }
     }
+    public class UserNoDefaultConstructor : User
+    {
+        public UserNoDefaultConstructor(String name)
+        {
+            this.Name = name;
+        }
+    }
     public class UserListInfo
     {
         public String GroupName { get; set; }

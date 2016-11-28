@@ -119,8 +119,10 @@ namespace HigLabo.Core
                     + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
                     , source, target, ex.InnerException);
             }
-            this.CallPostAction(source, target);
-
+            if (_PostActions.Count > 0)
+            {
+                result = this.CallPostAction(source, result);
+            }
             return result;
         }
         private TTarget MapIDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
@@ -162,9 +164,17 @@ namespace HigLabo.Core
             return target;
         }
 
+        public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> propertyNames)
+        {
+            this.RemovePropertyMap<TSource, TTarget>(propertyMap => propertyNames.Contains(propertyMap.Target.Name), null);
+        }
+        public void RemovePropertyMap<TSource, TTarget>(params String[] propertyNames)
+        {
+            this.RemovePropertyMap<TSource, TTarget>(propertyMap => propertyNames.Contains(propertyMap.Target.Name), null);
+        }
         public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> propertyNames, Action<TSource, TTarget> action)
         {
-            this.RemovePropertyMap<TSource, TTarget>(objectMap => propertyNames.Contains(objectMap.Target.Name), action);
+            this.RemovePropertyMap<TSource, TTarget>(propertyMap => propertyNames.Contains(propertyMap.Target.Name), action);
         }
         public void RemovePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector)
         {
@@ -196,15 +206,30 @@ namespace HigLabo.Core
             this.AddPostAction(action);
         }
 
+
         public void AddPostAction<T>(Action<T, T> action)
+        {
+            this.AddPostAction<T, T>(action);
+        }
+        public void AddPostAction<T>(Func<T, T, T> action)
         {
             this.AddPostAction<T, T>(action);
         }
         public void AddPostAction<TSource, TTarget>(Action<TSource, TTarget> action)
         {
+            if (action == null) { return; }
+            Func<TSource, TTarget, TTarget> f = (source, target) =>
+            {
+                action(source, target);
+                return target;
+            };
+            this.AddPostAction(TypeFilterCondition.Inherit, TypeFilterCondition.Inherit, f);
+        }
+        public void AddPostAction<TSource, TTarget>(Func<TSource, TTarget, TTarget> action)
+        {
             this.AddPostAction(TypeFilterCondition.Inherit, TypeFilterCondition.Inherit, action);
         }
-        public void AddPostAction<TSource, TTarget>(TypeFilterCondition sourceCondition, TypeFilterCondition targetCondition, Action<TSource, TTarget> action)
+        public void AddPostAction<TSource, TTarget>(TypeFilterCondition sourceCondition, TypeFilterCondition targetCondition, Func<TSource, TTarget, TTarget> action)
         {
             if (action == null) { return; }
 
@@ -215,15 +240,16 @@ namespace HigLabo.Core
             condition.Target.TypeFilterCondition = targetCondition;
             _PostActions.Add(new MapPostAction(condition, (Delegate)action));
         }
-        private void CallPostAction<TSource, TTarget>(TSource source, TTarget target)
+        private TTarget CallPostAction<TSource, TTarget>(TSource source, TTarget target)
         {
             var sourceType = source.GetType();
             var targetType = target.GetType();
             foreach (var item in _PostActions.Where(el => el.Condition.Match(sourceType, targetType)))
             {
-                var f = (Action<TSource, TTarget>)item.Action;
-                f(source, target);
+                var f = (Func<TSource, TTarget, TTarget>)item.Action;
+                return f(source, target);
             }
+            return target;
         }
 
         private Func<ObjectMapConfig,TSource,TTarget,MappingContext,TTarget> GetMethod<TSource, TTarget>(TSource source, TTarget target)
@@ -591,7 +617,7 @@ namespace HigLabo.Core
                                 il.Emit(OpCodes.Brfalse, ifNullMapModeIsNotCopyReference);
                                 {
                                     il.LoadLocal(sourceVal);
-                                    il.SetLocal(targetVal);
+                                    il.SetLocal(targetObj);
                                 }
                                 il.MarkLabel(ifNullMapModeIsNotCopyReference);
                             }
@@ -602,40 +628,46 @@ namespace HigLabo.Core
 
                     if (this.IsEnumerableToCollection(item))
                     {
-                        #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
-                        il.LoadLocal(collectionMapMode);
-                        il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.NewObject);
-                        il.Emit(OpCodes.Ceq);
-                        Label ifMapModeIsNotNewObject = il.DefineLabel();
-                        il.Emit(OpCodes.Brfalse, ifMapModeIsNotNewObject); //_MapToMethod
+                        var sourceElementType = item.Source.ActualType.GenericTypeArguments[0];
+                        var targetElementType = item.Target.ActualType.GenericTypeArguments[0];
+                        if (targetElementType.GetConstructor(Type.EmptyTypes) != null)
                         {
-                            il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                            il.LoadLocal(sourceVal);
-                            il.LoadLocal(targetObj);
-                            il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(item.Source.ActualType.GenericTypeArguments[0]
-                                , item.Target.ActualType.GenericTypeArguments[0]));
-                            il.Emit(OpCodes.Pop);
+                            #region if (mode == CollectionElementMapMode.NewObject) { source.P1.MapTo(target); }
+                            il.LoadLocal(collectionMapMode);
+                            il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.NewObject);
+                            il.Emit(OpCodes.Ceq);
+                            Label ifMapModeIsNotNewObject = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse, ifMapModeIsNotNewObject); //_MapToMethod
+                            {
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.LoadLocal(targetObj);
+                                il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.Emit(OpCodes.Pop);
+                            }
+                            il.MarkLabel(ifMapModeIsNotNewObject);
+                            #endregion
                         }
-                        il.MarkLabel(ifMapModeIsNotNewObject);
-                        #endregion
 
-                        #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
-                        il.LoadLocal(collectionMapMode);
-                        il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
-                        il.Emit(OpCodes.Ceq);
-                        Label ifMapModeIsNotCopyReference = il.DefineLabel();
-                        il.Emit(OpCodes.Brfalse, ifMapModeIsNotCopyReference); //_MapToMethod
+                        if (sourceElementType.IsInheritanceFrom(targetElementType))
                         {
+                            #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
+                            il.LoadLocal(collectionMapMode);
+                            il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
+                            il.Emit(OpCodes.Ceq);
+                            Label ifMapModeIsNotCopyReference = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse, ifMapModeIsNotCopyReference); //_MapToMethod
+                            {
 
-                            il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                            il.LoadLocal(sourceVal);
-                            il.LoadLocal(targetObj);
-                            il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(item.Source.ActualType.GenericTypeArguments[0]
-                                , item.Target.ActualType.GenericTypeArguments[0]));
-                            il.Emit(OpCodes.Pop);
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.LoadLocal(targetObj);
+                                il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.Emit(OpCodes.Pop);
+                            }
+                            il.MarkLabel(ifMapModeIsNotCopyReference);
+                            #endregion
                         }
-                        il.MarkLabel(ifMapModeIsNotCopyReference);
-                        #endregion
                     }
                     else 
                     {
@@ -647,7 +679,8 @@ namespace HigLabo.Core
                         il.LoadLocal(targetObj);
                         il.Emit(OpCodes.Ldarg_3);//MappingContext
                         il.Emit(OpCodes.Call, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.PropertyType));
-                        il.Emit(OpCodes.Pop);
+                        il.SetLocal(targetVal);
+                        il.Emit(OpCodes.Br, setValueStartLabel);
                         #endregion
                     }
                     if (item.Target.CanBeNull)

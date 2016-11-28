@@ -52,8 +52,8 @@ namespace HigLabo.Mapper.Test
             u1.Y = 7;
             var v1 = config.Map(u1, new Vector2(3, 6));
 
-            Assert.AreEqual(v1.X, u1.X);
-            Assert.AreEqual(v1.Y, u1.Y);
+            Assert.AreEqual(u1.X, v1.X);
+            Assert.AreEqual(u1.Y, v1.Y);
         }
         [TestMethod]
         public void ObjectMapConfig_MapOrNull()
@@ -281,6 +281,21 @@ namespace HigLabo.Mapper.Test
             Assert.AreNotEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_CollectionElement_NewObject_NoDefaultConstructor()
+        {
+            var config = new ObjectMapConfig();
+            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+
+            var u1 = new List<User>();
+            for (int i = 0; i < 3; i++)
+            {
+                u1.Add(new User("TestUser" + i.ToString()));
+            }
+            var u2 = config.Map(u1, new List<UserNoDefaultConstructor>());
+
+            Assert.AreEqual(0, u2.Count);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_CollectionElement_Reference()
         {
             var config = new ObjectMapConfig();
@@ -380,7 +395,7 @@ namespace HigLabo.Mapper.Test
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();
-            u1.Value = "Friday";
+            u1.Value = "Fri";
             var u2 = config.Map(u1, new User());
 
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
@@ -404,10 +419,30 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
         }
         [TestMethod]
+        public void ObjectMapConfig_AddPostAction_String_DayOfWeek()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<String, DayOfWeek>((source, target) =>
+            {
+                return DayOfWeekConverter(source) ?? target;
+            });
+
+            config.PropertyMapRules.Clear();
+            var rule = new PropertyNameMappingRule();
+            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Value = "Fri";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+        }
+        [TestMethod]
         public void ObjectMapConfig_RemovePropertyMap()
         {
             var config = new ObjectMapConfig();
-            config.RemovePropertyMap<User, User>(new String[] { nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable" }, null);
+            config.RemovePropertyMap<User, User>(nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable");
 
             var u1 = new User();
             var u2 = config.Map(u1, new User());
@@ -532,14 +567,14 @@ namespace HigLabo.Mapper.Test
             {
                 switch (obj.ToString())
                 {
-                    case "Monday": dw = DayOfWeek.Monday; break;
-                    case "Tuesday": dw = DayOfWeek.Tuesday; break;
-                    case "Wednesday": dw = DayOfWeek.Wednesday; break;
-                    case "Thursday": dw = DayOfWeek.Thursday; break;
-                    case "Friday": dw = DayOfWeek.Friday; break;
-                    case "Saturday": dw = DayOfWeek.Saturday; break;
-                    case "Sunday": dw = DayOfWeek.Sunday; break;
-                    default: throw new InvalidOperationException();
+                    case "Mon": dw = DayOfWeek.Monday; break;
+                    case "Tues": dw = DayOfWeek.Tuesday; break;
+                    case "Wednes": dw = DayOfWeek.Wednesday; break;
+                    case "Thurs": dw = DayOfWeek.Thursday; break;
+                    case "Fri": dw = DayOfWeek.Friday; break;
+                    case "Satur": dw = DayOfWeek.Saturday; break;
+                    case "Sun": dw = DayOfWeek.Sunday; break;
+                    default: return null;
                 }
             }
             return dw;
