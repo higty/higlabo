@@ -69,6 +69,59 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u4, null);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_NullProperty_NewObject()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser");
+            var u2 = new User();
+            u2.ParentUser = null;
+            config.Map(u1, u2);
+
+            Assert.IsNotNull(u2.ParentUser);
+
+            u1.ParentUser.Name = "ParentUserChanged";
+            //Difference object
+            Assert.AreEqual("ParentUser", u2.ParentUser.Name);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_NullProperty_CopyReference()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser");
+            var u2 = new User();
+            u2.ParentUser = null;
+            config.Map(u1, u2);
+
+            Assert.IsNotNull(u2.ParentUser);
+
+            u1.ParentUser.Name = "ParentUserChanged";
+            //Same object
+            Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_NullProperty_CopyReference_By_MapContext()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser");
+            var u2 = new User();
+            u2.ParentUser = null;
+            config.Map(u1, u2
+                , new MappingContext(config.DictionaryKeyStringComparer
+                , NullPropertyMapMode.CopyReference, config.CollectionElementMapMode));
+
+            Assert.IsNotNull(u2.ParentUser);
+
+            u1.ParentUser.Name = "ParentUserChanged";
+            //Same object
+            Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Object()
         {
             var config = new ObjectMapConfig();
@@ -265,6 +318,37 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_NullListProperty_NewObject()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            var u1 = new User();
+            var u2 = new User();
+            u2.Users = null;
+            config.Map(u1, u2);
+
+            Assert.IsNotNull(u2.Users);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_NullListProperty_CopyReference_AddElement()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
+            var u1 = new User();
+            var u2 = new User();
+            u2.Users = null;
+            config.Map(u1, u2);
+
+            Assert.IsNotNull(u2.Users);
+
+            u1.Users.Add(new User("ChildUser1"));
+            Assert.AreEqual(1, u2.Users.Count);
+            Assert.AreEqual("ChildUser1", u2.Users[0].Name);
+
+            u1.Users[0].Name = "ChildUser2";
+            Assert.AreEqual("ChildUser2", u2.Users[0].Name);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_Flatten()
         {
             var config = new ObjectMapConfig();
@@ -279,92 +363,6 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Latitude, u2.Latitude);
             Assert.AreEqual(u1.MapPoint.Longitude, u2.Longitude);
             Assert.AreEqual(u1.Vector2.X, u2.X);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_NullProperty_NewObject()
-        {
-            var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            var u1 = new User();
-            u1.ParentUser = new User("ParentUser");
-            var u2 = new User();
-            u2.ParentUser = null;
-            config.Map(u1, u2);
-
-            Assert.IsNotNull(u2.ParentUser);
-
-            u1.ParentUser.Name = "ParentUserChanged";
-            //Difference object
-            Assert.AreEqual("ParentUser", u2.ParentUser.Name);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_NullProperty_CopyReference()
-        {
-            var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
-            var u1 = new User();
-            u1.ParentUser = new User("ParentUser");
-            var u2 = new User();
-            u2.ParentUser = null;
-            config.Map(u1, u2);
-
-            Assert.IsNotNull(u2.ParentUser);
-
-            u1.ParentUser.Name = "ParentUserChanged";
-            //Same object
-            Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_NullProperty_CopyReference_By_MapContext()
-        {
-            var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            var u1 = new User();
-            u1.ParentUser = new User("ParentUser");
-            var u2 = new User();
-            u2.ParentUser = null;
-            config.Map(u1, u2
-                , new MappingContext(config.DictionaryKeyStringComparer
-                , NullPropertyMapMode.CopyReference, config.CollectionElementMapMode));
-
-            Assert.IsNotNull(u2.ParentUser);
-
-            u1.ParentUser.Name = "ParentUserChanged";
-            //Same object
-            Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_NullListProperty_NewObject()
-        {
-            var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            var u1 = new User();
-            u1.ParentUser = new User("ParentUser");
-            var u2 = new User();
-            u2.Users = null;
-            config.Map(u1, u2);
-
-            Assert.IsNotNull(u2.Users);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_NullListProperty_CopyReference_AddElement()
-        {
-            var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
-            var u1 = new User();
-            u1.ParentUser = new User("ParentUser");
-            var u2 = new User();
-            u2.Users = null;
-            config.Map(u1, u2);
-
-            Assert.IsNotNull(u2.Users);
-
-            u1.Users.Add(new User("ChildUser1"));
-            Assert.AreEqual(1, u2.Users.Count);
-            Assert.AreEqual("ChildUser1", u2.Users[0].Name);
-
-            u1.Users[0].Name = "ChildUser2";
-            Assert.AreEqual("ChildUser2", u2.Users[0].Name);
         }
 
         [TestMethod]
