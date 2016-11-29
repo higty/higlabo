@@ -72,6 +72,18 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u4, null);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_Object_Object_SetNullablePropertyToNull()
+        {
+            var config = new ObjectMapConfig();
+            
+            var u1 = new User();
+            u1.DecimalNullable = null;
+            var u2 = config.Map(u1, new User() { DecimalNullable = 23.4m });
+
+            Assert.IsNull(u2.DecimalNullable);
+        }
+
+        [TestMethod]
         public void ObjectMapConfig_Map_NullProperty_NewObject()
         {
             var config = new ObjectMapConfig();
@@ -81,6 +93,7 @@ namespace HigLabo.Mapper.Test
             u1.Dictionary = new Dictionary<string, string>();
             var u2 = new User();
             u2.ParentUser = null;
+            u2.Dictionary = null;
             config.Map(u1, u2);
 
             Assert.IsNotNull(u2.ParentUser);
@@ -126,6 +139,7 @@ namespace HigLabo.Mapper.Test
             //Same object
             Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
         }
+
         [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Object()
         {
@@ -162,17 +176,6 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.DateTime, d["DateTime"]);
             Assert.AreEqual(u1.DayOfWeek, d["DayOfWeek"]);
             Assert.AreEqual(u1.MapPoint, d["MapPoint"]);
-        }
-        [TestMethod]
-        public void ObjectMapConfig_Map_Object_Object_SetNullablePropertyToNull()
-        {
-            var config = new ObjectMapConfig();
-            
-            var u1 = new User();
-            u1.DecimalNullable = null;
-            var u2 = config.Map(u1, new User() { DecimalNullable = 23.4m });
-
-            Assert.IsNull(u2.DecimalNullable);
         }
         [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Object_Convert_Failure()
@@ -214,6 +217,20 @@ namespace HigLabo.Mapper.Test
             var p2 = config.Map(d, p1);
 
             Assert.AreEqual(Encoding.UTF8, p2.Encoding);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_Map_Dictionary_NullPropertyMapMode_NewObject()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+
+            var d = new Dictionary<String, String>();
+            d["Int32Nullable"] = "abc";
+            var u2 = new User();
+            u2.Int32Nullable = null;
+            config.Map(d, u2);
+
+            Assert.AreEqual(null, u2.Int32Nullable);
         }
         [TestMethod]
         public void ObjectMapConfig_Map_DynamicObject_Object()
