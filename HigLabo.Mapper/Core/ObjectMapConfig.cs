@@ -94,8 +94,7 @@ namespace HigLabo.Core
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
             if (source == null || target == null) { return target; }
-            var kv = new KeyValuePair<object, object>(source, target);
-            if (context.Exists(kv)) { return target; }
+            if (context.Exists(source, target)) { return target; }
             if (context.CallStackCount > this.MaxCallStack)
             {
                 throw new InvalidOperationException("Map method recursively called over " + this.MaxCallStack + ".");

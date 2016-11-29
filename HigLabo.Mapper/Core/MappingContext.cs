@@ -21,10 +21,11 @@ namespace HigLabo.Core
             this.NullPropertyMapMode = nullPropertyMapMode;
             this.CollectionElementMapMode = collectionElementMapMode;
         }
-        public Boolean Exists(KeyValuePair<Object, Object> value)
+        public Boolean Exists(Object source, Object target)
         {
-            if (_MappedObjectPair.Contains(value) == true) { return true; }
-            _MappedObjectPair.Add(value);
+            var kv = new KeyValuePair<object, object>(source, target);
+            if (_MappedObjectPair.Contains(kv) == true) { return true; }
+            _MappedObjectPair.Add(kv);
             return false;
         }
     }
