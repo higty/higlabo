@@ -107,20 +107,23 @@ namespace HigLabo.Core
                 return this.MapFromDataReader(source as IDataReader, target, context);
             }
             var md = this.GetMethod<TSource, TTarget>(source, target);
-            TTarget result = default(TTarget);
-            try
+            TTarget result = target;
+            if (md != null)
             {
-                context.CallStackCount++;
-                result = md(this, source, target, context);
-                context.CallStackCount--;
-            }
-            catch (TargetInvocationException ex)
-            {
-                throw new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
-                    + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to auther."
-                    + "We will fix it." + Environment.NewLine
-                    + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
-                    , source, target, ex.InnerException);
+                try
+                {
+                    context.CallStackCount++;
+                    result = md(this, source, target, context);
+                    context.CallStackCount--;
+                }
+                catch (TargetInvocationException ex)
+                {
+                    throw new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
+                        + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to auther."
+                        + "We will fix it." + Environment.NewLine
+                        + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
+                        , source, target, ex.InnerException);
+                }
             }
             if (_PostActions.Count > 0)
             {
@@ -167,6 +170,10 @@ namespace HigLabo.Core
             return target;
         }
 
+        public void RemovePropertyMap<TSource, TTarget>()
+        {
+            this.RemovePropertyMap<TSource, TTarget>(propertyMap => true, null);
+        }
         public void RemovePropertyMap<TSource, TTarget>(IEnumerable<String> propertyNames)
         {
             this.RemovePropertyMap<TSource, TTarget>(propertyMap => propertyNames.Contains(propertyMap.Target.Name), null);
@@ -185,13 +192,14 @@ namespace HigLabo.Core
         }
         public void RemovePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector, Action<TSource, TTarget> action)
         {
-            this.ReplaceMap(selector, action);
+            this.ReplacePropertyMap(selector, action);
         }
-        private void ReplaceMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector)
+
+        public void ReplacePropertyMap<TSource, TTarget>(Action<TSource, TTarget> action)
         {
-            ReplaceMap<TSource, TTarget>(selector, null);
+            this.ReplacePropertyMap<TSource, TTarget>(propertyMap => true, action);
         }
-        private void ReplaceMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector, Action<TSource, TTarget> action)
+        private void ReplacePropertyMap<TSource, TTarget>(Func<PropertyMap, Boolean> selector, Action<TSource, TTarget> action)
         {
             var key = new ObjectMapTypeInfo(typeof(TSource), typeof(TTarget));
             var mappings = this.CreatePropertyMaps(key.Source, key.Target);
@@ -203,9 +211,15 @@ namespace HigLabo.Core
                     mappings.RemoveAt(i);
                 }
             }
-            var md = this.CreateMethod<TSource, TTarget>(key, mappings);
-            _Methods[key] = md;
-
+            if (mappings.Count == 0)
+            {
+                _Methods[key] = null;
+            }
+            else
+            {
+                var md = this.CreateMethod<TSource, TTarget>(key, mappings);
+                _Methods[key] = md;
+            }
             this.AddPostAction(action);
         }
 
@@ -284,20 +298,27 @@ namespace HigLabo.Core
             List<PropertyInfo> targetProperties = new List<PropertyInfo>();
             foreach (var item in sourceTypes)
             {
-                sourceProperties.AddRange(item.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Where(el => el.GetIndexParameters().Length == 0))
+                {
+                    sourceProperties.Add(p);
+                }
             }
             foreach (var item in targetTypes)
             {
-                targetProperties.AddRange(item.GetProperties(BindingFlags.Public | BindingFlags.Instance));
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                    .Where(el => el.GetIndexParameters().Length == 0))
+                {
+                    targetProperties.Add(p);
+                }
             }
-            //Find target property by rules...
+            //Object --> Object 
             foreach (PropertyMappingRule rule in this.PropertyMapRules)
             {
-                //Validate to apply this rule
+                //Find target property by rules.Validate rule is match to sourceType,targetType.
                 if (rule.Condition.Match(sourceType, targetType) == false) { continue; }
 
                 List<PropertyInfo> addedTargetPropertyMapInfo = new List<PropertyInfo>();
-                //Object --> Object, Dictionary --> Object
                 foreach (var piTarget in targetProperties)
                 {
                     //Search property that meet condition
@@ -316,7 +337,7 @@ namespace HigLabo.Core
                     targetProperties.Remove(addedTargetPropertyMapInfo[i]);
                 }
             }
-            //Dictionary<String, T> --> Object
+            //Dictionary<String, T> --> Object. 
             var piSourceItem = sourceType.GetProperty("Item", new Type[] { typeof(String) });
             if (piSourceItem != null)
             {
@@ -327,14 +348,14 @@ namespace HigLabo.Core
 
                     foreach (var piTarget in targetProperties)
                     {
-                        foreach (var key in rule.GetIndexedKey(piTarget.Name))
+                        foreach (var key in rule.GetIndexedKeys(piTarget.Name))
                         {
                             l.Add(new PropertyMap(piSourceItem, key, piTarget));
                         }
                     }
                 }
             }
-            //Object --> Dictionary<String, T>
+            //Object --> Dictionary<String, T>. 
             var piTargetItem = targetType.GetProperty("Item", new Type[] { typeof(String) });
             if (piTargetItem != null)
             {
@@ -345,7 +366,7 @@ namespace HigLabo.Core
 
                     foreach (var piSource in sourceProperties)
                     {
-                        foreach (var key in rule.GetIndexedKey(piSource.Name))
+                        foreach (var key in rule.GetIndexedKeys(piSource.Name))
                         {
                             l.Add(new PropertyMap(piSource, piTargetItem, key));
                         }

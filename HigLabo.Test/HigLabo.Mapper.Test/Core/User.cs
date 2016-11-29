@@ -9,9 +9,10 @@ namespace HigLabo.Mapper.Test
     {
         public String Value { get; set; }
         public String Name { get; set; }
-        
+
         public Int32 Int32 { get; set; }
         public Int32? Int32Nullable { get; set; }
+        public Int32? Int32_Nullable { get; set; }
         public DateTime DateTime { get; set; }
         public DateTime? DateTimeNullable { get; set; }
         public Decimal Decimal { get; set; }

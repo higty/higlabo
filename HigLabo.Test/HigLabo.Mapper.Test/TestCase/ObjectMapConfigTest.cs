@@ -239,10 +239,6 @@ namespace HigLabo.Mapper.Test
         {
             var config = new ObjectMapConfig();
 
-            var rule = new DictionaryKeyMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Sys_Database), TypeFilterCondition.Inherit);
-            rule.AddMap("DatabaseID", "database_id");
-            config.DictionaryMappingRules.Add(rule);
-
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
             {
@@ -254,7 +250,7 @@ namespace HigLabo.Mapper.Test
                     var s1 = config.Map(dr, new Sys_Database());
                     //May be because we connect to database.
                     Assert.AreEqual("master", s1.Name);
-                    Assert.AreEqual(1, s1.DatabaseID);
+                    Assert.AreEqual(1, s1.Database_ID);
                 }
             }
         }
@@ -487,9 +483,37 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
+        [TestMethod]
+        public void ObjectMapConfig_RemoveAllPropertyMap()
+        {
+            var config = new ObjectMapConfig();
+            config.RemovePropertyMap<User, User>();
+
+            var u1 = new User();
+            u1.Value = "23.456";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreNotEqual(u1.Value, u2.Value);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_ReplacePropertyMap()
+        {
+            var config = new ObjectMapConfig();
+            config.ReplacePropertyMap<User, User>((source, target) =>
+            {
+                target.Decimal = Decimal.Parse(source.Value);
+            });
+
+            var u1 = new User();
+            u1.Value = "23.456";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreNotEqual(u1.Value, u2.Value);
+            Assert.AreEqual(23.456m, u2.Decimal);
+        }
 
         [TestMethod]
-        public void PropertyNameMappingRule_Failure()
+        public void ObjectMapConfig_PropertyNameMappingRule_Failure()
         {
             var config = new ObjectMapConfig();
             config.PropertyMapRules.Clear();
@@ -520,6 +544,20 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Decimal, u2.DecimalNullable);
             Assert.AreEqual(u1.DateTime, u2.DateTimeNullable);
             Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeekNullable);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_IgnoreUnderscorePropertyMappingRule()
+        {
+            var config = new ObjectMapConfig();
+
+            var rule = new IgnoreUnderscorePropertyMappingRule();
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Int32Nullable = 3;
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Int32Nullable, u2.Int32_Nullable);
         }
         [TestMethod]
         public void ObjectMapConfig_CustomPropertyMappingRule()
@@ -574,6 +612,21 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(23m, u2.MapPoint.Latitude);
             Assert.AreEqual(45m, u2.MapPoint.Longitude);
+        }
+        [TestMethod]
+        public void ObjectMapConfig_CustomDictionaryMappingRule()
+        {
+            var config = new ObjectMapConfig();
+
+            var rule = new DictionaryKeyMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(User), TypeFilterCondition.Inherit);
+            rule.AddMap("Int32Nullable", "int_nullable");
+            config.DictionaryMappingRules.Add(rule);
+
+            var d = new Dictionary<String, String>();
+            d["int_nullable"] = "8";
+            var u2 = config.Map(d, new User());
+
+            Assert.AreEqual(8, u2.Int32Nullable);
         }
 
         private MapPoint MapPointConverter(Object obj)

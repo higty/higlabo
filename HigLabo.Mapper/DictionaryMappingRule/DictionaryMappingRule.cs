@@ -18,7 +18,7 @@ namespace HigLabo.Core
             this.Condition.Type = type;
             this.Condition.TypeFilterCondition = typeFilterCondition;
         }
-        public virtual String[] GetIndexedKey(String propertyName)
+        public virtual String[] GetIndexedKeys(String propertyName)
         {
             return new[] { propertyName };
         }

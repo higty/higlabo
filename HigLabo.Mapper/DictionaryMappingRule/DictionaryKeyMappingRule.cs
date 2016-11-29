@@ -21,7 +21,7 @@ namespace HigLabo.Core
             if (_MapKeys.Contains(kv)) { return; }
             _MapKeys.Add(kv);
         }
-        public override string[] GetIndexedKey(string propertyName)
+        public override string[] GetIndexedKeys(string propertyName)
         {
             return _MapKeys.Where(el => el.Key == propertyName).Select(el => el.Value).ToArray();
         }

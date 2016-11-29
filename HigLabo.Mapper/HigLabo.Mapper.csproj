@@ -61,7 +61,7 @@
     <Compile Include="Internal\ObjectMapTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyMappingRule\DefaultPropertyMappingRule.cs" />
-    <Compile Include="PropertyMappingRule\DictionaryToObjectMappingRule.cs" />
+    <Compile Include="PropertyMappingRule\IgnoreUnderscorePropertyMappingRule.cs" />
     <Compile Include="PropertyMappingRule\PrefixPropertyMappingRule.cs" />
     <Compile Include="PropertyMappingRule\PropertyMappingRule.cs" />
     <Compile Include="PropertyMappingRule\PropertyNameMappingRule.cs" />
