@@ -61,7 +61,7 @@ namespace HigLabo.Core
 
             this.PropertyMapRules = new List<PropertyMappingRule>();
             this.PropertyMapRules.Add(new DefaultPropertyMappingRule());
-            this.DictionaryMappingRules = new List<Core.DictionaryMappingRule>();
+            this.DictionaryMappingRules = new List<DictionaryMappingRule>();
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Object), TypeFilterCondition.Inherit));
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.ObjectToDictionary, typeof(Object), TypeFilterCondition.Inherit));
 
