@@ -115,6 +115,17 @@ namespace HigLabo.Mapper.PerformanceTest
             }
         }
         [Benchmark]
+        public static void ExpressMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = ExpressMapper.Mapper.Map<Customer, CustomerDTO>(customer);
+            }
+        }
+        [Benchmark]
         public static void FastMapperTest()
         {
             var customer = Customer.Create();

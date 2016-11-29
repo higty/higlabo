@@ -192,7 +192,7 @@ namespace HigLabo.Mapper.Test
             config.PropertyMapRules.Clear();
 
             var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Int32", "Decimal");
+            rule.AddPropertyNameMap("Int32", "Decimal");
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();
@@ -235,14 +235,14 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_IDataReader_Object_With_PostAction()
+        public void ObjectMapConfig_Map_IDataReader_Object_With_DictionaryMappingRule()
         {
             var config = new ObjectMapConfig();
-            //IDataReader converted to Dictionary<String, Object> and Map to target.
-            config.AddPostAction<Dictionary<String, Object>, Sys_Database>((source, target) =>
-            {
-                target.DatabaseID = (Int32)source["database_id"];
-            });
+
+            var rule = new DictionaryKeyMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Sys_Database), TypeFilterCondition.Inherit);
+            rule.AddMap("DatabaseID", "database_id");
+            config.DictionaryMappingRules.Add(rule);
+
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
             {
@@ -422,7 +422,7 @@ namespace HigLabo.Mapper.Test
 
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
+            rule.AddPropertyNameMap("Value", "DayOfWeek");
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();
@@ -460,7 +460,7 @@ namespace HigLabo.Mapper.Test
 
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
+            rule.AddPropertyNameMap("Value", "DayOfWeek");
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();
@@ -495,7 +495,7 @@ namespace HigLabo.Mapper.Test
             config.PropertyMapRules.Clear();
 
             var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "Decimal");
+            rule.AddPropertyNameMap("Value", "Decimal");
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();
@@ -527,10 +527,10 @@ namespace HigLabo.Mapper.Test
             var config = new ObjectMapConfig();
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "Int32");
-            rule.PropertyNameMaps.Add("Value", "DateTime");
-            rule.PropertyNameMaps.Add("Value", "Decimal");
-            rule.PropertyNameMaps.Add("Value", "DayOfWeek");
+            rule.AddPropertyNameMap("Value", "Int32");
+            rule.AddPropertyNameMap("Value", "DateTime");
+            rule.AddPropertyNameMap("Value", "Decimal");
+            rule.AddPropertyNameMap("Value", "DayOfWeek");
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();
@@ -565,7 +565,7 @@ namespace HigLabo.Mapper.Test
             });
             config.PropertyMapRules.Clear();
             var rule = new PropertyNameMappingRule();
-            rule.PropertyNameMaps.Add("Value", "MapPoint");
+            rule.AddPropertyNameMap("Value", "MapPoint");
             config.PropertyMapRules.Add(rule);
 
             var u1 = new User();

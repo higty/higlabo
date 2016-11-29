@@ -38,6 +38,7 @@ namespace HigLabo.Core
         private List<MapPostAction> _PostActions = new List<MapPostAction>();
 
         public List<PropertyMappingRule> PropertyMapRules { get; private set; }
+        public List<DictionaryMappingRule> DictionaryMappingRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
         public Int32 MaxCallStack { get; set; }
         public StringComparer DictionaryKeyStringComparer { get; set; }
@@ -60,8 +61,10 @@ namespace HigLabo.Core
 
             this.PropertyMapRules = new List<PropertyMappingRule>();
             this.PropertyMapRules.Add(new DefaultPropertyMappingRule());
-            this.PropertyMapRules.Add(new DictionaryToObjectMappingRule());
-            
+            this.DictionaryMappingRules = new List<Core.DictionaryMappingRule>();
+            this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Object), TypeFilterCondition.Inherit));
+            this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.ObjectToDictionary, typeof(Object), TypeFilterCondition.Inherit));
+
             this.MaxCallStack = 100;
             this.DictionaryKeyStringComparer = StringComparer.InvariantCultureIgnoreCase;
         }
@@ -298,11 +301,13 @@ namespace HigLabo.Core
                 foreach (var piTarget in targetProperties)
                 {
                     //Search property that meet condition
-                    var piSource = sourceProperties.Find(el => rule.Match(el, piTarget));
-                    if (piSource != null)
+                    foreach (var piSource in sourceProperties)
                     {
+                        if (rule.Match(piSource, piTarget) == false) { continue; }
+
                         l.Add(new PropertyMap(piSource, piTarget));
                         addedTargetPropertyMapInfo.Add(piTarget);
+                        break;
                     }
                 }
                 //Remove added target property
@@ -311,13 +316,40 @@ namespace HigLabo.Core
                     targetProperties.Remove(addedTargetPropertyMapInfo[i]);
                 }
             }
+            //Dictionary<String, T> --> Object
+            var piSourceItem = sourceType.GetProperty("Item", new Type[] { typeof(String) });
+            if (piSourceItem != null)
+            {
+                foreach (var rule in this.DictionaryMappingRules
+                    .Where(el => el.Direction == DictionaryMappingDirection.DictionaryToObject))
+                {
+                    if (rule.Condition.Match(targetType) == false) { continue; }
+
+                    foreach (var piTarget in targetProperties)
+                    {
+                        foreach (var key in rule.GetIndexedKey(piTarget.Name))
+                        {
+                            l.Add(new PropertyMap(piSourceItem, key, piTarget));
+                        }
+                    }
+                }
+            }
             //Object --> Dictionary<String, T>
             var piTargetItem = targetType.GetProperty("Item", new Type[] { typeof(String) });
             if (piTargetItem != null)
             {
-                foreach (var piSource in sourceProperties)
+                foreach (var rule in this.DictionaryMappingRules
+                    .Where(el => el.Direction == DictionaryMappingDirection.ObjectToDictionary))
                 {
-                    l.Add(new PropertyMap(piSource, piTargetItem));
+                    if (rule.Condition.Match(sourceType) == false) { continue; }
+
+                    foreach (var piSource in sourceProperties)
+                    {
+                        foreach (var key in rule.GetIndexedKey(piSource.Name))
+                        {
+                            l.Add(new PropertyMap(piSource, piTargetItem, key));
+                        }
+                    }
                 }
             }
             return l;
@@ -584,7 +616,7 @@ namespace HigLabo.Core
                 il.MarkLabel(nullPropertyMapLabel);
                 if (directSetValue == false)
                 {
-                    #region if (target.P1 ==null) { ... }
+                    #region if (target.P1 ==null) { //Create Object }
                     il.Emit(OpCodes.Ldarg_2);
                     il.Emit(OpCodes.Callvirt, item.Target.PropertyInfo.GetGetMethod());
                     il.SetLocal(targetVal);

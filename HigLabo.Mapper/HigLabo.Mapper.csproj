@@ -55,14 +55,15 @@
     <Compile Include="Core\NullPropertyMapMode.cs" />
     <Compile Include="Core\TypeFilterCondition.cs" />
     <Compile Include="Core\TypeMatchCondition.cs" />
+    <Compile Include="DictionaryMappingRule\DictionaryMappingDirection.cs" />
+    <Compile Include="DictionaryMappingRule\DictionaryMappingRule.cs" />
+    <Compile Include="DictionaryMappingRule\DictionaryKeyMappingRule.cs" />
     <Compile Include="Internal\ObjectMapTypeInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyMappingRule\DefaultPropertyMappingRule.cs" />
     <Compile Include="PropertyMappingRule\DictionaryToObjectMappingRule.cs" />
     <Compile Include="PropertyMappingRule\PrefixPropertyMappingRule.cs" />
     <Compile Include="PropertyMappingRule\PropertyMappingRule.cs" />
-    <Compile Include="PropertyMappingRule\PropertyNameMap.cs" />
-    <Compile Include="PropertyMappingRule\PropertyNameMapList.cs" />
     <Compile Include="PropertyMappingRule\PropertyNameMappingRule.cs" />
     <Compile Include="PropertyMappingRule\SuffixPropertyMappingRule.cs" />
   </ItemGroup>

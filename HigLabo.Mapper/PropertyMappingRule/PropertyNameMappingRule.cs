@@ -9,21 +9,26 @@ namespace HigLabo.Core
 {
     public class PropertyNameMappingRule : PropertyMappingRule
     {
-        public PropertyNameMapList PropertyNameMaps { get; private set; }
+        private List<KeyValuePair<String, String>> _PropertyNameMaps = new List<KeyValuePair<string, string>>();
 
         public PropertyNameMappingRule()
         {
-            this.PropertyNameMaps = new PropertyNameMapList();
+        }
+        public void AddPropertyNameMap(String sourcePropertyName, String targetPropertyName)
+        {
+            var kv = new KeyValuePair<String, String>(sourcePropertyName, targetPropertyName);
+            if (_PropertyNameMaps.Contains(kv)) { return; }
+            _PropertyNameMaps.Add(kv);
         }
         public override Boolean Match(PropertyInfo sourceProperty, PropertyInfo targetProperty)
         {
-            var l = this.PropertyNameMaps;
+            var l = _PropertyNameMaps;
             for (int i = 0; i < l.Count; i++)
             {
                 var item = l[i];
-                if (item.SourcePropertyName == sourceProperty.Name)
+                if (item.Key == sourceProperty.Name)
                 {
-                    if (this.Match(item.TargetPropertyName, targetProperty.Name) == true) { return true; }
+                    if (this.Match(item.Value, targetProperty.Name) == true) { return true; }
                 }
             }
             return false;

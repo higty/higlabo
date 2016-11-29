@@ -15,14 +15,18 @@ namespace HigLabo.Core
         {
             this.Source = new PropertyMapInfo(source);
             this.Target = new PropertyMapInfo(target);
-            if (this.Source.IsIndexedProperty == true)
-            {
-                this.Source.IndexedPropertyKey = target.Name;
-            }
-            if (this.Target.IsIndexedProperty == true)
-            {
-                this.Target.IndexedPropertyKey = source.Name;
-            }
+        }
+        public PropertyMap(PropertyInfo source, String sourceIndexedKey, PropertyInfo target)
+        {
+            this.Source = new PropertyMapInfo(source);
+            this.Source.IndexedPropertyKey = sourceIndexedKey;
+            this.Target = new PropertyMapInfo(target);
+        }
+        public PropertyMap(PropertyInfo source, PropertyInfo target, String targetIndexedKey)
+        {
+            this.Source = new PropertyMapInfo(source);
+            this.Target = new PropertyMapInfo(target);
+            this.Target.IndexedPropertyKey = targetIndexedKey;
         }
         public override string ToString()
         {
