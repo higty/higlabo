@@ -251,7 +251,7 @@ namespace HigLabo.Mapper.Test
                 var dr = cm.ExecuteReader();
                 while (dr.Read())
                 {
-                    var s1 = config.MapFromDataReader(dr, new Sys_Database());
+                    var s1 = config.Map(dr, new Sys_Database());
                     //May be because we connect to database.
                     Assert.AreEqual("master", s1.Name);
                     Assert.AreEqual(1, s1.DatabaseID);

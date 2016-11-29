@@ -29,7 +29,6 @@ namespace HigLabo.Core
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Delegate> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Delegate>();
 
         private static readonly MethodInfo _MapMethod = null;
-        private static readonly MethodInfo _MapIDataReaderMethod = null;
         private static readonly MethodInfo _MapToMethod = null;
         private static readonly MethodInfo _MapReferenceMethod = null;
         private static readonly MethodInfo _MappingContext_NullPropertyMapMode_GetMethod = null;
@@ -49,7 +48,6 @@ namespace HigLabo.Core
         {
             Current = new ObjectMapConfig();
             _MapMethod = GetMethodInfo("Map");
-            _MapIDataReaderMethod = GetMethodInfo("MapIDataReader");
             _MapToMethod = GetMethodInfo("MapTo");
             _MapReferenceMethod = GetMethodInfo("MapReference");
             _MappingContext_NullPropertyMapMode_GetMethod = typeof(MappingContext).GetProperty("NullPropertyMapMode", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
@@ -102,6 +100,10 @@ namespace HigLabo.Core
             {
                 throw new InvalidOperationException("Map method recursively called over " + this.MaxCallStack + ".");
             }
+            if (source is IDataReader)
+            {
+                return this.MapFromDataReader(source as IDataReader, target, context);
+            }
             var md = this.GetMethod<TSource, TTarget>(source, target);
             TTarget result = default(TTarget);
             try
@@ -124,12 +126,7 @@ namespace HigLabo.Core
             }
             return result;
         }
-        public TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target)
-        {
-            return this.MapFromDataReader(source, target, this.CreateMappingContext());
-        }
-        [ObjectMapConfigMethod(Name = "MapIDataReader")]
-        public TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
+        private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
         {
             Dictionary<String, Object> d = new Dictionary<String, Object>(context.DictionaryKeyStringComparer);
             d.SetValues((IDataReader)source);
@@ -692,18 +689,6 @@ namespace HigLabo.Core
                                 #endregion
                             }
                         }
-                        #endregion
-                    }
-                    else if (item.Source.ActualType.IsImplementInterface(typeof(IDataReader)))
-                    {
-                        #region source.P1.Map(target.P1); //Call Map method
-                        il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                        il.LoadLocal(sourceVal);
-                        il.LoadLocal(targetVal);
-                        il.Emit(OpCodes.Ldarg_3);//MappingContext
-                        il.Emit(OpCodes.Call, _MapIDataReaderMethod.MakeGenericMethod(item.Target.PropertyType));
-                        il.SetLocal(targetVal);
-                        il.Emit(OpCodes.Br, setValueStartLabel);
                         #endregion
                     }
                     else
