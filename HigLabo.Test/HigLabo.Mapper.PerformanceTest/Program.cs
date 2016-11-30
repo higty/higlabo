@@ -27,6 +27,7 @@ namespace HigLabo.Mapper.PerformanceTest
             var customer = Customer.Create();
             var count = 100;
             var config = ObjectMapConfig.Current;
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             for (int i = 0; i < count; i++)
             {
