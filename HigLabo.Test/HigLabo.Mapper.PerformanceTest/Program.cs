@@ -25,7 +25,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
             var customer = Customer.Create();
-            var count = 100;
+            var count = 1000;
             var config = ObjectMapConfig.Current;
             config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             config.CollectionElementMapMode = CollectionElementMapMode.NewObject;

@@ -445,6 +445,26 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
         }
         [TestMethod]
+        public void ObjectMapConfig_AddPostAction_EnumNullable()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<String, DayOfWeek?>((source, target) =>
+            {
+                return DayOfWeekConverter(source);
+            });
+
+            config.PropertyMapRules.Clear();
+            var rule = new PropertyNameMappingRule();
+            rule.AddPropertyNameMap("Value", "DayOfWeekNullable");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Value = "Fri";
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeekNullable);
+        }
+        [TestMethod]
         public void ObjectMapConfig_AddPostAction_Collection()
         {
             var config = new ObjectMapConfig();
