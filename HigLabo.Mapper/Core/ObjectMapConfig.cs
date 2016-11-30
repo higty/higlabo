@@ -542,7 +542,7 @@ namespace HigLabo.Core
 
                 #region var convertedVal = TypeConverter.ToXXX(sourceVal); //Convert value to target type.
                 LocalBuilder convertedVal = null;
-                var methodName = GetTypeConverterMethodName(item.Target.ActualType);
+                var toXXXMethod = GetTypeConverterMethodInfo(item.Target.ActualType);
                 if (item.Source.ActualType == item.Target.ActualType &&
                     IsDirectSetValue(item.Source.ActualType))
                 {
@@ -552,7 +552,7 @@ namespace HigLabo.Core
                     il.Emit(OpCodes.Br, setValueStartLabel);
                     #endregion
                 }
-                else if (item.Target.ActualType.IsEnum == true || methodName != null)
+                else if (toXXXMethod != null)
                 {
                     #region var convertedVal = TypeConverter.ToXXX(sourceVal);
                     //Call TypeConverter.ToXXX(sourceVal);
@@ -562,20 +562,11 @@ namespace HigLabo.Core
                     {
                         il.Emit(OpCodes.Box, item.Source.ActualType);
                     }
-                    if (item.Target.ActualType.IsEnum == true)
-                    {
-                        il.Emit(OpCodes.Callvirt, typeof(TypeConverter).GetMethod("ToEnum", new Type[] { typeof(Object) }).MakeGenericMethod(item.Target.ActualType));
-                    }
-                    else
-                    {
-                        il.Emit(OpCodes.Callvirt, typeof(TypeConverter).GetMethod(methodName, new Type[] { typeof(Object) }));
-                    }
+                    il.Emit(OpCodes.Callvirt, toXXXMethod);
                     #endregion
 
-                    #region Set converted value
                     Label ifConvertedValueNotNullBlock = il.DefineLabel();
-                    if (item.Target.ActualType == typeof(String) ||
-                        item.Target.ActualType == typeof(Encoding))
+                    if (item.Target.PropertyType.IsClass)
                     {
                         #region if (convertedVal == null) {...}
                         convertedVal = il.DeclareLocal(item.Target.PropertyType);
@@ -583,11 +574,7 @@ namespace HigLabo.Core
                         il.LoadLocal(targetVal);
                         il.Emit(OpCodes.Ldnull);
                         il.Emit(OpCodes.Ceq);
-                        il.Emit(OpCodes.Brfalse_S, ifConvertedValueNotNullBlock);
-                        {
-                            il.Emit(OpCodes.Br, setValueStartLabel);
-                        }
-                        il.MarkLabel(ifConvertedValueNotNullBlock);
+                        il.Emit(OpCodes.Brtrue_S, nullPropertyMapLabel);
                         #endregion
                     }
                     else
@@ -599,18 +586,15 @@ namespace HigLabo.Core
                         il.SetLocal(convertedVal);
                         il.LoadLocala(convertedVal);
                         il.Emit(OpCodes.Call, targetTypeN.GetProperty("HasValue").GetGetMethod());
-                        il.Emit(OpCodes.Brtrue_S, ifConvertedValueNotNullBlock);
+                        il.Emit(OpCodes.Brfalse_S, nullPropertyMapLabel);
                         {
-                            il.Emit(OpCodes.Br_S, nullPropertyMapLabel);
+                            //GetValue
+                            il.LoadLocala(convertedVal);
+                            il.Emit(OpCodes.Call, targetTypeN.GetMethod("GetValueOrDefault", Type.EmptyTypes));
+                            il.SetLocal(targetVal);
                         }
-                        il.MarkLabel(ifConvertedValueNotNullBlock);
-                        //GetValue
-                        il.LoadLocala(convertedVal);
-                        il.Emit(OpCodes.Call, targetTypeN.GetMethod("GetValueOrDefault", Type.EmptyTypes));
-                        il.SetLocal(targetVal);
                         #endregion
                     }
-                    #endregion
                     il.Emit(OpCodes.Br, setValueStartLabel);
                 }
                 else
@@ -856,41 +840,33 @@ namespace HigLabo.Core
             }
             return false;
         }
-        private static Boolean IsPremitiveType(Type type)
-        {
-            if (type == typeof(String)) return true;
-            if (type == typeof(Boolean))return true;
-            if (type == typeof(Guid)) return true;
-            if (type == typeof(SByte))return true;
-            if (type == typeof(Int16))return true;
-            if (type == typeof(Int32))return true;
-            if (type == typeof(Int64))return true;
-            if (type == typeof(Byte)) return true;
-            if (type == typeof(UInt16)) return true;
-            if (type == typeof(UInt32)) return true;
-            if (type == typeof(UInt64)) return true;
-            if (type == typeof(Single)) return true;
-            if (type == typeof(Double)) return true;
-            if (type == typeof(Decimal)) return true;
-            if (type == typeof(TimeSpan)) return true;
-            if (type == typeof(DateTime)) return true;
-            if (type == typeof(DateTimeOffset)) return true;
-            return false;
-        }
         private static Boolean IsDirectSetValue(Type type)
         {
             if (type == typeof(String)) return true;
             if (type.IsValueType) return true;
             return false;
         }
+        private static MethodInfo GetTypeConverterMethodInfo(Type type)
+        {
+            var methodName = GetTypeConverterMethodName(type);
+            if (methodName == null) { return null; }
+            if (type.IsEnum)
+            {
+                return typeof(TypeConverter).GetMethod("ToEnum", new Type[] { typeof(Object) }).MakeGenericMethod(type);
+            }
+            return typeof(TypeConverter).GetMethod(methodName, new Type[] { typeof(Object) });
+        }
         private static String GetTypeConverterMethodName(Type type)
         {
+            if (type.IsEnum == true) { return "ToEnum"; }
             if (type == typeof(String)) return "ToString";
+            if (type == typeof(Int32)) return "ToInt32";
+
             if (type == typeof(Boolean)) return "ToBoolean";
             if (type == typeof(Guid)) return "ToGuid";
+
             if (type == typeof(SByte)) return "ToSByte";
             if (type == typeof(Int16)) return "ToInt16";
-            if (type == typeof(Int32)) return "ToInt32";
             if (type == typeof(Int64)) return "ToInt64";
             if (type == typeof(Byte)) return "ToByte";
             if (type == typeof(UInt16)) return "ToUInt16";

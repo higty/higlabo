@@ -465,6 +465,29 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeekNullable);
         }
         [TestMethod]
+        public void ObjectMapConfig_AddPostAction_Encoding()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<String, Encoding>((source, target) =>
+            {
+                if (source == "U8") { return Encoding.UTF8; }
+                return null;
+            });
+
+            config.PropertyMapRules.Clear();
+            var rule = new PropertyNameMappingRule();
+            rule.AddPropertyNameMap("Value", "Encoding");
+            config.PropertyMapRules.Add(rule);
+
+            var u1 = new User();
+            u1.Value = "U8";
+            var p2 = new TextParser();
+            p2.Encoding = null;
+            config.Map(u1, p2);
+
+            Assert.AreEqual(Encoding.UTF8, p2.Encoding);
+        }
+        [TestMethod]
         public void ObjectMapConfig_AddPostAction_Collection()
         {
             var config = new ObjectMapConfig();
