@@ -26,10 +26,8 @@ namespace HigLabo.Mapper.PerformanceTest
                 config.CreateMap<Address, AddressDTO>();
             });
             TinyMapper.Bind<Customer, CustomerDTO>();
-            //ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
-
+            var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
         }
-        [Benchmark]
         public static void HandwriteMapperTest()
         {
             var customer = Customer.Create();
@@ -76,13 +74,13 @@ namespace HigLabo.Mapper.PerformanceTest
             var customer = Customer.Create();
             var count = ExecuteCount;
             var config = ObjectMapConfig.Current;
-            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             for (int i = 0; i < count; i++)
             {
                 var customerDto = config.Map(customer, new CustomerDTO());
             }
         }
-        [Benchmark]
         public static void TinyMapperTest()
         {
             var customer = Customer.Create();
@@ -93,7 +91,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = TinyMapper.Map<CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public static void AutoMapperTest()
         {
             var customer = Customer.Create();
@@ -104,7 +101,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = AutoMapper.Mapper.Map<CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public static void MapsterTest()
         {
             var customer = Customer.Create();
@@ -114,7 +110,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = Mapster.TypeAdapter.Adapt<CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public static void ExpressMapperTest()
         {
             var customer = Customer.Create();
@@ -125,7 +120,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = ExpressMapper.Mapper.Map<Customer, CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public static void FastMapperTest()
         {
             var customer = Customer.Create();

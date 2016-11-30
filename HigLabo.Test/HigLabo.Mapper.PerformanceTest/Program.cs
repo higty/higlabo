@@ -17,15 +17,18 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         static void Main(string[] args)
         {
+            //MapperPerformanceTest.TinyMapperTest();
+            //Test();
+            //return;
+
             var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
-            //Console.WriteLine(summary);
             Console.ReadLine();
         }
         private static void Test()
         {
-            ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
+            //ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
             var customer = Customer.Create();
-            var count = 1000;
+            var count = 100000;
             var config = ObjectMapConfig.Current;
             config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
