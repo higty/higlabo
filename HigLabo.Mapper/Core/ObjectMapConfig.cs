@@ -145,7 +145,7 @@ namespace HigLabo.Core
                 try
                 {
                     context.CallStackCount++;
-                    md(this, source, result, context);
+                    result = md(this, source, result, context);
                     context.CallStackCount--;
                 }
                 catch (VerificationException ex)
