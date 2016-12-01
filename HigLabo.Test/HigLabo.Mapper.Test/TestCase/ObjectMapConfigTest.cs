@@ -18,6 +18,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_Object_Object()
         {
             var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
 
             var u1 = new User();
 

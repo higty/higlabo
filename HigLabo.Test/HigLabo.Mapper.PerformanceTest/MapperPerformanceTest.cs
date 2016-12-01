@@ -75,10 +75,10 @@ namespace HigLabo.Mapper.PerformanceTest
             var count = ExecuteCount;
             var config = ObjectMapConfig.Current;
             ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.None;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = config.Map(customer, new CustomerDTO());
+                var customerDto = config.Map(customer, new CustomerDTO() { WorkAddresses = new List<PerformanceTest.AddressDTO>() });
             }
         }
         [Benchmark]

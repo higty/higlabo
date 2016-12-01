@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
+using HigLabo.Core;
 
 namespace HigLabo.Core
 {
@@ -30,7 +31,9 @@ namespace HigLabo.Core
         }
         public override string ToString()
         {
-            return String.Format("{0} <=> {1}", this.Source.Name, this.Target.Name);
+            return String.Format("{0} ({1}) <=> {2} ({3})"
+                , this.Source.Name, this.Source.PropertyType.GetTypeName()
+                , this.Target.Name, this.Target.PropertyType.GetTypeName());
         }
     }
 }

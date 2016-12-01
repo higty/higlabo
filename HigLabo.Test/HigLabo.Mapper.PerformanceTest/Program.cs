@@ -38,6 +38,7 @@ namespace HigLabo.Mapper.PerformanceTest
             for (int i = 0; i < count; i++)
             {
                 var customerDto = new CustomerDTO();
+                customerDto.WorkAddresses = new List<AddressDTO>();
                 config.Map(customer, customerDto);
             }
             return;
