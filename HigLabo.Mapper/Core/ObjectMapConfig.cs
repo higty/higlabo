@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -140,19 +141,28 @@ namespace HigLabo.Core
             TTarget result = target;
             if (md != null)
             {
+                Exception exception = null;
                 try
                 {
                     context.CallStackCount++;
-                    result = md(this, source, result, context);
+                    md(this, source, result, context);
                     context.CallStackCount--;
                 }
+                catch (VerificationException ex)
+                {
+                    exception = ex;
+                }
                 catch (TargetInvocationException ex)
+                {
+                    exception = ex.InnerException;
+                }
+                if (exception != null)
                 {
                     throw new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
                         + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to auther."
                         + "We will fix it." + Environment.NewLine
                         + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
-                        , source, target, ex.InnerException);
+                        , source, target, exception);
                 }
             }
             return this.CallPostAction(source, result);

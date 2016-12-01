@@ -17,7 +17,10 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         static void Main(string[] args)
         {
+            //TinyMapper.Bind<Customer, CustomerDTO>();
             //MapperPerformanceTest.TinyMapperTest();
+            //return;
+
             //Test();
             //return;
 
@@ -34,7 +37,9 @@ namespace HigLabo.Mapper.PerformanceTest
             config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = config.Map(customer, new CustomerDTO());
+                var customerDto = new CustomerDTO();
+                customerDto.WorkAddresses = new List<AddressDTO>();
+                config.Map(customer, customerDto);
             }
             return;
         }

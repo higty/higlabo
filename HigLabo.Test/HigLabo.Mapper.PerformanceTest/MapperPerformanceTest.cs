@@ -81,6 +81,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = config.Map(customer, new CustomerDTO());
             }
         }
+        [Benchmark]
         public static void TinyMapperTest()
         {
             var customer = Customer.Create();
@@ -91,6 +92,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = TinyMapper.Map<CustomerDTO>(customer);
             }
         }
+        [Benchmark]
         public static void AutoMapperTest()
         {
             var customer = Customer.Create();
