@@ -630,11 +630,9 @@ namespace HigLabo.Core
                 #region var convertedVal = TypeConverter.ToXXX(sourceVal); //Convert value to target type.
                 LocalBuilder convertedVal = null;
                 var toXXXMethod = GetTypeConverterMethodInfo(item.Target.ActualType);
-                var directSetValue = false;
                 if (item.Source.ActualType == item.Target.ActualType &&
                     IsDirectSetValue(item.Source.ActualType))
                 {
-                    directSetValue = true;
                     #region target.P1 = source.P1;
                     il.LoadLocal(sourceVal);
                     il.SetLocal(targetVal);
@@ -665,7 +663,6 @@ namespace HigLabo.Core
                         #region if (convertedVal.HasValue) {...}
                         Type targetTypeN = typeof(Nullable<>).MakeGenericType(item.Target.ActualType);
                         convertedVal = il.DeclareLocal(targetTypeN);
-                        //SetValue to TargetObject
                         il.SetLocal(convertedVal);
                         il.LoadLocala(convertedVal);
                         il.Emit(OpCodes.Call, targetTypeN.GetProperty("HasValue").GetGetMethod());
@@ -718,39 +715,31 @@ namespace HigLabo.Core
                 #endregion
 
                 il.MarkLabel(setNullToTargetLabel);
-                if (directSetValue == false)
+                #region target.P1 = null. //Set Null to Target property.
+                if (item.Target.CanBeNull == true)
                 {
-                    #region target.P1 = null. //Set Null to Target property.
-                    if (setMethod != null)
+                    il.Emit(OpCodes.Ldarg_2);
+                    if (item.Target.IsIndexedProperty == true)
                     {
-                        if (item.Target.CanBeNull == true)
-                        {
-                            il.Emit(OpCodes.Ldarg_2);
-                            if (item.Target.IsIndexedProperty == true)
-                            {
-                                //target["P1"] = source.P1;
-                                il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
-                            }
-                            if (item.Target.IsNullableT == true)
-                            {
-                                var targetValN = il.DeclareLocal(item.Target.PropertyType);
-                                il.LoadLocala(targetValN);
-                                il.Emit(OpCodes.Initobj, item.Target.PropertyType);
-                                il.LoadLocal(targetValN);
-                            }
-                            else
-                            {
-                                il.Emit(OpCodes.Ldnull);
-                            }
-                            il.Emit(OpCodes.Callvirt, setMethod);
-                        }
-                        il.Emit(OpCodes.Br_S, endOfCode);
+                        //target["P1"] = source.P1;
+                        il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
                     }
-                    #endregion
+                    if (item.Target.IsNullableT == true)
+                    {
+                        var targetValN = il.DeclareLocal(item.Target.PropertyType);
+                        il.LoadLocala(targetValN);
+                        il.Emit(OpCodes.Initobj, item.Target.PropertyType);
+                        il.LoadLocal(targetValN);
+                    }
+                    else
+                    {
+                        il.Emit(OpCodes.Ldnull);
+                    }
+                    il.Emit(OpCodes.Callvirt, setMethod);
                 }
+                #endregion
 
                 il.MarkLabel(endOfCode);
-                il.Emit(OpCodes.Nop);
             }
             il.MarkLabel(methodEnd);
             il.Emit(OpCodes.Ldarg_2);
