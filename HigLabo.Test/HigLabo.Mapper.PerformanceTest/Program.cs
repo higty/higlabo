@@ -29,19 +29,15 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         private static void Test()
         {
-            //ObjectMapConfig.Current.AddPostAction<String, DayOfWeek>((source, target) => target = DayOfWeek.Wednesday);
             var customer = Customer.Create();
-            var count = 100000;
+            var count = 100;
             var config = ObjectMapConfig.Current;
-            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = new CustomerDTO();
-                customerDto.WorkAddresses = new List<AddressDTO>();
-                config.Map(customer, customerDto);
+                var customerDto = config.Map(customer, new CustomerDTO());
             }
-            return;
         }
     }
 }

@@ -593,32 +593,29 @@ namespace HigLabo.Core
                 //Check source.P1 is null. If null, goto target.P1 = null.
                 if (item.Source.CanBeNull == true)
                 {
+                    var sourceValN = il.DeclareLocal(item.Source.PropertyType);
+                    il.SetLocal(sourceValN);
+
                     if (item.Source.IsNullableT == true)
                     {
                         #region if (source.P1.HasValue == false)
-                        var sourceValN = il.DeclareLocal(item.Source.PropertyType);
-
-                        il.SetLocal(sourceValN);
-                        //if (sourceValue.HasValue == true)
                         il.LoadLocala(sourceValN);
                         il.Emit(OpCodes.Call, item.Source.PropertyType.GetProperty("HasValue").GetGetMethod());
                         il.Emit(OpCodes.Brfalse, setNullToTargetLabel); //null --> set target null
-                        il.LoadLocala(sourceValN);
+
                         //sourceVal.Value
+                        il.LoadLocala(sourceValN);
                         il.Emit(OpCodes.Call, item.Source.PropertyType.GetMethod("GetValueOrDefault", Type.EmptyTypes));
                         #endregion
                     }
                     else if (item.Source.CanBeNull == true)
                     {
                         #region if (source.P1 == null)
-                        Type sourceTypeN = item.Source.ActualType;
-                        var sourceValN = il.DeclareLocal(sourceTypeN);
-                        il.SetLocal(sourceValN);
-                        //if (sourceValue == null)
                         il.LoadLocal(sourceValN);
                         il.Emit(OpCodes.Ldnull);
                         il.Emit(OpCodes.Ceq);
                         il.Emit(OpCodes.Brtrue, setNullToTargetLabel); //null --> set target null
+
                         il.LoadLocal(sourceValN);
                         #endregion
                     }
@@ -636,12 +633,11 @@ namespace HigLabo.Core
                     #region target.P1 = source.P1;
                     il.LoadLocal(sourceVal);
                     il.SetLocal(targetVal);
-                    il.Emit(OpCodes.Br, setValueStartLabel);
                     #endregion
                 }
                 else if (toXXXMethod != null)
                 {
-                    #region var convertedVal = TypeConverter.ToXXX(sourceVal);
+                    #region target.P1 = TypeConverter.ToXXX(sourceVal);
                     //Call TypeConverter.ToXXX(sourceVal);
                     il.LoadLocal(typeConverterVal);//MapConfig.TypeConverter
                     il.LoadLocal(sourceVal);
@@ -657,6 +653,11 @@ namespace HigLabo.Core
                     {
                         //ToString, ToEncoding
                         il.SetLocal(targetVal);
+
+                        il.LoadLocal(targetVal);
+                        il.Emit(OpCodes.Ldnull);
+                        il.Emit(OpCodes.Ceq);
+                        il.Emit(OpCodes.Brtrue_S, setNullToTargetLabel);
                     }
                     else
                     {

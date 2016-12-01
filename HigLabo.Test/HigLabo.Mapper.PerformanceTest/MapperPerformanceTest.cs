@@ -78,7 +78,7 @@ namespace HigLabo.Mapper.PerformanceTest
             ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.None;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = config.Map(customer, new CustomerDTO() { WorkAddresses = new List<PerformanceTest.AddressDTO>() });
+                var customerDto = config.Map(customer, new CustomerDTO());
             }
         }
         [Benchmark]
