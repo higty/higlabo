@@ -171,19 +171,9 @@ namespace HigLabo.Core
             return this.CallPostAction(source, result);
         }
         [ObjectMapConfigMethod(Name = "Map")]
-        public TTarget MapInternal<TSource, TTarget>(TSource source, MappingContext context)
-            where TTarget : new()
-        {
-            context.CallStackCount++;
-            //return new TTarget();
-            //var md = this.GetMethod<TSource, TTarget>();
-            //return md.Map(this, source, new TTarget(), context);
-            var result = this.MapInternal(source, new TTarget(), context);
-            context.CallStackCount--;
-            return result;
-        }
         public TTarget MapInternal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
+            context.CallStackCount++;
             TTarget result = target;
             if (source != null && target != null)
             {
@@ -197,6 +187,7 @@ namespace HigLabo.Core
                     md.MapChildObject(this, source, target, context);
                 }
             }
+            context.CallStackCount--;
             return this.CallPostAction(source, result);
         }
         private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
@@ -885,8 +876,13 @@ namespace HigLabo.Core
                     Label ifTargetIsNull = il.DefineLabel();
                     il.Emit(OpCodes.Brtrue, ifTargetIsNull);
                     {
+                        il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                        il.LoadLocal(sourceVal);
                         il.LoadLocal(currentTargetVal);
+                        il.Emit(OpCodes.Ldarg_3);//MappingContext
+                        il.Emit(OpCodes.Callvirt, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.ActualType));
                         il.SetLocal(targetVal);
+
                         il.Emit(OpCodes.Br, mapToLabel);
                     }
                     il.MarkLabel(ifTargetIsNull);
@@ -901,10 +897,9 @@ namespace HigLabo.Core
                             var constructor = item.Target.ActualType.GetConstructor(Type.EmptyTypes);
                             if (constructor != null && constructor.IsPublic)
                             {
-                                //il.Emit(OpCodes.Newobj, constructor);
-                                //il.SetLocal(targetVal);
                                 il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
                                 il.LoadLocal(sourceVal);
+                                il.Emit(OpCodes.Newobj, constructor);
                                 il.Emit(OpCodes.Ldarg_3);//MappingContext
                                 il.Emit(OpCodes.Callvirt, _MapMethod.MakeGenericMethod(item.Source.ActualType, item.Target.ActualType));
                                 il.SetLocal(targetVal);
