@@ -566,6 +566,8 @@ namespace HigLabo.Core
                 Label endOfCode = il.DefineLabel();
                 var getMethod = item.Source.PropertyInfo.GetGetMethod();
                 var setMethod = item.Target.PropertyInfo.GetSetMethod();
+                if (setMethod == null) { continue; }
+
                 var sourceVal = il.DeclareLocal(item.Source.ActualType);
                 var targetVal = il.DeclareLocal(item.Target.ActualType);
 
@@ -971,31 +973,31 @@ namespace HigLabo.Core
                             il.MarkLabel(ifMapModeIsNotNewObject);
                             #endregion
                         }
-
-                        if (sourceElementType.IsInheritanceFrom(targetElementType))
+                        if (sourceElementType.IsAssignableFrom(targetElementType))
                         {
-                            #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
-                            il.LoadLocal(collectionMapMode);
-                            il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
-                            il.Emit(OpCodes.Ceq);
                             Label ifMapModeIsNotCopyReference = il.DefineLabel();
-                            il.Emit(OpCodes.Brfalse_S, ifMapModeIsNotCopyReference); //_MapReferenceMethod
+                            #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
+                            if (targetElementType != typeof(String) || IsDirectSetValue(targetElementType) == false)
                             {
-                                if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
-                                {
-                                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                    il.LoadLocal(sourceVal);
-                                    il.Emit(OpCodes.Call, _MapReferenceToNewArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.SetLocal(targetVal);
-                                }
-                                else
-                                {
-                                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                    il.LoadLocal(sourceVal);
-                                    il.LoadLocal(targetVal);
-                                    il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.Emit(OpCodes.Pop);
-                                }
+                                il.LoadLocal(collectionMapMode);
+                                il.Emit(OpCodes.Ldc_I4, (Int32)CollectionElementMapMode.CopyReference);
+                                il.Emit(OpCodes.Ceq);
+                                il.Emit(OpCodes.Brfalse_S, ifMapModeIsNotCopyReference); //_MapReferenceMethod
+                            }
+                            if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
+                            {
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.Emit(OpCodes.Call, _MapReferenceToNewArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.SetLocal(targetVal);
+                            }
+                            else
+                            {
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.LoadLocal(targetVal);
+                                il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.Emit(OpCodes.Pop);
                             }
                             il.MarkLabel(ifMapModeIsNotCopyReference);
                             #endregion
@@ -1005,22 +1007,24 @@ namespace HigLabo.Core
                 #endregion
 
                 #region target.P1 = source.P1; //Set value to TargetProperty
-                if (targetType.IsClass) { il.Emit(OpCodes.Ldarg_2); }
-                else if (targetType.IsValueType) { il.Emit(OpCodes.Ldarga_S, 2); }
-                if (item.Target.IsIndexedProperty == true)
+                if (setMethod != null)
                 {
-                    //target["P1"] = source.P1;
-                    il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                    if (targetType.IsClass) { il.Emit(OpCodes.Ldarg_2); }
+                    else if (targetType.IsValueType) { il.Emit(OpCodes.Ldarga_S, 2); }
+                    if (item.Target.IsIndexedProperty == true)
+                    {
+                        //target["P1"] = source.P1;
+                        il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                    }
+                    il.LoadLocal(targetVal);
+                    if (item.Target.IsNullableT == true)
+                    {
+                        //new Nullable<T>(new T());
+                        il.Emit(OpCodes.Newobj, item.Target.PropertyType.GetConstructor(new Type[] { item.Target.ActualType }));
+                    }
+                    if (targetType.IsClass) { il.Emit(OpCodes.Callvirt, setMethod); }
+                    else if (targetType.IsValueType) { il.Emit(OpCodes.Call, setMethod); }
                 }
-                il.LoadLocal(targetVal);
-                if (item.Target.IsNullableT == true)
-                {
-                    //new Nullable<T>(new T());
-                    il.Emit(OpCodes.Newobj, item.Target.PropertyType.GetConstructor(new Type[] { item.Target.ActualType }));
-                }
-                if (targetType.IsClass) { il.Emit(OpCodes.Callvirt, setMethod); }
-                else if (targetType.IsValueType) { il.Emit(OpCodes.Call, setMethod); }
-                il.Emit(OpCodes.Br_S, endOfCode);
                 #endregion
 
                 il.MarkLabel(endOfCode);

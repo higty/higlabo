@@ -25,7 +25,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 config.CreateMap<Customer, CustomerDTO>();
                 config.CreateMap<Address, AddressDTO>();
             });
-            //TinyMapper.Bind<Customer, CustomerDTO>();
+            TinyMapper.Bind<Customer, CustomerDTO>();
             var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
         }
         public static void HandwriteMapperTest()
@@ -81,6 +81,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = config.Map(customer, new CustomerDTO());
             }
         }
+        [Benchmark]
         public static void TinyMapperTest()
         {
             var customer = Customer.Create();

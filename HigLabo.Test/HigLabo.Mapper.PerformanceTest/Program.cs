@@ -32,6 +32,9 @@ namespace HigLabo.Mapper.PerformanceTest
             //Test();
             //return;
 
+            //TinyMapperTest();
+            //return;
+
             var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
             Console.ReadLine();
         }
@@ -46,6 +49,33 @@ namespace HigLabo.Mapper.PerformanceTest
             {
                 var customerDto = config.Map(customer, new CustomerDTO());
             }
+        }
+        private static void TinyMapperThrowStackoverflowException()
+        {
+            TinyMapper.Bind<Organization, Organization>();
+        }
+        private static void TinyMapperTest()
+        {
+            TinyMapper.Bind<SiteSummaryData, SiteSummaryData>();
+            var data = SiteSummaryData.Create();
+            var o1 = TinyMapper.Map(data, new SiteSummaryData());
+        }
+        private static void AutoMapperTest()
+        {
+            var data = SiteSummaryData.Create();
+
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.CreateMap<CollectionWithPropety, CollectionWithPropety>();
+            });
+            var o1 = AutoMapper.Mapper.Map(data, new SiteSummaryData());
+        }
+        private static void HigLaboMapperTest()
+        {
+            var data = SiteSummaryData.Create();
+
+            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            var o1 = data.Map(new SiteSummaryData());
         }
     }
 }

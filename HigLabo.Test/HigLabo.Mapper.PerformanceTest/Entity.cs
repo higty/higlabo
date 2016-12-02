@@ -60,7 +60,6 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal? Credit { get; set; }
-        public Customer RootCustomer { get; set; }
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
         public Address[] Addresses { get; set; }
@@ -80,20 +79,6 @@ namespace HigLabo.Mapper.PerformanceTest
                     Id = 1,
                     Street = "Istiklal cad. " + GetRandomNumber(),
                     Gps = new GpsPosition(139, 36),
-                }
-            };
-            customer.RootCustomer = new Customer()
-            {
-                Id = 1,
-                Name = "Robelt Evani " + GetRandomNumber(),
-                Credit = 234.7m,
-                Address = new Address()
-                {
-                    City = "Milano " + GetRandomNumber(),
-                    Country = "Italy " + GetRandomNumber(),
-                    Id = 1,
-                    Street = "Rosso street. " + GetRandomNumber(),
-                    Gps = new GpsPosition(23, 40.66),
                 }
             };
 
@@ -156,11 +141,77 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public Customer RootCustomer { get; set; }
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }
         public List<AddressDTO> WorkAddresses { get; set; }
         public string AddressCity { get; set; }
     }
+
+    public class Organization
+    {
+        public string Name { get; set; }
+
+        public Organization Parent { get; set; }
+        public List<Organization> ChildOrganizations { get; private set; }
+
+        public Organization()
+        {
+            this.ChildOrganizations = new List<PerformanceTest.Organization>();
+        }
+    }
+
+    public class SiteSummaryData
+    {
+        public CollectionWithPropety Data { get; private set; }
+
+        public SiteSummaryData()
+        {
+            this.Data = new CollectionWithPropety();
+        }
+        public static SiteSummaryData Create()
+        {
+            var data = new SiteSummaryData();
+            data.Data = new CollectionWithPropety();
+            data.Data.Name = "Tag Data 2016/11";
+            data.Data.Year = 2016;
+            data.Data.Month = 11;
+            data.Data.Tags = new[] { "C#", "Ruby", "AWS" };
+            data.Data.TagList.AddRange(new[] { "C#", "Ruby", "AWS" });
+
+            for (int i = 0; i < 20; i++)
+            {
+                data.Data.AccessData.Add(new CollectionWithPropety.AccessInfo()
+                {
+                    Date = DateTime.Now.AddDays(-20 + i),
+                    AccessCount = i * 100
+                });
+            }
+
+            return data;
+        }
+    }
+    public class CollectionWithPropety
+    {
+        public class AccessInfo
+        {
+            public DateTime Date { get; set; }
+            public Int32 AccessCount { get; set; }
+        }
+        public String Name { get; set; }
+        public Int32 Year { get; set; }
+        public Int32 Month { get; set; }
+
+        public String[] Tags { get; set; }
+        public List<String> TagList { get; private set; }
+        public List<AccessInfo> AccessData { get; private set; }
+
+        public CollectionWithPropety()
+        {
+            this.Tags = new String[0];
+            this.TagList = new List<string>();
+            this.AccessData = new List<AccessInfo>();
+        }
+    }
+
 }
