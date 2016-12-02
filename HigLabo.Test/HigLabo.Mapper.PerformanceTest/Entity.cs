@@ -32,6 +32,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public GpsPosition Gps { get; set; }
     }
 
     public class AddressDTO
@@ -39,6 +40,18 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public GpsPosition Gps { get; set; }
+    }
+    public struct GpsPosition
+    {
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
+
+        public GpsPosition(double latitude, double longitude)
+        {
+            this.Latitude = latitude;
+            this.Longitude = longitude;
+        }
     }
 
     public class Customer
@@ -47,6 +60,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal? Credit { get; set; }
+        public Customer RootCustomer { get; set; }
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
         public Address[] Addresses { get; set; }
@@ -64,47 +78,70 @@ namespace HigLabo.Mapper.PerformanceTest
                     City = "Istanbul " + GetRandomNumber(),
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 1,
-                    Street = "Istiklal cad. " + GetRandomNumber()
+                    Street = "Istiklal cad. " + GetRandomNumber(),
+                    Gps = new GpsPosition(139, 36),
                 }
             };
+            customer.RootCustomer = new Customer()
+            {
+                Id = 1,
+                Name = "Robelt Evani " + GetRandomNumber(),
+                Credit = 234.7m,
+                Address = new Address()
+                {
+                    City = "Milano " + GetRandomNumber(),
+                    Country = "Italy " + GetRandomNumber(),
+                    Id = 1,
+                    Street = "Rosso street. " + GetRandomNumber(),
+                    Gps = new GpsPosition(23, 40.66),
+                }
+            };
+
             customer.HomeAddress = new Address()
             {
                 City = "Istanbul " + GetRandomNumber(),
                 Country = "Turkey " + GetRandomNumber(),
                 Id = 2,
-                Street = "Istiklal cad. " + GetRandomNumber()
+                Street = "Istiklal cad. " + GetRandomNumber(),
+                Gps = new GpsPosition(-69, -60),
             };
             customer.WorkAddresses = new Address[]
             {
-            new Address() {
-                City = "Istanbul " + GetRandomNumber(),
-                Country = "Turkey " + GetRandomNumber(),
-                Id = 5,
-                Street = "Istiklal cad. " + GetRandomNumber()
-            },
-            new Address() {
-                City = "Izmir " + GetRandomNumber(),
-                Country = "Turkey " + GetRandomNumber(),
-                Id = 6,
-                Street = "Konak " + GetRandomNumber()
+                new Address()
+                {
+                    City = "Istanbul " + GetRandomNumber(),
+                    Country = "Turkey " + GetRandomNumber(),
+                    Id = 5,
+                    Street = "Istiklal cad. " + GetRandomNumber(),
+                    Gps = new GpsPosition(13.35, 49.3),
+                },
+                new Address()
+                {
+                    City = "Izmir " + GetRandomNumber(),
+                    Country = "Turkey " + GetRandomNumber(),
+                    Id = 6,
+                    Street = "Konak " + GetRandomNumber(),
+                    Gps = new GpsPosition(3.91, 72.55),
             }
             };
             customer.Addresses = new Address[]
             {
-            new Address()
-            {
-                City = "Istanbul " + GetRandomNumber(),
-                Country = "Turkey " + GetRandomNumber(),
-                Id = 3,
-                Street = "Istiklal cad. " + GetRandomNumber()
-            },
-            new Address()
-            {
-                City = "Izmir " + GetRandomNumber(),
-                Country = "Turkey " + GetRandomNumber(),
-                Id = 4,
-                Street = "Konak " + GetRandomNumber()
-            }
+                new Address()
+                {
+                    City = "Istanbul " + GetRandomNumber(),
+                    Country = "Turkey " + GetRandomNumber(),
+                    Id = 3,
+                    Street = "Istiklal cad. " + GetRandomNumber(),
+                    Gps = new GpsPosition(145, 36),
+                },
+                new Address()
+                {
+                    City = "Izmir " + GetRandomNumber(),
+                    Country = "Turkey " + GetRandomNumber(),
+                    Id = 4,
+                    Street = "Konak " + GetRandomNumber(),
+                    Gps = new GpsPosition(93, 60),
+                }
             };
 
             return customer;
@@ -119,6 +156,7 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public Customer RootCustomer { get; set; }
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }

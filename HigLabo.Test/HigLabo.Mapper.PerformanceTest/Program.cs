@@ -21,6 +21,14 @@ namespace HigLabo.Mapper.PerformanceTest
             //MapperPerformanceTest.TinyMapperTest();
             //return;
 
+            //AutoMapper.Mapper.Initialize(config =>
+            //{
+            //    config.CreateMap<Customer, CustomerDTO>();
+            //    config.CreateMap<Address, AddressDTO>();
+            //});
+            //MapperPerformanceTest.AutoMapperTest();
+            //return;
+
             //Test();
             //return;
 

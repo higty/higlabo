@@ -25,7 +25,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 config.CreateMap<Customer, CustomerDTO>();
                 config.CreateMap<Address, AddressDTO>();
             });
-            TinyMapper.Bind<Customer, CustomerDTO>();
+            //TinyMapper.Bind<Customer, CustomerDTO>();
             var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
         }
         public static void HandwriteMapperTest()
@@ -75,13 +75,12 @@ namespace HigLabo.Mapper.PerformanceTest
             var count = ExecuteCount;
             var config = ObjectMapConfig.Current;
             ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.None;
+            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             for (int i = 0; i < count; i++)
             {
                 var customerDto = config.Map(customer, new CustomerDTO());
             }
         }
-        [Benchmark]
         public static void TinyMapperTest()
         {
             var customer = Customer.Create();
