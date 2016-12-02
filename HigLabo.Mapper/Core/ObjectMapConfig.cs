@@ -35,9 +35,7 @@ namespace HigLabo.Core
 
         private static readonly MethodInfo _MapMethod = null;
         private static readonly MethodInfo _MapToMethod = null;
-        private static readonly MethodInfo _MapToNewArrayMethod = null;
         private static readonly MethodInfo _MapReferenceMethod = null;
-        private static readonly MethodInfo _MapReferenceToNewArrayMethod = null;
         private static readonly MethodInfo _MappingContext_NullPropertyMapMode_GetMethod = null;
         private static readonly MethodInfo _MappingContext_CollectionElementMapMode_GetMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
@@ -59,9 +57,7 @@ namespace HigLabo.Core
             Current = new ObjectMapConfig();
             _MapMethod = GetMethodInfo("Map");
             _MapToMethod = GetMethodInfo("MapTo");
-            _MapToNewArrayMethod = GetMethodInfo("MapToNewArray");
             _MapReferenceMethod = GetMethodInfo("MapReference");
-            _MapReferenceToNewArrayMethod = GetMethodInfo("MapReferenceToNewArray");
             _MappingContext_NullPropertyMapMode_GetMethod = typeof(MappingContext).GetProperty("NullPropertyMapMode", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             _MappingContext_CollectionElementMapMode_GetMethod = typeof(MappingContext).GetProperty("CollectionElementMapMode", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
@@ -210,6 +206,10 @@ namespace HigLabo.Core
         public ICollection<TTarget> MapTo<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target
             , Func<TTarget> elementConstructor)
         {
+            if (typeof(TTarget).IsArray)
+            {
+                return source.Select(el => el.Map(elementConstructor())).ToArray();
+            }
             if (source != null && target != null)
             {
                 foreach (var item in source)
@@ -220,16 +220,14 @@ namespace HigLabo.Core
             }
             return target;
         }
-        [ObjectMapConfigMethod(Name = "MapToNewArray")]
-        public TTarget[] MapToNewArray<TSource, TTarget>(IEnumerable<TSource> source)
-           where TTarget : new()
-        {
-            return source.Select(el => el.Map(new TTarget())).ToArray();
-        }
         [ObjectMapConfigMethod(Name = "MapReference")]
         public ICollection<TTarget> MapReference<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
            where TSource : TTarget
         {
+            if (typeof(TTarget).IsArray)
+            {
+                return source.Select<TSource, TTarget>(el => el).ToArray();
+            }
             if (source != null && target != null)
             {
                 foreach (var item in source)
@@ -238,12 +236,6 @@ namespace HigLabo.Core
                 }
             }
             return target;
-        }
-        [ObjectMapConfigMethod(Name = "MapReferenceToNewArray")]
-        public TTarget[] MapReferenceToNewArray<TSource, TTarget>(IEnumerable<TSource> source)
-           where TSource : TTarget
-        {
-            return source.Select<TSource, TTarget>(el => el).ToArray();
         }
 
         public void RemovePropertyMap<TSource, TTarget>()
@@ -646,8 +638,8 @@ namespace HigLabo.Core
                 #region var convertedVal = TypeConverter.ToXXX(sourceVal); //Convert value to target type.
                 LocalBuilder convertedVal = null;
                 var toXXXMethod = GetTypeConverterMethodInfo(item.Target.ActualType);
-                if (item.Source.ActualType.IsAssignableFrom(item.Target.ActualType) &&
-                    IsDirectSetValue(item.Source.ActualType))
+                if (item.Target.ActualType.IsAssignableFrom(item.Source.ActualType) &&
+                    IsDirectSetValue(item.Target.ActualType))
                 {
                     #region target.P1 = source.P1;
                     il.LoadLocal(sourceVal);
@@ -698,9 +690,9 @@ namespace HigLabo.Core
                 }
                 else
                 {
-                    #region target["P1"] = source.P1; 
                     if (item.Target.IsIndexedProperty)
                     {
+                        #region target["P1"] = source.P1; 
                         il.LoadLocal(sourceVal);
                         if (item.Source.ActualType.IsValueType == true)
                         {
@@ -708,8 +700,8 @@ namespace HigLabo.Core
                             il.Emit(OpCodes.Box, item.Source.ActualType);
                         }
                         il.SetLocal(targetVal);
+                        #endregion
                     }
-                    #endregion
                 }
                 il.Emit(OpCodes.Br, setValueStartLabel);
                 #endregion
@@ -954,26 +946,16 @@ namespace HigLabo.Core
                             Label ifMapModeIsNotNewObject = il.DefineLabel();
                             il.Emit(OpCodes.Brfalse_S, ifMapModeIsNotNewObject); //_MapToMethod
                             {
-                                if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
-                                {
-                                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                    il.LoadLocal(sourceVal);
-                                    il.Emit(OpCodes.Call, _MapToNewArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.SetLocal(targetVal);
-                                }
-                                else
-                                {
-                                    il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                    il.LoadLocal(sourceVal);
-                                    il.LoadLocal(targetVal);
-                                    il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.Emit(OpCodes.Pop);
-                                }
+                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                                il.LoadLocal(sourceVal);
+                                il.LoadLocal(targetVal);
+                                il.Emit(OpCodes.Call, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                il.Emit(OpCodes.Pop);
                             }
                             il.MarkLabel(ifMapModeIsNotNewObject);
                             #endregion
                         }
-                        if (sourceElementType.IsAssignableFrom(targetElementType))
+                        if (targetElementType.IsAssignableFrom(sourceElementType))
                         {
                             Label ifMapModeIsNotCopyReference = il.DefineLabel();
                             #region if (mode == CollectionElementMapMode.CopyReference) { source.P1.MapReference(target); }
@@ -984,21 +966,11 @@ namespace HigLabo.Core
                                 il.Emit(OpCodes.Ceq);
                                 il.Emit(OpCodes.Brfalse_S, ifMapModeIsNotCopyReference); //_MapReferenceMethod
                             }
-                            if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
-                            {
-                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                il.LoadLocal(sourceVal);
-                                il.Emit(OpCodes.Call, _MapReferenceToNewArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                il.SetLocal(targetVal);
-                            }
-                            else
-                            {
-                                il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
-                                il.LoadLocal(sourceVal);
-                                il.LoadLocal(targetVal);
-                                il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                il.Emit(OpCodes.Pop);
-                            }
+                            il.Emit(OpCodes.Ldarg_0);//ObjectMapConfig instance
+                            il.LoadLocal(sourceVal);
+                            il.LoadLocal(targetVal);
+                            il.Emit(OpCodes.Call, _MapReferenceMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                            il.Emit(OpCodes.Pop);
                             il.MarkLabel(ifMapModeIsNotCopyReference);
                             #endregion
                         }
