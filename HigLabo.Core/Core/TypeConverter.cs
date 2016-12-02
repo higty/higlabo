@@ -1000,13 +1000,25 @@ namespace HigLabo.Core
             try
             {
                 var s = value as String;
-                if (s == null) { return null; }
-                return Encoding.GetEncoding(s);
+                if (s != null)
+                {
+                    return Encoding.GetEncoding(s);
+                }
             }
             catch
             {
-                return null;
             }
+            try
+            {
+                if (value is Int32)
+                {
+                    return Encoding.GetEncoding((Int32)value);
+                }
+            }
+            catch
+            {
+            }
+            return null;
         }
     }
 }

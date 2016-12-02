@@ -29,8 +29,8 @@ namespace HigLabo.Mapper.PerformanceTest
             //MapperPerformanceTest.AutoMapperTest();
             //return;
 
-            //Test();
-            //return;
+            HigLaboMapperTest();
+            return;
 
             //TinyMapperTest();
             //return;
@@ -73,9 +73,40 @@ namespace HigLabo.Mapper.PerformanceTest
         private static void HigLaboMapperTest()
         {
             var data = SiteSummaryData.Create();
+            var config = ObjectMapConfig.Current;
+            config.AddPostAction<Int32, String>((source, target) =>
+            {
+                target = source.ToString("0.000");
+                return target;
+            });
 
-            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
-            var o1 = data.Map(new SiteSummaryData());
+            var c1 = new ScheduleSource();
+            c1.Value = 123;
+            c1.Poeples.Add(new Poeple() { Name = "Marco" });
+
+            var d = new Dictionary<String, Object>();
+            d["Value"] = "57";
+            var c2 = config.Map(c1, new Schedule());
         }
+    }
+    public class ScheduleSource
+    {
+        public Int16? Value { get; set; }
+        public List<Poeple> Poeples { get; private set; }
+
+        public ScheduleSource()
+        {
+            this.Poeples = new List<Poeple>();
+        }
+    }
+    public class Schedule
+    {
+        public Int32? Value { get; set; }
+        public List<Poeple> Poeples { get; set; }
+
+    }
+    public class Poeple
+    {
+        public String Name { get; set; }
     }
 }
