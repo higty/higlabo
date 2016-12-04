@@ -29,7 +29,11 @@ namespace HigLabo.Mapper.PerformanceTest
             //MapperPerformanceTest.AutoMapperTest();
             //return;
 
-            HigLaboMapperTest();
+
+            var v1 = new Vector2(2, 3);
+            v1.X = null;
+            var v2 = ObjectMapConfig.Current.Map(v1, new Vector2(4, 5));
+            //HigLaboMapperTest();
             return;
 
             //TinyMapperTest();
@@ -82,28 +86,42 @@ namespace HigLabo.Mapper.PerformanceTest
 
             var c1 = new ScheduleSource();
             c1.Value = 123;
+            c1.ScheduleType = ScheduleType.Hidden;
             c1.Poeples.Add(new Poeple() { Name = "Marco" });
+            c1.Tags.Add("C#");
+            c1.Tags.Add("ASP.NET");
 
-            var d = new Dictionary<String, Object>();
-            d["Value"] = "57";
+            var d = new Dictionary<String, String>();
+            d["Value"] = "as";
             var c2 = config.Map(c1, new Schedule());
         }
     }
     public class ScheduleSource
     {
         public Int16? Value { get; set; }
+        public ScheduleType ScheduleType { get; set; }
         public List<Poeple> Poeples { get; private set; }
+        public List<String> Tags { get; private set; }
 
         public ScheduleSource()
         {
             this.Poeples = new List<Poeple>();
+            this.Tags = new List<string>();
         }
     }
     public class Schedule
     {
         public Int32? Value { get; set; }
+        public ScheduleType ScheduleType { get; set; }
         public List<Poeple> Poeples { get; set; }
+        public String[] Tags { get; set; }
 
+    }
+    public enum ScheduleType
+    {
+        Public,
+        Private,
+        Hidden,
     }
     public class Poeple
     {
