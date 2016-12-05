@@ -215,7 +215,11 @@ namespace HigLabo.Mapper.PerformanceTest
     }
     public class Vector2
     {
-        public Dictionary<String, String> Dictionary { get; set; }
+        public Int16 Value { get; set; }
+    }
+    public class Vector3
+    {
+        public Int32 Value { get; set; }
     }
 
 }

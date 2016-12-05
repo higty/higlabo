@@ -39,7 +39,7 @@ namespace HigLabo.Core
         public static ICollection<TTarget> MapTo<TSource, TTarget>(this IEnumerable<TSource> source, ICollection<TTarget> target)
             where TTarget : new()
         {
-            return ObjectMapConfig.Current.MapTo(source, target, () => new TTarget());
+            return ObjectMapConfig.Current.Map(source, target, () => new TTarget());
         }
         public static IEnumerable<TTarget> MapTo<TSource, TTarget>(this IEnumerable<TSource> source, Func<TTarget> elementConstructor)
         {
@@ -48,7 +48,7 @@ namespace HigLabo.Core
         public static ICollection<TTarget> MapTo<TSource, TTarget>(this IEnumerable<TSource> source, ICollection<TTarget> target
             , Func<TTarget> elementConstructor)
         {
-            return ObjectMapConfig.Current.MapTo(source, target, elementConstructor);
+            return ObjectMapConfig.Current.Map(source, target, elementConstructor);
         }
     }
 }

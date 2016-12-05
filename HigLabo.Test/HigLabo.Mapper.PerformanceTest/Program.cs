@@ -29,10 +29,10 @@ namespace HigLabo.Mapper.PerformanceTest
             //MapperPerformanceTest.AutoMapperTest();
             //return;
 
-
             //var d1 = new Dictionary<string, string>();
             //var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
             //HigLaboMapperTest();
+            //Console.ReadLine();
             //return;
 
             //TinyMapperTest();
