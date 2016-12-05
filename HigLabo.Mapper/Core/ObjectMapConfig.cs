@@ -269,6 +269,18 @@ namespace HigLabo.Core
             }
             return target;
         }
+        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, Func<TTarget> elementConstructor, MappingContext context)
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source)
+                {
+                    var o = this.Map(item, elementConstructor(), context);
+                    target.Add(o);
+                }
+            }
+            return target;
+        }
         [ObjectMapConfigMethod(Name = "MapElement_Class_Class")]
         public ICollection<TTarget> MapElement_Class_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TSource : class
@@ -329,21 +341,10 @@ namespace HigLabo.Core
             }
             return target;
         }
-        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target , Func<TTarget> elementConstructor, MappingContext context)
-        {
-            if (source != null && target != null)
-            {
-                foreach (var item in source)
-                {
-                    var o = this.Map(item, elementConstructor(), context);
-                    target.Add(o);
-                }
-            }
-            return target;
-        }
         [ObjectMapConfigMethod(Name = "MapDeepCopy")]
         public ICollection<TTarget> MapDeepCopy<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
-          where TSource : TTarget
+            where TSource : class, TTarget
+            where TTarget : class
         {
             if (source != null && target != null)
             {
@@ -374,7 +375,8 @@ namespace HigLabo.Core
 
         [ObjectMapConfigMethod(Name = "CreateDeepCopyArray")]
         public TTarget[] CreateDeepCopyArray<TSource, TTarget>(IEnumerable<TSource> source)
-            where TSource : TTarget
+            where TSource : class, TTarget
+            where TTarget : class
         {
             if (source == null) { return new TTarget[0]; }
             return source.Select<TSource, TTarget>(el => el).ToArray();
@@ -1084,7 +1086,8 @@ namespace HigLabo.Core
                             var sourceElementType = sourceInterfaceType.GenericTypeArguments[0];
                             var targetElementType = targetInterfaceType.GenericTypeArguments[0];
 
-                            if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject)
+                            if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject &&
+                                targetProperty_PropertyType.IsClass)
                             {
                                 var defaultConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
                                 if (defaultConstructor != null)
@@ -1135,10 +1138,10 @@ namespace HigLabo.Core
                                     il.MarkLabel(sourceIsNullLabel);
                                 }
                             }
-                            if (targetElementType.IsAssignableFrom(sourceElementType))
+                            else if (this.CollectionElementMapMode == CollectionElementMapMode.DeepCopy)
                             {
-                                if (this.CollectionElementMapMode == CollectionElementMapMode.DeepCopy ||
-                                    IsDirectSetValue(targetElementType))
+                                if (IsDirectSetValue(targetElementType) || 
+                                    targetElementType.IsAssignableFrom(sourceElementType))
                                 {
                                     #region this.MapDeepCopy(source.P1, target.P1); //SourceElementType can assign to TargetElementTyep.
                                     il.Emit(OpCodes.Ldarg_1);
