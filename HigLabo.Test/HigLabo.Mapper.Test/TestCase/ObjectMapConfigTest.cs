@@ -301,6 +301,7 @@ namespace HigLabo.Mapper.Test
 
             config.AddPostAction<User, User>((source, target) =>
             {
+                if (source == null) { return; }
                 target.Users.AddRange(source.Users);
             });
             var u3 = config.Map(u1, new User());

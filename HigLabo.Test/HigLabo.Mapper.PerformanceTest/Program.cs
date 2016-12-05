@@ -30,9 +30,8 @@ namespace HigLabo.Mapper.PerformanceTest
             //return;
 
 
-            var v1 = new Vector2(2, 3);
-            v1.X = null;
-            var v2 = ObjectMapConfig.Current.Map(v1, new Vector2(4, 5));
+            var d1 = new Dictionary<string, string>();
+            var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
             //HigLaboMapperTest();
             return;
 

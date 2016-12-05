@@ -31,6 +31,7 @@ namespace HigLabo.Core
 
         private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
         private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
+        private static readonly String System_Collections_Generic_Dictionary_2 = "System.Collections.Generic.Dictionary`2";
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Object> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Object>();
 
         private static readonly MethodInfo _MapMethod = null;
@@ -161,7 +162,11 @@ namespace HigLabo.Core
         [ObjectMapConfigMethod(Name = "Map")]
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
-            if (source == null || target == null) { return this.CallPostAction(source, target); }
+            if (source == null) { return target; }
+            if (target == null || IsPrimitive(typeof(TTarget)))
+            {
+                return this.CallPostAction(source, target);
+            }
             if (source is IDataReader)
             {
                 return this.MapFromDataReader(source as IDataReader, target, context);
@@ -398,6 +403,10 @@ namespace HigLabo.Core
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .Where(el => el.GetIndexParameters().Length == 0))
                 {
+                    if (p.GetGetMethod() == null) { continue; }
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+
+
                     sourceProperties.Add(p);
                 }
             }
@@ -408,7 +417,9 @@ namespace HigLabo.Core
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .Where(el => el.GetIndexParameters().Length == 0))
                 {
-                    if (p.SetMethod == null) { continue; }
+                    if (p.GetSetMethod() == null) { continue; }
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+
                     targetProperties.Add(p);
                 }
             }
@@ -1028,8 +1039,8 @@ namespace HigLabo.Core
                 var ldTargetTypeArg = targetType.IsValueType ? OpCodes.Ldarga_S : OpCodes.Ldarg;
                 var sourceMethodCall = sourceType.IsValueType ? OpCodes.Call : OpCodes.Callvirt;
                 var targetMethodCall = targetType.IsValueType ? OpCodes.Call : OpCodes.Callvirt;
-
-                if (item.Target.PropertyType == typeof(String))
+                
+                if (item.Target.IsIndexedProperty)
                 {
                     #region
                     if (item.Source.IsIndexedProperty)
@@ -1037,6 +1048,80 @@ namespace HigLabo.Core
                         #region Dictionary<String, String> or Dictionary<String, Object>
                         //Call TryGetValue method to avoid KeyNotFoundException
                         if (sourceType.IsInheritanceFrom(typeof(Dictionary<String, String>)) == true)
+                        {
+                            //Call ContainsKey method.If key does not exist, exit method.
+                            var containsKey = sourceType.GetMethod("ContainsKey");
+                            il.Emit(OpCodes.Ldarg_1);
+                            il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
+                            il.Emit(OpCodes.Callvirt, containsKey);
+                            var containsKey_False = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse, containsKey_False); //ContainsKey=false --> Exit method without do anything.
+                            {
+                                if (item.Target.PropertyType == typeof(Object))
+                                {
+                                    il.Emit(OpCodes.Ldarg_2);
+                                    il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                                    il.Emit(OpCodes.Ldarg_1);
+                                    il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
+                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                }
+                                else if (item.Source.PropertyType == typeof(String))
+                                {
+                                    il.Emit(OpCodes.Ldarg_2);
+                                    il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                                    il.LoadLocal(typeConverter);
+                                    il.Emit(OpCodes.Ldarg_1);
+                                    il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
+                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                    il.Emit(OpCodes.Callvirt, GetTypeConverterToTypeMethodInfo(item.Target.PropertyType));
+                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                }
+                            }
+                            il.MarkLabel(containsKey_False);
+                        }
+                        #endregion
+                    }
+                    else
+                    {
+                        if (item.Target.PropertyType == typeof(Object))
+                        {
+                            il.Emit(ldTargetTypeArg, 2);
+                            il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                            il.Emit(ldSourceTypeArg, 1);
+                            il.Emit(sourceMethodCall, sourceGetMethod);
+                            if (item.Source.PropertyType.IsValueType)
+                            {
+                                il.Emit(OpCodes.Box, item.Source.PropertyType);
+                            }
+                            il.Emit(targetMethodCall, targetSetMethod);
+                        }
+                        else if (item.Target.PropertyType == typeof(String))
+                        {
+                            il.Emit(ldTargetTypeArg, 2);
+                            il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
+                            il.LoadLocal(typeConverter);
+                            il.Emit(ldSourceTypeArg, 1);
+                            il.Emit(sourceMethodCall, sourceGetMethod);
+                            if (item.Source.PropertyType.IsValueType)
+                            {
+                                il.Emit(OpCodes.Box, item.Source.PropertyType);
+                            }
+                            il.Emit(OpCodes.Callvirt, GetTypeConverterToTypeMethodInfo(item.Target.PropertyType));
+                            il.Emit(targetMethodCall, targetSetMethod);
+                        }
+                    }
+                    #endregion
+                }
+                else if (item.Target.PropertyType == typeof(String))
+                {
+                    #region
+                    if (item.Source.IsIndexedProperty)
+                    {
+                        #region Dictionary<String, String> or Dictionary<String, Object>
+                        //Call TryGetValue method to avoid KeyNotFoundException
+                        if (sourceType.IsInheritanceFrom(typeof(Dictionary<String, String>)) == true ||
+                            sourceType.IsInheritanceFrom(typeof(Dictionary<String, Object>)) == true)
                         {
                             //Call ContainsKey method.If key does not exist, exit method.
                             var containsKey = sourceType.GetMethod("ContainsKey");
@@ -1096,7 +1181,7 @@ namespace HigLabo.Core
                     }
                     #endregion
                 }
-                if (item.Target.PropertyType == typeof(Encoding))
+                else if (item.Target.PropertyType == typeof(Encoding))
                 {
                     #region
                     if (item.Source.IsIndexedProperty)
@@ -1287,106 +1372,39 @@ namespace HigLabo.Core
                     }
                     #endregion
                 }
-                else if (item.Target.IsIndexedProperty)
-                {
-                    #region
-                    if (item.Source.IsIndexedProperty)
-                    {
-                        #region Dictionary<String, String> or Dictionary<String, Object>
-                        //Call TryGetValue method to avoid KeyNotFoundException
-                        if (sourceType.IsInheritanceFrom(typeof(Dictionary<String, String>)) == true)
-                        {
-                            //Call ContainsKey method.If key does not exist, exit method.
-                            var containsKey = sourceType.GetMethod("ContainsKey");
-                            il.Emit(OpCodes.Ldarg_1);
-                            il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
-                            il.Emit(OpCodes.Callvirt, containsKey);
-                            var containsKey_False = il.DefineLabel();
-                            il.Emit(OpCodes.Brfalse, containsKey_False); //ContainsKey=false --> Exit method without do anything.
-                            {
-                                if (item.Target.PropertyType == typeof(Object))
-                                {
-                                    il.Emit(OpCodes.Ldarg_2);
-                                    il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
-                                    il.Emit(OpCodes.Ldarg_1);
-                                    il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
-                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
-                                }
-                                else if (item.Source.PropertyType == typeof(String))
-                                {
-                                    il.Emit(OpCodes.Ldarg_2);
-                                    il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
-                                    il.LoadLocal(typeConverter);
-                                    il.Emit(OpCodes.Ldarg_1);
-                                    il.Emit(OpCodes.Ldstr, item.Source.IndexedPropertyKey);
-                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                    il.Emit(OpCodes.Callvirt, GetTypeConverterToTypeMethodInfo(item.Target.PropertyType));
-                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
-                                }
-                            }
-                            il.MarkLabel(containsKey_False);
-                        }
-                        #endregion
-                    }
-                    else 
-                    {
-                        if (item.Target.PropertyType == typeof(Object))
-                        {
-                            il.Emit(ldTargetTypeArg, 2);
-                            il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
-                            il.Emit(ldSourceTypeArg, 1);
-                            il.Emit(sourceMethodCall, sourceGetMethod);
-                            if (item.Source.PropertyType.IsValueType)
-                            {
-                                il.Emit(OpCodes.Box, item.Source.PropertyType);
-                            }
-                            il.Emit(targetMethodCall, targetSetMethod);
-                        }
-                        else if (item.Source.PropertyType == typeof(String))
-                        {
-                            il.Emit(ldTargetTypeArg, 2);
-                            il.Emit(OpCodes.Ldstr, item.Target.IndexedPropertyKey);
-                            il.LoadLocal(typeConverter);
-                            il.Emit(ldSourceTypeArg, 1);
-                            il.Emit(sourceMethodCall, sourceGetMethod);
-                            if (item.Source.PropertyType.IsValueType)
-                            {
-                                il.Emit(OpCodes.Box, item.Source.PropertyType);
-                            }
-                            il.Emit(OpCodes.Callvirt, GetTypeConverterToTypeMethodInfo(item.Target.PropertyType));
-                            il.Emit(targetMethodCall, targetSetMethod);
-                        }
-                    }
-                    #endregion
-                }
                 else if (item.Target.PropertyType.IsClass || item.Target.PropertyType.IsInterface)
                 {
                     #region
 
-                    #region if (target.P1 == null) { target.P1 = new TTarget(); }
-                    il.Emit(OpCodes.Ldarg_2);
-                    il.Emit(OpCodes.Callvirt, targetGetMethod);
-                    il.Emit(OpCodes.Ldnull);
-                    il.Emit(OpCodes.Ceq);
-                    var sourceIsNullLabel = il.DefineLabel();
-                    il.Emit(OpCodes.Brfalse_S, sourceIsNullLabel);
+                    if (this.NullPropertyMapMode != NullPropertyMapMode.None)
                     {
-                        if (item.Target.PropertyType.IsClass)
+                        #region if (target.P1 == null) { target.P1 = new TTarget(); }
+                        il.Emit(OpCodes.Ldarg_2);
+                        il.Emit(OpCodes.Callvirt, targetGetMethod);
+                        il.Emit(OpCodes.Ldnull);
+                        il.Emit(OpCodes.Ceq);
+                        var sourceIsNullLabel = il.DefineLabel();
+                        il.Emit(OpCodes.Brfalse_S, sourceIsNullLabel);
                         {
-                            var defaultConstructor = item.Target.PropertyType.GetConstructor(Type.EmptyTypes);
-                            if (defaultConstructor != null)
+                            if (item.Target.PropertyType.IsClass)
                             {
-                                il.Emit(OpCodes.Ldarg_2);
-                                il.Emit(OpCodes.Newobj, defaultConstructor);
-                                il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                var defaultConstructor = item.Target.PropertyType.GetConstructor(Type.EmptyTypes);
+                                if (defaultConstructor != null)
+                                {
+                                    il.Emit(OpCodes.Ldarg_2);
+                                    il.Emit(OpCodes.Newobj, defaultConstructor);
+                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                }
                             }
                         }
+                        il.MarkLabel(sourceIsNullLabel);
+                        #endregion
                     }
-                    il.MarkLabel(sourceIsNullLabel);
-                    #endregion
 
-                    if (item.Source.IsIndexedProperty == false)
+                    if (item.Source.IsIndexedProperty == false && item.Target.IsIndexedProperty == false &&
+                        item.Source.PropertyType.FullName.StartsWith(System_Collections_Generic_Dictionary_2) == false &&
+                        item.Target.PropertyType.FullName.StartsWith(System_Collections_Generic_Dictionary_2) == false &&
+                        this.CollectionElementMapMode != CollectionElementMapMode.None)
                     {
                         #region IEnumerable<TSource> to ICollection<TTarget>
                         var sourceInterfaceType = item.Source.PropertyType.GetInterfaces()
@@ -1398,38 +1416,42 @@ namespace HigLabo.Core
                             var sourceElementType = sourceInterfaceType.GenericTypeArguments[0];
                             var targetElementType = targetInterfaceType.GenericTypeArguments[0];
 
-                            var defaultConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
-                            if (defaultConstructor != null)
+                            if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject)
                             {
-                                #region this.MapTo(source.P1, target.P1); //SourceElementType has default constructor.
-                                if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
+                                var defaultConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
+                                if (defaultConstructor != null)
                                 {
-                                    #region IEnumerabe<TSouce> to TTarget[]
-                                    il.Emit(OpCodes.Ldarg_2);
-                                    il.Emit(OpCodes.Ldarg_0);
-                                    il.Emit(OpCodes.Ldarg_1);
-                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                    il.Emit(OpCodes.Call, _MapToArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                    #region this.MapTo(source.P1, target.P1); //SourceElementType has default constructor.
+                                    if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
+                                    {
+                                        #region IEnumerabe<TSouce> to TTarget[]
+                                        il.Emit(OpCodes.Ldarg_2);
+                                        il.Emit(OpCodes.Ldarg_0);
+                                        il.Emit(OpCodes.Ldarg_1);
+                                        il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                        il.Emit(OpCodes.Call, _MapToArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                        il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        #region IEnumerabe<TSouce> to ICollection<TTarget>
+                                        il.Emit(OpCodes.Ldarg_0);
+                                        il.Emit(OpCodes.Ldarg_1);
+                                        il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                        il.Emit(OpCodes.Ldarg_2);
+                                        il.Emit(OpCodes.Callvirt, targetGetMethod);
+                                        il.Emit(OpCodes.Callvirt, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                        il.Emit(OpCodes.Pop);
+                                        #endregion
+                                    }
                                     #endregion
                                 }
-                                else
-                                {
-                                    #region IEnumerabe<TSouce> to ICollection<TTarget>
-                                    il.Emit(OpCodes.Ldarg_0);
-                                    il.Emit(OpCodes.Ldarg_1);
-                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                    il.Emit(OpCodes.Ldarg_2);
-                                    il.Emit(OpCodes.Callvirt, targetGetMethod);
-                                    il.Emit(OpCodes.Callvirt, _MapToMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                    il.Emit(OpCodes.Pop);
-                                    #endregion
-                                }
-                                #endregion
                             }
-                            else if (targetElementType.IsAssignableFrom(sourceElementType))
+                            if (this.CollectionElementMapMode == CollectionElementMapMode.CopyReference &&
+                                targetElementType.IsAssignableFrom(sourceElementType))
                             {
-                                #region this.MapTo(source.P1, target.P1); //SourceElementType can assign to TargetElementTyep.
+                                #region this.MapReference(source.P1, target.P1); //SourceElementType can assign to TargetElementTyep.
                                 if (item.Target.PropertyType.IsArray && item.Target.PropertyType.GetArrayRank() == 1)
                                 {
                                     #region IEnumerabe<TSouce> to TTarget[]

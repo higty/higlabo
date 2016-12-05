@@ -215,14 +215,7 @@ namespace HigLabo.Mapper.PerformanceTest
     }
     public class Vector2
     {
-        public Int32? X { get; set; }
-        public Int32 Y { get; set; }
-
-        public Vector2(Int32 x, Int32 y)
-        {
-            this.X = x;
-            this.Y = y;
-        }
+        public Dictionary<String, String> Dictionary { get; set; }
     }
 
 }
