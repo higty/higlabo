@@ -31,7 +31,7 @@ namespace HigLabo.Mapper.PerformanceTest
 
             //var d1 = new Dictionary<string, string>();
             //var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
-            //HigLaboMapperTest();
+            //MapperPerformanceTest.HigLaboMapperTest();
             //Console.ReadLine();
             //return;
 

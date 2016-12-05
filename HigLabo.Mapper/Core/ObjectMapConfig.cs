@@ -61,8 +61,6 @@ namespace HigLabo.Core
             _CreateNewObjectArrayMethod = GetMethodInfo("CreateNewObjectArray");
             _CreateDeepCopyArrayMethod = GetMethodInfo("CreateDeepCopyArray");
             _MapDeepCopyMethod = GetMethodInfo("MapDeepCopy");
-            _MappingContext_NullPropertyMapMode_GetMethod = typeof(MappingContext).GetProperty("NullPropertyMapMode", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
-            _MappingContext_CollectionElementMapMode_GetMethod = typeof(MappingContext).GetProperty("CollectionElementMapMode", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             InitializeTypeConverter_ToTypeMethods();
 
@@ -138,7 +136,7 @@ namespace HigLabo.Core
         }
         private MappingContext CreateMappingContext()
         {
-            return new MappingContext(this.DictionaryKeyStringComparer, this.NullPropertyMapMode, this.CollectionElementMapMode);
+            return new MappingContext();
         }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
@@ -177,6 +175,7 @@ namespace HigLabo.Core
                 try
                 {
                     result = md(this, source, result, context);
+                    if (_PostActions.Count == 0) { return result; }
                 }
                 catch (VerificationException ex)
                 {
@@ -194,7 +193,6 @@ namespace HigLabo.Core
                         + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
                         , source, target, exception);
                 }
-                if (_PostActions.Count == 0) { return result; }
             }
             return this.CallPostAction(source, result);
         }
@@ -208,7 +206,7 @@ namespace HigLabo.Core
         }
         private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
         {
-            Dictionary<String, Object> d = new Dictionary<String, Object>(context.DictionaryKeyStringComparer);
+            Dictionary<String, Object> d = new Dictionary<String, Object>(this.DictionaryKeyStringComparer);
             d.SetValues((IDataReader)source);
             return this.Map(d, target, context);
         }
@@ -928,7 +926,7 @@ namespace HigLabo.Core
                         var sourceIsNullLabel = il.DefineLabel();
                         il.Emit(OpCodes.Brfalse_S, sourceIsNullLabel);
                         {
-                            if (targetProperty.PropertyType.IsClass)
+                            if (this.NullPropertyMapMode == NullPropertyMapMode.NewObject)
                             {
                                 var defaultConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
                                 if (defaultConstructor != null)
@@ -936,6 +934,16 @@ namespace HigLabo.Core
                                     newObject = true;
                                     il.Emit(OpCodes.Ldarg_2);
                                     il.Emit(OpCodes.Newobj, defaultConstructor);
+                                    il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                }
+                            }
+                            else if (this.NullPropertyMapMode == NullPropertyMapMode.DeepCopy)
+                            {
+                                if (targetProperty.PropertyType.IsAssignableFrom(sourceProperty.PropertyType))
+                                {
+                                    il.Emit(OpCodes.Ldarg_2);
+                                    il.Emit(OpCodes.Ldarg_1);
+                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
                                     il.Emit(OpCodes.Callvirt, targetSetMethod);
                                 }
                             }
@@ -956,10 +964,7 @@ namespace HigLabo.Core
                             .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
                         if (sourceInterfaceType != null && targetInterfaceType != null)
                         {
-                            if (newObject == true)
-                            {
-                                newCollection = true;
-                            }
+                            newCollection = true;
                             var sourceElementType = sourceInterfaceType.GenericTypeArguments[0];
                             var targetElementType = targetInterfaceType.GenericTypeArguments[0];
 
@@ -1054,7 +1059,7 @@ namespace HigLabo.Core
                 #region this.Map(source.P1, target.P1, context);
                 if (sourceProperty.IsIndexedProperty == false && targetProperty.IsIndexedProperty == false &&
                     sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass &&
-                    IsPrimitive(targetProperty.ActualType) == false && newObject == false)
+                    IsPrimitive(targetProperty.ActualType) == false && newCollection == false)
                 {
                     il.Emit(ldTargetTypeArg, 2);
                     {
