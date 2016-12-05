@@ -216,21 +216,21 @@ namespace HigLabo.Core
             d.SetValues((IDataReader)source);
             return this.Map(d, target, context);
         }
-        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : new()
         {
             if (source != null && target != null)
             {
                 foreach (var item in source)
                 {
-                    var o = this.Map(item, new TTarget());
+                    var o = this.Map(item, new TTarget(), context);
                     target.Add(o);
                 }
             }
             return target;
         }
         [ObjectMapConfigMethod(Name = "MapElement_Class_Class")]
-        public ICollection<TTarget> MapElement_Class_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+        public ICollection<TTarget> MapElement_Class_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : class, new()
             where TSource : class
         {
@@ -238,14 +238,14 @@ namespace HigLabo.Core
             {
                 foreach (var item in source)
                 {
-                    var o = this.Map(item, new TTarget());
+                    var o = this.Map(item, new TTarget(), context);
                     target.Add(o);
                 }
             }
             return target;
         }
         [ObjectMapConfigMethod(Name = "MapElement_Class_Struct")]
-        public ICollection<TTarget> MapElement_Class_Struct<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+        public ICollection<TTarget> MapElement_Class_Struct<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : class, new()
             where TSource : struct
         {
@@ -253,14 +253,14 @@ namespace HigLabo.Core
             {
                 foreach (var item in source)
                 {
-                    var o = this.Map(item, new TTarget());
+                    var o = this.Map(item, new TTarget(), context);
                     target.Add(o);
                 }
             }
             return target;
         }
         [ObjectMapConfigMethod(Name = "MapElement_Struct_Class")]
-        public ICollection<TTarget> MapElement_Struct_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+        public ICollection<TTarget> MapElement_Struct_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : struct
             where TSource : class
         {
@@ -268,14 +268,14 @@ namespace HigLabo.Core
             {
                 foreach (var item in source)
                 {
-                    var o = this.Map(item, new TTarget());
+                    var o = this.Map(item, new TTarget(), context);
                     target.Add(o);
                 }
             }
             return target;
         }
         [ObjectMapConfigMethod(Name = "MapElement_Struct_Struct")]
-        public ICollection<TTarget> MapElement_Struct_Struct<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+        public ICollection<TTarget> MapElement_Struct_Struct<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : struct
             where TSource : struct
         {
@@ -283,20 +283,19 @@ namespace HigLabo.Core
             {
                 foreach (var item in source)
                 {
-                    var o = this.Map(item, new TTarget());
+                    var o = this.Map(item, new TTarget(), context);
                     target.Add(o);
                 }
             }
             return target;
         }
-        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target
-            , Func<TTarget> elementConstructor)
+        public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target , Func<TTarget> elementConstructor, MappingContext context)
         {
             if (source != null && target != null)
             {
                 foreach (var item in source)
                 {
-                    var o = this.Map(item, elementConstructor());
+                    var o = this.Map(item, elementConstructor(), context);
                     target.Add(o);
                 }
             }
@@ -561,7 +560,7 @@ namespace HigLabo.Core
         }
         private Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> CreateMapMethodInfo<TSource, TTarget>(ObjectMapTypeInfo key, IEnumerable<PropertyMap> propertyMapInfo)
         {
-            return (Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget>)this.CreateMapPropertyMethod1(key.Source, key.Target, propertyMapInfo);
+            return (Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget>)this.CreateMapPropertyMethod(key.Source, key.Target, propertyMapInfo);
         }
         /// <summary>
         /// ***********************************************************************
@@ -618,7 +617,7 @@ namespace HigLabo.Core
         /// <typeparam name="TTarget"></typeparam>
         /// <param name="propertyMapInfo"></param>
         /// <returns></returns>
-        private Delegate CreateMapPropertyMethod1(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
+        private Delegate CreateMapPropertyMethod(Type sourceType, Type targetType, IEnumerable<PropertyMap> propertyMapInfo)
         {
             DynamicMethod dm = new DynamicMethod("MapProperty", targetType, new[] { typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext) });
             ILGenerator il = dm.GetILGenerator();
@@ -1065,6 +1064,7 @@ namespace HigLabo.Core
                                             il.Emit(OpCodes.Callvirt, sourceGetMethod);
                                             il.Emit(OpCodes.Ldarg_2);
                                             il.Emit(OpCodes.Callvirt, targetGetMethod);
+                                            il.Emit(OpCodes.Ldarg_3);
                                             MethodInfo md = null;
                                             if (sourceElementType.IsClass && targetElementType.IsClass) { md = _MapElement_Class_Class_Method; }
                                             if (sourceElementType.IsClass && targetElementType.IsValueType) { md = _MapElement_Class_Struct_Method; }
