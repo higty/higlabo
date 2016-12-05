@@ -1044,7 +1044,8 @@ namespace HigLabo.Core
                         var sourceIsNullLabel = il.DefineLabel();
                         il.Emit(OpCodes.Brfalse_S, sourceIsNullLabel);
                         {
-                            if (this.NullPropertyMapMode == NullPropertyMapMode.NewObject)
+                            if (this.NullPropertyMapMode == NullPropertyMapMode.NewObject &&
+                                targetProperty_PropertyType.IsClass)
                             {
                                 var defaultConstructor = targetProperty_PropertyType.GetConstructor(Type.EmptyTypes);
                                 if (defaultConstructor != null)
