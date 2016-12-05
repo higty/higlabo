@@ -29,14 +29,18 @@ namespace HigLabo.Core
         private static readonly String System_Collections_Generic_Dictionary_2 = "System.Collections.Generic.Dictionary`2";
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Object> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Object>();
 
-        private static readonly MethodInfo _MapMethod = null;
-        private static readonly MethodInfo _MapInternalMethod = null;
-        private static readonly MethodInfo _MapElementMethod = null;
+        private static readonly MethodInfo _MapInternal_Class_Class_Method = null;
+        private static readonly MethodInfo _MapInternal_Class_Struct_Method = null;
+        private static readonly MethodInfo _MapInternal_Struct_Class_Method = null;
+        private static readonly MethodInfo _MapInternal_Struct_Struct_Method = null;
+
+        private static readonly MethodInfo _MapElement_Class_Class_Method = null;
+        private static readonly MethodInfo _MapElement_Class_Struct_Method = null;
+        private static readonly MethodInfo _MapElement_Struct_Class_Method = null;
+        private static readonly MethodInfo _MapElement_Struct_Struct_Method = null;
         private static readonly MethodInfo _CreateNewObjectArrayMethod = null;
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
         private static readonly MethodInfo _MapDeepCopyMethod = null;
-        private static readonly MethodInfo _MappingContext_NullPropertyMapMode_GetMethod = null;
-        private static readonly MethodInfo _MappingContext_CollectionElementMapMode_GetMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
         private static readonly ConcurrentDictionary<Type, MethodInfo> _TypeConverter_ToEnumMethods = new ConcurrentDictionary<Type, MethodInfo>();
         private static readonly Dictionary<Type, MethodInfo> _TypeConverter_ToTypeMethods = new Dictionary<Type, MethodInfo>();
@@ -55,9 +59,17 @@ namespace HigLabo.Core
         static ObjectMapConfig()
         {
             Current = new ObjectMapConfig();
-            _MapMethod = GetMethodInfo("Map");
-            _MapInternalMethod = GetMethodInfo("MapInternal");
-            _MapElementMethod = GetMethodInfo("MapElement");
+
+            _MapInternal_Class_Class_Method = GetMethodInfo("MapInternal_Class_Class");
+            _MapInternal_Class_Struct_Method = GetMethodInfo("MapInternal_Class_Struct");
+            _MapInternal_Struct_Class_Method = GetMethodInfo("MapInternal_Struct_Class");
+            _MapInternal_Struct_Struct_Method = GetMethodInfo("MapInternal_Struct_Struct");
+
+            _MapElement_Class_Class_Method = GetMethodInfo("MapElement_Class_Class");
+            _MapElement_Class_Struct_Method = GetMethodInfo("MapElement_Class_Struct");
+            _MapElement_Struct_Class_Method = GetMethodInfo("MapElement_Struct_Class");
+            _MapElement_Struct_Struct_Method = GetMethodInfo("MapElement_Struct_Struct");
+
             _CreateNewObjectArrayMethod = GetMethodInfo("CreateNewObjectArray");
             _CreateDeepCopyArrayMethod = GetMethodInfo("CreateDeepCopyArray");
             _MapDeepCopyMethod = GetMethodInfo("MapDeepCopy");
@@ -155,7 +167,6 @@ namespace HigLabo.Core
             if (source == null) return null;
             return this.Map(source, target, this.CreateMappingContext());
         }
-        [ObjectMapConfigMethod(Name = "Map")]
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
             if (source == null) { return target; }
@@ -196,8 +207,10 @@ namespace HigLabo.Core
             }
             return this.CallPostAction(source, result);
         }
-        [ObjectMapConfigMethod(Name = "MapInternal")]
+        [ObjectMapConfigMethod(Name = "MapInternal_Class_Class")]
         public TTarget MapIntrenal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
+            where TSource : class
+            where TTarget : class
         {
             if (source == null) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
@@ -210,9 +223,68 @@ namespace HigLabo.Core
             d.SetValues((IDataReader)source);
             return this.Map(d, target, context);
         }
-        [ObjectMapConfigMethod(Name = "MapElement")]
         public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
             where TTarget : new()
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source)
+                {
+                    var o = this.Map(item, new TTarget());
+                    target.Add(o);
+                }
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "MapElement_Class_Class")]
+        public ICollection<TTarget> MapElement_Class_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+            where TTarget : class, new()
+            where TSource : class
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source)
+                {
+                    var o = this.Map(item, new TTarget());
+                    target.Add(o);
+                }
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "MapElement_Class_Struct")]
+        public ICollection<TTarget> MapElement_Class_Struct<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+            where TTarget : class, new()
+            where TSource : struct
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source)
+                {
+                    var o = this.Map(item, new TTarget());
+                    target.Add(o);
+                }
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "MapElement_Struct_Class")]
+        public ICollection<TTarget> MapElement_Struct_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+            where TTarget : struct
+            where TSource : class
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source)
+                {
+                    var o = this.Map(item, new TTarget());
+                    target.Add(o);
+                }
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "MapElement_Struct_Struct")]
+        public ICollection<TTarget> MapElement_Struct_Struct<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+            where TTarget : struct
+            where TSource : struct
         {
             if (source != null && target != null)
             {
@@ -1000,7 +1072,12 @@ namespace HigLabo.Core
                                             il.Emit(OpCodes.Callvirt, sourceGetMethod);
                                             il.Emit(OpCodes.Ldarg_2);
                                             il.Emit(OpCodes.Callvirt, targetGetMethod);
-                                            il.Emit(OpCodes.Callvirt, _MapElementMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                            MethodInfo md = null;
+                                            if (sourceElementType.IsClass && targetElementType.IsClass) { md = _MapElement_Class_Class_Method; }
+                                            if (sourceElementType.IsClass && targetElementType.IsValueType) { md = _MapElement_Class_Struct_Method; }
+                                            if (sourceElementType.IsValueType && targetElementType.IsClass) { md = _MapElement_Struct_Class_Method; }
+                                            if (sourceElementType.IsValueType && targetElementType.IsValueType) { md = _MapElement_Struct_Struct_Method; }
+                                            il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceElementType, targetElementType));
                                             il.Emit(OpCodes.Pop);
                                             #endregion
                                         }
@@ -1069,7 +1146,7 @@ namespace HigLabo.Core
                         il.Emit(ldTargetTypeArg, 2);
                         il.Emit(targetMethodCall, targetGetMethod);
                         il.Emit(OpCodes.Ldarg_3);
-                        il.Emit(OpCodes.Callvirt, _MapInternalMethod.MakeGenericMethod(sourceProperty.PropertyType, targetProperty.PropertyType));
+                        il.Emit(OpCodes.Callvirt, _MapInternal_Class_Class_Method.MakeGenericMethod(sourceProperty.PropertyType, targetProperty.PropertyType));
                     }
                     //il.Emit(OpCodes.Pop);
                     il.Emit(targetMethodCall, targetSetMethod);
@@ -1083,39 +1160,6 @@ namespace HigLabo.Core
             var f = typeof(Func<,,,,>);
             var gf = f.MakeGenericType(typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext), targetType);
             return dm.CreateDelegate(gf);
-        }
-        private static void SetValue(ILGenerator generator, Type sourceType, Type targetType
-            , MethodInfo sourceGetMethod, MethodInfo targetSetMethod)
-        {
-            var il = generator;
-
-            if (targetType.IsValueType)
-            {
-                il.Emit(OpCodes.Ldarga_S, 2);
-            }
-            else
-            {
-                il.Emit(OpCodes.Ldarg_2);
-            }
-            if (sourceType.IsValueType)
-            {
-                il.Emit(OpCodes.Ldarga_S, 1);
-                il.Emit(OpCodes.Call, sourceGetMethod);
-            }
-            else
-            {
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Callvirt, sourceGetMethod);
-            }
-            if (targetType.IsValueType)
-            {
-                il.Emit(OpCodes.Call, targetSetMethod);
-            }
-            else
-            {
-                il.Emit(OpCodes.Callvirt, targetSetMethod);
-            }
-
         }
         private static void GetSourceValue(ILGenerator generator, Type sourceType, MethodInfo sourceGetMethod)
         {
