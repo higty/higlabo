@@ -30,10 +30,10 @@ namespace HigLabo.Mapper.PerformanceTest
             //return;
 
 
-            var d1 = new Dictionary<string, string>();
-            var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
+            //var d1 = new Dictionary<string, string>();
+            //var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
             //HigLaboMapperTest();
-            return;
+            //return;
 
             //TinyMapperTest();
             //return;

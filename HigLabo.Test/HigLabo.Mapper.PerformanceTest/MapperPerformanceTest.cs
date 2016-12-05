@@ -28,12 +28,13 @@ namespace HigLabo.Mapper.PerformanceTest
             TinyMapper.Bind<Customer, CustomerDTO>();
             var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
         }
+        [Benchmark]
         public static void HandwriteMapperTest()
         {
             var customer = Customer.Create();
             var count = ExecuteCount;
             var config = ObjectMapConfig.Current;
-            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+            config.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
             for (int i = 0; i < count; i++)
             {
                 var customerDto = new CustomerDTO();
@@ -103,6 +104,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = AutoMapper.Mapper.Map<CustomerDTO>(customer);
             }
         }
+        [Benchmark]
         public static void MapsterTest()
         {
             var customer = Customer.Create();
@@ -112,6 +114,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = Mapster.TypeAdapter.Adapt<CustomerDTO>(customer);
             }
         }
+        [Benchmark]
         public static void ExpressMapperTest()
         {
             var customer = Customer.Create();
@@ -122,6 +125,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = ExpressMapper.Mapper.Map<Customer, CustomerDTO>(customer);
             }
         }
+        [Benchmark]
         public static void FastMapperTest()
         {
             var customer = Customer.Create();

@@ -105,10 +105,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("ParentUser", u2.ParentUser.Name);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_NullProperty_CopyReference()
+        public void ObjectMapConfig_Map_NullProperty_DeepCopy()
         {
             var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
+            config.NullPropertyMapMode = NullPropertyMapMode.DeepCopy;
             var u1 = new User();
             u1.ParentUser = new User("ParentUser");
             var u2 = new User();
@@ -122,7 +122,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_NullProperty_CopyReference_By_MapContext()
+        public void ObjectMapConfig_Map_NullProperty_DeepCopy_By_MapContext()
         {
             var config = new ObjectMapConfig();
             config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
@@ -132,7 +132,7 @@ namespace HigLabo.Mapper.Test
             u2.ParentUser = null;
             config.Map(u1, u2
                 , new MappingContext(config.DictionaryKeyStringComparer
-                , NullPropertyMapMode.CopyReference, config.CollectionElementMapMode));
+                , NullPropertyMapMode.DeepCopy, config.CollectionElementMapMode));
 
             Assert.IsNotNull(u2.ParentUser);
 
@@ -345,7 +345,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_CollectionElement_Reference()
         {
             var config = new ObjectMapConfig();
-            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+            config.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
 
             var u1 = new User();
             for (int i = 0; i < 3; i++)
@@ -359,10 +359,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
-        public void ObjectMapConfig_MapCollection_MapAndCopyReference()
+        public void ObjectMapConfig_MapCollection_MapAndDeepCopy()
         {
             var config = new ObjectMapConfig();
-            config.CollectionElementMapMode = CollectionElementMapMode.CopyReference;
+            config.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
 
             var u1 = new VipUserListInfo();
             u1.GroupName = "Group1";
@@ -391,10 +391,10 @@ namespace HigLabo.Mapper.Test
             Assert.IsNotNull(u2.Users);
         }
         [TestMethod]
-        public void ObjectMapConfig_Map_NullListProperty_CopyReference_AddElement()
+        public void ObjectMapConfig_Map_NullListProperty_DeepCopy_AddElement()
         {
             var config = new ObjectMapConfig();
-            config.NullPropertyMapMode = NullPropertyMapMode.CopyReference;
+            config.NullPropertyMapMode = NullPropertyMapMode.DeepCopy;
             var u1 = new User();
             var u2 = new User();
             u2.Users = null;
