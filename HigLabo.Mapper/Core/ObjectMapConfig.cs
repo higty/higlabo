@@ -29,11 +29,7 @@ namespace HigLabo.Core
         private static readonly String System_Collections_Generic_Dictionary_2 = "System.Collections.Generic.Dictionary`2";
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Object> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Object>();
 
-        private static readonly MethodInfo _MapInternal_Class_Class_Method = null;
-        private static readonly MethodInfo _MapInternal_Class_Struct_Method = null;
-        private static readonly MethodInfo _MapInternal_Struct_Class_Method = null;
-        private static readonly MethodInfo _MapInternal_Struct_Struct_Method = null;
-
+        private static readonly MethodInfo _MapInternalMethod = null;
         private static readonly MethodInfo _MapElement_Class_Class_Method = null;
         private static readonly MethodInfo _MapElement_Class_Struct_Method = null;
         private static readonly MethodInfo _MapElement_Struct_Class_Method = null;
@@ -59,11 +55,7 @@ namespace HigLabo.Core
         static ObjectMapConfig()
         {
             Current = new ObjectMapConfig();
-
-            _MapInternal_Class_Class_Method = GetMethodInfo("MapInternal_Class_Class");
-            _MapInternal_Class_Struct_Method = GetMethodInfo("MapInternal_Class_Struct");
-            _MapInternal_Struct_Class_Method = GetMethodInfo("MapInternal_Struct_Class");
-            _MapInternal_Struct_Struct_Method = GetMethodInfo("MapInternal_Struct_Struct");
+            _MapInternalMethod = GetMethodInfo("MapInternal");
 
             _MapElement_Class_Class_Method = GetMethodInfo("MapElement_Class_Class");
             _MapElement_Class_Struct_Method = GetMethodInfo("MapElement_Class_Struct");
@@ -167,6 +159,7 @@ namespace HigLabo.Core
             if (source == null) return null;
             return this.Map(source, target, this.CreateMappingContext());
         }
+        [ObjectMapConfigMethod(Name = "Map")]
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
             if (source == null) { return target; }
@@ -207,7 +200,7 @@ namespace HigLabo.Core
             }
             return this.CallPostAction(source, result);
         }
-        [ObjectMapConfigMethod(Name = "MapInternal_Class_Class")]
+        [ObjectMapConfigMethod(Name = "MapInternal")]
         public TTarget MapIntrenal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
             where TSource : class
             where TTarget : class
@@ -1146,7 +1139,7 @@ namespace HigLabo.Core
                         il.Emit(ldTargetTypeArg, 2);
                         il.Emit(targetMethodCall, targetGetMethod);
                         il.Emit(OpCodes.Ldarg_3);
-                        il.Emit(OpCodes.Callvirt, _MapInternal_Class_Class_Method.MakeGenericMethod(sourceProperty.PropertyType, targetProperty.PropertyType));
+                        il.Emit(OpCodes.Callvirt, _MapInternalMethod.MakeGenericMethod(sourceProperty.PropertyType, targetProperty.PropertyType));
                     }
                     //il.Emit(OpCodes.Pop);
                     il.Emit(targetMethodCall, targetSetMethod);
