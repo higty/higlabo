@@ -63,7 +63,7 @@ namespace HigLabo.Core
         public List<PropertyMappingRule> PropertyMapRules { get; private set; }
         public List<DictionaryMappingRule> DictionaryMappingRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
-        public Int32 MaxCallStack { get; set; }
+        public Int32 MaxCallStackCount { get; set; }
         public Boolean HasPostAction
         {
             get { return _PostActions.Count > 0; }
@@ -163,7 +163,7 @@ namespace HigLabo.Core
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Object), TypeFilterCondition.Inherit));
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.ObjectToDictionary, typeof(Object), TypeFilterCondition.Inherit));
 
-            this.MaxCallStack = 100;
+            this.MaxCallStackCount = 1;
             this.DictionaryKeyStringComparer = StringComparer.OrdinalIgnoreCase;
             this.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             this.CollectionElementMapMode = CollectionElementMapMode.NewObject;
@@ -174,7 +174,7 @@ namespace HigLabo.Core
         }
         private MappingContext CreateMappingContext()
         {
-            return new MappingContext();
+            return new MappingContext(this.MaxCallStackCount);
         }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
@@ -195,7 +195,7 @@ namespace HigLabo.Core
         }
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
-            if (source == null) { return target; }
+            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
             if (target == null || IsPrimitive(typeof(TTarget)))
             {
                 return this.CallPostAction(source, target);
@@ -211,8 +211,8 @@ namespace HigLabo.Core
                 Exception exception = null;
                 try
                 {
+                    context.CallStackCount++;
                     result = md(this, source, result, context);
-                    if (_PostActions.Count == 0) { return result; }
                 }
                 catch (VerificationException ex)
                 {
@@ -222,6 +222,10 @@ namespace HigLabo.Core
                 {
                     exception = ex.InnerException;
                 }
+                finally
+                {
+                    context.CallStackCount--;
+                }
                 if (exception != null)
                 {
                     throw new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
@@ -230,13 +234,21 @@ namespace HigLabo.Core
                         + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
                         , source, target, exception);
                 }
+                if (_PostActions.Count == 0) { return result; }
             }
             return this.CallPostAction(source, result);
         }
+        private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
+        {
+            Dictionary<String, Object> d = new Dictionary<String, Object>(this.DictionaryKeyStringComparer);
+            d.SetValues((IDataReader)source);
+            return this.Map(d, target, context);
+        }
+
         [ObjectMapConfigMethod(Name = "MapInternal")]
         public TTarget MapInternal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
-            if (source == null) { return target; }
+            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             return md.Invoke(this, source, target, context);
@@ -246,13 +258,13 @@ namespace HigLabo.Core
             where TSource : class
             where TTarget : class
         {
-            if (source == null) { return target; }
+            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
             {
                 context.CallStackCount++;
-                return md.Invoke(this, source, target, context);
+                return md(this, source, target, context);
             }
             finally
             {
@@ -264,13 +276,13 @@ namespace HigLabo.Core
             where TSource : class
             where TTarget : struct
         {
-            if (source == null) { return target; }
+            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
             {
                 context.CallStackCount++;
-                return md.Invoke(this, source, target, context);
+                return md(this, source, target, context);
             }
             finally
             {
@@ -282,12 +294,13 @@ namespace HigLabo.Core
             where TSource : struct
             where TTarget : class
         {
+            if (context.CallStackCount > this.MaxCallStackCount) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
             {
                 context.CallStackCount++;
-                return md.Invoke(this, source, target, context);
+                return md(this, source, target, context);
             }
             finally
             {
@@ -299,12 +312,13 @@ namespace HigLabo.Core
             where TSource : struct
             where TTarget : struct
         {
+            if (context.CallStackCount > this.MaxCallStackCount) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
             {
                 context.CallStackCount++;
-                return md.Invoke(this, source, target, context);
+                return md(this, source, target, context);
             }
             finally
             {
@@ -312,12 +326,6 @@ namespace HigLabo.Core
             }
         }
 
-        private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
-        {
-            Dictionary<String, Object> d = new Dictionary<String, Object>(this.DictionaryKeyStringComparer);
-            d.SetValues((IDataReader)source);
-            return this.Map(d, target, context);
-        }
         public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : new()
         {
@@ -350,10 +358,18 @@ namespace HigLabo.Core
         {
             if (source != null && target != null)
             {
-                foreach (var item in source)
+                try
                 {
-                    var o = this.MapInternal_Class_Class(item, new TTarget(), context);
-                    target.Add(o);
+                    context.CallStackCount++;
+                    foreach (var item in source)
+                    {
+                        var o = this.MapInternal_Class_Class(item, new TTarget(), context);
+                        target.Add(o);
+                    }
+                }
+                finally
+                {
+                    context.CallStackCount--;
                 }
             }
             return target;
@@ -365,10 +381,18 @@ namespace HigLabo.Core
         {
             if (source != null && target != null)
             {
-                foreach (var item in source)
+                try
                 {
-                    var o = this.MapInternal_Class_Struct(item, new TTarget(), context);
-                    target.Add(o);
+                    context.CallStackCount++;
+                    foreach (var item in source)
+                    {
+                        var o = this.MapInternal_Class_Struct(item, new TTarget(), context);
+                        target.Add(o);
+                    }
+                }
+                finally
+                {
+                    context.CallStackCount--;
                 }
             }
             return target;
@@ -380,10 +404,18 @@ namespace HigLabo.Core
         {
             if (source != null && target != null)
             {
-                foreach (var item in source)
+                try
                 {
-                    var o = this.MapInternal_Struct_Class(item, new TTarget(), context);
-                    target.Add(o);
+                    context.CallStackCount++;
+                    foreach (var item in source)
+                    {
+                        var o = this.MapInternal_Struct_Class(item, new TTarget(), context);
+                        target.Add(o);
+                    }
+                }
+                finally
+                {
+                    context.CallStackCount--;
                 }
             }
             return target;
@@ -395,10 +427,18 @@ namespace HigLabo.Core
         {
             if (source != null && target != null)
             {
-                foreach (var item in source)
+                try
                 {
-                    var o = this.MapInternal_Struct_Struct(item, new TTarget(), context);
-                    target.Add(o);
+                    context.CallStackCount++;
+                    foreach (var item in source)
+                    {
+                        var o = this.MapInternal_Struct_Struct(item, new TTarget(), context);
+                        target.Add(o);
+                    }
+                }
+                finally
+                {
+                    context.CallStackCount--;
                 }
             }
             return target;

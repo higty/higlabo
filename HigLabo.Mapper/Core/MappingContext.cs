@@ -8,10 +8,15 @@ namespace HigLabo.Core
 {
     public class MappingContext
     {
+        public Int32 MaxCallStackCount { get; set; }
         public Int32 CallStackCount { get; set; }
+        public Int32 LayerLevel { get; set; }
 
-        internal MappingContext()
+        internal MappingContext(Int32 maxCallStackCount)
         {
+            this.MaxCallStackCount = maxCallStackCount;
+            this.CallStackCount = 0;
+            this.LayerLevel = 0;
         }
     }
 }

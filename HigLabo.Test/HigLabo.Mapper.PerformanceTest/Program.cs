@@ -92,7 +92,7 @@ namespace HigLabo.Mapper.PerformanceTest
             p1.Schedule.Value =123;
             p1.Schedule.ScheduleType = ScheduleType.Private;
             p1.Schedule.Peoples = new List<People>();
-            //p1.Schedule.Peoples.Add(p1);
+            p1.Schedule.Peoples.Add(p1);
             c1.Peoples.Add(p1);
 
 
