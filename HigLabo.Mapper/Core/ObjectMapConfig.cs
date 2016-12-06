@@ -43,10 +43,15 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CreateNewObjectArray_Class_Class_Method = null;
         private static readonly MethodInfo _CreateNewObjectArray_Struct_Class_Method = null;
 
+        private static readonly MethodInfo _CallPostAction_Method = null;
+        private static readonly MethodInfo _CallPostAction_Class_Class_Method = null;
+        private static readonly MethodInfo _CallPostAction_Class_Struct_Method = null;
+        private static readonly MethodInfo _CallPostAction_Struct_Class_Method = null;
+        private static readonly MethodInfo _CallPostAction_Struct_Struct_Method = null;
+
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
         private static readonly MethodInfo _MapDeepCopyMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
-        private static readonly MethodInfo _CallPostActionMethod = null;
         private static readonly ConcurrentDictionary<Type, MethodInfo> _TypeConverter_ToEnumMethods = new ConcurrentDictionary<Type, MethodInfo>();
         private static readonly Dictionary<Type, MethodInfo> _TypeConverter_ToTypeMethods = new Dictionary<Type, MethodInfo>();
         private static readonly List<Type> _PrimitiveValueTypes = new List<Type>();
@@ -81,7 +86,12 @@ namespace HigLabo.Core
 
             _CreateDeepCopyArrayMethod = GetMethodInfo("CreateDeepCopyArray");
             _MapDeepCopyMethod = GetMethodInfo("MapDeepCopy");
-            _CallPostActionMethod = GetMethodInfo("CallPostAction");
+
+            _CallPostAction_Method = GetMethodInfo("CallPostAction");
+            _CallPostAction_Class_Class_Method = GetMethodInfo("CallPostAction_Class_Class");
+            _CallPostAction_Class_Struct_Method = GetMethodInfo("CallPostAction_Class_Struct");
+            _CallPostAction_Struct_Class_Method = GetMethodInfo("CallPostAction_Struct_Class");
+            _CallPostAction_Struct_Struct_Method = GetMethodInfo("CallPostAction_Struct_Struct");
 
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             InitializeTypeConverter_ToTypeMethods();
@@ -482,8 +492,77 @@ namespace HigLabo.Core
             condition.Target.TypeFilterCondition = targetCondition;
             _PostActions.Add(new MapPostAction(condition, (Delegate)action));
         }
+
         [ObjectMapConfigMethod(Name = "CallPostAction")]
         public TTarget CallPostAction<TSource, TTarget>(TSource source, TTarget target)
+        {
+            if (_PostActions.Count == 0) { return target; }
+
+            var sourceType = typeof(TSource);
+            var targetType = typeof(TTarget);
+            for (int i = 0; i < _PostActions.Count; i++)
+            {
+                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
+                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
+                return f(source, target);
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "CallPostAction_Class_Class")]
+        public TTarget CallPostAction_Class_Class<TSource, TTarget>(TSource source, TTarget target)
+            where TSource : class
+            where TTarget : class
+        {
+            if (_PostActions.Count == 0) { return target; }
+
+            var sourceType = typeof(TSource);
+            var targetType = typeof(TTarget);
+            for (int i = 0; i < _PostActions.Count; i++)
+            {
+                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
+                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
+                return f(source, target);
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "CallPostAction_Class_Struct")]
+        public TTarget CallPostAction_Class_Struct<TSource, TTarget>(TSource source, TTarget target)
+            where TSource : class
+            where TTarget : struct
+        {
+            if (_PostActions.Count == 0) { return target; }
+
+            var sourceType = typeof(TSource);
+            var targetType = typeof(TTarget);
+            for (int i = 0; i < _PostActions.Count; i++)
+            {
+                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
+                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
+                return f(source, target);
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "CallPostAction_Struct_Class")]
+        public TTarget CallPostAction_Struct_Class<TSource, TTarget>(TSource source, TTarget target)
+            where TSource : struct
+            where TTarget : class
+        {
+            if (_PostActions.Count == 0) { return target; }
+
+            var sourceType = typeof(TSource);
+            var targetType = typeof(TTarget);
+            for (int i = 0; i < _PostActions.Count; i++)
+            {
+                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
+                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
+                return f(source, target);
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "CallPostAction_Struct_Struct")]
+        public TTarget CallPostAction_Struct_Struct<TSource, TTarget>(TSource source, TTarget target)
+            where TSource : struct
+            where TTarget : struct
         {
             if (_PostActions.Count == 0) { return target; }
 
@@ -711,6 +790,7 @@ namespace HigLabo.Core
                 var sourceMethodCall = sourceType.IsValueType ? OpCodes.Call : OpCodes.Callvirt;
                 var targetMethodCall = targetType.IsValueType ? OpCodes.Call : OpCodes.Callvirt;
                 var newObject = false;
+                var deepCopy = false;
                 var newCollection = false;
                 #endregion
 
@@ -1075,6 +1155,7 @@ namespace HigLabo.Core
                             {
                                 if (targetProperty_PropertyType.IsAssignableFrom(sourceProperty_PropertyType))
                                 {
+                                    deepCopy = true;
                                     il.Emit(OpCodes.Ldarg_2);
                                     il.Emit(OpCodes.Ldarg_1);
                                     il.Emit(OpCodes.Callvirt, sourceGetMethod);
@@ -1202,8 +1283,8 @@ namespace HigLabo.Core
 
                 #region this.Map(source.P1, target.P1, context);
                 if (sourceProperty.IsIndexedProperty == false && targetProperty.IsIndexedProperty == false &&
-                    IsDirectSetValue(targetProperty.ActualType) == false &&
-                    newCollection == false)
+                    //IsDirectSetValue(targetProperty.ActualType) == false &&
+                    deepCopy == false && newCollection == false)
                 {
                     MethodInfo md = null;
 
@@ -1214,11 +1295,16 @@ namespace HigLabo.Core
                         il.Emit(sourceMethodCall, sourceGetMethod);
                         il.Emit(ldTargetTypeArg, 2);
                         il.Emit(targetMethodCall, targetGetMethod);
-                        //if (IsDirectSetValue(targetProperty.ActualType) == true || targetProperty_PropertyType == typeof(Encoding))
-                        //{
-                        //    il.Emit(OpCodes.Callvirt, _CallPostActionMethod.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
-                        //}
-                        //else
+                        if (IsDirectSetValue(targetProperty.ActualType) == true)
+                        {
+                            if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _CallPostAction_Method; }
+                            else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Class_Class_Method; }
+                            else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Class_Struct_Method; }
+                            else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Struct_Class_Method; }
+                            else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Struct_Struct_Method; }
+                            il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                        }
+                        else
                         {
                             if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _MapInternal_Method; }
                             else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _MapInternal_Class_Class_Method; }
@@ -1300,6 +1386,7 @@ namespace HigLabo.Core
         private static Boolean IsDirectSetValue(Type type)
         {
             if (type == typeof(String)) return true;
+            if (type == typeof(Encoding)) return true;
             if (type.IsValueType) return true;
             return false;
         }
