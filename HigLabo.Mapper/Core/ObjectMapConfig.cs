@@ -35,6 +35,7 @@ namespace HigLabo.Core
         private static readonly MethodInfo _MapInternal_Struct_Class_Method = null;
         private static readonly MethodInfo _MapInternal_Struct_Struct_Method = null;
 
+        private static readonly MethodInfo _MapElement_Method = null;
         private static readonly MethodInfo _MapElement_Class_Class_Method = null;
         private static readonly MethodInfo _MapElement_Class_Struct_Method = null;
         private static readonly MethodInfo _MapElement_Struct_Class_Method = null;
@@ -49,8 +50,10 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CallPostAction_Struct_Class_Method = null;
         private static readonly MethodInfo _CallPostAction_Struct_Struct_Method = null;
 
+        private static readonly MethodInfo _MapDeepCopy_Class_Class_Method = null;
+        private static readonly MethodInfo _MapDeepCopy_Struct_Nullable_Method = null;
+
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
-        private static readonly MethodInfo _MapDeepCopyMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_HasPostActionPropertyGetMethod = null;
 
@@ -82,6 +85,7 @@ namespace HigLabo.Core
             _MapInternal_Struct_Class_Method = GetMethodInfo("MapInternal_Struct_Class");
             _MapInternal_Struct_Struct_Method = GetMethodInfo("MapInternal_Struct_Struct");
 
+            _MapElement_Method = GetMethodInfo("MapElement");
             _MapElement_Class_Class_Method = GetMethodInfo("MapElement_Class_Class");
             _MapElement_Class_Struct_Method = GetMethodInfo("MapElement_Class_Struct");
             _MapElement_Struct_Class_Method = GetMethodInfo("MapElement_Struct_Class");
@@ -91,7 +95,8 @@ namespace HigLabo.Core
             _CreateNewObjectArray_Struct_Class_Method = GetMethodInfo("CreateNewObjectArray_Struct_Class");
 
             _CreateDeepCopyArrayMethod = GetMethodInfo("CreateDeepCopyArray");
-            _MapDeepCopyMethod = GetMethodInfo("MapDeepCopy");
+            _MapDeepCopy_Class_Class_Method = GetMethodInfo("MapDeepCopy_Class_Class");
+            _MapDeepCopy_Struct_Nullable_Method = GetMethodInfo("MapDeepCopy_Struct_Nullable");
 
             _CallPostAction_Method = GetMethodInfo("CallPostAction");
             _CallPostAction_Class_Class_Method = GetMethodInfo("CallPostAction_Class_Class");
@@ -328,6 +333,7 @@ namespace HigLabo.Core
             }
         }
 
+        [ObjectMapConfigMethod(Name = "MapElement")]
         public ICollection<TTarget> Map<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MappingContext context)
             where TTarget : new()
         {
@@ -445,10 +451,24 @@ namespace HigLabo.Core
             }
             return target;
         }
-        [ObjectMapConfigMethod(Name = "MapDeepCopy")]
-        public ICollection<TTarget> MapDeepCopy<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
+
+        [ObjectMapConfigMethod(Name = "MapDeepCopy_Class_Class")]
+        public ICollection<TTarget> MapDeepCopy_Class_Class<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target)
             where TSource : class, TTarget
             where TTarget : class
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source.ToArray())
+                {
+                    target.Add(item);
+                }
+            }
+            return target;
+        }
+        [ObjectMapConfigMethod(Name = "MapDeepCopy_Struct_Nullable")]
+        public ICollection<TSource?> MapDeepCopy_Struct_Nullable<TSource>(IEnumerable<TSource> source, ICollection<TSource?> target)
+            where TSource : struct
         {
             if (source != null && target != null)
             {
@@ -1294,7 +1314,10 @@ namespace HigLabo.Core
                                         il.Emit(OpCodes.Callvirt, sourceGetMethod);
                                         il.Emit(OpCodes.Ldarg_2);
                                         il.Emit(OpCodes.Callvirt, targetGetMethod);
-                                        il.Emit(OpCodes.Call, _MapDeepCopyMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                        MethodInfo md = null;
+                                        if (sourceElementType.IsValueType) { md = _MapDeepCopy_Struct_Nullable_Method.MakeGenericMethod(sourceElementType); }
+                                        else if (sourceElementType.IsClass) { md = _MapDeepCopy_Class_Class_Method.MakeGenericMethod(sourceElementType, targetElementType); }
+                                        il.Emit(OpCodes.Call, md);
                                         il.Emit(OpCodes.Pop);
                                         #endregion
                                     }
@@ -1342,7 +1365,8 @@ namespace HigLabo.Core
                                             il.Emit(OpCodes.Callvirt, targetGetMethod);
                                             il.Emit(OpCodes.Ldarg_3);
                                             MethodInfo md = null;
-                                            if (sourceElementType.IsClass && targetElementType.IsClass) { md = _MapElement_Class_Class_Method; }
+                                            if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _MapElement_Method; }
+                                            else if (sourceElementType.IsClass && targetElementType.IsClass) { md = _MapElement_Class_Class_Method; }
                                             else if (sourceElementType.IsClass && targetElementType.IsValueType) { md = _MapElement_Class_Struct_Method; }
                                             else if (sourceElementType.IsValueType && targetElementType.IsClass) { md = _MapElement_Struct_Class_Method; }
                                             else if (sourceElementType.IsValueType && targetElementType.IsValueType) { md = _MapElement_Struct_Struct_Method; }

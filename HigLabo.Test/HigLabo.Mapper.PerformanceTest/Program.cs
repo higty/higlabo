@@ -16,25 +16,9 @@ namespace HigLabo.Mapper.PerformanceTest
     class Program
     {
         static void Main(string[] args)
-        {
-            //TinyMapper.Bind<Customer, CustomerDTO>();
-            //MapperPerformanceTest.TinyMapperTest();
-            //return;
-
-            //AutoMapper.Mapper.Initialize(config =>
-            //{
-            //    config.CreateMap<Customer, CustomerDTO>();
-            //    config.CreateMap<Address, AddressDTO>();
-            //});
-            //MapperPerformanceTest.AutoMapperTest();
-            //return;
-
-            //var d1 = new Dictionary<string, string>();
-            //var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
-            //var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
-
+        {            
             //ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            //ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
+            //ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             //MapperPerformanceTest.HigLaboMapperTest();
             //return;
 

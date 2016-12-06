@@ -271,6 +271,22 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(100, l2.Capacity);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_List_NullableList()
+        {
+            var config = new ObjectMapConfig();
+            config.PropertyMapRules.Clear();
+
+            var rule = new PropertyNameMappingRule();
+            rule.AddPropertyNameMap("Vectors", "NullableVectors");
+            config.PropertyMapRules.Add(rule);
+
+            var l1 = new VectorList();
+            l1.Vectors.Add(new Vector2() { X = 1, Y = 2 });
+            var l2 = config.Map(l1, new VectorList());
+
+            Assert.AreEqual(1, l2.NullableVectors[0].Value.X);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_ListProperty()
         {
             var config = new ObjectMapConfig();

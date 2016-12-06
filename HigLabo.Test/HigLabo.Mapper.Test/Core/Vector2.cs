@@ -17,4 +17,15 @@ namespace HigLabo.Mapper.Test
             this.Y = y;
         }
     }
+    public class VectorList
+    {
+        public List<Vector2> Vectors { get; set; }
+        public List<Vector2?> NullableVectors { get; set; }
+
+        public VectorList()
+        {
+            this.Vectors = new List<Vector2>();
+            this.NullableVectors = new List<Vector2?>();
+        }
+    }
 }
