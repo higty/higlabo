@@ -220,6 +220,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_Map_DynamicObject_Object()
         {
             var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
 
             dynamic u1 = new User();
             u1.Name = "TestUser";
@@ -674,17 +675,17 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(8, u2.Int32Nullable);
         }
 
-        //[TestMethod]
-        //public void ObjectMapConfig_InfiniteLoop()
-        //{
-        //    var config = new ObjectMapConfig();
-        //    config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+        [TestMethod]
+        public void ObjectMapConfig_InfiniteLoop()
+        {
+            var config = new ObjectMapConfig();
+            config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
-        //    var n1 = new TreeNode();
-        //    n1.Nodes = new List<TreeNode>();
-        //    n1.Nodes.Add(n1);
-        //    var n2 = config.Map(n1, new TreeNode());
-        //}
+            var n1 = new TreeNode();
+            n1.Nodes = new List<TreeNode>();
+            n1.Nodes.Add(n1);
+            var n2 = config.Map(n1, new TreeNode());
+        }
 
         private MapPoint MapPointConverter(Object obj)
         {

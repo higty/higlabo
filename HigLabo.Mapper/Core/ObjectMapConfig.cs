@@ -165,10 +165,10 @@ namespace HigLabo.Core
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Object), TypeFilterCondition.Inherit));
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.ObjectToDictionary, typeof(Object), TypeFilterCondition.Inherit));
 
-            this.MaxCallStackCount = 1;
+            this.MaxCallStackCount = 2;
             this.DictionaryKeyStringComparer = StringComparer.OrdinalIgnoreCase;
-            this.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            this.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            this.NullPropertyMapMode = NullPropertyMapMode.DeepCopy;
+            this.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
         }
         private static MethodInfo GetMethodInfo(String name)
         {
@@ -363,7 +363,7 @@ namespace HigLabo.Core
                 try
                 {
                     context.CallStackCount++;
-                    foreach (var item in source)
+                    foreach (var item in source.ToArray())
                     {
                         var o = this.MapInternal_Class_Class(item, new TTarget(), context);
                         target.Add(o);
@@ -386,7 +386,7 @@ namespace HigLabo.Core
                 try
                 {
                     context.CallStackCount++;
-                    foreach (var item in source)
+                    foreach (var item in source.ToArray())
                     {
                         var o = this.MapInternal_Class_Struct(item, new TTarget(), context);
                         target.Add(o);
@@ -409,7 +409,7 @@ namespace HigLabo.Core
                 try
                 {
                     context.CallStackCount++;
-                    foreach (var item in source)
+                    foreach (var item in source.ToArray())
                     {
                         var o = this.MapInternal_Struct_Class(item, new TTarget(), context);
                         target.Add(o);
@@ -432,7 +432,7 @@ namespace HigLabo.Core
                 try
                 {
                     context.CallStackCount++;
-                    foreach (var item in source)
+                    foreach (var item in source.ToArray())
                     {
                         var o = this.MapInternal_Struct_Struct(item, new TTarget(), context);
                         target.Add(o);
@@ -452,7 +452,7 @@ namespace HigLabo.Core
         {
             if (source != null && target != null)
             {
-                foreach (var item in source)
+                foreach (var item in source.ToArray())
                 {
                     target.Add(item);
                 }
@@ -869,7 +869,7 @@ namespace HigLabo.Core
                 var ldTargetTypeArg = targetType.IsValueType ? OpCodes.Ldarga_S : OpCodes.Ldarg;
                 var sourceMethodCall = sourceType.IsValueType ? OpCodes.Call : OpCodes.Callvirt;
                 var targetMethodCall = targetType.IsValueType ? OpCodes.Call : OpCodes.Callvirt;
-                var newObject = false;
+                var targetCreated = false;
                 var deepCopy = false;
                 var newCollection = false;
                 #endregion
@@ -1225,7 +1225,7 @@ namespace HigLabo.Core
                                 var defaultConstructor = targetProperty_PropertyType.GetConstructor(Type.EmptyTypes);
                                 if (defaultConstructor != null)
                                 {
-                                    newObject = true;
+                                    targetCreated = true;
                                     il.Emit(OpCodes.Ldarg_2);
                                     il.Emit(OpCodes.Newobj, defaultConstructor);
                                     il.Emit(OpCodes.Callvirt, targetSetMethod);
@@ -1235,6 +1235,7 @@ namespace HigLabo.Core
                             {
                                 if (targetProperty_PropertyType.IsAssignableFrom(sourceProperty_PropertyType))
                                 {
+                                    targetCreated = true;
                                     deepCopy = true;
                                     il.Emit(OpCodes.Ldarg_2);
                                     il.Emit(OpCodes.Ldarg_1);
@@ -1398,7 +1399,7 @@ namespace HigLabo.Core
                             #endregion
                         }
                     }
-                    else
+                    else if (targetCreated)
                     {
                         #region this.Map(source.P1, target.P1, context);
                         il.Emit(ldTargetTypeArg, 2);
@@ -1408,12 +1409,12 @@ namespace HigLabo.Core
                             il.Emit(sourceMethodCall, sourceGetMethod);
                             il.Emit(ldTargetTypeArg, 2);
                             il.Emit(targetMethodCall, targetGetMethod);
+                            il.Emit(OpCodes.Ldarg_3);
                             if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _MapInternal_Method; }
                             else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _MapInternal_Class_Class_Method; }
                             else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Class_Struct_Method; }
                             else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _MapInternal_Struct_Class_Method; }
                             else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Struct_Struct_Method; }
-                            il.Emit(OpCodes.Ldarg_3);
                             il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
                         }
                         //il.Emit(OpCodes.Pop);

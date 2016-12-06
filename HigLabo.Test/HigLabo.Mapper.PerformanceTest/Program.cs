@@ -31,12 +31,18 @@ namespace HigLabo.Mapper.PerformanceTest
 
             //var d1 = new Dictionary<string, string>();
             //var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
+            //var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
+
+            //ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            //ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
             //MapperPerformanceTest.HigLaboMapperTest();
+            //return;
+
             //HigLaboMapperTest();
             //Console.ReadLine();
             //return;
 
-            //TinyMapperTest();
+            //AutoMapperTest();
             //return;
 
             var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
@@ -72,7 +78,10 @@ namespace HigLabo.Mapper.PerformanceTest
             {
                 config.CreateMap<CollectionWithPropety, CollectionWithPropety>();
             });
-            var o1 = AutoMapper.Mapper.Map(data, new SiteSummaryData());
+            var n1 = new TreeNode();
+            n1.Nodes = new List<TreeNode>();
+            n1.Nodes.Add(n1);
+            var n2 = AutoMapper.Mapper.Map(n1, new TreeNode());
         }
         private static void HigLaboMapperTest()
         {

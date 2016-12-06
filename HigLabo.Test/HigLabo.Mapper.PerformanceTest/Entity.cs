@@ -221,5 +221,13 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public Int32 Value { get; set; }
     }
+    public class TreeNode
+    {
+        public List<TreeNode> Nodes { get; set; }
+
+        public TreeNode()
+        {
+        }
+    }
 
 }
