@@ -249,7 +249,15 @@ namespace HigLabo.Core
             if (source == null) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
-            return md.Invoke(this, source, target, context);
+            try
+            {
+                context.CallStackCount++;
+                return md.Invoke(this, source, target, context);
+            }
+            finally
+            {
+                context.CallStackCount--;
+            }
         }
         [ObjectMapConfigMethod(Name = "MapInternal_Class_Struct")]
         public TTarget MapInternal_Class_Struct<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
@@ -259,7 +267,15 @@ namespace HigLabo.Core
             if (source == null) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
-            return md.Invoke(this, source, target, context);
+            try
+            {
+                context.CallStackCount++;
+                return md.Invoke(this, source, target, context);
+            }
+            finally
+            {
+                context.CallStackCount--;
+            }
         }
         [ObjectMapConfigMethod(Name = "MapInternal_Struct_Class")]
         public TTarget MapInternal_Struct_Class<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
@@ -268,7 +284,15 @@ namespace HigLabo.Core
         {
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
-            return md.Invoke(this, source, target, context);
+            try
+            {
+                context.CallStackCount++;
+                return md.Invoke(this, source, target, context);
+            }
+            finally
+            {
+                context.CallStackCount--;
+            }
         }
         [ObjectMapConfigMethod(Name = "MapInternal_Struct_Struct")]
         public TTarget MapInternal_Struct_Struct<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
@@ -277,7 +301,15 @@ namespace HigLabo.Core
         {
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
-            return md.Invoke(this, source, target, context);
+            try
+            {
+                context.CallStackCount++;
+                return md.Invoke(this, source, target, context);
+            }
+            finally
+            {
+                context.CallStackCount--;
+            }
         }
 
         private TTarget MapFromDataReader<TTarget>(IDataReader source, TTarget target, MappingContext context)
@@ -1189,7 +1221,7 @@ namespace HigLabo.Core
                             var sourceElementType = sourceInterfaceType.GenericTypeArguments[0];
                             var targetElementType = targetInterfaceType.GenericTypeArguments[0];
 
-                            if ((this.CollectionElementMapMode == CollectionElementMapMode.DeepCopy || IsDirectSetValue(targetElementType)) &&
+                            if ((this.CollectionElementMapMode == CollectionElementMapMode.DeepCopy || IsImmutable(targetElementType)) &&
                                 targetElementType.IsAssignableFrom(sourceElementType))
                             {
                                 #region DeepCopy when SourceElementType can assign to TargetElementTyep.
@@ -1289,38 +1321,40 @@ namespace HigLabo.Core
 
                 #region Map or CallPostAction
                 if (sourceProperty.IsIndexedProperty == false && targetProperty.IsIndexedProperty == false &&
-                    //IsDirectSetValue(targetProperty.ActualType) == false &&
                     deepCopy == false && newCollection == false)
                 {
                     MethodInfo md = null;
 
-                    if (IsDirectSetValue(targetProperty.ActualType) == true)
+                    if (IsImmutable(targetProperty.ActualType) == true)
                     {
-                        #region target.P1 = this.CallPostAction(source.P1, target.P1);
-                        //if (this.HasPostAction == true) { ... }
-                        il.Emit(OpCodes.Ldarg_0);
-                        il.Emit(OpCodes.Callvirt, _HasPostActionPropertyGetMethod);
-                        var hasPostActionIsFalseLabel = il.DefineLabel();
-                        il.Emit(OpCodes.Brfalse_S, hasPostActionIsFalseLabel);
+                        //if (this.HasPostAction)
                         {
-                            il.Emit(ldTargetTypeArg, 2);
+                            #region target.P1 = this.CallPostAction(source.P1, target.P1);
+                            //if (this.HasPostAction == true) { ... }
+                            il.Emit(OpCodes.Ldarg_0);
+                            il.Emit(OpCodes.Callvirt, _HasPostActionPropertyGetMethod);
+                            var hasPostActionIsFalseLabel = il.DefineLabel();
+                            il.Emit(OpCodes.Brfalse_S, hasPostActionIsFalseLabel);
                             {
-                                il.Emit(OpCodes.Ldarg_0);
-                                il.Emit(ldSourceTypeArg, 1);
-                                il.Emit(sourceMethodCall, sourceGetMethod);
                                 il.Emit(ldTargetTypeArg, 2);
-                                il.Emit(targetMethodCall, targetGetMethod);
-                                if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _CallPostAction_Method; }
-                                else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Class_Class_Method; }
-                                else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Class_Struct_Method; }
-                                else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Struct_Class_Method; }
-                                else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Struct_Struct_Method; }
-                                il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                                {
+                                    il.Emit(OpCodes.Ldarg_0);
+                                    il.Emit(ldSourceTypeArg, 1);
+                                    il.Emit(sourceMethodCall, sourceGetMethod);
+                                    il.Emit(ldTargetTypeArg, 2);
+                                    il.Emit(targetMethodCall, targetGetMethod);
+                                    if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _CallPostAction_Method; }
+                                    else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Class_Class_Method; }
+                                    else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Class_Struct_Method; }
+                                    else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Struct_Class_Method; }
+                                    else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Struct_Struct_Method; }
+                                    il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                                }
+                                il.Emit(targetMethodCall, targetSetMethod);
                             }
-                            il.Emit(targetMethodCall, targetSetMethod);
+                            il.MarkLabel(hasPostActionIsFalseLabel);
+                            #endregion
                         }
-                        il.MarkLabel(hasPostActionIsFalseLabel);
-                        #endregion
                     }
                     else
                     {
@@ -1410,7 +1444,7 @@ namespace HigLabo.Core
                 type == typeof(Byte) || type == typeof(UInt16) || type == typeof(UInt32) || type == typeof(UInt64) ||
                 type == typeof(Single) || type == typeof(Double) || type == typeof(Decimal);
         }
-        private static Boolean IsDirectSetValue(Type type)
+        private static Boolean IsImmutable(Type type)
         {
             if (type == typeof(String)) return true;
             if (type == typeof(Encoding)) return true;

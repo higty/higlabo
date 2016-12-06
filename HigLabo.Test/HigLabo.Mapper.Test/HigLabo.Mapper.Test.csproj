@@ -55,6 +55,7 @@
     <Compile Include="Core\MapPoint.cs" />
     <Compile Include="Core\Sys_Database.cs" />
     <Compile Include="Core\TextParser.cs" />
+    <Compile Include="Core\TreeNode.cs" />
     <Compile Include="Core\User.cs" />
     <Compile Include="Core\Vector2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

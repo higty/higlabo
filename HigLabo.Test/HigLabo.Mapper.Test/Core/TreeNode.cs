@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HigLabo.Core
+namespace HigLabo.Mapper.Test
 {
-    public class MappingContext
+    public class TreeNode
     {
-        public Int32 CallStackCount { get; set; }
+        public List<TreeNode> Nodes { get; set; }
 
-        internal MappingContext()
+        public TreeNode()
         {
         }
     }

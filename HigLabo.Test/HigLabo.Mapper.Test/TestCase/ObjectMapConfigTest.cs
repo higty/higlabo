@@ -672,6 +672,18 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(8, u2.Int32Nullable);
         }
 
+        //[TestMethod]
+        //public void ObjectMapConfig_InfiniteLoop()
+        //{
+        //    var config = new ObjectMapConfig();
+        //    config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+
+        //    var n1 = new TreeNode();
+        //    n1.Nodes = new List<TreeNode>();
+        //    n1.Nodes.Add(n1);
+        //    var n2 = config.Map(n1, new TreeNode());
+        //}
+
         private MapPoint MapPointConverter(Object obj)
         {
             if (obj is String && (String)obj != null)

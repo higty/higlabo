@@ -87,7 +87,15 @@ namespace HigLabo.Mapper.PerformanceTest
             var c1 = new ScheduleSource();
             c1.Value = 123;
             c1.ScheduleType = ScheduleType.Hidden;
-            c1.Poeples.Add(new Poeple() { Name = "Marco" });
+            var p1 = new People() { Name = "Marco" };
+            p1.Schedule = new Schedule();
+            p1.Schedule.Value =123;
+            p1.Schedule.ScheduleType = ScheduleType.Private;
+            p1.Schedule.Peoples = new List<People>();
+            //p1.Schedule.Peoples.Add(p1);
+            c1.Peoples.Add(p1);
+
+
             c1.Tags.Add("C#");
             c1.Tags.Add("ASP.NET");
 
@@ -100,12 +108,12 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public Int32 Value { get; set; }
         public ScheduleType ScheduleType { get; set; }
-        public List<Poeple> Poeples { get; private set; }
+        public List<People> Peoples { get; private set; }
         public List<String> Tags { get; private set; }
 
         public ScheduleSource()
         {
-            this.Poeples = new List<Poeple>();
+            this.Peoples = new List<People>();
             this.Tags = new List<string>();
         }
     }
@@ -113,7 +121,7 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public Int32? Value { get; set; }
         public ScheduleType ScheduleType { get; set; }
-        public List<Poeple> Poeples { get; set; }
+        public List<People> Peoples { get; set; }
         public String[] Tags { get; set; }
 
     }
@@ -123,8 +131,15 @@ namespace HigLabo.Mapper.PerformanceTest
         Private,
         Hidden,
     }
-    public class Poeple
+    public class People
     {
         public String Name { get; set; }
+        public Schedule Schedule { get; set; }
+        public List<People> Peoples { get; private set; }
+
+        public People()
+        {
+            this.Peoples = new List<People>();
+        }
     }
 }
