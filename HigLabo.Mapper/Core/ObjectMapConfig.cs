@@ -52,6 +52,8 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
         private static readonly MethodInfo _MapDeepCopyMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
+        private static readonly MethodInfo _HasPostActionPropertyGetMethod = typeof(ObjectMapConfig).GetProperty("HasPostAction").GetGetMethod();
+
         private static readonly ConcurrentDictionary<Type, MethodInfo> _TypeConverter_ToEnumMethods = new ConcurrentDictionary<Type, MethodInfo>();
         private static readonly Dictionary<Type, MethodInfo> _TypeConverter_ToTypeMethods = new Dictionary<Type, MethodInfo>();
         private static readonly List<Type> _PrimitiveValueTypes = new List<Type>();
@@ -62,6 +64,10 @@ namespace HigLabo.Core
         public List<DictionaryMappingRule> DictionaryMappingRules { get; private set; }
         public TypeConverter TypeConverter { get; set; }
         public Int32 MaxCallStack { get; set; }
+        public Boolean HasPostAction
+        {
+            get { return _PostActions.Count > 0; }
+        }
         public StringComparer DictionaryKeyStringComparer { get; set; }
         public NullPropertyMapMode NullPropertyMapMode { get; set; }
         public CollectionElementMapMode CollectionElementMapMode { get; set; }
@@ -1281,31 +1287,51 @@ namespace HigLabo.Core
                     #endregion
                 }
 
-                #region this.Map(source.P1, target.P1, context);
+                #region Map or CallPostAction
                 if (sourceProperty.IsIndexedProperty == false && targetProperty.IsIndexedProperty == false &&
                     //IsDirectSetValue(targetProperty.ActualType) == false &&
                     deepCopy == false && newCollection == false)
                 {
                     MethodInfo md = null;
 
-                    il.Emit(ldTargetTypeArg, 2);
+                    if (IsDirectSetValue(targetProperty.ActualType) == true)
                     {
+                        #region target.P1 = this.CallPostAction(source.P1, target.P1);
+                        //if (this.HasPostAction == true) { ... }
                         il.Emit(OpCodes.Ldarg_0);
-                        il.Emit(ldSourceTypeArg, 1);
-                        il.Emit(sourceMethodCall, sourceGetMethod);
-                        il.Emit(ldTargetTypeArg, 2);
-                        il.Emit(targetMethodCall, targetGetMethod);
-                        if (IsDirectSetValue(targetProperty.ActualType) == true)
+                        il.Emit(OpCodes.Callvirt, _HasPostActionPropertyGetMethod);
+                        var hasPostActionIsFalseLabel = il.DefineLabel();
+                        il.Emit(OpCodes.Brfalse_S, hasPostActionIsFalseLabel);
                         {
-                            if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _CallPostAction_Method; }
-                            else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Class_Class_Method; }
-                            else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Class_Struct_Method; }
-                            else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Struct_Class_Method; }
-                            else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Struct_Struct_Method; }
-                            il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                            il.Emit(ldTargetTypeArg, 2);
+                            {
+                                il.Emit(OpCodes.Ldarg_0);
+                                il.Emit(ldSourceTypeArg, 1);
+                                il.Emit(sourceMethodCall, sourceGetMethod);
+                                il.Emit(ldTargetTypeArg, 2);
+                                il.Emit(targetMethodCall, targetGetMethod);
+                                if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _CallPostAction_Method; }
+                                else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Class_Class_Method; }
+                                else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Class_Struct_Method; }
+                                else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Struct_Class_Method; }
+                                else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Struct_Struct_Method; }
+                                il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                            }
+                            il.Emit(targetMethodCall, targetSetMethod);
                         }
-                        else
+                        il.MarkLabel(hasPostActionIsFalseLabel);
+                        #endregion
+                    }
+                    else
+                    {
+                        #region this.Map(source.P1, target.P1, context);
+                        il.Emit(ldTargetTypeArg, 2);
                         {
+                            il.Emit(OpCodes.Ldarg_0);
+                            il.Emit(ldSourceTypeArg, 1);
+                            il.Emit(sourceMethodCall, sourceGetMethod);
+                            il.Emit(ldTargetTypeArg, 2);
+                            il.Emit(targetMethodCall, targetGetMethod);
                             if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _MapInternal_Method; }
                             else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _MapInternal_Class_Class_Method; }
                             else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Class_Struct_Method; }
@@ -1314,9 +1340,10 @@ namespace HigLabo.Core
                             il.Emit(OpCodes.Ldarg_3);
                             il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
                         }
+                        //il.Emit(OpCodes.Pop);
+                        il.Emit(targetMethodCall, targetSetMethod);
+                        #endregion
                     }
-                    //il.Emit(OpCodes.Pop);
-                    il.Emit(targetMethodCall, targetSetMethod);
                 }
                 #endregion
             }
