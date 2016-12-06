@@ -760,7 +760,6 @@ namespace HigLabo.Core
                     if (p.GetGetMethod() == null) { continue; }
                     if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
 
-
                     sourceProperties.Add(p);
                 }
             }
@@ -771,8 +770,13 @@ namespace HigLabo.Core
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .Where(el => el.GetIndexParameters().Length == 0))
                 {
-                    if (p.GetSetMethod() == null) { continue; }
                     if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (p.GetGetMethod() == null)
+                    {
+                        var targetInterfaceType = p.PropertyType.GetInterfaces()
+                            .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
+                        if (targetInterfaceType == null) { continue; }
+                    }
 
                     targetProperties.Add(p);
                 }
@@ -1123,7 +1127,7 @@ namespace HigLabo.Core
                     }
                     #endregion
                 }
-                else if (IsPrimitive(targetProperty_PropertyType))//Int32, DateTime, Boolean
+                else if (IsPrimitive(targetProperty_PropertyType) && targetSetMethod != null)//Int32, DateTime, Boolean
                 {
                     #region
                     if (sourceProperty.IsIndexedProperty)
@@ -1209,7 +1213,7 @@ namespace HigLabo.Core
                     }
                     #endregion
                 }
-                else if (IsPrimitive(targetProperty.ActualType))//Int32?, DateTime?, Boolean?
+                else if (IsPrimitive(targetProperty.ActualType) && targetSetMethod != null)//Int32?, DateTime?, Boolean?
                 {
                     #region
                     if (sourceProperty.IsIndexedProperty)
@@ -1265,7 +1269,7 @@ namespace HigLabo.Core
                 else if (targetProperty_PropertyType.IsClass || targetProperty_PropertyType.IsInterface)
                 {
                     #region
-                    if (this.NullPropertyMapMode != NullPropertyMapMode.None)
+                    if (this.NullPropertyMapMode != NullPropertyMapMode.None && targetSetMethod != null)
                     {
                         #region if (target.P1 == null) { target.P1 = new TTarget(); }
                         il.Emit(OpCodes.Ldarg_2);
@@ -1333,14 +1337,17 @@ namespace HigLabo.Core
                                 {
                                     if (targetProperty_PropertyType.IsArray && targetProperty_PropertyType.GetArrayRank() == 1)
                                     {
-                                        #region IEnumerabe<TSouce> to TTarget[]
-                                        il.Emit(OpCodes.Ldarg_2);
-                                        il.Emit(OpCodes.Ldarg_0);
-                                        il.Emit(OpCodes.Ldarg_1);
-                                        il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                        il.Emit(OpCodes.Call, _CreateDeepCopyArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                        il.Emit(OpCodes.Callvirt, targetSetMethod);
-                                        #endregion
+                                        if (targetSetMethod != null)
+                                        {
+                                            #region IEnumerabe<TSouce> to TTarget[]
+                                            il.Emit(OpCodes.Ldarg_2);
+                                            il.Emit(OpCodes.Ldarg_0);
+                                            il.Emit(OpCodes.Ldarg_1);
+                                            il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                            il.Emit(OpCodes.Call, _CreateDeepCopyArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                            il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                            #endregion
+                                        }
                                     }
                                     else
                                     {
@@ -1382,18 +1389,21 @@ namespace HigLabo.Core
                                         #region this.MapElement(source.P1, target.P1); //SourceElementType has default constructor.
                                         if (targetProperty_PropertyType.IsArray && targetProperty_PropertyType.GetArrayRank() == 1)
                                         {
-                                            #region IEnumerabe<TSouce> to TTarget[]
-                                            il.Emit(OpCodes.Ldarg_2);
-                                            il.Emit(OpCodes.Ldarg_0);
-                                            il.Emit(OpCodes.Ldarg_1);
-                                            il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                            il.Emit(OpCodes.Ldarg_3);
-                                            MethodInfo md = null;
-                                            if (sourceElementType.IsClass && targetElementType.IsClass) { md = _CreateNewObjectArray_Class_Class_Method; }
-                                            else if (sourceElementType.IsValueType && targetElementType.IsClass) { md = _CreateNewObjectArray_Struct_Class_Method; }
-                                            il.Emit(OpCodes.Call, md.MakeGenericMethod(sourceElementType, targetElementType));
-                                            il.Emit(OpCodes.Callvirt, targetSetMethod);
-                                            #endregion
+                                            if (targetSetMethod != null)
+                                            {
+                                                #region IEnumerabe<TSouce> to TTarget[]
+                                                il.Emit(OpCodes.Ldarg_2);
+                                                il.Emit(OpCodes.Ldarg_0);
+                                                il.Emit(OpCodes.Ldarg_1);
+                                                il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                                il.Emit(OpCodes.Ldarg_3);
+                                                MethodInfo md = null;
+                                                if (sourceElementType.IsClass && targetElementType.IsClass) { md = _CreateNewObjectArray_Class_Class_Method; }
+                                                else if (sourceElementType.IsValueType && targetElementType.IsClass) { md = _CreateNewObjectArray_Struct_Class_Method; }
+                                                il.Emit(OpCodes.Call, md.MakeGenericMethod(sourceElementType, targetElementType));
+                                                il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                                #endregion
+                                            }
                                         }
                                         else
                                         {
@@ -1425,10 +1435,11 @@ namespace HigLabo.Core
                     }
                     #endregion
                 }
+                if (targetSetMethod == null) { continue; }
+                if (sourceProperty.IsIndexedProperty || targetProperty.IsIndexedProperty) { continue; }
 
                 #region Map or CallPostAction
-                if (sourceProperty.IsIndexedProperty == false && targetProperty.IsIndexedProperty == false &&
-                    deepCopy == false && newCollection == false)
+                if (deepCopy == false && newCollection == false)
                 {
                     MethodInfo md = null;
 
