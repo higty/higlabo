@@ -52,7 +52,7 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
         private static readonly MethodInfo _MapDeepCopyMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
-        private static readonly MethodInfo _HasPostActionPropertyGetMethod = typeof(ObjectMapConfig).GetProperty("HasPostAction").GetGetMethod();
+        private static readonly MethodInfo _ObjectMapConfig_HasPostActionPropertyGetMethod = null;
 
         private static readonly ConcurrentDictionary<Type, MethodInfo> _TypeConverter_ToEnumMethods = new ConcurrentDictionary<Type, MethodInfo>();
         private static readonly Dictionary<Type, MethodInfo> _TypeConverter_ToTypeMethods = new Dictionary<Type, MethodInfo>();
@@ -100,6 +100,8 @@ namespace HigLabo.Core
             _CallPostAction_Struct_Struct_Method = GetMethodInfo("CallPostAction_Struct_Struct");
 
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
+            _ObjectMapConfig_HasPostActionPropertyGetMethod = typeof(ObjectMapConfig).GetProperty("HasPostAction").GetGetMethod();
+
             InitializeTypeConverter_ToTypeMethods();
 
             InitializePrimitiveValueTypes();
@@ -195,7 +197,7 @@ namespace HigLabo.Core
         }
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
-            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
+            if (source == null || context.MaxCallStackCountOver()) { return target; }
             if (target == null || IsPrimitive(typeof(TTarget)))
             {
                 return this.CallPostAction(source, target);
@@ -248,7 +250,7 @@ namespace HigLabo.Core
         [ObjectMapConfigMethod(Name = "MapInternal")]
         public TTarget MapInternal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
-            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
+            if (source == null || context.MaxCallStackCountOver()) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             return md.Invoke(this, source, target, context);
@@ -258,7 +260,7 @@ namespace HigLabo.Core
             where TSource : class
             where TTarget : class
         {
-            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
+            if (source == null || context.MaxCallStackCountOver()) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
@@ -276,7 +278,7 @@ namespace HigLabo.Core
             where TSource : class
             where TTarget : struct
         {
-            if (source == null || context.CallStackCount > this.MaxCallStackCount) { return target; }
+            if (source == null || context.MaxCallStackCountOver()) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
@@ -294,7 +296,7 @@ namespace HigLabo.Core
             where TSource : struct
             where TTarget : class
         {
-            if (context.CallStackCount > this.MaxCallStackCount) { return target; }
+            if (context.MaxCallStackCountOver()) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
@@ -312,7 +314,7 @@ namespace HigLabo.Core
             where TSource : struct
             where TTarget : struct
         {
-            if (context.CallStackCount > this.MaxCallStackCount) { return target; }
+            if (context.MaxCallStackCountOver()) { return target; }
             var md = this.GetMethod<TSource, TTarget>();
             if (md == null) { return target; }
             try
@@ -1372,7 +1374,7 @@ namespace HigLabo.Core
                             #region target.P1 = this.CallPostAction(source.P1, target.P1);
                             //if (this.HasPostAction == true) { ... }
                             il.Emit(OpCodes.Ldarg_0);
-                            il.Emit(OpCodes.Callvirt, _HasPostActionPropertyGetMethod);
+                            il.Emit(OpCodes.Callvirt, _ObjectMapConfig_HasPostActionPropertyGetMethod);
                             var hasPostActionIsFalseLabel = il.DefineLabel();
                             il.Emit(OpCodes.Brfalse_S, hasPostActionIsFalseLabel);
                             {

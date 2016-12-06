@@ -18,5 +18,9 @@ namespace HigLabo.Core
             this.CallStackCount = 0;
             this.LayerLevel = 0;
         }
+        public Boolean MaxCallStackCountOver()
+        {
+            return this.CallStackCount > this.MaxCallStackCount;
+        }
     }
 }

@@ -89,6 +89,8 @@ namespace HigLabo.Mapper.Test
         {
             var config = new ObjectMapConfig();
             config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            config.MaxCallStackCount = 100;
+
             var u1 = new User();
             u1.ParentUser = new User("ParentUser");
             u1.Dictionary = new Dictionary<string, string>();
