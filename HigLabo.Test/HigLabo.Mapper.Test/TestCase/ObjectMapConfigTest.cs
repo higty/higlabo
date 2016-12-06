@@ -298,6 +298,17 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(1, l2.NullableVectors[0].Value.X);
         }
         [TestMethod]
+        public void ObjectMapConfig_Map_List_ReadonlyList()
+        {
+            var config = new ObjectMapConfig();
+
+            var l1 = new VectorList();
+            l1.ReadonlyVectors.Add(new Vector2() { X = 1, Y = 2 });
+            var l2 = config.Map(l1, new VectorList());
+
+            Assert.AreEqual(1, l2.ReadonlyVectors[0].X);
+        }
+        [TestMethod]
         public void ObjectMapConfig_Map_ListProperty()
         {
             var config = new ObjectMapConfig();
