@@ -31,8 +31,8 @@ namespace HigLabo.Mapper.PerformanceTest
 
             //var d1 = new Dictionary<string, string>();
             //var d2 = ObjectMapConfig.Current.Map(d1, new Dictionary<String, Object>());
-            //HigLaboMapperTest();
             //MapperPerformanceTest.HigLaboMapperTest();
+            //HigLaboMapperTest();
             //Console.ReadLine();
             //return;
 
@@ -98,7 +98,7 @@ namespace HigLabo.Mapper.PerformanceTest
     }
     public class ScheduleSource
     {
-        public Int16? Value { get; set; }
+        public Int32 Value { get; set; }
         public ScheduleType ScheduleType { get; set; }
         public List<Poeple> Poeples { get; private set; }
         public List<String> Tags { get; private set; }

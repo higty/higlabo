@@ -29,6 +29,7 @@ namespace HigLabo.Core
         private static readonly String System_Collections_Generic_Dictionary_2 = "System.Collections.Generic.Dictionary`2";
         private readonly ConcurrentDictionary<ObjectMapTypeInfo, Object> _Methods = new ConcurrentDictionary<ObjectMapTypeInfo, Object>();
 
+        private static readonly MethodInfo _MapInternal_Method = null;
         private static readonly MethodInfo _MapInternal_Class_Class_Method = null;
         private static readonly MethodInfo _MapInternal_Class_Struct_Method = null;
         private static readonly MethodInfo _MapInternal_Struct_Class_Method = null;
@@ -45,6 +46,7 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
         private static readonly MethodInfo _MapDeepCopyMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
+        private static readonly MethodInfo _CallPostActionMethod = null;
         private static readonly ConcurrentDictionary<Type, MethodInfo> _TypeConverter_ToEnumMethods = new ConcurrentDictionary<Type, MethodInfo>();
         private static readonly Dictionary<Type, MethodInfo> _TypeConverter_ToTypeMethods = new Dictionary<Type, MethodInfo>();
         private static readonly List<Type> _PrimitiveValueTypes = new List<Type>();
@@ -62,6 +64,8 @@ namespace HigLabo.Core
         static ObjectMapConfig()
         {
             Current = new ObjectMapConfig();
+
+            _MapInternal_Method = GetMethodInfo("MapInternal");
             _MapInternal_Class_Class_Method = GetMethodInfo("MapInternal_Class_Class");
             _MapInternal_Class_Struct_Method = GetMethodInfo("MapInternal_Class_Struct");
             _MapInternal_Struct_Class_Method = GetMethodInfo("MapInternal_Struct_Class");
@@ -77,6 +81,8 @@ namespace HigLabo.Core
 
             _CreateDeepCopyArrayMethod = GetMethodInfo("CreateDeepCopyArray");
             _MapDeepCopyMethod = GetMethodInfo("MapDeepCopy");
+            _CallPostActionMethod = GetMethodInfo("CallPostAction");
+
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             InitializeTypeConverter_ToTypeMethods();
 
@@ -210,6 +216,14 @@ namespace HigLabo.Core
                 }
             }
             return this.CallPostAction(source, result);
+        }
+        [ObjectMapConfigMethod(Name = "MapInternal")]
+        public TTarget MapInternal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
+        {
+            if (source == null) { return target; }
+            var md = this.GetMethod<TSource, TTarget>();
+            if (md == null) { return target; }
+            return md.Invoke(this, source, target, context);
         }
         [ObjectMapConfigMethod(Name = "MapInternal_Class_Class")]
         public TTarget MapInternal_Class_Class<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
@@ -468,7 +482,8 @@ namespace HigLabo.Core
             condition.Target.TypeFilterCondition = targetCondition;
             _PostActions.Add(new MapPostAction(condition, (Delegate)action));
         }
-        private TTarget CallPostAction<TSource, TTarget>(TSource source, TTarget target)
+        [ObjectMapConfigMethod(Name = "CallPostAction")]
+        public TTarget CallPostAction<TSource, TTarget>(TSource source, TTarget target)
         {
             if (_PostActions.Count == 0) { return target; }
 
@@ -1087,9 +1102,48 @@ namespace HigLabo.Core
                             var sourceElementType = sourceInterfaceType.GenericTypeArguments[0];
                             var targetElementType = targetInterfaceType.GenericTypeArguments[0];
 
-                            if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject &&
+                            if ((this.CollectionElementMapMode == CollectionElementMapMode.DeepCopy || IsDirectSetValue(targetElementType)) &&
+                                targetElementType.IsAssignableFrom(sourceElementType))
+                            {
+                                #region DeepCopy when SourceElementType can assign to TargetElementTyep.
+                                il.Emit(OpCodes.Ldarg_1);
+                                il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                il.Emit(OpCodes.Ldnull);
+                                il.Emit(OpCodes.Ceq);
+                                var sourceIsNullLabel = il.DefineLabel();
+                                il.Emit(OpCodes.Brtrue_S, sourceIsNullLabel);
+                                {
+                                    if (targetProperty_PropertyType.IsArray && targetProperty_PropertyType.GetArrayRank() == 1)
+                                    {
+                                        #region IEnumerabe<TSouce> to TTarget[]
+                                        il.Emit(OpCodes.Ldarg_2);
+                                        il.Emit(OpCodes.Ldarg_0);
+                                        il.Emit(OpCodes.Ldarg_1);
+                                        il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                        il.Emit(OpCodes.Call, _CreateDeepCopyArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                        il.Emit(OpCodes.Callvirt, targetSetMethod);
+                                        #endregion
+                                    }
+                                    else
+                                    {
+                                        #region this.MapDeepCopy(source.P1, target.P1); //SourceElementType can assign to TargetElementTyep.
+                                        il.Emit(OpCodes.Ldarg_0);
+                                        il.Emit(OpCodes.Ldarg_1);
+                                        il.Emit(OpCodes.Callvirt, sourceGetMethod);
+                                        il.Emit(OpCodes.Ldarg_2);
+                                        il.Emit(OpCodes.Callvirt, targetGetMethod);
+                                        il.Emit(OpCodes.Call, _MapDeepCopyMethod.MakeGenericMethod(sourceElementType, targetElementType));
+                                        il.Emit(OpCodes.Pop);
+                                        #endregion
+                                    }
+                                }
+                                il.MarkLabel(sourceIsNullLabel);
+                                #endregion
+                            }
+                            else if (this.CollectionElementMapMode == CollectionElementMapMode.NewObject &&
                                 targetProperty_PropertyType.IsClass)
                             {
+                                #region New Object when TargetElementTyep has default constructor.
                                 var defaultConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
                                 if (defaultConstructor != null)
                                 {
@@ -1138,47 +1192,7 @@ namespace HigLabo.Core
                                     }
                                     il.MarkLabel(sourceIsNullLabel);
                                 }
-                            }
-                            else if (this.CollectionElementMapMode == CollectionElementMapMode.DeepCopy)
-                            {
-                                if (IsDirectSetValue(targetElementType) || 
-                                    targetElementType.IsAssignableFrom(sourceElementType))
-                                {
-                                    #region this.MapDeepCopy(source.P1, target.P1); //SourceElementType can assign to TargetElementTyep.
-                                    il.Emit(OpCodes.Ldarg_1);
-                                    il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                    il.Emit(OpCodes.Ldnull);
-                                    il.Emit(OpCodes.Ceq);
-                                    var sourceIsNullLabel = il.DefineLabel();
-                                    il.Emit(OpCodes.Brtrue_S, sourceIsNullLabel);
-                                    {
-                                        if (targetProperty_PropertyType.IsArray && targetProperty_PropertyType.GetArrayRank() == 1)
-                                        {
-                                            #region IEnumerabe<TSouce> to TTarget[]
-                                            il.Emit(OpCodes.Ldarg_2);
-                                            il.Emit(OpCodes.Ldarg_0);
-                                            il.Emit(OpCodes.Ldarg_1);
-                                            il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                            il.Emit(OpCodes.Call, _CreateDeepCopyArrayMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                            il.Emit(OpCodes.Callvirt, targetSetMethod);
-                                            #endregion
-                                        }
-                                        else
-                                        {
-                                            #region IEnumerabe<TSouce> to ICollection<TTarget>
-                                            il.Emit(OpCodes.Ldarg_0);
-                                            il.Emit(OpCodes.Ldarg_1);
-                                            il.Emit(OpCodes.Callvirt, sourceGetMethod);
-                                            il.Emit(OpCodes.Ldarg_2);
-                                            il.Emit(OpCodes.Callvirt, targetGetMethod);
-                                            il.Emit(OpCodes.Call, _MapDeepCopyMethod.MakeGenericMethod(sourceElementType, targetElementType));
-                                            il.Emit(OpCodes.Pop);
-                                            #endregion
-                                        }
-                                    }
-                                    il.MarkLabel(sourceIsNullLabel);
-                                    #endregion
-                                }
+                                #endregion
                             }
                         }
                         #endregion
@@ -1188,8 +1202,11 @@ namespace HigLabo.Core
 
                 #region this.Map(source.P1, target.P1, context);
                 if (sourceProperty.IsIndexedProperty == false && targetProperty.IsIndexedProperty == false &&
-                    IsPrimitive(targetProperty.ActualType) == false && newCollection == false)
+                    IsDirectSetValue(targetProperty.ActualType) == false &&
+                    newCollection == false)
                 {
+                    MethodInfo md = null;
+
                     il.Emit(ldTargetTypeArg, 2);
                     {
                         il.Emit(OpCodes.Ldarg_0);
@@ -1197,14 +1214,20 @@ namespace HigLabo.Core
                         il.Emit(sourceMethodCall, sourceGetMethod);
                         il.Emit(ldTargetTypeArg, 2);
                         il.Emit(targetMethodCall, targetGetMethod);
-                        il.Emit(OpCodes.Ldarg_3);
-                        MethodInfo md = null;
-                        if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _MapInternal_Class_Class_Method; }
-                        else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Class_Struct_Method; }
-                        else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _MapInternal_Struct_Class_Method; }
-                        else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Struct_Struct_Method; }
-
-                        il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                        //if (IsDirectSetValue(targetProperty.ActualType) == true || targetProperty_PropertyType == typeof(Encoding))
+                        //{
+                        //    il.Emit(OpCodes.Callvirt, _CallPostActionMethod.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                        //}
+                        //else
+                        {
+                            if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _MapInternal_Method; }
+                            else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _MapInternal_Class_Class_Method; }
+                            else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Class_Struct_Method; }
+                            else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _MapInternal_Struct_Class_Method; }
+                            else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _MapInternal_Struct_Struct_Method; }
+                            il.Emit(OpCodes.Ldarg_3);
+                            il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
+                        }
                     }
                     //il.Emit(OpCodes.Pop);
                     il.Emit(targetMethodCall, targetSetMethod);
@@ -1218,21 +1241,6 @@ namespace HigLabo.Core
             var f = typeof(Func<,,,,>);
             var gf = f.MakeGenericType(typeof(ObjectMapConfig), sourceType, targetType, typeof(MappingContext), targetType);
             return dm.CreateDelegate(gf);
-        }
-        private static void GetSourceValue(ILGenerator generator, Type sourceType, MethodInfo sourceGetMethod)
-        {
-            var il = generator;
-
-            if (sourceType.IsValueType)
-            {
-                il.Emit(OpCodes.Ldarga_S, 1);
-                il.Emit(OpCodes.Call, sourceGetMethod);
-            }
-            else
-            {
-                il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Callvirt, sourceGetMethod);
-            }
         }
 
         private static Boolean IsEnumerableToCollection(PropertyMap propertyMap)
