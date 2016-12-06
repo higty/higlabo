@@ -165,7 +165,7 @@ namespace HigLabo.Core
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(Object), TypeFilterCondition.Inherit));
             this.DictionaryMappingRules.Add(new DictionaryMappingRule(DictionaryMappingDirection.ObjectToDictionary, typeof(Object), TypeFilterCondition.Inherit));
 
-            this.MaxCallStackCount = 2;
+            this.MaxCallStackCount = 10;
             this.DictionaryKeyStringComparer = StringComparer.OrdinalIgnoreCase;
             this.NullPropertyMapMode = NullPropertyMapMode.DeepCopy;
             this.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
