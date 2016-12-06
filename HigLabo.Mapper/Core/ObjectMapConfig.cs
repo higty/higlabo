@@ -51,7 +51,9 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CallPostAction_Struct_Struct_Method = null;
 
         private static readonly MethodInfo _MapDeepCopy_Class_Class_Method = null;
+        private static readonly MethodInfo _MapDeepCopy_Struct_Struct_Method = null;
         private static readonly MethodInfo _MapDeepCopy_Struct_Nullable_Method = null;
+        private static readonly MethodInfo _MapDeepCopy_Nullable_Nullable_Method = null;
 
         private static readonly MethodInfo _CreateDeepCopyArrayMethod = null;
         private static readonly MethodInfo _ObjectMapConfig_TypeConverterProperty_GetMethod = null;
@@ -96,7 +98,9 @@ namespace HigLabo.Core
 
             _CreateDeepCopyArrayMethod = GetMethodInfo("CreateDeepCopyArray");
             _MapDeepCopy_Class_Class_Method = GetMethodInfo("MapDeepCopy_Class_Class");
+            _MapDeepCopy_Struct_Struct_Method = GetMethodInfo("MapDeepCopy_Struct_Struct");
             _MapDeepCopy_Struct_Nullable_Method = GetMethodInfo("MapDeepCopy_Struct_Nullable");
+            _MapDeepCopy_Nullable_Nullable_Method = GetMethodInfo("MapDeepCopy_Nullable_Nullable");
 
             _CallPostAction_Method = GetMethodInfo("CallPostAction");
             _CallPostAction_Class_Class_Method = GetMethodInfo("CallPostAction_Class_Class");
@@ -466,6 +470,19 @@ namespace HigLabo.Core
             }
             return target;
         }
+        [ObjectMapConfigMethod(Name = "MapDeepCopy_Struct_Struct")]
+        public ICollection<TSource> MapDeepCopy_Struct_Struct<TSource>(IEnumerable<TSource> source, ICollection<TSource> target)
+            where TSource : struct
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source.ToArray())
+                {
+                    target.Add(item);
+                }
+            }
+            return target;
+        }
         [ObjectMapConfigMethod(Name = "MapDeepCopy_Struct_Nullable")]
         public ICollection<TSource?> MapDeepCopy_Struct_Nullable<TSource>(IEnumerable<TSource> source, ICollection<TSource?> target)
             where TSource : struct
@@ -479,7 +496,26 @@ namespace HigLabo.Core
             }
             return target;
         }
+        [ObjectMapConfigMethod(Name = "MapDeepCopy_Nullable_Nullable")]
+        public ICollection<TSource?> MapDeepCopy_Nullable_Nullable<TSource>(IEnumerable<TSource?> source, ICollection<TSource?> target)
+            where TSource : struct
+        {
+            if (source != null && target != null)
+            {
+                foreach (var item in source.ToArray())
+                {
+                    target.Add(item);
+                }
+            }
+            return target;
+        }
 
+        public TTarget[] CreateNewObjectArray<TSource, TTarget>(IEnumerable<TSource> source, MappingContext context)
+          where TTarget : new()
+        {
+            if (source == null) { return new TTarget[0]; }
+            return source.Select(el => this.MapInternal(el, new TTarget(), context)).ToArray();
+        }
         [ObjectMapConfigMethod(Name = "CreateNewObjectArray_Class_Class")]
         public TTarget[] CreateNewObjectArray_Class_Class<TSource, TTarget>(IEnumerable<TSource> source, MappingContext context)
             where TSource : class
@@ -1315,7 +1351,11 @@ namespace HigLabo.Core
                                         il.Emit(OpCodes.Ldarg_2);
                                         il.Emit(OpCodes.Callvirt, targetGetMethod);
                                         MethodInfo md = null;
-                                        if (sourceElementType.IsValueType) { md = _MapDeepCopy_Struct_Nullable_Method.MakeGenericMethod(sourceElementType); }
+                                        if (sourceElementType.IsInheritanceFrom(typeof(Nullable<>)) && targetElementType.IsInheritanceFrom(typeof(Nullable<>)))
+                                        { md = _MapDeepCopy_Nullable_Nullable_Method.MakeGenericMethod(sourceElementType.GenericTypeArguments[0]); }
+                                        else if (sourceElementType.IsValueType && targetElementType.IsInheritanceFrom(typeof(Nullable<>)))
+                                        { md = _MapDeepCopy_Struct_Nullable_Method.MakeGenericMethod(sourceElementType); }
+                                        else if (sourceElementType.IsValueType && targetElementType.IsValueType) { md = _MapDeepCopy_Struct_Struct_Method.MakeGenericMethod(sourceElementType); }
                                         else if (sourceElementType.IsClass) { md = _MapDeepCopy_Class_Class_Method.MakeGenericMethod(sourceElementType, targetElementType); }
                                         il.Emit(OpCodes.Call, md);
                                         il.Emit(OpCodes.Pop);
