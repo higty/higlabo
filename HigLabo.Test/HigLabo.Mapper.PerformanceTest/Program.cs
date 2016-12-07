@@ -10,13 +10,20 @@ using System.Text;
 using System.Threading.Tasks;
 using AgileObjects;
 using BenchmarkDotNet.Running;
+using HigLabo.Mapper.TestNotSupported;
 
 namespace HigLabo.Mapper.PerformanceTest
 {
     class Program
     {
         static void Main(string[] args)
-        {            
+        {
+            NotSupportedTest.HigLaboMapperTest();
+            NotSupportedTest.TinyMapperTest();
+            NotSupportedTest.MapsterTest();
+            NotSupportedTest.ExpressMapperTest();
+            NotSupportedTest.FastMapperTest();
+
             //ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             //ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             //MapperPerformanceTest.HigLaboMapperTest();

@@ -28,11 +28,26 @@ namespace HigLabo.Mapper.PerformanceTest
 
     public class Address
     {
+        public static readonly Random Random = new Random();
+
         public int Id { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         //public GpsPosition Gps { get; set; }
+        public static Address Create()
+        {
+            var a = new Address();
+            a.Id = GetRandomNumber();
+            a.Street = "Street" + GetRandomNumber();
+            a.City = "City" + GetRandomNumber();
+            a.Country = "USA " + GetRandomNumber();
+            return a;
+        }
+        private static Int32 GetRandomNumber()
+        {
+            return Random.Next(100);
+        }
     }
 
     public class AddressDTO

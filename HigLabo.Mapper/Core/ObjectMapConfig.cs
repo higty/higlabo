@@ -1445,7 +1445,7 @@ namespace HigLabo.Core
 
                     if (IsImmutable(targetProperty.ActualType) == true)
                     {
-                        //if (this.HasPostAction)
+                        if (this.HasPostAction)
                         {
                             #region target.P1 = this.CallPostAction(source.P1, target.P1);
                             //if (this.HasPostAction == true) { ... }
