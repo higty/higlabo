@@ -28,6 +28,26 @@ namespace HigLabo.Mapper.TestNotSupported
             var p1 = Park.Create();
             var p2 = config.Map(p1);
         }
+        public static void AutoMapperTest()
+        {
+            AutoMapper.Mapper.Initialize(config =>
+            {
+                config.CreateMap<Building, Building>();
+                config.CreateMap<TreeNode, TreeNode>();
+            });
+
+            var b1 = new Building();
+            var b2 = AutoMapper.Mapper.Map<Building>(b1);
+
+            var p1 = Park.Create();
+            var p2 = AutoMapper.Mapper.Map<Park>(p1);
+
+            return;
+
+            //StackoverflowException thrown
+            var tn = TreeNode.Create();
+            var tn2 = AutoMapper.Mapper.Map<TreeNode>(tn);
+        }
         public static void TinyMapperTest()
         {
             TinyMapper.Bind<Park, Park>();

@@ -1,0 +1,1736 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AgileObjects.AgileMapper</name>
+    </assembly>
+    <members>
+        <member name="T:AgileObjects.AgileMapper.IMapper">
+            <summary>
+            Provides mapping and mapping configuration services.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.IMapper.GetPlanFor``1">
+            <summary>
+            Create and compile mapping functions for a particular type of mapping of the source type
+            specified by the type argument.
+            </summary>
+            <typeparam name="TSource">The source type for which to create the mapping functions.</typeparam>
+            <returns>
+            A PlanTargetTypeSelector with which to specify the type of mapping the functions for which should 
+            be cached.
+            </returns>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.IMapper.Before">
+            <summary>
+            Configure callbacks to be executed before a particular type of event occurs for all source
+            and target types.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.IMapper.After">
+            <summary>
+            Configure callbacks to be executed after a particular type of event occurs for all source
+            and target types.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.IMapper.WhenMapping">
+            <summary>
+            Configure how this mapper performs a mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.IMapper.Clone``1(``0)">
+            <summary>
+            Performs a deep clone of the given <paramref name="source"/> object and returns the result.
+            </summary>
+            <typeparam name="TSource">The type of object for which to perform a deep clone.</typeparam>
+            <param name="source">The object to deep clone.</param>
+            <returns>A deep clone of the given <paramref name="source"/> object.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.IMapper.Flatten``1(``0)">
+            <summary>
+            Flattens the given <paramref name="source"/> object so it has only value-type or string members
+            and returns the result.
+            </summary>
+            <typeparam name="TSource">The type of object to flatten.</typeparam>
+            <param name="source">The object to flatten.</param>
+            <returns>
+            A dynamic object containing flattened versions of the given <paramref name="source"/> object's 
+            properties.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.IMapper.Map``1(``0)">
+            <summary>
+            Perform a mapping operation on the given <paramref name="source"/> object.
+            </summary>
+            <typeparam name="TSource">The type of source object on which to perform the mapping.</typeparam>
+            <param name="source">The source object on which to perform the mapping.</param>
+            <returns>A TargetTypeSelector with which to specify the type of mapping to perform.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Mapper">
+            <summary>
+            Provides a configurable mapping service. Create new instances with Mapper.CreateNew or use the default
+            instance via the static Mapper access methods.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Mapper.CreateNew">
+            <summary>
+            Creates an instance implementing IMapper with which to perform mappings.
+            </summary>
+            <returns>A new instance implementing IMapper.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Mapper.GetPlanFor``1">
+            <summary>
+            Create and compile mapping functions for a particular type of mapping of the source type
+            specified by the type argument.
+            </summary>
+            <typeparam name="TSource">The source type for which to create the mapping functions.</typeparam>
+            <returns>
+            A PlanTargetTypeSelector with which to specify the type of mapping the functions for which should 
+            be cached.
+            </returns>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Mapper.Before">
+            <summary>
+            Configure callbacks to be executed before a particular type of event occurs for all source
+            and target types.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Mapper.After">
+            <summary>
+            Configure callbacks to be executed after a particular type of event occurs for all source
+            and target types.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Mapper.WhenMapping">
+            <summary>
+            Configure how the default mapper performs a mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Mapper.Clone``1(``0)">
+            <summary>
+            Performs a deep clone of the given <paramref name="source"/> object and returns the result.
+            </summary>
+            <typeparam name="TSource">The type of object for which to perform a deep clone.</typeparam>
+            <param name="source">The object to deep clone.</param>
+            <returns>A deep clone of the given <paramref name="source"/> object.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Mapper.Flatten``1(``0)">
+            <summary>
+            Flattens the given <paramref name="source"/> object so it has only value-type or string members
+            and returns the result.
+            </summary>
+            <typeparam name="TSource">The type of object to flatten.</typeparam>
+            <param name="source">The object to flatten.</param>
+            <returns>
+            A dynamic object containing flattened versions of the given <paramref name="source"/> object's 
+            properties.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Mapper.Map``1(``0)">
+            <summary>
+            Perform a mapping operation on the given <paramref name="source"/> object.
+            </summary>
+            <typeparam name="TSource">The type of source object on which to perform the mapping.</typeparam>
+            <param name="source">The source object on which to perform the mapping.</param>
+            <returns>A TargetTypeSelector with which to specify the type of mapping to perform.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Mapper.Dispose">
+            <summary>
+            Removes the mapper's cached data.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.MappingException">
+            <summary>
+            Represents an error that occurred during a mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.MappingException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+            <summary>
+            Initializes a new instance of the MappingException class. This constructor is provided
+            to support deserialization.
+            </summary>
+            <param name="info">The SerializationInfo containing serialization information.</param>
+            <param name="context">The StreamingContext in which the deserialization is being performed.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.MappingException.For``2(AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData{``0,``1},System.Exception)">
+            <summary>
+            Creates a new instance of the MappingException class.
+            </summary>
+            <typeparam name="TSource">The source type being mapped when the exception occurred.</typeparam>
+            <typeparam name="TTarget">The target type being mapped when the exception occurred.</typeparam>
+            <param name="mappingData">
+            The <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> containing the mapping data of the 
+            current mapping context.
+            </param>
+            <param name="innerException">The exception which caused the creation of the MappingException.</param>
+            <returns>A new MappingException instance.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.ITargetTypeSelector">
+            <summary>
+            Provides options for specifying the type of mapping to perform.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.ITargetTypeSelector.ToANew``1">
+            <summary>
+            Perform a new object mapping.
+            </summary>
+            <typeparam name="TResult">The type of object to create from the specified source object.</typeparam>
+            <returns>The result of the new object mapping.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.ITargetTypeSelector.OnTo``1(``0)">
+            <summary>
+            Perform an OnTo (merge) mapping.
+            </summary>
+            <typeparam name="TTarget">The type of object on which to perform the mapping.</typeparam>
+            <param name="existing">The object on which to perform the mapping.</param>
+            <returns>The mapped object.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.ITargetTypeSelector.Over``1(``0)">
+            <summary>
+            Perform an Over (overwrite) mapping.
+            </summary>
+            <typeparam name="TTarget">The type of object on which to perform the mapping.</typeparam>
+            <param name="existing">The object on which to perform the mapping.</param>
+            <returns>The mapped object.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.PlanTargetTypeSelector`1">
+            <summary>
+            Provides options to create and compile mapping functions for a particular type of mapping from the 
+            source type being configured to a specified target type.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.PlanTargetTypeSelector`1.ToANew``1">
+            <summary>
+            Create and compile mapping functions for a create new mapping from the source type being 
+            configured to the type specified by the type argument.
+            </summary>
+            <typeparam name="TResult">The type of object for which to create the mapping plans.</typeparam>
+            <returns>A string mapping plan showing the functions to be executed during a mapping.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.PlanTargetTypeSelector`1.OnTo``1">
+            <summary>
+            Create and compile mapping functions for an OnTo (merge) mapping from the source type being 
+            configured to the type specified by the type argument.
+            </summary>
+            <typeparam name="TTarget">The type of object for which to create the mapping plans.</typeparam>
+            <returns>A string mapping plan showing the functions to be executed during a mapping.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.PlanTargetTypeSelector`1.Over``1">
+            <summary>
+            Create and compile mapping functions for an Over (overwrite) mapping from the source type being 
+            configured to the type specified by the type argument.
+            </summary>
+            <typeparam name="TTarget">The type of object for which to create the mapping plans.</typeparam>
+            <returns>A string mapping plan showing the functions to be executed during a mapping.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.CustomDataSourceTargetMemberSpecifier`2">
+            <summary>
+            Provides options for specifying a target member to which a configuration option should apply.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.CustomDataSourceTargetMemberSpecifier`2.To``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <summary>
+            Apply the configuration to the given <paramref name="targetMember"/>.
+            </summary>
+            <typeparam name="TTargetValue">The target member's type.</typeparam>
+            <param name="targetMember">The target member to which to apply the configuration.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.CustomDataSourceTargetMemberSpecifier`2.To``1(System.Linq.Expressions.Expression{System.Func{`1,System.Action{``0}}})">
+            <summary>
+            Apply the configuration to the given <paramref name="targetSetMethod"/>.
+            </summary>
+            <typeparam name="TTargetValue">The type of the target set method's argument.</typeparam>
+            <param name="targetSetMethod">The target set method to which to apply the configuration.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.CustomDataSourceTargetMemberSpecifier`2.ToCtor``1">
+            <summary>
+            Apply the configuration to the constructor parameter with the type specified by the type argument.
+            </summary>
+            <typeparam name="TTargetParam">The target constructor parameter's type.</typeparam>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.CustomDataSourceTargetMemberSpecifier`2.ToCtor(System.String)">
+            <summary>
+            Apply the configuration to the constructor parameter with the specified <paramref name="parameterName"/>.
+            </summary>
+            <param name="parameterName">The target constructor parameter's name.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.DerivedPairTargetTypeSpecifier`3">
+            <summary>
+            Enables the selection of a derived target type to which to match a configured, derived source type.
+            </summary>
+            <typeparam name="TSource">
+            The type of source object for which the derived type pair is being configured.
+            </typeparam>
+            <typeparam name="TDerivedSource">
+            The type of derived source object for which the specified derived target type is being configured.
+            </typeparam>
+            <typeparam name="TTarget">
+            The type of target object for which the derived type pair is being configured.
+            </typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.DerivedPairTargetTypeSpecifier`3.To``1">
+            <summary>
+            Map the derived source type being configured to the derived target type specified by the type argument.
+            </summary>
+            <typeparam name="TDerivedTarget">
+            The derived target type to create for the configured derived source type.
+            </typeparam>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.EnumPairSpecifier`1">
+            <summary>
+            Provides options for specifying the enum member to which the configured enum member should be paired.
+            </summary>
+            <typeparam name="TFirstEnum">The type of the first enum being paired.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.EnumPairSpecifier`1.With``1(``0)">
+            <summary>
+            Configure this mapper to map the specified first enum member to the given <paramref name="secondEnumMember"/>.
+            </summary>
+            <typeparam name="TSecondEnum">The type of the second enum being paired.</typeparam>
+            <param name="secondEnumMember">The second enum member in the pair.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.EnumPairSpecifier`1.With``1(``0[])">
+            <summary>
+            Configure this mapper to map the previously-specified set of enum members to the given 
+            <paramref name="secondEnumMembers"/>.
+            </summary>
+            <typeparam name="TSecondEnum">The type of the second enum being paired.</typeparam>
+            <param name="secondEnumMembers">The second set of enum members in the pairs.</param>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.ICallbackSpecifier`2">
+            <summary>
+            Provides options for specifying a callback to execute during mappings from and to the source and 
+            target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type for which the callback should execute.</typeparam>
+            <typeparam name="TTarget">The target type for which the callback should execute.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.ICallbackSpecifier`2.Call(System.Action{AgileObjects.AgileMapper.Members.IMappingData{`0,`1}})">
+            <summary>
+            Specify a callback to be executed. The condition expression is passed a context object containing 
+            the current mapping's source and target objects.
+            </summary>
+            <param name="callback">The callback to execute.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.ICallbackSpecifier`2.Call(System.Action{`0,`1})">
+            <summary>
+            Specify a callback to be executed. The condition expression is passed the current mapping's source 
+            and target objects.
+            </summary>
+            <param name="callback">The callback to execute.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.ICallbackSpecifier`2.Call(System.Action{`0,`1,System.Nullable{System.Int32}})">
+            <summary>
+            Specify a callback to be executed. The condition expression is passed the current mapping's source 
+            and target objects and the current enumerable index, if applicable.
+            </summary>
+            <param name="callback">The callback to execute.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IConditionalCallbackSpecifier`2">
+            <summary>
+            Provides options for configuring a condition which must evaluate to true for a configured callback 
+            to execute during mappings from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type for which the callback should execute.</typeparam>
+            <typeparam name="TTarget">The target type for which the callback should execute.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalCallbackSpecifier`2.If(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{`0,`1},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the callback to be executed. The condition
+            expression is passed a context object containing the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An ICallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalCallbackSpecifier`2.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the callback to be executed. The condition
+            expression is passed the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An ICallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalCallbackSpecifier`2.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Nullable{System.Int32},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the callback to be executed. The condition
+            expression is passed the current mapping's source and target objects and the current enumerable 
+            index, if applicable.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An ICallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IConditionalMappingConfigurator`2">
+            <summary>
+            Provides options for configuring a condition which must evaluate to true for the configuration to apply
+            to mappings from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalMappingConfigurator`2.If(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{`0,`1},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed a context object containing the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IConditionalRootMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalMappingConfigurator`2.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IConditionalRootMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalMappingConfigurator`2.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Nullable{System.Int32},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source and target objects and the current enumerable 
+            index, if applicable.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IConditionalRootMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IConditionalPostInstanceCreationCallbackSpecifier`3">
+            <summary>
+            Provides options for configuring the execution of a callback after a particular type of event for mappings
+            from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+            <typeparam name="TObject">The type of created object to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPostInstanceCreationCallbackSpecifier`3.If(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.ObjectPopulation.IObjectCreationMappingData{`0,`1,`2},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed a context object containing the current mapping's source, target and created 
+            objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IPostInstanceCreationCallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPostInstanceCreationCallbackSpecifier`3.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IPostInstanceCreationCallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPostInstanceCreationCallbackSpecifier`3.If(System.Linq.Expressions.Expression{System.Func{`0,`1,`2,System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source, target and created objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IPostInstanceCreationCallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPostInstanceCreationCallbackSpecifier`3.If(System.Linq.Expressions.Expression{System.Func{`0,`1,`2,System.Nullable{System.Int32},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source, target and created objects and the current 
+            enumerable index, if applicable.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IPostInstanceCreationCallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IConditionalPreInstanceCreationCallbackSpecifier`2">
+            <summary>
+            Provides options for configuring the execution of a callback before a particular type of event for mappings
+            from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPreInstanceCreationCallbackSpecifier`2.If(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{`0,`1},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed a context object containing the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IPreInstanceCreationCallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPreInstanceCreationCallbackSpecifier`2.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source and target objects.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IPreInstanceCreationCallbackSpecifier with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalPreInstanceCreationCallbackSpecifier`2.If(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Nullable{System.Int32},System.Boolean}})">
+            <summary>
+            Configure a condition which must evaluate to true for the configuration to apply. The condition
+            expression is passed the current mapping's source and target objects and the current enumerable 
+            index, if applicable.
+            </summary>
+            <param name="condition">The condition to evaluate.</param>
+            <returns>An IConditionalRootMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IConditionalRootMappingConfigurator`2">
+            <summary>
+            Provides options for configuring a mapping based on the preceding condition.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IConditionalRootMappingConfigurator`2.MapTo``1">
+            <summary>
+            Map the source type being configured to the derived target type specified by the type argument if
+            the preceding condition evaluates to true.
+            </summary>
+            <typeparam name="TDerivedTarget">The derived target type to create.</typeparam>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IFactorySpecifier`3">
+            <summary>
+            Provides options for configuring custom factory objects with which to create instances of the type 
+            specified by the <typeparamref name="TObject"/> type argument when mapping from and to the given
+            source and target types.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+            <typeparam name="TObject">The type of object which will be created by the configured factories.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IFactorySpecifier`3.Using(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{`0,`1},`2}})">
+            <summary>
+            Use the given <paramref name="factory"/> expression to create instances of the object type being 
+            configured. The factory expression is passed a context object containing the current mapping's source 
+            and target objects.
+            </summary>
+            <param name="factory">
+            The factory expression to use to create instances of the type being configured.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IFactorySpecifier`3.Using``1(``0)">
+            <summary>
+            Use the given <paramref name="factory"/> function to create instances of the object type being 
+            configured. The following factory function signatures are supported:
+            <para>
+            Func&lt;TObject&gt; - parameterless.
+            </para>
+            <para>
+            Func&lt;IMappingData&lt;TSource, TTarget&gt;, TObject&gt; - taking a context object containing the 
+            current mapping's source and target objects.
+            </para>
+            <para>
+            Func&lt;TSource, TTarget, TObject&gt; - taking the source and target objects.
+            </para>
+            <para>
+            Func&lt;TSource, TTarget, int?, TObject&gt; - taking the source and target objects and the current 
+            enumerable index, if applicable.
+            </para>
+            </summary>
+            <param name="factory">
+            The factory function to use to create instances of the type being configured.
+            </param>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2">
+            <summary>
+            Provides options for configuring mappings from and to a given source and target type.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2.Before">
+            <summary>
+            Configure this mapper to perform an action before a different specified action.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2.After">
+            <summary>
+            Configure this mapper to perform an action after a different specified action.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2.SwallowAllExceptions">
+            <summary>
+            Swallow exceptions thrown during a mapping from and to the source and target types being configured. 
+            Object mappings which encounter an Exception will return null.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2.PassExceptionsTo(System.Action{AgileObjects.AgileMapper.Members.IMappingExceptionData{`0,`1}})">
+            <summary>
+            Pass Exceptions thrown during a mapping from and to the source and target types being configured to 
+            the given <paramref name="callback"/> instead of throwing them.
+            </summary>
+            <param name="callback">
+            The callback to which to pass thrown Exception information. If the thrown exception should not be 
+            swallowed, it should be rethrown inside the callback.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2.TrackMappedObjects">
+            <summary>
+            Configure this mapper to keep track of objects during a mapping in order to short-circuit 
+            circular relationships and ensure a 1-to-1 relationship between source and mapped objects.
+            </summary>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IFullMappingConfigurator`2.Map``1">
+            <summary>
+            Configure a derived target type to which to map instances of the given derived source type.
+            </summary>
+            <typeparam name="TDerivedSource">
+            The derived source type for which to configure a matching derived target type.
+            </typeparam>
+            <returns>A DerivedPairTargetTypeSpecifier with which to specify the matching derived target type.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.InstanceConfigurator`1">
+            <summary>
+            Provides options for configuring mappings of the type specified by the type argument.
+            </summary>
+            <typeparam name="TObject">The type of object to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.InstanceConfigurator`1.IdentifyUsing``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Use the given <paramref name="idExpression"/> to uniquely identify instances of the type being configured.
+            </summary>
+            <typeparam name="TId">
+            The type of the expression to use to uniquely identify instances of the type being configured.
+            </typeparam>
+            <param name="idExpression">
+            The expression to use to uniquely identify instances of the type being configured.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.InstanceConfigurator`1.CreateUsing(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{System.Object,System.Object},`0}})">
+            <summary>
+            Use the given <paramref name="factory"/> expression to create instances of the type being configured.
+            The factory expression is passed a context object containing the current mapping's source and target 
+            objects in untyped properties.
+            </summary>
+            <param name="factory">
+            The factory expression to use to create instances of the type being configured.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.InstanceConfigurator`1.CreateUsing``1(``0)">
+            <summary>
+            Use the given <paramref name="factory"/> function to create instances of the type being configured.
+            The following factory function signatures are supported:
+            <para>
+            Func&lt;TObject&gt; - parameterless.
+            </para>
+            <para>
+            Func&lt;IMappingData&lt;object, object&gt;, TObject&gt; - taking a context object containing the 
+            current mapping's source and target objects in untyped properties.
+            </para>
+            <para>
+            Func&lt;object, object, TObject&gt; - taking the source and target objects as untyped arguments.
+            </para>
+            <para>
+            Func&lt;object, object, int?, TObject&gt; - taking the source and target objects as untyped 
+            arguments and the current enumerable index, if applicable.
+            </para>
+            </summary>
+            <param name="factory">
+            The factory function to use to create instances of the type being configured.
+            </param>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IPostInstanceCreationCallbackSpecifier`3">
+            <summary>
+            Provides options for specifying a callback to be called after a particular type of event for mappings
+            from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+            <typeparam name="TObject">The type of created object to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPostInstanceCreationCallbackSpecifier`3.Call(System.Action{AgileObjects.AgileMapper.ObjectPopulation.IObjectCreationMappingData{`0,`1,`2}})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed a context 
+            object containing the current mapping's source, target and created objects.
+            </summary>
+            <param name="callback">The callback to call.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPostInstanceCreationCallbackSpecifier`3.Call(System.Action{`0,`1})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed the current 
+            mapping's source and target objects.
+            </summary>
+            <param name="callback">The callback to call.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPostInstanceCreationCallbackSpecifier`3.Call(System.Action{`0,`1,`2})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed the current 
+            mapping's source and target objects and the current enumerable index, if applicable.
+            </summary>
+            <param name="callback">The callback to call.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPostInstanceCreationCallbackSpecifier`3.Call(System.Action{`0,`1,`2,System.Nullable{System.Int32}})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed the current 
+            mapping's source, target and created objects and the current enumerable index, if applicable.
+            </summary>
+            <param name="callback">The callback to call.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IPreInstanceCreationCallbackSpecifier`2">
+            <summary>
+            Provides options for specifying a callback to be called before a particular type of event for mappings
+            from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPreInstanceCreationCallbackSpecifier`2.Call(System.Action{AgileObjects.AgileMapper.Members.IMappingData{`0,`1}})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed a context 
+            object containing the current mapping's source and target objects.
+            </summary>
+            <param name="callback">The callback to call.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPreInstanceCreationCallbackSpecifier`2.Call(System.Action{`0,`1})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed the current 
+            mapping's source and target objects.
+            </summary>
+            <param name="callback">The callback to call.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IPreInstanceCreationCallbackSpecifier`2.Call(System.Action{`0,`1,System.Nullable{System.Int32}})">
+            <summary>
+            Configure a callback to call in the configured conditions. The callback is passed the current 
+            mapping's source and target objects and the current enumerable index, if applicable.
+            </summary>
+            <param name="callback">The callback to call.</param>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2">
+            <summary>
+            Provides options for configuring mappings from and to a given source and target type.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.CreateInstancesUsing(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{`0,`1},`1}})">
+            <summary>
+            Use the given <paramref name="factory"/> expression to create instances of the target type being 
+            configured. The factory expression is passed a context object containing the current mapping's source
+            and target objects.
+            </summary>
+            <param name="factory">
+            The factory expression to use to create instances of the type being configured.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.CreateInstancesUsing``1(``0)">
+            <summary>
+            Use the given <paramref name="factory"/> function to create instances of the target type being 
+            configured. The following factory function signatures are supported:
+            <para>
+            Func&lt;TTarget&gt; - parameterless.
+            </para>
+            <para>
+            Func&lt;IMappingData&lt;TSource, TTarget&gt;, TTarget&gt; - taking a context object containing the 
+            current mapping's source and target objects.
+            </para>
+            <para>
+            Func&lt;TSource, TTarget, TTarget&gt; - taking the source and target objects.
+            </para>
+            <para>
+            Func&lt;TSource, TTarget, int?, TTarget&gt; - taking the source and target objects and the current 
+            enumerable index, if applicable.
+            </para>
+            </summary>
+            <param name="factory">
+            The factory function to use to create instances of the type being configured.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.CreateInstancesOf``1">
+            <summary>
+            Configure a factory to use to create instance of the type specified by the type argument.
+            </summary>
+            <typeparam name="TObject">The type of object the creation of which is to be configured.</typeparam>
+            <returns>
+            A IFactorySpecifier with which to configure the factory for the type specified by the type argument.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.Ignore(System.Linq.Expressions.Expression{System.Func{`1,System.Object}}[])">
+            <summary>
+            Ignore the target member(s) identified by the <paramref name="targetMembers"/> argument when mapping
+            from and to the source and target types being configured.
+            </summary>
+            <param name="targetMembers">The target member(s) which should be ignored.</param>
+            <returns>
+            A MappingConfigContinuation to enable further configuration of mappings from and to the source and 
+            target type being configured.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.Map``1(System.Linq.Expressions.Expression{System.Func{AgileObjects.AgileMapper.Members.IMappingData{`0,`1},``0}})">
+            <summary>
+            Configure a custom data source for a particular target member when mapping from and to the source and 
+            target types being configured. The factory expression is passed a context object containing the current 
+            mapping's source and target objects.
+            </summary>
+            <typeparam name="TSourceValue">The type of the custom value being configured.</typeparam>
+            <param name="valueFactoryExpression">The expression to map to the configured target member.</param>
+            <returns>
+            A CustomDataSourceTargetMemberSpecifier with which to specify the target member to which the custom 
+            value should be applied.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.Map``1(System.Linq.Expressions.Expression{System.Func{`0,`1,``0}})">
+            <summary>
+            Configure a custom data source for a particular target member when mapping from and to the source and 
+            target types being configured. The factory expression is passed the current mapping's source and target 
+            objects.
+            </summary>
+            <typeparam name="TSourceValue">The type of the custom value being configured.</typeparam>
+            <param name="valueFactoryExpression">The expression to map to the configured target member.</param>
+            <returns>
+            A CustomDataSourceTargetMemberSpecifier with which to specify the target member to which the custom 
+            value should be applied.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.Map``1(System.Linq.Expressions.Expression{System.Func{`0,`1,System.Nullable{System.Int32},``0}})">
+            <summary>
+            Configure a custom data source for a particular target member when mapping from and to the source and 
+            target types being configured. The factory expression is passed the current mapping's source and target 
+            objects and the current enumerable index, if applicable.
+            </summary>
+            <typeparam name="TSourceValue">The type of the custom value being configured.</typeparam>
+            <param name="valueFactoryExpression">The expression to map to the configured target member.</param>
+            <returns>
+            A CustomDataSourceTargetMemberSpecifier with which to specify the target member to which the custom 
+            value should be applied.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.MapFunc``1(System.Func{`0,``0})">
+            <summary>
+            Configure a Func object to be mapped to a target member of the same Func signature.
+            </summary>
+            <typeparam name="TSourceValue">The type of value returned by the given Func.</typeparam>
+            <param name="valueFunc">The Func object to map to the configured target member.</param>
+            <returns>
+            A CustomDataSourceTargetMemberSpecifier with which to specify the target member to which the custom 
+            value should be applied.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.IRootMappingConfigurator`2.Map``1(``0)">
+            <summary>
+            Configure a constant value for a particular target member when mapping from and to the source and 
+            target types being configured.
+            </summary>
+            <typeparam name="TSourceValue">The type of the custom constant value being configured.</typeparam>
+            <param name="value">The constant value to map to the configured target member.</param>
+            <returns>
+            A CustomDataSourceTargetMemberSpecifier with which to specify the target member to which the custom 
+            constant value should be applied.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.MappingConfigContinuation`2">
+            <summary>
+            Enables chaining of configurations for the same source and target type.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.MappingConfigContinuation`2.And">
+            <summary>
+            Perform another configuration of how this mapper maps to and from the source and target types
+            being configured. This property exists purely to provide a more fluent configuration interface.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.MappingConfigContinuation`2.But">
+            <summary>
+            Perform an alternative configuration of how this mapper maps to and from the source and target types
+            being configured. This property exists purely to provide a more fluent configuration interface.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint">
+            <summary>
+            Provides options for configuring how a mapper performs a mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.SwallowAllExceptions">
+            <summary>
+            Swallow exceptions thrown during a mapping irrespective of source and target type. Object mappings 
+            which encounter an Exception will return null.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.PassExceptionsTo(System.Action{AgileObjects.AgileMapper.Members.IMappingExceptionData})">
+            <summary>
+            Pass Exceptions thrown during a mapping to the given <paramref name="callback"/> instead of throwing 
+            them, irrespective of source and target type.
+            </summary>
+            <param name="callback">
+            The callback to which to pass thrown Exception information. If the thrown exception should not be 
+            swallowed, it should be rethrown inside the callback.
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.UseNamePrefix(System.String)">
+            <summary>
+            Expect members of any source and target type to potentially have the given name <paramref name="prefix"/>.
+            Source and target members will be matched as if the prefix is absent.
+            </summary>
+            <param name="prefix">The prefix to ignore when matching source and target members.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.UseNamePrefixes(System.String[])">
+            <summary>
+            Expect members of any source and target type to potentially have any of the given name <paramref name="prefixes"/>.
+            Source and target members will be matched as if the prefixes are absent.
+            </summary>
+            <param name="prefixes">The prefixes to ignore when matching source and target members.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.UseNameSuffix(System.String)">
+            <summary>
+            Expect members of any source and target type to potentially have the given name <paramref name="suffix"/>.
+            Source and target members will be matched as if the suffix is absent.
+            </summary>
+            <param name="suffix">The suffix to ignore when matching source and target members.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.UseNameSuffixes(System.String[])">
+            <summary>
+            Expect members of any source and target type to potentially have any of the given name <paramref name="suffixes"/>.
+            Source and target members will be matched as if the suffixes are absent.
+            </summary>
+            <param name="suffixes">The suffixes to ignore when matching source and target members.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.UseNamePattern(System.String)">
+            <summary>
+            Expect members of any source and target type to potentially match the given name <paramref name="pattern"/>.
+            The pattern will be used to find the part of a name which should be used to match a source and target member.
+            </summary>
+            <param name="pattern">
+            The Regex pattern to check against source and target member names. The pattern is expected to start with the 
+            ^ character, end with the $ character and contain a single capturing group wrapped in parentheses, e.g. ^__(.+)__$
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.UseNamePatterns(System.String[])">
+            <summary>
+            Expect members of any source and target type to potentially match the given name <paramref name="patterns"/>.
+            The patterns will be used to find the part of a name which should be used to match a source and target member.
+            </summary>
+            <param name="patterns">
+            The Regex patterns to check against source and target member names. Each pattern is expected to start with the 
+            ^ character, end with the $ character and contain a single capturing group wrapped in parentheses, e.g. ^__(.+)__$
+            </param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.TrackMappedObjects">
+            <summary>
+            Configure this mapper to keep track of objects during a mapping in order to short-circuit 
+            circular relationships and ensure a 1-to-1 relationship between source and mapped objects.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.InstancesOf``1">
+            <summary>
+            Configure how this mapper maps objects of the type specified by the type argument.
+            </summary>
+            <typeparam name="TObject">The type of object to which the configuration will apply.</typeparam>
+            <returns>An InstanceConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.PairEnum``1(``0)">
+            <summary>
+            Configure this mapper to pair the given <paramref name="enumMember"/> with a member of another enum Type.
+            This pairing will apply to mappings between all types, irrespective of the MappingRuleSet used.
+            </summary>
+            <typeparam name="TFirstEnum">The type of the first enum being paired.</typeparam>
+            <param name="enumMember">The first enum member in the pair.</param>
+            <returns>
+            An EnumPairSpecifier with which to specify the enum member to which the given <paramref name="enumMember"/> 
+            should be paired.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.PairEnums``1(``0[])">
+            <summary>
+            Configure this mapper to pair the given <paramref name="enumMembers"/> with members of another enum Type.
+            Pairings will apply to mappings between all types, irrespective of the MappingRuleSet used.
+            </summary>
+            <typeparam name="TFirstEnum">The type of the first set of enum members being paired.</typeparam>
+            <param name="enumMembers">The first set of enum members to pair.</param>
+            <returns>
+            An EnumPairSpecifier with which to specify the set of enum members to which the given <paramref name="enumMembers"/> 
+            should be paired.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.From``1(``0)">
+            <summary>
+            Configure how this mapper performs mappings from the source type specified by the given 
+            <paramref name="exampleInstance"/>. Use this overload for anonymous types.
+            </summary>
+            <typeparam name="TSource">The type of the given <paramref name="exampleInstance"/>.</typeparam>
+            <param name="exampleInstance">The instance specifying to which source type the configuration will apply.</param>
+            <returns>A TargetTypeSpecifier with which to specify to which target type the configuration will apply.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.From``1">
+            <summary>
+            Configure how this mapper performs mappings from the source type specified by the type argument.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration will apply.</typeparam>
+            <returns>A TargetTypeSpecifier with which to specify to which target type the configuration will apply.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.To``1">
+            <summary>
+            Configure how this mapper performs mappings from any source type to the target type specified by 
+            the type argument, irrespective of the MappingRuleSet used.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.ToANew``1">
+            <summary>
+            Configure how this mapper performs mappings from any source type to the target type specified by 
+            the type argument when mapping to new objects.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.OnTo``1">
+            <summary>
+            Configure how this mapper performs mappings from any source type to the target type specified by 
+            the type argument when performing OnTo (merge) mappings.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPoint.Over``1">
+            <summary>
+            Configure how this mapper performs mappings from any source type to the target type specified by 
+            the type argument when performing Over (overwrite) mappings.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.MappingConfigStartingPointBase`2">
+            <summary>
+            Provides options for configuring an element of how this mapper performs a mapping.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.PostEventConfigStartingPoint">
+            <summary>
+            Provides options for configuring the execution of a callback after a particular type of event for all
+            source and target types.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PostEventConfigStartingPoint.MappingEnds">
+            <summary>
+            Configure a callback to be executed after any object mapping ends.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PostEventConfigStartingPoint.CreatingInstances">
+            <summary>
+            Configure a callback to be executed after instances of any object are created during any object 
+            mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.PostEventConfigStartingPoint.CreatingInstancesOf``1">
+            <summary>
+            Configure a callback to be executed after instances of the given type argument are created during 
+            any object mapping.
+            </summary>
+            <typeparam name="TObject">
+            The type of object the creation of which the callback execution should follow.
+            </typeparam>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.PostEventMappingConfigStartingPoint`2">
+            <summary>
+            Provides options for configuring the execution of a callback after a particular type of event for a 
+            particular source and target type.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PostEventMappingConfigStartingPoint`2.MappingEnds">
+            <summary>
+            Configure a callback to be executed after a mapping from and to the source and target types being 
+            configured ends.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.PostEventMappingConfigStartingPoint`2.Mapping``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <summary>
+            Configure a callback to be executed after the given <paramref name="targetMember"/> is populated
+            during a mapping from and to the source and target types being configured.
+            </summary>
+            <param name="targetMember">
+            The member of the target type being configured the population of which the callback execution should 
+            follow.
+            </param>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PostEventMappingConfigStartingPoint`2.CreatingInstances">
+            <summary>
+            Configure a callback to be executed after instances of any object are created during a mapping 
+            from and to the source and target types being configured.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PostEventMappingConfigStartingPoint`2.CreatingTargetInstances">
+            <summary>
+            Configure a callback to be executed after instances of the target type being configured are created 
+            during a mapping from the source type being configured.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.PostEventMappingConfigStartingPoint`2.CreatingInstancesOf``1">
+            <summary>
+            Configure a callback to be executed after instances of the given type argument are created during a 
+            mapping from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TObject">
+            The type of object the creation of which the callback execution should follow.
+            </typeparam>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.PreEventConfigStartingPoint">
+            <summary>
+            Provides options for configuring the execution of a callback before a particular type of event for all
+            source and target types.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PreEventConfigStartingPoint.MappingBegins">
+            <summary>
+            Configure a callback to be executed before any object mapping begins.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PreEventConfigStartingPoint.CreatingInstances">
+            <summary>
+            Configure a callback to be executed before instances of any object are created during any object 
+            mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.PreEventConfigStartingPoint.CreatingInstancesOf``1">
+            <summary>
+            Configure a callback to be executed before instances of the given type argument are created during 
+            any object mapping.
+            </summary>
+            <typeparam name="TObject">
+            The type of object the creation of which the callback execution should precede.
+            </typeparam>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.PreEventMappingConfigStartingPoint`2">
+            <summary>
+            Provides options for configuring the execution of a callback before a particular type of event for a 
+            particular source and target type.
+            </summary>
+            <typeparam name="TSource">The source type to which the configuration should apply.</typeparam>
+            <typeparam name="TTarget">The target type to which the configuration should apply.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PreEventMappingConfigStartingPoint`2.MappingBegins">
+            <summary>
+            Configure a callback to be executed before a mapping from and to the source and target types being 
+            configured ends.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.PreEventMappingConfigStartingPoint`2.Mapping``1(System.Linq.Expressions.Expression{System.Func{`1,``0}})">
+            <summary>
+            Configure a callback to be executed before the given <paramref name="targetMember"/> is populated
+            during a mapping from and to the source and target types being configured.
+            </summary>
+            <param name="targetMember">
+            The member of the target type being configured the population of which the callback execution should 
+            precede.
+            </param>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PreEventMappingConfigStartingPoint`2.CreatingInstances">
+            <summary>
+            Configure a callback to be executed before instances of any object are created during a mapping 
+            from and to the source and target types being configured.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Api.Configuration.PreEventMappingConfigStartingPoint`2.CreatingTargetInstances">
+            <summary>
+            Configure a callback to be executed before instances of the target type being configured are created 
+            during a mapping from the source type being configured.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.PreEventMappingConfigStartingPoint`2.CreatingInstancesOf``1">
+            <summary>
+            Configure a callback to be executed before instances of the given type argument are created during a 
+            mapping from and to the source and target types being configured.
+            </summary>
+            <typeparam name="TObject">
+            The type of object the creation of which the callback execution should precede.
+            </typeparam>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Api.Configuration.TargetTypeSpecifier`1">
+            <summary>
+            Provides options for specifying the target type and mapping rule set to which the configuration should
+            apply.
+            </summary>
+            <typeparam name="TSource">The source type being configured.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.TargetTypeSpecifier`1.To``1">
+            <summary>
+            Configure how this mapper performs mappings from the source type being configured to the target 
+            type specified by the type argument, irrespective of the MappingRuleSet used.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.TargetTypeSpecifier`1.ToANew``1">
+            <summary>
+            Configure how this mapper performs mappings from the source type being configured to the target 
+            type specified by the type argument when mapping to new objects.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.TargetTypeSpecifier`1.OnTo``1">
+            <summary>
+            Configure how this mapper performs mappings from the source type being configured to the target 
+            type specified by the type argument when performing OnTo (merge) mappings.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Api.Configuration.TargetTypeSpecifier`1.Over``1">
+            <summary>
+            Configure how this mapper performs mappings from the source type being configured to the target 
+            type specified by the type argument when performing Over (overwrite) mappings.
+            </summary>
+            <typeparam name="TTarget">The target type to which the configuration will apply.</typeparam>
+            <returns>An IFullMappingConfigurator with which to complete the configuration.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Configuration.MappingConfigurationException">
+            <summary>
+            Represents an error that occurred during mapping configuration.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Configuration.MappingConfigurationException.#ctor">
+            <summary>
+            Initializes a new instance of the MappingConfigurationException class.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Configuration.MappingConfigurationException.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the MappingConfigurationException class with the given 
+            <paramref name="message"/>.
+            </summary>
+            <param name="message">The message that describes the mapping configuration error.</param>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Members.IMappingData">
+            <summary>
+            Provides the data being used at a particular point during a mapping.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingData.Parent">
+            <summary>
+            Gets the data of the mapping context directly 'above' that described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/>.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Members.IMappingData.GetSource``1">
+            <summary>
+            Gets the source object for the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/>, cast to the given <typeparamref name="TSource">type</typeparamref>.
+            </summary>
+            <typeparam name="TSource">The type to which to cast the source object.</typeparam>
+            <returns>The source object for the mapping context.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Members.IMappingData.GetTarget``1">
+            <summary>
+            Gets the target object for the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/>, cast to the given <typeparamref name="TTarget">type</typeparamref>.
+            </summary>
+            <typeparam name="TTarget">The type to which to cast the target object.</typeparam>
+            <returns>The target object for the mapping context.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Members.IMappingData.GetEnumerableIndex">
+            <summary>
+            Gets the index of the current enumerable being mapped in the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/>, if applicable.
+            </summary>
+            <returns>
+            The index of the current enumerable being mapped in the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/>, otherwise null.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.Members.IMappingData.As``2">
+            <summary>
+            Gets the <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/> as a typed <see cref="T:AgileObjects.AgileMapper.Members.IMappingData`2"/>.
+            </summary>
+            <typeparam name="TSource">The type of source object being mapped in the current context.</typeparam>
+            <typeparam name="TTarget">The type of target object being mapped in the current context.</typeparam>
+            <returns>The <see cref="T:AgileObjects.AgileMapper.Members.IMappingData"/> as a typed <see cref="T:AgileObjects.AgileMapper.Members.IMappingData`2"/>.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Members.IMappingData`2">
+            <summary>
+            Provides the data being used at a particular point during a mapping.
+            </summary>
+            <typeparam name="TSource">The type of source object being mapped from in the current context.</typeparam>
+            <typeparam name="TTarget">The type of target object being mapped to in the current context.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingData`2.Parent">
+            <summary>
+            Gets the data of the mapping context directly 'above' that described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData`2"/>.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingData`2.Source">
+            <summary>
+            Gets the source object for the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData`2"/>.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingData`2.Target">
+            <summary>
+            Gets the target object for the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData`2"/>.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingData`2.EnumerableIndex">
+            <summary>
+            Gets the index of the current enumerable being mapped in the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.Members.IMappingData`2"/>, if applicable.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Members.IMappingExceptionData">
+            <summary>
+            Provides the data being used at a particular point during a mapping when an
+            Exception occurred.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingExceptionData.Source">
+            <summary>
+            Gets the source object that was being being mapped from when the mapping
+            Exception occurred.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingExceptionData.Target">
+            <summary>
+            Gets the target object that was being being mapped to when the mapping
+            Exception occurred.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingExceptionData.EnumerableIndex">
+            <summary>
+            Gets the index of the current enumerable being mapped when the mapping
+            Exception occurred, if applicable.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingExceptionData.Exception">
+            <summary>
+            Get the Exception object describing the error that occurred during the mapping.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.Members.IMappingExceptionData`2">
+            <summary>
+            Provides typed data being used at a particular point during a mapping when an
+            Exception occurred.
+            </summary>
+            <typeparam name="TSource">
+            The type of source object that was being mapped from when the Exception occurred.
+            </typeparam>
+            <typeparam name="TTarget">
+            The type of target object that was being mapped to when the Exception occurred.
+            </typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.Members.IMappingExceptionData`2.Exception">
+            <summary>
+            Get the Exception object describing the error that occurred during the mapping.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectCreationMappingData`3">
+            <summary>
+            Provides the data being used when an object was created during a mapping.
+            </summary>
+            <typeparam name="TSource">The type of source object being mapped from during the object creation.</typeparam>
+            <typeparam name="TTarget">The type of target object being mapped to during the object creation.</typeparam>
+            <typeparam name="TObject">The type of object that was created.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.IObjectCreationMappingData`3.CreatedObject">
+            <summary>
+            Gets the object that was created.
+            </summary>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2">
+            <summary>
+            Provides the data being used and services available at a particular point during a mapping.
+            </summary>
+            <typeparam name="TSource">The type of source object being mapped from in the current context.</typeparam>
+            <typeparam name="TTarget">The type of target object being mapped to in the current context.</typeparam>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2.Parent">
+            <summary>
+            Gets the data of the mapping context directly 'above' that described by the 
+            <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2.Target">
+            <summary>
+            Gets or sets the target object for the mapping context described by the 
+            <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2.CreatedObject">
+            <summary>
+            Gets or sets the object created by the current mapping context, if applicable.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2.Map``2(``0,``1,System.String,System.Int32)">
+            <summary>
+            Map the given <paramref name="sourceValue"/> to the given <paramref name="targetValue"/>.
+            </summary>
+            <typeparam name="TDeclaredSource">
+            The declared type of the given <paramref name="sourceValue"/>.
+            </typeparam>
+            <typeparam name="TDeclaredTarget">
+            The declared type of the given <paramref name="targetValue"/>.
+            </typeparam>
+            <param name="sourceValue">The source object from which to map.</param>
+            <param name="targetValue">The target object to which to map.</param>
+            <param name="targetMemberName">The name of the target member being mapped.</param>
+            <param name="dataSourceIndex">
+            The index of the data source being used to perform the mapping.
+            </param>
+            <returns>The mapping result.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2.Map``2(``0,``1,System.Int32)">
+            <summary>
+            Map the given <paramref name="sourceElement"/> to the given <paramref name="targetElement"/>.
+            </summary>
+            <typeparam name="TSourceElement">
+            The declared type of the given <paramref name="sourceElement"/>.
+            </typeparam>
+            <typeparam name="TTargetElement">
+            The declared type of the given <paramref name="targetElement"/>.
+            </typeparam>
+            <param name="sourceElement">The source object from which to map.</param>
+            <param name="targetElement">The target object to which to map.</param>
+            <param name="enumerableIndex">
+            The index of the current enumerable the elements of which are being mapped.
+            </param>
+            <returns>The element mapping result.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataFactoryBridge">
+            <summary>
+            Provides bridge methods enabling creation of typed <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>
+            instances in partial trust scenarios. This interface is intended for internal use only.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataFactoryBridge.ForChild``2(System.Object,System.Object)">
+            <summary>
+            Creates a child <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> instance.
+            </summary>
+            <typeparam name="TSource">The type of child source object being mapped from.</typeparam>
+            <typeparam name="TTarget">The type of child target object being mapped to.</typeparam>
+            <param name="childMembersSource">
+            An object providing access to objects describing the child members being mapped
+            from and to.
+            </param>
+            <param name="parent">
+            An object representing the parent <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>.
+            </param>
+            <returns>A child <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> instance.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataFactoryBridge.ForElement``2(System.Object,System.Object)">
+            <summary>
+            Creates an element <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> instance.
+            </summary>
+            <typeparam name="TSource">The type of source element object being mapped from.</typeparam>
+            <typeparam name="TTarget">The type of target element object being mapped to.</typeparam>
+            <param name="membersSource">
+            An object providing access to objects describing the element members being mapped
+            from and to.
+            </param>
+            <param name="parent">
+            An object representing the parent <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>.
+            </param>
+            <returns>An element <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> instance.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataFactoryBridge.CreateMappingData``4(``0,``1,System.Nullable{System.Int32},System.Object,System.Object,System.Object)">
+            <summary>
+            Creates an <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> instance.
+            </summary>
+            <typeparam name="TDeclaredSource">
+            The declared type of child source object being mapped from.
+            </typeparam>
+            <typeparam name="TDeclaredTarget">
+            The declared type of child target object being mapped to.
+            </typeparam>
+            <typeparam name="TSource">The actual type of child source object being mapped from.</typeparam>
+            <typeparam name="TTarget">The actual type of child target object being mapped to.</typeparam>
+            <param name="source">The source object being mapped from.</param>
+            <param name="target">The target object being mapped to.</param>
+            <param name="enumerableIndex">
+            The index of the current enumerable being mapped, if applicable.
+            </param>
+            <param name="mapperKey">A key object uniquely identifying the context being mapped.</param>
+            <param name="mappingContext">An object describing the context of the current mapping.</param>
+            <param name="parent">
+            An <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/> describing the parent context.
+            </param>
+            <returns></returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped">
+            <summary>
+            Provides untyped services available at a particular point in a mapping.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped.TryGet``2(``0,``1@)">
+            <summary>
+            Returns a value indicating if the given <paramref name="key">source object</paramref>
+            has already been mapped to a target object of the given 
+            <typeparamref name="TComplex">target type</typeparamref>. If so, the previous mapping
+            result is assigned to the <paramref name="complexType"/> parameter.
+            </summary>
+            <typeparam name="TKey">
+            The type of source object for which to make the determination.
+            </typeparam>
+            <typeparam name="TComplex">
+            The type of target object for which to make the determination.</typeparam>
+            <param name="key">The source object for which to make the determination.</param>
+            <param name="complexType">
+            The target object to which to assign the already-mapped result object, if applicable.
+            </param>
+            <returns>
+            True if the given <paramref name="key">source object</paramref> has already been mapped 
+            to a target object of the given <typeparamref name="TComplex">target type</typeparamref>,
+            otherwise false.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped.Register``2(``0,``1)">
+            <summary>
+            Registers the given <paramref name="complexType">target object</paramref> as the result of
+            mapping the given <paramref name="key">source object</paramref>.
+            </summary>
+            <typeparam name="TKey">The type of source object to register.</typeparam>
+            <typeparam name="TComplex">The type of target object to register.</typeparam>
+            <param name="key">The source object to register.</param>
+            <param name="complexType">The result target object to register.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped.MapRecursion``2(``0,``1,System.String,System.Int32)">
+            <summary>
+            Map the given <paramref name="sourceValue"/> to the given <paramref name="targetValue"/> as 
+            part of the mapping of recursive relationship.
+            </summary>
+            <typeparam name="TDeclaredSource">
+            The declared type of the given <paramref name="sourceValue"/>.
+            </typeparam>
+            <typeparam name="TDeclaredTarget">
+            The declared type of the given <paramref name="targetValue"/>.
+            </typeparam>
+            <param name="sourceValue">The source object from which to map.</param>
+            <param name="targetValue">The target object to which to map.</param>
+            <param name="targetMemberName">The name of the target member being mapped.</param>
+            <param name="dataSourceIndex">
+            The index of the data source being used to perform the mapping.
+            </param>
+            <returns>The mapping result.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped.As``2">
+            <summary>
+            Gets the <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped"/> typed as a 
+            <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>.
+            </summary>
+            <typeparam name="TNewSource">The type of source object being mapped in the current context.</typeparam>
+            <typeparam name="TNewTarget">The type of target object being mapped in the current context.</typeparam>
+            <returns>
+            The <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingDataUntyped"/> typed as a 
+            <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.IObjectMappingData`2"/>.
+            </returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1">
+            <summary>
+            Wraps a readonly collection to enable efficient creation of a new array. This object
+            has a readonly implementation of <see cref="T:System.Collections.Generic.IList`1"/>.
+            </summary>
+            <typeparam name="T">The type of item stored in the collection.</typeparam>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.#ctor(System.Collections.Generic.IEnumerable{`0},System.Int32)">
+            <summary>
+            Initializes a new instance of the ReadOnlyCollectionWrapper{T} class.
+            </summary>
+            <param name="existingItems">The existing items to retain in the final collection.</param>
+            <param name="numberOfNewItems">The number of new items to be added to the existing items.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.#ctor(System.Int32)">
+            <summary>
+            Initializes a new instance of the ReadOnlyCollectionWrapper{T} class.
+            </summary>
+            <param name="numberOfNewItems">The number of new items to be added to the collection.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.IndexOf(`0)">
+            <summary>
+            Determines the index of a specific item.
+            </summary>
+            <param name="item">The object to locate in the</param>
+            <returns>The index of item if found; otherwise, -1.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Insert(System.Int32,`0)">
+            <summary>
+            Inserts an item at the specified index
+            </summary>
+            <param name="index">The zero-based index at which item should be inserted.</param>
+            <param name="item">The object to insert.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.RemoveAt(System.Int32)">
+            <summary>
+            Removes the item at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the item to remove.</param>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Item(System.Int32)">
+            <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+            <param name="index">The zero-based index of the element to get or set.</param>
+            <returns>The element at the specified index.</returns>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Count">
+            <summary>
+            Gets the number of elements contained in the collection.
+            </summary>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.IsReadOnly">
+            <summary>
+            Gets a value indicating whether the collection is read-only.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Add(`0)">
+            <summary>
+            Adds an item to the collection.
+            </summary>
+            <param name="item">The object to add.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Contains(`0)">
+            <summary>
+            Determines whether the collection contains a specific value.
+            </summary>
+            <param name="item">The object to locate.</param>
+            <returns>True if item is found in the collection, otherwise false.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.CopyTo(`0[],System.Int32)">
+            <summary>
+            Copies the elements of the System.Collections.Generic.ICollection`1 to an array,
+            </summary>
+            <param name="array">
+            The one-dimensional array that is the destination of the elements copied from the 
+            collection. The array must have zero-based indexing.
+            </param>
+            <param name="arrayIndex">The zero-based index in array at which copying begins.</param>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Remove(`0)">
+            <summary>
+            Removes the first occurrence of a specific object from the collection.
+            </summary>
+            <param name="item">The object to remove.</param>
+            <returns>
+            True if the item was successfully removed from the collection, otherwise false. 
+            This method also returns false if item is not found in the original collection.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.Clear">
+            <summary>
+            Removes all items from the collection.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through the collection.
+            </summary>
+            <returns>An enumerator that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>An IEnumerator object that can be used to iterate through the collection.</returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1.ToArray">
+            <summary>
+            Returns an array containing the contents of the <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1"/>.
+            </summary>
+            <returns>An array containing the contents of the <see cref="T:AgileObjects.AgileMapper.ObjectPopulation.ReadOnlyCollectionWrapper`1"/>.</returns>
+        </member>
+        <member name="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter">
+            <summary>
+            Implementing classes will convert a value type or string to another value type.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.TypeConversion.IValueConverter.CanConvert(System.Type,System.Type)">
+            <summary>
+            Gets a value indicating whether the <see cref="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter"/> converts values of the given 
+            <paramref name="nonNullableSourceType"/> to the given <paramref name="nonNullableTargetType"/>.
+            </summary>
+            <param name="nonNullableSourceType">The non-nullable type to evaluate.</param>
+            <param name="nonNullableTargetType">The non-nullable type to evaluate.</param>
+            <returns>
+            True if the <see cref="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter"/> converts the given 
+            <paramref name="nonNullableTargetType"/>, otherwise false.
+            </returns>
+        </member>
+        <member name="P:AgileObjects.AgileMapper.TypeConversion.IValueConverter.IsConditional">
+            <summary>
+            Gets a value indicating if the <see cref="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter"/> is used conditionally.
+            </summary>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.TypeConversion.IValueConverter.GetConversion(System.Linq.Expressions.Expression,System.Type)">
+            <summary>
+            Gets an Expression converting the given <paramref name="sourceValue"/> to the given 
+            <paramref name="targetType"/>.
+            </summary>
+            <param name="sourceValue">The source value to convert.</param>
+            <param name="targetType">The target type to which to convert to <paramref name="sourceValue"/>.</param>
+            <returns>
+            An Expression converting the given <paramref name="sourceValue"/> to the given 
+            <paramref name="targetType"/>.
+            </returns>
+        </member>
+        <member name="M:AgileObjects.AgileMapper.TypeConversion.IValueConverter.GetConversionOption(System.Linq.Expressions.Expression,System.Type,System.Linq.Expressions.Expression)">
+            <summary>
+            Gets an Expression converting the given <paramref name="sourceValue"/> to the given 
+            <paramref name="targetType"/>, if the <see cref="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter"/>'s condition evaluates to true.
+            </summary>
+            <param name="sourceValue">The source value to convert.</param>
+            <param name="targetType">The target type to which to convert to <paramref name="sourceValue"/>.</param>
+            <param name="conversionSoFar">
+            An Expression containing the conversion which has been built so far by previous 
+            <see cref="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter"/>s.
+            </param>
+            <returns>
+            An Expression converting the given <paramref name="sourceValue"/> to the given 
+            <paramref name="targetType"/>, if the <see cref="T:AgileObjects.AgileMapper.TypeConversion.IValueConverter"/>'s condition evaluates to true.
+            </returns>
+        </member>
+    </members>
+</doc>

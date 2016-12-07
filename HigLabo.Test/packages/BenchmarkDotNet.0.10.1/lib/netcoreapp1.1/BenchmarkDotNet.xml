@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BenchmarkDotNet</name>
+    </assembly>
+    <members>
+        <member name="M:BenchmarkDotNet.Running.BenchmarkSwitcher.RunAll">
+            <summary>
+            Run all available benchmarks.
+            </summary>
+        </member>
+    </members>
+</doc>
