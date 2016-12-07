@@ -176,8 +176,8 @@ namespace HigLabo.Core
 
             this.MaxCallStackCount = 10;
             this.DictionaryKeyStringComparer = StringComparer.OrdinalIgnoreCase;
-            this.NullPropertyMapMode = NullPropertyMapMode.DeepCopy;
-            this.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
+            this.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+            this.CollectionElementMapMode = CollectionElementMapMode.NewObject;
         }
         private static MethodInfo GetMethodInfo(String name)
         {

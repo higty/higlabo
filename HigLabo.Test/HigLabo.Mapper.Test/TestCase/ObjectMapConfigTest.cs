@@ -381,7 +381,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
-        public void ObjectMapConfig_MapCollection_MapAndDeepCopy()
+        public void ObjectMapConfig_MapCollection_CollectionElement_DeepCopy()
         {
             var config = new ObjectMapConfig();
             config.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;

@@ -18,13 +18,13 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         static void Main(string[] args)
         {
-            NotSupportedTest.HigLaboMapperTest();
-            NotSupportedTest.AutoMapperTest();
-            NotSupportedTest.TinyMapperTest();
-            NotSupportedTest.MapsterTest();
-            NotSupportedTest.ExpressMapperTest();
-            NotSupportedTest.FastMapperTest();
-            NotSupportedTest.AgileMapperTest();
+            //NotSupportedTest.HigLaboMapperTest();
+            //NotSupportedTest.AutoMapperTest();
+            //NotSupportedTest.TinyMapperTest();
+            //NotSupportedTest.MapsterTest();
+            //NotSupportedTest.ExpressMapperTest();
+            //NotSupportedTest.FastMapperTest();
+            //NotSupportedTest.AgileMapperTest();
 
             //ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
             //ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
