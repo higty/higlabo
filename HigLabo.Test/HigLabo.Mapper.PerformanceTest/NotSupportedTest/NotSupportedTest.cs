@@ -69,9 +69,8 @@ namespace HigLabo.Mapper.TestNotSupported
         }
         public static void MapsterTest()
         {
-            var b1 = new Building();
-            var b2 = Mapster.TypeAdapter.Adapt<Building>(b1);
-            //p2.Cars is null
+            var p1 = Park.Create();
+            var p2 = TinyMapper.Map<Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
 
             return;
 
@@ -81,6 +80,9 @@ namespace HigLabo.Mapper.TestNotSupported
         }
         public static void ExpressMapperTest()
         {
+            var p1 = Park.Create();
+            var p2 = TinyMapper.Map<Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
+
             var c1 = Car.Create();
             var c2 = ExpressMapper.Mapper.Map<Car, Car>(c1);//Exception!
 
@@ -91,8 +93,21 @@ namespace HigLabo.Mapper.TestNotSupported
         }
         public static void FastMapperTest()
         {
+            var p1 = Park.Create();
+            var p2 = TinyMapper.Map<Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
+
             var c1 = Car.Create();
             var c2 = FastMapper.TypeAdapter.Adapt<Car, Car>(c1);//Exception!
+
+            return;
+            //StackoverflowException thrown
+            var tn = TreeNode.Create();
+            var tn2 = Mapster.TypeAdapter.Adapt<TreeNodeTarget>(tn);
+        }
+        public static void AgileMapperTest()
+        {
+            var p1 = Park.Create();
+            var p2 = TinyMapper.Map<Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
 
             return;
             //StackoverflowException thrown
