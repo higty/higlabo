@@ -35,46 +35,8 @@ namespace HigLabo.Mapper.PerformanceTest
             //Console.ReadLine();
             //return;
 
-            //AutoMapperTest();
-            //return;
-
             var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
             Console.ReadLine();
-        }
-        private static void Test()
-        {
-            var customer = Customer.Create();
-            var count = 100;
-            var config = ObjectMapConfig.Current;
-            ObjectMapConfig.Current.NullPropertyMapMode = NullPropertyMapMode.NewObject;
-            ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = config.Map(customer, new CustomerDTO());
-            }
-        }
-        private static void TinyMapperThrowStackoverflowException()
-        {
-            TinyMapper.Bind<Organization, Organization>();
-        }
-        private static void TinyMapperTest()
-        {
-            TinyMapper.Bind<SiteSummaryData, SiteSummaryData>();
-            var data = SiteSummaryData.Create();
-            var o1 = TinyMapper.Map(data, new SiteSummaryData());
-        }
-        private static void AutoMapperTest()
-        {
-            var data = SiteSummaryData.Create();
-
-            AutoMapper.Mapper.Initialize(config =>
-            {
-                config.CreateMap<CollectionWithPropety, CollectionWithPropety>();
-            });
-            var n1 = new TreeNode();
-            n1.Nodes = new List<TreeNode>();
-            n1.Nodes.Add(n1);
-            var n2 = AutoMapper.Mapper.Map(n1, new TreeNode());
         }
         private static void HigLaboMapperTest()
         {
@@ -96,7 +58,6 @@ namespace HigLabo.Mapper.PerformanceTest
             p1.Schedule.Peoples = new List<People>();
             p1.Schedule.Peoples.Add(p1);
             c1.Peoples.Add(p1);
-
 
             c1.Tags.Add("C#");
             c1.Tags.Add("ASP.NET");
