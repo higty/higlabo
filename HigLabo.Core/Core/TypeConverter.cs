@@ -1008,6 +1008,7 @@ namespace HigLabo.Core
             catch
             {
             }
+#if !Pcl
             try
             {
                 if (value is Int32)
@@ -1018,6 +1019,7 @@ namespace HigLabo.Core
             catch
             {
             }
+#endif
             return null;
         }
     }
