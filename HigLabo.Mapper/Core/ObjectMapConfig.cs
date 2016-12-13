@@ -215,7 +215,7 @@ namespace HigLabo.Core
             {
                 return this.MapFromDataReader(source as IDataReader, target, context);
             }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             TTarget result = target;
             if (md != null)
             {
@@ -260,7 +260,7 @@ namespace HigLabo.Core
         public TTarget MapInternal<TSource, TTarget>(TSource source, TTarget target, MappingContext context)
         {
             if (source == null || context.MaxCallStackCountOver()) { return target; }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             if (md == null) { return target; }
             return md.Invoke(this, source, target, context);
         }
@@ -270,7 +270,7 @@ namespace HigLabo.Core
             where TTarget : class
         {
             if (source == null || context.MaxCallStackCountOver()) { return target; }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             if (md == null) { return target; }
             try
             {
@@ -288,7 +288,7 @@ namespace HigLabo.Core
             where TTarget : struct
         {
             if (source == null || context.MaxCallStackCountOver()) { return target; }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             if (md == null) { return target; }
             try
             {
@@ -306,7 +306,7 @@ namespace HigLabo.Core
             where TTarget : class
         {
             if (context.MaxCallStackCountOver()) { return target; }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             if (md == null) { return target; }
             try
             {
@@ -324,7 +324,7 @@ namespace HigLabo.Core
             where TTarget : struct
         {
             if (context.MaxCallStackCountOver()) { return target; }
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(source, target);
             if (md == null) { return target; }
             try
             {
@@ -715,12 +715,20 @@ namespace HigLabo.Core
 
         public void CreateMap<TSource, TTarget>()
         {
-            var md = this.GetMethod<TSource, TTarget>();
+            var md = this.GetMethod<TSource, TTarget>(typeof(TSource), typeof(TTarget));
         }
-        private Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> GetMethod<TSource, TTarget>()
+        private Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> GetMethod<TSource, TTarget>(TSource source, TTarget target)
+        {
+            var sType = typeof(TSource);
+            var tType = typeof(TTarget);
+            if (source != null) { sType = source.GetType(); }
+            if (target != null) { tType = target.GetType(); }
+            return this.GetMethod<TSource, TTarget>(sType, tType);
+        }
+        private Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> GetMethod<TSource, TTarget>(Type sourceType, Type targetType)
         {
             Object md = null;
-            var key = new ObjectMapTypeInfo(typeof(TSource), typeof(TTarget));
+            var key = new ObjectMapTypeInfo(sourceType, targetType);
             if (_Methods.TryGetValue(key, out md) == false)
             {
                 var l = this.CreatePropertyMaps(key.Source, key.Target);
