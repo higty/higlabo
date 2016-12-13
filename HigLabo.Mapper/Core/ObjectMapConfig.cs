@@ -721,8 +721,8 @@ namespace HigLabo.Core
         {
             var sType = typeof(TSource);
             var tType = typeof(TTarget);
-            if (source != null) { sType = source.GetType(); }
-            if (target != null) { tType = target.GetType(); }
+            //if (source != null) { sType = source.GetType(); }
+            //if (target != null) { tType = target.GetType(); }
             return this.GetMethod<TSource, TTarget>(sType, tType);
         }
         private Func<ObjectMapConfig, TSource, TTarget, MappingContext, TTarget> GetMethod<TSource, TTarget>(Type sourceType, Type targetType)
