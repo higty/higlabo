@@ -1508,50 +1508,6 @@ namespace HigLabo.Core
             return dm.CreateDelegate(gf);
         }
 
-        private static Boolean IsEnumerableToCollection(PropertyMap propertyMap)
-        {
-            var sType = propertyMap.Source.ActualType;
-            var tType = propertyMap.Target.ActualType;
-
-            if (propertyMap.Source.IsIndexedProperty == true || propertyMap.Target.IsIndexedProperty == true) { return false; }
-
-            var sourceIsIEnumerable = false;
-            var targetIsICollection = false;
-
-            if (sType.GenericTypeArguments.Length == 1)
-            {
-                foreach (var sInterface in sType.GetInterfaces())
-                {
-                    if (sInterface.FullName.StartsWith(System_Collections_Generic_IEnumerable_1))
-                    {
-                        sourceIsIEnumerable = true;
-                        break;
-                    }
-                }
-            }
-            else if (sType.IsArray && sType.GetArrayRank() == 1)
-            {
-                sourceIsIEnumerable = true;
-            }
-
-            if (tType.GenericTypeArguments.Length == 1)
-            {
-                foreach (var tInterface in tType.GetInterfaces())
-                {
-                    if (tInterface.FullName.StartsWith(System_Collections_Generic_ICollection_1))
-                    {
-                        targetIsICollection = true;
-                        break;
-                    }
-                }
-            }
-            else if (tType.IsArray && tType.GetArrayRank() == 1)
-            {
-                targetIsICollection = true;
-            }
-            if (sourceIsIEnumerable && targetIsICollection) { return true; }
-            return false;
-        }
         private static Boolean IsPrimitive(Type type)
         {
             return type.IsEnum || _PrimitiveValueTypes.Contains(type);

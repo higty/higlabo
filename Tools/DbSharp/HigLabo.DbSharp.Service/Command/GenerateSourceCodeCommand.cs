@@ -39,10 +39,10 @@ namespace HigLabo.DbSharp.Service
         protected override void Execute()
         {
             String path = this.OutputDirectoryPath;
-            var tablePath = path + "Table";
-            var tableStoredProcedurePath = path + "TableStoredProcedure";
-            var storedProcedurePath = path + "StoredProcedure";
-            var userDefinedTableTypePath = path + "UserDefinedTableType";
+            var tablePath = Path.Combine(path, "Table");
+            var tableStoredProcedurePath = Path.Combine(path, "TableStoredProcedure");
+            var storedProcedurePath = Path.Combine(path, "StoredProcedure");
+            var userDefinedTableTypePath = Path.Combine(path, "UserDefinedTableType");
 
             ClassSourceCodeFileFactory f = null;
             var sc = new SourceCodeFileGenerator();

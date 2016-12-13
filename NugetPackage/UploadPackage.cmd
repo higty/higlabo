@@ -7,9 +7,12 @@ nuget push HigLabo.Converter._Net_4_0.1.0.4.2.nupkg -Source https://nuget.org -A
 nuget push HigLabo.Converter._Pcl_4_0_3.1.0.4.2.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Converter.1.0.4.2.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Core._Net_3_5.1.0.5.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
+nuget push HigLabo.Core._Net_3_5.1.0.6.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Core._Net_4_0.1.0.5.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
+nuget push HigLabo.Core._Net_4_0.1.0.6.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Core._Pcl_4_0_3.1.0.5.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Core.1.0.5.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
+nuget push HigLabo.Core.1.0.6.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Data._Net_3_5.1.1.0.1.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Data.1.1.0.1.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Data.MySql.1.0.1.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3

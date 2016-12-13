@@ -126,7 +126,7 @@ namespace HigLabo.DbSharpApplication
             var l = new List<DatabaseObject>();
             DatabaseSchemaReader db = DatabaseSchemaReader.Create(AValue.SchemaData.DatabaseServer, connectionString);
             
-            foreach (var item in db.GetStoredProcedures())
+            foreach (var item in db.GetUserDefinedTableTypes())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
                     item.LastAlteredTime < AValue.SchemaData.LastExecuteTimeOfImportUserDefinedTableType)
@@ -135,6 +135,7 @@ namespace HigLabo.DbSharpApplication
                 { continue; }
 
                 item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
+                l.Add(item);
             }
 
             _UserDefinedTableTypes.Clear();
