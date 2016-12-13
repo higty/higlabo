@@ -26,7 +26,7 @@ namespace HigLabo.Core
         {
             return ObjectMapConfig.Current.MapOrNull(source, target);
         }
-        public static TTarget MapOrNull<TSource, TTarget>(this TSource source)
+        public static TTarget MapOrNull<TTarget>(this Object source)
             where TTarget : class, new()
         {
             return ObjectMapConfig.Current.MapOrNull(source, () => new TTarget());

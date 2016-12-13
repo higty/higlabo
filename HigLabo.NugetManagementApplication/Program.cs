@@ -19,14 +19,19 @@ namespace HigLabo.NugetManagementApplication
         static void Main(string[] args)
         {
             ApiKey = args[0];
-            CreatePackage();
-            CreateUploadCommandFile();
+            var l = CreatePackage();
+            if (l.Count > 0)
+            {
+                CreateUploadCommandFile(l);
+            }
 
             Console.WriteLine("Enter to exit");
             Console.ReadLine();
         }
-        private static void CreatePackage()
+        private static List<String> CreatePackage()
         {
+            List<String> l = new List<string>();
+
             foreach (var path in Directory.EnumerateFiles(RootFolderPath, "*.csproj", SearchOption.AllDirectories).OrderBy(el => el))
             {
                 if (path.Contains("_Pcl_")) { continue; }
@@ -37,25 +42,29 @@ namespace HigLabo.NugetManagementApplication
                 var fileName = String.Format("C:\\GitHub\\higty\\HigLabo\\NugetPackage\\{0}.{1}.nupkg", package.Nuspec.Id, package.Nuspec.Version);
                 if (File.Exists(fileName) == false)
                 {
+                    l.Add(fileName);
                     package.CreateNupkgFile(fileName);
                     Console.WriteLine("Created: " + fileName);
                 }
                 System.Threading.Thread.Sleep(100);
             }
+            return l;
         }
-        private static void CreateUploadCommandFile()
+        private static void CreateUploadCommandFile(IEnumerable<String> pathList)
         {
             StringBuilder sb = new StringBuilder();
 
-            foreach (var path in Directory.EnumerateFiles(NugetPackageFolderPath, "*.nupkg", SearchOption.TopDirectoryOnly).OrderBy(el => el))
+            foreach (var path in pathList)
             {
                 var di = new DirectoryInfo(path);
-                var fileName = Path.GetFileName(path);
-                sb.AppendFormat("nuget push {0} -Source https://nuget.org -ApiKey {1}", fileName, ApiKey).AppendLine();
+                sb.AppendFormat("nuget push {0} -Source https://nuget.org -ApiKey {1}"
+                    , Path.GetFileName(path), ApiKey);
+                sb.AppendLine();
             }
             sb.AppendLine("pause");
             var text = sb.ToString();
-            File.WriteAllText(Path.Combine(NugetPackageFolderPath, "UploadPackage.cmd"), text);
+            var fileName = String.Format("UploadPackage{0}.cmd", DateTime.Now.ToString("yyyyMMdd_HHmmss"));
+            File.WriteAllText(Path.Combine(NugetPackageFolderPath, fileName), text);
         }
     }
 }

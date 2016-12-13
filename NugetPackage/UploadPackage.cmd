@@ -37,6 +37,7 @@ nuget push HigLabo.Mapper.1.4.0.0.nupkg -Source https://nuget.org -ApiKey f30539
 nuget push HigLabo.Mapper.1.5.0.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mapper.1.5.0.1.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mapper.1.5.1.0.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
+nuget push HigLabo.Mapper.1.5.1.1.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mime._Net_3_5.1.0.2.2.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Mime.1.0.2.2.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
 nuget push HigLabo.Net._Net_3_5.1.0.2.1.nupkg -Source https://nuget.org -ApiKey f3053919-51ca-4158-bedd-467327b3afd3
