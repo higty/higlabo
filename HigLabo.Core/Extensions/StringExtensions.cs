@@ -65,6 +65,137 @@ namespace HigLabo.Core
         {
             return String.IsNullOrEmpty(text);
         }
+
+        /// <summary>
+        /// PascalCaseFirstLetterOfEveryWordIsUpper
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String ToPascalCase(this String value)
+        {
+            if (value == null) { return value; }
+
+            var sb = new StringBuilder(value.Length);
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (i == 0)
+                {
+                    sb.Append(value[i].ToString().ToUpper());
+                }
+                else
+                {
+                    sb.Append(value[i]);
+                }
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// camelCaseFirstLetterIsLowerAndFirstLetterOfEveryWordIsUpper
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String ToCamelCase(this String value)
+        {
+            if (value == null) { return value; }
+
+            var sb = new StringBuilder(value.Length);
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (i == 0)
+                {
+                    sb.Append(value[i].ToString().ToLower());
+                }
+                else
+                {
+                    sb.Append(value[i]);
+                }
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// snake_case_is_lower_case_and_underscore
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String ToSnakeCase(this String value)
+        {
+            if (value == null) { return value; }
+
+            var sb = new StringBuilder(value.Length + 4);
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (i > 0)
+                {
+                    if (Char.IsUpper(value[i]))
+                    {
+                        sb.Append("_");
+                    }
+                    sb.Append(value[i]);
+                }
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// Train-Case-is-Upper-Case-And-Hyphen
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String ToTrainCase(this String value)
+        {
+            if (value == null) { return value; }
+
+            var sb = new StringBuilder(value.Length + 4);
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (i > 0)
+                {
+                    if (Char.IsUpper(value[i]))
+                    {
+                        sb.Append("-");
+                    }
+                    sb.Append(value[i]);
+                }
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// kebab-case-is-lower-case-and-hyphen
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String ToKebabCase(this String value)
+        {
+            if (value == null) { return value; }
+
+            var sb = new StringBuilder(value.Length + 4);
+
+            for (var i = 0; i < value.Length; i++)
+            {
+                if (i > 0)
+                {
+                    if (Char.IsUpper(value[i]))
+                    {
+                        sb.Append("-");
+                    }
+                    sb.Append(value[i].ToString().ToLower());
+                }
+            }
+            return sb.ToString();
+        }
+        /// <summary>
+        /// lisp-case-is-lower-case-and-hyphen
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static String ToLispCase(this String value)
+        {
+            return ToKebabCase(value);
+        }
+
         public static Boolean? ToBoolean(this String value)
         {
             return AppEnvironment.Settings.TypeConverter.ToBoolean(value);
