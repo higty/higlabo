@@ -127,14 +127,11 @@ namespace HigLabo.Core
 
             for (var i = 0; i < value.Length; i++)
             {
-                if (i > 0)
+                if (i > 0 && Char.IsUpper(value[i]))
                 {
-                    if (Char.IsUpper(value[i]))
-                    {
-                        sb.Append("_");
-                    }
-                    sb.Append(value[i]);
+                    sb.Append("_");
                 }
+                sb.Append(value[i]);
             }
             return sb.ToString();
         }
@@ -151,14 +148,11 @@ namespace HigLabo.Core
 
             for (var i = 0; i < value.Length; i++)
             {
-                if (i > 0)
+                if (i > 0 && Char.IsUpper(value[i]))
                 {
-                    if (Char.IsUpper(value[i]))
-                    {
-                        sb.Append("-");
-                    }
-                    sb.Append(value[i]);
+                    sb.Append("-");
                 }
+                sb.Append(value[i]);
             }
             return sb.ToString();
         }
@@ -175,14 +169,11 @@ namespace HigLabo.Core
 
             for (var i = 0; i < value.Length; i++)
             {
-                if (i > 0)
+                if (i > 0 && Char.IsUpper(value[i]))
                 {
-                    if (Char.IsUpper(value[i]))
-                    {
-                        sb.Append("-");
-                    }
-                    sb.Append(value[i].ToString().ToLower());
+                    sb.Append("-");
                 }
+                sb.Append(value[i].ToString().ToLower());
             }
             return sb.ToString();
         }
