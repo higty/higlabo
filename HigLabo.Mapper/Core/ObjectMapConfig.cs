@@ -45,10 +45,6 @@ namespace HigLabo.Core
         private static readonly MethodInfo _CreateNewObjectArray_Struct_Class_Method = null;
 
         private static readonly MethodInfo _CallPostAction_Method = null;
-        private static readonly MethodInfo _CallPostAction_Class_Class_Method = null;
-        private static readonly MethodInfo _CallPostAction_Class_Struct_Method = null;
-        private static readonly MethodInfo _CallPostAction_Struct_Class_Method = null;
-        private static readonly MethodInfo _CallPostAction_Struct_Struct_Method = null;
 
         private static readonly MethodInfo _MapDeepCopy_Class_Class_Method = null;
         private static readonly MethodInfo _MapDeepCopy_Struct_Struct_Method = null;
@@ -103,10 +99,6 @@ namespace HigLabo.Core
             _MapDeepCopy_Nullable_Nullable_Method = GetMethodInfo("MapDeepCopy_Nullable_Nullable");
 
             _CallPostAction_Method = GetMethodInfo("CallPostAction");
-            _CallPostAction_Class_Class_Method = GetMethodInfo("CallPostAction_Class_Class");
-            _CallPostAction_Class_Struct_Method = GetMethodInfo("CallPostAction_Class_Struct");
-            _CallPostAction_Struct_Class_Method = GetMethodInfo("CallPostAction_Struct_Class");
-            _CallPostAction_Struct_Struct_Method = GetMethodInfo("CallPostAction_Struct_Struct");
 
             _ObjectMapConfig_TypeConverterProperty_GetMethod = typeof(ObjectMapConfig).GetProperty("TypeConverter", BindingFlags.Instance | BindingFlags.Public).GetGetMethod();
             _ObjectMapConfig_HasPostActionPropertyGetMethod = typeof(ObjectMapConfig).GetProperty("HasPostAction").GetGetMethod();
@@ -632,74 +624,6 @@ namespace HigLabo.Core
 
         [ObjectMapConfigMethod(Name = "CallPostAction")]
         public TTarget CallPostAction<TSource, TTarget>(TSource source, TTarget target)
-        {
-            if (_PostActions.Count == 0) { return target; }
-
-            var sourceType = typeof(TSource);
-            var targetType = typeof(TTarget);
-            for (int i = 0; i < _PostActions.Count; i++)
-            {
-                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
-                return (TTarget)f(source, target);
-            }
-            return target;
-        }
-        [ObjectMapConfigMethod(Name = "CallPostAction_Class_Class")]
-        public TTarget CallPostAction_Class_Class<TSource, TTarget>(TSource source, TTarget target)
-            where TSource : class
-            where TTarget : class
-        {
-            if (_PostActions.Count == 0) { return target; }
-
-            var sourceType = typeof(TSource);
-            var targetType = typeof(TTarget);
-            for (int i = 0; i < _PostActions.Count; i++)
-            {
-                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
-                return (TTarget)f(source, target);
-            }
-            return target;
-        }
-        [ObjectMapConfigMethod(Name = "CallPostAction_Class_Struct")]
-        public TTarget CallPostAction_Class_Struct<TSource, TTarget>(TSource source, TTarget target)
-            where TSource : class
-            where TTarget : struct
-        {
-            if (_PostActions.Count == 0) { return target; }
-
-            var sourceType = typeof(TSource);
-            var targetType = typeof(TTarget);
-            for (int i = 0; i < _PostActions.Count; i++)
-            {
-                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
-                return (TTarget)f(source, target);
-            }
-            return target;
-        }
-        [ObjectMapConfigMethod(Name = "CallPostAction_Struct_Class")]
-        public TTarget CallPostAction_Struct_Class<TSource, TTarget>(TSource source, TTarget target)
-            where TSource : struct
-            where TTarget : class
-        {
-            if (_PostActions.Count == 0) { return target; }
-
-            var sourceType = typeof(TSource);
-            var targetType = typeof(TTarget);
-            for (int i = 0; i < _PostActions.Count; i++)
-            {
-                if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
-                return (TTarget)f(source, target);
-            }
-            return target;
-        }
-        [ObjectMapConfigMethod(Name = "CallPostAction_Struct_Struct")]
-        public TTarget CallPostAction_Struct_Struct<TSource, TTarget>(TSource source, TTarget target)
-            where TSource : struct
-            where TTarget : struct
         {
             if (_PostActions.Count == 0) { return target; }
 
@@ -1470,11 +1394,7 @@ namespace HigLabo.Core
                                     il.Emit(sourceMethodCall, sourceGetMethod);
                                     il.Emit(ldTargetTypeArg, 2);
                                     il.Emit(targetMethodCall, targetGetMethod);
-                                    if (sourceProperty.IsNullableT || targetProperty.IsNullableT) { md = _CallPostAction_Method; }
-                                    else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Class_Class_Method; }
-                                    else if (sourceProperty_PropertyType.IsClass && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Class_Struct_Method; }
-                                    else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsClass) { md = _CallPostAction_Struct_Class_Method; }
-                                    else if (sourceProperty_PropertyType.IsValueType && targetProperty_PropertyType.IsValueType) { md = _CallPostAction_Struct_Struct_Method; }
+                                    md = _CallPostAction_Method;
                                     il.Emit(OpCodes.Callvirt, md.MakeGenericMethod(sourceProperty_PropertyType, targetProperty_PropertyType));
                                 }
                                 il.Emit(targetMethodCall, targetSetMethod);
