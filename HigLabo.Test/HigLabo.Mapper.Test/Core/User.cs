@@ -5,7 +5,13 @@ using System.Text;
 
 namespace HigLabo.Mapper.Test
 {
-    public class User
+    public interface IUser
+    {
+        String Value { get; set; }
+        String Name { get; set; }
+    }
+
+    public class User : IUser
     {
         public String Value { get; set; }
         public String Name { get; set; }

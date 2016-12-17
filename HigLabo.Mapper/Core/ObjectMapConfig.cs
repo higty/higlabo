@@ -621,12 +621,13 @@ namespace HigLabo.Core
         {
             if (action == null) { return; }
 
+            Func<Object, Object, Object> f = (source, target) => action((TSource)source, (TTarget)target);
             var condition = new MappingCondition();
             condition.Source.Type = typeof(TSource);
             condition.Source.TypeFilterCondition = sourceCondition;
             condition.Target.Type = typeof(TTarget);
             condition.Target.TypeFilterCondition = targetCondition;
-            _PostActions.Add(new MapPostAction(condition, (Delegate)action));
+            _PostActions.Add(new MapPostAction(condition, (Delegate)f));
         }
 
         [ObjectMapConfigMethod(Name = "CallPostAction")]
@@ -639,8 +640,8 @@ namespace HigLabo.Core
             for (int i = 0; i < _PostActions.Count; i++)
             {
                 if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
-                return f(source, target);
+                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
+                return (TTarget)f(source, target);
             }
             return target;
         }
@@ -656,8 +657,8 @@ namespace HigLabo.Core
             for (int i = 0; i < _PostActions.Count; i++)
             {
                 if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
-                return f(source, target);
+                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
+                return (TTarget)f(source, target);
             }
             return target;
         }
@@ -673,8 +674,8 @@ namespace HigLabo.Core
             for (int i = 0; i < _PostActions.Count; i++)
             {
                 if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
-                return f(source, target);
+                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
+                return (TTarget)f(source, target);
             }
             return target;
         }
@@ -690,8 +691,8 @@ namespace HigLabo.Core
             for (int i = 0; i < _PostActions.Count; i++)
             {
                 if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
-                return f(source, target);
+                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
+                return (TTarget)f(source, target);
             }
             return target;
         }
@@ -707,8 +708,8 @@ namespace HigLabo.Core
             for (int i = 0; i < _PostActions.Count; i++)
             {
                 if (_PostActions[i].Condition.Match(sourceType, targetType) == false) { continue; }
-                var f = (Func<TSource, TTarget, TTarget>)_PostActions[i].Action;
-                return f(source, target);
+                var f = (Func<Object, Object, Object>)_PostActions[i].Action;
+                return (TTarget)f(source, target);
             }
             return target;
         }

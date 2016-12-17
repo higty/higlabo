@@ -449,6 +449,19 @@ namespace HigLabo.Mapper.Test
         }
 
         [TestMethod]
+        public void ObjectMapConfig_AddPostAction_IUser()
+        {
+            var config = new ObjectMapConfig();
+            config.AddPostAction<User, IUser>((source, target) =>
+            {
+                //Do nothing...
+            });
+            var u1 = new User();
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Name, u2.Name);
+        }
+        [TestMethod]
         public void ObjectMapConfig_AddPostAction_Enum()
         {
             var config = new ObjectMapConfig();
