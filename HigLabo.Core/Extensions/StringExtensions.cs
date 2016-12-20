@@ -166,12 +166,18 @@ namespace HigLabo.Core
             if (value == null) { return value; }
 
             var sb = new StringBuilder(value.Length + 4);
+            var previousCharIsUpperCase = false;
 
             for (var i = 0; i < value.Length; i++)
             {
-                if (i > 0 && Char.IsUpper(value[i]))
+                if (i > 0 && Char.IsUpper(value[i]) && previousCharIsUpperCase == false)
                 {
+                    previousCharIsUpperCase = true;
                     sb.Append("-");
+                }
+                else
+                {
+                    previousCharIsUpperCase = false;
                 }
                 sb.Append(value[i].ToString().ToLower());
             }
