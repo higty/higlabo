@@ -84,14 +84,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             {
                 foreach (var c in table.GetPrimaryKeyOrTimestampColumns())
                 {
-                    if (c.DbType.IsTimestamp() == true)
-                    {
-                        sp.Parameters.Add(new SqlInputParameter("@" + c.Name, c));
-                    }
-                    else
-                    {
-                        sp.Parameters.Add(new SqlInputParameter("@PK_" + c.Name, c));
-                    }
+                    sp.Parameters.Add(new SqlInputParameter("@PK_" + c.Name, c));
                 }
             }
             if (storedProcedureType == StoredProcedureType.SelectAll ||
