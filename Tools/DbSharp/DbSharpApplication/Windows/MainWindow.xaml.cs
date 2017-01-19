@@ -194,12 +194,12 @@ namespace HigLabo.DbSharpApplication
         private void m0101_Click(object sender, RoutedEventArgs e)
         {
             var w = new ManageConnectionStringWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
         }
         private void m0102_Click(object sender, RoutedEventArgs e)
         {
             var w = new ImportObjectWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
             this.MainTabTable.IsSelected = true;
         }
         private void m0191_Click(object sender, RoutedEventArgs e)
@@ -239,29 +239,29 @@ namespace HigLabo.DbSharpApplication
         private void m0104_Click(object sender, RoutedEventArgs e)
         {
             var w = new DeleteObjectWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
         }
         private void m0105_Click(object sender, RoutedEventArgs e)
         {
             var w = new GenerateSourceCodeWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
         }
         private void m0106_Click(object sender, RoutedEventArgs e)
         {
             var w = new GenerateSqlScriptWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
         }
         private void m0107_Click(object sender, RoutedEventArgs e)
         {
             var w = new ManageIgnoreObjectWindow(new DatabaseObject[0]);
-            w.ShowDialog();
+            this.ShowDialog(w);
         }
         private void m0110_Click(object sender, RoutedEventArgs e)
         {
             var w = new ImportObjectGenerateFileWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
         }
-        
+
         private void m0201_Click(object sender, RoutedEventArgs e)
         {
             this.MainTabTable.IsSelected = true;
@@ -292,7 +292,7 @@ namespace HigLabo.DbSharpApplication
             this.Hide();
 
             var w = new EditSettingsWindow();
-            w.ShowDialog();
+            this.ShowDialog(w);
 
             this.Close();
         }
@@ -316,6 +316,19 @@ namespace HigLabo.DbSharpApplication
                 var w = new ManageConnectionStringWindow();
                 w.ShowDialog();
                 return;
+            }
+        }
+        private void ShowDialog(Window window)
+        {
+            try
+            {
+                window.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                AValue.AddErrorLog(ex);
+                var w = new MessageWindow(ex.ToString());
+                w.ShowDialog();
             }
         }
 
