@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Mapper</id>
+    <version>1.5.2.2</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <projectUrl>https://github.com/higty/higlabo</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Mapper provide object map functionality like AutoMapper.Great performance with IL code generation, and intuitive usage.</description>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <tags>HigLabo.Mapper</tags>
+    <dependencies>
+      <group targetFramework=".NET Framework4.5">
+        <dependency id="HigLabo.Core" version="1.0.6.6" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

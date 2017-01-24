@@ -527,8 +527,7 @@ namespace HigLabo.Core
 
         [ObjectMapConfigMethod(Name = "CreateDeepCopyArray")]
         public TTarget[] CreateDeepCopyArray<TSource, TTarget>(IEnumerable<TSource> source)
-            where TSource : class, TTarget
-            where TTarget : class
+            where TSource : TTarget
         {
             if (source == null) { return new TTarget[0]; }
             return source.Select<TSource, TTarget>(el => el).ToArray();

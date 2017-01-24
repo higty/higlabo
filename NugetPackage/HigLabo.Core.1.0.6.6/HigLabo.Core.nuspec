@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Core</id>
+    <version>1.0.6.6</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <projectUrl>https://github.com/higty/higlabo</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Core provide core library and utility about String manupilation,type conversion,generic operator,Guid,Enum,...etc.</description>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <tags>HigLabo.Core</tags>
+    <dependencies>
+      <group targetFramework=".NET Framework4.5">
+        <dependency id="HigLabo.Converter" version="1.0.4.3" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

@@ -32,6 +32,7 @@ namespace HigLabo.Mapper.Test
         public List<User> Users { get; set; }
         public String[] Tags { get; set; }
         public Dictionary<String, String> Dictionary { get; set; }
+        public Byte[] Timestamp { get; set; }
 
         public User()
             : this("TestUser")

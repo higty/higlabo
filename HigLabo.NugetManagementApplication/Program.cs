@@ -57,7 +57,7 @@ namespace HigLabo.NugetManagementApplication
             foreach (var path in pathList)
             {
                 var di = new DirectoryInfo(path);
-                sb.AppendFormat("nuget push {0} -Source https://nuget.org -ApiKey {1}"
+                sb.AppendFormat("nuget push {0} -Source https://www.nuget.org/api/v2/package -ApiKey {1}"
                     , Path.GetFileName(path), ApiKey);
                 sb.AppendLine();
             }

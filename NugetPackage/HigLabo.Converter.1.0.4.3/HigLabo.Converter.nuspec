@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Converter</id>
+    <version>1.0.4.3</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <projectUrl>https://github.com/higty/higlabo</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Converter is a library for various conversion.Base64,QuotedPrintable,ModifiedUtf7,Rfc2047,Rfc2231,Rfc2822,ISO8601 are supported.</description>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <tags>HigLabo.Converter</tags>
+  </metadata>
+</package>

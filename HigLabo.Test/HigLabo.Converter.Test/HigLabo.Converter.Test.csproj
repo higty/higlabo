@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestCase\Base64ConverterTest.cs" />
+    <Compile Include="TestCase\StringConverterTest.cs" />
     <Compile Include="TestCase\QuotedPrintableConverterTest.cs" />
     <Compile Include="TestCase\QueryStringConverterTest.cs" />
     <Compile Include="TestCase\Rfc2047ConverterTest.cs" />

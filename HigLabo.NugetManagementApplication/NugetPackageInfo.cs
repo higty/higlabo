@@ -125,44 +125,50 @@ namespace HigLabo.NugetManagementApplication
             n.TargetFrameworkVersion = targetFrameworkVersionNode.InnerText;
             if (n.TargetFrameworkVersion.Contains("Pcl")) { return null; }
 
-            var dependencyNodes = doc.DocumentNode.SelectNodes("//itemgroup//projectreference");
-            if (dependencyNodes != null)
-            {
-                foreach (var node in dependencyNodes)
-                {
-                    var path = node.Attributes["Include"].Value;
-                    var u = new Uri(new Uri(projectFilePath), path);
-                    LoadDependencyPackages(n.DependencyPackages, u.LocalPath);
-                }
-                var dd = new List<PackageDependency>();
-                foreach (var item in n.DependencyPackages)
-                {
-                    VersionSpec sVersion = new VersionSpec();
-                    sVersion.MinVersion = new SemanticVersion(item.Nuspec.Version);
-                    sVersion.IsMinInclusive = true;
-                    dd.Add(new PackageDependency(item.Nuspec.Id, sVersion));
-                }
-                n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
-            }
+            //var dependencyNodes = doc.DocumentNode.SelectNodes("//itemgroup//projectreference");
+            //if (dependencyNodes != null)
+            //{
+            //    foreach (var node in dependencyNodes)
+            //    {
+            //        var path = node.Attributes["Include"].Value;
+            //        var u = new Uri(new Uri(projectFilePath), path);
+            //        LoadDependencyPackages(n.DependencyPackages, u.LocalPath);
+            //    }
+            //    var dd = new List<PackageDependency>();
+            //    foreach (var item in n.DependencyPackages)
+            //    {
+            //        VersionSpec sVersion = new VersionSpec();
+            //        sVersion.MinVersion = new SemanticVersion(item.Nuspec.Version);
+            //        sVersion.IsMinInclusive = true;
+            //        dd.Add(new PackageDependency(item.Nuspec.Id, sVersion));
+            //    }
+            //    if (dd.Count > 0)
+            //    {
+            //        n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
+            //    }
+            //}
 
-            var referenceNodes = doc.DocumentNode.SelectNodes("//itemgroup//reference");
-            if (referenceNodes != null)
-            {
-                var dd = new List<PackageDependency>();
-                foreach (var node in referenceNodes)
-                {
-                    if (node.Attributes["Include"] == null) { continue; }
-                    var include = node.Attributes["Include"].Value;
-                    var p = ProjectReferenceInfo.Parse(include);
-                    if (String.IsNullOrEmpty(p.Version)) { continue; }
+            //var referenceNodes = doc.DocumentNode.SelectNodes("//itemgroup//reference");
+            //if (referenceNodes != null)
+            //{
+            //    var dd = new List<PackageDependency>();
+            //    foreach (var node in referenceNodes)
+            //    {
+            //        if (node.Attributes["Include"] == null) { continue; }
+            //        var include = node.Attributes["Include"].Value;
+            //        var p = ProjectReferenceInfo.Parse(include);
+            //        if (String.IsNullOrEmpty(p.Version)) { continue; }
 
-                    VersionSpec sVersion = new VersionSpec();
-                    sVersion.MinVersion = new SemanticVersion(p.Version);
-                    sVersion.IsMinInclusive = true;
-                    dd.Add(new PackageDependency(p.ID, sVersion));
-                }
-                n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
-            }
+            //        VersionSpec sVersion = new VersionSpec();
+            //        sVersion.MinVersion = new SemanticVersion(p.Version);
+            //        sVersion.IsMinInclusive = true;
+            //        dd.Add(new PackageDependency(p.ID, sVersion));
+            //    }
+            //    if (dd.Count > 0)
+            //    {
+            //        n.PackageBuilder.DependencySets.Add(new PackageDependencySet(FrameworkNames[n.TargetFrameworkVersion], dd));
+            //    }
+            //}
             var ff = new List<ManifestFile>();
             var f = new ManifestFile();
             f.Source = "*.dll";

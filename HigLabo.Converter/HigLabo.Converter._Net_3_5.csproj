@@ -54,6 +54,7 @@
     <Compile Include="Converter\Rfc2047Converter.cs" />
     <Compile Include="Converter\Rfc2231Converter.cs" />
     <Compile Include="Converter\Rfc2822Converter.cs" />
+    <Compile Include="Converter\StringConverter.cs" />
     <Compile Include="Core\Base64CharTable.cs" />
     <Compile Include="Core\BufferByteArray.cs" />
     <Compile Include="Core\EncodingDictionary.cs" />

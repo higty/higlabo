@@ -188,6 +188,19 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(23m, u2.Decimal);
         }
+        [TestMethod]
+        public void ObjectMapConfig_Map_ByteArrayProperty()
+        {
+            var config = new ObjectMapConfig();
+            config.NullPropertyMapMode = NullPropertyMapMode.NewObject;
+
+            var u1 = new User();
+            u1.Timestamp = new Byte[] { 1, 3, 6 };
+
+            var u2 = config.Map(u1, new User());
+
+            Assert.AreEqual(u1.Timestamp[2], u2.Timestamp[2]);
+        }
 
         [TestMethod]
         public void ObjectMapConfig_Map_Dictionary_Encoding()
@@ -566,16 +579,14 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_RemovePropertyMap()
         {
             var config = new ObjectMapConfig();
-            config.RemovePropertyMap<User, User>(nameof(User.DecimalNullable), "DateTimeNullable", "DayOfWeekNullable");
+            config.RemovePropertyMap<User, User>("Timestamp");
 
             var u1 = new User();
-            var u2 = config.Map(u1, new User());
+            u1.Timestamp = new Byte[] { 1, 3, 6 };
 
-            Assert.AreEqual(u1.Name, u2.Name);
-            Assert.AreEqual(u1.Int32, u2.Int32);
-            Assert.IsNull(u2.DecimalNullable);
-            Assert.IsNull(u2.DateTimeNullable);
-            Assert.IsNull(u2.DayOfWeekNullable);
+            var u2 = config.Map(u1, new VipUser());
+
+            Assert.IsNull(u2.Timestamp);
 
             Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
             Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);

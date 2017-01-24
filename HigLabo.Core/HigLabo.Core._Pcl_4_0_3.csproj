@@ -64,6 +64,12 @@
     <Compile Include="Extensions\XmlParserExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter._Pcl_4_0_3.csproj">
+      <Project>{1b39b485-fd79-44a5-a7b5-1b43a5adc616}</Project>
+      <Name>HigLabo.Converter._Pcl_4_0_3</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

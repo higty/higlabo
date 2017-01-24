@@ -11,6 +11,7 @@ namespace HigLabo.Core
         public NumberStyles DoubleNumberStyle { get; set; }
         public NumberStyles DecimalNumberStyle { get; set; }
         public DateTimeStyles DateTimeStyle { get; set; }
+        public StringConverter StringConverter { get; set; }
 
         public TypeConverter()
         {
@@ -20,6 +21,10 @@ namespace HigLabo.Core
             this.DoubleNumberStyle = NumberStyles.Float | NumberStyles.AllowThousands;
             this.DecimalNumberStyle = NumberStyles.Float | NumberStyles.AllowThousands;
             this.DateTimeStyle = DateTimeStyles.AllowWhiteSpaces;
+
+            this.StringConverter = new StringConverter();
+            this.StringConverter.FullWidthAlphabet = true;
+            this.StringConverter.FullWidthNumber = true;
         }
 
         public virtual String ToString(Object value)
@@ -158,7 +163,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && SByte.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && SByte.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -222,7 +227,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && Int16.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Int16.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -272,7 +277,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && Int32.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Int32.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -308,7 +313,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && Int64.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Int64.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -386,7 +391,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && Byte.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Byte.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -457,7 +462,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && UInt16.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && UInt16.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -521,7 +526,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            if (tp == typeof(String) && UInt32.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && UInt32.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -578,7 +583,7 @@ namespace HigLabo.Core
                 if (tp == typeof(UInt32)) return (UInt64)(UInt32)value;
                 if (tp == typeof(UInt64)) return (UInt64)value;
             }
-            if (tp == typeof(String) && UInt64.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && UInt64.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -616,7 +621,7 @@ namespace HigLabo.Core
                     return x;
                 }
             }
-            if (tp == typeof(String) && Single.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Single.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -654,7 +659,7 @@ namespace HigLabo.Core
                     return x;
                 }
             }
-            if (tp == typeof(String) && Double.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Double.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -692,7 +697,7 @@ namespace HigLabo.Core
                     return x;
                 }
             }
-            if (tp == typeof(String) && Decimal.TryParse((String)value, numberStyle, formatProvider, out x))
+            if (tp == typeof(String) && Decimal.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), numberStyle, formatProvider, out x))
             {
                 return x;
             }
@@ -705,7 +710,7 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(TimeSpan)) return (TimeSpan)value;
-            if (tp == typeof(String) && TimeSpan.TryParse((String)value, out x))
+            if (tp == typeof(String) && TimeSpan.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), out x))
             {
                 return x;
             }
@@ -722,7 +727,8 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(DateTime)) return (DateTime)value;
-            if (tp == typeof(String) && DateTime.TryParse((String)value, formatProvider, dateTimeStyle, out x))
+            if (tp == typeof(String) && 
+                DateTime.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), formatProvider, dateTimeStyle, out x))
             {
                 return x;
             }
@@ -739,7 +745,7 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(DateTime)) return (DateTime)value;
-            if (tp == typeof(String) && DateTime.TryParseExact((String)value, format, formatProvider, dateTimeStyle, out x))
+            if (tp == typeof(String) && DateTime.TryParseExact(this.ConvertFromFullWidthToHalfWidth((String)value), format, formatProvider, dateTimeStyle, out x))
             {
                 return x;
             }
@@ -758,13 +764,13 @@ namespace HigLabo.Core
             if (tp == typeof(DateTimeOffset)) return (DateTimeOffset)value;
             if (tp == typeof(String))
             {
-                if (DateTimeOffset.TryParse((String)value, formatProvider, dateTimeStyle, out x))
+                if (DateTimeOffset.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), formatProvider, dateTimeStyle, out x))
                 {
                     return x;
                 }
                 else
                 {
-                    var xx = ToDateTimeOffsetWithTimeZone((String)value);
+                    var xx = ToDateTimeOffsetWithTimeZone(this.ConvertFromFullWidthToHalfWidth((String)value));
                     if (xx.HasValue) { return xx; }
                 }
             }
@@ -781,7 +787,7 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(DateTimeOffset)) return (DateTimeOffset)value;
-            if (tp == typeof(String) && DateTimeOffset.TryParseExact((String)value, format, formatProvider, dateTimeStyle, out x))
+            if (tp == typeof(String) && DateTimeOffset.TryParseExact(this.ConvertFromFullWidthToHalfWidth((String)value), format, formatProvider, dateTimeStyle, out x))
             {
                 return x;
             }
@@ -1021,6 +1027,11 @@ namespace HigLabo.Core
             }
 #endif
             return null;
+        }
+        public String ConvertFromFullWidthToHalfWidth(String value)
+        {
+            if (this.StringConverter == null) { return value; }
+            return this.StringConverter.ToHalfWidth(value);
         }
     }
 }
