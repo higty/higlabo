@@ -135,6 +135,7 @@ namespace HigLabo.Mapper.Test
             d["Decimal"] = "46.46";
             d["DateTime"] = "2014/12/17";
             d["DayOfWeek"] = "Friday";
+            d["GuidNullable"] = "7195FBEF-B18C-BC29-E339-39DDC81FC90F";
             var u1 = new User();
             u1.Value = "Value1";
             var u2 = config.Map(d, u1);
@@ -145,6 +146,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(46.46m, u2.Decimal);
             Assert.AreEqual(new DateTime(2014, 12,17), u2.DateTime);
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+            Assert.AreEqual(new Guid("7195FBEF-B18C-BC29-E339-39DDC81FC90F"), u2.GuidNullable);
         }
         [TestMethod]
         public void ObjectMapConfig_Map_Object_Dictionary()
@@ -579,7 +581,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapConfig_RemovePropertyMap()
         {
             var config = new ObjectMapConfig();
-            config.RemovePropertyMap<User, User>("Timestamp");
+            config.RemovePropertyMap<User, VipUser>("Timestamp");
 
             var u1 = new User();
             u1.Timestamp = new Byte[] { 1, 3, 6 };

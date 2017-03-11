@@ -25,6 +25,7 @@ namespace HigLabo.Mapper.Test
         public Decimal? DecimalNullable { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public DayOfWeek? DayOfWeekNullable { get; set; }
+        public Guid? GuidNullable { get; set; }
 
         public MapPoint MapPoint { get; set; }
         public Vector2 Vector2 { get; set; }
