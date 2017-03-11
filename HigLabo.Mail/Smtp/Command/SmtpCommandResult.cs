@@ -33,8 +33,7 @@ namespace HigLabo.Net.Smtp
         public SmtpCommandResult(SmtpCommandResultLine[] lines)
         {
             StringBuilder sb = new StringBuilder();
-            if (lines.Length == 0)
-            { throw new ArgumentException("line must not be zero length."); }
+            if (lines.Length == 0) { return; }
 
             this._StatusCode = lines[0].StatusCode;
             for (int i = 0; i < lines.Length; i++)

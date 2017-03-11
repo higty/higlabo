@@ -225,9 +225,12 @@ namespace HigLabo.Net.Smtp
             SmtpCommandResultLine CurrentLine = null;
             Byte[] bb = this.GetResponseBytes(new SmtpDataReceiveContext(this.ResponseEncoding));
             StringReader sr = new StringReader(this.ResponseEncoding.GetString(bb));
+            var emptyLineCount = 0;
             while (true)
             {
                 lineText = sr.ReadLine();
+                if (lineText.IsNullOrEmpty() == true) { break; }
+
                 CurrentLine = new SmtpCommandResultLine(lineText);
                 l.Add(CurrentLine);
                 //次の行があるかチェック
@@ -831,7 +834,7 @@ namespace HigLabo.Net.Smtp
                 }
             }
             rs = this.ExecuteQuit();
-            //全て成功したかどうかチェック
+
             if (results.Exists(el => el.State != SendMailResultState.Success) == true)
             {
                 return new SendMailListResult(SendMailResultState.SendMailData, results);
