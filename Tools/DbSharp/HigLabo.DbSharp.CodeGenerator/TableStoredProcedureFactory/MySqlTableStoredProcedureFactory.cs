@@ -29,8 +29,9 @@ namespace HigLabo.DbSharp.CodeGenerator
         }
         public override String CreateQueryOfTableNameSelectAll(Table table)
         {
-            return String.Format("Create Procedure {0}SelectAll () " + Environment.NewLine
-                + "select * from {0}", table.Name);
+            var cNames = CreateText(table.GetColumns(null, true), column => column.Name, ",", true);
+            return String.Format("Create Procedure {0}SelectAll () " + Environment.NewLine + Environment.NewLine
+                + "select {1} from {0}", table.Name, cNames);
         }
         public override String CreateQueryOfTableNameSelectByPrimaryKey(Table table)
         {
@@ -42,7 +43,9 @@ namespace HigLabo.DbSharp.CodeGenerator
             sb.AppendLine(")");
             sb.AppendLine();
 
-            sb.AppendFormat("select * from {0}", table.Name);
+            var cNames = CreateText(table.GetColumns(null, true), column => column.Name, ",", true);
+            sb.AppendFormat("select {0}", cNames);
+            sb.AppendFormat("from {0}", table.Name);
             sb.AppendLine();
             sb.Append("where ");
             sb.Append(CreateText(table.GetPrimaryKeyColumns(), column => String.Format("{0} = PK_{0}", column.Name), "and ", true));
