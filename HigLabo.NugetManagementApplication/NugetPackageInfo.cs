@@ -171,7 +171,7 @@ namespace HigLabo.NugetManagementApplication
             //}
             var ff = new List<ManifestFile>();
             var f = new ManifestFile();
-            f.Source = "*.dll";
+            f.Source = projectName + ".dll";
             f.Target = "lib\\" + FrameworkVersions[n.TargetFrameworkVersion];
             ff.Add(f);
             n.PackageBuilder.PopulateFiles(dllFolderPath, ff);

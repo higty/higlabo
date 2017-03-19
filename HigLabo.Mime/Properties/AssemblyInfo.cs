@@ -32,6 +32,6 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.3")]
-[assembly: AssemblyFileVersion("1.0.2.3")]
+[assembly: AssemblyVersion("1.0.2.4")]
+[assembly: AssemblyFileVersion("1.0.2.4")]
 [assembly: InternalsVisibleTo("HigLabo.Mime.Test, PublicKey=0024000004800000940000000602000000240000525341310004000001000100f7c6d7f4d642a32e40d5b092459958bb1975e6c198783c4ea9490e901d46b76551c3c8ced52ee1e37eaf2621c028166be42d84a4f1de90eb960b86aca6b273440cde864cd7e48cb8bf800673ccc6b1e818340b4ca0e1442b5a4a66cdac5a4b6ed559c7c50330b78c51548a1b285b9a425f798b79df73f5a1ac3f9f33c89b3398")]
