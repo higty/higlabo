@@ -18,6 +18,23 @@ namespace HigLabo.DbSharp.Service
         }
         protected override void Execute()
         {
+            var db = this.DatabaseSchemaReader.CreateDatabase();
+            try
+            {
+                this.OnProcessProgress(new ProcessProgressEventArgs("Disable ForeignKey...", 0));
+                db.ExecuteCommand("EXEC sys.sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
+                this.Import();
+            }
+            finally
+            {
+                this.OnProcessProgress(new ProcessProgressEventArgs("Enable ForeignKey...", 100));
+                db.ExecuteCommand("EXEC sys.sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all'");
+                this.OnProcessProgress(new ProcessProgressEventArgs("Enable ForeignKey completed", 100));
+            }
+
+        }
+        private void Import()
+        {
             var r = this.DatabaseSchemaReader;
             var names = this.Names;
             var totalCount = names.Count;
@@ -45,7 +62,7 @@ namespace HigLabo.DbSharp.Service
                     }
                     sp.TableName = spExisted.TableName;
                     sp.StoredProcedureType = spExisted.StoredProcedureType;
-                    
+
                     if (spExisted.StoredProcedureType == StoredProcedureType.Custom)
                     {
                         d = spExisted.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
@@ -119,6 +136,7 @@ namespace HigLabo.DbSharp.Service
             //スキーマファイルに追加
             this.AddOrReplace(this.SchemaData.StoredProcedures, ss, (item, element) => item.Name == element.Name);
             this.SchemaData.LastExecuteTimeOfImportStoredProcedure = DateTime.Now;
+
         }
     }
 }

@@ -11,6 +11,7 @@ namespace HigLabo.DbSharpApplication
         public String FilePath { get; set; }
         public String OutputDirectoryPath { get; set; }
         public String SqlScriptOutputDirectoryPath { get; set; }
+        public String ConnectionStringName { get; set; }
 
         public SchemaFileInfo()
         {

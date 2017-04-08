@@ -314,7 +314,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 {
                     case SqlParameterConvertType.Default:
                         if (sp.DatabaseServer == DatabaseServer.MySql &&
-                            parameter.DbType.MySqlServerDbType == MySqlDbType.Bit)
+                            parameter.DbType.MySqlServerDbType == MetaData.MySqlDbType.Bit)
                         {
                             yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (p.Value != DBNull.Value && p.Value != null) this.{0} = ((UInt64)p.Value != 0);"
                                 , parameter.GetNameWithoutAtmark());
@@ -510,72 +510,72 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             switch (type.DbType.MySqlServerDbType.Value)
             {
-                case MySqlDbType.Blob:
-                case MySqlDbType.TinyBlob:
-                case MySqlDbType.MediumBlob:
-                case MySqlDbType.LongBlob:
-                case MySqlDbType.Binary:
-                case MySqlDbType.VarBinary:
+                case MetaData.MySqlDbType.Blob:
+                case MetaData.MySqlDbType.TinyBlob:
+                case MetaData.MySqlDbType.MediumBlob:
+                case MetaData.MySqlDbType.LongBlob:
+                case MetaData.MySqlDbType.Binary:
+                case MetaData.MySqlDbType.VarBinary:
                     return "reader[index] as Byte[]";
 
-                case MySqlDbType.Timestamp:
+                case MetaData.MySqlDbType.Timestamp:
                     return "reader.GetDateTime(index)";
 
-                case MySqlDbType.Bit:
+                case MetaData.MySqlDbType.Bit:
                     return "((UInt64)reader[index] != 0)";
-                case MySqlDbType.Guid:
+                case MetaData.MySqlDbType.Guid:
                     return "reader.GetGuid(index)";
 
-                case MySqlDbType.Date:
-                case MySqlDbType.Newdate:
-                case MySqlDbType.DateTime:
+                case MetaData.MySqlDbType.Date:
+                case MetaData.MySqlDbType.Newdate:
+                case MetaData.MySqlDbType.DateTime:
                     return "reader.GetDateTime(index)";
-                case MySqlDbType.Time:
+                case MetaData.MySqlDbType.Time:
                     return " (TimeSpan)reader[index]";
-                case MySqlDbType.Year:
+                case MetaData.MySqlDbType.Year:
                     return "reader.GetInt32(index)";
 
-                case MySqlDbType.Byte:
+                case MetaData.MySqlDbType.Byte:
                     return "(SByte)reader[index]";
-                case MySqlDbType.Int16:
+                case MetaData.MySqlDbType.Int16:
                     return "reader.GetInt16(index)";
-                case MySqlDbType.Int24:
-                case MySqlDbType.Int32:
+                case MetaData.MySqlDbType.Int24:
+                case MetaData.MySqlDbType.Int32:
                     return "reader.GetInt32(index)";
-                case MySqlDbType.Int64:
+                case MetaData.MySqlDbType.Int64:
                     return "reader.GetInt64(index)";
-                case MySqlDbType.UByte:
+                case MetaData.MySqlDbType.UByte:
                     return "reader.GetByte(index)";
-                case MySqlDbType.UInt16:
+                case MetaData.MySqlDbType.UInt16:
                     return "(UInt16)reader[index]";
-                case MySqlDbType.UInt24:
-                case MySqlDbType.UInt32:
+                case MetaData.MySqlDbType.UInt24:
+                case MetaData.MySqlDbType.UInt32:
                     return "(UInt32)reader[index]";
-                case MySqlDbType.UInt64:
+                case MetaData.MySqlDbType.UInt64:
                     return "(UInt64)reader[index]";
 
-                case MySqlDbType.Float:
+                case MetaData.MySqlDbType.Float:
                     return "reader.GetFloat(index)";
-                case MySqlDbType.Double:
+                case MetaData.MySqlDbType.Double:
                     return "reader.GetDouble(index)";
-                case MySqlDbType.Decimal:
+                case MetaData.MySqlDbType.Decimal:
                     return "reader.GetDecimal(index)";
-                case MySqlDbType.NewDecimal:
+                case MetaData.MySqlDbType.NewDecimal:
                     return "reader.GetDecimal(index)";
 
-                case MySqlDbType.String:
-                case MySqlDbType.Text:
-                case MySqlDbType.VarChar:
-                case MySqlDbType.VarString:
-                case MySqlDbType.TinyText:
-                case MySqlDbType.MediumText:
-                case MySqlDbType.LongText:
+                case MetaData.MySqlDbType.String:
+                case MetaData.MySqlDbType.Text:
+                case MetaData.MySqlDbType.VarChar:
+                case MetaData.MySqlDbType.VarString:
+                case MetaData.MySqlDbType.TinyText:
+                case MetaData.MySqlDbType.MediumText:
+                case MetaData.MySqlDbType.LongText:
                     return "reader[index] as String";
 
-                case MySqlDbType.Geometry:
+                case MetaData.MySqlDbType.Geometry:
                     return "((MySqlDataReader)reader).GetMySqlGeometry(index)";
-                case MySqlDbType.Enum:
-                case MySqlDbType.Set:
+                case MetaData.MySqlDbType.Enum:
+                case MetaData.MySqlDbType.Set:
                     return String.Format("StoredProcedure.ToEnum<{0}>(reader[index] as String) ?? r.EnumColumn", type.EnumName);
 
                 default: return "reader[index] as Object";

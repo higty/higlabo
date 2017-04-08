@@ -32,17 +32,6 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reference\MySql.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="NpgSql">
-      <HintPath>..\Reference\NpgSql.dll</HintPath>
-    </Reference>
-    <Reference Include="Oracle.DataAccess, Version=4.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Reference\Oracle.DataAccess.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -61,6 +50,9 @@
     <Compile Include="Version1.0\DatabaseServer.cs" />
     <Compile Include="Version1.0\DataType.cs" />
     <Compile Include="Version1.0\DbType.cs" />
+    <Compile Include="Version1.0\MySqlDbType.cs" />
+    <Compile Include="Version1.0\NpgsqlDbType.cs" />
+    <Compile Include="Version1.0\OracleDbType.cs" />
     <Compile Include="Version1.0\SchemaData.cs" />
     <Compile Include="Version1.0\SqlInputParameter.cs" />
     <Compile Include="Version1.0\SqlParameterConvertType.cs" />

@@ -94,6 +94,7 @@
     <Compile Include="CodeGenerator\SqlScript\SqlScriptFileGenerator.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataTypeExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchemaReader\DatabaseSchemaQueryBuilder.cs">
       <SubType>Code</SubType>

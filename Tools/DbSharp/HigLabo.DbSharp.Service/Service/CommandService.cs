@@ -14,6 +14,8 @@ namespace HigLabo.DbSharp.Service
         public event EventHandler<CommandCompletedEventArgs> CommandCompleted;
         public event EventHandler Completed;
 
+        private Thread _Thread = null;
+
         public Dispatcher Dispatcher { get; set; }
         public List<DbSharpCommand> Commands { get; private set; }
         public Exception Exception { get; set; }
@@ -25,7 +27,10 @@ namespace HigLabo.DbSharp.Service
 
         public void Start()
         {
-            ThreadPool.QueueUserWorkItem(o => this.Execute());
+            _Thread = new Thread(this.Execute);
+            _Thread.IsBackground = true;
+            _Thread.Name = "CommandService";
+            _Thread.Start();
         }
         private void Execute()
         {

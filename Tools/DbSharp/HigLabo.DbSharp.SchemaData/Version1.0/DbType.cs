@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using System.Threading.Tasks;
-using Oracle.DataAccess.Client;
-using NpgsqlTypes;
-using MySql.Data.MySqlClient;
 
 namespace HigLabo.DbSharp.MetaData
 {

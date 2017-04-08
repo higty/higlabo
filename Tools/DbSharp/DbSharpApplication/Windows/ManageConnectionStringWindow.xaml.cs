@@ -61,6 +61,7 @@ namespace HigLabo.DbSharpApplication
             {
                 AValue.ConfigData.ConnectionStrings.Add(e.ConnectionStringInfo);
             }
+            AValue.ConfigData.Save();
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {

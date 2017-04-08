@@ -128,6 +128,13 @@ namespace HigLabo.DbSharpApplication
                 this.SetControlEnable(MainWindowState.SchemaLoaded);
                 this.Title = AValue.ConfigData.SchemaFilePath;
                 AValue.ConfigData.ChangeCultureInfo();
+                var f = AValue.ConfigData.GetCurrentRecentSchemaFile();
+                if (f != null)
+                {
+                    var cn = AValue.ConfigData.ConnectionStrings.FirstOrDefault(el => el.Name == f.ConnectionStringName);
+                    AValue.ConfigData.ConnectionStrings.Remove(cn);
+                    AValue.ConfigData.ConnectionStrings.Insert(0, cn);
+                }
             }
             catch (FileNotFoundException)
             {
