@@ -62,5 +62,10 @@ namespace HigLabo.DbSharp.MetaData
         {
             return this.Columns.Any(el => el.IsPrimaryKey == true);
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

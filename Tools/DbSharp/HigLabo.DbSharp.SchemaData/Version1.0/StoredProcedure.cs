@@ -48,5 +48,10 @@ namespace HigLabo.DbSharp.MetaData
             this.Parameters = new List<SqlInputParameter>();
             this.ResultSets = new List<StoredProcedureResultSetColumn>();
         }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }
