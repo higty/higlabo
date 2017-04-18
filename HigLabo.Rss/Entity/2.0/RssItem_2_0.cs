@@ -17,14 +17,11 @@ namespace HigLabo.Rss
         /// 
         /// </summary>
         public string Comments { get; set; }
+        public string Content { get; set; }
         /// <summary>
         /// 
         /// </summary>
         public RssGuid Guid { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Content { get; set; }
 
         /// <summary>
         /// 
@@ -58,12 +55,13 @@ namespace HigLabo.Rss
             var guid = element.ElementByNamespace("guid");
             if (guid != null)
             {
-                this.Guid = new RssGuid(guid);
+                Guid = new RssGuid(guid);
             }
+
             var contentEncoded = element.ElementByNamespace("content", "encoded");
             if (contentEncoded != null)
             {
-                this.Content = element.CastElementToString("content", "encoded");
+                Content = element.CastElementToString("content", "encoded");
             }
 
             this.PubDate = RssItem.ParsePubDate(element.CastElementToString("pubDate"));
