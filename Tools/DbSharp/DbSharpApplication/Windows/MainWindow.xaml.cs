@@ -131,9 +131,12 @@ namespace HigLabo.DbSharpApplication
                 var f = AValue.ConfigData.GetCurrentRecentSchemaFile();
                 if (f != null)
                 {
-                    var cn = AValue.ConfigData.ConnectionStrings.FirstOrDefault(el => el.Name == f.ConnectionStringName);
-                    AValue.ConfigData.ConnectionStrings.Remove(cn);
-                    AValue.ConfigData.ConnectionStrings.Insert(0, cn);
+                    var cn = AValue.ConfigData.ConnectionStrings.FirstOrDefault(el => el != null && el.Name == f.ConnectionStringName);
+                    if (cn != null)
+                    {
+                        AValue.ConfigData.ConnectionStrings.Remove(cn);
+                        AValue.ConfigData.ConnectionStrings.Insert(0, cn);
+                    }
                 }
             }
             catch (FileNotFoundException)
@@ -306,6 +309,10 @@ namespace HigLabo.DbSharpApplication
 
         private void SelectDatabaseTypeButton_Click(object sender, RoutedEventArgs e)
         {
+            if (this.DatabaseTypeList.SelectedIndex == -1)
+            {
+                MessageBox.Show("Please select database type.");
+            }
             var databaseServer = (DatabaseServer)this.DatabaseTypeList.SelectedValue;
             if (databaseServer != DatabaseServer.SqlServer &&
                 databaseServer != DatabaseServer.MySql)

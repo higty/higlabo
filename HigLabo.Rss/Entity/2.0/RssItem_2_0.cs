@@ -8,7 +8,7 @@ namespace HigLabo.Rss
     /// 
     /// </summary>
 	public class RssItem_2_0 : RssItem_0_92
-	{
+    {
         /// <summary>
         /// 
         /// </summary>
@@ -21,26 +21,30 @@ namespace HigLabo.Rss
         /// 
         /// </summary>
         public RssGuid Guid { get; set; }
-      
         /// <summary>
         /// 
         /// </summary>
-		public RssItem_2_0()
-		{
-			
-		}
+        public string Content { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public RssItem_2_0()
+        {
+
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="element"></param>
         public RssItem_2_0(XElement element)
-			: base(element)
-		{
-			if (element != null)
-			{
-				Parse(element);
-			}
-		}
+            : base(element)
+        {
+            if (element != null)
+            {
+                Parse(element);
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -54,10 +58,15 @@ namespace HigLabo.Rss
             var guid = element.ElementByNamespace("guid");
             if (guid != null)
             {
-                Guid = new RssGuid(guid);
+                this.Guid = new RssGuid(guid);
+            }
+            var contentEncoded = element.ElementByNamespace("content", "encoded");
+            if (contentEncoded != null)
+            {
+                this.Content = element.CastElementToString("content", "encoded");
             }
 
             this.PubDate = RssItem.ParsePubDate(element.CastElementToString("pubDate"));
         }
-	}
+    }
 }
