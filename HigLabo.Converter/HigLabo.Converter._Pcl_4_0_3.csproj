@@ -36,8 +36,12 @@
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>HigLaboStrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
+    <None Include="HigLaboStrongNameKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converter\Base64Converter.cs" />

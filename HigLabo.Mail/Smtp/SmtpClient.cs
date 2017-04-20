@@ -225,7 +225,6 @@ namespace HigLabo.Net.Smtp
             SmtpCommandResultLine CurrentLine = null;
             Byte[] bb = this.GetResponseBytes(new SmtpDataReceiveContext(this.ResponseEncoding));
             StringReader sr = new StringReader(this.ResponseEncoding.GetString(bb));
-            var emptyLineCount = 0;
             while (true)
             {
                 lineText = sr.ReadLine();
