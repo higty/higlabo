@@ -27,7 +27,7 @@ namespace HigLabo.Net.Imap
         {
             String s = "* Capability ";
             if (text.StartsWith(s, StringComparison.OrdinalIgnoreCase) == false)
-            { throw new MailClientException(); }
+            { throw new MailClientException(text); }
 
             String line = "";
             using (StringReader sr = new StringReader(text))

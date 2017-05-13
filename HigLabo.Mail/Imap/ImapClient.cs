@@ -200,7 +200,7 @@ namespace HigLabo.Net.Imap
                     case ImapConnectionState.Disconnected: throw new MailClientException("You can execute this command only when State is Disconnected");
                     case ImapConnectionState.Connected: throw new MailClientException("You can execute this command only when State is Connected");
                     case ImapConnectionState.Authenticated: throw new MailClientException("You can execute this command only when State is Authenticated");
-                    default: throw new MailClientException();
+                    default: throw new MailClientException("Missing switch case of " + state.ToStringFromEnum());
                 }
             }
             if (folderSelected == true && this.CurrentFolder == null)
@@ -390,7 +390,7 @@ namespace HigLabo.Net.Imap
                 }
                 return new SelectResult(folderName, exists, recent, l.ToArray());
             }
-            throw new MailClientException();
+            throw new MailClientException(text);
         }
         /// <summary>
         /// Send create folder command to IMAP server.

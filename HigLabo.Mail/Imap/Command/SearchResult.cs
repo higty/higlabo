@@ -30,7 +30,7 @@ namespace HigLabo.Net.Imap
         {
             String startText = "* Search";
             if (text.StartsWith(startText, StringComparison.OrdinalIgnoreCase) == false)
-            { throw new MailClientException(); }
+            { throw new MailClientException(text); }
 
             String line = "";
             using (StringReader sr = new StringReader(text))

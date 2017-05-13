@@ -16,9 +16,6 @@ namespace HigLabo.Net.Mail
         /// <summary>
         /// 
         /// </summary>
-        public MailClientException()
-        {
-        }
         /// <summary>
         /// 
         /// </summary>
