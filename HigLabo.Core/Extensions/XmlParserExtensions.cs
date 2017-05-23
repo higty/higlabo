@@ -29,6 +29,9 @@ namespace HigLabo.Core
         public static XElement ElementByNamespace(this XElement element, string nameSpace, string name)
         {
             var ns = String.IsNullOrEmpty(nameSpace) ? element.GetDefaultNamespace() : element.GetNamespaceOfPrefix(nameSpace);
+            if (ns == null)
+                ns = element.GetDefaultNamespace();
+
             return element.Element(ns + name);
         }
         /// <summary>
