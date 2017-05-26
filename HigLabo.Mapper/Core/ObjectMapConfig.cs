@@ -709,8 +709,10 @@ namespace HigLabo.Core
                             .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
                         if (targetInterfaceType == null) { continue; }
                     }
-
-                    targetProperties.Add(p);
+                    if (p.DeclaringType == item)
+                    {
+                        targetProperties.Add(p);
+                    }
                 }
             }
             //Object --> Object 

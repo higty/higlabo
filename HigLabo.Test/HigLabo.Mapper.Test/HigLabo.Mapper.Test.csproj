@@ -53,6 +53,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Core\MapPoint.cs" />
+    <Compile Include="Core\Schedule.cs" />
     <Compile Include="Core\Sys_Database.cs" />
     <Compile Include="Core\TextParser.cs" />
     <Compile Include="Core\TreeNode.cs" />

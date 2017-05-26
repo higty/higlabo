@@ -462,6 +462,17 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.MapPoint.Longitude, u2.Longitude);
             Assert.AreEqual(u1.Vector2.X, u2.X);
         }
+        [TestMethod]
+        public void ObjectMapConfig_Map_SubClass_ListProperty()
+        {
+            var config = new ObjectMapConfig();
+
+            var s1 = new Schedule();
+            s1.UserList.Add(new User("Test1"));
+            var s2 = config.Map(s1, new AllDaySchedule());
+
+            Assert.AreEqual(1, s2.UserList.Count);
+        }
 
         [TestMethod]
         public void ObjectMapConfig_AddPostAction_IUser()
