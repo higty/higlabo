@@ -91,6 +91,35 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="database"></param>
+        /// <returns></returns>
+        public async Task<Int32> ExecuteNonQueryAsync(Database database)
+        {
+            if (database == null) throw new ArgumentNullException("database");
+            var affectedRecordCount = -1;
+            var previousState = database.ConnectionState;
+
+            try
+            {
+                var cm = CreateCommand();
+                var e = new StoredProcedureExecutingEventArgs(this, cm);
+                StoredProcedure.OnExecuting(e);
+                if (e.Cancel == true) { return affectedRecordCount; }
+                affectedRecordCount = await database.ExecuteCommandAsync(cm);
+                this.SetOutputParameterValue(cm);
+            }
+            finally
+            {
+                if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
+                if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
+            }
+            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
+            return affectedRecordCount;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="command"></param>
         protected abstract void SetOutputParameterValue(DbCommand command);
         /// <summary>

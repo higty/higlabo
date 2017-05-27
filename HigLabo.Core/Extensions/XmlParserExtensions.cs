@@ -30,8 +30,9 @@ namespace HigLabo.Core
         {
             var ns = String.IsNullOrEmpty(nameSpace) ? element.GetDefaultNamespace() : element.GetNamespaceOfPrefix(nameSpace);
             if (ns == null)
+            {
                 ns = element.GetDefaultNamespace();
-
+            }
             return element.Element(ns + name);
         }
         /// <summary>

@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace HigLabo.Data
 {
-    public abstract class Database : IDisposable
+    public abstract partial class Database : IDisposable
     {
         /// <summary>
         /// コマンドが実行される直前に発生するイベントです。
@@ -286,7 +286,7 @@ namespace HigLabo.Data
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        public IDataReader ExecuteReader(String query)
+        public DbDataReader ExecuteReader(String query)
         {
             return ExecuteReader(query, CommandBehavior.Default);
         }
