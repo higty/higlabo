@@ -63,11 +63,13 @@
     <Compile Include="Interface\IDatabaseContext.cs" />
     <Compile Include="Interface\ITable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StoredProcedure\ExecuteNonQueryResult.cs" />
     <Compile Include="StoredProcedure\StoredProcedure.cs" />
     <Compile Include="StoredProcedure\StoredProcedureExecutingEventArgs.cs" />
     <Compile Include="StoredProcedure\StoredProcedureExecutedEventArgs.cs" />
     <Compile Include="StoredProcedure\StoredProcedureResultSet.cs" />
     <Compile Include="StoredProcedure\StoredProcedureWithResultSet.cs" />
+    <Compile Include="StoredProcedure\StoredProcedureWithResultSetsList.cs" />
     <Compile Include="StoredProcedure\StoredProcedureWithResultSet`1.cs" />
     <Compile Include="Table\CacheTable.cs" />
     <Compile Include="Table\SaveMode.cs" />
