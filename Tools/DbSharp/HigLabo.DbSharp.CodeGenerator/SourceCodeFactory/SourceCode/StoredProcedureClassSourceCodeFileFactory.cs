@@ -71,9 +71,16 @@ namespace HigLabo.DbSharp.CodeGenerator
             {
                 c.BaseClass = new TypeName("StoredProcedure");
             }
-            else
+            else 
             {
-                c.BaseClass = new TypeName(String.Format("StoredProcedureWithResultSet<{0}.{1}>", sp.Name, rs.Name));
+                if (sp.ResultSets.Count == 1)
+                {
+                    c.BaseClass = new TypeName(String.Format("StoredProcedureWithResultSet<{0}.{1}>", sp.Name, rs.Name));
+                }
+                else
+                {
+                    c.BaseClass = new TypeName(String.Format("StoredProcedureWithResultSetsList<{0}.{1}, {0}.ResultSetsList>", sp.Name, rs.Name));
+                }
             }
             c.Fields.Add(CreateNameConstField());
 
@@ -98,8 +105,6 @@ namespace HigLabo.DbSharp.CodeGenerator
             if (rs != null)
             {
                 c.Methods.Add(CreateCreateResultSetMethod());
-                c.Methods.Add(CreateGetFirstResultSetMethod());
-                c.Methods.Add(CreateGetFirstResultSetMethod1());
 
                 for (int i = 0; i < sp.ResultSets.Count; i++)
                 {
@@ -173,6 +178,10 @@ namespace HigLabo.DbSharp.CodeGenerator
 
             ct.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = \"{0}\";", this.DatabaseKey);
             ct.Body.Add(SourceCodeLanguage.CSharp, "ConstructorExecuted();");
+            if (sp.ResultSets.Count > 1)
+            {
+                ct.Body.Add(SourceCodeLanguage.CSharp, "_GetResultSetsListMethod = this.GetResultSetsList;");
+            }
             return ct;
         }
 
@@ -343,29 +352,6 @@ namespace HigLabo.DbSharp.CodeGenerator
             md.ReturnTypeName = new TypeName(String.Format("{0}.{1}", sp.Name, rs.Name));
 
             md.Body.Add(SourceCodeLanguage.CSharp, "return new {0}(this);", rs.Name);
-            return md;
-        }
-        public Method CreateGetFirstResultSetMethod()
-        {
-            var sp = this.StoredProcedure;
-            var rs = sp.ResultSets[0];
-            Method md = new Method(MethodAccessModifier.Public, "GetFirstResultSet");
-            md.Modifier.Polymophism = MethodPolymophism.New;
-            md.ReturnTypeName = new TypeName(String.Format("{0}.{1}", sp.Name, rs.Name));
-
-            md.Body.Add(SourceCodeLanguage.CSharp, "return base.GetFirstResultSet() as {0}.{1};", sp.Name, rs.Name);
-            return md;
-        }
-        public Method CreateGetFirstResultSetMethod1()
-        {
-            var sp = this.StoredProcedure;
-            var rs = sp.ResultSets[0];
-            Method md = new Method(MethodAccessModifier.Public, "GetFirstResultSet");
-            md.Modifier.Polymophism = MethodPolymophism.New;
-            md.Parameters.Add(new MethodParameter("Database", "database"));
-            md.ReturnTypeName = new TypeName(String.Format("{0}.{1}", sp.Name, rs.Name));
-
-            md.Body.Add(SourceCodeLanguage.CSharp, "return base.GetFirstResultSet(database) as {0}.{1};", sp.Name, rs.Name);
             return md;
         }
      

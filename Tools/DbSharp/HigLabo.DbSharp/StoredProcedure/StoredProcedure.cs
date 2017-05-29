@@ -116,6 +116,26 @@ namespace HigLabo.DbSharp
             StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return affectedRecordCount;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databases"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQuery(IEnumerable<Database> databases)
+        {
+            var tt = new List<Task<ExecuteNonQueryResult>>();
+            foreach (var db in databases)
+            {
+                var task = Task.Factory.StartNew<ExecuteNonQueryResult>(() =>
+                {
+                    var result = this.ExecuteNonQuery(db);
+                    return new ExecuteNonQueryResult(db, result);
+                });
+                tt.Add(task);
+            }
+            var results = await Task.WhenAll(tt);
+            return results;
+        }
 
         /// <summary>
         /// 
