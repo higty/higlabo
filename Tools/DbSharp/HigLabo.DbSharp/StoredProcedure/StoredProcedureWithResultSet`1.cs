@@ -157,45 +157,6 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="database"></param>
-        /// <param name="createReulstSetMethodList"></param>
-        /// <returns></returns>
-        protected List<List<StoredProcedureResultSet>> GetResultSetsList(Database database, params Func<DbDataReader, StoredProcedureResultSet>[] createReulstSetMethodList)
-        {
-            List<List<StoredProcedureResultSet>> l = new List<List<StoredProcedureResultSet>>();
-            DbDataReader dr = null;
-            var previousState = database.ConnectionState;
-
-            try
-            {
-                var cm = CreateCommand();
-                dr = database.ExecuteReader(cm);
-                Int32 index = 0;
-                while (true)
-                {
-                    l.Add(new List<StoredProcedureResultSet>());
-                    while (dr.Read())
-                    {
-                        var rs = createReulstSetMethodList[index](dr);
-                        l[index].Add(rs);
-                    }
-                    index += 1;
-                    if (dr.NextResult() == false) break;
-                }
-                dr.Close();
-                this.SetOutputParameterValue(cm);
-            }
-            finally
-            {
-                if (dr != null) { dr.Dispose(); }
-                if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
-                if (database.OnTransaction == false) { database.Dispose(); }
-            }
-            return l;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
         /// <typeparam name="ResultSet"></typeparam>
         /// <param name="setResultSetMethod"></param>
         /// <returns></returns>

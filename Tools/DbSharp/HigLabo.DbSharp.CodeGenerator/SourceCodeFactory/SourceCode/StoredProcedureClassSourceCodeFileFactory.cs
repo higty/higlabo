@@ -124,8 +124,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                     var f = new ResultSetsListClassFactory(sp);
                     c.Classes.Add(f.CreateClass());
 
-                    c.Methods.Add(CreateGetResultSetsListMethod());
-                    c.Methods.Add(CreateGetResultSetsListMethod1());
+                    c.Methods.Add(CreateSetResultSetsListMethod());
                 }
             }
             c.Methods.Add(CreateToStringMethod());
@@ -180,7 +179,10 @@ namespace HigLabo.DbSharp.CodeGenerator
             ct.Body.Add(SourceCodeLanguage.CSharp, "ConstructorExecuted();");
             if (sp.ResultSets.Count > 1)
             {
-                ct.Body.Add(SourceCodeLanguage.CSharp, "_GetResultSetsListMethod = this.GetResultSetsList;");
+                foreach (var rs in sp.ResultSets)
+                {
+                    ct.Body.Add(SourceCodeLanguage.CSharp, "_CreateResultSetMethodList.Add(CreateCreateResultSetMethod<{0}>(this.SetResultSet));", rs.Name);
+                }
             }
             return ct;
         }
@@ -592,37 +594,24 @@ namespace HigLabo.DbSharp.CodeGenerator
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "return sb.ToString();");
         }
 
-        public Method CreateGetResultSetsListMethod()
+        public Method CreateSetResultSetsListMethod()
         {
             var sp = this.StoredProcedure;
-            Method md = new Method(MethodAccessModifier.Public, "GetResultSetsList");
-            md.ReturnTypeName = new TypeName("ResultSetsList");
-            md.Body.Add(SourceCodeLanguage.CSharp, "return this.GetResultSetsList(this.GetDatabase());");
+            Method md = new Method(MethodAccessModifier.Protected, "SetResultSetsList");
+            md.Modifier.Polymophism = MethodPolymophism.Override;
+            md.Parameters.Add(new MethodParameter("ResultSetsList", "resultSetsList"));
+            md.Parameters.Add(new MethodParameter("List<List<StoredProcedureResultSet>>", "list"));
+            md.Body.AddRange(CreateSetResultSetsListMethodBody());
 
             return md;
         }
-        public Method CreateGetResultSetsListMethod1()
-        {
-            var sp = this.StoredProcedure;
-            Method md = new Method(MethodAccessModifier.Public, "GetResultSetsList");
-            md.ReturnTypeName = new TypeName("ResultSetsList");
-            md.Parameters.Add(new MethodParameter("Database", "database"));
-            md.Body.AddRange(CreateGetResultSetsListMethodBody());
-
-            return md;
-        }
-        public IEnumerable<CodeBlock> CreateGetResultSetsListMethodBody()
+        public IEnumerable<CodeBlock> CreateSetResultSetsListMethodBody()
         {
             var sp = this.StoredProcedure;
             var sb = new StringBuilder(128);
 
-            yield return new CodeBlock(SourceCodeLanguage.CSharp, "var rs = new ResultSetsList();");
-            sb.Append("var l = base.GetResultSetsList(database");
-            foreach (var rs in sp.ResultSets)
-            {
-                sb.AppendFormat(", CreateCreateResultSetMethod<{0}>(this.SetResultSet)", rs.Name);
-            }
-            sb.Append(");");
+            yield return new CodeBlock(SourceCodeLanguage.CSharp, "var rs = resultSetsList;");
+            sb.Append("var l = list;");
 
             yield return new CodeBlock(SourceCodeLanguage.CSharp, sb.ToString());
 
@@ -631,8 +620,6 @@ namespace HigLabo.DbSharp.CodeGenerator
                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "rs.{0}List.AddRange(l[{1}].ConvertAll(el => ({0})el));"
                     , sp.ResultSets[i].Name, i);
             }
-            yield return new CodeBlock(SourceCodeLanguage.CSharp, "return rs;");
-
         }
     }
 }

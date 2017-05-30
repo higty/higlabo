@@ -88,6 +88,15 @@ namespace HigLabo.DbSharp
             StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return affectedRecordCount;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<Int32> ExecuteNonQueryAsync()
+        {
+            return await this.ExecuteNonQueryAsync(this.GetDatabase());
+        }
         /// <summary>
         /// 
         /// </summary>
