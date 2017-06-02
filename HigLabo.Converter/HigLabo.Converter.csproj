@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Converter\Base64Converter.cs" />
     <Compile Include="Converter\ByteConverter.cs" />
+    <Compile Include="Converter\JavaScriptStringConverter.cs" />
     <Compile Include="Converter\PunycodeConverter.cs" />
     <Compile Include="Converter\Rfc2822Converter.cs" />
     <Compile Include="Converter\ISO8601Parser.cs" />
