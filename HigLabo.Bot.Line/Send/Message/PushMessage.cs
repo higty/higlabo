@@ -30,5 +30,37 @@ namespace HigLabo.Bot.Line.Send
             sb.Append("}");
             return sb.ToString();
         }
+        public static List<PushMessage> Create(String to, String text, IEnumerable<TemplateAction> actionList)
+        {
+            var l = new List<PushMessage>();
+
+            var mg = new PushMessage();
+            mg.To = to;
+            var tp = new ButtonsTemplate();
+            tp.AltText = text;
+            tp.Text = text;
+            mg.Messages.Add(tp);
+
+            foreach (var bt in actionList)
+            {
+                if (tp.Actions.Count == 3)
+                {
+                    l.Add(mg);
+
+                    mg = new PushMessage();
+                    mg.To = to;
+                    tp = new ButtonsTemplate();
+                    tp.AltText = text;
+                    tp.Text = "　";
+                    mg.Messages.Add(tp);
+                }
+                tp.Actions.Add(bt);
+            }
+            if (tp.Actions.Count > 0)
+            {
+                l.Add(mg);
+            }
+            return l;
+        }
     }
 }

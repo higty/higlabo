@@ -6,30 +6,38 @@ using System.Text;
 
 namespace HigLabo.Bot.Line.Send
 {
-    public class CarouselTemplate : ITemplate
+    public class CarouselTemplate : TemplateMessage
     {
         public String ThumbnailImageUrl { get; set; }
         public String Title { get; set; }
         public String Text { get; set; }
         public List<CarouselColumn> Columns { get; private set; } = new List<CarouselColumn>();
-        public string CreateJson()
+
+        public override string CreateJson()
         {
             var sb = new StringBuilder();
             sb.Append("{");
             {
-                sb.Append("\"type\":\"carousel\",");
-                sb.Append("\"columns\":[");
-                for (int i = 0; i < this.Columns.Count; i++)
+                sb.Append("\"type\":\"template\",");
+                sb.Append("\"altText\":\"").AppendJsonEncoded(this.AltText).Append("\",");
+                sb.Append("\"template\": {");
                 {
-                    sb.Append(this.Columns[i].CreateJson());
-                    if (i < this.Columns.Count - 1)
+                    sb.Append("\"type\":\"carousel\",");
+                    sb.Append("\"columns\":[");
+                    for (int i = 0; i < this.Columns.Count; i++)
                     {
-                        sb.Append(",");
+                        sb.Append(this.Columns[i].CreateJson());
+                        if (i < this.Columns.Count - 1)
+                        {
+                            sb.Append(",");
+                        }
                     }
+                    sb.Append("]");
                 }
-                sb.Append("]");
+                sb.Append("}");
             }
             sb.Append("}");
+
             return sb.ToString();
         }
     }

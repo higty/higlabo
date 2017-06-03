@@ -21,6 +21,10 @@ namespace HigLabo.Bot.Line
         public LineBotClient()
         {
         }
+        public LineBotClient(String accessToken)
+        {
+            this.AccessToken = accessToken;
+        }
 
         public String GetAccessToken()
         {

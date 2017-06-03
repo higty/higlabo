@@ -25,7 +25,7 @@ namespace HigLabo.Bot.Line.Send
             sb.Append("{");
             {
                 sb.Append("\"type\":\"audio\",");
-                sb.Append("\"originalcontenturl\":\"").AppendJsonEncoded(this.OriginalContentUrl).Append("\",");
+                sb.Append("\"originalContentUrl\":\"").AppendJsonEncoded(this.OriginalContentUrl).Append("\",");
                 sb.Append("\"duration\":").AppendJsonEncoded(this.Duration.ToString());
             }
             sb.Append("}");

@@ -26,8 +26,8 @@ namespace HigLabo.Bot.Line.Send
             sb.Append("{");
             {
                 sb.Append("\"type\":\"video\",");
-                sb.Append("\"originalcontenturl\":\"").AppendJsonEncoded(this.OriginalContentUrl).Append("\",");
-                sb.Append("\"previewimageurl\":\"").AppendJsonEncoded(this.PreviewImageUrl).Append("\"");
+                sb.Append("\"originalContentUrl\":\"").AppendJsonEncoded(this.OriginalContentUrl).Append("\",");
+                sb.Append("\"previewImageUrl\":\"").AppendJsonEncoded(this.PreviewImageUrl).Append("\"");
             }
             sb.Append("}");
             return sb.ToString();
