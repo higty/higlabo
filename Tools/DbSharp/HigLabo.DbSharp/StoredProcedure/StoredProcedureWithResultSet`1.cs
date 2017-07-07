@@ -57,6 +57,26 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="database"></param>
+        /// <returns></returns>
+        public new async Task<T> GetFirstResultSetAsync(Database database)
+        {
+            return (await this.GetResultSetsAsync(database)).FirstOrDefault() as T;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="databases"></param>
+        /// <returns></returns>
+        public new async Task<T> GetFirstResultSetAsync(IEnumerable<Database> databases)
+        {
+            var results = await this.GetResultSetsAsync(databases);
+            return results.FirstOrDefault() as T;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public new List<T> GetResultSets()
         {
@@ -74,13 +94,51 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="database"></param>
+        /// <returns></returns>
+        public new async Task<List<T>> GetResultSetsAsync(Database database)
+        {
+            var l = new List<T>();
+            foreach (var item in await base.GetResultSetsAsync(database))
+            {
+                l.Add(item as T);
+            }
+            return l;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="databases"></param>
         /// <returns></returns>
-        public new async Task<T> GetFirstResultSet(IEnumerable<Database> databases)
+        public new async Task<IEnumerable<T>> GetResultSetsAsync(IEnumerable<Database> databases)
         {
-            var results = await this.GetResultSets(databases);
-            return results.FirstOrDefault() as T;
+            var l = new List<T>();
+            foreach (var item in await base.GetResultSetsAsync(databases))
+            {
+                l.Add(item as T);
+            }
+            return l;
         }
+
+ 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public new IEnumerable<T> EnumerateResultSets()
+        {
+            return base.EnumerateResultSets().Cast<T>();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="database"></param>
+        /// <returns></returns>
+        public new IEnumerable<T> EnumerateResultSets(Database database)
+        {
+            return base.EnumerateResultSets(database).Cast<T>();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -101,37 +159,6 @@ namespace HigLabo.DbSharp
         public List<TResult> GetResultSets<TResult>(Database database, Func<T, TResult> selector)
         {
             return this.EnumerateResultSets(database).Select(selector).ToList();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
-        public new async Task<IEnumerable<T>> GetResultSets(IEnumerable<Database> databases)
-        {
-            var l = new List<T>();
-            foreach (var item in await base.GetResultSets(databases))
-            {
-                l.Add(item as T);
-            }
-            return l;
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
-        public new IEnumerable<T> EnumerateResultSets()
-        {
-            return base.EnumerateResultSets().Cast<T>();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
-        public new IEnumerable<T> EnumerateResultSets(Database database)
-        {
-            return base.EnumerateResultSets(database).Cast<T>();
         }
         /// <summary>
         /// 

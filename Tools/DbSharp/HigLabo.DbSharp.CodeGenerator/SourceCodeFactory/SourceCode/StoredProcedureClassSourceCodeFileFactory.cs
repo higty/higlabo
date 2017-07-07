@@ -125,6 +125,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                     c.Classes.Add(f.CreateClass());
 
                     c.Methods.Add(CreateSetResultSetsListMethod());
+                    c.Methods.Add(CreateMergeMethod());
                 }
             }
             c.Methods.Add(CreateToStringMethod());
@@ -179,6 +180,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             ct.Body.Add(SourceCodeLanguage.CSharp, "ConstructorExecuted();");
             if (sp.ResultSets.Count > 1)
             {
+                ct.Body.Add(SourceCodeLanguage.CSharp, "_MergeMethod = Merge;");
                 foreach (var rs in sp.ResultSets)
                 {
                     ct.Body.Add(SourceCodeLanguage.CSharp, "_CreateResultSetMethodList.Add(CreateCreateResultSetMethod<{0}>(this.SetResultSet));", rs.Name);
@@ -619,6 +621,29 @@ namespace HigLabo.DbSharp.CodeGenerator
             {
                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "rs.{0}List.AddRange(l[{1}].ConvertAll(el => ({0})el));"
                     , sp.ResultSets[i].Name, i);
+            }
+        }
+
+        public Method CreateMergeMethod()
+        {
+            var sp = this.StoredProcedure;
+            Method md = new Method(MethodAccessModifier.Public, "Merge");
+            md.Modifier.Static = true;
+            md.Parameters.Add(new MethodParameter("ResultSetsList", "source"));
+            md.Parameters.Add(new MethodParameter("ResultSetsList", "target"));
+
+            md.Body.AddRange(CreateMergeMethodBody());
+
+            return md;
+        }
+        public IEnumerable<CodeBlock> CreateMergeMethodBody()
+        {
+            var sp = this.StoredProcedure;
+            var sb = new StringBuilder(128);
+
+            foreach (var item in this.StoredProcedure.ResultSets)
+            {
+                yield return new CodeBlock(SourceCodeLanguage.CSharp, "target.{0}List.AddRange(source.{0}List);", item.Name);
             }
         }
     }

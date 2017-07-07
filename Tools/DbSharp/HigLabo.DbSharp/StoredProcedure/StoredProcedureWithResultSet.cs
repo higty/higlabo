@@ -55,6 +55,17 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="databases"></param>
+        /// <returns></returns>
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases)
+        {
+            var results = await this.GetResultSetsAsync(databases);
+            return results.FirstOrDefault();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public List<StoredProcedureResultSet> GetResultSets()
         {
@@ -107,6 +118,26 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="databases"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
+        {
+            var tt = new List<Task<List<StoredProcedureResultSet>>>();
+            foreach (var db in databases)
+            {
+                var task = Task.Factory.StartNew<List<StoredProcedureResultSet>>(() =>
+                {
+                    return this.GetResultSets(db);
+                });
+                tt.Add(task);
+            }
+            var results = await Task.WhenAll(tt);
+            return results.SelectMany(el => el);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public IEnumerable<StoredProcedureResultSet> EnumerateResultSets()
         {
@@ -146,35 +177,6 @@ namespace HigLabo.DbSharp
             StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
-        public async Task<StoredProcedureResultSet> GetFirstResultSet(IEnumerable<Database> databases)
-        {
-            var results = await this.GetResultSets(databases);
-            return results.FirstOrDefault();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
-        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSets(IEnumerable<Database> databases)
-        {
-            var tt = new List<Task<List<StoredProcedureResultSet>>>();
-            foreach (var db in databases)
-            {
-                var task = Task.Factory.StartNew<List<StoredProcedureResultSet>>(() =>
-                {
-                    return this.GetResultSets(db);
-                });
-                tt.Add(task);
-            }
-            var results = await Task.WhenAll(tt);
-            return results.SelectMany(el => el);
-        }
         /// <summary>
         /// 
         /// </summary>

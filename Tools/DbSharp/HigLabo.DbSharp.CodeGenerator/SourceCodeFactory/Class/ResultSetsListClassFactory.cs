@@ -45,5 +45,6 @@ namespace HigLabo.DbSharp.CodeGenerator
 
             c.Properties.Add(p);
         }
+
     }
 }

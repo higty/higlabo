@@ -13,7 +13,10 @@ namespace HigLabo.DbSharp
         where T: StoredProcedureResultSet, new()
         where TResultSetList: new()
     {
+        protected static Action<TResultSetList, TResultSetList> _MergeMethod;
         protected List<Func<DbDataReader, StoredProcedureResultSet>> _CreateResultSetMethodList = new List<Func<DbDataReader, StoredProcedureResultSet>>();
+
+        protected abstract void SetResultSetsList(TResultSetList resultSetList, List<List<StoredProcedureResultSet>> list);
 
         /// <summary>
         /// 
@@ -103,15 +106,13 @@ namespace HigLabo.DbSharp
             this.SetResultSetsList(rsl, l);
             return rsl;
         }
-        protected abstract void SetResultSetsList(TResultSetList resultSetList, List<List<StoredProcedureResultSet>> list);
-
         /// <summary>
         /// 
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="databases"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TResultSetList>> GetResultSetsList(IEnumerable<Database> databases)
+        public async Task<TResultSetList> GetResultSetsListAsync(IEnumerable<Database> databases)
         {
             var tt = new List<Task<TResultSetList>>();
             foreach (var db in databases)
@@ -122,8 +123,12 @@ namespace HigLabo.DbSharp
                 });
                 tt.Add(task);
             }
-            var results = await Task.WhenAll(tt);
-            return results;
+            var result = new TResultSetList();
+            foreach (var item in await Task.WhenAll(tt))
+            {
+                _MergeMethod(item, result);
+            }
+            return result;
         }
     }
 }
