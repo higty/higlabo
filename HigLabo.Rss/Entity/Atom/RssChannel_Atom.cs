@@ -37,7 +37,8 @@ namespace HigLabo.Rss
         {
             foreach (var link in element.ElementsByNamespace("link"))
             {
-                if (link.CastAttributeToString("type").Contains("text/html") == true)
+                var type = link.CastAttributeToString("type");
+                if (type != null && type.Contains("text/html") == true)
                 {
                     this.Link = link.CastAttributeToString("href");
                 }

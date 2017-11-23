@@ -96,6 +96,8 @@ namespace HigLabo.Net
         public HttpWebRequest CreateRequest(HttpRequestCommand command)
         {
             HttpWebRequest req = HttpWebRequest.Create(command.Url) as HttpWebRequest;
+            if (req == null) { throw new ArgumentException("Url is invalid."); }
+
             var cm = command;
 
             if (this.CookieContainer != null)

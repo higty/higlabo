@@ -83,6 +83,40 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="databases"></param>
+        /// <returns></returns>
+        public List<StoredProcedureResultSet> GetResultSets(IEnumerable<Database> databases)
+        {
+            var tt = new List<Task<List<StoredProcedureResultSet>>>();
+            foreach (var db in databases)
+            {
+                var task = Task.Factory.StartNew<List<StoredProcedureResultSet>>(() =>
+                {
+                    return this.GetResultSets(db);
+                });
+                tt.Add(task);
+            }
+            var l = new List<StoredProcedureResultSet>();
+            foreach (var item in Task.WhenAll(tt).Result)
+            {
+                foreach (var rs in item)
+                {
+                    l.Add(rs);
+                }
+            }
+            return l;
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync()
+        {
+            return await this.GetResultSetsAsync(this.GetDatabase());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="database"></param>
         /// <returns></returns>
         public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database)

@@ -344,6 +344,10 @@ namespace HigLabo.DbSharpApplication
                 var w = new MessageWindow(ex.ToString());
                 w.ShowDialog();
             }
+            finally
+            {
+                window.Close();
+            }
         }
 
         void TableListBox_Filter(object sender, FilterEventArgs e)

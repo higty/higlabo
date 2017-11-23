@@ -79,12 +79,11 @@ namespace HigLabo.DbSharpApplication
             foreach (var item in db.GetTables())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
-                    item.LastAlteredTime < AValue.SchemaData.LastExecuteTimeOfImportTable)
+                    item.LastAlteredTime + TimeSpan.FromHours(offsetHour) < AValue.SchemaData.LastExecuteTimeOfImportTable)
                 { continue; }
                 if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == item.Name) == true)
                 { continue; }
 
-                item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
                 l.Add(item);
             }
 
@@ -104,12 +103,11 @@ namespace HigLabo.DbSharpApplication
             foreach (var item in db.GetStoredProcedures())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
-                    item.LastAlteredTime < AValue.SchemaData.LastExecuteTimeOfImportStoredProcedure)
+                    item.LastAlteredTime + TimeSpan.FromHours(offsetHour) < AValue.SchemaData.LastExecuteTimeOfImportStoredProcedure)
                 { continue; }
                 if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == item.Name) == true)
                 { continue; }
                 
-                item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
                 l.Add(item);
             }
 
@@ -129,12 +127,11 @@ namespace HigLabo.DbSharpApplication
             foreach (var item in db.GetUserDefinedTableTypes())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
-                    item.LastAlteredTime < AValue.SchemaData.LastExecuteTimeOfImportUserDefinedTableType)
+                    item.LastAlteredTime + TimeSpan.FromHours(offsetHour) < AValue.SchemaData.LastExecuteTimeOfImportUserDefinedTableType)
                 { continue; }
                 if (AValue.SchemaData.IgnoreObjects.Exists(el => el.Name == item.Name) == true)
                 { continue; }
 
-                item.LastAlteredTime += TimeSpan.FromHours(offsetHour);
                 l.Add(item);
             }
 

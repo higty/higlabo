@@ -50,6 +50,17 @@ namespace HigLabo.Rss
             this.Link = element.ElementByNamespace("link").CastAttributeToString("href");
             this.Summary = element.CastElementToString("summary");
             this.Description = element.CastElementToString("content");
+
+            this.ParseChild(element);
+        }
+        private void ParseChild(XElement element)
+        {
+            foreach (var item in element.Elements())
+            {
+                if (item.Name == null || item.Name.LocalName == null) { continue; }
+                this[item.Name.LocalName] = item.Value;
+                this.ParseChild(item);
+            }
         }
     }
 }

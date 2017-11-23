@@ -94,6 +94,23 @@ namespace HigLabo.DbSharp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="databases"></param>
+        /// <returns></returns>
+        public new List<T> GetResultSets(IEnumerable<Database> databases)
+        {
+            return base.GetResultSets(databases).Cast<T>().ToList();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public new async Task<List<T>> GetResultSetsAsync()
+        {
+            return await GetResultSetsAsync(this.GetDatabase());
+        }
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="database"></param>
         /// <returns></returns>
         public new async Task<List<T>> GetResultSetsAsync(Database database)

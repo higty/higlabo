@@ -22,13 +22,13 @@ namespace HigLabo.DbSharp.Service
             try
             {
                 this.OnProcessProgress(new ProcessProgressEventArgs("Disable ForeignKey...", 0));
-                db.ExecuteCommand("EXEC sys.sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
+                db.ExecuteCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
                 this.Import();
             }
             finally
             {
                 this.OnProcessProgress(new ProcessProgressEventArgs("Enable ForeignKey...", 100));
-                db.ExecuteCommand("EXEC sys.sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all'");
+                db.ExecuteCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all'");
                 this.OnProcessProgress(new ProcessProgressEventArgs("Enable ForeignKey completed", 100));
             }
 

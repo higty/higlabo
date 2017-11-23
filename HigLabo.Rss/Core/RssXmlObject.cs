@@ -1,11 +1,12 @@
 ﻿using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace HigLabo.Rss
 {
     /// <summary>
     /// 
     /// </summary>
-    public abstract class RssXmlObject
+    public abstract class RssXmlObject : Dictionary<string, string>
     {
         /// <summary>
         /// 
