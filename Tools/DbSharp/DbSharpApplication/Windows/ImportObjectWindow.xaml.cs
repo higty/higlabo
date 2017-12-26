@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HigLabo.Core;
+using System.Threading;
+
 namespace HigLabo.DbSharpApplication
 {
     /// <summary>
@@ -52,7 +54,7 @@ namespace HigLabo.DbSharpApplication
                 return;
             }
             var ci = this.GetSelectedConnectionStringInfo();
-            var offsetHour = DateTimeOffset.Now.Offset.Hours - ci.TimeZone;
+            var offsetHour = ci.TimeZone;
             this.ImportTable(ci.ConnectionString, offsetHour);
             this.ImportStoredProcedure(ci.ConnectionString, offsetHour);
             this.ImportUserDefinedTableType(ci.ConnectionString, offsetHour);
