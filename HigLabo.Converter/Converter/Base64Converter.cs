@@ -147,12 +147,12 @@ namespace HigLabo.Converter
                 c1 = input[startIndex + 1];
                 c2 = input[startIndex + 2];
 
+                startIndex += 3;
                 encoded[encodedIndex++] = encodeTable[c0 >> 2];
                 encoded[encodedIndex++] = encodeTable[(c1 >> 4) | ((c0 & 0x3) << 4)];
                 encoded[encodedIndex++] = encodeTable[((c1 & 0x0f) << 2) | (c2 >> 6)];
                 encoded[encodedIndex++] = encodeTable[c2 & 63];
             }
-            startIndex += 3;
             
             if (input.Length - startIndex == 2)
             {
