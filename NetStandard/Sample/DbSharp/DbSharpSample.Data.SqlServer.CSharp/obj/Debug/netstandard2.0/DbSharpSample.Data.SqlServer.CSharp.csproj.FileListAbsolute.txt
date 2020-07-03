@@ -1,0 +1,15 @@
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.csproj.CoreCompileInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.deps.json
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\HigLabo.Core.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\HigLabo.Data.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\HigLabo.DbSharp.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\HigLabo.DbSharp.SqlServer.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\HigLabo.Data.SqlServer.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.csproj.CopyComplete
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.pdb
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.dll
+C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.SqlServer.CSharp.pdb

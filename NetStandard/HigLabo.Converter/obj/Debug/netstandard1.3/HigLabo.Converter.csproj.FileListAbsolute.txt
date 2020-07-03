@@ -1,0 +1,16 @@
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\bin\Debug\netstandard1.3\HigLabo.Converter.deps.json
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\bin\Debug\netstandard1.3\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\bin\Debug\netstandard1.3\HigLabo.Converter.pdb
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.pdb
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.csproj.CoreCompileInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\bin\Debug\netstandard1.3\HigLabo.Converter.deps.json
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\bin\Debug\netstandard1.3\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\bin\Debug\netstandard1.3\HigLabo.Converter.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.csproj.CoreCompileInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\obj\Debug\netstandard1.3\HigLabo.Converter.pdb

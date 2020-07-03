@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{66CF9EFD-7E7C-43C0-BFFC-B4079A0EE6D0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HigLaboSample.Data.MySql.CSharp</RootNamespace>
+    <AssemblyName>HigLaboSample.Data.MySql.CSharp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core, Version=1.1.4.2, Culture=neutral, PublicKeyToken=20abaee7662647f3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data, Version=2.0.2.0, Culture=neutral, PublicKeyToken=20abaee7662647f3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.MySql, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.7.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\MyEnum.cs" />
+    <Compile Include="Extensions\MySet.cs" />
+    <Compile Include="GeneratedFiles\StoredProcedure\Usp_OutputParameter.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\alldatatypetableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\alldatatypetableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\alldatatypetableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\alldatatypetableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\alldatatypetableUpdate.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\identitytableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\identitytableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\identitytableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\identitytableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\identitytableUpdate.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\multipktableDelete.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\multipktableInsert.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\multipktableSelectAll.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\multipktableSelectByPrimaryKey.cs" />
+    <Compile Include="GeneratedFiles\TableStoredProcedure\multipktableUpdate.cs" />
+    <Compile Include="GeneratedFiles\Table\alldatatypetable.cs" />
+    <Compile Include="GeneratedFiles\Table\alldatatypetable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\alldatatypetable.Record.cs" />
+    <Compile Include="GeneratedFiles\Table\identitytable.cs" />
+    <Compile Include="GeneratedFiles\Table\identitytable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\identitytable.Record.cs" />
+    <Compile Include="GeneratedFiles\Table\multipktable.cs" />
+    <Compile Include="GeneratedFiles\Table\multipktable.IRecord.cs" />
+    <Compile Include="GeneratedFiles\Table\multipktable.Record.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GeneratedFiles\UserDefinedTableType\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DbSharp_MySql.sql" />
+    <Content Include="DbSharp_MySql.xml" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

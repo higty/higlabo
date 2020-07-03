@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AllowNull" xml:space="preserve">
+    <value>AllowNull</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>ColumnName</value>
+  </data>
+  <data name="CommandServiceExecuting" xml:space="preserve">
+    <value>CommandService is executing.Please wait until CommandService is completed.</value>
+  </data>
+  <data name="Completed" xml:space="preserve">
+    <value>Completed</value>
+  </data>
+  <data name="ConfirmDelete" xml:space="preserve">
+    <value>Delete?</value>
+  </data>
+  <data name="Connect" xml:space="preserve">
+    <value>Connect</value>
+  </data>
+  <data name="ConnectionString" xml:space="preserve">
+    <value>ConnectionString</value>
+  </data>
+  <data name="ConnectionStringInvalid" xml:space="preserve">
+    <value>Can not connect database.Please eunsure your connection string.</value>
+  </data>
+  <data name="DbType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="EnumName" xml:space="preserve">
+    <value>EnumName</value>
+  </data>
+  <data name="EnumValues" xml:space="preserve">
+    <value>EnumValues</value>
+  </data>
+  <data name="FileNotFound" xml:space="preserve">
+    <value>File not found</value>
+  </data>
+  <data name="GetAll" xml:space="preserve">
+    <value>Get All</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Length" xml:space="preserve">
+    <value>Length</value>
+  </data>
+  <data name="Menu_Add" xml:space="preserve">
+    <value>_Add</value>
+  </data>
+  <data name="Menu_AddToIgnoreList" xml:space="preserve">
+    <value>Add to Ignore list</value>
+  </data>
+  <data name="Menu_Close" xml:space="preserve">
+    <value>_Close</value>
+  </data>
+  <data name="Menu_Connect" xml:space="preserve">
+    <value>_Connect</value>
+  </data>
+  <data name="Menu_Delete" xml:space="preserve">
+    <value>_Delete</value>
+  </data>
+  <data name="Menu_DeleteObject" xml:space="preserve">
+    <value>_Delete Object</value>
+  </data>
+  <data name="Menu_DeleteObjectAndAddToIgnoreList" xml:space="preserve">
+    <value>Delete _Object and Add to ignore list.</value>
+  </data>
+  <data name="Menu_Edit" xml:space="preserve">
+    <value>_Edit</value>
+  </data>
+  <data name="Menu_Execute" xml:space="preserve">
+    <value>_Execute</value>
+  </data>
+  <data name="Menu_File" xml:space="preserve">
+    <value>_File</value>
+  </data>
+  <data name="Menu_GenerateCSharpCode" xml:space="preserve">
+    <value>_Generate C# Code</value>
+  </data>
+  <data name="Menu_GenerateSqlScript" xml:space="preserve">
+    <value>Generate S_qlScript</value>
+  </data>
+  <data name="Menu_GetAll" xml:space="preserve">
+    <value>Get _All</value>
+  </data>
+  <data name="Menu_ImportObject" xml:space="preserve">
+    <value>_ImportObject</value>
+  </data>
+  <data name="Menu_ImportStoredProcedure" xml:space="preserve">
+    <value>Import _StoredProcedure</value>
+  </data>
+  <data name="Menu_ImportTable" xml:space="preserve">
+    <value>Import _Table</value>
+  </data>
+  <data name="Menu_ImportUpdatedObjectAndGenerateFiles" xml:space="preserve">
+    <value>Import Updated Object and Generate Files</value>
+  </data>
+  <data name="Menu_ImportUserDefinedTableType" xml:space="preserve">
+    <value>Import _UserDefinedTableType</value>
+  </data>
+  <data name="Menu_ManageConnection" xml:space="preserve">
+    <value>_Manage Connection</value>
+  </data>
+  <data name="Menu_ManageIgnoreList" xml:space="preserve">
+    <value>Manage Ignore list</value>
+  </data>
+  <data name="Menu_New" xml:space="preserve">
+    <value>_New</value>
+  </data>
+  <data name="Menu_OpenFile" xml:space="preserve">
+    <value>_Open File</value>
+  </data>
+  <data name="Menu_Options" xml:space="preserve">
+    <value>_Options</value>
+  </data>
+  <data name="Menu_Other" xml:space="preserve">
+    <value>Menu_Other</value>
+  </data>
+  <data name="Menu_Quit" xml:space="preserve">
+    <value>_Quit</value>
+  </data>
+  <data name="Menu_RecentFiles" xml:space="preserve">
+    <value>_Recent Files</value>
+  </data>
+  <data name="Menu_RemoveFromList" xml:space="preserve">
+    <value>_Remove from list</value>
+  </data>
+  <data name="Menu_Save" xml:space="preserve">
+    <value>_Save</value>
+  </data>
+  <data name="Menu_SaveAs" xml:space="preserve">
+    <value>Save _As</value>
+  </data>
+  <data name="Menu_SelectAll" xml:space="preserve">
+    <value>Select _All</value>
+  </data>
+  <data name="Menu_StoredProcedure" xml:space="preserve">
+    <value>_StoredProcedure</value>
+  </data>
+  <data name="Menu_Table" xml:space="preserve">
+    <value>_Table</value>
+  </data>
+  <data name="Menu_Tools" xml:space="preserve">
+    <value>_Tools</value>
+  </data>
+  <data name="Menu_UserDefinedTableType" xml:space="preserve">
+    <value>_UserDefinedTableType</value>
+  </data>
+  <data name="Menu_View" xml:space="preserve">
+    <value>_View</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="PleaseSelectConnectionString" xml:space="preserve">
+    <value>Please select connection strings</value>
+  </data>
+  <data name="PleaseSelectItem" xml:space="preserve">
+    <value>Please select item</value>
+  </data>
+  <data name="Precision" xml:space="preserve">
+    <value>Precision</value>
+  </data>
+  <data name="PrimaryKey" xml:space="preserve">
+    <value>PrimaryKey</value>
+  </data>
+  <data name="ProcessCompleted" xml:space="preserve">
+    <value>Process completed</value>
+  </data>
+  <data name="Scale" xml:space="preserve">
+    <value>Scale</value>
+  </data>
+  <data name="SelectAll" xml:space="preserve">
+    <value>Select all item</value>
+  </data>
+  <data name="StoredProcedure" xml:space="preserve">
+    <value>StoredProcedure</value>
+  </data>
+  <data name="Table" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="ThereIsNoObjectAlteredAfterLastProcess" xml:space="preserve">
+    <value>There is no object altered after last import</value>
+  </data>
+  <data name="ThereIsNoObjectDeletedAfterLastProcess" xml:space="preserve">
+    <value>There is no object deleted after last import</value>
+  </data>
+  <data name="ThereIsNoObjectToDelete" xml:space="preserve">
+    <value>There is no object to delete</value>
+  </data>
+  <data name="TimeZone" xml:space="preserve">
+    <value>TimeZone</value>
+  </data>
+  <data name="UserDefinedTableType" xml:space="preserve">
+    <value>UserDefinedTableType</value>
+  </data>
+  <data name="UseTableFeature" xml:space="preserve">
+    <value>Use Table feature</value>
+  </data>
+  <data name="ValueForTest" xml:space="preserve">
+    <value>Value for test</value>
+  </data>
+  <data name="UseTableFeatureUnableText" xml:space="preserve">
+    <value>Table feature is unable.</value>
+  </data>
+  <data name="Menu_CopyResultSet" xml:space="preserve">
+    <value>_Copy ResultSet</value>
+  </data>
+  <data name="DisableForeignKey" xml:space="preserve">
+    <value>Disable ForeignKey</value>
+  </data>
+</root>

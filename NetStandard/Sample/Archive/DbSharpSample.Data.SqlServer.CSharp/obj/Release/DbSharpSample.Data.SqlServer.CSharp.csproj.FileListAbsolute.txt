@@ -1,0 +1,2 @@
+C:\Dev\HigLabo.DbSharp.Sample\DbSharpSample.Data.SqlServer.CSharp\obj\Release\DbSharpSample.Data.SqlServer.CSharp.csprojAssemblyReference.cache
+C:\Dev\HigLabo.DbSharp.Sample\DbSharpSample.Data.SqlServer.CSharp\obj\Release\DbSharpSample.Data.SqlServer.CSharp.csproj.CoreCompileInputs.cache

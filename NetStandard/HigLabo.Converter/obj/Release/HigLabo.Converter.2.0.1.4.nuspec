@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Converter</id>
+    <version>2.0.1.4</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Converter is a library for various conversion.Base64,QuotedPrintable,ModifiedUtf7,Rfc2047,Rfc2231,Rfc2822,ISO8601 are supported.</description>
+    <releaseNotes>HigLabo Library initial publish for .net standard.</releaseNotes>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <repository url="https://github.com/higty/higlabo.netstandard" />
+    <dependencies>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Converter\bin\Release\netstandard1.3\HigLabo.Converter.dll" target="lib\netstandard1.3\HigLabo.Converter.dll" />
+  </files>
+</package>

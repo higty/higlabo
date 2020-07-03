@@ -1,0 +1,15 @@
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\bin\Release\netstandard2.0\HigLabo.Csv.deps.json
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\bin\Release\netstandard2.0\HigLabo.Csv.dll
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\bin\Release\netstandard2.0\HigLabo.Csv.pdb
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.dll
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\bin\Release\netstandard2.0\HigLabo.Csv.deps.json
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\bin\Release\netstandard2.0\HigLabo.Csv.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\bin\Release\netstandard2.0\HigLabo.Csv.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.csproj.CoreCompileInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Csv\obj\Release\netstandard2.0\HigLabo.Csv.pdb

@@ -1,0 +1,7 @@
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\bin\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.deps.json
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\bin\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\bin\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.pdb
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\obj\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\obj\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\obj\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.PostgreSql.CSharp\obj\Release\netstandard2.0\DbSharpSample.PostgreSql.CSharp.pdb

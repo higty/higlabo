@@ -1,0 +1,95 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.0": {
+      "DbSharpSample.Data.SqlServer.CSharp/1.0.0": {
+        "dependencies": {
+          "HigLabo.Converter": "2.0.1.4",
+          "HigLabo.Core": "2.1.1.0",
+          "HigLabo.Data": "2.0.1.2",
+          "HigLabo.Data.SqlServer": "2.0.0.1",
+          "HigLabo.DbSharp": "2.1.1.0"
+        },
+        "runtime": {
+          "DbSharpSample.Data.SqlServer.CSharp.dll": {}
+        }
+      },
+      "HigLabo.Converter/2.0.1.4": {
+        "runtime": {
+          "HigLabo.Converter.dll": {
+            "assemblyVersion": "2.0.1.4",
+            "fileVersion": "2.0.1.4"
+          }
+        }
+      },
+      "HigLabo.Core/2.1.1.0": {
+        "runtime": {
+          "HigLabo.Core.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.0"
+          }
+        }
+      },
+      "HigLabo.Data/2.0.1.2": {
+        "runtime": {
+          "HigLabo.Data.dll": {
+            "assemblyVersion": "2.0.1.2",
+            "fileVersion": "2.0.1.2"
+          }
+        }
+      },
+      "HigLabo.Data.SqlServer/2.0.0.1": {
+        "runtime": {
+          "HigLabo.Data.SqlServer.dll": {
+            "assemblyVersion": "2.0.0.1",
+            "fileVersion": "2.0.0.1"
+          }
+        }
+      },
+      "HigLabo.DbSharp/2.1.1.0": {
+        "runtime": {
+          "HigLabo.DbSharp.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "DbSharpSample.Data.SqlServer.CSharp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HigLabo.Converter/2.0.1.4": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HigLabo.Core/2.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HigLabo.Data/2.0.1.2": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HigLabo.Data.SqlServer/2.0.0.1": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HigLabo.DbSharp/2.1.1.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

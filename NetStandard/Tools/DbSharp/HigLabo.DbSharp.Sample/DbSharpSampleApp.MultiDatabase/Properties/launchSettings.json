@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DbSharpSampleApp.MultiDatabase": {
+      "commandName": "Project",
+      "commandLineArgs": "\"Server=tcp:tinybetter.database.windows.net,1433;Database=DbSharpSample_SqlServer;UID=admin;Password=XXX;Encrypt=True;TrustServerCertificate=False;Connection Timeout=120;\" \"Server=dbsharpsamplemysql.mysql.database.azure.com; Port=3306; Database=dbsharpsample; Uid=admin@dbsharpsamplemysql; Pwd=XXX; SslMode=Preferred;\""
+    }
+  }
+}

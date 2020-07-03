@@ -1,0 +1,1 @@
+C:\Dev\HigLabo.DbSharp.Sample\DbSharpSampleApp.MySql\obj\Release\DbSharpSampleApp.MySql.csproj.CoreCompileInputs.cache

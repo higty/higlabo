@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Net</id>
+    <version>2.0.6</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Net is a library to access web site via HTTP protocol.HTTP,RSS,OAuth is supported.</description>
+    <releaseNotes>HigLabo Library initial publish for .net standard.</releaseNotes>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <repository url="https://github.com/higty/higlabo.netstandard" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="HigLabo.Core" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="HigLabo.Rss" version="2.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Net\bin\Debug\netstandard2.0\HigLabo.Net.dll" target="lib\netstandard2.0\HigLabo.Net.dll" />
+  </files>
+</package>

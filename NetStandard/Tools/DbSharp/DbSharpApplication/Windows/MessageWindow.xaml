@@ -1,0 +1,22 @@
+﻿<Window x:Class="HigLabo.DbSharpApplication.MessageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:HigLabo.DbSharpApplication.Properties"
+        Title="" Height="400" Width="700"
+        MinHeight="300" MinWidth="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBox Name="MessageTextBox" BorderThickness="1" Padding="2" Background="Transparent" TextAlignment="Left"
+                     TextWrapping="WrapWithOverflow" IsReadOnly="True" Margin="10" VerticalScrollBarVisibility="Auto" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Name="QuitButton" Content="{x:Static p:Resources.Menu_Quit}" Margin="0,0,10,11" VerticalAlignment="Bottom" Click="QuitButton_Click" HorizontalAlignment="Right" Width="75" Height="29"/>
+
+        </Grid>
+    </Grid>
+</Window>

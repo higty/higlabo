@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Rss</id>
+    <version>2.0.0</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Rss is a library to parse or write RSS format.</description>
+    <releaseNotes>HigLabo Library initial publish for .net standard.</releaseNotes>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <repository url="https://github.com/higty/higlabo.netstandard" />
+    <dependencies>
+      <group targetFramework=".NETStandard1.3">
+        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Rss\bin\Release\netstandard1.3\HigLabo.Rss.dll" target="lib\netstandard1.3\HigLabo.Rss.dll" />
+  </files>
+</package>

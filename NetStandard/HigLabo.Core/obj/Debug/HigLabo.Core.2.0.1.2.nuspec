@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>HigLabo.Core</id>
+    <version>2.0.1.2</version>
+    <authors>Higty</authors>
+    <owners>Higty</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>HigLabo.Core provide core library and utility about String manupilation,type conversion,generic operator,Guid,Enum,...etc.</description>
+    <releaseNotes>HigLabo Library initial publish for .net standard.</releaseNotes>
+    <copyright>Copyright © 2011- HigLabo All Rights Reserved</copyright>
+    <repository url="https://github.com/higty/higlabo.netstandard" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="HigLabo.Converter" version="2.0.1.4" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Emit" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Reflection.Emit.Lightweight" version="4.3.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\GitHub\higty\HigLabo.NetStandard\HigLabo.Core\bin\Debug\netstandard2.0\HigLabo.Core.dll" target="lib\netstandard2.0\HigLabo.Core.dll" />
+  </files>
+</package>

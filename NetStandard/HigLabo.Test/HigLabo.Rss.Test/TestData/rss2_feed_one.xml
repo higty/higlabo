@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Cannes : actu quotidienne </title>
+    <link>http://www.cannes.maville.com</link>
+    <description>Articles de la presse quotidienne sur Cannes</description>
+    <language>fr</language>
+    <image>
+      <url>http://www.cannes.maville.com/design/images/LogoMaville.gif</url>
+      <title>Cannes : actu quotidienne</title>
+      <link>http://www.cannes.maville.com</link>
+      <width>80</width>
+      <height>27</height>
+    </image>
+    <item>
+      <title><![CDATA[Allemagne. Sondage : la CDU de Merkel creuse l’écart sur le SPD (Ouest-France)]]></title>
+      <link><![CDATA[http://www.cannes.maville.com/actu/actudet_-allemagne.-sondage-la-cdu-de-merkel-creuse-l-ecart-sur-le-spd_fil-3207806_actu.Htm?xtor=RSS-4&utm_source=RSS_MVI_cannes&utm_medium=RSS&utm_campaign=RSS]]></link>
+      <description><![CDATA[Mardi 23 mai 2017<br />Selon un sondage réalisé par l’institut Forsa pour l’hebdomadaire Stern et la chaîne de télévision RTL, le bloc CDU-CSU rassemblerait 39 % des intentions de vote en vue des législatives allemandes du 24 septembre.<br /><br />]]></description>
+      <enclosure url="http://www.cannes.maville.com/photosmvi/2017/05/23/P1D3207806G_px_100_.jpg" type="image/jpeg"></enclosure>
+
+    </item>
+    <item>
+      <title><![CDATA[Football. Lyon ne veut plus de Mathieu Valbuena (Ouest-France)]]></title>
+      <link><![CDATA[http://www.cannes.maville.com/actu/actudet_-football.-lyon-ne-veut-plus-de-mathieu-valbuena_fil-3207811_actu.Htm?xtor=RSS-4&utm_source=RSS_MVI_cannes&utm_medium=RSS&utm_campaign=RSS]]></link>
+      <description><![CDATA[Mardi 23 mai 2017<br />Mathieu Valbuena n’est plus en odeur de sainteté du côté de Lyon. Selon L’Équipe, l’ancien marseillais ne sera pas conservé pour la saison prochaine. Le joueur aurait une offre de Fenerbahçe entre les mains.<br /><br />]]></description>
+      <enclosure url="http://www.cannes.maville.com/photosmvi/2017/05/23/P1D3207811G_px_100_.jpg" type="image/jpeg"></enclosure>
+
+    </item>
+    <item>
+      <title><![CDATA[Ascension. Bison Futé voit rouge mercredi, jeudi et dimanche (Ouest-France)]]></title>
+      <link><![CDATA[http://www.cannes.maville.com/actu/actudet_-ascension.-bison-fute-voit-rouge-mercredi-jeudi-et-dimanche_fil-3207796_actu.Htm?xtor=RSS-4&utm_source=RSS_MVI_cannes&utm_medium=RSS&utm_campaign=RSS]]></link>
+      <description><![CDATA[Mardi 23 mai 2017<br />S’il ne s’agit généralement pas de grandes distances, les Français seront toutefois nombreux à prendre la route demain mercredi à l’occasion du week-end de l’Ascension. Bison Futé voit rouge mercredi et jeudi dans le sens des départs, et rouge et noir dimanche dans le sens des retours.<br /><br />]]></description>
+      <enclosure url="http://www.cannes.maville.com/photosmvi/2017/05/23/P1D3207796G_px_100_.jpg" type="image/jpeg"></enclosure>
+
+    </item>
+
+
+  </channel>
+</rss>

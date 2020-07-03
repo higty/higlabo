@@ -1,0 +1,15 @@
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\bin\Release\netstandard2.0\HigLabo.CodeGenerator.deps.json
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\bin\Release\netstandard2.0\HigLabo.CodeGenerator.dll
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\bin\Release\netstandard2.0\HigLabo.CodeGenerator.pdb
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.dll
+C:\GitHub\higty\HigLabo.NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\bin\Release\netstandard2.0\HigLabo.CodeGenerator.deps.json
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\bin\Release\netstandard2.0\HigLabo.CodeGenerator.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\bin\Release\netstandard2.0\HigLabo.CodeGenerator.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.csproj.CoreCompileInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Release\netstandard2.0\HigLabo.CodeGenerator.pdb

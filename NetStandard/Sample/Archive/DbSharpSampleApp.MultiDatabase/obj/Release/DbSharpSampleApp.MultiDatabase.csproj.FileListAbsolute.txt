@@ -1,0 +1,1 @@
+C:\Dev\HigLabo.DbSharp.Sample\DbSharpSampleApp.MultiDatabase\obj\Release\DbSharpSampleApp.MultiDatabase.csproj.CoreCompileInputs.cache

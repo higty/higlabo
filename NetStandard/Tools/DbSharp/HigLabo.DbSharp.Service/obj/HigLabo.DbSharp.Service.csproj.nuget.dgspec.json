@@ -1,0 +1,450 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.Service\\HigLabo.DbSharp.Service.csproj": {}
+  },
+  "projects": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.MySql\\HigLabo.DbSharp.CodeGenerator.MySql.csproj": {
+      "version": "2.1.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.MySql\\HigLabo.DbSharp.CodeGenerator.MySql.csproj",
+        "projectName": "HigLabo.DbSharp.CodeGenerator.MySql",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.MySql\\HigLabo.DbSharp.CodeGenerator.MySql.csproj",
+        "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.MySql\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj"
+              },
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj"
+              },
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.18, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.SqlServer\\HigLabo.DbSharp.CodeGenerator.SqlServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.SqlServer\\HigLabo.DbSharp.CodeGenerator.SqlServer.csproj",
+        "projectName": "HigLabo.DbSharp.CodeGenerator.SqlServer",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.SqlServer\\HigLabo.DbSharp.CodeGenerator.SqlServer.csproj",
+        "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.SqlServer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj"
+              },
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "Microsoft.SqlServer.Types": {
+              "target": "Package",
+              "version": "[14.0.1016.290, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj": {
+      "version": "2.1.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj",
+        "projectName": "HigLabo.DbSharp.CodeGenerator",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj",
+        "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Data.Common": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj": {
+      "version": "2.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj",
+        "projectName": "HigLabo.DbSharp.SchemaData",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj",
+        "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.Service\\HigLabo.DbSharp.Service.csproj": {
+      "version": "2.1.0",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.Service\\HigLabo.DbSharp.Service.csproj",
+        "projectName": "HigLabo.DbSharp.Service",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.Service\\HigLabo.DbSharp.Service.csproj",
+        "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.Service\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.MySql\\HigLabo.DbSharp.CodeGenerator.MySql.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.MySql\\HigLabo.DbSharp.CodeGenerator.MySql.csproj"
+              },
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.SqlServer\\HigLabo.DbSharp.CodeGenerator.SqlServer.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator.SqlServer\\HigLabo.DbSharp.CodeGenerator.SqlServer.csproj"
+              },
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.CodeGenerator\\HigLabo.DbSharp.CodeGenerator.csproj"
+              },
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp.SchemaData\\HigLabo.DbSharp.SchemaData.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.18, )"
+            },
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "Npgsql": {
+              "target": "Package",
+              "version": "[4.1.1, )"
+            },
+            "Oracle.ManagedDataAccess": {
+              "target": "Package",
+              "version": "[19.3.1, )"
+            },
+            "System.Data.Common": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj": {
+      "version": "2.1.1",
+      "restore": {
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj",
+        "projectName": "HigLabo.DbSharp",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\HigLabo.DbSharp.csproj",
+        "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Tools\\DbSharp\\HigLabo.DbSharp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.0": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "dependencies": {
+            "NETStandard.Library": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.0.3, )",
+              "autoReferenced": true
+            },
+            "System.Data.Common": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

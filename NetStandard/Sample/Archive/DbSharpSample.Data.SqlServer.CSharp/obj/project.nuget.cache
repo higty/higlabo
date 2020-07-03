@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "m/0o8PMCst7duQMK0pnmUiTlW6hDpIpOcb2gexA/5WLbnLoYgK7zah3OLJZadKES1OqxVAOlo5dJuCp8mcM86w==",
+  "success": true,
+  "projectFilePath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\Sample\\DbSharp\\DbSharpSample.Data.SqlServer.CSharp\\DbSharpSample.Data.SqlServer.CSharp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

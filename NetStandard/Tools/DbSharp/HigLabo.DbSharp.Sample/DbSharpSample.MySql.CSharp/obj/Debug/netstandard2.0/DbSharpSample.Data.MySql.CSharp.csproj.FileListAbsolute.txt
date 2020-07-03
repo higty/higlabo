@@ -1,0 +1,13 @@
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.deps.json
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\HigLabo.Core.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\HigLabo.Data.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\HigLabo.Data.MySql.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\HigLabo.DbSharp.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.csproj.CopyComplete
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.pdb
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.dll
+C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Data.MySql.CSharp.pdb

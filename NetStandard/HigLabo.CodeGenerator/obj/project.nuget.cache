@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "qtWKW7FNVqapC0oHsj1sL9NIlEivjrTGfY0YY7we3NSlDFSPLbIw6ywb62mFSlxMPd2MXF5jHt3koiFSfwWDJA==",
+  "success": true,
+  "projectFilePath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.CodeGenerator\\HigLabo.CodeGenerator.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
