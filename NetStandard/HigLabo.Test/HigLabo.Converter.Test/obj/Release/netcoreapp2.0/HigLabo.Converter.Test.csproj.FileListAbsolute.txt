@@ -1,0 +1,17 @@
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.Test.deps.json
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.Test.runtimeconfig.json
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.Test.runtimeconfig.dev.json
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.Test.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.Test.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\bin\Release\netcoreapp2.0\HigLabo.Converter.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.AssemblyInfoInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.AssemblyInfo.cs
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.csproj.CoreCompileInputs.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.csproj.CopyComplete
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.dll
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Converter.Test\obj\Release\netcoreapp2.0\HigLabo.Converter.Test.genruntimeconfig.cache

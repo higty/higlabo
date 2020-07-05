@@ -1,0 +1,11 @@
+// Validating benchmarks:
+Assembly HigLabo.Mapper.PerformanceTest which defines benchmarks references non-optimized HigLabo.Mapper
+	If you own this dependency, please, build it in RELEASE.
+	If you don't, you can disable this policy by using 'config.With(ConfigOptions.DisableOptimizationsValidator)'.
+Assembly HigLabo.Mapper.PerformanceTest which defines benchmarks is non-optimized
+Benchmark was built without optimization enabled (most probably a DEBUG configuration). Please, build it in RELEASE.
+If you want to debug the benchmarks, please see https://benchmarkdotnet.org/articles/guides/troubleshooting.html#debugging-benchmarks.
+Benchmarked method `HandwriteMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.
+Benchmarked method `HigLaboMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.
+Benchmarked method `TinyMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.
+Benchmarked method `AutoMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.

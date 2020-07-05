@@ -24,3 +24,4 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mapper\obj\Debug\netstandard2.0\HigL
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mapper\obj\Debug\netstandard2.0\HigLabo.Mapper.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mapper\obj\Debug\netstandard2.0\HigLabo.Mapper.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mapper\obj\Debug\netstandard2.0\HigLabo.Mapper.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mapper\obj\Debug\netstandard2.0\HigLabo.Mapper.csprojAssemblyReference.cache

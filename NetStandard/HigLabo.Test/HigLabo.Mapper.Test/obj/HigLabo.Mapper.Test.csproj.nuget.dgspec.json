@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj": {}
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj": {
       "version": "2.0.1.4",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj",
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj",
         "projectName": "HigLabo.Converter",
-        "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj",
         "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\obj\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard1.3"
@@ -47,25 +49,27 @@
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Core\\HigLabo.Core.csproj": {
-      "version": "2.0.1.3",
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\HigLabo.Core.csproj": {
+      "version": "2.1.1",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Core\\HigLabo.Core.csproj",
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\HigLabo.Core.csproj",
         "projectName": "HigLabo.Core",
-        "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Core\\HigLabo.Core.csproj",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\HigLabo.Core.csproj",
         "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Core\\obj\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -77,8 +81,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj": {
-                "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj"
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj"
               }
             }
           }
@@ -121,25 +125,27 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj": {
       "version": "2.1.2",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj",
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj",
         "projectName": "HigLabo.Mapper",
-        "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj",
         "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Mapper\\obj\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Mapper\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard2.0"
@@ -151,8 +157,8 @@
         "frameworks": {
           "netstandard2.0": {
             "projectReferences": {
-              "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Core\\HigLabo.Core.csproj": {
-                "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Core\\HigLabo.Core.csproj"
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\HigLabo.Core.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\HigLabo.Core.csproj"
               }
             }
           }
@@ -191,25 +197,27 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj",
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj",
         "projectName": "HigLabo.Mapper.Test",
-        "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\HigLabo.Mapper.Test.csproj",
         "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\obj\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Mapper.Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.0"
@@ -221,11 +229,11 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj": {
-                "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj"
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Converter\\HigLabo.Converter.csproj"
               },
-              "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj": {
-                "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj"
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Mapper\\HigLabo.Mapper.csproj"
               }
             }
           }
@@ -272,7 +280,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

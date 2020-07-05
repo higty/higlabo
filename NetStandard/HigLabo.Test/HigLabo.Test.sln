@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Rss.Test", "HigLabo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.CodeGenerator", "..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj", "{FA1B9D6B-3AE1-4CBE-9AFB-CAD6B6437027}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.CodeGenerator.Test", "HigLabo.CodeGenerator.Test\HigLabo.CodeGenerator.Test.csproj", "{C30F7F9C-0EDD-4024-9751-80CAE83FF577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.CodeGenerator.Test", "HigLabo.CodeGenerator.Test\HigLabo.CodeGenerator.Test.csproj", "{C30F7F9C-0EDD-4024-9751-80CAE83FF577}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Mapper.PerformanceTest", "HigLabo.Mapper.PerformanceTest\HigLabo.Mapper.PerformanceTest.csproj", "{EE40795B-3613-40D7-A270-7D8D860417DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -87,6 +89,10 @@ Global
 		{C30F7F9C-0EDD-4024-9751-80CAE83FF577}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C30F7F9C-0EDD-4024-9751-80CAE83FF577}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C30F7F9C-0EDD-4024-9751-80CAE83FF577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE40795B-3613-40D7-A270-7D8D860417DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE40795B-3613-40D7-A270-7D8D860417DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE40795B-3613-40D7-A270-7D8D860417DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE40795B-3613-40D7-A270-7D8D860417DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

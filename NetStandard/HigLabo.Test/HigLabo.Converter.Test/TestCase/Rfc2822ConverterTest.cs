@@ -15,7 +15,7 @@ namespace HigLabo.Converter.Test
             var dateText = "Thu, 9 Aug 2018 16:33:07 +0900";
             var date = cv.Parse(dateText);
 
-            Assert.AreEqual("Thu, 9 Aug 2018 16:33:07 +0900", date);
+            Assert.AreEqual(new DateTimeOffset(2018, 8, 9, 16, 33, 07, TimeSpan.FromHours(9)), date);
         }
     }
 }

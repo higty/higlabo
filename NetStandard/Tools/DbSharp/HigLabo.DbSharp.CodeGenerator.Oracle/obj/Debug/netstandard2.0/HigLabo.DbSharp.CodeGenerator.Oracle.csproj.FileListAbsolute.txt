@@ -40,4 +40,3 @@ C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.CodeGenerator.
 C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.CodeGenerator.Oracle\obj\Debug\netstandard2.0\HigLabo.DbSharp.CodeGenerator.Oracle.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.CodeGenerator.Oracle\obj\Debug\netstandard2.0\HigLabo.DbSharp.CodeGenerator.Oracle.dll
 C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.CodeGenerator.Oracle\obj\Debug\netstandard2.0\HigLabo.DbSharp.CodeGenerator.Oracle.pdb
-C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.CodeGenerator.Oracle\obj\Debug\netstandard2.0\HigLabo.DbSharp.CodeGenerator.Oracle.csprojAssemblyReference.cache

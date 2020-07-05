@@ -1,24 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj": {}
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj": {}
   },
   "projects": {
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj": {
       "version": "2.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj",
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj",
         "projectName": "HigLabo.Rss",
-        "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj",
         "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Rss\\obj\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Rss\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netstandard1.3"
@@ -47,25 +49,27 @@
               "autoReferenced": true
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj": {
+    "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj",
+        "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj",
         "projectName": "HigLabo.Rss.Test",
-        "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj",
+        "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\HigLabo.Rss.Test.csproj",
         "packagesPath": "C:\\Users\\Higuchi-Creative\\.nuget\\packages\\",
-        "outputPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\obj\\",
+        "outputPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Test\\HigLabo.Rss.Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet\\",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Higuchi-Creative\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp2.0"
@@ -77,8 +81,8 @@
         "frameworks": {
           "netcoreapp2.0": {
             "projectReferences": {
-              "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj": {
-                "projectPath": "C:\\GitHub\\higty\\HigLabo.NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj"
+              "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj": {
+                "projectPath": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Rss\\HigLabo.Rss.csproj"
               }
             }
           }
@@ -125,7 +129,7 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
         }
       }
     }

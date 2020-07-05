@@ -124,6 +124,7 @@ namespace HigLabo.Net
             this.ContentType = res.ContentType;
             this.ContentLength = res.ContentLength;
             this.Cookies = res.Cookies;
+
 #if !SILVERLIGHT && !NETFX_CORE && !Pcl
             this.CharacterSet = res.CharacterSet;
             //this.IsMutuallyAuthenticated = res.IsMutuallyAuthenticated;
