@@ -19,4 +19,3 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mime\obj\Release\netstandard1.3\HigL
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mime\obj\Release\netstandard1.3\HigLabo.Mime.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mime\obj\Release\netstandard1.3\HigLabo.Mime.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mime\obj\Release\netstandard1.3\HigLabo.Mime.pdb
-C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Mime\obj\Release\netstandard1.3\HigLabo.Mime.csprojAssemblyReference.cache

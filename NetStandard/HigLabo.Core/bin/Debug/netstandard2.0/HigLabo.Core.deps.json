@@ -7,7 +7,7 @@
   "targets": {
     ".NETStandard,Version=v2.0": {},
     ".NETStandard,Version=v2.0/": {
-      "HigLabo.Core/2.1.1.0": {
+      "HigLabo.Core/2.1.1.1": {
         "dependencies": {
           "HigLabo.Converter": "2.0.1.4",
           "NETStandard.Library": "2.0.3",
@@ -124,7 +124,7 @@
     }
   },
   "libraries": {
-    "HigLabo.Core/2.1.1.0": {
+    "HigLabo.Core/2.1.1.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

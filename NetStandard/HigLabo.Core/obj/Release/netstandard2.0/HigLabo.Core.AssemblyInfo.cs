@@ -16,11 +16,11 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCopyrightAttribute("Copyright © 2011- HigLabo All Rights Reserved")]
 [assembly: System.Reflection.AssemblyDescriptionAttribute("HigLabo.Core provide core library and utility about String manupilation,type conv" +
     "ersion,generic operator,Guid,Enum,...etc.")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("2.1.1.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.1.1.0")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("2.1.1.1")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("2.1.1.1")]
 [assembly: System.Reflection.AssemblyProductAttribute("HigLabo.Core")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HigLabo.Core")]
-[assembly: System.Reflection.AssemblyVersionAttribute("2.1.1.0")]
+[assembly: System.Reflection.AssemblyVersionAttribute("2.1.1.1")]
 
 // MSBuild WriteCodeFragment クラスによって生成されました。
 

@@ -14,3 +14,4 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Rss\obj\Debug\netstandard1.3\HigLabo
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Rss\obj\Debug\netstandard1.3\HigLabo.Rss.csproj.CoreCompileInputs.cache
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Rss\obj\Debug\netstandard1.3\HigLabo.Rss.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Rss\obj\Debug\netstandard1.3\HigLabo.Rss.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Rss\obj\Debug\netstandard1.3\HigLabo.Rss.csprojAssemblyReference.cache

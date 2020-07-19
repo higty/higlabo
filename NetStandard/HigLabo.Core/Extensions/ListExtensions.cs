@@ -48,6 +48,25 @@ namespace HigLabo.Core
             };
             list.Sort(md);
         }
+        public static void Sort<T, TValue>(this List<T> records, Func<T, TValue, Boolean> func, params TValue[] valueList)
+        {
+            var l = new List<T>();
+            foreach (var name in valueList)
+            {
+                var rr = records.FindAll(el => func(el, name));
+                foreach (var r in rr)
+                {
+                    records.Remove(r);
+                    l.Add(r);
+                }
+            }
+            foreach (var item in records)
+            {
+                l.Add(item);
+            }
+            records.Clear();
+            records.AddRange(l);
+        }
         /// <summary>
         /// 
         /// </summary>

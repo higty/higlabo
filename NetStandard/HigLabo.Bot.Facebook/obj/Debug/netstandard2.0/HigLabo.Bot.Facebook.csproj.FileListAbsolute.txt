@@ -32,3 +32,4 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Debug\netstandard2.
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Debug\netstandard2.0\HigLabo.Bot.Facebook.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Debug\netstandard2.0\HigLabo.Bot.Facebook.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Debug\netstandard2.0\HigLabo.Bot.Facebook.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Debug\netstandard2.0\HigLabo.Bot.Facebook.csprojAssemblyReference.cache

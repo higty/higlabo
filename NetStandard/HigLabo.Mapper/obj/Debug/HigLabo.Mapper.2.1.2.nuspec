@@ -12,7 +12,7 @@
     <repository url="https://github.com/higty/higlabo.netstandard" />
     <dependencies>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="HigLabo.Core" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="HigLabo.Core" version="2.1.1.1" exclude="Build,Analyzers" />
         <dependency id="System.Reflection.Emit" version="4.3.0" exclude="Build,Analyzers" />
         <dependency id="System.Reflection.Emit.ILGeneration" version="4.3.0" exclude="Build,Analyzers" />
       </group>

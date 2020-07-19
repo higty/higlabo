@@ -32,3 +32,4 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Line\obj\Debug\netstandard2.0\Hi
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Line\obj\Debug\netstandard2.0\HigLabo.Bot.Line.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Line\obj\Debug\netstandard2.0\HigLabo.Bot.Line.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Line\obj\Debug\netstandard2.0\HigLabo.Bot.Line.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Line\obj\Debug\netstandard2.0\HigLabo.Bot.Line.csprojAssemblyReference.cache

@@ -917,7 +917,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
-    "version": "2.1.1",
+    "version": "2.1.1.1",
     "restore": {
       "projectUniqueName": "C:\\GitHub\\higty\\HigLabo\\NetStandard\\HigLabo.Core\\HigLabo.Core.csproj",
       "projectName": "HigLabo.Core",

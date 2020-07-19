@@ -290,11 +290,11 @@
           }
         }
       },
-      "HigLabo.Core/2.1.1.0": {
+      "HigLabo.Core/2.1.1.1": {
         "runtime": {
           "HigLabo.Core.dll": {
-            "assemblyVersion": "2.1.1.0",
-            "fileVersion": "2.1.1.0"
+            "assemblyVersion": "2.1.1.1",
+            "fileVersion": "2.1.1.1"
           }
         }
       },
@@ -539,7 +539,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "HigLabo.Core/2.1.1.0": {
+    "HigLabo.Core/2.1.1.1": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

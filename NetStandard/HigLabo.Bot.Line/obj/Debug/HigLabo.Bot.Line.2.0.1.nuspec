@@ -13,7 +13,7 @@
     <dependencies>
       <group targetFramework=".NETStandard2.0">
         <dependency id="HigLabo.Converter" version="2.0.1.4" exclude="Build,Analyzers" />
-        <dependency id="HigLabo.Core" version="2.1.1" exclude="Build,Analyzers" />
+        <dependency id="HigLabo.Core" version="2.1.1.1" exclude="Build,Analyzers" />
         <dependency id="HigLabo.Net" version="2.0.6" exclude="Build,Analyzers" />
         <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
       </group>

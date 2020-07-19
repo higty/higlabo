@@ -26,7 +26,6 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\bin\Release\netstandard
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\bin\Release\netstandard2.0\HigLabo.Core.pdb
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\bin\Release\netstandard2.0\HigLabo.Net.pdb
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\bin\Release\netstandard2.0\HigLabo.Rss.pdb
-C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Release\netstandard2.0\HigLabo.Bot.Facebook.csprojAssemblyReference.cache
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Release\netstandard2.0\HigLabo.Bot.Facebook.AssemblyInfoInputs.cache
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Release\netstandard2.0\HigLabo.Bot.Facebook.AssemblyInfo.cs
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Bot.Facebook\obj\Release\netstandard2.0\HigLabo.Bot.Facebook.csproj.CoreCompileInputs.cache

@@ -162,7 +162,7 @@
           "bin/placeholder/HigLabo.Converter.dll": {}
         }
       },
-      "HigLabo.Core/2.1.1": {
+      "HigLabo.Core/2.1.1.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -930,7 +930,7 @@
       "path": "../HigLabo.Converter/HigLabo.Converter.csproj",
       "msbuildProject": "../HigLabo.Converter/HigLabo.Converter.csproj"
     },
-    "HigLabo.Core/2.1.1": {
+    "HigLabo.Core/2.1.1.1": {
       "type": "project",
       "path": "../HigLabo.Core/HigLabo.Core.csproj",
       "msbuildProject": "../HigLabo.Core/HigLabo.Core.csproj"
@@ -943,7 +943,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "HigLabo.Core >= 2.1.1",
+      "HigLabo.Core >= 2.1.1.1",
       "HigLabo.Rss >= 2.0.0",
       "NETStandard.Library >= 2.0.3"
     ]

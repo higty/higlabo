@@ -15,4 +15,3 @@ C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.SchemaData\obj
 C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.SchemaData\obj\Release\netstandard2.0\HigLabo.DbSharp.SchemaData.csproj.CoreCompileInputs.cache
 C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.SchemaData\obj\Release\netstandard2.0\HigLabo.DbSharp.SchemaData.dll
 C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.SchemaData\obj\Release\netstandard2.0\HigLabo.DbSharp.SchemaData.pdb
-C:\GitHub\higty\HigLabo\NetStandard\Tools\DbSharp\HigLabo.DbSharp.SchemaData\obj\Release\netstandard2.0\HigLabo.DbSharp.SchemaData.csprojAssemblyReference.cache

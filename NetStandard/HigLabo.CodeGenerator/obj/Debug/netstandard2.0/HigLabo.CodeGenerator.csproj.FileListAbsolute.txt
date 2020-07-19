@@ -13,4 +13,3 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Debug\netstandard2
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Debug\netstandard2.0\HigLabo.CodeGenerator.csproj.CoreCompileInputs.cache
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Debug\netstandard2.0\HigLabo.CodeGenerator.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Debug\netstandard2.0\HigLabo.CodeGenerator.pdb
-C:\GitHub\higty\HigLabo\NetStandard\HigLabo.CodeGenerator\obj\Debug\netstandard2.0\HigLabo.CodeGenerator.csprojAssemblyReference.cache

@@ -43,3 +43,4 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Debug\obj\Debug\netcoreapp3.0\HigLab
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Debug\obj\Debug\netcoreapp3.0\HigLabo.Debug.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Debug\obj\Debug\netcoreapp3.0\HigLabo.Debug.pdb
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Debug\obj\Debug\netcoreapp3.0\HigLabo.Debug.genruntimeconfig.cache
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Debug\obj\Debug\netcoreapp3.0\HigLabo.Debug.csprojAssemblyReference.cache

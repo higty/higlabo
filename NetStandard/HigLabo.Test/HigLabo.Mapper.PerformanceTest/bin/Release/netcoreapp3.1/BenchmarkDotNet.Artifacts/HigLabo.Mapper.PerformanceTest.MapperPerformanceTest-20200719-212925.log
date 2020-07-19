@@ -1,0 +1,719 @@
+// Validating benchmarks:
+// ***** BenchmarkRunner: Start   *****
+// ***** Found 8 benchmark(s) in total *****
+// ***** Building 1 exe(s) in Parallel: Start   *****
+// start dotnet restore  /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab
+// command took 1.61s and exited with 0
+// start dotnet build -c Release  --no-restore /p:UseSharedCompilation=false /p:BuildInParallel=false /m:1 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab
+// command took 3.03s and exited with 0
+// ***** Done, took 00:00:04 (4.86 sec)   *****
+// Found 8 benchmarks:
+//   MapperPerformanceTest.HandwriteMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.HigLaboMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.MapsterTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.AutoMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.ExpressMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.TinyMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.AgileMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+//   MapperPerformanceTest.FastMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+// **************************
+// Benchmark: MapperPerformanceTest.HandwriteMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.HandwriteMapperTest" --job "ShortRun" --benchmarkId 0 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 302900.00 ns, 302.9000 us/op
+WorkloadJitting  1: 1 op, 1312400.00 ns, 1.3124 ms/op
+
+OverheadJitting  2: 16 op, 201900.00 ns, 12.6188 us/op
+WorkloadJitting  2: 16 op, 4615800.00 ns, 288.4875 us/op
+
+WorkloadPilot    1: 16 op, 2490900.00 ns, 155.6813 us/op
+WorkloadPilot    2: 32 op, 4776300.00 ns, 149.2594 us/op
+WorkloadPilot    3: 64 op, 9565000.00 ns, 149.4531 us/op
+WorkloadPilot    4: 128 op, 19151700.00 ns, 149.6227 us/op
+WorkloadPilot    5: 256 op, 37895000.00 ns, 148.0273 us/op
+WorkloadPilot    6: 512 op, 63042600.00 ns, 123.1301 us/op
+WorkloadPilot    7: 1024 op, 101777900.00 ns, 99.3925 us/op
+WorkloadPilot    8: 2048 op, 229819100.00 ns, 112.2164 us/op
+WorkloadPilot    9: 4096 op, 452780600.00 ns, 110.5421 us/op
+WorkloadPilot   10: 8192 op, 811681300.00 ns, 99.0822 us/op
+
+OverheadWarmup   1: 8192 op, 13400.00 ns, 1.6357 ns/op
+OverheadWarmup   2: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadWarmup   3: 8192 op, 11300.00 ns, 1.3794 ns/op
+OverheadWarmup   4: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadWarmup   5: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadWarmup   6: 8192 op, 11200.00 ns, 1.3672 ns/op
+
+OverheadActual   1: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual   2: 8192 op, 11300.00 ns, 1.3794 ns/op
+OverheadActual   3: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual   4: 8192 op, 11300.00 ns, 1.3794 ns/op
+OverheadActual   5: 8192 op, 11100.00 ns, 1.3550 ns/op
+OverheadActual   6: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual   7: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual   8: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual   9: 8192 op, 11000.00 ns, 1.3428 ns/op
+OverheadActual  10: 8192 op, 11100.00 ns, 1.3550 ns/op
+OverheadActual  11: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual  12: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual  13: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual  14: 8192 op, 11200.00 ns, 1.3672 ns/op
+OverheadActual  15: 8192 op, 11100.00 ns, 1.3550 ns/op
+
+WorkloadWarmup   1: 8192 op, 807470500.00 ns, 98.5682 us/op
+WorkloadWarmup   2: 8192 op, 797532600.00 ns, 97.3551 us/op
+WorkloadWarmup   3: 8192 op, 799073300.00 ns, 97.5431 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 8192 op, 803559100.00 ns, 98.0907 us/op
+WorkloadActual   2: 8192 op, 801154000.00 ns, 97.7971 us/op
+WorkloadActual   3: 8192 op, 805908100.00 ns, 98.3775 us/op
+
+// AfterActualRun
+WorkloadResult   1: 8192 op, 803547900.00 ns, 98.0893 us/op
+WorkloadResult   2: 8192 op, 801142800.00 ns, 97.7958 us/op
+WorkloadResult   3: 8192 op, 805896900.00 ns, 98.3761 us/op
+GC:  629 4 0 3947516184 8192
+Threading:  2 0 8192
+
+// AfterAll
+// Benchmark Process 20944 has exited with code 0
+
+Mean = 98.087 μs, StdErr = 0.168 μs (0.17%), N = 3, StdDev = 0.290 μs
+Min = 97.796 μs, Q1 = 97.943 μs, Median = 98.089 μs, Q3 = 98.233 μs, Max = 98.376 μs
+IQR = 0.290 μs, LowerFence = 97.507 μs, UpperFence = 98.668 μs
+ConfidenceInterval = [92.793 μs; 103.381 μs] (CI 99.9%), Margin = 5.294 μs (5.40% of Mean)
+Skewness = -0.01, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.HigLaboMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.HigLaboMapperTest" --job "ShortRun" --benchmarkId 1 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 266600.00 ns, 266.6000 us/op
+WorkloadJitting  1: 1 op, 1343600.00 ns, 1.3436 ms/op
+
+OverheadJitting  2: 16 op, 198100.00 ns, 12.3812 us/op
+WorkloadJitting  2: 16 op, 17348900.00 ns, 1.0843 ms/op
+
+WorkloadPilot    1: 16 op, 15073100.00 ns, 942.0688 us/op
+WorkloadPilot    2: 32 op, 30227600.00 ns, 944.6125 us/op
+WorkloadPilot    3: 64 op, 60088800.00 ns, 938.8875 us/op
+WorkloadPilot    4: 128 op, 69852500.00 ns, 545.7227 us/op
+WorkloadPilot    5: 256 op, 115698000.00 ns, 451.9453 us/op
+WorkloadPilot    6: 512 op, 232804100.00 ns, 454.6955 us/op
+WorkloadPilot    7: 1024 op, 468986300.00 ns, 457.9944 us/op
+WorkloadPilot    8: 2048 op, 931034900.00 ns, 454.6069 us/op
+
+OverheadWarmup   1: 2048 op, 5700.00 ns, 2.7832 ns/op
+OverheadWarmup   2: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadWarmup   3: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadWarmup   4: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadWarmup   5: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadWarmup   6: 2048 op, 3000.00 ns, 1.4648 ns/op
+
+OverheadActual   1: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   2: 2048 op, 3300.00 ns, 1.6113 ns/op
+OverheadActual   3: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual   4: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   5: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   6: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   7: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   8: 2048 op, 6400.00 ns, 3.1250 ns/op
+OverheadActual   9: 2048 op, 7400.00 ns, 3.6133 ns/op
+OverheadActual  10: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  11: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  12: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  13: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  14: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  15: 2048 op, 3000.00 ns, 1.4648 ns/op
+
+WorkloadWarmup   1: 2048 op, 931260200.00 ns, 454.7169 us/op
+WorkloadWarmup   2: 2048 op, 921937100.00 ns, 450.1646 us/op
+WorkloadWarmup   3: 2048 op, 932318000.00 ns, 455.2334 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 2048 op, 931621700.00 ns, 454.8934 us/op
+WorkloadActual   2: 2048 op, 930130100.00 ns, 454.1651 us/op
+WorkloadActual   3: 2048 op, 941314700.00 ns, 459.6263 us/op
+
+// AfterActualRun
+WorkloadResult   1: 2048 op, 931618600.00 ns, 454.8919 us/op
+WorkloadResult   2: 2048 op, 930127000.00 ns, 454.1636 us/op
+WorkloadResult   3: 2048 op, 941311600.00 ns, 459.6248 us/op
+GC:  180 1 0 1134338752 2048
+Threading:  2 0 2048
+
+// AfterAll
+// Benchmark Process 17052 has exited with code 0
+
+Mean = 456.227 μs, StdErr = 1.712 μs (0.38%), N = 3, StdDev = 2.965 μs
+Min = 454.164 μs, Q1 = 454.528 μs, Median = 454.892 μs, Q3 = 457.258 μs, Max = 459.625 μs
+IQR = 2.731 μs, LowerFence = 450.432 μs, UpperFence = 461.354 μs
+ConfidenceInterval = [402.130 μs; 510.324 μs] (CI 99.9%), Margin = 54.097 μs (11.86% of Mean)
+Skewness = 0.36, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.MapsterTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.MapsterTest" --job "ShortRun" --benchmarkId 2 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 237400.00 ns, 237.4000 us/op
+WorkloadJitting  1: 1 op, 89668100.00 ns, 89.6681 ms/op
+
+WorkloadPilot    1: 2 op, 443500.00 ns, 221.7500 us/op
+WorkloadPilot    2: 3 op, 786900.00 ns, 262.3000 us/op
+WorkloadPilot    3: 4 op, 1018500.00 ns, 254.6250 us/op
+WorkloadPilot    4: 5 op, 1253700.00 ns, 250.7400 us/op
+WorkloadPilot    5: 6 op, 1423900.00 ns, 237.3167 us/op
+WorkloadPilot    6: 7 op, 1625900.00 ns, 232.2714 us/op
+WorkloadPilot    7: 8 op, 1918200.00 ns, 239.7750 us/op
+WorkloadPilot    8: 9 op, 2102400.00 ns, 233.6000 us/op
+WorkloadPilot    9: 10 op, 2318900.00 ns, 231.8900 us/op
+WorkloadPilot   10: 11 op, 2520600.00 ns, 229.1455 us/op
+WorkloadPilot   11: 12 op, 2778800.00 ns, 231.5667 us/op
+WorkloadPilot   12: 13 op, 2972900.00 ns, 228.6846 us/op
+WorkloadPilot   13: 14 op, 3306500.00 ns, 236.1786 us/op
+WorkloadPilot   14: 15 op, 3408700.00 ns, 227.2467 us/op
+WorkloadPilot   15: 16 op, 3538700.00 ns, 221.1687 us/op
+WorkloadPilot   16: 32 op, 7031500.00 ns, 219.7344 us/op
+WorkloadPilot   17: 64 op, 13753700.00 ns, 214.9016 us/op
+WorkloadPilot   18: 128 op, 27514700.00 ns, 214.9586 us/op
+WorkloadPilot   19: 256 op, 55310600.00 ns, 216.0570 us/op
+WorkloadPilot   20: 512 op, 72649200.00 ns, 141.8930 us/op
+WorkloadPilot   21: 1024 op, 139261400.00 ns, 135.9975 us/op
+WorkloadPilot   22: 2048 op, 285258800.00 ns, 139.2865 us/op
+WorkloadPilot   23: 4096 op, 563006400.00 ns, 137.4527 us/op
+
+WorkloadWarmup   1: 4096 op, 565768200.00 ns, 138.1270 us/op
+WorkloadWarmup   2: 4096 op, 555459400.00 ns, 135.6102 us/op
+WorkloadWarmup   3: 4096 op, 566297700.00 ns, 138.2563 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 4096 op, 575937800.00 ns, 140.6098 us/op
+WorkloadActual   2: 4096 op, 570623100.00 ns, 139.3123 us/op
+WorkloadActual   3: 4096 op, 544641900.00 ns, 132.9692 us/op
+
+// AfterActualRun
+WorkloadResult   1: 4096 op, 575937800.00 ns, 140.6098 us/op
+WorkloadResult   2: 4096 op, 570623100.00 ns, 139.3123 us/op
+WorkloadResult   3: 4096 op, 544641900.00 ns, 132.9692 us/op
+GC:  304 1 0 1908225880 4096
+Threading:  2 0 4096
+
+// AfterAll
+// Benchmark Process 2652 has exited with code 0
+
+Mean = 137.630 μs, StdErr = 2.361 μs (1.72%), N = 3, StdDev = 4.089 μs
+Min = 132.969 μs, Q1 = 136.141 μs, Median = 139.312 μs, Q3 = 139.961 μs, Max = 140.610 μs
+IQR = 3.820 μs, LowerFence = 130.410 μs, UpperFence = 145.691 μs
+ConfidenceInterval = [63.040 μs; 212.221 μs] (CI 99.9%), Margin = 74.590 μs (54.20% of Mean)
+Skewness = -0.34, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.AutoMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.AutoMapperTest" --job "ShortRun" --benchmarkId 3 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 244700.00 ns, 244.7000 us/op
+WorkloadJitting  1: 1 op, 23465300.00 ns, 23.4653 ms/op
+
+OverheadJitting  2: 16 op, 195000.00 ns, 12.1875 us/op
+WorkloadJitting  2: 16 op, 11207000.00 ns, 700.4375 us/op
+
+WorkloadPilot    1: 16 op, 8338700.00 ns, 521.1687 us/op
+WorkloadPilot    2: 32 op, 16671000.00 ns, 520.9687 us/op
+WorkloadPilot    3: 64 op, 33031600.00 ns, 516.1187 us/op
+WorkloadPilot    4: 128 op, 65478400.00 ns, 511.5500 us/op
+WorkloadPilot    5: 256 op, 117577300.00 ns, 459.2863 us/op
+WorkloadPilot    6: 512 op, 142237400.00 ns, 277.8074 us/op
+WorkloadPilot    7: 1024 op, 282886200.00 ns, 276.2561 us/op
+WorkloadPilot    8: 2048 op, 559325100.00 ns, 273.1080 us/op
+
+OverheadWarmup   1: 2048 op, 6100.00 ns, 2.9785 ns/op
+OverheadWarmup   2: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadWarmup   3: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadWarmup   4: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadWarmup   5: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadWarmup   6: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadWarmup   7: 2048 op, 3000.00 ns, 1.4648 ns/op
+
+OverheadActual   1: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual   2: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual   3: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   4: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   5: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual   6: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   7: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   8: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual   9: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  10: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  11: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual  12: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  13: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  14: 2048 op, 3000.00 ns, 1.4648 ns/op
+OverheadActual  15: 2048 op, 3000.00 ns, 1.4648 ns/op
+
+WorkloadWarmup   1: 2048 op, 568010100.00 ns, 277.3487 us/op
+WorkloadWarmup   2: 2048 op, 567334400.00 ns, 277.0188 us/op
+WorkloadWarmup   3: 2048 op, 567024500.00 ns, 276.8674 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 2048 op, 569212500.00 ns, 277.9358 us/op
+WorkloadActual   2: 2048 op, 565146600.00 ns, 275.9505 us/op
+WorkloadActual   3: 2048 op, 566363500.00 ns, 276.5447 us/op
+
+// AfterActualRun
+WorkloadResult   1: 2048 op, 569209500.00 ns, 277.9343 us/op
+WorkloadResult   2: 2048 op, 565143600.00 ns, 275.9490 us/op
+WorkloadResult   3: 2048 op, 566360500.00 ns, 276.5432 us/op
+GC:  141 0 0 888856768 2048
+Threading:  2 0 2048
+
+// AfterAll
+// Benchmark Process 22788 has exited with code 0
+
+Mean = 276.809 μs, StdErr = 0.588 μs (0.21%), N = 3, StdDev = 1.019 μs
+Min = 275.949 μs, Q1 = 276.246 μs, Median = 276.543 μs, Q3 = 277.239 μs, Max = 277.934 μs
+IQR = 0.993 μs, LowerFence = 274.757 μs, UpperFence = 278.728 μs
+ConfidenceInterval = [258.219 μs; 295.398 μs] (CI 99.9%), Margin = 18.590 μs (6.72% of Mean)
+Skewness = 0.24, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.ExpressMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.ExpressMapperTest" --job "ShortRun" --benchmarkId 4 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 248700.00 ns, 248.7000 us/op
+WorkloadJitting  1: 1 op, 102569100.00 ns, 102.5691 ms/op
+
+WorkloadPilot    1: 2 op, 1367500.00 ns, 683.7500 us/op
+WorkloadPilot    2: 3 op, 2198600.00 ns, 732.8667 us/op
+WorkloadPilot    3: 4 op, 2808000.00 ns, 702.0000 us/op
+WorkloadPilot    4: 5 op, 3553500.00 ns, 710.7000 us/op
+WorkloadPilot    5: 6 op, 4084800.00 ns, 680.8000 us/op
+WorkloadPilot    6: 7 op, 4756300.00 ns, 679.4714 us/op
+WorkloadPilot    7: 8 op, 5407000.00 ns, 675.8750 us/op
+WorkloadPilot    8: 9 op, 6203600.00 ns, 689.2889 us/op
+WorkloadPilot    9: 10 op, 6517300.00 ns, 651.7300 us/op
+WorkloadPilot   10: 11 op, 7081100.00 ns, 643.7364 us/op
+WorkloadPilot   11: 12 op, 8182000.00 ns, 681.8333 us/op
+WorkloadPilot   12: 13 op, 8395200.00 ns, 645.7846 us/op
+WorkloadPilot   13: 14 op, 8939200.00 ns, 638.5143 us/op
+WorkloadPilot   14: 15 op, 9691200.00 ns, 646.0800 us/op
+WorkloadPilot   15: 16 op, 10194500.00 ns, 637.1562 us/op
+WorkloadPilot   16: 32 op, 20529100.00 ns, 641.5344 us/op
+WorkloadPilot   17: 64 op, 41738900.00 ns, 652.1703 us/op
+WorkloadPilot   18: 128 op, 84464400.00 ns, 659.8781 us/op
+WorkloadPilot   19: 256 op, 90977200.00 ns, 355.3797 us/op
+WorkloadPilot   20: 512 op, 179944700.00 ns, 351.4545 us/op
+WorkloadPilot   21: 1024 op, 369731600.00 ns, 361.0660 us/op
+WorkloadPilot   22: 2048 op, 688362200.00 ns, 336.1144 us/op
+
+WorkloadWarmup   1: 2048 op, 720668400.00 ns, 351.8889 us/op
+WorkloadWarmup   2: 2048 op, 727140900.00 ns, 355.0493 us/op
+WorkloadWarmup   3: 2048 op, 724208300.00 ns, 353.6173 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 2048 op, 690052700.00 ns, 336.9398 us/op
+WorkloadActual   2: 2048 op, 696720100.00 ns, 340.1954 us/op
+WorkloadActual   3: 2048 op, 694916500.00 ns, 339.3147 us/op
+
+// AfterActualRun
+WorkloadResult   1: 2048 op, 690052700.00 ns, 336.9398 us/op
+WorkloadResult   2: 2048 op, 696720100.00 ns, 340.1954 us/op
+WorkloadResult   3: 2048 op, 694916500.00 ns, 339.3147 us/op
+GC:  233 1 0 1462018104 2048
+Threading:  2 0 2048
+
+// AfterAll
+// Benchmark Process 36604 has exited with code 0
+
+Mean = 338.817 μs, StdErr = 0.972 μs (0.29%), N = 3, StdDev = 1.684 μs
+Min = 336.940 μs, Q1 = 338.127 μs, Median = 339.315 μs, Q3 = 339.755 μs, Max = 340.195 μs
+IQR = 1.628 μs, LowerFence = 335.686 μs, UpperFence = 342.197 μs
+ConfidenceInterval = [308.095 μs; 369.538 μs] (CI 99.9%), Margin = 30.722 μs (9.07% of Mean)
+Skewness = -0.27, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.TinyMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.TinyMapperTest" --job "ShortRun" --benchmarkId 5 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 245800.00 ns, 245.8000 us/op
+WorkloadJitting  1: 1 op, 4500500.00 ns, 4.5005 ms/op
+
+OverheadJitting  2: 16 op, 221500.00 ns, 13.8438 us/op
+WorkloadJitting  2: 16 op, 15137300.00 ns, 946.0812 us/op
+
+WorkloadPilot    1: 16 op, 13479700.00 ns, 842.4813 us/op
+WorkloadPilot    2: 32 op, 26393600.00 ns, 824.8000 us/op
+WorkloadPilot    3: 64 op, 52846400.00 ns, 825.7250 us/op
+WorkloadPilot    4: 128 op, 73538600.00 ns, 574.5203 us/op
+WorkloadPilot    5: 256 op, 111862300.00 ns, 436.9621 us/op
+WorkloadPilot    6: 512 op, 222484600.00 ns, 434.5402 us/op
+WorkloadPilot    7: 1024 op, 438806400.00 ns, 428.5219 us/op
+WorkloadPilot    8: 2048 op, 880866800.00 ns, 430.1107 us/op
+
+OverheadWarmup   1: 2048 op, 6100.00 ns, 2.9785 ns/op
+OverheadWarmup   2: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadWarmup   3: 2048 op, 3300.00 ns, 1.6113 ns/op
+OverheadWarmup   4: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadWarmup   5: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadWarmup   6: 2048 op, 3100.00 ns, 1.5137 ns/op
+
+OverheadActual   1: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual   2: 2048 op, 3300.00 ns, 1.6113 ns/op
+OverheadActual   3: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual   4: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual   5: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual   6: 2048 op, 3300.00 ns, 1.6113 ns/op
+OverheadActual   7: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual   8: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual   9: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual  10: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual  11: 2048 op, 3100.00 ns, 1.5137 ns/op
+OverheadActual  12: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual  13: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual  14: 2048 op, 3200.00 ns, 1.5625 ns/op
+OverheadActual  15: 2048 op, 3200.00 ns, 1.5625 ns/op
+
+WorkloadWarmup   1: 2048 op, 886903800.00 ns, 433.0585 us/op
+WorkloadWarmup   2: 2048 op, 876221000.00 ns, 427.8423 us/op
+WorkloadWarmup   3: 2048 op, 876006000.00 ns, 427.7373 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 2048 op, 880205300.00 ns, 429.7877 us/op
+WorkloadActual   2: 2048 op, 876775100.00 ns, 428.1128 us/op
+WorkloadActual   3: 2048 op, 899199200.00 ns, 439.0621 us/op
+
+// AfterActualRun
+WorkloadResult   1: 2048 op, 880202100.00 ns, 429.7862 us/op
+WorkloadResult   2: 2048 op, 876771900.00 ns, 428.1113 us/op
+WorkloadResult   3: 2048 op, 899196000.00 ns, 439.0605 us/op
+GC:  167 1 0 1052416896 2048
+Threading:  2 0 2048
+
+// AfterAll
+// Benchmark Process 22980 has exited with code 0
+
+Mean = 432.319 μs, StdErr = 3.405 μs (0.79%), N = 3, StdDev = 5.898 μs
+Min = 428.111 μs, Q1 = 428.949 μs, Median = 429.786 μs, Q3 = 434.423 μs, Max = 439.061 μs
+IQR = 5.475 μs, LowerFence = 420.737 μs, UpperFence = 442.635 μs
+ConfidenceInterval = [324.721 μs; 539.918 μs] (CI 99.9%), Margin = 107.598 μs (24.89% of Mean)
+Skewness = 0.35, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.AgileMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.AgileMapperTest" --job "ShortRun" --benchmarkId 6 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 243700.00 ns, 243.7000 us/op
+WorkloadJitting  1: 1 op, 246915000.00 ns, 246.9150 ms/op
+
+WorkloadPilot    1: 2 op, 1482500.00 ns, 741.2500 us/op
+WorkloadPilot    2: 3 op, 2461600.00 ns, 820.5333 us/op
+WorkloadPilot    3: 4 op, 3189500.00 ns, 797.3750 us/op
+WorkloadPilot    4: 5 op, 3916700.00 ns, 783.3400 us/op
+WorkloadPilot    5: 6 op, 4589100.00 ns, 764.8500 us/op
+WorkloadPilot    6: 7 op, 5907500.00 ns, 843.9286 us/op
+WorkloadPilot    7: 8 op, 5774700.00 ns, 721.8375 us/op
+WorkloadPilot    8: 9 op, 6429000.00 ns, 714.3333 us/op
+WorkloadPilot    9: 10 op, 7284600.00 ns, 728.4600 us/op
+WorkloadPilot   10: 11 op, 7925300.00 ns, 720.4818 us/op
+WorkloadPilot   11: 12 op, 8958600.00 ns, 746.5500 us/op
+WorkloadPilot   12: 13 op, 10140300.00 ns, 780.0231 us/op
+WorkloadPilot   13: 14 op, 10167200.00 ns, 726.2286 us/op
+WorkloadPilot   14: 15 op, 10723700.00 ns, 714.9133 us/op
+WorkloadPilot   15: 16 op, 11481000.00 ns, 717.5625 us/op
+WorkloadPilot   16: 32 op, 22768000.00 ns, 711.5000 us/op
+WorkloadPilot   17: 64 op, 45684200.00 ns, 713.8156 us/op
+WorkloadPilot   18: 128 op, 69189000.00 ns, 540.5391 us/op
+WorkloadPilot   19: 256 op, 113591500.00 ns, 443.7168 us/op
+WorkloadPilot   20: 512 op, 227475300.00 ns, 444.2877 us/op
+WorkloadPilot   21: 1024 op, 457480600.00 ns, 446.7584 us/op
+WorkloadPilot   22: 2048 op, 913230200.00 ns, 445.9132 us/op
+
+WorkloadWarmup   1: 2048 op, 910098700.00 ns, 444.3841 us/op
+WorkloadWarmup   2: 2048 op, 936612700.00 ns, 457.3304 us/op
+WorkloadWarmup   3: 2048 op, 928679800.00 ns, 453.4569 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 2048 op, 936504400.00 ns, 457.2775 us/op
+WorkloadActual   2: 2048 op, 947483200.00 ns, 462.6383 us/op
+WorkloadActual   3: 2048 op, 937319400.00 ns, 457.6755 us/op
+
+// AfterActualRun
+WorkloadResult   1: 2048 op, 936504400.00 ns, 457.2775 us/op
+WorkloadResult   2: 2048 op, 947483200.00 ns, 462.6383 us/op
+WorkloadResult   3: 2048 op, 937319400.00 ns, 457.6755 us/op
+GC:  315 1 0 1979799384 2048
+Threading:  2 0 2048
+
+// AfterAll
+// Benchmark Process 27548 has exited with code 0
+
+Mean = 459.197 μs, StdErr = 1.724 μs (0.38%), N = 3, StdDev = 2.987 μs
+Min = 457.278 μs, Q1 = 457.477 μs, Median = 457.675 μs, Q3 = 460.157 μs, Max = 462.638 μs
+IQR = 2.680 μs, LowerFence = 453.456 μs, UpperFence = 464.177 μs
+ConfidenceInterval = [404.707 μs; 513.687 μs] (CI 99.9%), Margin = 54.490 μs (11.87% of Mean)
+Skewness = 0.38, Kurtosis = 0.67, MValue = 2
+
+// **************************
+// Benchmark: MapperPerformanceTest.FastMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+// *** Execute ***
+// Launch: 1 / 1
+// Execute: dotnet "b88ec71c-6a7f-482d-9796-fe7731fef5ab.dll" --benchmarkName "HigLabo.Mapper.PerformanceTest.MapperPerformanceTest.FastMapperTest" --job "ShortRun" --benchmarkId 7 in C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Test\HigLabo.Mapper.PerformanceTest\bin\Release\netcoreapp3.1\b88ec71c-6a7f-482d-9796-fe7731fef5ab\bin\Release\netcoreapp3.1
+// BeforeAnythingElse
+
+// Benchmark Process Environment Information:
+// Runtime=.NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+// GC=Concurrent Workstation
+// Job: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+
+OverheadJitting  1: 1 op, 250700.00 ns, 250.7000 us/op
+WorkloadJitting  1: 1 op, 41276900.00 ns, 41.2769 ms/op
+
+WorkloadPilot    1: 2 op, 2810600.00 ns, 1.4053 ms/op
+WorkloadPilot    2: 3 op, 3993300.00 ns, 1.3311 ms/op
+WorkloadPilot    3: 4 op, 5245300.00 ns, 1.3113 ms/op
+WorkloadPilot    4: 5 op, 6402000.00 ns, 1.2804 ms/op
+WorkloadPilot    5: 6 op, 6886400.00 ns, 1.1477 ms/op
+WorkloadPilot    6: 7 op, 8370800.00 ns, 1.1958 ms/op
+WorkloadPilot    7: 8 op, 9257200.00 ns, 1.1571 ms/op
+WorkloadPilot    8: 9 op, 10556300.00 ns, 1.1729 ms/op
+WorkloadPilot    9: 10 op, 11671900.00 ns, 1.1672 ms/op
+WorkloadPilot   10: 11 op, 12855700.00 ns, 1.1687 ms/op
+WorkloadPilot   11: 12 op, 13639100.00 ns, 1.1366 ms/op
+WorkloadPilot   12: 13 op, 14936100.00 ns, 1.1489 ms/op
+WorkloadPilot   13: 14 op, 15904700.00 ns, 1.1361 ms/op
+WorkloadPilot   14: 15 op, 17263700.00 ns, 1.1509 ms/op
+WorkloadPilot   15: 16 op, 17999400.00 ns, 1.1250 ms/op
+WorkloadPilot   16: 32 op, 36689000.00 ns, 1.1465 ms/op
+WorkloadPilot   17: 64 op, 64590200.00 ns, 1.0092 ms/op
+WorkloadPilot   18: 128 op, 122799900.00 ns, 959.3742 us/op
+WorkloadPilot   19: 256 op, 245258300.00 ns, 958.0402 us/op
+WorkloadPilot   20: 512 op, 484175300.00 ns, 945.6549 us/op
+WorkloadPilot   21: 1024 op, 971998000.00 ns, 949.2168 us/op
+
+WorkloadWarmup   1: 1024 op, 977956100.00 ns, 955.0353 us/op
+WorkloadWarmup   2: 1024 op, 975678900.00 ns, 952.8114 us/op
+WorkloadWarmup   3: 1024 op, 977497700.00 ns, 954.5876 us/op
+
+// BeforeActualRun
+WorkloadActual   1: 1024 op, 972331900.00 ns, 949.5429 us/op
+WorkloadActual   2: 1024 op, 968022200.00 ns, 945.3342 us/op
+WorkloadActual   3: 1024 op, 973283400.00 ns, 950.4721 us/op
+
+// AfterActualRun
+WorkloadResult   1: 1024 op, 972331900.00 ns, 949.5429 us/op
+WorkloadResult   2: 1024 op, 968022200.00 ns, 945.3342 us/op
+WorkloadResult   3: 1024 op, 973283400.00 ns, 950.4721 us/op
+GC:  210 1 0 1320834304 1024
+Threading:  2 0 1024
+
+// AfterAll
+// Benchmark Process 6912 has exited with code 0
+
+Mean = 948.450 μs, StdErr = 1.581 μs (0.17%), N = 3, StdDev = 2.738 μs
+Min = 945.334 μs, Q1 = 947.439 μs, Median = 949.543 μs, Q3 = 950.007 μs, Max = 950.472 μs
+IQR = 2.569 μs, LowerFence = 943.585 μs, UpperFence = 953.861 μs
+ConfidenceInterval = [898.501 μs; 998.398 μs] (CI 99.9%), Margin = 49.948 μs (5.27% of Mean)
+Skewness = -0.34, Kurtosis = 0.67, MValue = 2
+
+// ***** BenchmarkRunner: Finish  *****
+
+// * Export *
+  BenchmarkDotNet.Artifacts\results\HigLabo.Mapper.PerformanceTest.MapperPerformanceTest-report.csv
+  BenchmarkDotNet.Artifacts\results\HigLabo.Mapper.PerformanceTest.MapperPerformanceTest-report-github.md
+  BenchmarkDotNet.Artifacts\results\HigLabo.Mapper.PerformanceTest.MapperPerformanceTest-report.html
+
+// * Detailed results *
+MapperPerformanceTest.HandwriteMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 98.087 μs, StdErr = 0.168 μs (0.17%), N = 3, StdDev = 0.290 μs
+Min = 97.796 μs, Q1 = 97.943 μs, Median = 98.089 μs, Q3 = 98.233 μs, Max = 98.376 μs
+IQR = 0.290 μs, LowerFence = 97.507 μs, UpperFence = 98.668 μs
+ConfidenceInterval = [92.793 μs; 103.381 μs] (CI 99.9%), Margin = 5.294 μs (5.40% of Mean)
+Skewness = -0.01, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[97.532 μs ; 98.640 μs) | @@@
+---------------------------------------------------
+
+MapperPerformanceTest.HigLaboMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 456.227 μs, StdErr = 1.712 μs (0.38%), N = 3, StdDev = 2.965 μs
+Min = 454.164 μs, Q1 = 454.528 μs, Median = 454.892 μs, Q3 = 457.258 μs, Max = 459.625 μs
+IQR = 2.731 μs, LowerFence = 450.432 μs, UpperFence = 461.354 μs
+ConfidenceInterval = [402.130 μs; 510.324 μs] (CI 99.9%), Margin = 54.097 μs (11.86% of Mean)
+Skewness = 0.36, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[451.465 μs ; 462.323 μs) | @@@
+---------------------------------------------------
+
+MapperPerformanceTest.MapsterTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 137.630 μs, StdErr = 2.361 μs (1.72%), N = 3, StdDev = 4.089 μs
+Min = 132.969 μs, Q1 = 136.141 μs, Median = 139.312 μs, Q3 = 139.961 μs, Max = 140.610 μs
+IQR = 3.820 μs, LowerFence = 130.410 μs, UpperFence = 145.691 μs
+ConfidenceInterval = [63.040 μs; 212.221 μs] (CI 99.9%), Margin = 74.590 μs (54.20% of Mean)
+Skewness = -0.34, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[129.248 μs ; 136.240 μs) | @
+[136.240 μs ; 144.331 μs) | @@
+---------------------------------------------------
+
+MapperPerformanceTest.AutoMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 276.809 μs, StdErr = 0.588 μs (0.21%), N = 3, StdDev = 1.019 μs
+Min = 275.949 μs, Q1 = 276.246 μs, Median = 276.543 μs, Q3 = 277.239 μs, Max = 277.934 μs
+IQR = 0.993 μs, LowerFence = 274.757 μs, UpperFence = 278.728 μs
+ConfidenceInterval = [258.219 μs; 295.398 μs] (CI 99.9%), Margin = 18.590 μs (6.72% of Mean)
+Skewness = 0.24, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[275.022 μs ; 278.862 μs) | @@@
+---------------------------------------------------
+
+MapperPerformanceTest.ExpressMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 338.817 μs, StdErr = 0.972 μs (0.29%), N = 3, StdDev = 1.684 μs
+Min = 336.940 μs, Q1 = 338.127 μs, Median = 339.315 μs, Q3 = 339.755 μs, Max = 340.195 μs
+IQR = 1.628 μs, LowerFence = 335.686 μs, UpperFence = 342.197 μs
+ConfidenceInterval = [308.095 μs; 369.538 μs] (CI 99.9%), Margin = 30.722 μs (9.07% of Mean)
+Skewness = -0.27, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[335.407 μs ; 341.728 μs) | @@@
+---------------------------------------------------
+
+MapperPerformanceTest.TinyMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 432.319 μs, StdErr = 3.405 μs (0.79%), N = 3, StdDev = 5.898 μs
+Min = 428.111 μs, Q1 = 428.949 μs, Median = 429.786 μs, Q3 = 434.423 μs, Max = 439.061 μs
+IQR = 5.475 μs, LowerFence = 420.737 μs, UpperFence = 442.635 μs
+ConfidenceInterval = [324.721 μs; 539.918 μs] (CI 99.9%), Margin = 107.598 μs (24.89% of Mean)
+Skewness = 0.35, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[422.744 μs ; 434.316 μs) | @@
+[434.316 μs ; 444.428 μs) | @
+---------------------------------------------------
+
+MapperPerformanceTest.AgileMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 459.197 μs, StdErr = 1.724 μs (0.38%), N = 3, StdDev = 2.987 μs
+Min = 457.278 μs, Q1 = 457.477 μs, Median = 457.675 μs, Q3 = 460.157 μs, Max = 462.638 μs
+IQR = 2.680 μs, LowerFence = 453.456 μs, UpperFence = 464.177 μs
+ConfidenceInterval = [404.707 μs; 513.687 μs] (CI 99.9%), Margin = 54.490 μs (11.87% of Mean)
+Skewness = 0.38, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[457.240 μs ; 462.676 μs) | @@@
+---------------------------------------------------
+
+MapperPerformanceTest.FastMapperTest: ShortRun(IterationCount=3, LaunchCount=1, WarmupCount=3)
+Runtime = .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT; GC = Concurrent Workstation
+Mean = 948.450 μs, StdErr = 1.581 μs (0.17%), N = 3, StdDev = 2.738 μs
+Min = 945.334 μs, Q1 = 947.439 μs, Median = 949.543 μs, Q3 = 950.007 μs, Max = 950.472 μs
+IQR = 2.569 μs, LowerFence = 943.585 μs, UpperFence = 953.861 μs
+ConfidenceInterval = [898.501 μs; 998.398 μs] (CI 99.9%), Margin = 49.948 μs (5.27% of Mean)
+Skewness = -0.34, Kurtosis = 0.67, MValue = 2
+-------------------- Histogram --------------------
+[942.843 μs ; 952.964 μs) | @@@
+---------------------------------------------------
+
+// * Summary *
+
+BenchmarkDotNet=v0.12.1, OS=Windows 10.0.18363.959 (1909/November2018Update/19H2)
+Intel Core i7-8700 CPU 3.20GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
+.NET Core SDK=3.1.300
+  [Host]   : .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT  [AttachedDebugger]
+  ShortRun : .NET Core 3.1.4 (CoreCLR 4.700.20.20201, CoreFX 4.700.20.22101), X64 RyuJIT
+
+Job=ShortRun  IterationCount=3  LaunchCount=1  
+WarmupCount=3  
+
+|              Method |      Mean |      Error |   StdDev | Ratio | RatioSD |    Gen 0 |  Gen 1 | Gen 2 |  Allocated |
+|-------------------- |----------:|-----------:|---------:|------:|--------:|---------:|-------:|------:|-----------:|
+| HandwriteMapperTest |  98.09 μs |   5.294 μs | 0.290 μs |  1.00 |    0.00 |  76.7822 | 0.4883 |     - |  470.58 KB |
+|   HigLaboMapperTest | 456.23 μs |  54.097 μs | 2.965 μs |  4.65 |    0.02 |  87.8906 | 0.4883 |     - |  540.89 KB |
+|         MapsterTest | 137.63 μs |  74.590 μs | 4.089 μs |  1.40 |    0.04 |  74.2188 | 0.2441 |     - |  454.96 KB |
+|      AutoMapperTest | 276.81 μs |  18.590 μs | 1.019 μs |  2.82 |    0.01 |  68.8477 |      - |     - |  423.84 KB |
+|   ExpressMapperTest | 338.82 μs |  30.722 μs | 1.684 μs |  3.45 |    0.02 | 113.7695 | 0.4883 |     - |  697.14 KB |
+|      TinyMapperTest | 432.32 μs | 107.598 μs | 5.898 μs |  4.41 |    0.05 |  81.5430 | 0.4883 |     - |  501.83 KB |
+|     AgileMapperTest | 459.20 μs |  54.490 μs | 2.987 μs |  4.68 |    0.04 | 153.8086 | 0.4883 |     - |  944.04 KB |
+|      FastMapperTest | 948.45 μs |  49.948 μs | 2.738 μs |  9.67 |    0.01 | 205.0781 | 0.9766 |     - | 1259.65 KB |
+
+// * Warnings *
+Environment
+  Summary -> Benchmark was executed with attached debugger
+
+// * Legends *
+  Mean      : Arithmetic mean of all measurements
+  Error     : Half of 99.9% confidence interval
+  StdDev    : Standard deviation of all measurements
+  Ratio     : Mean of the ratio distribution ([Current]/[Baseline])
+  RatioSD   : Standard deviation of the ratio distribution ([Current]/[Baseline])
+  Gen 0     : GC Generation 0 collects per 1000 operations
+  Gen 1     : GC Generation 1 collects per 1000 operations
+  Gen 2     : GC Generation 2 collects per 1000 operations
+  Allocated : Allocated memory per single operation (managed only, inclusive, 1KB = 1024B)
+  1 μs      : 1 Microsecond (0.000001 sec)
+
+// * Diagnostic Output - MemoryDiagnoser *
+
+
+// ***** BenchmarkRunner: End *****
+// ** Remained 0 benchmark(s) to run **
+Run time: 00:01:03 (63.11 sec), executed benchmarks: 8
+
+Global total time: 00:01:07 (67.97 sec), executed benchmarks: 8
+// * Artifacts cleanup *

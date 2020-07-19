@@ -21,3 +21,4 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.Oracle\obj\Release\netstandard2
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.Oracle\obj\Release\netstandard2.0\HigLabo.Data.Oracle.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.Oracle\obj\Release\netstandard2.0\HigLabo.Data.Oracle.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.Oracle\obj\Release\netstandard2.0\HigLabo.Data.Oracle.pdb
+C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.Oracle\obj\Release\netstandard2.0\HigLabo.Data.Oracle.csprojAssemblyReference.cache

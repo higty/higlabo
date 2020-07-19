@@ -1653,7 +1653,7 @@
           "bin/placeholder/HigLabo.Converter.dll": {}
         }
       },
-      "HigLabo.Core/2.1.1": {
+      "HigLabo.Core/2.1.1.1": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
@@ -5987,7 +5987,7 @@
       "path": "../../HigLabo.Converter/HigLabo.Converter.csproj",
       "msbuildProject": "../../HigLabo.Converter/HigLabo.Converter.csproj"
     },
-    "HigLabo.Core/2.1.1": {
+    "HigLabo.Core/2.1.1.1": {
       "type": "project",
       "path": "../../HigLabo.Core/HigLabo.Core.csproj",
       "msbuildProject": "../../HigLabo.Core/HigLabo.Core.csproj"
@@ -6001,7 +6001,7 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
       "HigLabo.Converter >= 2.0.1.4",
-      "HigLabo.Core >= 2.1.1",
+      "HigLabo.Core >= 2.1.1.1",
       "HigLabo.Mime >= 2.0.0.7",
       "MSTest.TestAdapter >= 1.2.1",
       "MSTest.TestFramework >= 1.2.1",

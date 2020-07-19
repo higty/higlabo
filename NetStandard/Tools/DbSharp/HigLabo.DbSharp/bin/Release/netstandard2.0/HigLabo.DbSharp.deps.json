@@ -13,7 +13,7 @@
           "System.Data.Common": "4.3.0",
           "System.Data.SqlClient": "4.8.1",
           "HigLabo.CodeGenerator": "2.0.0.0",
-          "HigLabo.Core": "2.1.1.0",
+          "HigLabo.Core": "2.1.1.1",
           "HigLabo.Data": "2.0.1.2",
           "HigLabo.Data.SqlServer": "2.0.0.1"
         },
@@ -276,11 +276,11 @@
           }
         }
       },
-      "HigLabo.Core/2.1.1.0": {
+      "HigLabo.Core/2.1.1.1": {
         "runtime": {
           "HigLabo.Core.dll": {
-            "assemblyVersion": "2.1.1.0",
-            "fileVersion": "2.1.1.0"
+            "assemblyVersion": "2.1.1.1",
+            "fileVersion": "2.1.1.1"
           }
         }
       },
@@ -531,7 +531,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "HigLabo.Core/2.1.1.0": {
+    "HigLabo.Core/2.1.1.1": {
       "type": "reference",
       "serviceable": false,
       "sha512": ""

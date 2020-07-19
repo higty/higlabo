@@ -9,7 +9,7 @@
     ".NETStandard,Version=v2.0/": {
       "HigLabo.Mapper/2.1.2.0": {
         "dependencies": {
-          "HigLabo.Core": "2.1.1",
+          "HigLabo.Core": "2.1.1.1",
           "NETStandard.Library": "2.0.3",
           "System.Reflection.Emit": "4.3.0",
           "System.Reflection.Emit.ILGeneration": "4.3.0"
@@ -120,7 +120,7 @@
           "HigLabo.Converter.dll": {}
         }
       },
-      "HigLabo.Core/2.1.1": {
+      "HigLabo.Core/2.1.1.1": {
         "dependencies": {
           "HigLabo.Converter": "2.0.1.4",
           "System.Reflection.Emit": "4.3.0",
@@ -228,7 +228,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "HigLabo.Core/2.1.1": {
+    "HigLabo.Core/2.1.1.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -30,7 +30,7 @@ namespace HigLabo.Mapper.PerformanceTest
             //ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             //MapperPerformanceTest.HigLaboMapperTest();
 
-            //HigLaboMapperTest();
+            //HigLaboMapperTest1();
             //Console.ReadLine();
             //return;
 
@@ -65,6 +65,24 @@ namespace HigLabo.Mapper.PerformanceTest
             d["Value"] = "as";
             var c2 = config.Map(c1, new Schedule());
         }
+        private static void HigLaboMapperTest1()
+        {
+            var config = ObjectMapConfig.Current;
+            //config.AddPostAction<String, Int32>((s, o) =>
+            //{
+            //    if (s == null) { return o; }
+            //    else
+            //    {
+            //        var x = s.ToInt32();
+            //        if (x.HasValue) { return x.Value; }
+            //    }
+            //    return o;
+            //});
+            var p = new People();
+            p.Age = "13";
+            var p1 = config.Map(p, new People1());
+
+        }
     }
     public class ScheduleSource
     {
@@ -96,6 +114,7 @@ namespace HigLabo.Mapper.PerformanceTest
     public class People
     {
         public String Name { get; set; }
+        public String Age { get; set; }
         public Schedule Schedule { get; set; }
         public List<People> Peoples { get; private set; }
 
@@ -103,5 +122,9 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             this.Peoples = new List<People>();
         }
+    }
+    public class People1
+    {
+        public Int32 Age { get; set; }
     }
 }

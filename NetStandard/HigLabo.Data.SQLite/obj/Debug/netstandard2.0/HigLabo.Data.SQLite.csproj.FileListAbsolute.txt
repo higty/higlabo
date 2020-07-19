@@ -21,4 +21,3 @@ C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.SQLite\obj\Debug\netstandard2.0
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.SQLite\obj\Debug\netstandard2.0\HigLabo.Data.SQLite.csproj.CopyComplete
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.SQLite\obj\Debug\netstandard2.0\HigLabo.Data.SQLite.dll
 C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.SQLite\obj\Debug\netstandard2.0\HigLabo.Data.SQLite.pdb
-C:\GitHub\higty\HigLabo\NetStandard\HigLabo.Data.SQLite\obj\Debug\netstandard2.0\HigLabo.Data.SQLite.csprojAssemblyReference.cache
