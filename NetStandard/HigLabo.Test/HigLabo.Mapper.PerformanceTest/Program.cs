@@ -38,8 +38,8 @@ namespace HigLabo.Mapper.PerformanceTest
             //Console.ReadLine();
             //return;
 
-            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();          
-            //HigLaboMapperTest1();
+            //var summary = BenchmarkRunner.Run<MapperPerformanceTest>();          
+            HigLaboMapperTest1();
             
             Console.ReadLine();
         }

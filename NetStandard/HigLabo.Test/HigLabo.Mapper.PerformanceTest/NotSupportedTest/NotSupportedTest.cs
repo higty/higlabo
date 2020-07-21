@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AgileObjects;
 using BenchmarkDotNet.Attributes;
+using HigLabo.Mapper.PerformanceTest;
 
 namespace HigLabo.Mapper.TestNotSupported
 {
@@ -75,6 +76,9 @@ namespace HigLabo.Mapper.TestNotSupported
             var d = new Dictionary<String, String>();
             d["Name"] = "B1";
             var b3 = Mapster.TypeAdapter.Adapt<Building>(d);//Does not map...
+
+            var customer = HigLabo.Mapper.PerformanceTest.Customer.Create();
+            var customerDto = customer.Adapt(new CustomerDTO());
 
             return;
 

@@ -122,7 +122,7 @@ namespace HigLabo.Mapper.PerformanceTest
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = Mapster.TypeAdapter.Adapt<CustomerDTO>(customer);
+                var customerDto = customer.Adapt(new CustomerDTO());
             }
         }
         [Benchmark]
