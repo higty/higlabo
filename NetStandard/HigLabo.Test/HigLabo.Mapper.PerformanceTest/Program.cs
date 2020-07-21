@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using AgileObjects;
 using BenchmarkDotNet.Running;
 using HigLabo.Mapper.TestNotSupported;
+using System.Linq.Expressions;
+using System.ComponentModel.DataAnnotations;
+using System.Collections;
+using System.Reflection;
 
 namespace HigLabo.Mapper.PerformanceTest
 {
@@ -34,7 +38,9 @@ namespace HigLabo.Mapper.PerformanceTest
             //Console.ReadLine();
             //return;
 
-            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
+            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();          
+            //HigLaboMapperTest1();
+            
             Console.ReadLine();
         }
         private static void HigLaboMapperTest()
@@ -78,9 +84,14 @@ namespace HigLabo.Mapper.PerformanceTest
             //    }
             //    return o;
             //});
-            var p = new People();
-            p.Age = "13";
-            var p1 = config.Map(p, new People1());
+
+            var p = new People1();
+            p.Age = 13;
+            var p1 = HigLabo.Core.Mapper.Default.Map(p, new People1());
+
+            HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            var customer = Customer.Create();
+            var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new CustomerDTO());
 
         }
     }
