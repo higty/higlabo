@@ -65,6 +65,114 @@ namespace HigLabo.Core
     }
     public class Mapper
     {
+        private class MapperMethodAttribute : Attribute
+        {
+        }
+        private class ParseMethodList
+        {
+            [MapperMethod]
+            public static Boolean Boolean(String value, Boolean defaultValue)
+            {
+                if (System.Boolean.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static SByte SByte(String value, SByte defaultValue)
+            {
+                if (System.SByte.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Int16 Int16(String value, Int16 defaultValue)
+            {
+                if (System.Int16.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Int32 Int32(String value, Int32 defaultValue)
+            {
+                if (System.Int32.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Int64 Int64(String value, Int64 defaultValue)
+            {
+                if (System.Int64.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Byte Byte(String value, Byte defaultValue)
+            {
+                if (System.Byte.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static UInt16 UInt16(String value, UInt16 defaultValue)
+            {
+                if (System.UInt16.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static UInt32 UInt32(String value, UInt32 defaultValue)
+            {
+                if (System.UInt32.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static UInt64 UInt64(String value, UInt64 defaultValue)
+            {
+                if (System.UInt64.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static DateTime DateTime(String value, DateTime defaultValue)
+            {
+                if (System.DateTime.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static DateTimeOffset DateTimeOffset(String value, DateTimeOffset defaultValue)
+            {
+                if (System.DateTimeOffset.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Decimal Decimal(String value, Decimal defaultValue)
+            {
+                if (System.Decimal.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Single Single(String value, Single defaultValue)
+            {
+                if (System.Single.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Double Double(String value, Double defaultValue)
+            {
+                if (System.Double.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+   
+            public static Boolean HasParseMethod(Type type)
+            {
+                return type == typeof(Boolean) ||
+                    type == typeof(SByte) ||
+                    type == typeof(Int16) ||
+                    type == typeof(Int32) ||
+                    type == typeof(Int64) ||
+                    type == typeof(Byte) ||
+                    type == typeof(UInt16) ||
+                    type == typeof(UInt32) ||
+                    type == typeof(UInt64) ||
+                    type == typeof(DateTime) ||
+                    type == typeof(DateTimeOffset) ||
+                    type == typeof(Decimal) ||
+                    type == typeof(Single) ||
+                    type == typeof(Double);
+            }
+        }
         private class MapParameterList
         {
             public ParameterExpression Source { get; set; }
@@ -75,17 +183,31 @@ namespace HigLabo.Core
         private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
         private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
 
+        private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
+
         public static Mapper Default { get; private set; } = new Mapper();
 
         private MapContext _MapContext;
-        private Dictionary<ActionKey, Boolean> _HasCollectionProperty = new Dictionary<ActionKey, Boolean>();
         private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>();
-        private Dictionary<ActionKey, Delegate> _MapCollectionActionList = new Dictionary<ActionKey, Delegate>();
-        public MapConfig Config { get; set; } = new MapConfig();
 
+        public MapConfig Config { get; private set; } = new MapConfig();
+
+        static Mapper()
+        {
+            InitializeParseMethodList();
+        }
         public Mapper()
         {
             _MapContext = new MapContext(this);
+        }
+
+        private static void InitializeParseMethodList()
+        {
+            foreach (var item in typeof(Mapper.ParseMethodList).GetMethods()
+                .Where(el => el.GetCustomAttributes().Any(attr => attr is MapperMethodAttribute)))
+            {
+                _ParseMethodList.Add(item.Name, item);
+            }
         }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
@@ -131,12 +253,27 @@ namespace HigLabo.Core
             {
                 var sourceProperty = sourcePropertyList.Find(el => el.Name == targetProperty.Name);
                 if (sourceProperty == null) { continue; }
-                if (sourceProperty.PropertyType.IsInheritanceFrom(targetProperty.PropertyType) == false) { continue; }
-                var targetProperty_PropertyType = targetProperty.PropertyType;
-                var targetInterfaceType = targetProperty_PropertyType.GetInterfaces()
+
+                var isMap = false;
+                if (sourceProperty.PropertyType.IsInheritanceFrom(targetProperty.PropertyType))
+                {
+                    isMap = true;
+                }
+                var targetInterfaceType = targetProperty.PropertyType.GetInterfaces()
                     .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
-                if (targetInterfaceType != null) { continue; }
-                pp.Add(sourceProperty, targetProperty);
+                if (targetInterfaceType == null)
+                {
+                    isMap = true;
+                }
+                if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                {
+                    isMap = true;
+                }
+
+                if (isMap == true)
+                {
+                    pp.Add(sourceProperty, targetProperty);
+                }
             }
             return pp;
         }
@@ -199,19 +336,27 @@ namespace HigLabo.Core
             foreach (var sourceProperty in pp.Keys)
             {
                 var targetProperty = pp[sourceProperty];
+                MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
+
                 if (sourceProperty.PropertyType == targetProperty.PropertyType)
                 {
-                    MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                    MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
                     BinaryExpression body = Expression.Assign(setMethod, getMethod);
                     ee.Add(body);
                 }
-                else
+                else if (targetProperty.PropertyType.IsGenericType &&
+                    sourceProperty.PropertyType == targetProperty.PropertyType.GetGenericArguments()[0])
                 {
-                    MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                    MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                    //Int32 --> Nullable<Int32>
                     BinaryExpression body = Expression.Assign(setMethod
                         , Expression.TypeAs(getMethod, targetProperty.PropertyType));
+                    ee.Add(body);
+                }
+                else if (sourceProperty.PropertyType == typeof(String) && ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                {
+                    var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
+                    var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
+                    BinaryExpression body = Expression.Assign(setMethod, parse);
                     ee.Add(body);
                 }
             }
@@ -225,7 +370,6 @@ namespace HigLabo.Core
 
             return ee;
         }
-
         private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList
             , Dictionary<PropertyInfo, PropertyInfo> mapping)
         {
