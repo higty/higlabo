@@ -75,6 +75,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal? Credit { get; set; }
+        public String EmployeeCount { get; set; } = "1234";
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
         public Address[] Addresses { get; set; }
@@ -157,10 +158,11 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string Name { get; set; }
         public Double? Credit { get; set; }
+        public Int32 EmployeeCount { get; set; }
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }
-        public List<AddressDTO> WorkAddresses { get; set; } 
+        public List<AddressDTO> WorkAddresses { get; private set; } = new List<AddressDTO>();
         public string AddressCity { get; set; }
     }
 

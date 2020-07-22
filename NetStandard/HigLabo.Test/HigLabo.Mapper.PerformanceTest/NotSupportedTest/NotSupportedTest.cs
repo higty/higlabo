@@ -77,9 +77,6 @@ namespace HigLabo.Mapper.TestNotSupported
             d["Name"] = "B1";
             var b3 = Mapster.TypeAdapter.Adapt<Building>(d);//Does not map...
 
-            var customer = HigLabo.Mapper.PerformanceTest.Customer.Create();
-            var customerDto = customer.Adapt(new CustomerDTO());
-
             return;
 
             //StackOverflowException thrown

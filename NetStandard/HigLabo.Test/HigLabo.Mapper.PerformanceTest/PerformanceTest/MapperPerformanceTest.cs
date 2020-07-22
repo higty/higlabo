@@ -80,7 +80,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 customerDto.HomeAddress.Id = customerDto.HomeAddress.Id;
                 customerDto.HomeAddress.City = customerDto.HomeAddress.City;
                 customerDto.HomeAddress.Country = customerDto.HomeAddress.Country;
-                customerDto.WorkAddresses = new List<AddressDTO>();
+                //customerDto.WorkAddresses = new List<AddressDTO>();
                 foreach (var item in customer.WorkAddresses)
                 {
                     customerDto.WorkAddresses.Add(new AddressDTO()

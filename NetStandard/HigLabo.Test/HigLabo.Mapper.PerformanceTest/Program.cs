@@ -15,6 +15,7 @@ using System.Linq.Expressions;
 using System.ComponentModel.DataAnnotations;
 using System.Collections;
 using System.Reflection;
+using System.Buffers;
 
 namespace HigLabo.Mapper.PerformanceTest
 {
@@ -38,8 +39,8 @@ namespace HigLabo.Mapper.PerformanceTest
             //Console.ReadLine();
             //return;
 
-            //var summary = BenchmarkRunner.Run<MapperPerformanceTest>();          
-            HigLaboMapperTest1();
+            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();          
+            //HigLaboMapperTest1();
             
             Console.ReadLine();
         }
@@ -84,14 +85,24 @@ namespace HigLabo.Mapper.PerformanceTest
             //    }
             //    return o;
             //});
+            HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+
+            TypeConverter<People, People>.Convert = el => el;
 
             var p = new People1();
             p.Age = 13;
-            var p1 = HigLabo.Core.Mapper.Default.Map(p, new People1());
+            p.PeopleList.Add(new People() { Name = "Hig" });
+            var p1 = new People1();
+            p1.PeopleList.Add(new People { Name = "Sho" });
+            p1 = HigLabo.Core.Mapper.Default.Map(p, p1);
 
-            HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+
+            TypeConverter<Address, AddressDTO>.Convert = el => HigLabo.Core.Mapper.Default.Map(el, new AddressDTO());
+
             var customer = Customer.Create();
-            var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new CustomerDTO());
+            var customer1 = new CustomerDTO();
+            customer1.WorkAddresses.Add(new AddressDTO());
+            var customerDto = HigLabo.Core.Mapper.Default.Map(customer, customer1);
 
         }
     }
@@ -137,5 +148,6 @@ namespace HigLabo.Mapper.PerformanceTest
     public class People1
     {
         public Int32 Age { get; set; }
+        public List<People> PeopleList { get; private set; } = new List<People>();
     }
 }
