@@ -34,7 +34,7 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         private AutoMapper.MapperConfiguration _AutoMapperConfiguration = null;
 
-        public static readonly Int32 ExecuteCount = 1000;
+        public static readonly Int32 ExecuteCount = 10000;
 
         [GlobalSetup]
         public void Setup()
@@ -80,7 +80,15 @@ namespace HigLabo.Mapper.PerformanceTest
                 customerDto.HomeAddress.Id = customerDto.HomeAddress.Id;
                 customerDto.HomeAddress.City = customerDto.HomeAddress.City;
                 customerDto.HomeAddress.Country = customerDto.HomeAddress.Country;
-                //customerDto.WorkAddresses = new List<AddressDTO>();
+                foreach (var item in customer.WorkAddresses)
+                {
+                    customerDto.WorkAddresses.Add(new AddressDTO()
+                    {
+                        Id = item.Id,
+                        City = item.City,
+                        Country = item.Country,
+                    });
+                }
                 foreach (var item in customer.WorkAddresses)
                 {
                     customerDto.WorkAddresses.Add(new AddressDTO()
@@ -97,14 +105,13 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
-            var customer = Customer.Create();
+            var customer = Address.Create();
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new CustomerDTO());
+                var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new AddressDTO());
             }
         }
-        [Benchmark]
         public void HigLaboMapperTest()
         {
             var customer = Customer.Create();
@@ -118,14 +125,13 @@ namespace HigLabo.Mapper.PerformanceTest
         [Benchmark]
         public void MapsterTest()
         {
-            var customer = Customer.Create();
+            var customer = Address.Create();
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = customer.Adapt(new CustomerDTO());
+                var customerDto = customer.Adapt(new AddressDTO());
             }
         }
-        [Benchmark]
         public void AutoMapperTest()
         {
             var mapper = _AutoMapperConfiguration.CreateMapper();
@@ -137,7 +143,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = mapper.Map<CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public void ExpressMapperTest()
         {
             var customer = Customer.Create();
@@ -148,7 +153,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = ExpressMapper.Mapper.Map<Customer, CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public void TinyMapperTest()
         {
             var customer = Customer.Create();
@@ -159,7 +163,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = TinyMapper.Map<CustomerDTO>(customer);
             }
         }
-        [Benchmark]
         public void AgileMapperTest()
         {
             var customer = Customer.Create();
@@ -169,7 +172,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = AgileObjects.AgileMapper.Mapper.Map<Customer>(customer).ToANew<CustomerDTO>();
             }
         }
-        [Benchmark]
         public void FastMapperTest()
         {
             var customer = Customer.Create();

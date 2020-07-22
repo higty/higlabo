@@ -65,10 +65,6 @@ namespace HigLabo.Core
     }
     public class Mapper
     {
-        private class ObjectMapConfigMethodAttribute : Attribute
-        {
-            public String Name { get; set; }
-        }
         private class MapParameterList
         {
             public ParameterExpression Source { get; set; }
@@ -81,101 +77,62 @@ namespace HigLabo.Core
 
         public static Mapper Default { get; private set; } = new Mapper();
 
-        private Hashtable _MapActionList = new Hashtable();
-        private Hashtable _MapCollectionActionList = new Hashtable();
+        private MapContext _MapContext;
+        private Dictionary<ActionKey, Boolean> _HasCollectionProperty = new Dictionary<ActionKey, Boolean>();
+        private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>();
+        private Dictionary<ActionKey, Delegate> _MapCollectionActionList = new Dictionary<ActionKey, Delegate>();
         public MapConfig Config { get; set; } = new MapConfig();
+
+        public Mapper()
+        {
+            _MapContext = new MapContext(this);
+        }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
-            var config = this.Config;
-            return this.Map(source, target, config);
+            return this.Map(source, target, this.Config);
         }
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config)
         {
-            return Map(source, target, config, new MapContext(this));
+            return Map(source, target, config, _MapContext);
         }
-        public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config, MapContext context)
+        private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config, MapContext context)
         {
             var key = new ActionKey(typeof(TSource), typeof(TTarget));
-            this.MapAction<TSource, TTarget>(key, source, target, config, context);
-            if (config.CollectionElementMapMode != CollectionElementMapMode.None)
-            {
-                this.MapCollectionAction<TSource, TTarget>(key, source, target, config, context);
-            }
+            this.MapProperty<TSource, TTarget>(key, source, target, config, context);
             return target;
         }
 
-        public void Map_Collection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapConfig config, MapContext context)
-            where TSource : class
-            where TTarget : class, new()
+        private void MapProperty<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapConfig config, MapContext context)
         {
-            if (source == null) { return; }
-            if (source is TSource[] ss)
+            if (_MapActionList.TryGetValue(key, out var action) == false)
             {
-                for (int i = 0; i < ss.Length; i++)
-                {
-                    var r = this.Map(ss[i], new TTarget(), config, context);
-                    target.Add(r);
-                }
-            }
-            else if (source is IList<TSource> sList)
-            {
-                for (int i = 0; i < sList.Count; i++)
-                {
-                    var r = this.Map(sList[i], new TTarget(), config, context);
-                    target.Add(r);
-                }
-            }
-            else
-            {
-                foreach (var item in source)
-                {
-                    var r = this.Map(item, new TTarget(), config, context);
-                    target.Add(r);
-                }
-            }
-        }
-
-        private void MapAction<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapConfig config, MapContext context)
-        {
-            var action = _MapActionList[key] as Delegate;
-            if (action == null)
-            {
-                action = CreateMapMethod(source, target);
+                action = CreateMapMethod(source, target, context);
                 _MapActionList.Add(key, action);
             }
             var f = (Action<TSource, TTarget, MapConfig, MapContext>)action;
             f(source, target, config, context);
         }
-        private void MapCollectionAction<TSource, TTarget>(ActionKey key, TSource source, TTarget target
+        private void MapCollectionProperty<TSource, TTarget>(ActionKey key, TSource source, TTarget target
             , MapConfig config, MapContext context)
         {
-            var action = _MapCollectionActionList[key] as Delegate;
-            if (action == null)
+            if (_MapCollectionActionList.TryGetValue(key, out var action) == false)
             {
-                switch (config.CollectionElementMapMode)
-                {
-                    case CollectionElementMapMode.None: throw new InvalidOperationException();
-                    case CollectionElementMapMode.NewObject:
-                        action = CreateMapCollectionNewElementMethod(source, target, context);
-                        break;
-                    case CollectionElementMapMode.DeepCopy:
-                        break;
-                    default: throw new InvalidOperationException();
-                }
+                action = CreateMapCollectionNewElementMethod(key, source, target, context);
+                if (action == null) { return; }
                 _MapCollectionActionList.Add(key, action);
             }
             var f = (Action<TSource, TTarget, MapConfig, MapContext>)action;
             f(source, target, config, context);
         }
 
-        private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target)
+        private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
         {
-            var lambda = CreateMapLambdaExpression(typeof(TSource), typeof(TTarget));
+            var lambda = CreateMapLambdaExpression(typeof(TSource), typeof(TTarget), context);
             Delegate action = (Action<TSource, TTarget, MapConfig, MapContext>)lambda.Compile();
             return action;
         }
-        private LambdaExpression CreateMapLambdaExpression(Type sourceType, Type targetType)
+        private LambdaExpression CreateMapLambdaExpression(Type sourceType, Type targetType, MapContext context)
         {
             var p = new MapParameterList();
             p.Source = Expression.Parameter(sourceType, "source");
@@ -184,6 +141,8 @@ namespace HigLabo.Core
             p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
 
             var ee = CreateMapExpression(sourceType, targetType, p);
+            ee.AddRange(CreateMapCollectionExpression(sourceType, targetType, context, p
+                , this.CreateCollectionPropertyMapping(sourceType, targetType)));
             BlockExpression block = Expression.Block(ee);
             LambdaExpression lambda = Expression.Lambda(block
                 , new[] { p.Source, p.Target, p.Config, p.Context });
@@ -199,7 +158,7 @@ namespace HigLabo.Core
                 var targetProperty = pp[sourceProperty];
                 MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
                 MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
-                BinaryExpression body = Expression.Assign(setMethod, Expression.Convert(getMethod, targetProperty.PropertyType));
+                BinaryExpression body = Expression.Assign(setMethod, getMethod);
                 ee.Add(body);
             }
             LabelTarget returnTarget = Expression.Label();
@@ -232,26 +191,33 @@ namespace HigLabo.Core
             return pp;
         }
 
-        private Delegate CreateMapCollectionNewElementMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
+        private Delegate CreateMapCollectionNewElementMethod<TSource, TTarget>(ActionKey key
+            , TSource source, TTarget target, MapContext context)
         {
+            var mapping = this.CreateCollectionPropertyMapping(typeof(TSource), typeof(TTarget));
+            if (mapping.Count == 0)
+            {
+                _HasCollectionProperty.Add(key, false);
+                return null;
+            }
             var p = new MapParameterList();
             p.Source = Expression.Parameter(typeof(TSource), "source");
             p.Target = Expression.Parameter(typeof(TTarget), "target");
             p.Config = Expression.Parameter(typeof(MapConfig), "mapConfig");
             p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
-            var ee = CreateMapCollectionExpression(typeof(TSource), typeof(TTarget), context, p);
+            var ee = CreateMapCollectionExpression(typeof(TSource), typeof(TTarget), context, p, mapping);
             BlockExpression block = Expression.Block(ee);
             LambdaExpression lambda = Expression.Lambda<Action<TSource, TTarget, MapConfig, MapContext>>(block
                 , new[] { p.Source, p.Target, p.Config, p.Context });
             Delegate action = (Action<TSource, TTarget, MapConfig, MapContext>)lambda.Compile();
             return action;
         }
-        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList)
+        private Dictionary<PropertyInfo, PropertyInfo> CreateCollectionPropertyMapping(Type sourceType, Type targetType)
         {
-            var p = parameterList;
+            var pp = new Dictionary<PropertyInfo, PropertyInfo>();
+
             var sourcePropertyList = sourceType.GetProperties().Where(a => a.CanRead).ToList();
             var targetPropertyList = targetType.GetProperties().Where(a => a.CanWrite).ToList();
-            var pp = new Dictionary<PropertyInfo, PropertyInfo>();
             foreach (var targetProperty in targetPropertyList)
             {
                 var sourceProperty = sourcePropertyList.Find(el => el.Name == targetProperty.Name);
@@ -278,116 +244,131 @@ namespace HigLabo.Core
                     pp.Add(sourceProperty, targetProperty);
                 }
             }
+            return pp;
+        }
+        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList
+            , Dictionary<PropertyInfo, PropertyInfo> mapping)
+        {
+            var p = parameterList;
 
             var ee = new List<Expression>();
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
-            foreach (var sourceProperty in pp.Keys)
+            foreach (var sourceProperty in mapping.Keys)
             {
-                var targetProperty = pp[sourceProperty];
-
-                Expression newInstance = null;
-                if (targetProperty.PropertyType.IsArray)
-                {
-                    var constructor = targetProperty.PropertyType.GetConstructors().FirstOrDefault();
-                    if (constructor == null) { continue; }
-                    newInstance = Expression.New(constructor
-                        , constructor.GetParameters().Select(el => Expression.Constant(0)));
-                }
-                else
-                {
-                    var defaultConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
-                    if (defaultConstructor == null) { continue; }
-                    newInstance = Expression.New(defaultConstructor);
-                }
+                var targetProperty = mapping[sourceProperty];
                 MemberExpression sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
                 MemberExpression targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
-                BinaryExpression body = Expression.Assign(targetMember, newInstance);
-                ee.Add(body);
 
+                var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
+                var targetElementType = targetProperty.PropertyType.GetCollectionElementType();
+                var targetElementConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
 
-                if (targetProperty.PropertyType.IsArray == false)
+                if (targetElementConstructor != null)
                 {
-                    var addMethod = targetProperty.PropertyType.GetMethod("Add");
-                    if (addMethod != null)
+                    if (targetProperty.PropertyType.IsArray)
                     {
-                        var sourceIList = Expression.Convert(sourceMember, typeof(IList<>).MakeGenericType(sourceProperty.PropertyType.GetGenericArguments()));
-                        var sourceElementType = sourceProperty.PropertyType.GenericTypeArguments[0];
-                        var targetElementType = targetProperty.PropertyType.GenericTypeArguments[0];
-                        var targetElementConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
-                        if (targetElementConstructor != null)
-                        {
-                            if (sourceProperty.PropertyType.FullName.StartsWith(System_Collections_Generic_IEnumerable_1))
-                            {
-                                ee.Add(Expression.Call(mapperMember, "Map_Collection"
-                                    , new Type[] { sourceElementType, targetElementType }
-                                    , sourceMember, targetMember, p.Config, p.Context));
-
-                                //ee.Add(Expression.Call(targetMember, "AddRange", null
-                                //   , Expression.Call(mapperMember, "CreateNewObjectArray_Class_Class"
-                                //   , new Type[] { sourceElementType, targetElementType }
-                                //   , sourceMember, p.Config, p.Context)));
-
-                                //var param = Expression.Parameter(sourceElementType, "x");
-                                //Expression lambdaBody = param;
-                                //if (sourceElementType != targetElementType)
-                                //{
-                                //    var convertMethodInfo = typeof(TypeConverter<,>).MakeGenericType(sourceElementType, targetElementType).GetMethod("Execute");
-                                //    lambdaBody = Expression.Call(convertMethodInfo, param);
-                                //}
-                                //var funcType = typeof(Func<,>).MakeGenericType(sourceElementType, targetElementType);
-                                ////var lambda = Expression.Lambda(funcType, lambdaBody, param);
-                                //var mapMD = Expression.Call(mapperMember, "Map"
-                                //                , new Type[] { sourceElementType, targetElementType }
-                                //                , param
-                                //                , Expression.New(targetElementConstructor)
-                                //                , p.Config, p.Context);
-                                //var lambda = Expression.Lambda(funcType, mapMD, param);
-                                //var selectMethod = (from m in typeof(Enumerable).GetMethods()
-                                //                    where m.Name == "Select"
-                                //                    let parameters = m.GetParameters()
-                                //                    where parameters[1].ParameterType.GetGenericTypeDefinition() == typeof(Func<,>)
-                                //                    select m).First().MakeGenericMethod(sourceElementType, targetElementType);
-                                //ee.Add(Expression.Call(targetMember, "AddRange", null
-                                //    , Expression.Call(selectMethod, sourceMember, lambda)));
-                            }
-                            else
-                            {
-                                var i = Expression.Variable(typeof(Int32), "i");
-                                BinaryExpression iAssign = Expression.Assign(i, Expression.Constant(0, typeof(Int32)));
-                                var endLoop = Expression.Label("EndLoop");
-                                var loopBlock = new List<Expression>();
-                                loopBlock.Add(Expression.IfThen
-                                                (
-                                                    Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), i),
-                                                    Expression.Break(endLoop)
-                                                ));
-                                loopBlock.Add(Expression.Call(targetMember, "Add", null
-                                                , Expression.Call(mapperMember, "Map"
-                                                , new Type[] { sourceElementType, targetElementType }
-                                                , Expression.Property(sourceIList, "Item", i)
-                                                , Expression.New(targetElementConstructor)
-                                                , p.Config, p.Context)));
-                                loopBlock.Add(Expression.AddAssign(i, Expression.Constant(1)));
-
-                                BlockExpression addCodeBlock = Expression.Block(
-                                    typeof(int),
-                                    new[] { i },
-                                    iAssign,
-                                    Expression.Block(
-                                        Expression.Loop(
-                                            Expression.Block(loopBlock), endLoop), i
-                                        )
-                                );
-                                ee.Add(addCodeBlock);
-                            }
-                        }
+                        BinaryExpression body = Expression.Assign(targetMember
+                            , Expression.Call(mapperMember, "MapToArray"
+                            , new Type[] { sourceElementType, targetElementType }
+                            , sourceMember, p.Config, p.Context));
+                        ee.Add(body);
+                    }
+                    else
+                    {
+                        ee.Add(Expression.Call(mapperMember, "MapToCollection"
+                            , new Type[] { sourceElementType, targetElementType }
+                            , sourceMember, targetMember, p.Config, p.Context));
                     }
                 }
             }
 
             return ee;
         }
+        public void MapToCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapConfig config, MapContext context)
+            where TSource : class
+            where TTarget : class, new()
+        {
+            if (source == null) { return; }
+            if (target == null) { return; }
+            target.Clear();
+            if (source is TSource[] ss)
+            {
+                for (int i = 0; i < ss.Length; i++)
+                {
+                    var r = this.Map(ss[i], new TTarget(), config, context);
+                    target.Add(r);
+                }
+            }
+            else if (source is IList<TSource> sList)
+            {
+                for (int i = 0; i < sList.Count; i++)
+                {
+                    var r = this.Map(sList[i], new TTarget(), config, context);
+                    target.Add(r);
+                }
+            }
+            else
+            {
+                foreach (var item in source)
+                {
+                    var r = this.Map(item, new TTarget(), config, context);
+                    target.Add(r);
+                }
+            }
+        }
+        public TTarget[] MapToArray<TSource, TTarget>(IEnumerable<TSource> source, MapConfig config, MapContext context)
+            where TSource : class
+            where TTarget : class, new()
+        {
+            if (source == null) { return null; }
 
- }
+            if (source is TSource[] ss)
+            {
+                var tt = new TTarget[ss.Length];
+                for (int i = 0; i < ss.Length; i++)
+                {
+                    var r = this.Map(ss[i], new TTarget(), config, context);
+                    tt[i] = r;
+                }
+                return tt;
+            }
+            else if (source is IList<TSource> sList)
+            {
+                var tt = new TTarget[sList.Count];
+                for (int i = 0; i < sList.Count; i++)
+                {
+                    var r = this.Map(sList[i], new TTarget(), config, context);
+                    tt[i] = r;
+                }
+                return tt;
+            }
+            else
+            {
+                var l = new List<TTarget>();
+                foreach (var item in source)
+                {
+                    var r = this.Map(item, new TTarget(), config, context);
+                    l.Add(r);
+                }
+                return l.ToArray();
+            }
+        }
+
+    }
+    public static class TypeExtensions
+    {
+        public static Type GetCollectionElementType(this Type type)
+        {
+            if (type.IsArray) { type.GetElementType(); }
+            if (IsGenericEnumerableType(type)) { return type.GetGenericArguments()[0]; }
+            var arrayType = Array.Find(type.GetInterfaces(), IsGenericEnumerableType);
+            if (arrayType == null) { return typeof(Object); }
+            return arrayType.GetGenericArguments()[0];
+        }
+        private static Boolean IsGenericEnumerableType(this Type type)
+        {
+            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEnumerable<>);
+        }
+    }
 }

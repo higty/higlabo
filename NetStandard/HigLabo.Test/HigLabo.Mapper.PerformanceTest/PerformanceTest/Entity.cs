@@ -34,7 +34,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        //public GpsPosition Gps { get; set; }
+        public GpsPosition Gps { get; set; }
         public static Address Create()
         {
             var a = new Address();
@@ -55,7 +55,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        //public GpsPosition Gps { get; set; }
+        public GpsPosition Gps { get; set; }
     }
     public struct GpsPosition
     {
@@ -162,7 +162,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }
-        public List<AddressDTO> WorkAddresses { get; private set; } = new List<AddressDTO>();
+        public List<AddressDTO> WorkAddresses { get; set; }
         public string AddressCity { get; set; }
     }
 
