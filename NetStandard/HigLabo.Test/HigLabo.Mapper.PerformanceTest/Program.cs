@@ -90,21 +90,12 @@ namespace HigLabo.Mapper.PerformanceTest
             //});
             HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
-            TypeConverter<People, People>.Convert = el => el;
-
             //var p = new People1();
             //p.Age = 13;
             //p.PeopleList.Add(new People() { Name = "Hig" });
             //var p1 = new People1();
             //p1.PeopleList.Add(new People { Name = "Sho" });
             //p1 = HigLabo.Core.Mapper.Default.Map(p, p1);
-
-            TypeConverter<Address, AddressDTO>.Convert = el => new AddressDTO()
-            {
-                City = el.City,
-                Id = el.Id,
-                Country = el.Country,
-            };
 
             var customer = Customer.Create();
             var customer1 = new CustomerDTO();

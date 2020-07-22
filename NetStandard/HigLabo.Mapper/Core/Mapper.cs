@@ -63,18 +63,12 @@ namespace HigLabo.Core
             this.Mapper = mapper;
         }
     }
-    public class TypeConverter<TSource, TTarget>
-    {
-        public static Func<TSource, TTarget> Convert;
-
-        public static TTarget Execute(TSource source)
-        {
-            if (Convert == null) { return default(TTarget); }
-            return Convert(source);
-        }
-    }
     public class Mapper
     {
+        private class ObjectMapConfigMethodAttribute : Attribute
+        {
+            public String Name { get; set; }
+        }
         private class MapParameterList
         {
             public ParameterExpression Source { get; set; }
@@ -109,6 +103,37 @@ namespace HigLabo.Core
                 this.MapCollectionAction<TSource, TTarget>(key, source, target, config, context);
             }
             return target;
+        }
+
+        public void Map_Collection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapConfig config, MapContext context)
+            where TSource : class
+            where TTarget : class, new()
+        {
+            if (source == null) { return; }
+            if (source is TSource[] ss)
+            {
+                for (int i = 0; i < ss.Length; i++)
+                {
+                    var r = this.Map(ss[i], new TTarget(), config, context);
+                    target.Add(r);
+                }
+            }
+            else if (source is IList<TSource> sList)
+            {
+                for (int i = 0; i < sList.Count; i++)
+                {
+                    var r = this.Map(sList[i], new TTarget(), config, context);
+                    target.Add(r);
+                }
+            }
+            else
+            {
+                foreach (var item in source)
+                {
+                    var r = this.Map(item, new TTarget(), config, context);
+                    target.Add(r);
+                }
+            }
         }
 
         private void MapAction<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapConfig config, MapContext context)
@@ -294,28 +319,37 @@ namespace HigLabo.Core
                         {
                             if (sourceProperty.PropertyType.FullName.StartsWith(System_Collections_Generic_IEnumerable_1))
                             {
-                                var param = Expression.Parameter(sourceElementType, "x");
-                                Expression lambdaBody = param;
-                                if (sourceElementType != targetElementType)
-                                {
-                                    var convertMethodInfo = typeof(TypeConverter<,>).MakeGenericType(sourceElementType, targetElementType).GetMethod("Execute");
-                                    lambdaBody = Expression.Call(convertMethodInfo, param);
-                                }
-                                var funcType = typeof(Func<,>).MakeGenericType(sourceElementType, targetElementType);
-                                //var lambda = Expression.Lambda(funcType, lambdaBody, param);
-                                var mapMD = Expression.Call(mapperMember, "Map"
-                                                , new Type[] { sourceElementType, targetElementType }
-                                                , param
-                                                , Expression.New(targetElementConstructor)
-                                                , p.Config, p.Context);
-                                var lambda = Expression.Lambda(funcType, mapMD, param);
-                                var selectMethod = (from m in typeof(Enumerable).GetMethods()
-                                                    where m.Name == "Select"
-                                                    let parameters = m.GetParameters()
-                                                    where parameters[1].ParameterType.GetGenericTypeDefinition() == typeof(Func<,>)
-                                                    select m).First().MakeGenericMethod(sourceElementType, targetElementType);
-                                ee.Add(Expression.Call(targetMember, "AddRange", null
-                                    , Expression.Call(selectMethod, sourceMember, lambda)));
+                                ee.Add(Expression.Call(mapperMember, "Map_Collection"
+                                    , new Type[] { sourceElementType, targetElementType }
+                                    , sourceMember, targetMember, p.Config, p.Context));
+
+                                //ee.Add(Expression.Call(targetMember, "AddRange", null
+                                //   , Expression.Call(mapperMember, "CreateNewObjectArray_Class_Class"
+                                //   , new Type[] { sourceElementType, targetElementType }
+                                //   , sourceMember, p.Config, p.Context)));
+
+                                //var param = Expression.Parameter(sourceElementType, "x");
+                                //Expression lambdaBody = param;
+                                //if (sourceElementType != targetElementType)
+                                //{
+                                //    var convertMethodInfo = typeof(TypeConverter<,>).MakeGenericType(sourceElementType, targetElementType).GetMethod("Execute");
+                                //    lambdaBody = Expression.Call(convertMethodInfo, param);
+                                //}
+                                //var funcType = typeof(Func<,>).MakeGenericType(sourceElementType, targetElementType);
+                                ////var lambda = Expression.Lambda(funcType, lambdaBody, param);
+                                //var mapMD = Expression.Call(mapperMember, "Map"
+                                //                , new Type[] { sourceElementType, targetElementType }
+                                //                , param
+                                //                , Expression.New(targetElementConstructor)
+                                //                , p.Config, p.Context);
+                                //var lambda = Expression.Lambda(funcType, mapMD, param);
+                                //var selectMethod = (from m in typeof(Enumerable).GetMethods()
+                                //                    where m.Name == "Select"
+                                //                    let parameters = m.GetParameters()
+                                //                    where parameters[1].ParameterType.GetGenericTypeDefinition() == typeof(Func<,>)
+                                //                    select m).First().MakeGenericMethod(sourceElementType, targetElementType);
+                                //ee.Add(Expression.Call(targetMember, "AddRange", null
+                                //    , Expression.Call(selectMethod, sourceMember, lambda)));
                             }
                             else
                             {
@@ -353,12 +387,6 @@ namespace HigLabo.Core
             }
 
             return ee;
-        }
-        internal Expression CreateConverterExpression(Type sourceType, Type targetType, Expression p1)
-        {
-            var field = typeof(TypeConverter<,>).MakeGenericType(sourceType, targetType).GetField("Convert");
-            var invoker = Expression.Field(null, field);
-            return Expression.Call(invoker, "Invoke", null, p1);
         }
 
  }
