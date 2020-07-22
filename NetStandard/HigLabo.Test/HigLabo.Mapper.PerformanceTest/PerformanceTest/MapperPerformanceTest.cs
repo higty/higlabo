@@ -34,7 +34,7 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         private AutoMapper.MapperConfiguration _AutoMapperConfiguration = null;
 
-        public static readonly Int32 ExecuteCount = 10000;
+        public static readonly Int32 ExecuteCount = 1000;
 
         [GlobalSetup]
         public void Setup()
@@ -105,11 +105,11 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
-            var customer = Address.Create();
+            var customer = Customer.Create();
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new AddressDTO());
+                var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new CustomerDTO());
             }
         }
         public void HigLaboMapperTest()
@@ -125,11 +125,11 @@ namespace HigLabo.Mapper.PerformanceTest
         [Benchmark]
         public void MapsterTest()
         {
-            var customer = Address.Create();
+            var customer = Customer.Create();
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = customer.Adapt(new AddressDTO());
+                var customerDto = customer.Adapt(new CustomerDTO());
             }
         }
         public void AutoMapperTest()

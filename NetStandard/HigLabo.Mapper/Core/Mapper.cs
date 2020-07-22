@@ -113,18 +113,6 @@ namespace HigLabo.Core
             var f = (Action<TSource, TTarget, MapConfig, MapContext>)action;
             f(source, target, config, context);
         }
-        private void MapCollectionProperty<TSource, TTarget>(ActionKey key, TSource source, TTarget target
-            , MapConfig config, MapContext context)
-        {
-            if (_MapCollectionActionList.TryGetValue(key, out var action) == false)
-            {
-                action = CreateMapCollectionNewElementMethod(key, source, target, context);
-                if (action == null) { return; }
-                _MapCollectionActionList.Add(key, action);
-            }
-            var f = (Action<TSource, TTarget, MapConfig, MapContext>)action;
-            f(source, target, config, context);
-        }
 
         private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
         {
@@ -132,45 +120,7 @@ namespace HigLabo.Core
             Delegate action = (Action<TSource, TTarget, MapConfig, MapContext>)lambda.Compile();
             return action;
         }
-        private LambdaExpression CreateMapLambdaExpression(Type sourceType, Type targetType, MapContext context)
-        {
-            var p = new MapParameterList();
-            p.Source = Expression.Parameter(sourceType, "source");
-            p.Target = Expression.Parameter(targetType, "target");
-            p.Config = Expression.Parameter(typeof(MapConfig), "mapConfig");
-            p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
 
-            var ee = CreateMapExpression(sourceType, targetType, p);
-            ee.AddRange(CreateMapCollectionExpression(sourceType, targetType, context, p
-                , this.CreateCollectionPropertyMapping(sourceType, targetType)));
-            BlockExpression block = Expression.Block(ee);
-            LambdaExpression lambda = Expression.Lambda(block
-                , new[] { p.Source, p.Target, p.Config, p.Context });
-            return lambda;
-        }
-        private List<Expression> CreateMapExpression(Type sourceType, Type targetType, MapParameterList parameterList)
-        {
-            var p = parameterList;
-            var pp = CreatePropertyMapping(sourceType, targetType);
-            var ee = new List<Expression>();
-            foreach (var sourceProperty in pp.Keys)
-            {
-                var targetProperty = pp[sourceProperty];
-                MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
-                BinaryExpression body = Expression.Assign(setMethod, getMethod);
-                ee.Add(body);
-            }
-            LabelTarget returnTarget = Expression.Label();
-            GotoExpression returnExpression = Expression.Return(returnTarget);
-            LabelExpression returnLabel = Expression.Label(returnTarget);
-            BlockExpression block = Expression.Block(
-                returnExpression,
-                returnLabel);
-            ee.Add(block);
-
-            return ee;
-        }
         private Dictionary<PropertyInfo, PropertyInfo> CreatePropertyMapping(Type sourceType, Type targetType)
         {
             var pp = new Dictionary<PropertyInfo, PropertyInfo>();
@@ -189,28 +139,6 @@ namespace HigLabo.Core
                 pp.Add(sourceProperty, targetProperty);
             }
             return pp;
-        }
-
-        private Delegate CreateMapCollectionNewElementMethod<TSource, TTarget>(ActionKey key
-            , TSource source, TTarget target, MapContext context)
-        {
-            var mapping = this.CreateCollectionPropertyMapping(typeof(TSource), typeof(TTarget));
-            if (mapping.Count == 0)
-            {
-                _HasCollectionProperty.Add(key, false);
-                return null;
-            }
-            var p = new MapParameterList();
-            p.Source = Expression.Parameter(typeof(TSource), "source");
-            p.Target = Expression.Parameter(typeof(TTarget), "target");
-            p.Config = Expression.Parameter(typeof(MapConfig), "mapConfig");
-            p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
-            var ee = CreateMapCollectionExpression(typeof(TSource), typeof(TTarget), context, p, mapping);
-            BlockExpression block = Expression.Block(ee);
-            LambdaExpression lambda = Expression.Lambda<Action<TSource, TTarget, MapConfig, MapContext>>(block
-                , new[] { p.Source, p.Target, p.Config, p.Context });
-            Delegate action = (Action<TSource, TTarget, MapConfig, MapContext>)lambda.Compile();
-            return action;
         }
         private Dictionary<PropertyInfo, PropertyInfo> CreateCollectionPropertyMapping(Type sourceType, Type targetType)
         {
@@ -246,6 +174,58 @@ namespace HigLabo.Core
             }
             return pp;
         }
+
+        private LambdaExpression CreateMapLambdaExpression(Type sourceType, Type targetType, MapContext context)
+        {
+            var p = new MapParameterList();
+            p.Source = Expression.Parameter(sourceType, "source");
+            p.Target = Expression.Parameter(targetType, "target");
+            p.Config = Expression.Parameter(typeof(MapConfig), "mapConfig");
+            p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
+
+            var ee = CreateMapExpression(sourceType, targetType, p);
+            ee.AddRange(CreateMapCollectionExpression(sourceType, targetType, context, p
+                , this.CreateCollectionPropertyMapping(sourceType, targetType)));
+            BlockExpression block = Expression.Block(ee);
+            LambdaExpression lambda = Expression.Lambda(block
+                , new[] { p.Source, p.Target, p.Config, p.Context });
+            return lambda;
+        }
+        private List<Expression> CreateMapExpression(Type sourceType, Type targetType, MapParameterList parameterList)
+        {
+            var p = parameterList;
+            var pp = CreatePropertyMapping(sourceType, targetType);
+            var ee = new List<Expression>();
+            foreach (var sourceProperty in pp.Keys)
+            {
+                var targetProperty = pp[sourceProperty];
+                if (sourceProperty.PropertyType == targetProperty.PropertyType)
+                {
+                    MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                    MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                    BinaryExpression body = Expression.Assign(setMethod, getMethod);
+                    ee.Add(body);
+                }
+                else
+                {
+                    MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                    MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                    BinaryExpression body = Expression.Assign(setMethod
+                        , Expression.TypeAs(getMethod, targetProperty.PropertyType));
+                    ee.Add(body);
+                }
+            }
+            LabelTarget returnTarget = Expression.Label();
+            GotoExpression returnExpression = Expression.Return(returnTarget);
+            LabelExpression returnLabel = Expression.Label(returnTarget);
+            BlockExpression block = Expression.Block(
+                returnExpression,
+                returnLabel);
+            ee.Add(block);
+
+            return ee;
+        }
+
         private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList
             , Dictionary<PropertyInfo, PropertyInfo> mapping)
         {

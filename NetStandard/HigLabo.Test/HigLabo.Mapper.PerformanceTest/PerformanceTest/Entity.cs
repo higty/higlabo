@@ -155,7 +155,7 @@ namespace HigLabo.Mapper.PerformanceTest
 
     public class CustomerDTO
     {
-        public int Id { get; set; }
+        public Int32? Id { get; set; }
         public string Name { get; set; }
         public Double? Credit { get; set; }
         public Int32 EmployeeCount { get; set; }
