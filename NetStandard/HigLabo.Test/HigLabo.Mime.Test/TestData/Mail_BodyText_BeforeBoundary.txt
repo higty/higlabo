@@ -1,0 +1,37 @@
+﻿Return-Path: <bc@forcastk2.qw.to>
+Received: (msmtp jid:129944); Sun, 23 Feb 2014 21:17:17 +0900
+Date: Sun, 23 Feb 2014 21:17:17 +0900
+From: <test_from@higlabo.com>
+To: <test_to@higlabo.com>
+Subject: TestSubject
+Message-Id: <ce5kaacAc6tNac@higlabo.com>
+MIME-Version: 1.0
+Content-Type: multipart/related; type="multipart/alternative"; 
+	boundary="----------=_1393157768-10844-1"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+
+This is a multipart message in MIME format...
+
+------------=_1393157768-10844-1
+Content-Type: multipart/alternative; 
+	boundary="----------=_1393157768-10844-2"
+Content-Transfer-Encoding: 7bit
+
+This is a multipart message in MIME format...
+
+------------=_1393157768-10844-2
+Content-Type: text/plain;
+	charset="iso-2022-jp";
+Content-Transfer-Encoding: Base64
+
+GyRCNUAxYEA6PEskTj5iJE5APBsoQg0KGyRCPXQ5VEw1Pm8kTjZBJC0kIiRqGyhCDQobJEI6
+O01lQVA8eSROMlYkTj8nGyhCDQobJEJAOTxUSSw/aiROTX0kciQiJGkkbyQ5GyhCDQo=
+------------=_1393157768-10844-2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: base64
+
+VGhpcyBpcyBhIHRleHQvcGxhaW4gYm9keSB0ZXh0Lg==
+------------=_1393157768-10844-2--
+
+------------=_1393157768-10844-1--

@@ -1,0 +1,234 @@
+Received:  from DEEDCMSGM03.emea.tdworldwide.com ([10.100.65.52]) by DEEDCMSGF03.emea.tdworldwide.com with Microsoft SMTPSVC(6.0.3790.4675); Tue, 12 May 2015 12:52:08 +0200
+Received:  from DEEDCECAS01.emea.tdworldwide.com ([10.100.64.105]) by DEEDCMSGM03.emea.tdworldwide.com with Microsoft SMTPSVC(6.0.3790.4675); Tue, 12 May 2015 12:52:08 +0200
+Received:  from na01-by2-obe.outbound.protection.outlook.com (10.100.80.240) by hybrid.techdata.eu (10.100.64.105) with Microsoft SMTP Server (TLS) id 14.3.158.1; Tue, 12 May 2015 12:52:07 +0200
+Received:  from BY2PR0601MB1640.namprd06.prod.outlook.com (25.163.107.18) by BY2PR0601MB1592.namprd06.prod.outlook.com (25.163.107.15) with Microsoft SMTP Server (TLS) id 15.1.154.19; Tue, 12 May 2015 10:52:02 +0000
+Received:  from BY2PR0601MB1637.namprd06.prod.outlook.com (25.163.107.158) by BY2PR0601MB1640.namprd06.prod.outlook.com (25.163.107.18) with Microsoft SMTP Server (TLS) id 15.1.160.19; Tue, 12 May 2015 10:52:02 +0000
+Received:  from BY2PR0601MB1637.namprd06.prod.outlook.com ([25.163.107.158]) by BY2PR0601MB1637.namprd06.prod.outlook.com ([25.163.107.158]) with mapi id 15.01.0160.009; Tue, 12 May 2015 10:52:02 +0000
+Content-Language: en-US
+MIME-Version: 1.0
+Return-Path: <tomasz.nowak@techdata.pl>
+Content-Type: multipart/mixed;
+	boundary="----_=_NextPart_001_01D08CA1.B0F1BC00"
+X-OriginalArrivalTime: 12 May 2015 10:52:08.0807 (UTC) FILETIME=[B16CDF70:01D08CA1]
+Authentication-Results: techdata.eu; dkim=none (message not signed) header.d=none;
+x-originating-ip: [62.233.207.110]
+Accept-Language: pl-PL, en-US
+acceptlanguage: pl-PL, en-US
+X-Forefront-Antispam-Report: SFV:SKI;SFS:;DIR:INB;SFP:;SCL:-1;SRVR:BY2PR0601MB1640;H:BY2PR0601MB1637.namprd06.prod.outlook.com;FPR:;SPF:None;LANG:;
+X-OriginatorOrg: techdata.pl
+X-OrganizationHeadersPreserved: BY2PR0601MB1640.namprd06.prod.outlook.com
+X-CrossPremisesHeadersPromoted: DEEDCECAS01.emea.tdworldwide.com
+X-CrossPremisesHeadersFiltered: DEEDCECAS01.emea.tdworldwide.com
+X-MS-Has-Attach: yes
+X-MimeOLE: Produced By Microsoft Exchange V6.5
+X-Microsoft-Antispam: UriScan:;BCL:0;PCL:0;RULEID:;SRVR:BY2PR0601MB1640;
+X-Exchange-Antispam-Report-Test: UriScan:;
+X-Exchange-Antispam-Report-CFA-Test: BCL:0;PCL:0;RULEID:(601004)(3002001);SRVR:BY2PR0601MB1640;BCL:0;PCL:0;RULEID:;SRVR:BY2PR0601MB1640;
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 12 May 2015 10:52:01.2238 (UTC)
+X-MS-Exchange-CrossTenant-Id: 7fe14ab6-8f5d-4139-84bf-cd8aed0ee6b9
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY2PR0601MB1640
+Content-class: urn:content-classes:message
+Subject: email subject
+Date: Tue, 12 May 2015 12:52:01 +0200
+Message-ID: <BY2PR0601MB16377F8C79E5B2FA8DE7B3F58EDA0@BY2PR0601MB1637.namprd06.prod.outlook.com>
+X-MS-TNEF-Correlator: 
+Thread-Topic: email subject
+Thread-Index: AdCMoanvrsrzd+kBT5u0PfKGOxeP0g==
+From: "Nowak, Tomasz" <tomasz.nowak@techdata.pl>
+To: "BDE.freightinvoicing.I" <freightinvoicingbde.i@techdata.eu>
+
+This is a multi-part message in MIME format.
+
+------_=_NextPart_001_01D08CA1.B0F1BC00
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_002_01D08CA1.B0F1BC00"
+
+------_=_NextPart_002_01D08CA1.B0F1BC00
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Email body=20
+
+
+------_=_NextPart_002_01D08CA1.B0F1BC00
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head><META =
+HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii"><meta name=3DGenerator content=3D"Microsoft Word 14 =
+(filtered medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+span.EmailStyle18
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle19
+	{mso-style-type:personal;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+span.EmailStyle20
+	{mso-style-type:personal-reply;
+	font-family:"Calibri","sans-serif";
+	color:#1F497D;}
+..MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DPL link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Email body =
+<o:p></o:p></p></div></body></html>
+------_=_NextPart_002_01D08CA1.B0F1BC00--
+
+------_=_NextPart_001_01D08CA1.B0F1BC00
+Content-Type: message/rfc822
+Content-Transfer-Encoding: 7bit
+
+Received: by DEEDCMSGF03.emea.tdworldwide.com 
+	id <01D08BCB.83D2DA00@DEEDCMSGF03.emea.tdworldwide.com>; Mon, 11 May 2015 11:19:00 +0200
+Content-class: urn:content-classes:message
+MIME-Version: 1.0
+Content-Type: multipart/mixed;
+	boundary="----_=_NextPart_003_01D08BCB.83D2DA00"
+Subject: Inner email subject
+Date: Mon, 11 May 2015 11:19:57 +0200
+X-MS-Has-Attach: yes
+X-MimeOLE: Produced By Microsoft Exchange V6.5
+X-MS-TNEF-Correlator: 
+Thread-Topic: Inner email subject
+Thread-Index: AdCLy6KfV2YHhKA+SjiBKtRoE5jnCg==
+From: "Nowak, Tomasz" <tomasz.nowak@techdata.pl>
+To: "Nowak, Tomasz" <tomasz.nowak@techdata.pl>
+
+This is a multi-part message in MIME format.
+
+------_=_NextPart_003_01D08BCB.83D2DA00
+Content-Type: multipart/alternative;
+	boundary="----_=_NextPart_004_01D08BCB.83D2DA00"
+
+
+------_=_NextPart_004_01D08BCB.83D2DA00
+Content-Type: text/plain;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+Inner email body
+
+
+------_=_NextPart_004_01D08BCB.83D2DA00
+Content-Type: text/html;
+	charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" =
+xmlns:o=3D"urn:schemas-microsoft-com:office:office" =
+xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" =
+xmlns=3D"http://www.w3.org/TR/REC-html40"><head>
+<META HTTP-EQUIV=3D"Content-Type" CONTENT=3D"text/html; =
+charset=3Dus-ascii">
+<meta name=3DGenerator content=3D"Microsoft Word 14 (filtered =
+medium)"><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;}
+span.EmailStyle17
+	{mso-style-type:personal-compose;
+	font-family:"Calibri","sans-serif";
+	color:windowtext;}
+..MsoChpDefault
+	{mso-style-type:export-only;
+	font-family:"Calibri","sans-serif";
+	mso-fareast-language:EN-US;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:70.85pt 70.85pt 70.85pt 70.85pt;}
+div.WordSection1
+	{page:WordSection1;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]--></head><body lang=3DPL link=3Dblue =
+vlink=3Dpurple><div class=3DWordSection1><p class=3DMsoNormal>Inner =
+email body<o:p></o:p></p></div></body></html>
+------_=_NextPart_004_01D08BCB.83D2DA00--
+
+------_=_NextPart_003_01D08BCB.83D2DA00
+Content-Type: text/plain;
+	name="innerAttachment.txt"
+Content-Transfer-Encoding: base64
+Content-Description: innerAttachment.txt
+Content-Disposition: attachment;
+	filename="innerAttachment.txt"
+
+aW5uZXJBdHRhY2htZW50
+
+------_=_NextPart_003_01D08BCB.83D2DA00--
+
+------_=_NextPart_001_01D08CA1.B0F1BC00
+Content-Type: text/plain;
+	name="attachment.txt"
+Content-Transfer-Encoding: base64
+Content-Description: attachment.txt
+Content-Disposition: attachment;
+	filename="attachment.txt"
+
+YXR0YWNobWVudA==
+
+------_=_NextPart_001_01D08CA1.B0F1BC00--

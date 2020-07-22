@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HigLabo.DbSharpSample.SqlServer.MultiPkTableInsert">
+    <Position X="0.75" Y="7.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>oAAEAAABAQAJAIAEAgAEChQAGIEAAEAEHBAAAgAAgAA=</HashCode>
+      <FileName>GeneratedFiles\TableStoredProcedure\MultiPkTableInsert.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HigLabo.DbSharpSample.SqlServer.MultiPkTableSelectByPrimaryKey">
+    <Position X="8.5" Y="5.25" Width="3.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Class Name="HigLabo.DbSharpSample.SqlServer.MultiPkTableSelectByPrimaryKey.ResultSet">
+        <Compartments>
+          <Compartment Name="Fields" Collapsed="true" />
+        </Compartments>
+        <TypeIdentifier>
+          <NewMemberFileName>GeneratedFiles\TableStoredProcedure\MultiPkTableSelectByPrimaryKey.cs</NewMemberFileName>
+        </TypeIdentifier>
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <InheritanceLine Type="HigLabo.DbSharp.StoredProcedureWithResultSet&lt;T&gt;" ManuallyRouted="true">
+      <Path>
+        <Point X="10.25" Y="4.214" />
+        <Point X="10.25" Y="5.126" />
+        <Point X="10.25" Y="5.126" />
+        <Point X="10.25" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>gAAAABIBEQAAEIBEIAAEAAQAAAAAAABAEAAQAAAAAAA=</HashCode>
+      <FileName>GeneratedFiles\TableStoredProcedure\MultiPkTableSelectByPrimaryKey.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HigLabo.DbSharp.StoredProcedureWithResultSet&lt;T&gt;">
+    <Position X="8.5" Y="1.25" Width="3.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HigLabo.DbSharp.StoredProcedureWithResultSet">
+    <Position X="4.5" Y="1.25" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HigLabo.DbSharp.StoredProcedureResultSet">
+    <Position X="4.5" Y="9.5" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HigLabo.DbSharp.StoredProcedureWithResultSetsList&lt;T, TResultSetList&gt;">
+    <Position X="12.75" Y="1.25" Width="3.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HigLabo.DbSharp.StoredProcedure">
+    <Position X="0.75" Y="1.25" Width="3.25" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="HigLabo.DbSharp.DatabaseRecord">
+    <Position X="4.5" Y="7" Width="3.25" />
+    <TypeIdentifier />
+  </Class>
+  <Font Name="Yu Gothic UI" Size="9" />
+</ClassDiagram>

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj" />
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net.csproj" />
+  </ItemGroup>
+
+</Project>

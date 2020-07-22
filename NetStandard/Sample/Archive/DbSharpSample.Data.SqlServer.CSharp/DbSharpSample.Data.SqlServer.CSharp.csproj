@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp">
+      <HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp.SqlServer">
+      <HintPath>..\Reference\HigLabo.DbSharp.SqlServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

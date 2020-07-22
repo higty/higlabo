@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="GeneratedFiles\UserDefinedTableType\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.17" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.MySql">
+      <HintPath>..\Reference\HigLabo.Data.MySql.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp">
+      <HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

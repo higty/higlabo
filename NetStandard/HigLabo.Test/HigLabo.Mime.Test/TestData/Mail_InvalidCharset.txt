@@ -1,0 +1,62 @@
+MIME-Version: 1.0
+Date: Fri, 14 Feb 2014 12:06:27 +0000
+From: =?iso-2022-jp?B?GyRCTmtMWjBsTzobKEIgPHN1enVraUBnbWFpbC5jb20+?=
+Subject: =?iso-2022-jp?B?U3ViamVjdCAbJEJEOSQkN29MPiEhGyhCMDEyMzQ1Njc4OQ==?=
+	=?iso-2022-jp?B?MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTA=?=
+	=?iso-2022-jp?B?MTIzNDU2Nzg5?=
+X-Priority: 3
+To: =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIwIDxoYW5ha29fMEBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIxIDxoYW5ha29fMUBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIyIDxoYW5ha29fMkBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIzIDxoYW5ha29fM0BnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI0IDxoYW5ha29fNEBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI1IDxoYW5ha29fNUBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI2IDxoYW5ha29fNkBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI3IDxoYW5ha29fN0BnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI4IDxoYW5ha29fOEBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI5IDxoYW5ha29fOUBnbWFpbC5jb20+?=
+Content-Type: multipart/mixed;
+	charset="iso-2022-jp";
+	boundary="859fc7b9-65bf-4c8c-b047-a03d1c3c3435"
+Content-Transfer-Encoding: Base64
+
+--859fc7b9-65bf-4c8c-b047-a03d1c3c3435
+Content-Type: text/plain;
+	charset="iso-2022-jp";
+Content-Transfer-Encoding: Base64
+
+GyRCNUAxYEA6PEskTj5iJE5APBsoQg0KGyRCPXQ5VEw1Pm8kTjZBJC0kIiRqGyhCDQobJEI6
+O01lQVA8eSROMlYkTj8nGyhCDQobJEJAOTxUSSw/aiROTX0kciQiJGkkbyQ5GyhCDQo=
+--859fc7b9-65bf-4c8c-b047-a03d1c3c3435
+Content-Type: multipart/alternative;
+	charset="iso-2022-jp";
+	boundary="5723918d-ddcc-4a02-865d-94a3ecd43a1a"
+Content-Transfer-Encoding: Base64
+
+--5723918d-ddcc-4a02-865d-94a3ecd43a1a
+Content-Type: text/plain;
+	charset="utf7";
+Content-Transfer-Encoding: Base64
+
+VGhpcyBpcyBhIHRleHQvcGxhaW4gYm9keSB0ZXh0Lg==
+--5723918d-ddcc-4a02-865d-94a3ecd43a1a
+Content-Type: text/plain;
+	charset="utf8";
+Content-Transfer-Encoding: Base64
+
+VGhpcyBpcyBhIHRleHQvcGxhaW4gYm9keSB0ZXh0Lg==
+--5723918d-ddcc-4a02-865d-94a3ecd43a1a
+Content-Type: text/plain;
+	charset="CP1252";
+Content-Transfer-Encoding: Base64
+
+VGhpcyBpcyBhIHRleHQvcGxhaW4gYm9keSB0ZXh0Lg==
+--5723918d-ddcc-4a02-865d-94a3ecd43a1a
+Content-Type: text/html;
+	charset="iso-2022-jp";
+Content-Transfer-Encoding: Base64
+
+PGRpdiBzdHlsZT0nZm9udC1zaXplOjIwcHg7Jz5UaGlzIGlzIGEgdGV4dC9odG1sIGJvZHkg
+dGV4dC48L2Rpdj4=
+--5723918d-ddcc-4a02-865d-94a3ecd43a1a--
+--859fc7b9-65bf-4c8c-b047-a03d1c3c3435--

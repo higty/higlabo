@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="GeneratedFiles\StoredProcedure\AllDataTypeTableInsert.cs" />
+    <Compile Remove="GeneratedFiles\StoredProcedure\IdentityTableInsert.cs" />
+    <Compile Remove="GeneratedFiles\StoredProcedure\RowGuidColTableInsert.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp">
+      <HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp.SqlServer">
+      <HintPath>..\Reference\HigLabo.DbSharp.SqlServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="GeneratedFiles\TableStoredProcedure\" />
+  </ItemGroup>
+
+</Project>
