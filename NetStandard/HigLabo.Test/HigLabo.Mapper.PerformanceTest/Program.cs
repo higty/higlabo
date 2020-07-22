@@ -39,9 +39,12 @@ namespace HigLabo.Mapper.PerformanceTest
             //Console.ReadLine();
             //return;
 
-            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();          
-            //HigLaboMapperTest1();
-            
+#if DEBUG
+            HigLaboMapperTest1();
+#else
+            var summary = BenchmarkRunner.Run<MapperPerformanceTest>();
+#endif
+
             Console.ReadLine();
         }
         private static void HigLaboMapperTest()
@@ -89,15 +92,19 @@ namespace HigLabo.Mapper.PerformanceTest
 
             TypeConverter<People, People>.Convert = el => el;
 
-            var p = new People1();
-            p.Age = 13;
-            p.PeopleList.Add(new People() { Name = "Hig" });
-            var p1 = new People1();
-            p1.PeopleList.Add(new People { Name = "Sho" });
-            p1 = HigLabo.Core.Mapper.Default.Map(p, p1);
+            //var p = new People1();
+            //p.Age = 13;
+            //p.PeopleList.Add(new People() { Name = "Hig" });
+            //var p1 = new People1();
+            //p1.PeopleList.Add(new People { Name = "Sho" });
+            //p1 = HigLabo.Core.Mapper.Default.Map(p, p1);
 
-
-            TypeConverter<Address, AddressDTO>.Convert = el => HigLabo.Core.Mapper.Default.Map(el, new AddressDTO());
+            TypeConverter<Address, AddressDTO>.Convert = el => new AddressDTO()
+            {
+                City = el.City,
+                Id = el.Id,
+                Country = el.Country,
+            };
 
             var customer = Customer.Create();
             var customer1 = new CustomerDTO();

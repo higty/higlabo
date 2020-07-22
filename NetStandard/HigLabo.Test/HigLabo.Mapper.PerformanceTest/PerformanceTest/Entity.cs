@@ -79,7 +79,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
         public Address[] Addresses { get; set; }
-        public ICollection<Address> WorkAddresses { get; set; }
+        public IEnumerable<Address> WorkAddresses { get; set; }
 
         public static Customer Create()
         {
