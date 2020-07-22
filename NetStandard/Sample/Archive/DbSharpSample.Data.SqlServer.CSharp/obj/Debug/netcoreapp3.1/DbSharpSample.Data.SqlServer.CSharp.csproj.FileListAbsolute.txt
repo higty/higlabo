@@ -1,4 +1,0 @@
-C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netcoreapp3.1\DbSharpSample.Data.SqlServer.CSharp.csprojAssemblyReference.cache
-C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netcoreapp3.1\DbSharpSample.Data.SqlServer.CSharp.AssemblyInfoInputs.cache
-C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netcoreapp3.1\DbSharpSample.Data.SqlServer.CSharp.AssemblyInfo.cs
-C:\GitHub\higty\HigLabo\NetStandard\Sample\DbSharp\DbSharpSample.Data.SqlServer.CSharp\obj\Debug\netcoreapp3.1\DbSharpSample.Data.SqlServer.CSharp.csproj.CoreCompileInputs.cache

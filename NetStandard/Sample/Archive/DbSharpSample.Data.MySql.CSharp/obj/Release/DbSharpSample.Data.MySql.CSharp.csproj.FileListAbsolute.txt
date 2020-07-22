@@ -1,2 +1,0 @@
-C:\Dev\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Release\DbSharpSample.Data.MySql.CSharp.csprojAssemblyReference.cache
-C:\Dev\HigLabo.DbSharp.Sample\DbSharpSample.Data.MySql.CSharp\obj\Release\DbSharpSample.Data.MySql.CSharp.csproj.CoreCompileInputs.cache

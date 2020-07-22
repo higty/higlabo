@@ -1,5 +1,0 @@
-// Validating benchmarks:
-Benchmarked method `HandwriteMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.
-Benchmarked method `HigLaboMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.
-Benchmarked method `TinyMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.
-Benchmarked method `AutoMapperTest` is static. Benchmarks MUST be instance methods, static methods are not supported.

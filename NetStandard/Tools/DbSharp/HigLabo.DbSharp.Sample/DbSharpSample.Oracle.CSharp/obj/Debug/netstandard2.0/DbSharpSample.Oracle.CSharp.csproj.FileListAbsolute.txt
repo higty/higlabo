@@ -1,7 +1,0 @@
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.deps.json
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.dll
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\bin\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.pdb
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.AssemblyInfoInputs.cache
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.AssemblyInfo.cs
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.dll
-C:\GitHub\higty\HigLabo.NetStandard\Tools\DbSharp\HigLabo.DbSharp.Sample\DbSharpSample.Oracle.CSharp\obj\Debug\netstandard2.0\DbSharpSample.Oracle.CSharp.pdb
