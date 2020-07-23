@@ -514,29 +514,29 @@ namespace HigLabo.Core
             foreach (var sourceProperty in mapping.Keys)
             {
                 var targetProperty = mapping[sourceProperty];
-                MemberExpression sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                MemberExpression targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
-
-                var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
                 var targetElementType = targetProperty.PropertyType.GetCollectionElementType();
                 var targetElementConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
 
                 if (targetElementConstructor != null)
                 {
+                    var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                    var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                    var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
+
                     if (targetProperty.PropertyType.IsArray)
                     {
-                        BinaryExpression body = Expression.Assign(targetMember
+                        BinaryExpression setTarget = Expression.Assign(targetMember
                             , Expression.Call(mapperMember, "MapToArray"
                             , new Type[] { sourceElementType, targetElementType }
                             , sourceMember, p.Config, p.Context));
-                        ee.Add(body);
+                        ee.Add(setTarget);
                     }
                     else
                     {
-                        MethodCallExpression body = Expression.Call(mapperMember, "MapToCollection"
+                        MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
                             , new Type[] { sourceElementType, targetElementType }
                             , sourceMember, targetMember, p.Config, p.Context);
-                        ee.Add(body);
+                        ee.Add(setTarget);
                     }
                 }
             }
@@ -613,12 +613,7 @@ namespace HigLabo.Core
             }
             else
             {
-                var l = new List<TTarget>();
-                foreach (var item in source)
-                {
-                    l.Add(this.Map(item, new TTarget(), config, context));
-                }
-                return l.ToArray();
+                return source.Select(el => this.Map(el, new TTarget(), config, context)).ToArray();
             }
         }
 
