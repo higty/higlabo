@@ -72,10 +72,8 @@ namespace HigLabo.Mapper.PerformanceTest
     public class Customer
     {
         public static readonly Random Random = new Random();
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Single? Credit { get; set; }
-        public String EmployeeCount { get; set; } = "1234";
+        public Int32? Id { get; set; }
+        public String Name { get; set; }
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
         public Address[] Addresses { get; set; }
@@ -87,14 +85,13 @@ namespace HigLabo.Mapper.PerformanceTest
             {
                 Id = 1,
                 Name = "Timucin Kivanc " + GetRandomNumber(),
-                Credit = 234.7f,
                 Address = new Address()
                 {
                     City = "Istanbul " + GetRandomNumber(),
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 1,
                     Street = "Istiklal cad. " + GetRandomNumber(),
-                    //Gps = new GpsPosition(139, 36),
+                    Gps = new GpsPosition(139, 36),
                 }
             };
 
@@ -106,7 +103,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 Street = "Istiklal cad. " + GetRandomNumber(),
                 //Gps = new GpsPosition(-69, -60),
             };
-            customer.WorkAddresses = new Address[]
+            customer.WorkAddresses = new List<Address>
             {
                 new Address()
                 {
@@ -157,13 +154,11 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public Int32? Id { get; set; }
         public string Name { get; set; }
-        public Decimal? Credit { get; set; }
-        public Int32 EmployeeCount { get; set; }
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }
         public List<AddressDTO> WorkAddresses { get; set; }
-        public string AddressCity { get; set; }
+        public String AddressCity { get; set; }
     }
 
     public class Organization
@@ -248,4 +243,15 @@ namespace HigLabo.Mapper.PerformanceTest
         }
     }
 
+
+    public class NotSupportedSource_TinyMapper
+    {
+        public Single? Credit { get; set; }
+        public String EmployeeCount { get; set; } = "1234";
+    }
+    public class NotSupportedTarget_TinyMapper
+    {
+        public Decimal? Credit { get; set; }
+        public Int32 EmployeeCount { get; set; }
+    }
 }

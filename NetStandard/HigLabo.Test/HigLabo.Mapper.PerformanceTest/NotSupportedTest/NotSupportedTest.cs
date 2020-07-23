@@ -50,7 +50,11 @@ namespace HigLabo.Mapper.TestNotSupported
         public static void TinyMapperTest()
         {
             TinyMapper.Bind<Park, Park>();
+            TinyMapper.Bind<Customer, CustomerDTO>();
             TinyMapper.Bind<Dictionary<String, String>, Building>();
+
+            var customer = Customer.Create();
+            var customer1 = TinyMapper.Map(customer, new CustomerDTO());
 
             var p1 = Park.Create();
             var p2 = TinyMapper.Map<Park>(p1);//p2.Cars.Count = 0 is unexpected.Collection element does not copied to property with private setter.
@@ -58,6 +62,7 @@ namespace HigLabo.Mapper.TestNotSupported
             var d = new Dictionary<String, String>();
             d["Name"] = "B1";
             var b3 = TinyMapper.Map<Building>(d);//Does not map...
+
 
             return;
 
@@ -76,10 +81,6 @@ namespace HigLabo.Mapper.TestNotSupported
             var d = new Dictionary<String, String>();
             d["Name"] = "B1";
             var b3 = Mapster.TypeAdapter.Adapt<Building>(d);//Does not map...
-
-            var customer = Customer.Create();
-            var customer1 = new CustomerDTO();
-            customer.Adapt(customer1);
 
             return;
 

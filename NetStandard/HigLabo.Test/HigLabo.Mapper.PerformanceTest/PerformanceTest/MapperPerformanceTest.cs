@@ -135,6 +135,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = this.Customer.Adapt(new CustomerDTO());
             }
         }
+        [Benchmark]
         public void AutoMapperTest()
         {
             var mapper = _AutoMapperConfiguration.CreateMapper();
@@ -156,16 +157,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = ExpressMapper.Mapper.Map<Customer, CustomerDTO>(customer);
             }
         }
-        public void TinyMapperTest()
-        {
-            var customer = Customer.Create();
-            var count = ExecuteCount;
-
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = TinyMapper.Map<CustomerDTO>(customer);
-            }
-        }
         public void AgileMapperTest()
         {
             var customer = Customer.Create();
@@ -182,6 +173,16 @@ namespace HigLabo.Mapper.PerformanceTest
             for (int i = 0; i < count; i++)
             {
                 var customerDto = FastMapper.TypeAdapter.Adapt<Customer, CustomerDTO>(customer);
+            }
+        }
+        public void TinyMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = TinyMapper.Map<CustomerDTO>(customer);
             }
         }
     }

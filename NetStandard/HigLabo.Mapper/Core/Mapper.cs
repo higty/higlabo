@@ -294,28 +294,25 @@ namespace HigLabo.Core
         }
         private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config, MapContext context)
         {
-            var key = new ActionKey(typeof(TSource), typeof(TTarget));
-            this.MapProperty<TSource, TTarget>(key, source, target, config, context);
+            this.Map<TSource, TTarget>(new ActionKey(typeof(TSource), typeof(TTarget)), source, target, config, context);
             return target;
         }
         private TTarget Map<TSource, TTarget>(TSource source, MapConfig config, MapContext context)
             where TTarget: new()
         {
-            var key = new ActionKey(typeof(TSource), typeof(TTarget));
             var target = new TTarget();
-            this.MapProperty<TSource, TTarget>(key, source, target, config, context);
+            this.Map<TSource, TTarget>(new ActionKey(typeof(TSource), typeof(TTarget)), source, target, config, context);
             return target;
         }
 
-        private void MapProperty<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapConfig config, MapContext context)
+        private void Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapConfig config, MapContext context)
         {
             if (_MapActionList.TryGetValue(key, out var action) == false)
             {
                 action = CreateMapMethod(source, target, context);
                 _MapActionList.Add(key, action);
             }
-            var f = (Action<TSource, TTarget, MapConfig, MapContext>)action;
-            f(source, target, config, context);
+            ((Action<TSource, TTarget, MapConfig, MapContext>)action)(source, target, config, context);
         }
 
         private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
@@ -408,7 +405,10 @@ namespace HigLabo.Core
                 var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
                 if (pp.Count > 0)
                 {
-                    ee.AddRange(CreateMapCollectionExpression(sourceType, targetType, context, p, pp));
+                    foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p, pp))
+                    {
+                        ee.Add(item);
+                    }
                 }
             }
             BlockExpression block = Expression.Block(ee);
@@ -491,7 +491,6 @@ namespace HigLabo.Core
                             , Expression.Call(mapperMember, "Map"
                             , new Type[] { sourceProperty.PropertyType, targetProperty.PropertyType }
                             , getMethod, p.Config, p.Context));
-                        //BinaryExpression body = Expression.Assign(setMethod, Expression.New(targetConstructor));
                         ee.Add(body);
                     }
                 }
@@ -534,12 +533,18 @@ namespace HigLabo.Core
                     }
                     else
                     {
-                        ee.Add(Expression.Call(mapperMember, "MapToCollection"
+                        MethodCallExpression body = Expression.Call(mapperMember, "MapToCollection"
                             , new Type[] { sourceElementType, targetElementType }
-                            , sourceMember, targetMember, p.Config, p.Context));
+                            , sourceMember, targetMember, p.Config, p.Context);
+                        ee.Add(body);
                     }
                 }
             }
+            LabelTarget returnTarget = Expression.Label();
+            GotoExpression returnExpression = Expression.Return(returnTarget);
+            LabelExpression returnLabel = Expression.Label(returnTarget);
+            BlockExpression block = Expression.Block(returnExpression, returnLabel);
+            ee.Add(block);
 
             return ee;
         }
@@ -547,31 +552,28 @@ namespace HigLabo.Core
             where TSource : class
             where TTarget : class, new()
         {
-            if (source == null) { return; }
-            if (target == null) { return; }
+            if (source == null || target == null) { return; }
+
             target.Clear();
             if (source is TSource[] ss)
             {
                 for (int i = 0; i < ss.Length; i++)
                 {
-                    var r = this.Map(ss[i], new TTarget(), config, context);
-                    target.Add(r);
+                    target.Add(this.Map(ss[i], new TTarget(), config, context));
                 }
             }
             else if (source is IList<TSource> sList)
             {
                 for (int i = 0; i < sList.Count; i++)
                 {
-                    var r = this.Map(sList[i], new TTarget(), config, context);
-                    target.Add(r);
+                    target.Add(this.Map(sList[i], new TTarget(), config, context));
                 }
             }
             else
             {
                 foreach (var item in source)
                 {
-                    var r = this.Map(item, new TTarget(), config, context);
-                    target.Add(r);
+                    target.Add(this.Map(item, new TTarget(), config, context));
                 }
             }
         }
@@ -586,8 +588,7 @@ namespace HigLabo.Core
                 var tt = new TTarget[ss.Length];
                 for (int i = 0; i < ss.Length; i++)
                 {
-                    var r = this.Map(ss[i], new TTarget(), config, context);
-                    tt[i] = r;
+                    tt[i] = this.Map(ss[i], new TTarget(), config, context);
                 }
                 return tt;
             }
@@ -596,8 +597,17 @@ namespace HigLabo.Core
                 var tt = new TTarget[sList.Count];
                 for (int i = 0; i < sList.Count; i++)
                 {
-                    var r = this.Map(sList[i], new TTarget(), config, context);
-                    tt[i] = r;
+                    tt[i] = this.Map(sList[i], new TTarget(), config, context);
+                }
+                return tt;
+            }
+            else if (source is ICollection<TSource> sCollection)
+            {
+                var tt = new TTarget[sCollection.Count];
+                var index = 0;
+                foreach (var item in sCollection)
+                {
+                    tt[index++] = this.Map(item, new TTarget(), config, context);
                 }
                 return tt;
             }
@@ -606,8 +616,7 @@ namespace HigLabo.Core
                 var l = new List<TTarget>();
                 foreach (var item in source)
                 {
-                    var r = this.Map(item, new TTarget(), config, context);
-                    l.Add(r);
+                    l.Add(this.Map(item, new TTarget(), config, context));
                 }
                 return l.ToArray();
             }

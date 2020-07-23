@@ -26,7 +26,7 @@ namespace HigLabo.Mapper.PerformanceTest
             //NotSupportedTest.HigLaboMapperTest();
             //NotSupportedTest.AutoMapperTest();
             //NotSupportedTest.TinyMapperTest();
-            NotSupportedTest.MapsterTest();
+            //NotSupportedTest.MapsterTest();
             //NotSupportedTest.ExpressMapperTest();
             //NotSupportedTest.FastMapperTest();
             //NotSupportedTest.AgileMapperTest();
@@ -101,6 +101,7 @@ namespace HigLabo.Mapper.PerformanceTest
             var customer1 = new CustomerDTO();
             customer1.WorkAddresses = new List<AddressDTO>();
             customer1.WorkAddresses.Add(new AddressDTO());
+
             var customerDto = HigLabo.Core.Mapper.Default.Map(customer, customer1);
             var c2 = customer.Adapt(new CustomerDTO());
         }
