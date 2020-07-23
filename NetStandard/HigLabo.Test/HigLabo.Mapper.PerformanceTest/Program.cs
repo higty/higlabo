@@ -102,7 +102,6 @@ namespace HigLabo.Mapper.PerformanceTest
             customer1.WorkAddresses = new List<AddressDTO>();
             customer1.WorkAddresses.Add(new AddressDTO());
             var customerDto = HigLabo.Core.Mapper.Default.Map(customer, customer1);
-
             var c2 = customer.Adapt(new CustomerDTO());
         }
     }

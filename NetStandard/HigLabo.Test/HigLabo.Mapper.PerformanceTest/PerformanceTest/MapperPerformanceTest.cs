@@ -36,6 +36,8 @@ namespace HigLabo.Mapper.PerformanceTest
 
         public static readonly Int32 ExecuteCount = 1000;
 
+        public Customer Customer = null;
+
         [GlobalSetup]
         public void Setup()
         {
@@ -49,6 +51,8 @@ namespace HigLabo.Mapper.PerformanceTest
             ObjectMapConfig.Current.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
             ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
             var customerDto = ObjectMapConfig.Current.Map(Customer.Create(), new CustomerDTO());
+
+            this.Customer = Customer.Create();
         }
 
         [Benchmark(Baseline = true)]
@@ -80,6 +84,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 customerDto.HomeAddress.Id = customerDto.HomeAddress.Id;
                 customerDto.HomeAddress.City = customerDto.HomeAddress.City;
                 customerDto.HomeAddress.Country = customerDto.HomeAddress.Country;
+                customer.WorkAddresses = new List<Address>();
                 foreach (var item in customer.WorkAddresses)
                 {
                     customerDto.WorkAddresses.Add(new AddressDTO()
@@ -105,11 +110,10 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
-            var customer = Customer.Create();
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = HigLabo.Core.Mapper.Default.Map(customer, new CustomerDTO());
+                var customerDto = HigLabo.Core.Mapper.Default.Map(this.Customer, new CustomerDTO());
             }
         }
         public void HigLaboMapperTest()
@@ -125,11 +129,10 @@ namespace HigLabo.Mapper.PerformanceTest
         [Benchmark]
         public void MapsterTest()
         {
-            var customer = Customer.Create();
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = customer.Adapt(new CustomerDTO());
+                var customerDto = this.Customer.Adapt(new CustomerDTO());
             }
         }
         public void AutoMapperTest()

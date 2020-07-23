@@ -74,7 +74,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public static readonly Random Random = new Random();
         public int Id { get; set; }
         public string Name { get; set; }
-        public decimal? Credit { get; set; }
+        public Single? Credit { get; set; }
         public String EmployeeCount { get; set; } = "1234";
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
@@ -87,7 +87,7 @@ namespace HigLabo.Mapper.PerformanceTest
             {
                 Id = 1,
                 Name = "Timucin Kivanc " + GetRandomNumber(),
-                Credit = 234.7m,
+                Credit = 234.7f,
                 Address = new Address()
                 {
                     City = "Istanbul " + GetRandomNumber(),
@@ -157,7 +157,7 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public Int32? Id { get; set; }
         public string Name { get; set; }
-        public Double? Credit { get; set; }
+        public Decimal? Credit { get; set; }
         public Int32 EmployeeCount { get; set; }
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }

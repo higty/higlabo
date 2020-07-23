@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -137,6 +138,12 @@ namespace HigLabo.Core
                 return defaultValue;
             }
             [MapperMethod]
+            public static TimeSpan TimeSpan(String value, TimeSpan defaultValue)
+            {
+                if (System.TimeSpan.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
             public static Decimal Decimal(String value, Decimal defaultValue)
             {
                 if (System.Decimal.TryParse(value, out var v)) { return v; }
@@ -154,7 +161,13 @@ namespace HigLabo.Core
                 if (System.Double.TryParse(value, out var v)) { return v; }
                 return defaultValue;
             }
-   
+            [MapperMethod]
+            public static Guid Guid(String value, Guid defaultValue)
+            {
+                if (System.Guid.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+
             public static Boolean HasParseMethod(Type type)
             {
                 return type == typeof(Boolean) ||
@@ -184,6 +197,7 @@ namespace HigLabo.Core
         private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
 
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
+        private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
 
         public static Mapper Default { get; private set; } = new Mapper();
 
@@ -195,6 +209,7 @@ namespace HigLabo.Core
         static Mapper()
         {
             InitializeParseMethodList();
+            InitializeCanConvertList();
         }
         public Mapper()
         {
@@ -209,6 +224,65 @@ namespace HigLabo.Core
                 _ParseMethodList.Add(item.Name, item);
             }
         }
+        private static void InitializeCanConvertList()
+        {
+            var d = _CanConvertList;
+            d.Add(new ActionKey(typeof(SByte), typeof(Int16)), true);
+            d.Add(new ActionKey(typeof(SByte), typeof(Int32)), true);
+            d.Add(new ActionKey(typeof(SByte), typeof(Int64)), true);
+            d.Add(new ActionKey(typeof(SByte), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(SByte), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(SByte), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(Int16), typeof(Int32)), true);
+            d.Add(new ActionKey(typeof(Int16), typeof(Int64)), true);
+            d.Add(new ActionKey(typeof(Int16), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(Int16), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(Int16), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(Int32), typeof(Int64)), true);
+            d.Add(new ActionKey(typeof(Int32), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(Int32), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(Int32), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(Int64), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(Int64), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(Int64), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(Single), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(Single), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(Double), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(Byte), typeof(UInt16)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(UInt32)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(UInt64)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(Int16)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(Int32)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(Int64)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(Byte), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(UInt16), typeof(UInt32)), true);
+            d.Add(new ActionKey(typeof(UInt16), typeof(UInt64)), true);
+            d.Add(new ActionKey(typeof(UInt16), typeof(Int32)), true);
+            d.Add(new ActionKey(typeof(UInt16), typeof(Int64)), true);
+            d.Add(new ActionKey(typeof(UInt16), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(UInt16), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(UInt16), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(UInt32), typeof(UInt64)), true);
+            d.Add(new ActionKey(typeof(UInt32), typeof(Int64)), true);
+            d.Add(new ActionKey(typeof(UInt32), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(UInt32), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(UInt32), typeof(Decimal)), true);
+
+            d.Add(new ActionKey(typeof(UInt64), typeof(Single)), true);
+            d.Add(new ActionKey(typeof(UInt64), typeof(Double)), true);
+            d.Add(new ActionKey(typeof(UInt64), typeof(Decimal)), true);
+
+        }
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
@@ -221,6 +295,14 @@ namespace HigLabo.Core
         private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config, MapContext context)
         {
             var key = new ActionKey(typeof(TSource), typeof(TTarget));
+            this.MapProperty<TSource, TTarget>(key, source, target, config, context);
+            return target;
+        }
+        private TTarget Map<TSource, TTarget>(TSource source, MapConfig config, MapContext context)
+            where TTarget: new()
+        {
+            var key = new ActionKey(typeof(TSource), typeof(TTarget));
+            var target = new TTarget();
             this.MapProperty<TSource, TTarget>(key, source, target, config, context);
             return target;
         }
@@ -321,8 +403,14 @@ namespace HigLabo.Core
             p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
 
             var ee = CreateMapExpression(sourceType, targetType, p);
-            ee.AddRange(CreateMapCollectionExpression(sourceType, targetType, context, p
-                , this.CreateCollectionPropertyMapping(sourceType, targetType)));
+            if (this.Config.CollectionElementMapMode != CollectionElementMapMode.None)
+            {
+                var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
+                if (pp.Count > 0)
+                {
+                    ee.AddRange(CreateMapCollectionExpression(sourceType, targetType, context, p, pp));
+                }
+            }
             BlockExpression block = Expression.Block(ee);
             LambdaExpression lambda = Expression.Lambda(block
                 , new[] { p.Source, p.Target, p.Config, p.Context });
@@ -330,9 +418,11 @@ namespace HigLabo.Core
         }
         private List<Expression> CreateMapExpression(Type sourceType, Type targetType, MapParameterList parameterList)
         {
-            var p = parameterList;
-            var pp = CreatePropertyMapping(sourceType, targetType);
             var ee = new List<Expression>();
+            var p = parameterList;
+            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
+
+            var pp = CreatePropertyMapping(sourceType, targetType);
             foreach (var sourceProperty in pp.Keys)
             {
                 var targetProperty = pp[sourceProperty];
@@ -344,13 +434,40 @@ namespace HigLabo.Core
                     BinaryExpression body = Expression.Assign(setMethod, getMethod);
                     ee.Add(body);
                 }
-                else if (targetProperty.PropertyType.IsGenericType &&
-                    sourceProperty.PropertyType == targetProperty.PropertyType.GetGenericArguments()[0])
+                else if (targetProperty.PropertyType.IsNullable())
                 {
-                    //Int32 --> Nullable<Int32>
-                    BinaryExpression body = Expression.Assign(setMethod
-                        , Expression.TypeAs(getMethod, targetProperty.PropertyType));
-                    ee.Add(body);
+                    var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
+                    if (sourceProperty.PropertyType.IsNullable())
+                    {
+                        var sourceNullableGenericType = sourceProperty.PropertyType.GetGenericArguments()[0];
+                        if (sourceNullableGenericType == targetNullableGenericType)
+                        {
+                            BinaryExpression body = Expression.Assign(setMethod, getMethod);
+                            ee.Add(body);
+                        }
+                        else if (CanConvert(sourceNullableGenericType, targetNullableGenericType))
+                        {
+                            BinaryExpression body = Expression.Assign(setMethod
+                                , Expression.Convert(getMethod, targetProperty.PropertyType));
+                            ee.Add(body);
+                        }
+                    }
+                    else
+                    {
+                        if (sourceProperty.PropertyType == targetNullableGenericType)
+                        {
+                            //Int32 --> Nullable<Int32>
+                            BinaryExpression body = Expression.Assign(setMethod
+                                , Expression.TypeAs(getMethod, targetProperty.PropertyType));
+                            ee.Add(body);
+                        }
+                        else if (CanConvert(sourceProperty.PropertyType, targetNullableGenericType))
+                        {
+                            BinaryExpression body = Expression.Assign(setMethod
+                                , Expression.Convert(getMethod, targetProperty.PropertyType));
+                            ee.Add(body);
+                        }
+                    }
                 }
                 else if (sourceProperty.PropertyType == typeof(String) && ParseMethodList.HasParseMethod(targetProperty.PropertyType))
                 {
@@ -359,13 +476,30 @@ namespace HigLabo.Core
                     BinaryExpression body = Expression.Assign(setMethod, parse);
                     ee.Add(body);
                 }
+                else if (CanConvert(sourceProperty.PropertyType, targetProperty.PropertyType))
+                {
+                    BinaryExpression body = Expression.Assign(setMethod
+                        , Expression.Convert(getMethod, targetProperty.PropertyType));
+                    ee.Add(body);
+                }
+                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
+                {
+                    var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
+                    if (targetConstructor != null)
+                    {
+                        BinaryExpression body = Expression.Assign(setMethod
+                            , Expression.Call(mapperMember, "Map"
+                            , new Type[] { sourceProperty.PropertyType, targetProperty.PropertyType }
+                            , getMethod, p.Config, p.Context));
+                        //BinaryExpression body = Expression.Assign(setMethod, Expression.New(targetConstructor));
+                        ee.Add(body);
+                    }
+                }
             }
             LabelTarget returnTarget = Expression.Label();
             GotoExpression returnExpression = Expression.Return(returnTarget);
             LabelExpression returnLabel = Expression.Label(returnTarget);
-            BlockExpression block = Expression.Block(
-                returnExpression,
-                returnLabel);
+            BlockExpression block = Expression.Block(returnExpression, returnLabel);
             ee.Add(block);
 
             return ee;
@@ -479,9 +613,24 @@ namespace HigLabo.Core
             }
         }
 
+        private static Boolean CanConvert(Type sourceType, Type targetType)
+        {
+            if (_CanConvertList.TryGetValue(new ActionKey(sourceType, targetType), out var result)) { return result; }
+            return false;
+        }
     }
     public static class TypeExtensions
     {
+        public static Boolean IsNullable(this Type type)
+        {
+            return type.FullName.StartsWith("System.Nullable`1[");
+        }
+        public static Boolean IsNumber(Type type)
+        {
+            return type == typeof(SByte) || type == typeof(Int16) || type == typeof(Int32) || type == typeof(Int64) ||
+                type == typeof(Byte) || type == typeof(UInt16) || type == typeof(UInt32) || type == typeof(UInt64) ||
+                type == typeof(Single) || type == typeof(Double) || type == typeof(Decimal);
+        }
         public static Type GetCollectionElementType(this Type type)
         {
             if (type.IsArray) { type.GetElementType(); }
