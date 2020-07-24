@@ -42,6 +42,7 @@ namespace HigLabo.Mapper.PerformanceTest
             a.Street = "Street" + GetRandomNumber();
             a.City = "City" + GetRandomNumber();
             a.Country = "USA " + GetRandomNumber();
+            a.Gps = new GpsPosition(139.4, 41.3);
             return a;
         }
         private static Int32 GetRandomNumber()
@@ -157,7 +158,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }
-        public List<AddressDTO> WorkAddresses { get; set; }
+        public List<AddressDTO> WorkAddresses { get; set; } = new List<AddressDTO>();
         public String AddressCity { get; set; }
     }
 

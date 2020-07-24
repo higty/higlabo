@@ -10,11 +10,7 @@ namespace HigLabo.Core
     /// </summary>
     public static class DictionaryExtensions
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="dictionary"></param>
-        /// <param name="record"></param>
+        [Obsolete("Please use IDataRecordExtensions.SetToDisctionary static extension method instead.")]
         public static void SetValues(this IDictionary<String, Object> dictionary, System.Data.IDataRecord record)
         {
             var fieldCount = record.FieldCount;

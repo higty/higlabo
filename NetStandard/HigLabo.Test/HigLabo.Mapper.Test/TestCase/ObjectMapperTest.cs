@@ -299,7 +299,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(3, u2.Users.Count);
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
-        [TestMethod]
+
         public void ObjectMapper_Map_CollectionElementMapMode_InfiniteLoop()
         {
             var mapper = new ObjectMapper();
@@ -455,6 +455,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_IDataReader_Object_With_DictionaryMappingRule()
         {
             var mapper = new ObjectMapper();
+            mapper.CompilerConfig.MatchPropertyFunc = (p1, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
 
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
@@ -464,7 +465,8 @@ namespace HigLabo.Mapper.Test
                 var dr = cm.ExecuteReader();
                 while (dr.Read())
                 {
-                    var s1 = mapper.Map(dr, new Sys_Database());
+                    var d = dr.CreateDisctionary(StringComparer.OrdinalIgnoreCase);
+                    var s1 = mapper.Map(d, new Sys_Database());
                     //May be because we connect to database.
                     Assert.AreEqual("master", s1.Name);
                     Assert.AreEqual(1, s1.Database_ID);
@@ -539,7 +541,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_NullListProperty_DeepCopy_AddElement()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.DeepCopy;
+            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
             var u1 = new User();
             var u2 = new User();
             u2.Users = null;

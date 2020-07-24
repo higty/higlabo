@@ -77,19 +77,10 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         private static void HigLaboMapperTest1()
         {
-            var config = ObjectMapConfig.Current;
-            //config.AddPostAction<String, Int32>((s, o) =>
-            //{
-            //    if (s == null) { return o; }
-            //    else
-            //    {
-            //        var x = s.ToInt32();
-            //        if (x.HasValue) { return x.Value; }
-            //    }
-            //    return o;
-            //});
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
+            var a1 = Address.Create();
+            var a2 = HigLabo.Core.ObjectMapper.Default.Map(a1, new AddressDTO());
             //var p = new People1();
             //p.Age = 13;
             //p.PeopleList.Add(new People() { Name = "Hig" });
@@ -98,14 +89,12 @@ namespace HigLabo.Mapper.PerformanceTest
             //p1 = HigLabo.Core.Mapper.Default.Map(p, p1);
 
             var customer = Customer.Create();
-            var d = new Dictionary<String, String>();
-            d["Id"] = "123";
-            d["Name"] = "Defaullt Name";
-            HigLabo.Core.ObjectMapper.Default.Map(d, customer);
+            //var d = new Dictionary<String, String>();
+            //d["Id"] = "123";
+            //d["Name"] = "Defaullt Name";
+            //HigLabo.Core.ObjectMapper.Default.Map(d, customer);
 
             var customer1 = new CustomerDTO();
-            customer1.WorkAddresses = new List<AddressDTO>();
-            customer1.WorkAddresses.Add(new AddressDTO());
             HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
 
             var c2 = customer.Adapt(new CustomerDTO());
