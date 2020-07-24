@@ -51,20 +51,21 @@ namespace HigLabo.Core
             return !left.Equals(right);
         }
     }
-    public class MapConfig
+    public class CompilerConfig
     {
-        public CollectionElementMapMode CollectionElementMapMode { get; set; }
+        public ClassPropertyMapMode ClassPropertyMapMode { get; set; } = ClassPropertyMapMode.NewObject;
+        public CollectionElementMapMode CollectionElementMapMode { get; set; } = CollectionElementMapMode.NewObject;
     }
     public class MapContext
     {
-        public Mapper Mapper { get; private set; }
+        public ObjectMapper Mapper { get; private set; }
 
-        public MapContext(Mapper mapper)
+        public MapContext(ObjectMapper mapper)
         {
             this.Mapper = mapper;
         }
     }
-    public class Mapper
+    public class ObjectMapper
     {
         private class MapperMethodAttribute : Attribute
         {
@@ -186,39 +187,41 @@ namespace HigLabo.Core
                     type == typeof(Double);
             }
         }
+        private class PropertyMap
+        {
+            public PropertyInfo Source { get; set; }
+            public PropertyInfo Target { get; set; }
+        }
         private class MapParameterList
         {
             public ParameterExpression Source { get; set; }
             public ParameterExpression Target { get; set; }
-            public ParameterExpression Config { get; set; }
             public ParameterExpression Context { get; set; }
         }
-        private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
-        private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
 
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
 
-        public static Mapper Default { get; private set; } = new Mapper();
+        public static ObjectMapper Default { get; private set; } = new ObjectMapper();
 
         private MapContext _MapContext;
         private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>();
 
-        public MapConfig Config { get; private set; } = new MapConfig();
+        public CompilerConfig CompilerConfig { get; private set; } = new CompilerConfig();
 
-        static Mapper()
+        static ObjectMapper()
         {
             InitializeParseMethodList();
             InitializeCanConvertList();
         }
-        public Mapper()
+        public ObjectMapper()
         {
             _MapContext = new MapContext(this);
         }
 
         private static void InitializeParseMethodList()
         {
-            foreach (var item in typeof(Mapper.ParseMethodList).GetMethods()
+            foreach (var item in typeof(ObjectMapper.ParseMethodList).GetMethods()
                 .Where(el => el.GetCustomAttributes().Any(attr => attr is MapperMethodAttribute)))
             {
                 _ParseMethodList.Add(item.Name, item);
@@ -286,72 +289,133 @@ namespace HigLabo.Core
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
-            return this.Map(source, target, this.Config);
+            return this.Map(source, target, _MapContext);
         }
-        public TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config)
+        public TTarget MapOrNull<TSource, TTarget>(TSource source, Func<TTarget> func)
+            where TTarget : class
         {
-            return Map(source, target, config, _MapContext);
+            if (source == null) { return null; }
+            return Map(source, func(), _MapContext);
         }
-        private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapConfig config, MapContext context)
+        public TTarget MapOrNull<TSource, TTarget>(TSource source, TTarget target)
+            where TTarget: class
         {
-            this.Map<TSource, TTarget>(new ActionKey(typeof(TSource), typeof(TTarget)), source, target, config, context);
-            return target;
+            if (source == null) { return null; }
+            return Map(source, target, _MapContext);
         }
-        private TTarget Map<TSource, TTarget>(TSource source, MapConfig config, MapContext context)
+        private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapContext context)
+        {
+            return this.Map<TSource, TTarget>(new ActionKey(typeof(TSource), typeof(TTarget)), source, target, context);
+        }
+        private TTarget Map<TSource, TTarget>(TSource source, MapContext context)
             where TTarget: new()
         {
             var target = new TTarget();
-            this.Map<TSource, TTarget>(new ActionKey(typeof(TSource), typeof(TTarget)), source, target, config, context);
+            this.Map<TSource, TTarget>(new ActionKey(typeof(TSource), typeof(TTarget)), source, target, context);
             return target;
         }
 
-        private void Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapConfig config, MapContext context)
+        private TTarget Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapContext context)
         {
-            if (_MapActionList.TryGetValue(key, out var action) == false)
+            if (_MapActionList.TryGetValue(key, out var func) == false)
             {
-                action = CreateMapMethod(source, target, context);
-                _MapActionList.Add(key, action);
+                func = CreateMapMethod(source, target, context);
+                _MapActionList.Add(key, func);
             }
-            ((Action<TSource, TTarget, MapConfig, MapContext>)action)(source, target, config, context);
+            return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
         }
 
         private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
         {
             var lambda = CreateMapLambdaExpression(typeof(TSource), typeof(TTarget), context);
-            Delegate action = (Action<TSource, TTarget, MapConfig, MapContext>)lambda.Compile();
+            Delegate action = (Func<TSource, TTarget, MapContext, TTarget>)lambda.Compile();
             return action;
         }
 
-        private Dictionary<PropertyInfo, PropertyInfo> CreatePropertyMapping(Type sourceType, Type targetType)
+        private List<(PropertyInfo, PropertyInfo)> CreatePropertyMapping(Type sourceType, Type targetType)
         {
-            var pp = new Dictionary<PropertyInfo, PropertyInfo>();
+            var pp = new List<(PropertyInfo, PropertyInfo)>();
 
-            var sourcePropertyList = sourceType.GetProperties().Where(a => a.CanRead).ToList();
-            var targetPropertyList = targetType.GetProperties().Where(a => a.CanWrite).ToList();
+            var sourceTypes = new List<Type>();
+            sourceTypes.Add(sourceType);
+            sourceTypes.AddRange(sourceType.GetBaseClasses());
+            sourceTypes.AddRange(sourceType.GetInterfaces());
+            var targetTypes = new List<Type>();
+            targetTypes.Add(targetType);
+            targetTypes.AddRange(targetType.GetBaseClasses());
+            targetTypes.AddRange(targetType.GetInterfaces());
+
+            var sourcePropertyList = new List<PropertyInfo>();
+            var targetPropertyList = new List<PropertyInfo>();
+  
+            foreach (var item in sourceTypes)
+            {
+                if (item == typeof(Object)) { continue; }
+
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                    .Where(el => el.GetIndexParameters().Length == 0))
+                {
+                    if (p.GetGetMethod() == null) { continue; }
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (p.PropertyType.Name != nameof(String))
+                    {
+                        if (p.PropertyType.IsArray || p.PropertyType.IsIEnumerableT()) { continue; }
+                    }
+                    if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
+ 
+                    //Add to list when this property declared on this class.
+                    //Not Add when this property declared on parent class because it will added on declared class.
+                    if (p.DeclaringType == item)
+                    {
+                        sourcePropertyList.Add(p);
+                    }
+                }
+            }
+            foreach (var item in targetTypes)
+            {
+                if (item == typeof(Object)) { continue; }
+
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
+                    if (p.PropertyType.Name != nameof(String))
+                    {
+                        if (p.PropertyType.IsArray || p.PropertyType.IsICollectionT()) { continue; }
+                    }
+
+                    //Add to list when this property declared on this class.
+                    //Not Add when this property declared on parent class because it will added on declared class.
+                    if (p.DeclaringType == item)
+                    {
+                        targetPropertyList.Add(p);
+                    }
+                }
+            }
+
             foreach (var targetProperty in targetPropertyList)
             {
                 var sourceProperty = sourcePropertyList.Find(el => el.Name == targetProperty.Name);
                 if (sourceProperty == null) { continue; }
+                var getMethod = sourceProperty.GetGetMethod();
 
                 var isMap = false;
                 if (sourceProperty.PropertyType.IsInheritanceFrom(targetProperty.PropertyType))
                 {
                     isMap = true;
                 }
-                var targetInterfaceType = targetProperty.PropertyType.GetInterfaces()
-                    .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
-                if (targetInterfaceType == null)
+                else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
                 {
                     isMap = true;
                 }
-                if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
                 {
                     isMap = true;
                 }
 
                 if (isMap == true)
                 {
-                    pp.Add(sourceProperty, targetProperty);
+                    pp.Add((sourceProperty, targetProperty));
                 }
             }
             return pp;
@@ -360,33 +424,61 @@ namespace HigLabo.Core
         {
             var pp = new Dictionary<PropertyInfo, PropertyInfo>();
 
-            var sourcePropertyList = sourceType.GetProperties().Where(a => a.CanRead).ToList();
-            var targetPropertyList = targetType.GetProperties().Where(a => a.CanWrite).ToList();
+            var sourceTypes = new List<Type>();
+            sourceTypes.Add(sourceType);
+            sourceTypes.AddRange(sourceType.GetBaseClasses());
+            sourceTypes.AddRange(sourceType.GetInterfaces());
+            var targetTypes = new List<Type>();
+            targetTypes.Add(targetType);
+            targetTypes.AddRange(targetType.GetBaseClasses());
+            targetTypes.AddRange(targetType.GetInterfaces());
+
+            var sourcePropertyList = new List<PropertyInfo>();
+            var targetPropertyList = new List<PropertyInfo>();
+
+            foreach (var item in sourceTypes)
+            {
+                if (item == typeof(Object)) { continue; }
+
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    if (p.GetGetMethod() == null) { continue; }
+                    if (p.PropertyType.Name == nameof(String)) { continue; }
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
+
+                    //Check source is IEnumerable
+                    if (p.PropertyType.IsArray == false && p.PropertyType.IsIEnumerableT() == false) { continue; }
+
+                    sourcePropertyList.Add(p);
+                }
+            }
+            foreach (var item in targetTypes)
+            {
+                if (item == typeof(Object)) { continue; }
+
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (p.PropertyType.Name == nameof(String)) { continue; }
+                    if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
+                    //Check source is ICollection
+                    if (p.PropertyType.IsArray == false && p.PropertyType.IsICollectionT() == false) { continue; }
+
+                    //Add to list when this property declared on this class.
+                    //Not Add when this property declared on parent class because it will added on declared class.
+                    if (p.DeclaringType == item)
+                    {
+                        targetPropertyList.Add(p);
+                    }
+                }
+            }
             foreach (var targetProperty in targetPropertyList)
             {
                 var sourceProperty = sourcePropertyList.Find(el => el.Name == targetProperty.Name);
                 if (sourceProperty == null) { continue; }
 
-                var sourceProperty_PropertyType = sourceProperty.PropertyType;
-                Type sourceInterfaceType = null;
-                if (sourceProperty_PropertyType.FullName.StartsWith(System_Collections_Generic_IEnumerable_1))
-                {
-                    sourceInterfaceType = sourceProperty_PropertyType;
-                }
-                if (sourceInterfaceType == null)
-                {
-                    sourceInterfaceType = sourceProperty_PropertyType.GetInterfaces()
-                        .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
-                }
-
-                var targetProperty_PropertyType = targetProperty.PropertyType;
-                var targetInterfaceType = targetProperty_PropertyType.GetInterfaces()
-                    .FirstOrDefault(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
-
-                if (sourceInterfaceType != null && targetInterfaceType != null)
-                {
-                    pp.Add(sourceProperty, targetProperty);
-                }
+                pp.Add(sourceProperty, targetProperty);
             }
             return pp;
         }
@@ -396,11 +488,10 @@ namespace HigLabo.Core
             var p = new MapParameterList();
             p.Source = Expression.Parameter(sourceType, "source");
             p.Target = Expression.Parameter(targetType, "target");
-            p.Config = Expression.Parameter(typeof(MapConfig), "mapConfig");
             p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
 
             var ee = CreateMapExpression(sourceType, targetType, p);
-            if (this.Config.CollectionElementMapMode != CollectionElementMapMode.None)
+            if (this.CompilerConfig.CollectionElementMapMode != CollectionElementMapMode.None)
             {
                 var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
                 if (pp.Count > 0)
@@ -411,9 +502,10 @@ namespace HigLabo.Core
                     }
                 }
             }
+            ee.Add(p.Target);
             BlockExpression block = Expression.Block(ee);
             LambdaExpression lambda = Expression.Lambda(block
-                , new[] { p.Source, p.Target, p.Config, p.Context });
+                , new[] { p.Source, p.Target, p.Context });
             return lambda;
         }
         private List<Expression> CreateMapExpression(Type sourceType, Type targetType, MapParameterList parameterList)
@@ -423,16 +515,39 @@ namespace HigLabo.Core
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
             var pp = CreatePropertyMapping(sourceType, targetType);
-            foreach (var sourceProperty in pp.Keys)
+            foreach (var item in pp)
             {
-                var targetProperty = pp[sourceProperty];
+                var sourceProperty = item.Item1;
+                var targetProperty = item.Item2;
+                if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
                 MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                MemberExpression setMethod = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                var setMethod = targetProperty.GetSetMethod();
+                if (setMethod == null) { continue; }
 
                 if (sourceProperty.PropertyType == targetProperty.PropertyType)
                 {
-                    BinaryExpression body = Expression.Assign(setMethod, getMethod);
-                    ee.Add(body);
+                    if (targetProperty.PropertyType.IsValueType)
+                    {
+                        var body = Expression.Call(p.Target, setMethod, getMethod);
+                        ee.Add(body);
+                    }
+                    else if (this.CompilerConfig.ClassPropertyMapMode != ClassPropertyMapMode.None)
+                    {
+                        var body = Expression.Call(p.Target, setMethod, getMethod);
+                        ee.Add(body);
+                    }
+                }
+                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
+                {
+                    var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
+                    if (targetConstructor != null)
+                    {
+                        var body = Expression.Call(p.Target, setMethod
+                            , Expression.Call(mapperMember, "Map"
+                            , new Type[] { sourceProperty.PropertyType, targetProperty.PropertyType }
+                            , getMethod, p.Context));
+                        ee.Add(body);
+                    }
                 }
                 else if (targetProperty.PropertyType.IsNullable())
                 {
@@ -442,12 +557,12 @@ namespace HigLabo.Core
                         var sourceNullableGenericType = sourceProperty.PropertyType.GetGenericArguments()[0];
                         if (sourceNullableGenericType == targetNullableGenericType)
                         {
-                            BinaryExpression body = Expression.Assign(setMethod, getMethod);
+                            var body = Expression.Call(p.Target, setMethod, getMethod);
                             ee.Add(body);
                         }
                         else if (CanConvert(sourceNullableGenericType, targetNullableGenericType))
                         {
-                            BinaryExpression body = Expression.Assign(setMethod
+                            var body = Expression.Call(p.Target, setMethod
                                 , Expression.Convert(getMethod, targetProperty.PropertyType));
                             ee.Add(body);
                         }
@@ -457,13 +572,13 @@ namespace HigLabo.Core
                         if (sourceProperty.PropertyType == targetNullableGenericType)
                         {
                             //Int32 --> Nullable<Int32>
-                            BinaryExpression body = Expression.Assign(setMethod
+                            var body = Expression.Call(p.Target, setMethod
                                 , Expression.TypeAs(getMethod, targetProperty.PropertyType));
                             ee.Add(body);
                         }
                         else if (CanConvert(sourceProperty.PropertyType, targetNullableGenericType))
                         {
-                            BinaryExpression body = Expression.Assign(setMethod
+                            var body = Expression.Call(p.Target, setMethod
                                 , Expression.Convert(getMethod, targetProperty.PropertyType));
                             ee.Add(body);
                         }
@@ -473,26 +588,14 @@ namespace HigLabo.Core
                 {
                     var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
                     var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
-                    BinaryExpression body = Expression.Assign(setMethod, parse);
+                    var body = Expression.Call(p.Target, setMethod, parse);
                     ee.Add(body);
                 }
                 else if (CanConvert(sourceProperty.PropertyType, targetProperty.PropertyType))
                 {
-                    BinaryExpression body = Expression.Assign(setMethod
+                    var body = Expression.Call(p.Target, setMethod
                         , Expression.Convert(getMethod, targetProperty.PropertyType));
                     ee.Add(body);
-                }
-                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
-                {
-                    var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
-                    if (targetConstructor != null)
-                    {
-                        BinaryExpression body = Expression.Assign(setMethod
-                            , Expression.Call(mapperMember, "Map"
-                            , new Type[] { sourceProperty.PropertyType, targetProperty.PropertyType }
-                            , getMethod, p.Config, p.Context));
-                        ee.Add(body);
-                    }
                 }
             }
             LabelTarget returnTarget = Expression.Label();
@@ -515,29 +618,36 @@ namespace HigLabo.Core
             {
                 var targetProperty = mapping[sourceProperty];
                 var targetElementType = targetProperty.PropertyType.GetCollectionElementType();
-                var targetElementConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
 
-                if (targetElementConstructor != null)
+                var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
+
+                if (targetProperty.PropertyType.IsArray)
                 {
-                    var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                    var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
-                    var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
+                    var targetCostructor = targetElementType.GetConstructor(Type.EmptyTypes);
+                    if (targetCostructor == null)
+                    {
+                        if (sourceProperty.PropertyType.IsArray)
+                        {
 
-                    if (targetProperty.PropertyType.IsArray)
+                        }
+                    }
+                    else
                     {
                         BinaryExpression setTarget = Expression.Assign(targetMember
                             , Expression.Call(mapperMember, "MapToArray"
                             , new Type[] { sourceElementType, targetElementType }
-                            , sourceMember, p.Config, p.Context));
+                            , sourceMember, p.Context));
                         ee.Add(setTarget);
                     }
-                    else
-                    {
-                        MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
-                            , new Type[] { sourceElementType, targetElementType }
-                            , sourceMember, targetMember, p.Config, p.Context);
-                        ee.Add(setTarget);
-                    }
+                }
+                else
+                {
+                    MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
+                        , new Type[] { sourceElementType, targetElementType }
+                        , sourceMember, targetMember, p.Context);
+                    ee.Add(setTarget);
                 }
             }
             LabelTarget returnTarget = Expression.Label();
@@ -548,9 +658,8 @@ namespace HigLabo.Core
 
             return ee;
         }
-        public void MapToCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapConfig config, MapContext context)
-            where TSource : class
-            where TTarget : class, new()
+        public void MapToCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapContext context)
+            where TTarget : new()
         {
             if (source == null || target == null) { return; }
 
@@ -559,27 +668,26 @@ namespace HigLabo.Core
             {
                 for (int i = 0; i < ss.Length; i++)
                 {
-                    target.Add(this.Map(ss[i], new TTarget(), config, context));
+                    target.Add(this.Map(ss[i], new TTarget(), context));
                 }
             }
             else if (source is IList<TSource> sList)
             {
                 for (int i = 0; i < sList.Count; i++)
                 {
-                    target.Add(this.Map(sList[i], new TTarget(), config, context));
+                    target.Add(this.Map(sList[i], new TTarget(), context));
                 }
             }
             else
             {
                 foreach (var item in source)
                 {
-                    target.Add(this.Map(item, new TTarget(), config, context));
+                    target.Add(this.Map(item, new TTarget(), context));
                 }
             }
         }
-        public TTarget[] MapToArray<TSource, TTarget>(IEnumerable<TSource> source, MapConfig config, MapContext context)
-            where TSource : class
-            where TTarget : class, new()
+        public TTarget[] MapToArray<TSource, TTarget>(IEnumerable<TSource> source, MapContext context)
+            where TTarget : new()
         {
             if (source == null) { return null; }
 
@@ -588,7 +696,7 @@ namespace HigLabo.Core
                 var tt = new TTarget[ss.Length];
                 for (int i = 0; i < ss.Length; i++)
                 {
-                    tt[i] = this.Map(ss[i], new TTarget(), config, context);
+                    tt[i] = this.Map(ss[i], new TTarget(), context);
                 }
                 return tt;
             }
@@ -597,7 +705,7 @@ namespace HigLabo.Core
                 var tt = new TTarget[sList.Count];
                 for (int i = 0; i < sList.Count; i++)
                 {
-                    tt[i] = this.Map(sList[i], new TTarget(), config, context);
+                    tt[i] = this.Map(sList[i], new TTarget(), context);
                 }
                 return tt;
             }
@@ -607,13 +715,13 @@ namespace HigLabo.Core
                 var index = 0;
                 foreach (var item in sCollection)
                 {
-                    tt[index++] = this.Map(item, new TTarget(), config, context);
+                    tt[index++] = this.Map(item, new TTarget(), context);
                 }
                 return tt;
             }
             else
             {
-                return source.Select(el => this.Map(el, new TTarget(), config, context)).ToArray();
+                return source.Select(el => this.Map(el, new TTarget(), context)).ToArray();
             }
         }
 
@@ -625,6 +733,19 @@ namespace HigLabo.Core
     }
     public static class TypeExtensions
     {
+        private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
+        private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
+
+        public static Boolean IsIEnumerableT(this Type type)
+        {
+            return type.FullName.StartsWith(System_Collections_Generic_IEnumerable_1) ||
+                type.GetInterfaces().Any(tp => tp.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
+        }
+        public static Boolean IsICollectionT(this Type type)
+        {
+            return type.FullName.StartsWith(System_Collections_Generic_ICollection_1) ||
+                type.GetInterfaces().Any(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
+        }
         public static Boolean IsNullable(this Type type)
         {
             return type.FullName.StartsWith("System.Nullable`1[");

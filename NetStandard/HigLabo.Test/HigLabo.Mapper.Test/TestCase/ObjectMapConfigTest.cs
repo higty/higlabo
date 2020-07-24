@@ -477,9 +477,9 @@ namespace HigLabo.Mapper.Test
         {
             var config = new ObjectMapConfig();
 
-            var l1 = new VectorList();
+            var l1 = new VectorInfo();
             l1.Vectors.Add(new Vector2() { X = 1, Y = 2 });
-            var l2 = config.Map(l1, new VectorList());
+            var l2 = config.Map(l1, new VectorInfo());
 
             Assert.AreEqual(1, l2.Vectors[0].X);
         }
@@ -493,9 +493,9 @@ namespace HigLabo.Mapper.Test
             rule.AddPropertyNameMap("Vectors", "NullableVectors");
             config.PropertyMapRules.Add(rule);
 
-            var l1 = new VectorList();
+            var l1 = new VectorInfo();
             l1.Vectors.Add(new Vector2() { X = 1, Y = 2 });
-            var l2 = config.Map(l1, new VectorList());
+            var l2 = config.Map(l1, new VectorInfo());
 
             Assert.AreEqual(1, l2.NullableVectors[0].Value.X);
         }
@@ -504,9 +504,9 @@ namespace HigLabo.Mapper.Test
         {
             var config = new ObjectMapConfig();
 
-            var l1 = new VectorList();
+            var l1 = new VectorInfo();
             l1.ReadonlyVectors.Add(new Vector2() { X = 1, Y = 2 });
-            var l2 = config.Map(l1, new VectorList());
+            var l2 = config.Map(l1, new VectorInfo());
 
             Assert.AreEqual(1, l2.ReadonlyVectors[0].X);
         }

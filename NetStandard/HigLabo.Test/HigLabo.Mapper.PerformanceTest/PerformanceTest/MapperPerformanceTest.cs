@@ -108,12 +108,12 @@ namespace HigLabo.Mapper.PerformanceTest
         [Benchmark]
         public void HigLaboMapperNewTest()
         {
-            HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
             var count = ExecuteCount;
             for (int i = 0; i < count; i++)
             {
-                var customerDto = HigLabo.Core.Mapper.Default.Map(this.Customer, new CustomerDTO());
+                var customerDto = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new CustomerDTO());
             }
         }
         public void HigLaboMapperTest()

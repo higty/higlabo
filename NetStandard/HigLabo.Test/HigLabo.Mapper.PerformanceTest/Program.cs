@@ -88,7 +88,7 @@ namespace HigLabo.Mapper.PerformanceTest
             //    }
             //    return o;
             //});
-            HigLabo.Core.Mapper.Default.Config.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
 
             //var p = new People1();
             //p.Age = 13;
@@ -101,9 +101,10 @@ namespace HigLabo.Mapper.PerformanceTest
             var customer1 = new CustomerDTO();
             customer1.WorkAddresses = new List<AddressDTO>();
             customer1.WorkAddresses.Add(new AddressDTO());
+            HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
 
-            var customerDto = HigLabo.Core.Mapper.Default.Map(customer, customer1);
             var c2 = customer.Adapt(new CustomerDTO());
+
         }
     }
     public class ScheduleSource
