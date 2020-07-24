@@ -182,9 +182,130 @@ namespace HigLabo.Core
                     type == typeof(UInt64) ||
                     type == typeof(DateTime) ||
                     type == typeof(DateTimeOffset) ||
+                    type == typeof(TimeSpan) ||
                     type == typeof(Decimal) ||
                     type == typeof(Single) ||
-                    type == typeof(Double);
+                    type == typeof(Double) ||
+                    type == typeof(Guid);
+            }
+        }
+        private class ParseOrNullMethodList
+        {
+            [MapperMethod]
+            public static Boolean? Boolean(String value, Boolean? defaultValue)
+            {
+                if (System.Boolean.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static SByte? SByte(String value, SByte? defaultValue)
+            {
+                if (System.SByte.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Int16? Int16(String value, Int16? defaultValue)
+            {
+                if (System.Int16.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Int32? Int32(String value, Int32? defaultValue)
+            {
+                if (System.Int32.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Int64? Int64(String value, Int64? defaultValue)
+            {
+                if (System.Int64.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Byte? Byte(String value, Byte? defaultValue)
+            {
+                if (System.Byte.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static UInt16? UInt16(String value, UInt16? defaultValue)
+            {
+                if (System.UInt16.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static UInt32? UInt32(String value, UInt32? defaultValue)
+            {
+                if (System.UInt32.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static UInt64? UInt64(String value, UInt64? defaultValue)
+            {
+                if (System.UInt64.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static DateTime? DateTime(String value, DateTime? defaultValue)
+            {
+                if (System.DateTime.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static DateTimeOffset? DateTimeOffset(String value, DateTimeOffset? defaultValue)
+            {
+                if (System.DateTimeOffset.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static TimeSpan? TimeSpan(String value, TimeSpan? defaultValue)
+            {
+                if (System.TimeSpan.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Decimal? Decimal(String value, Decimal? defaultValue)
+            {
+                if (System.Decimal.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Single? Single(String value, Single? defaultValue)
+            {
+                if (System.Single.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Double? Double(String value, Double? defaultValue)
+            {
+                if (System.Double.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static Guid? Guid(String value, Guid? defaultValue)
+            {
+                if (System.Guid.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+
+            public static Boolean HasParseOrNullMethod(Type type)
+            {
+                return type == typeof(Boolean) ||
+                    type == typeof(SByte) ||
+                    type == typeof(Int16) ||
+                    type == typeof(Int32) ||
+                    type == typeof(Int64) ||
+                    type == typeof(Byte) ||
+                    type == typeof(UInt16) ||
+                    type == typeof(UInt32) ||
+                    type == typeof(UInt64) ||
+                    type == typeof(DateTime) ||
+                    type == typeof(DateTimeOffset) ||
+                    type == typeof(TimeSpan) ||
+                    type == typeof(Decimal) ||
+                    type == typeof(Single) ||
+                    type == typeof(Double) ||
+                    type == typeof(Guid);
             }
         }
         private class PropertyMap
@@ -200,6 +321,7 @@ namespace HigLabo.Core
         }
 
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
+        private static readonly Dictionary<String, MethodInfo> _ParseOrNullMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
 
         public static ObjectMapper Default { get; private set; } = new ObjectMapper();
@@ -225,6 +347,11 @@ namespace HigLabo.Core
                 .Where(el => el.GetCustomAttributes().Any(attr => attr is MapperMethodAttribute)))
             {
                 _ParseMethodList.Add(item.Name, item);
+            }
+            foreach (var item in typeof(ObjectMapper.ParseOrNullMethodList).GetMethods()
+                .Where(el => el.GetCustomAttributes().Any(attr => attr is MapperMethodAttribute)))
+            {
+                _ParseOrNullMethodList.Add(item.Name, item);
             }
         }
         private static void InitializeCanConvertList()
@@ -410,7 +537,6 @@ namespace HigLabo.Core
             {
                 var sourceProperty = sourcePropertyList.Find(el => el.Name == targetProperty.Name);
                 if (sourceProperty == null) { continue; }
-                var getMethod = sourceProperty.GetGetMethod();
 
                 var isMap = false;
                 if (sourceProperty.PropertyType.IsInheritanceFrom(targetProperty.PropertyType))
@@ -506,7 +632,6 @@ namespace HigLabo.Core
             sourceTypes.AddRange(sourceType.GetInterfaces());
 
             var sourcePropertyList = new List<PropertyInfo>();
-            var targetPropertyList = new List<PropertyInfo>();
 
             foreach (var item in sourceTypes)
             {
@@ -530,26 +655,44 @@ namespace HigLabo.Core
 
             foreach (var sourceProperty in sourcePropertyList)
             {
-                var getMethod = sourceProperty.GetGetMethod();
+                pp.Add((sourceProperty, targetProperty));
+            }
+            return pp;
+        }
+        private List<(PropertyInfo, PropertyInfo)> CreatePropertyFromDictionaryMapping(Type targetType)
+        {
+            var sourceType = typeof(Dictionary<String, Object>);
+            var pp = new List<(PropertyInfo, PropertyInfo)>();
+       
+            var targetTypes = new List<Type>();
+            targetTypes.Add(targetType);
+            targetTypes.AddRange(targetType.GetBaseClasses());
+            targetTypes.AddRange(targetType.GetInterfaces());
 
-                var isMap = false;
-                if (sourceProperty.PropertyType.IsInheritanceFrom(targetProperty.PropertyType))
-                {
-                    isMap = true;
-                }
-                else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
-                {
-                    isMap = true;
-                }
-                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
-                {
-                    isMap = true;
-                }
+            var targetPropertyList = new List<PropertyInfo>();
 
-                if (isMap == true)
+            foreach (var item in targetTypes)
+            {
+                if (item == typeof(Object)) { continue; }
+
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
-                    pp.Add((sourceProperty, targetProperty));
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
+
+                    //Add to list when this property declared on this class.
+                    //Not Add when this property declared on parent class because it will added on declared class.
+                    if (p.DeclaringType == item)
+                    {
+                        targetPropertyList.Add(p);
+                    }
                 }
+            }
+            var sourceProperty = sourceType.GetProperty("Item");
+
+            foreach (var targetProperty in targetPropertyList)
+            {
+                pp.Add((sourceProperty, targetProperty));
             }
             return pp;
         }
@@ -562,6 +705,13 @@ namespace HigLabo.Core
             p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
 
             var ee = new List<Expression>();
+            if (sourceType == typeof(Dictionary<String, String>))
+            {
+                foreach (var item in CreateMapFromDictionaryExpression(targetType, p))
+                {
+                    ee.Add(item);
+                }
+            }
             if (targetType == typeof(Dictionary<String, Object>))
             {
                 foreach (var item in CreateMapToDictionaryExpression(sourceType, p))
@@ -681,9 +831,15 @@ namespace HigLabo.Core
                 }
                 else if (CanConvert(sourceProperty.PropertyType, targetProperty.PropertyType))
                 {
-                    var body = Expression.Call(p.Target, setMethod
-                        , Expression.Convert(getMethod, targetProperty.PropertyType));
-                    ee.Add(body);
+                    if (sourceProperty.PropertyType.IsNullable())
+                    {
+                    }
+                    else
+                    {
+                        var body = Expression.Call(p.Target, setMethod
+                            , Expression.Convert(getMethod, targetProperty.PropertyType));
+                        ee.Add(body);
+                    }
                 }
             }
             LabelTarget returnTarget = Expression.Label();
@@ -827,17 +983,22 @@ namespace HigLabo.Core
                 var targetProperty = item.Item2;
                 if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
                 MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                var setMethod = typeof(Dictionary<String, Object>).GetMethod("Add");
+                var addMethod = typeof(Dictionary<String, Object>).GetMethod("Add");
 
+                {
+                    var removeMethod = typeof(Dictionary<String, Object>).GetMethod("Remove", new Type[] { typeof(String) });
+                    var body = Expression.Call(p.Target, removeMethod, Expression.Constant(sourceProperty.Name));
+                    ee.Add(body);
+                }
                 if (sourceProperty.PropertyType.IsValueType)
                 {
-                    var body = Expression.Call(p.Target, setMethod, Expression.Constant(sourceProperty.Name)
+                    var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
                         , Expression.TypeAs(getMethod, typeof(Object)));
                     ee.Add(body);
                 }
                 else
                 {
-                    var body = Expression.Call(p.Target, setMethod, Expression.Constant(sourceProperty.Name), getMethod);
+                    var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name), getMethod);
                     ee.Add(body);
                 }
             }
@@ -850,6 +1011,61 @@ namespace HigLabo.Core
             return ee;
         }
 
+        private List<Expression> CreateMapFromDictionaryExpression(Type targetType, MapParameterList parameterList)
+        {
+            var ee = new List<Expression>();
+            var p = parameterList;
+            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
+            var tryGetMethod = typeof(ObjectMapper).GetMethod("TryGetValue", BindingFlags.NonPublic | BindingFlags.Static);
+
+            var pp = CreatePropertyFromDictionaryMapping(targetType);
+            foreach (var item in pp)
+            {
+                var sourceProperty = item.Item1;
+                var targetProperty = item.Item2;
+                var getMethod = Expression.Call(tryGetMethod, p.Source, Expression.Constant(targetProperty.Name));
+                var setMethod = targetProperty.GetSetMethod();
+                if (setMethod == null) { continue; }
+
+                if (targetProperty.PropertyType == typeof(String))
+                {
+                    var body = Expression.Call(p.Target, setMethod, getMethod);
+                    ee.Add(body);
+                }
+                else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                {
+                    var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
+                    var getTargetValueMethod = targetProperty.GetGetMethod();
+                    var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                    var body = Expression.Call(p.Target, setMethod, parse);
+                    ee.Add(body);
+                }
+                else if (targetProperty.PropertyType.IsNullable())
+                {
+                    var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
+                    if (ParseMethodList.HasParseMethod(targetNullableGenericType))
+                    {
+                        var parseMethod = _ParseOrNullMethodList[targetNullableGenericType.Name];
+                        var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
+                        var body = Expression.Call(p.Target, setMethod, parse);
+                        ee.Add(body);
+                    }
+                }
+            }
+            LabelTarget returnTarget = Expression.Label();
+            GotoExpression returnExpression = Expression.Return(returnTarget);
+            LabelExpression returnLabel = Expression.Label(returnTarget);
+            BlockExpression block = Expression.Block(returnExpression, returnLabel);
+            ee.Add(block);
+
+            return ee;
+        }
+
+        private static String TryGetValue(Dictionary<String, String> dictionary, String key)
+        {
+            if (dictionary.TryGetValue(key, out var value)) { return value; }
+            return "";
+        }
         private static Boolean CanConvert(Type sourceType, Type targetType)
         {
             if (_CanConvertList.TryGetValue(new ActionKey(sourceType, targetType), out var result)) { return result; }
