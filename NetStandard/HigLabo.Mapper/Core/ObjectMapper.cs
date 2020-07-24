@@ -906,6 +906,16 @@ namespace HigLabo.Core
                 }
                 else
                 {
+                    if (this.CompilerConfig.CollectionElementMapMode == CollectionElementMapMode.NewObject)
+                    {
+                        var targetSetMethod = targetProperty.GetSetMethod();
+                        if (targetSetMethod != null)
+                        {
+                            var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
+                            ee.Add(ifThen);
+                        }
+                    }
                     MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
                         , new Type[] { sourceElementType, targetElementType }
                         , sourceMember, targetMember, p.Context);
