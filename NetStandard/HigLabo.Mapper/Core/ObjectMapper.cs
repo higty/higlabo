@@ -291,6 +291,10 @@ namespace HigLabo.Core
         {
             return this.Map(source, target, _MapContext);
         }
+        public Dictionary<String, Object> Map<TSource>(TSource source, Dictionary<String, Object> target)
+        {
+            return this.Map(source, target, _MapContext);
+        }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, Func<TTarget> func)
             where TTarget : class
         {
@@ -323,6 +327,15 @@ namespace HigLabo.Core
                 _MapActionList.Add(key, func);
             }
             return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
+        }
+        private Dictionary<String, Object> MapToDictionary<TSource>(ActionKey key, TSource source, Dictionary<String, Object> target, MapContext context)
+        {
+            if (_MapActionList.TryGetValue(key, out var func) == false)
+            {
+                func = CreateMapMethod(source, target, context);
+                _MapActionList.Add(key, func);
+            }
+            return ((Func<TSource, Dictionary<String, Object>, MapContext, Dictionary<String, Object>>)func)(source, target, context);
         }
 
         private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
@@ -482,6 +495,64 @@ namespace HigLabo.Core
             }
             return pp;
         }
+        private List<(PropertyInfo, PropertyInfo)> CreatePropertyToDictionaryMapping(Type sourceType)
+        {
+            var targetType = typeof(Dictionary<String, Object>);
+            var pp = new List<(PropertyInfo, PropertyInfo)>();
+
+            var sourceTypes = new List<Type>();
+            sourceTypes.Add(sourceType);
+            sourceTypes.AddRange(sourceType.GetBaseClasses());
+            sourceTypes.AddRange(sourceType.GetInterfaces());
+
+            var sourcePropertyList = new List<PropertyInfo>();
+            var targetPropertyList = new List<PropertyInfo>();
+
+            foreach (var item in sourceTypes)
+            {
+                if (item == typeof(Object)) { continue; }
+
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
+                {
+                    if (p.GetGetMethod() == null) { continue; }
+                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
+
+                    //Add to list when this property declared on this class.
+                    //Not Add when this property declared on parent class because it will added on declared class.
+                    if (p.DeclaringType == item)
+                    {
+                        sourcePropertyList.Add(p);
+                    }
+                }
+            }
+            var targetProperty = targetType.GetProperty("Item");
+
+            foreach (var sourceProperty in sourcePropertyList)
+            {
+                var getMethod = sourceProperty.GetGetMethod();
+
+                var isMap = false;
+                if (sourceProperty.PropertyType.IsInheritanceFrom(targetProperty.PropertyType))
+                {
+                    isMap = true;
+                }
+                else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                {
+                    isMap = true;
+                }
+                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
+                {
+                    isMap = true;
+                }
+
+                if (isMap == true)
+                {
+                    pp.Add((sourceProperty, targetProperty));
+                }
+            }
+            return pp;
+        }
 
         private LambdaExpression CreateMapLambdaExpression(Type sourceType, Type targetType, MapContext context)
         {
@@ -490,24 +561,41 @@ namespace HigLabo.Core
             p.Target = Expression.Parameter(targetType, "target");
             p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
 
-            var ee = CreateMapExpression(sourceType, targetType, p);
-            if (this.CompilerConfig.CollectionElementMapMode != CollectionElementMapMode.None)
+            var ee = new List<Expression>();
+            if (targetType == typeof(Dictionary<String, Object>))
             {
-                var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
-                if (pp.Count > 0)
+                foreach (var item in CreateMapToDictionaryExpression(sourceType, p))
                 {
-                    foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p, pp))
+                    ee.Add(item);
+                }
+            }
+            else
+            {
+                foreach (var item in CreateMapExpression(sourceType, targetType, p))
+                {
+                    ee.Add(item);
+                }
+                if (this.CompilerConfig.CollectionElementMapMode != CollectionElementMapMode.None)
+                {
+                    var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
+                    if (pp.Count > 0)
                     {
-                        ee.Add(item);
+                        foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p, pp))
+                        {
+                            ee.Add(item);
+                        }
                     }
                 }
             }
+            //Return value
             ee.Add(p.Target);
+
             BlockExpression block = Expression.Block(ee);
             LambdaExpression lambda = Expression.Lambda(block
                 , new[] { p.Source, p.Target, p.Context });
             return lambda;
         }
+
         private List<Expression> CreateMapExpression(Type sourceType, Type targetType, MapParameterList parameterList)
         {
             var ee = new List<Expression>();
@@ -606,6 +694,7 @@ namespace HigLabo.Core
 
             return ee;
         }
+
         private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList
             , Dictionary<PropertyInfo, PropertyInfo> mapping)
         {
@@ -723,6 +812,42 @@ namespace HigLabo.Core
             {
                 return source.Select(el => this.Map(el, new TTarget(), context)).ToArray();
             }
+        }
+
+        private List<Expression> CreateMapToDictionaryExpression(Type sourceType, MapParameterList parameterList)
+        {
+            var ee = new List<Expression>();
+            var p = parameterList;
+            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
+
+            var pp = CreatePropertyToDictionaryMapping(sourceType);
+            foreach (var item in pp)
+            {
+                var sourceProperty = item.Item1;
+                var targetProperty = item.Item2;
+                if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
+                MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                var setMethod = typeof(Dictionary<String, Object>).GetMethod("Add");
+
+                if (sourceProperty.PropertyType.IsValueType)
+                {
+                    var body = Expression.Call(p.Target, setMethod, Expression.Constant(sourceProperty.Name)
+                        , Expression.TypeAs(getMethod, typeof(Object)));
+                    ee.Add(body);
+                }
+                else
+                {
+                    var body = Expression.Call(p.Target, setMethod, Expression.Constant(sourceProperty.Name), getMethod);
+                    ee.Add(body);
+                }
+            }
+            LabelTarget returnTarget = Expression.Label();
+            GotoExpression returnExpression = Expression.Return(returnTarget);
+            LabelExpression returnLabel = Expression.Label(returnTarget);
+            BlockExpression block = Expression.Block(returnExpression, returnLabel);
+            ee.Add(block);
+
+            return ee;
         }
 
         private static Boolean CanConvert(Type sourceType, Type targetType)

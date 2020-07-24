@@ -98,6 +98,9 @@ namespace HigLabo.Mapper.PerformanceTest
             //p1 = HigLabo.Core.Mapper.Default.Map(p, p1);
 
             var customer = Customer.Create();
+            var d = new Dictionary<String, Object>();
+            HigLabo.Core.ObjectMapper.Default.Map(customer, d);
+
             var customer1 = new CustomerDTO();
             customer1.WorkAddresses = new List<AddressDTO>();
             customer1.WorkAddresses.Add(new AddressDTO());
