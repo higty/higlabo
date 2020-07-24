@@ -405,6 +405,19 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(Encoding.UTF8, p2.Encoding);
         }
         [TestMethod]
+        public void ObjectMapper_Map_StringProperty_Encoding()
+        {
+            var mapper = new ObjectMapper();
+
+            var p = new TextParser_StringProperty();
+            p.Encoding = "UTF-8";
+            var p1 = new TextParser();
+            p1.Encoding = Encoding.ASCII;
+            var p2 = mapper.Map(p, p1);
+
+            Assert.AreEqual(Encoding.UTF8, p2.Encoding);
+        }
+        [TestMethod]
         public void ObjectMapper_Map_Dictionary_ClassPropertyMapMode_NewObject()
         {
             var mapper = new ObjectMapper();

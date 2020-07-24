@@ -287,6 +287,16 @@ namespace HigLabo.Core
                 if (System.Guid.TryParse(value, out var v)) { return v; }
                 return defaultValue;
             }
+            [MapperMethod]
+            public static Encoding Encoding(String value, Encoding defaultValue)
+            {
+                try
+                {
+                    return System.Text.Encoding.GetEncoding(value);
+                }
+                catch { }
+                return null;
+            }
 
             public static Boolean HasParseOrNullMethod(Type type)
             {
@@ -305,7 +315,8 @@ namespace HigLabo.Core
                     type == typeof(Decimal) ||
                     type == typeof(Single) ||
                     type == typeof(Double) ||
-                    type == typeof(Guid);
+                    type == typeof(Guid) ||
+                    type == typeof(Encoding);
             }
         }
         private class PropertyMap
@@ -467,12 +478,12 @@ namespace HigLabo.Core
 
         private Delegate CreateMapMethod<TSource, TTarget>(TSource source, TTarget target, MapContext context)
         {
-            var lambda = CreateMapLambdaExpression(typeof(TSource), typeof(TTarget), context);
+            var lambda = CreateFunctionExpression(typeof(TSource), typeof(TTarget), context);
             Delegate action = (Func<TSource, TTarget, MapContext, TTarget>)lambda.Compile();
             return action;
         }
 
-        private List<(PropertyInfo, PropertyInfo)> CreatePropertyMapping(Type sourceType, Type targetType)
+        private List<(PropertyInfo source, PropertyInfo target)> CreatePropertyMapping(Type sourceType, Type targetType)
         {
             var pp = new List<(PropertyInfo, PropertyInfo)>();
 
@@ -559,9 +570,9 @@ namespace HigLabo.Core
             }
             return pp;
         }
-        private Dictionary<PropertyInfo, PropertyInfo> CreateCollectionPropertyMapping(Type sourceType, Type targetType)
+        private List<(PropertyInfo source, PropertyInfo target)> CreateCollectionPropertyMapping(Type sourceType, Type targetType)
         {
-            var pp = new Dictionary<PropertyInfo, PropertyInfo>();
+            var pp = new List<(PropertyInfo, PropertyInfo)>();
 
             var sourceTypes = new List<Type>();
             sourceTypes.Add(sourceType);
@@ -617,11 +628,11 @@ namespace HigLabo.Core
                 var sourceProperty = sourcePropertyList.Find(el => el.Name == targetProperty.Name);
                 if (sourceProperty == null) { continue; }
 
-                pp.Add(sourceProperty, targetProperty);
+                pp.Add((sourceProperty, targetProperty));
             }
             return pp;
         }
-        private List<(PropertyInfo, PropertyInfo)> CreatePropertyToDictionaryMapping(Type sourceType)
+        private List<(PropertyInfo source, PropertyInfo target)> CreatePropertyToDictionaryMapping(Type sourceType)
         {
             var targetType = typeof(Dictionary<String, Object>);
             var pp = new List<(PropertyInfo, PropertyInfo)>();
@@ -659,7 +670,7 @@ namespace HigLabo.Core
             }
             return pp;
         }
-        private List<(PropertyInfo, PropertyInfo)> CreatePropertyFromDictionaryMapping(Type targetType)
+        private List<(PropertyInfo source, PropertyInfo target)> CreatePropertyFromDictionaryMapping(Type targetType)
         {
             var sourceType = typeof(Dictionary<String, Object>);
             var pp = new List<(PropertyInfo, PropertyInfo)>();
@@ -697,7 +708,7 @@ namespace HigLabo.Core
             return pp;
         }
 
-        private LambdaExpression CreateMapLambdaExpression(Type sourceType, Type targetType, MapContext context)
+        private LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType, MapContext context)
         {
             var p = new MapParameterList();
             p.Source = Expression.Parameter(sourceType, "source");
@@ -727,13 +738,9 @@ namespace HigLabo.Core
                 }
                 if (this.CompilerConfig.CollectionElementMapMode != CollectionElementMapMode.None)
                 {
-                    var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
-                    if (pp.Count > 0)
+                    foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p))
                     {
-                        foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p, pp))
-                        {
-                            ee.Add(item);
-                        }
+                        ee.Add(item);
                     }
                 }
             }
@@ -741,8 +748,7 @@ namespace HigLabo.Core
             ee.Add(p.Target);
 
             BlockExpression block = Expression.Block(ee);
-            LambdaExpression lambda = Expression.Lambda(block
-                , new[] { p.Source, p.Target, p.Context });
+            LambdaExpression lambda = Expression.Lambda(block, new[] { p.Source, p.Target, p.Context });
             return lambda;
         }
 
@@ -755,8 +761,8 @@ namespace HigLabo.Core
             var pp = CreatePropertyMapping(sourceType, targetType);
             foreach (var item in pp)
             {
-                var sourceProperty = item.Item1;
-                var targetProperty = item.Item2;
+                var sourceProperty = item.source;
+                var targetProperty = item.target;
                 if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
                 MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
                 var setMethod = targetProperty.GetSetMethod();
@@ -774,6 +780,14 @@ namespace HigLabo.Core
                         var body = Expression.Call(p.Target, setMethod, getMethod);
                         ee.Add(body);
                     }
+                }
+                else if (targetProperty.PropertyType == typeof(Encoding))
+                {
+                    var parseMethod = _ParseOrNullMethodList[nameof(Encoding)];
+                    var getTargetValueMethod = targetProperty.GetGetMethod();
+                    var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                    var body = Expression.Call(p.Target, setMethod, parse);
+                    ee.Add(body);
                 }
                 else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
                 {
@@ -851,17 +865,20 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList
-            , Dictionary<PropertyInfo, PropertyInfo> mapping)
+        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList)
         {
             var p = parameterList;
 
             var ee = new List<Expression>();
+            var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
+            if (pp.Count == 0) { return ee; }
+
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
-            foreach (var sourceProperty in mapping.Keys)
+            foreach (var item in pp)
             {
-                var targetProperty = mapping[sourceProperty];
+                var sourceProperty = item.source;
+                var targetProperty = item.target;
                 var targetElementType = targetProperty.PropertyType.GetCollectionElementType();
 
                 var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
@@ -1032,6 +1049,14 @@ namespace HigLabo.Core
                 {
                     var body = Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
                         , Expression.Call(p.Target, setMethod, getMethod));
+                    ee.Add(body);
+                }
+                else if (targetProperty.PropertyType == typeof(Encoding))
+                {
+                    var parseMethod = _ParseOrNullMethodList[nameof(Encoding)];
+                    var getTargetValueMethod = targetProperty.GetGetMethod();
+                    var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                    var body = Expression.Call(p.Target, setMethod, parse);
                     ee.Add(body);
                 }
                 else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))

@@ -10,4 +10,8 @@ namespace HigLabo.Mapper.Test
     {
         public Encoding Encoding { get; set; }
     }
+    public class TextParser_StringProperty
+    {
+        public String Encoding { get; set; }
+    }
 }
