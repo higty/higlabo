@@ -1016,6 +1016,7 @@ namespace HigLabo.Core
             var ee = new List<Expression>();
             var p = parameterList;
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
+            var containsKeyMethod = typeof(Dictionary<String, String>).GetMethod("ContainsKey", new Type[] { typeof(String) });
             var tryGetMethod = typeof(ObjectMapper).GetMethod("TryGetValue", BindingFlags.NonPublic | BindingFlags.Static);
 
             var pp = CreatePropertyFromDictionaryMapping(targetType);
@@ -1029,7 +1030,8 @@ namespace HigLabo.Core
 
                 if (targetProperty.PropertyType == typeof(String))
                 {
-                    var body = Expression.Call(p.Target, setMethod, getMethod);
+                    var body = Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
+                        , Expression.Call(p.Target, setMethod, getMethod));
                     ee.Add(body);
                 }
                 else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
