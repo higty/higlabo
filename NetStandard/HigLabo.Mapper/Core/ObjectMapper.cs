@@ -183,6 +183,13 @@ namespace HigLabo.Core
                 if (System.Guid.TryParse(value, out var v)) { return v; }
                 return defaultValue;
             }
+            [MapperMethod]
+            public static T Enum<T>(String value, T defaultValue)
+                where T : struct
+            {
+                if (HigLabo.Core.Enum<T>.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
 
             public static Boolean HasParseMethod(Type type)
             {
@@ -303,6 +310,13 @@ namespace HigLabo.Core
                 return defaultValue;
             }
             [MapperMethod]
+            public static T? Enum<T>(String value, T? defaultValue)
+                where T: struct
+            {
+                if (HigLabo.Core.Enum<T>.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
             public static Encoding Encoding(String value, Encoding defaultValue)
             {
                 try
@@ -310,7 +324,7 @@ namespace HigLabo.Core
                     return System.Text.Encoding.GetEncoding(value);
                 }
                 catch { }
-                return null;
+                return defaultValue;
             }
 
             public static Boolean HasParseOrNullMethod(Type type)
@@ -913,12 +927,12 @@ namespace HigLabo.Core
                 }
                 else
                 {
+                    var targetSetMethod = targetProperty.GetSetMethod();
                     switch (this.CompilerConfig.CollectionElementMapMode)
                     {
                         case CollectionElementMapMode.None: throw new InvalidOperationException();
                         case CollectionElementMapMode.NewObject:
                             {
-                                var targetSetMethod = targetProperty.GetSetMethod();
                                 if (targetSetMethod != null)
                                 {
                                     var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
@@ -932,18 +946,29 @@ namespace HigLabo.Core
                             }
                             break;
                         case CollectionElementMapMode.DeepCopy:
-                            if (targetElementType.IsAssignableFrom(sourceElementType))
                             {
-                                var targetSetMethod = targetProperty.GetSetMethod();
                                 if (targetSetMethod != null)
                                 {
-                                    MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                                    var ifThenElse = Expression.IfThenElse(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
-                                        , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType))
-                                        , Expression.Call(mapperMember, "MapCollectionDeepCopy"
-                                        , new Type[] { sourceElementType, targetElementType }
-                                        , sourceMember, targetMember, p.Context));
-                                    ee.Add(ifThenElse);
+                                    if (sourceElementType == targetElementType)
+                                    {
+                                        MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                                        var ifThenElse = Expression.IfThenElse(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                            , Expression.Call(p.Target, targetSetMethod, getMethod)
+                                            , Expression.Call(mapperMember, "MapCollectionDeepCopy"
+                                            , new Type[] { sourceElementType, targetElementType }
+                                            , sourceMember, targetMember, p.Context));
+                                        ee.Add(ifThenElse);
+                                    }
+                                    else if (targetElementType.IsAssignableFrom(sourceElementType))
+                                    {
+                                        MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                                        var ifThenElse = Expression.IfThenElse(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                            , Expression.New(targetProperty.PropertyType)
+                                            , Expression.Call(mapperMember, "MapCollectionDeepCopy"
+                                            , new Type[] { sourceElementType, targetElementType }
+                                            , sourceMember, targetMember, p.Context));
+                                        ee.Add(ifThenElse);
+                                    }
                                 }
                             }
                             break;
@@ -1137,23 +1162,45 @@ namespace HigLabo.Core
                     var body = Expression.Call(p.Target, setMethod, parse);
                     ee.Add(body);
                 }
-                else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                else
                 {
-                    var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
-                    var getTargetValueMethod = targetProperty.GetGetMethod();
-                    var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
-                    var body = Expression.Call(p.Target, setMethod, parse);
-                    ee.Add(body);
-                }
-                else if (targetProperty.PropertyType.IsNullable())
-                {
-                    var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
-                    if (ParseMethodList.HasParseMethod(targetNullableGenericType))
+                    if (targetProperty.PropertyType.IsNullable())
                     {
-                        var parseMethod = _ParseOrNullMethodList[targetNullableGenericType.Name];
-                        var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
-                        var body = Expression.Call(p.Target, setMethod, parse);
-                        ee.Add(body);
+                        var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
+                        if (targetNullableGenericType.IsEnum)
+                        {
+                            var parseMethod = _ParseOrNullMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
+                            var getTargetValueMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                        else if (ParseMethodList.HasParseMethod(targetNullableGenericType))
+                        {
+                            var parseMethod = _ParseOrNullMethodList[targetNullableGenericType.Name];
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                    }
+                    else
+                    {
+                        if (targetProperty.PropertyType.IsEnum)
+                        {
+                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetProperty.PropertyType);
+                            var getTargetValueMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                        else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                        {
+                            var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
+                            var getTargetValueMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
                     }
                 }
             }
