@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Core
 {
-    public enum CollectionElementCreateMode
+    public enum CollectionElementMapMode
     {
         None,
         NewObject,

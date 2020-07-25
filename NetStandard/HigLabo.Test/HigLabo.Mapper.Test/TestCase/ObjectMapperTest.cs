@@ -18,7 +18,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_Object_Object()
         {
             var mapper = new ObjectMapper();
-            //mapper.Config.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
+            //mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
 
             var u1 = new User();
 
@@ -134,10 +134,10 @@ namespace HigLabo.Mapper.Test
         }
 
         //[TestMethod]
-        //public void ObjectMapper_Map_ClassPropertyMapMode_NullProperty_None()
+        //public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_None()
         //{
         //    var mapper = new ObjectMapper();
-        //    mapper.Config.ClassPropertyMapMode = ClassPropertyMapMode.None;
+        //    mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.None;
         //    mapper.MaxCallStackCount = 100;
 
         //    var u1 = new User();
@@ -149,10 +149,10 @@ namespace HigLabo.Mapper.Test
         //    Assert.IsNull(u2.ParentUser);
         //}
         //[TestMethod]
-        //public void ObjectMapper_Map_ClassPropertyMapMode_NullProperty_NewObject()
+        //public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_NewObject()
         //{
         //    var mapper = new ObjectMapper();
-        //    mapper.Config.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
+        //    mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
         //    mapper.MaxCallStackCount = 100;
 
         //    var u1 = new User();
@@ -172,10 +172,10 @@ namespace HigLabo.Mapper.Test
         //    Assert.AreNotEqual("ParentUserChanged", u2.ParentUser.Name);
         //}
         [TestMethod]
-        public void ObjectMapper_Map_ClassPropertyMapMode_NullProperty_DeepCopy()
+        public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_DeepCopy()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.DeepCopy;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.DeepCopy;
             var u1 = new User();
             u1.ParentUser = new User("ParentUser");
             var u2 = new User();
@@ -190,10 +190,10 @@ namespace HigLabo.Mapper.Test
         }
 
         //[TestMethod]
-        //public void ObjectMapper_Map_CollectionElementMapMode_CollectionElement_None()
+        //public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_None()
         //{
         //    var mapper = new ObjectMapper();
-        //    mapper.Config.CollectionElementMapMode = CollectionElementMapMode.None;
+        //    mapper.Config.CollectionElementCreateMode = CollectionElementCreateMode.None;
 
         //    var u1 = new User();
         //    for (int i = 0; i < 3; i++)
@@ -213,10 +213,10 @@ namespace HigLabo.Mapper.Test
         //    Assert.AreEqual(3, u3.Users.Count);
         //}
         [TestMethod]
-        public void ObjectMapper_Map_CollectionElementMapMode_CollectionElement_NewObject()
+        public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_NewObject()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             var u1 = new User();
             for (int i = 0; i < 3; i++)
@@ -230,10 +230,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreNotEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
-        public void ObjectMapper_Map_CollectionElementMapMode_CollectionElement_NewObject_NoDefaultConstructor()
+        public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_NewObject_NoDefaultConstructor()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             var u1 = new List<User>();
             for (int i = 0; i < 3; i++)
@@ -245,10 +245,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(0, u2.Count);
         }
         [TestMethod]
-        public void ObjectMapper_Map_CollectionElementMapMode_CollectionElement_DeepCopy_SameClass()
+        public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_DeepCopy_SameClass()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.DeepCopy;
 
             var u1 = new User();
             for (int i = 0; i < 3; i++)
@@ -262,10 +262,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
-        public void ObjectMapper_Map_CollectionElementMapMode_CollectionElement_DeepCopy_OtherClass()
+        public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_DeepCopy_OtherClass()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.DeepCopy;
 
             var u1 = new VipUserListInfo();
             u1.GroupName = "Group1";
@@ -282,10 +282,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
         [TestMethod]
-        public void ObjectMapper_Map_CollectionElementMapMode_DeepCopy_Implement_Interface()
+        public void ObjectMapper_Map_CollectionElementCreateMode_DeepCopy_Implement_Interface()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.DeepCopy;
 
             var u1 = new UserListInfoWithInterface();
             var u2 = new UserListInfoWithInterface_SubClass();
@@ -300,10 +300,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("Test20", u2.Users[0].Name);
         }
 
-        public void ObjectMapper_Map_CollectionElementMapMode_InfiniteLoop()
+        public void ObjectMapper_Map_CollectionElementCreateMode_InfiniteLoop()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             var n1 = new TreeNode();
             n1.Nodes = new List<TreeNode>();
@@ -381,7 +381,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_ByteArrayProperty()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
 
             var u1 = new User();
             u1.Timestamp = new Byte[] { 1, 3, 6 };
@@ -418,10 +418,10 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(Encoding.UTF8, p2.Encoding);
         }
         [TestMethod]
-        public void ObjectMapper_Map_Dictionary_ClassPropertyMapMode_NewObject()
+        public void ObjectMapper_Map_Dictionary_ClassPropertyCreateMode_NewObject()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
 
             var d = new Dictionary<String, String>();
             d["Int32Nullable"] = "abc";
@@ -435,7 +435,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_DynamicObject_Object()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
 
             dynamic u1 = new User();
             u1.Name = "TestUser";
@@ -529,7 +529,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_NullListProperty_NewObject()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
             var u1 = new User();
             var u2 = new User();
             u2.Users = null;
@@ -541,7 +541,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_NullListProperty_DeepCopy_AddElement()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.DeepCopy;
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.DeepCopy;
             var u1 = new User();
             var u2 = new User();
             u2.Users = null;
@@ -576,7 +576,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_SubClass_UserProperty()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyMapMode = ClassPropertyMapMode.None;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.None;
 
             var s1 = new Schedule();
             s1.CreateUser = new User("Test1");

@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\HigLabo.Mapper.ObjectMapConfig\HigLabo.Mapper.ObjectMapConfig.csproj" />
     <ProjectReference Include="..\..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
   </ItemGroup>
 

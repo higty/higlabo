@@ -77,7 +77,7 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         private static void HigLaboMapperTest1()
         {
-            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementMapMode = CollectionElementMapMode.NewObject;
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             var a1 = Address.Create();
             var a2 = HigLabo.Core.ObjectMapper.Default.Map(a1, new AddressDTO());

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Dynamic;
 using System.Data.SqlClient;
 using System.IO;
-using System.Data;
 
 namespace HigLabo.Mapper.Test
 {

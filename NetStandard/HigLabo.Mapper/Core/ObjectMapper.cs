@@ -63,8 +63,8 @@ namespace HigLabo.Core
                 _MatchPropertyFunc = value;
             }
         }
-        public ClassPropertyMapMode ClassPropertyMapMode { get; set; } = ClassPropertyMapMode.NewObject;
-        public CollectionElementMapMode CollectionElementMapMode { get; set; } = CollectionElementMapMode.NewObject;
+        public ClassPropertyCreateMode ClassPropertyCreateMode { get; set; } = ClassPropertyCreateMode.NewObject;
+        public CollectionElementCreateMode CollectionElementCreateMode { get; set; } = CollectionElementCreateMode.NewObject;
 
         public Boolean MatchProperty(PropertyInfo source, PropertyInfo target)
         {
@@ -750,7 +750,7 @@ namespace HigLabo.Core
                 {
                     ee.Add(item);
                 }
-                if (this.CompilerConfig.CollectionElementMapMode != CollectionElementMapMode.None)
+                if (this.CompilerConfig.CollectionElementCreateMode != CollectionElementCreateMode.None)
                 {
                     foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p))
                     {
@@ -790,7 +790,7 @@ namespace HigLabo.Core
                         var body = Expression.Call(p.Target, setMethod, getMethod);
                         ee.Add(body);
                     }
-                    else if (this.CompilerConfig.ClassPropertyMapMode != ClassPropertyMapMode.None)
+                    else if (this.CompilerConfig.ClassPropertyCreateMode != ClassPropertyCreateMode.None)
                     {
                         var body = Expression.Call(p.Target, setMethod, getMethod);
                         ee.Add(body);
@@ -928,10 +928,10 @@ namespace HigLabo.Core
                 else
                 {
                     var targetSetMethod = targetProperty.GetSetMethod();
-                    switch (this.CompilerConfig.CollectionElementMapMode)
+                    switch (this.CompilerConfig.CollectionElementCreateMode)
                     {
-                        case CollectionElementMapMode.None: throw new InvalidOperationException();
-                        case CollectionElementMapMode.NewObject:
+                        case CollectionElementCreateMode.None: throw new InvalidOperationException();
+                        case CollectionElementCreateMode.NewObject:
                             {
                                 if (targetSetMethod != null)
                                 {
@@ -945,7 +945,7 @@ namespace HigLabo.Core
                                 ee.Add(setTarget);
                             }
                             break;
-                        case CollectionElementMapMode.DeepCopy:
+                        case CollectionElementCreateMode.DeepCopy:
                             {
                                 if (targetSetMethod != null)
                                 {
