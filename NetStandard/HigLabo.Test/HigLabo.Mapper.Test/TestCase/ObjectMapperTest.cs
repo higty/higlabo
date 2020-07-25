@@ -133,44 +133,42 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(s1.Title, s2.Title);
         }
 
-        //[TestMethod]
-        //public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_None()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.None;
-        //    mapper.MaxCallStackCount = 100;
+        [TestMethod]
+        public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_None()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.None;
 
-        //    var u1 = new User();
-        //    u1.ParentUser = null;
-        //    var u2 = new User();
-        //    u2.ParentUser = null;
-        //    mapper.Map(u1, u2);
+            var u1 = new User();
+            u1.ParentUser = null;
+            var u2 = new User();
+            u2.ParentUser = null;
+            mapper.Map(u1, u2);
 
-        //    Assert.IsNull(u2.ParentUser);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_NewObject()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
-        //    mapper.MaxCallStackCount = 100;
+            Assert.IsNull(u2.ParentUser);
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_NewObject()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
 
-        //    var u1 = new User();
-        //    u1.ParentUser = new User("ParentUser1");
-        //    u1.Dictionary = new Dictionary<string, string>();
-        //    var u2 = new User();
-        //    u2.ParentUser = null;
-        //    u2.Dictionary = null;
-        //    mapper.Map(u1, u2);
+            var u1 = new User();
+            u1.ParentUser = new User("ParentUser1");
+            u1.Dictionary = new Dictionary<string, string>();
+            var u2 = new User();
+            u2.ParentUser = null;
+            u2.Dictionary = null;
+            mapper.Map(u1, u2);
 
-        //    Assert.IsNotNull(u2.ParentUser);
-        //    Assert.IsNotNull(u2.Dictionary);
-        //    Assert.AreEqual("ParentUser1", u2.ParentUser.Name);
+            Assert.IsNotNull(u2.ParentUser);
+            Assert.IsNotNull(u2.Dictionary);
+            Assert.AreEqual("ParentUser1", u2.ParentUser.Name);
 
-        //    u1.ParentUser.Name = "ParentUserChanged";
-        //    //Difference object
-        //    Assert.AreNotEqual("ParentUserChanged", u2.ParentUser.Name);
-        //}
+            u1.ParentUser.Name = "ParentUserChanged";
+            //Difference object
+            Assert.AreNotEqual("ParentUserChanged", u2.ParentUser.Name);
+        }
         [TestMethod]
         public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_DeepCopy()
         {
