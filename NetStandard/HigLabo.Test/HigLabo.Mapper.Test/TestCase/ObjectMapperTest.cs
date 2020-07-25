@@ -37,6 +37,16 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
         }
         [TestMethod]
+        public void ObjectMapper_Map_ValueType_ValueType()
+        {
+            var mapper = new ObjectMapper();
+
+            var v1 = new Vector2(3, 6);
+            var v2 = mapper.Map(v1, new Vector2());
+
+            Assert.AreEqual(v1.X, v2.X);
+        }
+        [TestMethod]
         public void ObjectMapper_Map_ValueType_Object()
         {
             var mapper = new ObjectMapper();
@@ -52,10 +62,11 @@ namespace HigLabo.Mapper.Test
             var mapper = new ObjectMapper();
 
             var u1 = new User();
-            var u2 = Map_GenericType_Object<User>(u1);
+            var u2 = mapper.Map(u1, new User());
 
             Assert.AreEqual(u1.Name, u2.Name);
             Assert.AreEqual(u1.Int32, u2.Int32);
+            Assert.AreEqual(u1.Int32NullableToInt32, u2.Int32NullableToInt32);
             Assert.AreEqual(u1.Decimal, u2.Decimal);
             Assert.AreEqual(u1.DateTime, u2.DateTime);
             Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeek);
@@ -66,10 +77,19 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Vector2.X, u2.Vector2.X);
             Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
         }
-        private T Map_GenericType_Object<T>(T value)
-            where T: class, new()
+        [TestMethod]
+        public void ObjectMapper_Map_NullableInt32_To_Int32()
         {
-            return value.Map(new T());
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            var u2 = mapper.Map(u1, new UserFlatten());
+            Assert.AreEqual(u1.Int32NullableToInt32, u2.Int32NullableToInt32);
+
+            u1.Int32NullableToInt32 = null;
+            u2.Int32NullableToInt32 = 4;
+            mapper.Map(u1, u2);
+            Assert.AreEqual(4, u2.Int32NullableToInt32);
         }
         [TestMethod]
         public void ObjectMapper_Map_Object_ValueType()
@@ -187,29 +207,29 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("ParentUserChanged", u2.ParentUser.Name);
         }
 
-        //[TestMethod]
-        //public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_None()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.Config.CollectionElementCreateMode = CollectionElementCreateMode.None;
+        [TestMethod]
+        public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_None()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.None;
 
-        //    var u1 = new User();
-        //    for (int i = 0; i < 3; i++)
-        //    {
-        //        u1.Users.Add(new User("TestUser" + i.ToString()));
-        //    }
-        //    var u2 = mapper.Map(u1, new User());
+            var u1 = new User();
+            for (int i = 0; i < 3; i++)
+            {
+                u1.Users.Add(new User("TestUser" + i.ToString()));
+            }
+            var u2 = mapper.Map(u1, new User());
 
-        //    mapper.AddPostAction<User, User>((source, target) =>
-        //    {
-        //        if (source == null) { return; }
-        //        target.Users.AddRange(source.Users);
-        //    });
-        //    var u3 = mapper.Map(u1, new User());
+            mapper.AddPostAction<User, User>((source, target) =>
+            {
+                if (source == null) { return; }
+                target.Users.AddRange(source.Users);
+            });
+            var u3 = mapper.Map(u1, new User());
 
-        //    Assert.AreEqual(0, u2.Users.Count);
-        //    Assert.AreEqual(3, u3.Users.Count);
-        //}
+            Assert.AreEqual(0, u2.Users.Count);
+            Assert.AreEqual(3, u3.Users.Count);
+        }
         [TestMethod]
         public void ObjectMapper_Map_CollectionElementCreateMode_CollectionElement_NewObject()
         {
@@ -359,22 +379,18 @@ namespace HigLabo.Mapper.Test
             //Not changed...
             Assert.AreEqual(20.4m, u2.Decimal);
         }
-        //[TestMethod]
-        //public void ObjectMapper_Map_FromDecimalToInt32()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.PropertyMapRules.Clear();
+        [TestMethod]
+        public void ObjectMapper_Map_FromDecimalToInt32()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Int32" && p2.Name == "Decimal";
+            
+            var u1 = new User();
+            u1.Int32 = 23;
+            var u2 = mapper.Map(u1, new User());
 
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Int32", "Decimal");
-        //    mapper.PropertyMapRules.Add(rule);
-
-        //    var u1 = new User();
-        //    u1.Int32 = 23;
-        //    var u2 = mapper.Map(u1, new User());
-
-        //    Assert.AreEqual(23m, u2.Decimal);
-        //}
+            Assert.AreEqual(23m, u2.Decimal);
+        }
         [TestMethod]
         public void ObjectMapper_Map_ByteArrayProperty()
         {
@@ -453,7 +469,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_IDataReader_Object_With_DictionaryMappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.MatchPropertyFunc = (p1, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
 
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
@@ -496,22 +512,30 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(1, l2.Vectors[0].X);
         }
-        //[TestMethod]
-        //public void ObjectMapper_Map_List_NullableList()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.PropertyMapRules.Clear();
+        [TestMethod]
+        public void ObjectMapper_Map_List_NullableValueTypeList()
+        {
+            var mapper = new ObjectMapper();
 
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Vectors", "NullableVectors");
-        //    mapper.PropertyMapRules.Add(rule);
+            var l1 = new VectorInfo();
+            l1.Vectors.Add(new Vector2() { X = 1, Y = 2 });
+            var l2 = mapper.Map(l1, new VectorInfo1());
 
-        //    var l1 = new VectorList();
-        //    l1.Vectors.Add(new Vector2() { X = 1, Y = 2 });
-        //    var l2 = mapper.Map(l1, new VectorList());
+            Assert.AreEqual(1, l2.Vectors[0].Value.X);
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_List_NullableValueTypeList_MappingRule()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == p2.Name 
+            || (p1.Name == "Vectors" && p2.Name == "NullableVectors");
 
-        //    Assert.AreEqual(1, l2.NullableVectors[0].Value.X);
-        //}
+            var l1 = new VectorInfo();
+            l1.Vectors.Add(new Vector2() { X = 1, Y = 2 });
+            var l2 = mapper.Map(l1, new VectorInfo());
+
+            Assert.AreEqual(1, l2.NullableVectors[0].Value.X);
+        }
         [TestMethod]
         public void ObjectMapper_Map_List_ReadonlyList()
         {
@@ -554,22 +578,22 @@ namespace HigLabo.Mapper.Test
             u1.Users[0].Name = "ChildUser2";
             Assert.AreEqual("ChildUser2", u2.Users[0].Name);
         }
-        //[TestMethod]
-        //public void ObjectMapper_Map_Flatten()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<User, UserFlatten>((source, target) =>
-        //    {
-        //        source.Vector2.Map(target);
-        //        source.MapPoint.Map(target);
-        //    });
-        //    var u1 = new User();
-        //    var u2 = mapper.Map(u1, new UserFlatten());
+        [TestMethod]
+        public void ObjectMapper_Map_Flatten()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, UserFlatten>((source, target) =>
+            {
+                source.Vector2.Map(target);
+                source.MapPoint.Map(target);
+            });
+            var u1 = new User();
+            var u2 = mapper.Map(u1, new UserFlatten());
 
-        //    Assert.AreEqual(u1.MapPoint.Latitude, u2.Latitude);
-        //    Assert.AreEqual(u1.MapPoint.Longitude, u2.Longitude);
-        //    Assert.AreEqual(u1.Vector2.X, u2.X);
-        //}
+            Assert.AreEqual(u1.MapPoint.Latitude, u2.Latitude);
+            Assert.AreEqual(u1.MapPoint.Longitude, u2.Longitude);
+            Assert.AreEqual(u1.Vector2.X, u2.X);
+        }
         [TestMethod]
         public void ObjectMapper_Map_SubClass_UserProperty()
         {
@@ -594,19 +618,19 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(1, s2.UserList.Count);
         }
 
-        //[TestMethod]
-        //public void ObjectMapper_AddPostAction_IUser()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<User, IUser>((source, target) =>
-        //    {
-        //        //Do nothing...
-        //    });
-        //    var u1 = new User();
-        //    var u2 = mapper.Map(u1, new User());
+        [TestMethod]
+        public void ObjectMapper_AddPostAction_IUser()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, IUser>((source, target) =>
+            {
+                //Do nothing...
+            });
+            var u1 = new User();
+            var u2 = mapper.Map(u1, new User());
 
-        //    Assert.AreEqual(u1.Name, u2.Name);
-        //}
+            Assert.AreEqual(u1.Name, u2.Name);
+        }
         //[TestMethod]
         //public void ObjectMapper_AddPostAction_Enum()
         //{
@@ -670,24 +694,24 @@ namespace HigLabo.Mapper.Test
 
         //    Assert.AreEqual(Encoding.UTF8, p2.Encoding);
         //}
-        //[TestMethod]
-        //public void ObjectMapper_AddPostAction_Collection()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<User>((source, target) =>
-        //    {
-        //        target.Tags = source.Tags.ToArray();
-        //    });
+        [TestMethod]
+        public void ObjectMapper_AddPostAction_Collection()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, User>((source, target) =>
+            {
+                target.Tags = source.Tags.ToArray();
+            });
 
-        //    var u1 = new User();
-        //    u1.Tags = new String[2];
-        //    u1.Tags[0] = "News";
-        //    u1.Tags[1] = "Sports";
-        //    var u2 = mapper.Map(u1, new User());
+            var u1 = new User();
+            u1.Tags = new String[2];
+            u1.Tags[0] = "News";
+            u1.Tags[1] = "Sports";
+            var u2 = mapper.Map(u1, new User());
 
-        //    Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
-        //    Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
-        //}
+            Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
+            Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
+        }
         //[TestMethod]
         //public void ObjectMapper_AddPostAction_String_DayOfWeek()
         //{
@@ -736,22 +760,23 @@ namespace HigLabo.Mapper.Test
 
         //    Assert.AreNotEqual(u1.Value, u2.Value);
         //}
-        //[TestMethod]
-        //public void ObjectMapper_ReplacePropertyMap()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.ReplacePropertyMap<User, User>((source, target) =>
-        //    {
-        //        target.Decimal = Decimal.Parse(source.Value);
-        //    });
+        [TestMethod]
+        public void ObjectMapper_ReplacePropertyMap()
+        {
+            var mapper = new ObjectMapper();
+            mapper.ReplaceMap<User, User>((source, target) =>
+            {
+                target.Decimal = Decimal.Parse(source.Value);
+                return target;
+            });
 
-        //    var u1 = new User();
-        //    u1.Value = "23.456";
-        //    var u2 = mapper.Map(u1, new User());
+            var u1 = new User();
+            u1.Value = "23.456";
+            var u2 = mapper.Map(u1, new User());
 
-        //    Assert.AreNotEqual(u1.Value, u2.Value);
-        //    Assert.AreEqual(23.456m, u2.Decimal);
-        //}
+            Assert.AreNotEqual(u1.Value, u2.Value);
+            Assert.AreEqual(23.456m, u2.Decimal);
+        }
 
         //[TestMethod]
         //public void ObjectMapper_PropertyNameMappingRule_Failure()

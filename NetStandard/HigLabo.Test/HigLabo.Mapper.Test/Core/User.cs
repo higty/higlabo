@@ -24,6 +24,7 @@ namespace HigLabo.Mapper.Test
         public Int32 Int32 { get; set; }
         public Int32? Int32Nullable { get; set; }
         public Int32? Int32_Nullable { get; set; }
+        public Int32? Int32NullableToInt32 { get; set; }
         public DateTime DateTime { get; set; }
         public DateTime? DateTimeNullable { get; set; }
         public Decimal Decimal { get; set; }
@@ -53,6 +54,7 @@ namespace HigLabo.Mapper.Test
         {
             this.Name = name;
             this.Int32 = 3;
+            this.Int32NullableToInt32 = 32;
             this.DateTime = new DateTime(2014, 12, 16);
             this.Decimal = 20.4m;
             this.DayOfWeek = DayOfWeek.Monday;
@@ -70,6 +72,7 @@ namespace HigLabo.Mapper.Test
 
         public Int32 Int32 { get; set; }
         public Int32? Int32Nullable { get; set; }
+        public Int32 Int32NullableToInt32 { get; set; }
         public DateTime DateTime { get; set; }
         public DateTime? DateTimeNullable { get; set; }
         public Decimal Decimal { get; set; }

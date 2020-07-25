@@ -30,4 +30,17 @@ namespace HigLabo.Mapper.Test
             this.ReadonlyVectors = new List<Vector2>();
         }
     }
+    public class VectorInfo1
+    {
+        public List<Vector2?> Vectors { get; set; }
+        public List<Vector2?> NullableVectors { get; set; }
+        public List<Vector2> ReadonlyVectors { get; private set; }
+
+        public VectorInfo1()
+        {
+            this.Vectors = new List<Vector2?>();
+            this.NullableVectors = new List<Vector2?>();
+            this.ReadonlyVectors = new List<Vector2>();
+        }
+    }
 }

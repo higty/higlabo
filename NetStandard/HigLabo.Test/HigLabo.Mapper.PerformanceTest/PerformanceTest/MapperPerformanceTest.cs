@@ -148,7 +148,6 @@ namespace HigLabo.Mapper.PerformanceTest
             }
         }
 
-        [Benchmark]
         public void HandwriteMapper_Customer()
         {
             var customer = Customer.Create();
@@ -198,7 +197,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 });
             }
         }
-        [Benchmark]
         public void HigLaboObjectMapper_Customer()
         {
             for (int i = 0; i < ExecuteCount; i++)
@@ -206,7 +204,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new CustomerDTO());
             }
         }
-        [Benchmark]
         public void HigLaboMapper_Customer()
         {
             for (int i = 0; i < ExecuteCount; i++)
@@ -214,7 +211,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = ObjectMapConfig.Current.Map(this.Customer, new CustomerDTO());
             }
         }
-        [Benchmark]
         public void Mapster_Customer()
         {
             for (int i = 0; i < ExecuteCount; i++)
@@ -222,7 +218,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = this.Customer.Adapt(new CustomerDTO());
             }
         }
-        [Benchmark]
         public void AutoMapper_Customer()
         {
             for (int i = 0; i < ExecuteCount; i++)

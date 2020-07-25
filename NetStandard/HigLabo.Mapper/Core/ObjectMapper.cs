@@ -11,56 +11,16 @@ using System.Text;
 
 namespace HigLabo.Core
 {
-    public struct ActionKey : IEquatable<ActionKey>
-    {
-        public Type Source { get; private set; }
-        public Type Destination { get; private set; }
-
-        public ActionKey(Type source, Type destination)
-        {
-            this.Source = source;
-            this.Destination = destination;
-        }
-
-        public bool Equals(ActionKey obj)
-        {
-            return Source == obj.Source && Destination == obj.Destination;
-        }
-        public override Boolean Equals(object obj)
-        {
-            if (!(obj is ActionKey))
-                return false;
-            return Equals((ActionKey)obj);
-        }
-        public override int GetHashCode()
-        {
-            unchecked
-            {
-                var h1 = Source.GetHashCode();
-                var h2 = Destination.GetHashCode();
-                UInt32 rol5 = ((UInt32)h1 << 5) | ((UInt32)h1 >> 27);
-                return ((Int32)rol5 + h1) ^ h2;
-            }
-        }
-        public static bool operator ==(ActionKey left, ActionKey right)
-        {
-            return left.Equals(right);
-        }
-        public static bool operator !=(ActionKey left, ActionKey right)
-        {
-            return !left.Equals(right);
-        }
-    }
     public class CompilerSetting
     {
-        private Func<PropertyInfo, PropertyInfo, Boolean> _MatchPropertyFunc = (p1, p2) => p1.Name == p2.Name;
-        public Func<PropertyInfo, PropertyInfo, Boolean> MatchPropertyFunc
+        private Func<PropertyInfo, PropertyInfo, Boolean> _PropertyMatchRule = (p1, p2) => p1.Name == p2.Name;
+        public Func<PropertyInfo, PropertyInfo, Boolean> PropertyMatchRule
         {
-            get { return _MatchPropertyFunc; }
+            get { return _PropertyMatchRule; }
             set
             {
                 if (value == null) { return; }
-                _MatchPropertyFunc = value;
+                _PropertyMatchRule = value;
             }
         }
         public ClassPropertyCreateMode ClassPropertyCreateMode { get; set; } = ClassPropertyCreateMode.NewObject;
@@ -68,7 +28,7 @@ namespace HigLabo.Core
 
         public Boolean MatchProperty(PropertyInfo source, PropertyInfo target)
         {
-            return _MatchPropertyFunc(source, target);
+            return _PropertyMatchRule(source, target);
         }
     }
     public class MapContext
@@ -82,6 +42,46 @@ namespace HigLabo.Core
     }
     public class ObjectMapper
     {
+        private struct ActionKey : IEquatable<ActionKey>
+        {
+            public Type Source { get; private set; }
+            public Type Target { get; private set; }
+
+            public ActionKey(Type source, Type target)
+            {
+                this.Source = source;
+                this.Target = target;
+            }
+
+            public bool Equals(ActionKey obj)
+            {
+                return Source == obj.Source && Target == obj.Target;
+            }
+            public override Boolean Equals(object obj)
+            {
+                if (!(obj is ActionKey))
+                    return false;
+                return Equals((ActionKey)obj);
+            }
+            public override int GetHashCode()
+            {
+                unchecked
+                {
+                    var h1 = Source.GetHashCode();
+                    var h2 = Target.GetHashCode();
+                    UInt32 rol5 = ((UInt32)h1 << 5) | ((UInt32)h1 >> 27);
+                    return ((Int32)rol5 + h1) ^ h2;
+                }
+            }
+            public static bool operator ==(ActionKey left, ActionKey right)
+            {
+                return left.Equals(right);
+            }
+            public static bool operator !=(ActionKey left, ActionKey right)
+            {
+                return !left.Equals(right);
+            }
+        }
         private class MapperMethodAttribute : Attribute
         {
         }
@@ -501,6 +501,7 @@ namespace HigLabo.Core
 
         private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapContext context)
         {
+            if (source == null || target == null) { return target; }
             return this.Map<TSource, TTarget>(new ActionKey(source.GetType(), target.GetType()), source, target, context);
         }
         private TTarget Map<TSource, TTarget>(TSource source, MapContext context)
@@ -515,7 +516,7 @@ namespace HigLabo.Core
         {
             if (_MapActionList.TryGetValue(key, out var func) == false)
             {
-                func = CreateMapMethod(source.GetType(), target.GetType(), context);
+                func = CreateMapMethod(key.Source, key.Target, context);
                 _MapActionList.Add(key, func);
             }
             return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
@@ -546,8 +547,7 @@ namespace HigLabo.Core
             {
                 if (item == typeof(Object)) { continue; }
 
-                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-                    .Where(el => el.GetIndexParameters().Length == 0))
+                foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
                     if (p.GetGetMethod() == null) { continue; }
                     if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
@@ -556,6 +556,8 @@ namespace HigLabo.Core
                         if (p.PropertyType.IsArray || p.PropertyType.IsIEnumerableT()) { continue; }
                     }
                     if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
+                    //Exclude indexer. userList[2] of List<T> class.
+                    if (p.Name == "Item" && p.GetMethod.GetParameters().Length > 0) { continue; }
  
                     //Add to list when this property declared on this class.
                     //Not Add when this property declared on parent class because it will added on declared class.
@@ -678,7 +680,7 @@ namespace HigLabo.Core
                 {
                     if (p.GetGetMethod() == null) { continue; }
                     if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
-                    if (sourcePropertyList.Exists(el => this.CompilerConfig.MatchProperty(el, p))) { continue; }
+                    if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
 
                     //Add to list when this property declared on this class.
                     //Not Add when this property declared on parent class because it will added on declared class.
@@ -714,7 +716,7 @@ namespace HigLabo.Core
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
                     if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
-                    if (targetPropertyList.Exists(el => this.CompilerConfig.MatchProperty(el, p))) { continue; }
+                    if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
 
                     //Add to list when this property declared on this class.
                     //Not Add when this property declared on parent class because it will added on declared class.
@@ -903,16 +905,27 @@ namespace HigLabo.Core
                     var body = Expression.Call(p.Target, setMethod, parse);
                     ee.Add(body);
                 }
-                else if (CanConvert(sourceProperty.PropertyType, targetProperty.PropertyType))
+                else 
                 {
                     if (sourceProperty.PropertyType.IsNullable())
                     {
+                        var sourceNullableGenericType = sourceProperty.PropertyType.GetGenericArguments()[0];
+                        if (CanConvert(sourceNullableGenericType, targetProperty.PropertyType))
+                        {
+                            var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Default(sourceProperty.PropertyType))
+                                , Expression.Call(p.Target, setMethod
+                            , Expression.Convert(getMethod, targetProperty.PropertyType)));
+                            ee.Add(ifThen);
+                        }
                     }
                     else
                     {
-                        var body = Expression.Call(p.Target, setMethod
+                        if (CanConvert(sourceProperty.PropertyType, targetProperty.PropertyType))
+                        {
+                            var body = Expression.Call(p.Target, setMethod
                             , Expression.Convert(getMethod, targetProperty.PropertyType));
-                        ee.Add(body);
+                            ee.Add(body);
+                        }
                     }
                 }
             }
@@ -984,10 +997,21 @@ namespace HigLabo.Core
                                         , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
                                     ee.Add(ifThen);
                                 }
-                                MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
-                                    , new Type[] { sourceElementType, targetElementType }
-                                    , sourceMember, targetMember, p.Context);
-                                ee.Add(setTarget);
+                                if (targetElementType.IsNullable())
+                                {
+                                    var targetNullableGenericType = targetElementType.GetGenericArguments()[0];
+                                    MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToNullableStructCollection"
+                                        , new Type[] { sourceElementType, targetNullableGenericType }
+                                        , sourceMember, targetMember, p.Context);
+                                    ee.Add(setTarget);
+                                }
+                                else
+                                {
+                                    MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
+                                        , new Type[] { sourceElementType, targetElementType }
+                                        , sourceMember, targetMember, p.Context);
+                                    ee.Add(setTarget);
+                                }
                             }
                             break;
                         case CollectionElementCreateMode.DeepCopy:
@@ -1031,6 +1055,34 @@ namespace HigLabo.Core
         }
         private void MapToCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapContext context)
             where TTarget : new()
+        {
+            if (source == null || target == null) { return; }
+
+            target.Clear();
+            if (source is TSource[] ss)
+            {
+                for (int i = 0; i < ss.Length; i++)
+                {
+                    target.Add(this.Map(ss[i], new TTarget(), context));
+                }
+            }
+            else if (source is IList<TSource> sList)
+            {
+                for (int i = 0; i < sList.Count; i++)
+                {
+                    target.Add(this.Map(sList[i], new TTarget(), context));
+                }
+            }
+            else
+            {
+                foreach (var item in source)
+                {
+                    target.Add(this.Map(item, new TTarget(), context));
+                }
+            }
+        }
+        private void MapToNullableStructCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<Nullable<TTarget>> target, MapContext context)
+           where TTarget : struct
         {
             if (source == null || target == null) { return; }
 
@@ -1305,6 +1357,7 @@ namespace HigLabo.Core
         }
         private static Boolean CanConvert(Type sourceType, Type targetType)
         {
+            if (sourceType == targetType) { return true; }
             if (_CanConvertList.TryGetValue(new ActionKey(sourceType, targetType), out var result)) { return result; }
             return false;
         }
