@@ -693,34 +693,34 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
             Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
         }
-        //[TestMethod]
-        //public void ObjectMapper_RemovePropertyMap()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.RemovePropertyMap<User, VipUser>("Timestamp");
+        [TestMethod]
+        public void ObjectMapper_RemovePropertyMap()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == p2.Name && p2.Name != "Timestamp";
 
-        //    var u1 = new User();
-        //    u1.Timestamp = new Byte[] { 1, 3, 6 };
+            var u1 = new User();
+            u1.Timestamp = new Byte[] { 1, 3, 6 };
 
-        //    var u2 = mapper.Map(u1, new VipUser());
+            var u2 = mapper.Map(u1, new VipUser());
 
-        //    Assert.IsNull(u2.Timestamp);
+            Assert.IsNull(u2.Timestamp);
 
-        //    Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
-        //    Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_RemoveAllPropertyMap()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.RemovePropertyMap<User, User>();
+            Assert.AreEqual(u1.MapPoint.Latitude, u2.MapPoint.Latitude);
+            Assert.AreEqual(u1.MapPoint.Longitude, u2.MapPoint.Longitude);
+        }
+        [TestMethod]
+        public void ObjectMapper_RemoveAllPropertyMap()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => false;
 
-        //    var u1 = new User();
-        //    u1.Value = "23.456";
-        //    var u2 = mapper.Map(u1, new User());
+            var u1 = new User();
+            u1.Value = "23.456";
+            var u2 = mapper.Map(u1, new User());
 
-        //    Assert.AreNotEqual(u1.Value, u2.Value);
-        //}
+            Assert.AreNotEqual(u1.Value, u2.Value);
+        }
         [TestMethod]
         public void ObjectMapper_ReplacePropertyMap()
         {
@@ -807,34 +807,28 @@ namespace HigLabo.Mapper.Test
                 Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
             }
         }
-        //[TestMethod]
-        //public void ObjectMapper_CustomPropertyMappingRule_AddPostAction()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<User>((source, target) =>
-        //    {
-        //        target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
-        //    });
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "MapPoint");
-        //    mapper.PropertyMapRules.Add(rule);
+        [TestMethod]
+        public void ObjectMapper_CustomPropertyMappingRule_AddPostAction()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, User>((source, target) =>
+            {
+                target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
+            });
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Value" && p2.Name == "MapPoint";
 
-        //    var u1 = new User();
-        //    u1.Value = "23, 45";
-        //    var u2 = mapper.Map(u1, new User());
+            var u1 = new User();
+            u1.Value = "23, 45";
+            var u2 = mapper.Map(u1, new User());
 
-        //    Assert.AreEqual(23m, u2.MapPoint.Latitude);
-        //    Assert.AreEqual(45m, u2.MapPoint.Longitude);
-        //}
+            Assert.AreEqual(23m, u2.MapPoint.Latitude);
+            Assert.AreEqual(45m, u2.MapPoint.Longitude);
+        }
         //[TestMethod]
         //public void ObjectMapper_CustomDictionaryMappingRule()
         //{
         //    var mapper = new ObjectMapper();
-
-        //    var rule = new DictionaryKeyMappingRule(DictionaryMappingDirection.DictionaryToObject, typeof(User), TypeFilterCondition.Inherit);
-        //    rule.AddMap("Int32Nullable", "int_nullable");
-        //    mapper.DictionaryMappingRules.Add(rule);
+        //    mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "int_nullable" && p2.Name == "Int32Nullable";
 
         //    var d = new Dictionary<String, String>();
         //    d["int_nullable"] = "8";
