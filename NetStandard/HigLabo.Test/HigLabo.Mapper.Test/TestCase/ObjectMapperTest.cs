@@ -631,69 +631,50 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(u1.Name, u2.Name);
         }
-        //[TestMethod]
-        //public void ObjectMapper_AddPostAction_Enum()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<String, DayOfWeek>((source, target) =>
-        //    {
-        //        return DayOfWeekConverter(source) ?? target;
-        //    });
+        [TestMethod]
+        public void ObjectMapper_AddPostAction_Enum()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, User>((source, target) =>
+            {
+                target.DayOfWeek = DayOfWeekConverter(source.Value) ?? target.DayOfWeek;
+            });
+            var u1 = new User();
+            u1.Value = "Fri";
+            var u2 = mapper.Map(u1, new User());
 
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "DayOfWeek");
-        //    mapper.PropertyMapRules.Add(rule);
+            Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+        }
+        [TestMethod]
+        public void ObjectMapper_AddPostAction_EnumNullable()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, User>((source, target) =>
+            {
+                target.DayOfWeekNullable = DayOfWeekConverter(source.Value);
+            });
+            var u1 = new User();
+            u1.Value = "Fri";
+            var u2 = mapper.Map(u1, new User());
 
-        //    var u1 = new User();
-        //    u1.Value = "Fri";
-        //    var u2 = mapper.Map(u1, new User());
+            Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeekNullable);
+        }
+        [TestMethod]
+        public void ObjectMapper_AddPostAction_Encoding()
+        {
+            var mapper = new ObjectMapper();
+            mapper.AddPostAction<User, TextParser>((source, target) =>
+            {
+                if (source.Value == "U8") { target.Encoding = Encoding.UTF8; }
+            });
+            var u1 = new User();
+            u1.Value = "U8";
+            var p2 = new TextParser();
+            p2.Encoding = null;
+            mapper.Map(u1, p2);
 
-        //    Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_AddPostAction_EnumNullable()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<String, DayOfWeek?>((source, target) =>
-        //    {
-        //        return DayOfWeekConverter(source);
-        //    });
-
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "DayOfWeekNullable");
-        //    mapper.PropertyMapRules.Add(rule);
-
-        //    var u1 = new User();
-        //    u1.Value = "Fri";
-        //    var u2 = mapper.Map(u1, new User());
-
-        //    Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeekNullable);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_AddPostAction_Encoding()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<String, Encoding>((source, target) =>
-        //    {
-        //        if (source == "U8") { return Encoding.UTF8; }
-        //        return null;
-        //    });
-
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "Encoding");
-        //    mapper.PropertyMapRules.Add(rule);
-
-        //    var u1 = new User();
-        //    u1.Value = "U8";
-        //    var p2 = new TextParser();
-        //    p2.Encoding = null;
-        //    mapper.Map(u1, p2);
-
-        //    Assert.AreEqual(Encoding.UTF8, p2.Encoding);
-        //}
+            Assert.AreEqual(Encoding.UTF8, p2.Encoding);
+        }
         [TestMethod]
         public void ObjectMapper_AddPostAction_Collection()
         {
@@ -712,26 +693,6 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Tags[0], u2.Tags[0]);
             Assert.AreEqual(u1.Tags[1], u2.Tags[1]);
         }
-        //[TestMethod]
-        //public void ObjectMapper_AddPostAction_String_DayOfWeek()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.AddPostAction<String, DayOfWeek>((source, target) =>
-        //    {
-        //        return DayOfWeekConverter(source) ?? target;
-        //    });
-
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "DayOfWeek");
-        //    mapper.PropertyMapRules.Add(rule);
-
-        //    var u1 = new User();
-        //    u1.Value = "Fri";
-        //    var u2 = mapper.Map(u1, new User());
-
-        //    Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
-        //}
         //[TestMethod]
         //public void ObjectMapper_RemovePropertyMap()
         //{
@@ -778,87 +739,74 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(23.456m, u2.Decimal);
         }
 
-        //[TestMethod]
-        //public void ObjectMapper_PropertyNameMappingRule_Failure()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.PropertyMapRules.Clear();
+        [TestMethod]
+        public void ObjectMapper_PropertyNameMappingRule_Failure()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Value" && p2.Name == "Decimal";
 
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "Decimal");
-        //    mapper.PropertyMapRules.Add(rule);
+            var u1 = new User();
+            u1.Value = "abc";
+            var u2 = mapper.Map(u1, new User());
+            //Not changed...
+            Assert.AreEqual(20.4m, u2.Decimal);
+        }
+        [TestMethod]
+        public void ObjectMapper_SuffixPropertyMappingRule()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name + "Nullable" == p2.Name;
 
-        //    var u1 = new User();
-        //    u1.Value = "abc";
-        //    var u2 = mapper.Map(u1, new User());
-        //    //Not changed...
-        //    Assert.AreEqual(20.4m, u2.Decimal);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_SuffixPropertyMappingRule()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new SuffixPropertyMappingRule("Nullable");
-        //    mapper.PropertyMapRules.Add(rule);
+            var u1 = new User();
+            var u2 = mapper.Map(u1, new User());
 
-        //    var u1 = new User();
-        //    var u2 = mapper.Map(u1, new User());
+            Assert.AreEqual(u1.Name, u2.Name);
+            Assert.AreEqual(u1.Int32, u2.Int32Nullable);
+            Assert.AreEqual(u1.Decimal, u2.DecimalNullable);
+            Assert.AreEqual(u1.DateTime, u2.DateTimeNullable);
+            Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeekNullable);
+        }
+        [TestMethod]
+        public void ObjectMapper_IgnoreUnderscorePropertyMappingRule()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name.Replace("_", "") == p2.Name.Replace("_", "");
 
-        //    Assert.AreEqual(u1.Name, u2.Name);
-        //    Assert.AreEqual(u1.Int32, u2.Int32Nullable);
-        //    Assert.AreEqual(u1.Decimal, u2.DecimalNullable);
-        //    Assert.AreEqual(u1.DateTime, u2.DateTimeNullable);
-        //    Assert.AreEqual(u1.DayOfWeek, u2.DayOfWeekNullable);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_IgnoreUnderscorePropertyMappingRule()
-        //{
-        //    var mapper = new ObjectMapper();
+            var u1 = new User();
+            u1.Int32Nullable = 3;
+            var u2 = mapper.Map(u1, new User());
 
-        //    var rule = new IgnoreUnderscorePropertyMappingRule();
-        //    mapper.PropertyMapRules.Add(rule);
+            Assert.AreEqual(u1.Int32Nullable, u2.Int32_Nullable);
+        }
+        [TestMethod]
+        public void ObjectMapper_CustomPropertyMappingRule()
+        {
+            var mapper = new ObjectMapper();
+            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Value" &&
+            (p2.Name == "Int32" || p2.Name == "DateTime" || p2.Name == "Decimal" || p2.Name == "DayOfWeek");
 
-        //    var u1 = new User();
-        //    u1.Int32Nullable = 3;
-        //    var u2 = mapper.Map(u1, new User());
-
-        //    Assert.AreEqual(u1.Int32Nullable, u2.Int32_Nullable);
-        //}
-        //[TestMethod]
-        //public void ObjectMapper_CustomPropertyMappingRule()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.PropertyMapRules.Clear();
-        //    var rule = new PropertyNameMappingRule();
-        //    rule.AddPropertyNameMap("Value", "Int32");
-        //    rule.AddPropertyNameMap("Value", "DateTime");
-        //    rule.AddPropertyNameMap("Value", "Decimal");
-        //    rule.AddPropertyNameMap("Value", "DayOfWeek");
-        //    mapper.PropertyMapRules.Add(rule);
-
-        //    var u1 = new User();
-        //    {
-        //        u1.Value = "23";
-        //        var u2 = mapper.Map(u1, new User());
-        //        Assert.AreEqual(23, u2.Int32);
-        //    }
-        //    {
-        //        u1.Value = "2014/12/17 00:00:00";
-        //        var u2 = mapper.Map(u1, new User());
-        //        Assert.AreEqual(new DateTime(2014, 12, 17), u2.DateTime);
-        //    }
-        //    {
-        //        u1.Value = "23.4";
-        //        var u2 = mapper.Map(u1, new User());
-        //        Assert.AreEqual(23.4m, u2.Decimal);
-        //    }
-        //    {
-        //        u1.Value = "Friday";
-        //        var u2 = mapper.Map(u1, new User());
-        //        Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
-        //    }
-        //}
+            var u1 = new User();
+            {
+                u1.Value = "23";
+                var u2 = mapper.Map(u1, new User());
+                Assert.AreEqual(23, u2.Int32);
+            }
+            {
+                u1.Value = "2014/12/17 00:00:00";
+                var u2 = mapper.Map(u1, new User());
+                Assert.AreEqual(new DateTime(2014, 12, 17), u2.DateTime);
+            }
+            {
+                u1.Value = "23.4";
+                var u2 = mapper.Map(u1, new User());
+                Assert.AreEqual(23.4m, u2.Decimal);
+            }
+            {
+                u1.Value = "Friday";
+                var u2 = mapper.Map(u1, new User());
+                Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
+            }
+        }
         //[TestMethod]
         //public void ObjectMapper_CustomPropertyMappingRule_AddPostAction()
         //{

@@ -11,35 +11,6 @@ using System.Text;
 
 namespace HigLabo.Core
 {
-    public class CompilerSetting
-    {
-        private Func<PropertyInfo, PropertyInfo, Boolean> _PropertyMatchRule = (p1, p2) => p1.Name == p2.Name;
-        public Func<PropertyInfo, PropertyInfo, Boolean> PropertyMatchRule
-        {
-            get { return _PropertyMatchRule; }
-            set
-            {
-                if (value == null) { return; }
-                _PropertyMatchRule = value;
-            }
-        }
-        public ClassPropertyCreateMode ClassPropertyCreateMode { get; set; } = ClassPropertyCreateMode.NewObject;
-        public CollectionElementCreateMode CollectionElementCreateMode { get; set; } = CollectionElementCreateMode.NewObject;
-
-        public Boolean MatchProperty(PropertyInfo source, PropertyInfo target)
-        {
-            return _PropertyMatchRule(source, target);
-        }
-    }
-    public class MapContext
-    {
-        public ObjectMapper Mapper { get; private set; }
-
-        public MapContext(ObjectMapper mapper)
-        {
-            this.Mapper = mapper;
-        }
-    }
     public class ObjectMapper
     {
         private struct ActionKey : IEquatable<ActionKey>
@@ -80,6 +51,15 @@ namespace HigLabo.Core
             public static bool operator !=(ActionKey left, ActionKey right)
             {
                 return !left.Equals(right);
+            }
+        }
+        private class MapContext
+        {
+            public ObjectMapper Mapper { get; private set; }
+
+            public MapContext(ObjectMapper mapper)
+            {
+                this.Mapper = mapper;
             }
         }
         private class MapperMethodAttribute : Attribute
@@ -898,12 +878,49 @@ namespace HigLabo.Core
                         }
                     }
                 }
-                else if (sourceProperty.PropertyType == typeof(String) && ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                else if (sourceProperty.PropertyType == typeof(String))
                 {
-                    var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
-                    var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
-                    var body = Expression.Call(p.Target, setMethod, parse);
-                    ee.Add(body);
+                    if (targetProperty.PropertyType.IsNullable())
+                    {
+                        var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
+                        if (ParseMethodList.HasParseMethod(targetNullableGenericType))
+                        {
+                            var targetGetMethod = targetProperty.GetGetMethod();
+                            var parseMethod = _ParseMethodList[targetNullableGenericType.Name];
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                        else if (targetNullableGenericType.IsEnum)
+                        {
+                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
+                            var getTargetValueMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+
+                    }
+                    else
+                    {
+                        if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                        {
+                            var targetGetMethod = targetProperty.GetGetMethod();
+                            var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                        else if (targetProperty.PropertyType.IsEnum)
+                        {
+                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetProperty.PropertyType);
+                            var getTargetMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                    }
+
                 }
                 else 
                 {
