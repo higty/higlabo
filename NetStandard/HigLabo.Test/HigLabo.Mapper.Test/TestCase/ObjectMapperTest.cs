@@ -92,6 +92,16 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(4, u2.Int32NullableToInt32);
         }
         [TestMethod]
+        public void ObjectMapper_Map_ValueType_To_NullableValueType()
+        {
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            u1.VectorToNullable = new Vector2() { X = 41, Y = 139 };
+            var u2 = mapper.Map(u1, new UserFlatten());
+            Assert.AreEqual(u1.VectorToNullable, u2.VectorToNullable);
+        }
+        [TestMethod]
         public void ObjectMapper_Map_Object_ValueType()
         {
             var mapper = new ObjectMapper();

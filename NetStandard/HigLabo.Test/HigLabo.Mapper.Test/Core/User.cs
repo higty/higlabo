@@ -34,6 +34,7 @@ namespace HigLabo.Mapper.Test
         public Guid? GuidNullable { get; set; }
 
         public MapPoint MapPoint { get; set; }
+        public Vector2 VectorToNullable { get; set; }
         public Vector2 Vector2 { get; set; }
         public User ParentUser { get; set; }
         public List<User> Users { get; set; }
@@ -80,6 +81,7 @@ namespace HigLabo.Mapper.Test
         public DayOfWeek DayOfWeek { get; set; }
         public DayOfWeek? DayOfWeekNullable { get; set; }
 
+        public Vector2? VectorToNullable { get; set; }
         public Decimal Longitude { get; set; }
         public Decimal Latitude { get; set; }
         public Int32 X { get; set; }

@@ -1009,15 +1009,6 @@ namespace HigLabo.Core
                                         , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
                                     ee.Add(ifThen);
                                 }
-                                if (targetElementType.IsNullable())
-                                {
-                                    var targetNullableGenericType = targetElementType.GetGenericArguments()[0];
-                                    MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToNullableStructCollection"
-                                        , new Type[] { sourceElementType, targetNullableGenericType }
-                                        , sourceMember, targetMember, p.Context);
-                                    ee.Add(setTarget);
-                                }
-                                else
                                 {
                                     var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                                     var targetElement = Expression.Variable(targetElementType, "targetElement");
@@ -1037,9 +1028,33 @@ namespace HigLabo.Core
                                                     ));
                                         var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
                                         loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
-                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        if (targetElementType.IsNullable())
+                                        {
+                                            var targetElementGenericType = targetElementType.GetGenericArguments()[0];
+                                            var nullableTargetElement = Expression.TypeAs(Expression.New(targetElementGenericType), targetElementType);
+                                            if (targetElementGenericType.IsValueType)
+                                            {
+                                                if (CanConvert(sourceElementType, targetElementGenericType))
+                                                {
+                                                    loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                                                }
+                                                else
+                                                {
+                                                    //DoNothing
+                                                    //public struct Vector { int X, int Y } does not convert to public struct MapPoint { int X, int Y }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                                loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                            }
+                                        }
+                                        else 
+                                        {
+                                            loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        }
                                         loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
                                         loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
                                         var body = Expression.Block(new[] { sourceElement, targetElement, index }
