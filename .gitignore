@@ -156,3 +156,6 @@ $RECYCLE.BIN/
 .DS_Store
 /Tools/Nuget/NugetKey.txt
 /Tools/Nuget/HigLabo.Nuget/Reference/_Net_4_5
+/NetStandard/Tools/DbSharp/packages
+/NetStandard/Tools/DbSharp/HigLabo.DbSharp.Sample/.vs/DbSharpSample
+/NetStandard/Tools/DbSharp/.vs/DbSharp.NetStandard/DesignTimeBuild

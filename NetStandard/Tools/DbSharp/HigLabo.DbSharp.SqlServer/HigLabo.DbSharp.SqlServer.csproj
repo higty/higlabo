@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.DbSharp\HigLabo.DbSharp.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.SqlServer">
+      <HintPath>..\Reference\HigLabo.Data.SqlServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

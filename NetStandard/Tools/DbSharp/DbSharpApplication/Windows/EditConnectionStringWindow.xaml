@@ -1,0 +1,23 @@
+﻿<Window x:Class="HigLabo.DbSharpApplication.EditConnectionStringWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:HigLabo.DbSharpApplication.Properties"
+        Title="Edit ConnectionString" 
+        Height="240" Width="500"
+        MinHeight="240" MinWidth="300"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Label Content="{x:Static p:Resources.Name}" Padding="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="20"/>
+        <TextBox Name="NameTextBox" Height="20" Margin="131,10,0,0" VerticalContentAlignment="Center"
+                     AcceptsReturn="False" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="218"/>
+        <Label Content="{x:Static p:Resources.ConnectionString}" Padding="0" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Height="20"/>
+        <TextBox Name="ConnectionStringTextBox" Height="20" Margin="131,38,10,0" VerticalContentAlignment="Center"
+                     AcceptsReturn="False" TextWrapping="NoWrap" Text="" VerticalAlignment="Top"/>
+        <Label Content="{x:Static p:Resources.TimeZone}" Padding="0" HorizontalAlignment="Left" Margin="10,69,0,0" VerticalAlignment="Top" Height="20"/>
+        <ComboBox Name="TimeZoneComboBox" IsEditable="False" HorizontalAlignment="Left" Margin="131,68,0,0" VerticalAlignment="Top" Width="120"/>
+
+        <Button Name="SaveButton" Content="{x:Static p:Resources.Menu_Save}" Margin="0,0,96,10" Click="SaveButton_Click" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+        <Button Name="QuitButton" Content="{x:Static p:Resources.Menu_Quit}" Margin="0,0,10,10" Click="QuitButton_Click" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="81"/>
+
+    </Grid>
+</Window>
