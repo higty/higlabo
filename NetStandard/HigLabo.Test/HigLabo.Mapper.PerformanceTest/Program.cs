@@ -97,8 +97,9 @@ namespace HigLabo.Mapper.PerformanceTest
             //var l1 = new TestIEnumerable();
             //var l2 = HigLabo.Core.ObjectMapper.Default.Map(l1, new TestIEnumerable1());
 
-            //var a1 = Address.Create();
-            //var a2 = HigLabo.Core.ObjectMapper.Default.Map(a1, new AddressDTO());
+            var a1 = Address.Create();
+            a1.AddressType = AddressType.Building;
+            var a2 = HigLabo.Core.ObjectMapper.Default.Map(a1, new AddressDTO());
             //var p = new People1();
             //p.Age = 13;
             //p.PeopleList.Add(new People() { Name = "Hig1" });

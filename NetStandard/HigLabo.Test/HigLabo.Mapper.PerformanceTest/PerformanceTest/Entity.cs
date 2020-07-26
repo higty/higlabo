@@ -26,6 +26,11 @@ namespace HigLabo.Mapper.PerformanceTest
         }
     }
 
+    public enum AddressType
+    {
+        House,
+        Building,
+    }
     public class Address
     {
         public static readonly Random Random = new Random();
@@ -34,6 +39,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public AddressType AddressType { get; set; }
 
         public static Address Create()
         {
@@ -42,6 +48,7 @@ namespace HigLabo.Mapper.PerformanceTest
             a.Street = "Street" + GetRandomNumber();
             a.City = "City" + GetRandomNumber();
             a.Country = "USA " + GetRandomNumber();
+            a.AddressType = AddressType.House;
             return a;
         }
         private static Int32 GetRandomNumber()
@@ -55,6 +62,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public AddressType AddressType { get; set; } = AddressType.House;
     }
     public struct GpsPosition
     {

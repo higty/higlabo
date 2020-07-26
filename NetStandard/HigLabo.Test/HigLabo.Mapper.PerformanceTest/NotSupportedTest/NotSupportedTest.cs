@@ -28,8 +28,6 @@ namespace HigLabo.Mapper.TestNotSupported
             var tn = TreeNode.Create();
             var tn2 = config.Map(tn, new TreeNode());
 
-            var p1 = Park.Create();
-            var p2 = config.Map(p1);
         }
         public static void AutoMapperTest()
         {
