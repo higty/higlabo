@@ -832,7 +832,7 @@ namespace HigLabo.Core
                                 ee.Add(body);
                             }
                             break;
-                        case ClassPropertyCreateMode.DeepCopy:
+                        case ClassPropertyCreateMode.Assign:
                             if (targetProperty.PropertyType.IsAssignableFrom(sourceProperty.PropertyType))
                             {
                                 var body = Expression.Call(p.Target, setMethod, getMethod);

@@ -44,15 +44,18 @@ namespace HigLabo.Mapper.PerformanceTest
         public void Setup()
         {
             _AutoMapperConfiguration = new AutoMapper.MapperConfiguration(config => {
+                config.CreateMap<Customer, Customer>();
                 config.CreateMap<Customer, CustomerDTO>();
                 config.CreateMap<Address, AddressDTO>();
             });
             this.AutoMapper = _AutoMapperConfiguration.CreateMapper();
 
+            TinyMapper.Bind<Customer, Customer>();
             TinyMapper.Bind<Customer, CustomerDTO>();
             TinyMapper.Bind<Address, AddressDTO>();
 
-            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.Assign;
 
             ObjectMapConfig.Current.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
             ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;
@@ -76,7 +79,7 @@ namespace HigLabo.Mapper.PerformanceTest
             addressDto.Id = address.Id;
             addressDto.City = address.City;
             addressDto.Country = address.Country;
-            addressDto.Gps = address.Gps;
+            //addressDto.Gps = address.Gps;
         }
         [Benchmark]
         public void HigLaboObjectMapper_Address()
@@ -108,44 +111,6 @@ namespace HigLabo.Mapper.PerformanceTest
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var r = this.AutoMapper.Map<AddressDTO>(this.Address);
-            }
-        }
-        public void ExpressMapperTest()
-        {
-            var customer = Customer.Create();
-            var count = ExecuteCount;
-
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = ExpressMapper.Mapper.Map<Customer, CustomerDTO>(customer);
-            }
-        }
-        public void AgileMapperTest()
-        {
-            var customer = Customer.Create();
-            var count = ExecuteCount;
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = AgileObjects.AgileMapper.Mapper.Map<Customer>(customer).ToANew<CustomerDTO>();
-            }
-        }
-        public void FastMapperTest()
-        {
-            var customer = Customer.Create();
-            var count = ExecuteCount;
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = FastMapper.TypeAdapter.Adapt<Customer, CustomerDTO>(customer);
-            }
-        }
-        public void TinyMapperTest()
-        {
-            var customer = Customer.Create();
-            var count = ExecuteCount;
-
-            for (int i = 0; i < count; i++)
-            {
-                var customerDto = TinyMapper.Map<CustomerDTO>(customer);
             }
         }
 
@@ -204,7 +169,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new CustomerDTO());
+                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new Customer());
             }
         }
         [Benchmark]
@@ -212,7 +177,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = ObjectMapConfig.Current.Map(this.Customer, new CustomerDTO());
+                var r = ObjectMapConfig.Current.Map(this.Customer, new Customer());
             }
         }
         [Benchmark]
@@ -220,7 +185,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = this.Customer.Adapt(new CustomerDTO());
+                var r = this.Customer.Adapt(new Customer());
             }
         }
         [Benchmark]
@@ -228,7 +193,49 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = this.AutoMapper.Map<CustomerDTO>(this.Customer);
+                var r = this.AutoMapper.Map<Customer>(this.Customer);
+            }
+        }
+        [Benchmark]
+        public void ExpressMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = ExpressMapper.Mapper.Map<Customer, Customer>(customer);
+            }
+        }
+        [Benchmark]
+        public void AgileMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = AgileObjects.AgileMapper.Mapper.Map<Customer>(customer).ToANew<Customer>();
+            }
+        }
+        [Benchmark]
+        public void FastMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = FastMapper.TypeAdapter.Adapt<Customer, Customer>(customer);
+            }
+        }
+        [Benchmark]
+        public void TinyMapperTest()
+        {
+            var customer = Customer.Create();
+            var count = ExecuteCount;
+
+            for (int i = 0; i < count; i++)
+            {
+                var customerDto = TinyMapper.Map<Customer>(customer);
             }
         }
     }

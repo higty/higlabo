@@ -6,6 +6,6 @@ namespace HigLabo.Core
     {
         None,
         NewObject,
-        DeepCopy,
+        Assign,
     }
 }

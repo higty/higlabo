@@ -203,7 +203,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_DeepCopy()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.DeepCopy;
+            mapper.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.Assign;
             var u1 = new User();
             u1.ParentUser = new User("ParentUser");
             var u2 = new User();

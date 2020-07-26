@@ -91,6 +91,7 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         private static void HigLaboMapperTest1()
         {
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.Assign;
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             //var l1 = new TestIEnumerable();
@@ -115,7 +116,7 @@ namespace HigLabo.Mapper.PerformanceTest
             HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
 
             var c2 = d.Adapt(new CustomerDTO());
-
+            var customerDto = TinyMapper.Map<Customer>(customer);
         }
     }
     public class ScheduleSource

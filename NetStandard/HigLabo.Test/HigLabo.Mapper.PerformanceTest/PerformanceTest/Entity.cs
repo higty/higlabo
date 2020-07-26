@@ -34,7 +34,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public string Street { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public GpsPosition Gps { get; set; }
+
         public static Address Create()
         {
             var a = new Address();
@@ -42,7 +42,6 @@ namespace HigLabo.Mapper.PerformanceTest
             a.Street = "Street" + GetRandomNumber();
             a.City = "City" + GetRandomNumber();
             a.Country = "USA " + GetRandomNumber();
-            a.Gps = new GpsPosition(139.4, 41.3);
             return a;
         }
         private static Int32 GetRandomNumber()
@@ -56,7 +55,6 @@ namespace HigLabo.Mapper.PerformanceTest
         public int Id { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
-        public GpsPosition Gps { get; set; }
     }
     public struct GpsPosition
     {
@@ -92,7 +90,6 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 1,
                     Street = "Istiklal cad. " + GetRandomNumber(),
-                    Gps = new GpsPosition(139, 36),
                 }
             };
 
@@ -102,7 +99,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 Country = "Turkey " + GetRandomNumber(),
                 Id = 2,
                 Street = "Istiklal cad. " + GetRandomNumber(),
-                Gps = new GpsPosition(-69, -60),
             };
             customer.WorkAddresses = new List<Address>
             {
@@ -112,7 +108,6 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 5,
                     Street = "Istiklal cad. " + GetRandomNumber(),
-                    Gps = new GpsPosition(13.35, 49.3),
                 },
                 new Address()
                 {
@@ -120,7 +115,6 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 6,
                     Street = "Konak " + GetRandomNumber(),
-                    Gps = new GpsPosition(3.91, 72.55),
             }
             };
             customer.Addresses = new Address[]
@@ -131,7 +125,6 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 3,
                     Street = "Istiklal cad. " + GetRandomNumber(),
-                    Gps = new GpsPosition(145, 36),
                 },
                 new Address()
                 {
@@ -139,7 +132,6 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 4,
                     Street = "Konak " + GetRandomNumber(),
-                    Gps = new GpsPosition(93, 60),
                 }
             };
 
