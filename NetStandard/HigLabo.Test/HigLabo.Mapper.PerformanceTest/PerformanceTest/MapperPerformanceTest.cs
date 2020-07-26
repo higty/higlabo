@@ -52,20 +52,7 @@ namespace HigLabo.Mapper.PerformanceTest
             TinyMapper.Bind<Customer, CustomerDTO>();
             TinyMapper.Bind<Address, AddressDTO>();
 
-            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.None;
-            HigLabo.Core.ObjectMapper.Default.AddPostAction<Customer, CustomerDTO>((source, target) =>
-            {
-                target.WorkAddresses = new List<AddressDTO>();
-                foreach (var item in source.WorkAddresses)
-                {
-                    var r = new AddressDTO();
-                    r.Id = item.Id;
-                    r.City = item.City;
-                    r.Country = item.Country;
-                    r.Gps = item.Gps;
-                    target.WorkAddresses.Add(r);
-                }
-            });
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             ObjectMapConfig.Current.ClassPropertyMapMode = ClassPropertyMapMode.NewObject;
             ObjectMapConfig.Current.CollectionElementMapMode = CollectionElementMapMode.NewObject;

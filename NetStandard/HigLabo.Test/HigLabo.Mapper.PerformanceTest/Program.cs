@@ -19,6 +19,20 @@ using System.Buffers;
 
 namespace HigLabo.Mapper.PerformanceTest
 {
+    public class TestIEnumerable
+    {
+        public IEnumerable<Person> PersonList { get; private set; } 
+        public TestIEnumerable()
+        {
+            var l = new List<Person>();
+            l.Add(Person.Create());
+            this.PersonList = l;
+        }
+    }
+    public class TestIEnumerable1
+    {
+        public ICollection<Person> PersonList { get; private set; } = new List<Person>();
+    }
     class Program
     {
         static void Main(string[] args)
@@ -79,23 +93,26 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
+            //var l1 = new TestIEnumerable();
+            //var l2 = HigLabo.Core.ObjectMapper.Default.Map(l1, new TestIEnumerable1());
+
             //var a1 = Address.Create();
             //var a2 = HigLabo.Core.ObjectMapper.Default.Map(a1, new AddressDTO());
-            var p = new People1();
-            p.Age = 13;
-            p.PeopleList.Add(new People() { Name = "Hig1" });
-            var p1 = new People1();
+            //var p = new People1();
+            //p.Age = 13;
+            //p.PeopleList.Add(new People() { Name = "Hig1" });
+            //var p1 = new People1();
             //p1.PeopleList.Add(new People { Name = "Sho" });
-            p1 = HigLabo.Core.ObjectMapper.Default.Map(p, p1);
+            //p1 = HigLabo.Core.ObjectMapper.Default.Map(p, p1);
 
-            //var customer = Customer.Create();
-            //var d = new Dictionary<String, String>();
-            //d["Id"] = "123";
-            //d["Name"] = "Defaullt Name";
-            //HigLabo.Core.ObjectMapper.Default.Map(d, customer);
+            var customer = Customer.Create();
+            var d = new Dictionary<String, String>();
+            d["Id"] = "123";
+            d["Name"] = "Defaullt Name";
+            HigLabo.Core.ObjectMapper.Default.Map(d, customer);
 
-            //var customer1 = new CustomerDTO();
-            //HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
+            var customer1 = new CustomerDTO();
+            HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
 
             //var c2 = customer.Adapt(new CustomerDTO());
 

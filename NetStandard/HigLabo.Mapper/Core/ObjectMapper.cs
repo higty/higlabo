@@ -946,11 +946,6 @@ namespace HigLabo.Core
                     }
                 }
             }
-            LabelTarget returnTarget = Expression.Label();
-            GotoExpression returnExpression = Expression.Return(returnTarget);
-            LabelExpression returnLabel = Expression.Label(returnTarget);
-            BlockExpression block = Expression.Block(returnExpression, returnLabel);
-            ee.Add(block);
 
             return ee;
         }
@@ -1024,35 +1019,63 @@ namespace HigLabo.Core
                                 }
                                 else
                                 {
-                                    var index = Expression.Variable(typeof(Int32), "i");
-                                    var sourceElement = Expression.Variable(sourceElementType, "source");
-                                    var targetElement = Expression.Variable(targetElementType, "target");
+                                    var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
+                                    var targetElement = Expression.Variable(targetElementType, "targetElement");
                                     var elementParameter = new MapParameterList();
                                     elementParameter.Source = sourceElement;
                                     elementParameter.Target = targetElement;
                                     elementParameter.Context = p.Context;
 
-                                    var endLoop = Expression.Label("endLoop");
-                                    
                                     var loopBlock = new List<Expression>();
-                                    loopBlock.Add(Expression.IfThen(
-                                                Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
-                                                Expression.Break(endLoop)
-                                                ));
-                                    var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
-                                    loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
-                                    loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                    var endLoop = Expression.Label("endLoop");
+                                    if (sourceProperty.PropertyType.IsICollectionT())
+                                    {
+                                        var index = Expression.Variable(typeof(Int32), "i");
+                                        loopBlock.Add(Expression.IfThen(
+                                                    Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
+                                                    Expression.Break(endLoop)
+                                                    ));
+                                        var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
+                                        loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
 
-                                    loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
-                                    loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
-                                    loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
- 
-                                    var body = Expression.Block(new[] { index, sourceElement, targetElement }
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
+                                        loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
+                                        var body = Expression.Block(new[] { sourceElement, targetElement, index }
                                         , index
                                         , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
                                         , Expression.Loop(Expression.Block(loopBlock), endLoop));
 
-                                    ee.Add(body);
+                                        ee.Add(body);
+                                    }
+                                    else
+                                    {
+                                        var moveNext = typeof(IEnumerator).GetMethod("MoveNext");
+                                        var enumerableType = sourceProperty.PropertyType;
+                                        var getEnumerator = enumerableType.GetMethod("GetEnumerator");
+                                        if (getEnumerator is null)
+                                        {
+                                            getEnumerator = typeof(IEnumerable<>).MakeGenericType(sourceElementType).GetMethod("GetEnumerator");
+                                        }
+                                        var enumerator = Expression.Variable(getEnumerator.ReturnType, "enumerator"); 
+
+                                        loopBlock.Add(Expression.IfThen(
+                                                Expression.IsFalse(Expression.Call(enumerator, moveNext)),
+                                                Expression.Break(endLoop)
+                                                ));
+                                        loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
+
+                                        var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
+                                        , Expression.Assign(enumerator, Expression.Call(sourceMember, "GetEnumerator", Type.EmptyTypes))
+                                        , Expression.Loop(Expression.Block(loopBlock), endLoop));
+
+                                        ee.Add(body);
+                                    }
                                 }
                             }
                             break;
@@ -1087,11 +1110,6 @@ namespace HigLabo.Core
                     }
                 }
             }
-            LabelTarget returnTarget = Expression.Label();
-            GotoExpression returnExpression = Expression.Return(returnTarget);
-            LabelExpression returnLabel = Expression.Label(returnTarget);
-            BlockExpression block = Expression.Block(returnExpression, returnLabel);
-            ee.Add(block);
 
             return ee;
         }
