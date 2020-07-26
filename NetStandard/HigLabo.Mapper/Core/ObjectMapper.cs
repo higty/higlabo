@@ -785,6 +785,11 @@ namespace HigLabo.Core
 
             var p = parameterList;
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
+            var stringDefaultValue = "";
+            if (this.CompilerConfig.DefaultStringValue == DefaultStringValue.Null)
+            {
+                stringDefaultValue = null;
+            }
 
             var pp = CreatePropertyMapping(sourceType, targetType);
             foreach (var item in pp)
@@ -807,7 +812,9 @@ namespace HigLabo.Core
                     }
                     else if (targetProperty.PropertyType == typeof(String))
                     {
-                        var body = Expression.Call(p.Target, setMethod, getMethod);
+                        var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Constant(null, typeof(String)))
+                            , Expression.Call(p.Target, setMethod, Expression.Constant(stringDefaultValue))
+                            , Expression.Call(p.Target, setMethod, getMethod));
                         ee.Add(body);
                         continue;
                     }
