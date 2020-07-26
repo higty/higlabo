@@ -91,7 +91,7 @@ namespace HigLabo.Mapper.PerformanceTest
         }
         private static void HigLaboMapperTest1()
         {
-            HigLabo.Core.ObjectMapper.Default.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.Assign;
+            HigLabo.Core.ObjectMapper.Default.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
             //var l1 = new TestIEnumerable();
@@ -107,16 +107,16 @@ namespace HigLabo.Mapper.PerformanceTest
             //p1 = HigLabo.Core.ObjectMapper.Default.Map(p, p1);
 
             var customer = Customer.Create();
-            var d = new Dictionary<String, String>();
-            d["Id"] = "123";
-            d["Name"] = "Defaullt Name";
+            //var d = new Dictionary<String, String>();
+            //d["Id"] = "123";
+            //d["Name"] = "Defaullt Name";
             //HigLabo.Core.ObjectMapper.Default.Map(d, customer);
 
             var customer1 = new CustomerDTO();
             HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
 
-            var c2 = d.Adapt(new CustomerDTO());
-            var customerDto = TinyMapper.Map<Customer>(customer);
+            //var c2 = d.Adapt(new CustomerDTO());
+            //var customerDto = TinyMapper.Map<Customer>(customer);
         }
     }
     public class ScheduleSource

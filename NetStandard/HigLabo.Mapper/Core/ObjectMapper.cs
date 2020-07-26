@@ -824,11 +824,21 @@ namespace HigLabo.Core
                             var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
                             if (targetConstructor != null)
                             {
-                                var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Default(sourceProperty.PropertyType))
+                                var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                                var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                                var elementParameter = new MapParameterList();
+                                elementParameter.Source = sourceMember;
+                                elementParameter.Target = targetMember;
+                                elementParameter.Context = p.Context;
+
+                                var block = new List<Expression>();
+                                block.Add(Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
+                                    , Expression.Assign(targetMember, Expression.New(targetProperty.PropertyType)))
+                                    );
+                                block.AddRange(CreateMapPropertyExpression(sourceProperty.PropertyType, targetProperty.PropertyType, elementParameter));
+                                var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Constant(null, typeof(Object)))
                                           , Expression.Call(p.Target, setMethod, Expression.Default(targetProperty.PropertyType))
-                                          , Expression.Call(p.Target, setMethod, Expression.Call(mapperMember, "Map"
-                                    , new Type[] { sourceProperty.PropertyType, targetProperty.PropertyType }
-                                    , getMethod, p.Context)));
+                                          , Expression.Block(block));
                                 ee.Add(body);
                             }
                             break;
@@ -928,7 +938,7 @@ namespace HigLabo.Core
                         var sourceNullableGenericType = sourceProperty.PropertyType.GetGenericArguments()[0];
                         if (CanConvert(sourceNullableGenericType, targetProperty.PropertyType))
                         {
-                            var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Default(sourceProperty.PropertyType))
+                            var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
                                 , Expression.Call(p.Target, setMethod
                             , Expression.Convert(getMethod, targetProperty.PropertyType)));
                             ee.Add(ifThen);
@@ -957,8 +967,6 @@ namespace HigLabo.Core
 
             var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
             if (pp.Count == 0) { return ee; }
-
-            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
             foreach (var item in pp)
             {
@@ -1068,7 +1076,7 @@ namespace HigLabo.Core
                         , Expression.Loop(Expression.Block(loopBlock), endLoop)
                         , Expression.Assign(targetMember, arrayMember));
 
-                        ee.Add(Expression.IfThen(Expression.NotEqual(sourceMember, Expression.Default(typeof(Object))), body));
+                        ee.Add(Expression.IfThen(Expression.NotEqual(sourceMember, Expression.Constant(null, typeof(Object))), body));
                     }
                 }
                 else
@@ -1079,7 +1087,7 @@ namespace HigLabo.Core
                         case CollectionPropertyCreateMode.NewObject:
                             if (targetSetMethod != null)
                             {
-                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
                                     , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
                                 ee.Add(ifThen);
                             }
@@ -1087,7 +1095,7 @@ namespace HigLabo.Core
                         case CollectionPropertyCreateMode.Assign:
                             if (sourceProperty.PropertyType == targetProperty.PropertyType)
                             {
-                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
                                     , Expression.Assign(targetMember, sourceMember));
                                 ee.Add(ifThen);
                             }
@@ -1199,7 +1207,6 @@ namespace HigLabo.Core
         {
             var ee = new List<Expression>();
             var p = parameterList;
-            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
             var pp = CreatePropertyToDictionaryMapping(sourceType, targetType);
             foreach (var item in pp)

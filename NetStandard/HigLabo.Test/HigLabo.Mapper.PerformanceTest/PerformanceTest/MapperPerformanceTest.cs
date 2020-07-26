@@ -34,7 +34,7 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         private AutoMapper.MapperConfiguration _AutoMapperConfiguration = null;
 
-        public static readonly Int32 ExecuteCount = 1000;
+        public static readonly Int32 ExecuteCount = 20000;
 
         public AutoMapper.IMapper AutoMapper = null;
         public Customer Customer = null;
@@ -79,7 +79,6 @@ namespace HigLabo.Mapper.PerformanceTest
             addressDto.Id = address.Id;
             addressDto.City = address.City;
             addressDto.Country = address.Country;
-            //addressDto.Gps = address.Gps;
         }
         [Benchmark]
         public void HigLaboObjectMapper_Address()
@@ -89,7 +88,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = HigLabo.Core.ObjectMapper.Default.Map(this.Address, new AddressDTO());
             }
         }
-        [Benchmark]
         public void HigLaboMapper_Address()
         {
             for (int i = 0; i < ExecuteCount; i++)
@@ -114,7 +112,6 @@ namespace HigLabo.Mapper.PerformanceTest
             }
         }
 
-        [Benchmark]
         public void HandwriteMapper_Customer()
         {
             var customer = Customer.Create();
@@ -132,31 +129,31 @@ namespace HigLabo.Mapper.PerformanceTest
             customerDto.Address.Street = customer.Address.Street;
             customerDto.Address.City = customer.Address.City;
             customerDto.Address.Country = customer.Address.Country;
-            customerDto.Addresses = new AddressDTO[customer.Addresses.Length];
-            for (int aIndex = 0; aIndex < customer.Addresses.Length; aIndex++)
+            customerDto.AddressList = new AddressDTO[customer.AddressList.Length];
+            for (int aIndex = 0; aIndex < customer.AddressList.Length; aIndex++)
             {
-                customerDto.Addresses[aIndex] = new AddressDTO();
-                customerDto.Addresses[aIndex].Id = customer.Addresses[aIndex].Id;
-                customerDto.Addresses[aIndex].City = customer.Addresses[aIndex].City;
-                customerDto.Addresses[aIndex].Country = customer.Addresses[aIndex].Country;
+                customerDto.AddressList[aIndex] = new AddressDTO();
+                customerDto.AddressList[aIndex].Id = customer.AddressList[aIndex].Id;
+                customerDto.AddressList[aIndex].City = customer.AddressList[aIndex].City;
+                customerDto.AddressList[aIndex].Country = customer.AddressList[aIndex].Country;
             }
             customerDto.HomeAddress = new AddressDTO();
             customerDto.HomeAddress.Id = customerDto.HomeAddress.Id;
             customerDto.HomeAddress.City = customerDto.HomeAddress.City;
             customerDto.HomeAddress.Country = customerDto.HomeAddress.Country;
-            customer.WorkAddresses = new List<Address>();
-            foreach (var item in customer.WorkAddresses)
+            customer.WorkAddressList = new List<Address>();
+            foreach (var item in customer.WorkAddressList)
             {
-                customerDto.WorkAddresses.Add(new AddressDTO()
+                customerDto.WorkAddressList.Add(new AddressDTO()
                 {
                     Id = item.Id,
                     City = item.City,
                     Country = item.Country,
                 });
             }
-            foreach (var item in customer.WorkAddresses)
+            foreach (var item in customer.WorkAddressList)
             {
-                customerDto.WorkAddresses.Add(new AddressDTO()
+                customerDto.WorkAddressList.Add(new AddressDTO()
                 {
                     Id = item.Id,
                     City = item.City,
@@ -172,7 +169,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new Customer());
             }
         }
-        [Benchmark]
         public void HigLaboMapper_Customer()
         {
             for (int i = 0; i < ExecuteCount; i++)
@@ -196,7 +192,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var r = this.AutoMapper.Map<Customer>(this.Customer);
             }
         }
-        [Benchmark]
         public void ExpressMapperTest()
         {
             var customer = Customer.Create();
@@ -207,7 +202,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = ExpressMapper.Mapper.Map<Customer, Customer>(customer);
             }
         }
-        [Benchmark]
         public void AgileMapperTest()
         {
             var customer = Customer.Create();
@@ -217,7 +211,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = AgileObjects.AgileMapper.Mapper.Map<Customer>(customer).ToANew<Customer>();
             }
         }
-        [Benchmark]
         public void FastMapperTest()
         {
             var customer = Customer.Create();
@@ -227,7 +220,6 @@ namespace HigLabo.Mapper.PerformanceTest
                 var customerDto = FastMapper.TypeAdapter.Adapt<Customer, Customer>(customer);
             }
         }
-        [Benchmark]
         public void TinyMapperTest()
         {
             var customer = Customer.Create();
@@ -236,6 +228,31 @@ namespace HigLabo.Mapper.PerformanceTest
             for (int i = 0; i < count; i++)
             {
                 var customerDto = TinyMapper.Map<Customer>(customer);
+            }
+        }
+
+        [Benchmark]
+        public void HigLaboObjectMapper_Customer_CustomerDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new CustomerDTO());
+            }
+        }
+        [Benchmark]
+        public void AutoMapper_Customer_CustomerDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = this.AutoMapper.Map<CustomerDTO>(this.Customer);
+            }
+        }
+        [Benchmark]
+        public void Mapster_Customer_CustomerDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = this.Customer.Adapt(new CustomerDTO());
             }
         }
     }

@@ -75,8 +75,8 @@ namespace HigLabo.Mapper.PerformanceTest
         public String Name { get; set; }
         public Address Address { get; set; }
         public Address HomeAddress { get; set; }
-        public Address[] Addresses { get; set; }
-        public IEnumerable<Address> WorkAddresses { get; set; }
+        public Address[] AddressList { get; set; }
+        public IEnumerable<Address> WorkAddressList { get; set; }
 
         public static Customer Create()
         {
@@ -100,7 +100,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 Id = 2,
                 Street = "Istiklal cad. " + GetRandomNumber(),
             };
-            customer.WorkAddresses = new List<Address>
+            customer.WorkAddressList = new List<Address>
             {
                 new Address()
                 {
@@ -117,7 +117,7 @@ namespace HigLabo.Mapper.PerformanceTest
                     Street = "Konak " + GetRandomNumber(),
             }
             };
-            customer.Addresses = new Address[]
+            customer.AddressList = new Address[]
             {
                 new Address()
                 {
@@ -149,8 +149,8 @@ namespace HigLabo.Mapper.PerformanceTest
         public string Name { get; set; }
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
-        public AddressDTO[] Addresses { get; set; }
-        public List<AddressDTO> WorkAddresses { get; set; } 
+        public AddressDTO[] AddressList { get; set; }
+        public List<AddressDTO> WorkAddressList { get; set; } 
         public String AddressCity { get; set; }
     }
 
