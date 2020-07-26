@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Core
 {
+    /// <summary>
+    /// Set behavior when class property is null.
+    /// </summary>
     public enum CollectionElementCreateMode
     {
-        None,
+        /// <summary>
+        /// Create new instance. After create new instance, map all property from source instance.
+        /// </summary>
         NewObject,
-        DeepCopy,
+        /// <summary>
+        /// Copy instance from source property.
+        /// </summary>
+        Copy,
     }
 }

@@ -758,7 +758,6 @@ namespace HigLabo.Core
                 {
                     ee.Add(item);
                 }
-                if (this.CompilerConfig.CollectionElementCreateMode != CollectionElementCreateMode.None)
                 {
                     foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p))
                     {
@@ -955,6 +954,7 @@ namespace HigLabo.Core
             var p = parameterList;
 
             var ee = new List<Expression>();
+
             var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
             if (pp.Count == 0) { return ee; }
 
@@ -998,121 +998,122 @@ namespace HigLabo.Core
                 else
                 {
                     var targetSetMethod = targetProperty.GetSetMethod();
-                    if (this.CompilerConfig.CollectionElementCreateMode != CollectionElementCreateMode.None)
+                    if (targetSetMethod != null)
                     {
-                        if (targetSetMethod != null)
+                        switch (this.CompilerConfig.CollectionPropertyCreateMode)
                         {
-                            switch (this.CompilerConfig.CollectionPropertyCreateMode)
-                            {
-                                case CollectionPropertyCreateMode.None: break;
-                                case CollectionPropertyCreateMode.NewObject:
+                            case CollectionPropertyCreateMode.None: break;
+                            case CollectionPropertyCreateMode.NewObject:
+                                {
                                     var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
                                         , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
                                     ee.Add(ifThen);
-                                    break;
-                                case CollectionPropertyCreateMode.DeepCopy:
-                                    if (sourceProperty.PropertyType == targetProperty.PropertyType)
-                                    {
-                                        ee.Add(Expression.Assign(targetMember, sourceMember));
-                                    }
-                                    break;
-                                default:throw new InvalidOperationException();
-                            }
-                        }
-                        {
-                            var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
-                            var targetElement = Expression.Variable(targetElementType, "targetElement");
-                            var elementParameter = new MapParameterList();
-                            elementParameter.Source = sourceElement;
-                            elementParameter.Target = targetElement;
-                            elementParameter.Context = p.Context;
-
-                            var loopBlock = new List<Expression>();
-                            var endLoop = Expression.Label("endLoop");
-                            if (sourceProperty.PropertyType.IsICollectionT())
-                            {
-                                var index = Expression.Variable(typeof(Int32), "i");
-                                loopBlock.Add(Expression.IfThen(
-                                            Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
-                                            Expression.Break(endLoop)
-                                            ));
-                                var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
-                                loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
-                                if (targetElementType.IsNullable())
+                                }
+                                break;
+                            case CollectionPropertyCreateMode.Copy:
+                                if (sourceProperty.PropertyType == targetProperty.PropertyType)
                                 {
-                                    var targetElementGenericType = targetElementType.GetGenericArguments()[0];
-                                    var nullableTargetElement = Expression.TypeAs(Expression.New(targetElementGenericType), targetElementType);
-                                    if (CanConvert(sourceElementType, targetElementGenericType))
-                                    {
-                                        loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
-                                    }
-                                    else
-                                    {
-                                        //DoNothing
-                                        //public struct Vector { int X, int Y } does not convert to public struct MapPoint { int X, int Y }
-                                    }
+                                    var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                        , Expression.Assign(targetMember, sourceMember));
+                                    ee.Add(ifThen);
+                                }
+                                break;
+                            default: throw new InvalidOperationException();
+                        }
+                    }
+
+                    if (this.CompilerConfig.CollectionPropertyCreateMode == CollectionPropertyCreateMode.NewObject)
+                    {
+                        var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
+                        var targetElement = Expression.Variable(targetElementType, "targetElement");
+                        var elementParameter = new MapParameterList();
+                        elementParameter.Source = sourceElement;
+                        elementParameter.Target = targetElement;
+                        elementParameter.Context = p.Context;
+
+                        var loopBlock = new List<Expression>();
+                        var endLoop = Expression.Label("endLoop");
+                        if (sourceProperty.PropertyType.IsICollectionT())
+                        {
+                            var index = Expression.Variable(typeof(Int32), "i");
+                            loopBlock.Add(Expression.IfThen(
+                                        Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
+                                        Expression.Break(endLoop)
+                                        ));
+                            var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
+                            loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+                            if (targetElementType.IsNullable())
+                            {
+                                var targetElementGenericType = targetElementType.GetGenericArguments()[0];
+                                var nullableTargetElement = Expression.TypeAs(Expression.New(targetElementGenericType), targetElementType);
+                                if (CanConvert(sourceElementType, targetElementGenericType))
+                                {
+                                    loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
                                 }
                                 else
                                 {
-                                    switch (this.CompilerConfig.CollectionElementCreateMode)
-                                    {
-                                        case CollectionElementCreateMode.None:
-                                            break;
-                                        case CollectionElementCreateMode.NewObject:
-                                            loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
-                                            break;
-                                        case CollectionElementCreateMode.DeepCopy:
-                                            if (sourceElementType == targetElementType)
-                                            {
-                                                loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                                loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
-                                            }
-                                            else if ((targetElementType.IsAssignableFrom(sourceElementType)))
-                                            {
-                                                loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
-                                                loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
-                                            }
-                                            break;
-                                        default: throw new InvalidOperationException();
-                                    }
+                                    //DoNothing
+                                    //public struct Vector { int X, int Y } does not convert to public struct MapPoint { int X, int Y }
                                 }
-                                loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
-                                loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
-                                var body = Expression.Block(new[] { sourceElement, targetElement, index }
-                                , index
-                                , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
-                                , Expression.Loop(Expression.Block(loopBlock), endLoop));
-
-                                ee.Add(body);
                             }
                             else
                             {
-                                var moveNext = typeof(IEnumerator).GetMethod("MoveNext");
-                                var enumerableType = sourceProperty.PropertyType;
-                                var getEnumerator = enumerableType.GetMethod("GetEnumerator");
-                                if (getEnumerator is null)
+                                switch (this.CompilerConfig.CollectionElementCreateMode)
                                 {
-                                    getEnumerator = typeof(IEnumerable<>).MakeGenericType(sourceElementType).GetMethod("GetEnumerator");
+                                    case CollectionElementCreateMode.NewObject:
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        break;
+                                    case CollectionElementCreateMode.Copy:
+                                        if (sourceElementType == targetElementType)
+                                        {
+                                            loopBlock.Add(Expression.Assign(targetElement, sourceElement));
+                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        }
+                                        else if ((targetElementType.IsAssignableFrom(sourceElementType)))
+                                        {
+                                            loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
+                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        }
+                                        break;
+                                    default: throw new InvalidOperationException();
                                 }
-                                var enumerator = Expression.Variable(getEnumerator.ReturnType, "enumerator");
-
-                                loopBlock.Add(Expression.IfThen(
-                                        Expression.IsFalse(Expression.Call(enumerator, moveNext)),
-                                        Expression.Break(endLoop)
-                                        ));
-                                loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
-                                loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-
-                                loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
-                                loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
-
-                                var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
-                                , Expression.Assign(enumerator, Expression.Call(sourceMember, "GetEnumerator", Type.EmptyTypes))
-                                , Expression.Loop(Expression.Block(loopBlock), endLoop));
-
-                                ee.Add(body);
                             }
+                            loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
+                            loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
+                            var body = Expression.Block(new[] { sourceElement, targetElement, index }
+                            , index
+                            , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
+                            , Expression.Loop(Expression.Block(loopBlock), endLoop));
+
+                            ee.Add(body);
+                        }
+                        else
+                        {
+                            var moveNext = typeof(IEnumerator).GetMethod("MoveNext");
+                            var enumerableType = sourceProperty.PropertyType;
+                            var getEnumerator = enumerableType.GetMethod("GetEnumerator");
+                            if (getEnumerator is null)
+                            {
+                                getEnumerator = typeof(IEnumerable<>).MakeGenericType(sourceElementType).GetMethod("GetEnumerator");
+                            }
+                            var enumerator = Expression.Variable(getEnumerator.ReturnType, "enumerator");
+
+                            loopBlock.Add(Expression.IfThen(
+                                    Expression.IsFalse(Expression.Call(enumerator, moveNext)),
+                                    Expression.Break(endLoop)
+                                    ));
+                            loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
+                            loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+
+                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                            loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
+
+                            var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
+                            , Expression.Assign(enumerator, Expression.Call(sourceMember, "GetEnumerator", Type.EmptyTypes))
+                            , Expression.Loop(Expression.Block(loopBlock), endLoop));
+
+                            ee.Add(body);
                         }
                     }
                 }
