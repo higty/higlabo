@@ -993,13 +993,13 @@ namespace HigLabo.Core
                         //}
                         //target.ArrayProperty = array;
                         var index = Expression.Variable(typeof(Int32), "i");
-                        var arrayMember = Expression.Variable(targetProperty.PropertyType);
-
+                        var arrayMember = Expression.Variable(targetProperty.PropertyType, "arrayMember");
                         var elementCountPropertyName = "Count";
                         if (sourceProperty.PropertyType.IsArray)
                         {
                             elementCountPropertyName = "Length";
                         }
+
                         loopBlock.Add(Expression.IfThen(
                                     Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, elementCountPropertyName), index),
                                     Expression.Break(endLoop)
@@ -1032,7 +1032,7 @@ namespace HigLabo.Core
                             switch (this.CompilerConfig.CollectionElementCreateMode)
                             {
                                 case CollectionElementCreateMode.NewObject:
-                                    if (sourceElementType == targetElementType && sourceElementType.IsPrimitive)
+                                    if (sourceElementType == targetElementType && (sourceElementType == typeof(String) || sourceElementType.IsPrimitive))
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, sourceElement));
                                         loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
@@ -1193,129 +1193,6 @@ namespace HigLabo.Core
             }
 
             return ee;
-        }
-        private void MapToCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapContext context)
-            where TTarget : new()
-        {
-            if (source == null || target == null) { return; }
-
-            target.Clear();
-            if (source is TSource[] ss)
-            {
-                for (int i = 0; i < ss.Length; i++)
-                {
-                    target.Add(this.Map(ss[i], new TTarget(), context));
-                }
-            }
-            else if (source is IList<TSource> sList)
-            {
-                for (int i = 0; i < sList.Count; i++)
-                {
-                    target.Add(this.Map(sList[i], new TTarget(), context));
-                }
-            }
-            else
-            {
-                foreach (var item in source)
-                {
-                    target.Add(this.Map(item, new TTarget(), context));
-                }
-            }
-        }
-        private void MapToNullableStructCollection<TSource, TTarget>(IEnumerable<TSource> source, ICollection<Nullable<TTarget>> target, MapContext context)
-           where TTarget : struct
-        {
-            if (source == null || target == null) { return; }
-
-            target.Clear();
-            if (source is TSource[] ss)
-            {
-                for (int i = 0; i < ss.Length; i++)
-                {
-                    target.Add(this.Map(ss[i], new TTarget(), context));
-                }
-            }
-            else if (source is IList<TSource> sList)
-            {
-                for (int i = 0; i < sList.Count; i++)
-                {
-                    target.Add(this.Map(sList[i], new TTarget(), context));
-                }
-            }
-            else
-            {
-                foreach (var item in source)
-                {
-                    target.Add(this.Map(item, new TTarget(), context));
-                }
-            }
-        }
-        private void MapCollectionDeepCopy<TSource, TTarget>(IEnumerable<TSource> source, ICollection<TTarget> target, MapContext context)
-            where TSource : class
-            where TTarget : class
-        {
-            if (source == null || target == null) { return; }
-
-            target.Clear();
-            if (source is TSource[] ss)
-            {
-                for (int i = 0; i < ss.Length; i++)
-                {
-                    target.Add(ss[i] as TTarget);
-                }
-            }
-            else if (source is IList<TSource> sList)
-            {
-                for (int i = 0; i < sList.Count; i++)
-                {
-                    target.Add(sList[i] as TTarget);
-                }
-            }
-            else
-            {
-                foreach (var item in source)
-                {
-                    target.Add(item as TTarget);
-                }
-            }
-        }
-        private TTarget[] MapToArray<TSource, TTarget>(IEnumerable<TSource> source, MapContext context)
-            where TTarget : new()
-        {
-            if (source == null) { return null; }
-
-            if (source is TSource[] ss)
-            {
-                var tt = new TTarget[ss.Length];
-                for (int i = 0; i < ss.Length; i++)
-                {
-                    tt[i] = this.Map(ss[i], new TTarget(), context);
-                }
-                return tt;
-            }
-            else if (source is IList<TSource> sList)
-            {
-                var tt = new TTarget[sList.Count];
-                for (int i = 0; i < sList.Count; i++)
-                {
-                    tt[i] = this.Map(sList[i], new TTarget(), context);
-                }
-                return tt;
-            }
-            else if (source is ICollection<TSource> sCollection)
-            {
-                var tt = new TTarget[sCollection.Count];
-                var index = 0;
-                foreach (var item in sCollection)
-                {
-                    tt[index++] = this.Map(item, new TTarget(), context);
-                }
-                return tt;
-            }
-            else
-            {
-                return source.Select(el => this.Map(el, new TTarget(), context)).ToArray();
-            }
         }
 
         private List<Expression> CreateMapToDictionaryExpression(Type sourceType, Type targetType, MapParameterList parameterList)

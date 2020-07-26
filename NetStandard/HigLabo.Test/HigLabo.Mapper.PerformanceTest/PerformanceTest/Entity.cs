@@ -102,7 +102,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 Country = "Turkey " + GetRandomNumber(),
                 Id = 2,
                 Street = "Istiklal cad. " + GetRandomNumber(),
-                //Gps = new GpsPosition(-69, -60),
+                Gps = new GpsPosition(-69, -60),
             };
             customer.WorkAddresses = new List<Address>
             {
@@ -112,7 +112,7 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 5,
                     Street = "Istiklal cad. " + GetRandomNumber(),
-                    //Gps = new GpsPosition(13.35, 49.3),
+                    Gps = new GpsPosition(13.35, 49.3),
                 },
                 new Address()
                 {
@@ -120,7 +120,7 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 6,
                     Street = "Konak " + GetRandomNumber(),
-                    //Gps = new GpsPosition(3.91, 72.55),
+                    Gps = new GpsPosition(3.91, 72.55),
             }
             };
             customer.Addresses = new Address[]
@@ -131,7 +131,7 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 3,
                     Street = "Istiklal cad. " + GetRandomNumber(),
-                    //Gps = new GpsPosition(145, 36),
+                    Gps = new GpsPosition(145, 36),
                 },
                 new Address()
                 {
@@ -139,7 +139,7 @@ namespace HigLabo.Mapper.PerformanceTest
                     Country = "Turkey " + GetRandomNumber(),
                     Id = 4,
                     Street = "Konak " + GetRandomNumber(),
-                    //Gps = new GpsPosition(93, 60),
+                    Gps = new GpsPosition(93, 60),
                 }
             };
 
