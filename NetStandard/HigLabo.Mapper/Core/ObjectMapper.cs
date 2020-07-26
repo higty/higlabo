@@ -969,6 +969,7 @@ namespace HigLabo.Core
                 var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
                 var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
                 var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
+                var targetSetMethod = targetProperty.GetSetMethod();
 
                 if (targetProperty.PropertyType.IsArray)
                 {
@@ -977,7 +978,6 @@ namespace HigLabo.Core
                     {
                         if (sourceProperty.PropertyType.IsArray)
                         {
-                            var targetSetMethod = targetProperty.GetSetMethod();
                             if (targetSetMethod != null)
                             {
                                 MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
@@ -997,29 +997,26 @@ namespace HigLabo.Core
                 }
                 else
                 {
-                    var targetSetMethod = targetProperty.GetSetMethod();
-                    if (targetSetMethod != null)
+                    switch (this.CompilerConfig.CollectionPropertyCreateMode)
                     {
-                        switch (this.CompilerConfig.CollectionPropertyCreateMode)
-                        {
-                            case CollectionPropertyCreateMode.None: break;
-                            case CollectionPropertyCreateMode.NewObject:
-                                {
-                                    var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
-                                        , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
-                                    ee.Add(ifThen);
-                                }
-                                break;
-                            case CollectionPropertyCreateMode.Copy:
-                                if (sourceProperty.PropertyType == targetProperty.PropertyType)
-                                {
-                                    var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
-                                        , Expression.Assign(targetMember, sourceMember));
-                                    ee.Add(ifThen);
-                                }
-                                break;
-                            default: throw new InvalidOperationException();
-                        }
+                        case CollectionPropertyCreateMode.None: break;
+                        case CollectionPropertyCreateMode.NewObject:
+                            if (targetSetMethod != null)
+                            {
+                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                    , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
+                                ee.Add(ifThen);
+                            }
+                            break;
+                        case CollectionPropertyCreateMode.Copy:
+                            if (sourceProperty.PropertyType == targetProperty.PropertyType)
+                            {
+                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
+                                    , Expression.Assign(targetMember, sourceMember));
+                                ee.Add(ifThen);
+                            }
+                            break;
+                        default: throw new InvalidOperationException();
                     }
 
                     if (this.CompilerConfig.CollectionPropertyCreateMode == CollectionPropertyCreateMode.NewObject)
