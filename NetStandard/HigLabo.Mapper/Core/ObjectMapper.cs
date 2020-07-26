@@ -973,26 +973,75 @@ namespace HigLabo.Core
 
                 if (targetProperty.PropertyType.IsArray)
                 {
-                    var targetElementCostructor = targetElementType.GetConstructor(Type.EmptyTypes);
-                    if (targetElementCostructor == null)
+                    var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
+                    var targetElement = Expression.Variable(targetElementType, "targetElement");
+                    var elementParameter = new MapParameterList();
+                    elementParameter.Source = sourceElement;
+                    elementParameter.Target = targetElement;
+                    elementParameter.Context = p.Context;
+
+                    var loopBlock = new List<Expression>();
+                    var endLoop = Expression.Label("endLoop");
+
+                    if (sourceProperty.PropertyType.IsICollectionT())
                     {
-                        if (sourceProperty.PropertyType.IsArray)
+                        var index = Expression.Variable(typeof(Int32), "i");
+                        var arrayMember = Expression.Variable(targetProperty.PropertyType);
+                        
+                        loopBlock.Add(Expression.IfThen(
+                                    Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
+                                    Expression.Break(endLoop)
+                                    ));
+                        var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
+                        loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+                        if (targetElementType.IsNullable())
                         {
-                            if (targetSetMethod != null)
+                            var targetElementGenericType = targetElementType.GetGenericArguments()[0];
+                            var nullableTargetElement = Expression.TypeAs(Expression.New(targetElementGenericType), targetElementType);
+                            if (CanConvert(sourceElementType, targetElementGenericType))
                             {
-                                MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                                var body = Expression.Call(p.Target, targetSetMethod, getMethod);
-                                ee.Add(body);
+                                loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                            }
+                            else
+                            {
+                                //DoNothing
+                                //public struct Vector { int X, int Y } does not convert to public struct MapPoint { int X, int Y }
                             }
                         }
-                    }
-                    else
-                    {
-                        BinaryExpression setTarget = Expression.Assign(targetMember
-                            , Expression.Call(mapperMember, "MapToArray"
-                            , new Type[] { sourceElementType, targetElementType }
-                            , sourceMember, p.Context));
-                        ee.Add(setTarget);
+                        else
+                        {
+                            switch (this.CompilerConfig.CollectionElementCreateMode)
+                            {
+                                case CollectionElementCreateMode.NewObject:
+                                    loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                    loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    break;
+                                case CollectionElementCreateMode.Assign:
+                                    if (sourceElementType == targetElementType)
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, sourceElement));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    }
+                                    else if ((targetElementType.IsAssignableFrom(sourceElementType)))
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    }
+                                    break;
+                                default: throw new InvalidOperationException();
+                            }
+                        }
+                        loopBlock.Add(Expression.Assign(Expression.ArrayAccess(arrayMember, index), targetElement));
+                        loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
+                        var body = Expression.Block(new[] { sourceElement, targetElement, index, arrayMember }
+                        , index
+                        , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
+                        , arrayMember
+                        , Expression.Assign(arrayMember, Expression.NewArrayBounds(targetElementType, Expression.PropertyOrField(sourceMember, "Count")))
+                        , Expression.Loop(Expression.Block(loopBlock), endLoop)
+                        , Expression.Assign(targetMember, arrayMember));
+
+                        ee.Add(body);
                     }
                 }
                 else
@@ -1008,7 +1057,7 @@ namespace HigLabo.Core
                                 ee.Add(ifThen);
                             }
                             break;
-                        case CollectionPropertyCreateMode.Copy:
+                        case CollectionPropertyCreateMode.Assign:
                             if (sourceProperty.PropertyType == targetProperty.PropertyType)
                             {
                                 var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Default(targetProperty.PropertyType))
@@ -1061,7 +1110,7 @@ namespace HigLabo.Core
                                         loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
                                         loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
                                         break;
-                                    case CollectionElementCreateMode.Copy:
+                                    case CollectionElementCreateMode.Assign:
                                         if (sourceElementType == targetElementType)
                                         {
                                             loopBlock.Add(Expression.Assign(targetElement, sourceElement));

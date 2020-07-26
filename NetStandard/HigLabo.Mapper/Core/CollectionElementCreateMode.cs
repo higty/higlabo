@@ -16,8 +16,8 @@ namespace HigLabo.Core
         /// </summary>
         NewObject,
         /// <summary>
-        /// Copy instance from source property.
+        /// Assign instance from source property.
         /// </summary>
-        Copy,
+        Assign,
     }
 }
