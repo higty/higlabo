@@ -573,7 +573,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_NullListProperty_DeepCopy_AddElement()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.DeepCopy;
+            mapper.CompilerConfig.CollectionPropertyCreateMode = CollectionPropertyCreateMode.DeepCopy;
             var u1 = new User();
             var u2 = new User();
             u2.Users = null;

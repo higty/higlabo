@@ -18,6 +18,7 @@ namespace HigLabo.Core
             }
         }
         public ClassPropertyCreateMode ClassPropertyCreateMode { get; set; } = ClassPropertyCreateMode.NewObject;
+        public CollectionPropertyCreateMode CollectionPropertyCreateMode { get; set; } = CollectionPropertyCreateMode.NewObject;
         public CollectionElementCreateMode CollectionElementCreateMode { get; set; } = CollectionElementCreateMode.NewObject;
 
         public Boolean MatchProperty(PropertyInfo source, PropertyInfo target)
