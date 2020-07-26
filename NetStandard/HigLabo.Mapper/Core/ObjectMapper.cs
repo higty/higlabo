@@ -335,9 +335,9 @@ namespace HigLabo.Core
         }
         private class MapParameterList
         {
-            public ParameterExpression Source { get; set; }
-            public ParameterExpression Target { get; set; }
-            public ParameterExpression Context { get; set; }
+            public Expression Source { get; set; }
+            public Expression Target { get; set; }
+            public Expression Context { get; set; }
         }
 
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
@@ -770,7 +770,7 @@ namespace HigLabo.Core
             ee.Add(p.Target);
 
             BlockExpression block = Expression.Block(ee);
-            LambdaExpression lambda = Expression.Lambda(block, new[] { p.Source, p.Target, p.Context });
+            LambdaExpression lambda = Expression.Lambda(block, new[] { p.Source as ParameterExpression, p.Target as ParameterExpression, p.Context as ParameterExpression });
             return lambda;
         }
 
@@ -1024,10 +1024,35 @@ namespace HigLabo.Core
                                 }
                                 else
                                 {
-                                    MethodCallExpression setTarget = Expression.Call(mapperMember, "MapToCollection"
-                                        , new Type[] { sourceElementType, targetElementType }
-                                        , sourceMember, targetMember, p.Context);
-                                    ee.Add(setTarget);
+                                    var index = Expression.Variable(typeof(Int32), "i");
+                                    var sourceElement = Expression.Variable(sourceElementType, "source");
+                                    var targetElement = Expression.Variable(targetElementType, "target");
+                                    var elementParameter = new MapParameterList();
+                                    elementParameter.Source = sourceElement;
+                                    elementParameter.Target = targetElement;
+                                    elementParameter.Context = p.Context;
+
+                                    var endLoop = Expression.Label("endLoop");
+                                    
+                                    var loopBlock = new List<Expression>();
+                                    loopBlock.Add(Expression.IfThen(
+                                                Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
+                                                Expression.Break(endLoop)
+                                                ));
+                                    var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
+                                    loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+                                    loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+
+                                    loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
+                                    loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
+ 
+                                    var body = Expression.Block(new[] { index, sourceElement, targetElement }
+                                        , index
+                                        , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
+                                        , Expression.Loop(Expression.Block(loopBlock), endLoop));
+
+                                    ee.Add(body);
                                 }
                             }
                             break;
@@ -1385,6 +1410,13 @@ namespace HigLabo.Core
         private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
         private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
 
+        public static PropertyInfo GetIndexerProperty(this Type type)
+        {
+            var a = type.GetCustomAttributes<DefaultMemberAttribute>().FirstOrDefault();
+            if (a is null) { return null; }
+
+            return type.GetProperty(a.MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+        }
         public static Boolean IsDictionary(this Type type)
         {
             return type.FullName.StartsWith(System_Collections_Generic_Dictionary) ||

@@ -158,7 +158,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public Address Address { get; set; }
         public AddressDTO HomeAddress { get; set; }
         public AddressDTO[] Addresses { get; set; }
-        public List<AddressDTO> WorkAddresses { get; set; } = new List<AddressDTO>();
+        public List<AddressDTO> WorkAddresses { get; set; } 
         public String AddressCity { get; set; }
     }
 
