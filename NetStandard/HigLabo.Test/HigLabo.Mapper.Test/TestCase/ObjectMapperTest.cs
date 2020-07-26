@@ -37,6 +37,18 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
         }
         [TestMethod]
+        public void ObjectMapper_Map_String_Empty()
+        {
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            u1.Name = null;
+            var u2 = new User();
+            u2.Name = null;
+            mapper.Map(u1, u2);
+            Assert.AreEqual("", u2.Name);
+        }
+        [TestMethod]
         public void ObjectMapper_Map_ValueType_ValueType()
         {
             var mapper = new ObjectMapper();

@@ -62,6 +62,11 @@ namespace HigLabo.Core
                 this.Mapper = mapper;
             }
         }
+        private class CompileState
+        {
+            public Int32 Layer { get; set; } = 0;
+        }
+
         private class MapperMethodAttribute : Attribute
         {
         }
@@ -754,11 +759,12 @@ namespace HigLabo.Core
             }
             else
             {
-                foreach (var item in CreateMapPropertyExpression(sourceType, targetType, p))
+                var state = new CompileState();
+                foreach (var item in CreateMapPropertyExpression(sourceType, targetType, p, state))
                 {
                     ee.Add(item);
                 }
-                foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p))
+                foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p, state))
                 {
                     ee.Add(item);
                 }
@@ -771,10 +777,11 @@ namespace HigLabo.Core
             return lambda;
         }
 
-        private List<Expression> CreateMapPropertyExpression(Type sourceType, Type targetType, MapParameterList parameterList)
+        private List<Expression> CreateMapPropertyExpression(Type sourceType, Type targetType, MapParameterList parameterList, CompileState state)
         {
             var ee = new List<Expression>();
             if (sourceType == typeof(String) || targetType == typeof(String)) { return ee; }
+            if (state.Layer > this.CompilerConfig.ChildPropertyRecursiveCount) { return ee; }
 
             var p = parameterList;
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
@@ -835,7 +842,8 @@ namespace HigLabo.Core
                                 block.Add(Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
                                     , Expression.Assign(targetMember, Expression.New(targetProperty.PropertyType)))
                                     );
-                                block.AddRange(CreateMapPropertyExpression(sourceProperty.PropertyType, targetProperty.PropertyType, elementParameter));
+                                state.Layer = state.Layer + 1;
+                                block.AddRange(CreateMapPropertyExpression(sourceProperty.PropertyType, targetProperty.PropertyType, elementParameter, state));
                                 var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Constant(null, typeof(Object)))
                                           , Expression.Call(p.Target, setMethod, Expression.Default(targetProperty.PropertyType))
                                           , Expression.Block(block));
@@ -959,7 +967,7 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList)
+        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList, CompileState state)
         {
             var p = parameterList;
 
@@ -1043,24 +1051,24 @@ namespace HigLabo.Core
                                     if (sourceElementType == targetElementType && (sourceElementType == typeof(String) || sourceElementType.IsPrimitive))
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                     }
                                     else 
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                     }
                                     break;
                                 case CollectionElementCreateMode.Assign:
                                     if (sourceElementType == targetElementType)
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                     }
                                     else if ((targetElementType.IsAssignableFrom(sourceElementType)))
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                     }
                                     break;
                                 default: throw new InvalidOperationException();
@@ -1143,18 +1151,18 @@ namespace HigLabo.Core
                                 {
                                     case CollectionElementCreateMode.NewObject:
                                         loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                         break;
                                     case CollectionElementCreateMode.Assign:
                                         if (sourceElementType == targetElementType)
                                         {
                                             loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                         }
                                         else if ((targetElementType.IsAssignableFrom(sourceElementType)))
                                         {
                                             loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
-                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                                         }
                                         break;
                                     default: throw new InvalidOperationException();
@@ -1187,7 +1195,7 @@ namespace HigLabo.Core
                             loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
                             loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
 
-                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                             loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
 
                             var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
