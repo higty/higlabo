@@ -758,11 +758,9 @@ namespace HigLabo.Core
                 {
                     ee.Add(item);
                 }
+                foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p))
                 {
-                    foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p))
-                    {
-                        ee.Add(item);
-                    }
+                    ee.Add(item);
                 }
             }
             //Return value
@@ -776,6 +774,8 @@ namespace HigLabo.Core
         private List<Expression> CreateMapPropertyExpression(Type sourceType, Type targetType, MapParameterList parameterList)
         {
             var ee = new List<Expression>();
+            if (sourceType == typeof(String) || targetType == typeof(String)) { return ee; }
+
             var p = parameterList;
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
@@ -985,15 +985,34 @@ namespace HigLabo.Core
 
                     if (sourceProperty.PropertyType.IsICollectionT())
                     {
+                        //var array = new T[source.Count];
+                        //for (int i = 0; i < source.Count; i++)
+                        //{
+                        //    target = source[i];
+                        //    array[i] = target;
+                        //}
+                        //target.ArrayProperty = array;
                         var index = Expression.Variable(typeof(Int32), "i");
                         var arrayMember = Expression.Variable(targetProperty.PropertyType);
-                        
+
+                        var elementCountPropertyName = "Count";
+                        if (sourceProperty.PropertyType.IsArray)
+                        {
+                            elementCountPropertyName = "Length";
+                        }
                         loopBlock.Add(Expression.IfThen(
-                                    Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, "Count"), index),
+                                    Expression.LessThanOrEqual(Expression.PropertyOrField(sourceMember, elementCountPropertyName), index),
                                     Expression.Break(endLoop)
                                     ));
                         var indexerProperty = sourceProperty.PropertyType.GetIndexerProperty();
-                        loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+                        if (sourceProperty.PropertyType.IsArray)
+                        {
+                            loopBlock.Add(Expression.Assign(sourceElement, Expression.ArrayIndex(sourceMember, index)));
+                        }
+                        else
+                        {
+                            loopBlock.Add(Expression.Assign(sourceElement, Expression.Property(sourceMember, indexerProperty, index)));
+                        }
                         if (targetElementType.IsNullable())
                         {
                             var targetElementGenericType = targetElementType.GetGenericArguments()[0];
@@ -1013,8 +1032,16 @@ namespace HigLabo.Core
                             switch (this.CompilerConfig.CollectionElementCreateMode)
                             {
                                 case CollectionElementCreateMode.NewObject:
-                                    loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                    loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    if (sourceElementType == targetElementType && sourceElementType.IsPrimitive)
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, sourceElement));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    }
+                                    else 
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter));
+                                    }
                                     break;
                                 case CollectionElementCreateMode.Assign:
                                     if (sourceElementType == targetElementType)
@@ -1037,11 +1064,11 @@ namespace HigLabo.Core
                         , index
                         , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
                         , arrayMember
-                        , Expression.Assign(arrayMember, Expression.NewArrayBounds(targetElementType, Expression.PropertyOrField(sourceMember, "Count")))
+                        , Expression.Assign(arrayMember, Expression.NewArrayBounds(targetElementType, Expression.PropertyOrField(sourceMember, elementCountPropertyName)))
                         , Expression.Loop(Expression.Block(loopBlock), endLoop)
                         , Expression.Assign(targetMember, arrayMember));
 
-                        ee.Add(body);
+                        ee.Add(Expression.IfThen(Expression.NotEqual(sourceMember, Expression.Default(typeof(Object))), body));
                     }
                 }
                 else

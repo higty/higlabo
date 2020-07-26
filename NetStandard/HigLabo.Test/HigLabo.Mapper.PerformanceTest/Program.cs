@@ -21,7 +21,7 @@ namespace HigLabo.Mapper.PerformanceTest
 {
     public class TestIEnumerable
     {
-        public List<Person> PersonList { get; private set; } 
+        public IEnumerable<Person> PersonList { get; private set; } 
         public TestIEnumerable()
         {
             var l = new List<Person>();
@@ -93,8 +93,8 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
 
-            var l1 = new TestIEnumerable();
-            var l2 = HigLabo.Core.ObjectMapper.Default.Map(l1, new TestIEnumerable1());
+            //var l1 = new TestIEnumerable();
+            //var l2 = HigLabo.Core.ObjectMapper.Default.Map(l1, new TestIEnumerable1());
 
             //var a1 = Address.Create();
             //var a2 = HigLabo.Core.ObjectMapper.Default.Map(a1, new AddressDTO());
@@ -105,14 +105,14 @@ namespace HigLabo.Mapper.PerformanceTest
             //p1.PeopleList.Add(new People { Name = "Sho" });
             //p1 = HigLabo.Core.ObjectMapper.Default.Map(p, p1);
 
-            //var customer = Customer.Create();
+            var customer = Customer.Create();
             //var d = new Dictionary<String, String>();
             //d["Id"] = "123";
             //d["Name"] = "Defaullt Name";
             //HigLabo.Core.ObjectMapper.Default.Map(d, customer);
 
-            //var customer1 = new CustomerDTO();
-            //HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
+            var customer1 = new CustomerDTO();
+            HigLabo.Core.ObjectMapper.Default.Map(customer, customer1);
 
             //var c2 = customer.Adapt(new CustomerDTO());
 
