@@ -2,17 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.1</Version>
+    <Version>2.0.1.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>HigLabo.CodeGenerator is a library to generate C# source code.</Description>
     <Product />
     <Company />
     <Authors>Higty</Authors>
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
-    <RepositoryUrl>https://github.com/higty/higlabo.netstandard</RepositoryUrl>
-    <PackageReleaseNotes>HigLabo Library initial publish for .net standard.</PackageReleaseNotes>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <FileVersion>2.0.0.0</FileVersion>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <AssemblyVersion>2.0.1.1</AssemblyVersion>
+    <FileVersion>2.0.1.1</FileVersion>
   </PropertyGroup>
 
 </Project>

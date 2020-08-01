@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.1.0.0</Version>
+    <Version>2.1.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Library to use Facebook Bot framework.</Description>
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
     <Product />
     <Company />
     <Authors>Higty</Authors>
-    <RepositoryUrl>https://github.com/higty/higlabo.netstandard</RepositoryUrl>
-    <PackageReleaseNotes>HigLabo Library initial publish for .net standard.</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

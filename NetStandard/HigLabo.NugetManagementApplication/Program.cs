@@ -65,7 +65,7 @@ namespace HigLabo.NugetManagementApplication
             foreach (var path in pathList)
             {
                 var di = new DirectoryInfo(path);
-                sb.AppendFormat("nuget push {0} -s https://api.nuget.org/v3/index.json -k {1}", path, ApiKey);
+                sb.AppendFormat("nuget push {0} {1} -Source https://api.nuget.org/v3/index.json", path, ApiKey);
                 sb.AppendLine();
             }
             sb.AppendLine("pause");

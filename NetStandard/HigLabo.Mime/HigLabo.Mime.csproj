@@ -2,15 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
-    <Version>2.0.0.7</Version>
+    <Version>2.0.0.8</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>HigLabo.Mime is a mime parser.Ultimately fast to parse large EMail.You can easily use parsed object as strongly typed class.</Description>
     <Product />
     <Company />
     <Authors>Higty</Authors>
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
-    <RepositoryUrl>https://github.com/higty/higlabo.netstandard</RepositoryUrl>
-    <PackageReleaseNotes>HigLabo Library initial publish for .net standard.</PackageReleaseNotes>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
