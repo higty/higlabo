@@ -108,7 +108,7 @@ namespace HigLabo.Mapper.PerformanceTest
                 Id = 2,
                 Street = "Istiklal cad. " + GetRandomNumber(),
             };
-            customer.WorkAddressList = new List<Address>
+            customer.WorkAddressList = new Address[]
             {
                 new Address()
                 {

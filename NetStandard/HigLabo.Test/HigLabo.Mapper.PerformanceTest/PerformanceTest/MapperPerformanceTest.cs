@@ -79,6 +79,7 @@ namespace HigLabo.Mapper.PerformanceTest
             addressDto.Id = address.Id;
             addressDto.City = address.City;
             addressDto.Country = address.Country;
+            addressDto.AddressType = address.AddressType;
         }
         [Benchmark]
         public void HigLaboObjectMapper_Address()
@@ -247,19 +248,19 @@ namespace HigLabo.Mapper.PerformanceTest
             }
         }
         [Benchmark]
-        public void AutoMapper_Customer_CustomerDTO()
-        {
-            for (int i = 0; i < ExecuteCount; i++)
-            {
-                var r = this.AutoMapper.Map<CustomerDTO>(this.Customer);
-            }
-        }
-        [Benchmark]
         public void Mapster_Customer_CustomerDTO()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var r = this.Customer.Adapt(new CustomerDTO());
+            }
+        }
+        [Benchmark]
+        public void AutoMapper_Customer_CustomerDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = this.AutoMapper.Map<CustomerDTO>(this.Customer);
             }
         }
     }

@@ -465,7 +465,7 @@ namespace HigLabo.Core
             if (_MapActionList.TryGetValue(key, out var defaultMapFunc) == false)
             {
                 defaultMapFunc = CreateMapMethod(typeof(TSource), typeof(TTarget), _MapContext);
-                _MapActionList.Add(key, defaultMapFunc);
+                _MapActionList[key] = defaultMapFunc;
             }
             Func<TSource, TTarget, MapContext, TTarget> newMapFunc = (source, target, context) =>
             {
@@ -502,7 +502,7 @@ namespace HigLabo.Core
             if (_MapActionList.TryGetValue(key, out var func) == false)
             {
                 func = CreateMapMethod(key.Source, key.Target, context);
-                _MapActionList.Add(key, func);
+                _MapActionList[key] = func;
             }
             return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
         }
@@ -793,7 +793,7 @@ namespace HigLabo.Core
                 var targetProperty = item.target;
                 if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
           
-                MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                MemberExpression getMethod = Expression.Property(p.Source, sourceProperty);
                 var setMethod = targetProperty.GetSetMethod();
                 if (setMethod == null) { continue; }
 
@@ -831,8 +831,8 @@ namespace HigLabo.Core
                             var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
                             if (targetConstructor != null)
                             {
-                                var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                                var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                                var sourceMember = Expression.Property(p.Source, sourceProperty);
+                                var targetMember = Expression.Property(p.Target, targetProperty);
                                 var elementParameter = new MapParameterList();
                                 elementParameter.Source = sourceMember;
                                 elementParameter.Target = targetMember;
@@ -982,8 +982,8 @@ namespace HigLabo.Core
                 var targetProperty = item.target;
                 var targetElementType = targetProperty.PropertyType.GetCollectionElementType();
 
-                var sourceMember = Expression.PropertyOrField(p.Source, sourceProperty.Name);
-                var targetMember = Expression.PropertyOrField(p.Target, targetProperty.Name);
+                var sourceMember = Expression.Property(p.Source, sourceProperty);
+                var targetMember = Expression.Property(p.Target, targetProperty);
                 var sourceElementType = sourceProperty.PropertyType.GetCollectionElementType();
                 var targetSetMethod = targetProperty.GetSetMethod();
 
@@ -1055,8 +1055,12 @@ namespace HigLabo.Core
                                     }
                                     else 
                                     {
-                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                        var targetConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
+                                        if (targetConstructor != null)
+                                        {
+                                            loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                        }
                                     }
                                     break;
                                 case CollectionElementCreateMode.Assign:
@@ -1095,9 +1099,13 @@ namespace HigLabo.Core
                         case CollectionPropertyCreateMode.NewObject:
                             if (targetSetMethod != null)
                             {
-                                var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
+                                var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
+                                if (targetConstructor != null)
+                                {
+                                    var ifThen = Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
                                     , Expression.Call(p.Target, targetSetMethod, Expression.New(targetProperty.PropertyType)));
-                                ee.Add(ifThen);
+                                    ee.Add(ifThen);
+                                }
                             }
                             break;
                         case CollectionPropertyCreateMode.Assign:
@@ -1111,7 +1119,23 @@ namespace HigLabo.Core
                         default: throw new InvalidOperationException();
                     }
 
+                    var createMapExpression = false;
                     if (this.CompilerConfig.CollectionPropertyCreateMode == CollectionPropertyCreateMode.NewObject)
+                    {
+                        if (this.CompilerConfig.CollectionElementCreateMode == CollectionElementCreateMode.NewObject)
+                        {
+                            if (targetElementType.IsValueType || targetElementType.GetConstructor(Type.EmptyTypes) != null)
+                            {
+                                createMapExpression = true;
+                            }
+                        }
+                        else
+                        {
+                            createMapExpression = true;
+                        }
+                    }
+
+                    if (createMapExpression)
                     {
                         var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                         var targetElement = Expression.Variable(targetElementType, "targetElement");
@@ -1170,10 +1194,16 @@ namespace HigLabo.Core
                             }
                             loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
                             loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
+
+                            var endLabel = Expression.Label("end");
+                            
                             var body = Expression.Block(new[] { sourceElement, targetElement, index }
                             , index
+                            , Expression.IfThen(Expression.Equal(sourceMember, Expression.Constant(null, typeof(Object)))
+                            , Expression.Return(endLabel))
                             , Expression.Assign(index, Expression.Constant(0, typeof(Int32)))
-                            , Expression.Loop(Expression.Block(loopBlock), endLoop));
+                            , Expression.Loop(Expression.Block(loopBlock), endLoop)
+                            , Expression.Label(endLabel));
 
                             ee.Add(body);
                         }
@@ -1198,9 +1228,14 @@ namespace HigLabo.Core
                             loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
                             loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
 
+                            var endLabel = Expression.Label("end");
+
                             var body = Expression.Block(new[] { sourceElement, targetElement, enumerator }
                             , Expression.Assign(enumerator, Expression.Call(sourceMember, "GetEnumerator", Type.EmptyTypes))
-                            , Expression.Loop(Expression.Block(loopBlock), endLoop));
+                            , Expression.IfThen(Expression.Equal(enumerator, Expression.Constant(null, typeof(Object)))
+                            , Expression.Return(endLabel))
+                            , Expression.Loop(Expression.Block(loopBlock), endLoop)
+                            , Expression.Label(endLabel));
 
                             ee.Add(body);
                         }
@@ -1222,7 +1257,7 @@ namespace HigLabo.Core
                 var sourceProperty = item.Item1;
                 var targetProperty = item.Item2;
                 if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
-                MemberExpression getMethod = Expression.PropertyOrField(p.Source, sourceProperty.Name);
+                MemberExpression getMethod = Expression.Property(p.Source, sourceProperty);
                 var addMethod = targetType.GetMethod("Add");
 
                 {

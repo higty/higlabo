@@ -162,6 +162,23 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(s1.Title, s2.Title);
         }
+        [TestMethod]
+        public void ObjectMapper_Map_NullList_Property()
+        {
+            var mapper = new ObjectMapper();
+
+            var s1 = new GroupRecord();
+            var s2 = mapper.Map(s1, new GroupRecord());
+            //Widthout exception is okey.
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_ChildClass_Has_NewProperty()
+        {
+            var mapper = new ObjectMapper();
+
+            var s1 = new ArticleCategoryRecord();
+            var s2 = mapper.Map(s1, new ArticleCategoryRecordChild());
+        }
 
         [TestMethod]
         public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_None()

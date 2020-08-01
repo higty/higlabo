@@ -68,7 +68,7 @@ namespace HigLabo.Mapper.Test
         private T Map_GenericType_Object<T>(T value)
             where T: class, new()
         {
-            return value.Map(new T());
+            return ObjectMapConfig.Current.Map(value, new T());
         }
         [TestMethod]
         public void ObjectMapConfig_Map_Object_ValueType()
@@ -546,8 +546,8 @@ namespace HigLabo.Mapper.Test
             var config = new ObjectMapConfig();
             config.AddPostAction<User, UserFlatten>((source, target) =>
             {
-                source.Vector2.Map(target);
-                source.MapPoint.Map(target);
+                config.Map(source.Vector2, target);
+                config.Map(source.MapPoint, target);
             });
             var u1 = new User();
             var u2 = config.Map(u1, new UserFlatten());

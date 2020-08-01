@@ -16,7 +16,7 @@ namespace HigLabo.NugetManagementApplication
         {
             ApiKey = File.ReadAllText("C:\\Dev\\NugetPublishApiKey.txt").Trim();
             var ff = new List<String>();
-            ff.Add("C:\\GitHub\\higty\\HigLabo.NetStandard\\");
+            ff.Add("C:\\GitHub\\higty\\HigLabo\\NetStandard\\");
             var l = GetPackageList(ff);
 
             CreateUploadCommandFile(l);
