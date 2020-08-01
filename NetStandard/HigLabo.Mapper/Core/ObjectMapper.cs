@@ -345,6 +345,7 @@ namespace HigLabo.Core
             public Expression Context { get; set; }
         }
 
+        private static readonly Object _LockObject = new Object();
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<String, MethodInfo> _ParseOrNullMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
@@ -465,7 +466,10 @@ namespace HigLabo.Core
             if (_MapActionList.TryGetValue(key, out var defaultMapFunc) == false)
             {
                 defaultMapFunc = CreateMapMethod(typeof(TSource), typeof(TTarget), _MapContext);
-                _MapActionList[key] = defaultMapFunc;
+                lock (_LockObject)
+                {
+                    _MapActionList[key] = defaultMapFunc;
+                }
             }
             Func<TSource, TTarget, MapContext, TTarget> newMapFunc = (source, target, context) =>
             {
@@ -473,7 +477,10 @@ namespace HigLabo.Core
                 action(source, target);
                 return t;
             };
-            _MapActionList[key] = newMapFunc;
+            lock (_LockObject)
+            {
+                _MapActionList[key] = newMapFunc;
+            }
         }
         public void ReplaceMap<TSource, TTarget>(Func<TSource, TTarget, TTarget> func)
         {
@@ -481,7 +488,10 @@ namespace HigLabo.Core
             {
                 return func(source, target);
             };
-            _MapActionList[new ActionKey(typeof(TSource), typeof(TTarget))] = newMapFunc;
+            lock (_LockObject)
+            {
+                _MapActionList[new ActionKey(typeof(TSource), typeof(TTarget))] = newMapFunc;
+            }
         }
 
         private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapContext context)
@@ -502,7 +512,10 @@ namespace HigLabo.Core
             if (_MapActionList.TryGetValue(key, out var func) == false)
             {
                 func = CreateMapMethod(key.Source, key.Target, context);
-                _MapActionList[key] = func;
+                lock (_LockObject)
+                {
+                    _MapActionList[key] = func;
+                }
             }
             return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
         }
