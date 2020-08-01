@@ -19,20 +19,6 @@ using System.Buffers;
 
 namespace HigLabo.Mapper.PerformanceTest
 {
-    public class TestIEnumerable
-    {
-        public IEnumerable<Person> PersonList { get; private set; } 
-        public TestIEnumerable()
-        {
-            var l = new List<Person>();
-            l.Add(Person.Create());
-            this.PersonList = l;
-        }
-    }
-    public class TestIEnumerable1
-    {
-        public Person[] PersonList { get; set; } 
-    }
     class Program
     {
         static void Main(string[] args)

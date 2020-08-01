@@ -7,9 +7,9 @@ namespace HigLabo.Core
 {
     public class CompilerSetting
     {
-        private Func<PropertyInfo, PropertyInfo, Boolean> _PropertyMatchRule = (p1, p2) => p1.Name == p2.Name;
+        private Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> _PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == p2.Name;
 
-        public Func<PropertyInfo, PropertyInfo, Boolean> PropertyMatchRule
+        public Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> PropertyMatchRule
         {
             get { return _PropertyMatchRule; }
             set
@@ -23,9 +23,9 @@ namespace HigLabo.Core
         public CollectionElementCreateMode CollectionElementCreateMode { get; set; } = CollectionElementCreateMode.NewObject;
         public Int32 ChildPropertyRecursiveCount { get; set; } = 2;
 
-        public Boolean MatchProperty(PropertyInfo source, PropertyInfo target)
+        public Boolean MatchProperty(Type sourceType, PropertyInfo sourceProperty, Type targetType, PropertyInfo targetProperty)
         {
-            return _PropertyMatchRule(source, target);
+            return _PropertyMatchRule(sourceType, sourceProperty, targetType, targetProperty);
         }
     }
 }

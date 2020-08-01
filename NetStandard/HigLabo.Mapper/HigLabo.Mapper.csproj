@@ -18,8 +18,4 @@
     <PackageReference Include="System.Reflection.Emit.ILGeneration" Version="4.3.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
-  </ItemGroup>
-
 </Project>

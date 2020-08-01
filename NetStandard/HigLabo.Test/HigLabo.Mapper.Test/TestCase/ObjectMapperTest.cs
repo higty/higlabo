@@ -410,7 +410,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_FromDecimalToInt32()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Int32" && p2.Name == "Decimal";
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == "Int32" && p2.Name == "Decimal";
             
             var u1 = new User();
             u1.Int32 = 23;
@@ -496,7 +496,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_IDataReader_Object_With_DictionaryMappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
 
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
@@ -554,7 +554,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_List_NullableValueTypeList_MappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == p2.Name 
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == p2.Name 
             || (p1.Name == "Vectors" && p2.Name == "NullableVectors");
 
             var l1 = new VectorInfo();
@@ -724,7 +724,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_RemovePropertyMap()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == p2.Name && p2.Name != "Timestamp";
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == p2.Name && p2.Name != "Timestamp";
 
             var u1 = new User();
             u1.Timestamp = new Byte[] { 1, 3, 6 };
@@ -740,7 +740,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_RemoveAllPropertyMap()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => false;
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => false;
 
             var u1 = new User();
             u1.Value = "23.456";
@@ -770,7 +770,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_PropertyNameMappingRule_Failure()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Value" && p2.Name == "Decimal";
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == "Value" && p2.Name == "Decimal";
 
             var u1 = new User();
             u1.Value = "abc";
@@ -782,7 +782,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_SuffixPropertyMappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name + "Nullable" == p2.Name;
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name + "Nullable" == p2.Name;
 
             var u1 = new User();
             var u2 = mapper.Map(u1, new User());
@@ -797,7 +797,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_IgnoreUnderscorePropertyMappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name.Replace("_", "") == p2.Name.Replace("_", "");
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name.Replace("_", "") == p2.Name.Replace("_", "");
 
             var u1 = new User();
             u1.Int32Nullable = 3;
@@ -809,7 +809,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_CustomPropertyMappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Value" &&
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == "Value" &&
             (p2.Name == "Int32" || p2.Name == "DateTime" || p2.Name == "Decimal" || p2.Name == "DayOfWeek");
 
             var u1 = new User();
@@ -842,7 +842,7 @@ namespace HigLabo.Mapper.Test
             {
                 target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
             });
-            mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "Value" && p2.Name == "MapPoint";
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == "Value" && p2.Name == "MapPoint";
 
             var u1 = new User();
             u1.Value = "23, 45";
@@ -851,18 +851,6 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(23m, u2.MapPoint.Latitude);
             Assert.AreEqual(45m, u2.MapPoint.Longitude);
         }
-        //[TestMethod]
-        //public void ObjectMapper_CustomDictionaryMappingRule()
-        //{
-        //    var mapper = new ObjectMapper();
-        //    mapper.CompilerConfig.PropertyMatchRule = (p1, p2) => p1.Name == "int_nullable" && p2.Name == "Int32Nullable";
-
-        //    var d = new Dictionary<String, String>();
-        //    d["int_nullable"] = "8";
-        //    var u2 = mapper.Map(d, new User());
-
-        //    Assert.AreEqual(8, u2.Int32Nullable);
-        //}
 
 
         private MapPoint MapPointConverter(Object obj)

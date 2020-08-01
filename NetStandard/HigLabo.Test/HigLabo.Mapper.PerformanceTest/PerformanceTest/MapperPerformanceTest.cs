@@ -50,9 +50,10 @@ namespace HigLabo.Mapper.PerformanceTest
             });
             this.AutoMapper = _AutoMapperConfiguration.CreateMapper();
 
+            TinyMapper.Bind<Address, Address>();
+            TinyMapper.Bind<Address, AddressDTO>();
             TinyMapper.Bind<Customer, Customer>();
             TinyMapper.Bind<Customer, CustomerDTO>();
-            TinyMapper.Bind<Address, AddressDTO>();
 
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
             HigLabo.Core.ObjectMapper.Default.CompilerConfig.CollectionElementCreateMode = CollectionElementCreateMode.NewObject;
@@ -86,15 +87,15 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Address, new AddressDTO());
+                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Address, new Address());
             }
         }
         [Benchmark]
-        public void HigLaboMapper_Address()
+        public void HigLaboObjectMapConfig_Address()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = ObjectMapConfig.Current.Map(this.Address, new AddressDTO());
+                var r = ObjectMapConfig.Current.Map(this.Address, new Address());
             }
         }
         [Benchmark]
@@ -102,7 +103,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = this.Address.Adapt(new AddressDTO());
+                var r = this.Address.Adapt(new Address());
             }
         }
         [Benchmark]
@@ -110,7 +111,104 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
+                var r = this.AutoMapper.Map<Address>(this.Address);
+            }
+        }
+        [Benchmark]
+        public void ExpressMapper_Address()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = ExpressMapper.Mapper.Map<Address, Address>(this.Address);
+            }
+        }
+        [Benchmark]
+        public void AgileMapper_Address()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = AgileObjects.AgileMapper.Mapper.Map(this.Address).ToANew<Address>();
+            }
+        }
+        [Benchmark]
+        public void FastMapper_Address()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = FastMapper.TypeAdapter.Adapt<Address, Address>(this.Address);
+            }
+        }
+        [Benchmark]
+        public void TinyMapper_Address()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = TinyMapper.Map<Address>(this.Address);
+            }
+        }
+
+        [Benchmark]
+        public void HigLaboObjectMapper_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Address, new AddressDTO());
+            }
+        }
+        [Benchmark]
+        public void HigLaboObjectMapConfig_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = ObjectMapConfig.Current.Map(this.Address, new AddressDTO());
+            }
+        }
+        [Benchmark]
+        public void Mapster_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = this.Address.Adapt(new AddressDTO());
+            }
+        }
+        [Benchmark]
+        public void AutoMapper_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
                 var r = this.AutoMapper.Map<AddressDTO>(this.Address);
+            }
+        }
+        [Benchmark]
+        public void ExpressMapper_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = ExpressMapper.Mapper.Map<Address, AddressDTO>(this.Address);
+            }
+        }
+        [Benchmark]
+        public void AgileMapper_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = AgileObjects.AgileMapper.Mapper.Map(this.Address).ToANew<AddressDTO>();
+            }
+        }
+        [Benchmark]
+        public void FastMapper_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = FastMapper.TypeAdapter.Adapt<Address, AddressDTO>(this.Address);
+            }
+        }
+        [Benchmark]
+        public void TinyMapper_AddressDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var addressDto = TinyMapper.Map<AddressDTO>(this.Address);
             }
         }
 
@@ -123,7 +221,7 @@ namespace HigLabo.Mapper.PerformanceTest
             }
         }
         [Benchmark]
-        public void HigLaboMapper_Customer()
+        public void HigLaboObjectMapConfig_Customer()
         {
             for (int i = 0; i < ExecuteCount; i++)
             {

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.Reflection;
-using System.Linq;
-using System.Text;
-using System.Reflection.Emit;
-using System.ComponentModel;
 
 namespace HigLabo.Core
 {

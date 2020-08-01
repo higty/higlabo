@@ -172,7 +172,7 @@ namespace HigLabo.Core
             public static T Enum<T>(String value, T defaultValue)
                 where T : struct
             {
-                if (HigLabo.Core.Enum<T>.TryParse(value, out var v)) { return v; }
+                if (System.Enum.TryParse<T>(value, out var v)) { return v; }
                 return defaultValue;
             }
 
@@ -298,7 +298,7 @@ namespace HigLabo.Core
             public static T? Enum<T>(String value, T? defaultValue)
                 where T: struct
             {
-                if (HigLabo.Core.Enum<T>.TryParse(value, out var v)) { return v; }
+                if (System.Enum.TryParse<T>(value, out var v)) { return v; }
                 return defaultValue;
             }
             [MapperMethod]
@@ -517,7 +517,14 @@ namespace HigLabo.Core
                     _MapActionList[key] = func;
                 }
             }
-            return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
+            try
+            {
+                return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         private Delegate CreateMapMethod(Type sourceType, Type targetType, MapContext context)
         {
@@ -547,8 +554,8 @@ namespace HigLabo.Core
 
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
+                    if (p.DeclaringType == typeof(Object)) { continue; }
                     if (p.GetGetMethod() == null) { continue; }
-                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
                     if (p.PropertyType.Name != nameof(String) && p.PropertyType.IsDictionary() == false)
                     {
                         if (p.PropertyType.IsArray || p.PropertyType.IsIEnumerableT()) { continue; }
@@ -571,7 +578,7 @@ namespace HigLabo.Core
 
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
-                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (p.DeclaringType == typeof(Object)) { continue; }
                     if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
                     if (p.PropertyType.Name != nameof(String) && p.PropertyType.IsDictionary() == false)
                     {
@@ -589,7 +596,7 @@ namespace HigLabo.Core
 
             foreach (var targetProperty in targetPropertyList)
             {
-                var sourceProperty = sourcePropertyList.Find(el => this.CompilerConfig.MatchProperty(el, targetProperty));
+                var sourceProperty = sourcePropertyList.Find(el => this.CompilerConfig.MatchProperty(sourceType, el, targetType, targetProperty));
                 if (sourceProperty == null) { continue; }
 
                 pp.Add((sourceProperty, targetProperty));
@@ -621,7 +628,7 @@ namespace HigLabo.Core
                     if (p.GetGetMethod() == null) { continue; }
                     if (p.PropertyType.Name == nameof(String)) { continue; }
                     if (p.PropertyType.Name == "Dictionary`2") { continue; }
-                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
+                    if (p.DeclaringType == typeof(Object)) { continue; }
                     if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
                     //Check source is IEnumerable
                     if (p.PropertyType.IsArray == false && p.PropertyType.IsIEnumerableT() == false) { continue; }
@@ -635,9 +642,9 @@ namespace HigLabo.Core
 
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
-                    if (p.Name == "SyncRoot" && p.PropertyType == typeof(Object)) { continue; }
                     if (p.PropertyType.Name == nameof(String)) { continue; }
                     if (p.PropertyType.Name == "Dictionary`2") { continue; }
+                    if (p.DeclaringType == typeof(Object)) { continue; }
                     if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
                     //Check source is ICollection
                     if (p.PropertyType.IsArray == false && p.PropertyType.IsICollectionT() == false) { continue; }
@@ -652,7 +659,7 @@ namespace HigLabo.Core
             }
             foreach (var targetProperty in targetPropertyList)
             {
-                var sourceProperty = sourcePropertyList.Find(el => this.CompilerConfig.MatchProperty(el, targetProperty));
+                var sourceProperty = sourcePropertyList.Find(el => this.CompilerConfig.MatchProperty(sourceType, el, targetType, targetProperty));
                 if (sourceProperty == null) { continue; }
 
                 pp.Add((sourceProperty, targetProperty));
@@ -1441,57 +1448,6 @@ namespace HigLabo.Core
             if (sourceType == targetType) { return true; }
             if (_CanConvertList.TryGetValue(new ActionKey(sourceType, targetType), out var result)) { return result; }
             return false;
-        }
-    }
-    public static class TypeExtensions
-    {
-        private static readonly String System_Collections_Generic_Dictionary = "System.Collections.Generic.Dictionary";
-        private static readonly String System_Collections_Generic_ICollection_1 = "System.Collections.Generic.ICollection`1";
-        private static readonly String System_Collections_Generic_IEnumerable_1 = "System.Collections.Generic.IEnumerable`1";
-
-        public static PropertyInfo GetIndexerProperty(this Type type)
-        {
-            var a = type.GetCustomAttributes<DefaultMemberAttribute>().FirstOrDefault();
-            if (a is null) { return null; }
-
-            return type.GetProperty(a.MemberName, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
-        }
-        public static Boolean IsDictionary(this Type type)
-        {
-            return type.FullName.StartsWith(System_Collections_Generic_Dictionary) ||
-                type.GetInterfaces().Any(tp => tp.FullName.StartsWith(System_Collections_Generic_Dictionary));
-        }
-        public static Boolean IsIEnumerableT(this Type type)
-        {
-            return type.FullName.StartsWith(System_Collections_Generic_IEnumerable_1) ||
-                type.GetInterfaces().Any(tp => tp.FullName.StartsWith(System_Collections_Generic_IEnumerable_1));
-        }
-        public static Boolean IsICollectionT(this Type type)
-        {
-            return type.FullName.StartsWith(System_Collections_Generic_ICollection_1) ||
-                type.GetInterfaces().Any(tp => tp.FullName.StartsWith(System_Collections_Generic_ICollection_1));
-        }
-        public static Boolean IsNullable(this Type type)
-        {
-            return type.FullName.StartsWith("System.Nullable`1[");
-        }
-        public static Boolean IsNumber(Type type)
-        {
-            return type == typeof(SByte) || type == typeof(Int16) || type == typeof(Int32) || type == typeof(Int64) ||
-                type == typeof(Byte) || type == typeof(UInt16) || type == typeof(UInt32) || type == typeof(UInt64) ||
-                type == typeof(Single) || type == typeof(Double) || type == typeof(Decimal);
-        }
-        public static Type GetCollectionElementType(this Type type)
-        {
-            if (type.IsArray) { type.GetElementType(); }
-            if (IsGenericEnumerableType(type)) { return type.GetGenericArguments()[0]; }
-            var arrayType = Array.Find(type.GetInterfaces(), IsGenericEnumerableType);
-            if (arrayType == null) { return typeof(Object); }
-            return arrayType.GetGenericArguments()[0];
-        }
-        private static Boolean IsGenericEnumerableType(this Type type)
-        {
-            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(IEnumerable<>);
         }
     }
 }
