@@ -338,7 +338,7 @@ namespace HigLabo.Core
             public PropertyInfo Source { get; set; }
             public PropertyInfo Target { get; set; }
         }
-        private class MapParameterList
+        private class LocalVariable
         {
             public Expression Source { get; set; }
             public Expression Target { get; set; }
@@ -471,10 +471,10 @@ namespace HigLabo.Core
                     _MapActionList[key] = defaultMapFunc;
                 }
             }
-            Func<TSource, TTarget, MapContext, TTarget> newMapFunc = (source, target, context) =>
+            Func<Object, Object, MapContext, TTarget> newMapFunc = (source, target, context) =>
             {
-                var t = ((Func<TSource, TTarget, MapContext, TTarget>)defaultMapFunc)(source, target, context);
-                action(source, target);
+                var t = ((Func<Object, Object, MapContext, TTarget>)defaultMapFunc)(source, target, context);
+                action((TSource)source, (TTarget)target);
                 return t;
             };
             lock (_LockObject)
@@ -484,9 +484,9 @@ namespace HigLabo.Core
         }
         public void ReplaceMap<TSource, TTarget>(Func<TSource, TTarget, TTarget> func)
         {
-            Func<TSource, TTarget, MapContext, TTarget> newMapFunc = (source, target, context) =>
+            Func<Object, Object, MapContext, TTarget> newMapFunc = (source, target, context) =>
             {
-                return func(source, target);
+                return func((TSource)source, (TTarget)target);
             };
             lock (_LockObject)
             {
@@ -519,7 +519,7 @@ namespace HigLabo.Core
             }
             try
             {
-                return ((Func<TSource, TTarget, MapContext, TTarget>)func)(source, target, context);
+                return ((Func<Object, Object, MapContext, TTarget>)func)(source, target, context);
             }
             catch (Exception ex)
             {
@@ -742,12 +742,33 @@ namespace HigLabo.Core
 
         private LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType, MapContext context)
         {
-            var p = new MapParameterList();
-            p.Source = Expression.Parameter(sourceType, "source");
-            p.Target = Expression.Parameter(targetType, "target");
-            p.Context = Expression.Parameter(typeof(MapContext), "mapContext");
+            var p = new LocalVariable();
+            var sourceParameter = Expression.Parameter(typeof(Object), "sourceParameter");
+            var targetParameter = Expression.Parameter(typeof(Object), "targetParameter");
+            p.Context = Expression.Parameter(typeof(MapContext), "context");
 
             var ee = new List<Expression>();
+
+            p.Source = Expression.Variable(sourceType, "source");
+            p.Target = Expression.Variable(targetType, "target");
+
+            if (sourceType.IsValueType)
+            {
+                ee.Add(Expression.Assign(p.Source, Expression.Unbox(sourceParameter, sourceType)));
+            }
+            else
+            {
+                ee.Add(Expression.Assign(p.Source, Expression.TypeAs(sourceParameter, sourceType)));
+            }
+            if (targetType.IsValueType)
+            {
+                ee.Add(Expression.Assign(p.Target, Expression.Unbox(targetParameter, targetType)));
+            }
+            else
+            {
+                ee.Add(Expression.Assign(p.Target, Expression.TypeAs(targetParameter, targetType)));
+            }
+
             if (sourceType == typeof(Dictionary<String, String>) ||
                 sourceType == typeof(Dictionary<String, Object>))
             {
@@ -792,12 +813,12 @@ namespace HigLabo.Core
             //Return value
             ee.Add(p.Target);
 
-            BlockExpression block = Expression.Block(ee);
-            LambdaExpression lambda = Expression.Lambda(block, new[] { p.Source as ParameterExpression, p.Target as ParameterExpression, p.Context as ParameterExpression });
+            BlockExpression block = Expression.Block(new[] { p.Source as ParameterExpression, p.Target as ParameterExpression }, ee);
+            LambdaExpression lambda = Expression.Lambda(block, new[] { sourceParameter, targetParameter, p.Context as ParameterExpression });
             return lambda;
         }
 
-        private List<Expression> CreateMapPropertyExpression(Type sourceType, Type targetType, MapParameterList parameterList, CompileState state)
+        private List<Expression> CreateMapPropertyExpression(Type sourceType, Type targetType, LocalVariable parameterList, CompileState state)
         {
             var ee = new List<Expression>();
             if (sourceType == typeof(String) || targetType == typeof(String)) { return ee; }
@@ -853,7 +874,7 @@ namespace HigLabo.Core
                             {
                                 var sourceMember = Expression.Property(p.Source, sourceProperty);
                                 var targetMember = Expression.Property(p.Target, targetProperty);
-                                var elementParameter = new MapParameterList();
+                                var elementParameter = new LocalVariable();
                                 elementParameter.Source = sourceMember;
                                 elementParameter.Target = targetMember;
                                 elementParameter.Context = p.Context;
@@ -987,7 +1008,7 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, MapParameterList parameterList, CompileState state)
+        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, LocalVariable parameterList, CompileState state)
         {
             var p = parameterList;
 
@@ -1011,7 +1032,7 @@ namespace HigLabo.Core
                 {
                     var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                     var targetElement = Expression.Variable(targetElementType, "targetElement");
-                    var elementParameter = new MapParameterList();
+                    var elementParameter = new LocalVariable();
                     elementParameter.Source = sourceElement;
                     elementParameter.Target = targetElement;
                     elementParameter.Context = p.Context;
@@ -1159,7 +1180,7 @@ namespace HigLabo.Core
                     {
                         var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                         var targetElement = Expression.Variable(targetElementType, "targetElement");
-                        var elementParameter = new MapParameterList();
+                        var elementParameter = new LocalVariable();
                         elementParameter.Source = sourceElement;
                         elementParameter.Target = targetElement;
                         elementParameter.Context = p.Context;
@@ -1266,7 +1287,7 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapToDictionaryExpression(Type sourceType, Type targetType, MapParameterList parameterList)
+        private List<Expression> CreateMapToDictionaryExpression(Type sourceType, Type targetType, LocalVariable parameterList)
         {
             var ee = new List<Expression>();
             var p = parameterList;
@@ -1306,7 +1327,7 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, MapParameterList parameterList)
+        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, LocalVariable parameterList)
         {
             var ee = new List<Expression>();
             var p = parameterList;

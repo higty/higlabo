@@ -40,6 +40,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public string City { get; set; }
         public string Country { get; set; }
         public AddressType AddressType { get; set; }
+        public GpsPosition Gps { get; set; }
 
         public static Address Create()
         {
@@ -63,6 +64,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public string City { get; set; }
         public string Country { get; set; }
         public AddressType AddressType { get; set; } = AddressType.House;
+        public GpsPosition Gps { get; set; }
     }
     public struct GpsPosition
     {

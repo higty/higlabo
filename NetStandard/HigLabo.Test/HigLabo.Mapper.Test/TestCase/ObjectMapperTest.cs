@@ -179,6 +179,17 @@ namespace HigLabo.Mapper.Test
             var s1 = new ArticleCategoryRecord();
             var s2 = mapper.Map(s1, new ArticleCategoryRecordChild());
         }
+        [TestMethod]
+        public void ObjectMapper_Map_InnerClass()
+        {
+            var mapper = new ObjectMapper();
+
+            var g1 = new TaskRecordChild();
+            g1.Title = "Group1";
+            var g2 = mapper.Map(g1, new NewsRecord.TaskRecord(g1));
+
+            Assert.AreEqual(g1.Title, g2.Title);
+        }
 
         [TestMethod]
         public void ObjectMapper_Map_ClassPropertyCreateMode_NullProperty_None()
@@ -842,7 +853,14 @@ namespace HigLabo.Mapper.Test
             {
                 target.MapPoint = MapPointConverter(source.Value) ?? target.MapPoint;
             });
-            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == "Value" && p2.Name == "MapPoint";
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) =>
+            {
+                if (c1 == typeof(User) && c2 == typeof(User))
+                {
+                    return p1.Name == "Value" && p2.Name == "MapPoint";
+                }
+                return false;
+            };
 
             var u1 = new User();
             u1.Value = "23, 45";

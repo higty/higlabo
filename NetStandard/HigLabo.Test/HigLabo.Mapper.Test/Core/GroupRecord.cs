@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HigLabo.Core;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,8 +12,6 @@ namespace HigLabo.Mapper.Test
     }
     public class GroupRecord 
     {
-        public static Int32 MaxUserCount = 1000;
-
         public Guid GroupCD { get; set; }
         public String DisplayName { get; set; }
         public Guid? ParentGroupCD { get; set; }
@@ -30,6 +29,28 @@ namespace HigLabo.Mapper.Test
         public new List<User> UserList { get; set; } = new List<User>();
     }
 
+    public class TaskRecord
+    {
+        public Guid TaskCD { get; set; }
+        public String Title { get; set; }
+    }
+    public class TaskRecordChild : TaskRecord
+    {
+        public DateTime DueDate { get; set; }
+    }
+    public class NewsRecord
+    {
+        public class TaskRecord
+        {
+            public Guid TaskCD { get; set; }
+            public String Title { get; set; }
+
+            public TaskRecord(HigLabo.Mapper.Test.TaskRecord record)
+            {
+                ObjectMapper.Default.Map(record, this);
+            }
+        }
+    }
 
     public class ArticleCategoryRecord 
     {
