@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 
@@ -342,7 +343,7 @@ namespace HigLabo.Core
         {
             public Expression Source { get; set; }
             public Expression Target { get; set; }
-            public Expression Context { get; set; }
+            public ParameterExpression Context { get; set; }
         }
 
         private static readonly Object _LockObject = new Object();
@@ -523,8 +524,14 @@ namespace HigLabo.Core
             }
             catch (Exception ex)
             {
-                throw;
+                var ex1 = new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
+                        + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to GitHub issue."
+                        + "We will fix it. You can avoid this issue by using ReplaceMap method temporary." + Environment.NewLine
+                        + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
+                        , source, target, ex);
+                ExceptionDispatchInfo.Capture(ex1).Throw();
             }
+            throw new InvalidOperationException();
         }
         private Delegate CreateMapMethod(Type sourceType, Type targetType, MapContext context)
         {
@@ -814,7 +821,7 @@ namespace HigLabo.Core
             ee.Add(p.Target);
 
             BlockExpression block = Expression.Block(new[] { p.Source as ParameterExpression, p.Target as ParameterExpression }, ee);
-            LambdaExpression lambda = Expression.Lambda(block, new[] { sourceParameter, targetParameter, p.Context as ParameterExpression });
+            LambdaExpression lambda = Expression.Lambda(block, new[] { sourceParameter, targetParameter, p.Context });
             return lambda;
         }
 

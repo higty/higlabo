@@ -125,7 +125,10 @@ namespace HigLabo.Mapper.PerformanceTest
         public ScheduleType ScheduleType { get; set; }
         public List<People> Peoples { get; set; }
         public String[] Tags { get; set; }
-
+    }
+    public class ScheduleChild : Schedule
+    {
+        public String Title { get; set; }
     }
     public enum ScheduleType
     {
