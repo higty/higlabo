@@ -525,7 +525,8 @@ namespace HigLabo.Core
             catch (Exception ex)
             {
                 var ex1 = new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
-                        + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to GitHub issue."
+                        + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to GitHub issue." + Environment.NewLine
+                        + "https://github.com/higty/higlabo" + Environment.NewLine
                         + "We will fix it. You can avoid this issue by using ReplaceMap method temporary." + Environment.NewLine
                         + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
                         , source, target, ex);
