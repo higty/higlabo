@@ -339,8 +339,10 @@ namespace HigLabo.Core
             public PropertyInfo Source { get; set; }
             public PropertyInfo Target { get; set; }
         }
-        private class LocalVariable
+        private class ExpressionInfo
         {
+            public Type SourceType { get; set; }
+            public Type TargetType { get; set; }
             public Expression Source { get; set; }
             public Expression Target { get; set; }
             public ParameterExpression Context { get; set; }
@@ -466,7 +468,7 @@ namespace HigLabo.Core
             var key = new ActionKey(typeof(TSource), typeof(TTarget));
             if (_MapActionList.TryGetValue(key, out var defaultMapFunc) == false)
             {
-                defaultMapFunc = CreateMapMethod(typeof(TSource), typeof(TTarget), _MapContext);
+                defaultMapFunc = CreateMapMethod(typeof(TSource), typeof(TTarget));
                 lock (_LockObject)
                 {
                     _MapActionList[key] = defaultMapFunc;
@@ -512,7 +514,7 @@ namespace HigLabo.Core
         {
             if (_MapActionList.TryGetValue(key, out var func) == false)
             {
-                func = CreateMapMethod(key.Source, key.Target, context);
+                func = CreateMapMethod(key.Source, key.Target);
                 lock (_LockObject)
                 {
                     _MapActionList[key] = func;
@@ -534,9 +536,9 @@ namespace HigLabo.Core
             }
             throw new InvalidOperationException();
         }
-        private Delegate CreateMapMethod(Type sourceType, Type targetType, MapContext context)
+        private Delegate CreateMapMethod(Type sourceType, Type targetType)
         {
-            var lambda = CreateFunctionExpression(sourceType, targetType, context);
+            var lambda = CreateFunctionExpression(sourceType, targetType);
             return lambda.Compile();
         }
 
@@ -748,15 +750,16 @@ namespace HigLabo.Core
             return pp;
         }
 
-        private LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType, MapContext context)
+        private LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType)
         {
-            var p = new LocalVariable();
+            var p = new ExpressionInfo();
             var sourceParameter = Expression.Parameter(typeof(Object), "sourceParameter");
             var targetParameter = Expression.Parameter(typeof(Object), "targetParameter");
             p.Context = Expression.Parameter(typeof(MapContext), "context");
 
             var ee = new List<Expression>();
-
+            p.SourceType = sourceType;
+            p.TargetType = targetType;
             p.Source = Expression.Variable(sourceType, "source");
             p.Target = Expression.Variable(targetType, "target");
 
@@ -801,7 +804,7 @@ namespace HigLabo.Core
             else if (targetType == typeof(Dictionary<String, String>) ||
                 targetType == typeof(Dictionary<String, Object>))
             {
-                foreach (var item in CreateMapToDictionaryExpression(sourceType, targetType, p))
+                foreach (var item in CreateMapToDictionaryExpression(p))
                 {
                     ee.Add(item);
                 }
@@ -809,11 +812,11 @@ namespace HigLabo.Core
             else
             {
                 var state = new CompileState();
-                foreach (var item in CreateMapPropertyExpression(sourceType, targetType, p, state))
+                foreach (var item in ValidateCompileStateAndCreateMapPropertyExpression(p, state))
                 {
                     ee.Add(item);
                 }
-                foreach (var item in CreateMapCollectionExpression(sourceType, targetType, context, p, state))
+                foreach (var item in CreateMapCollectionExpression(p, state))
                 {
                     ee.Add(item);
                 }
@@ -826,13 +829,22 @@ namespace HigLabo.Core
             return lambda;
         }
 
-        private List<Expression> CreateMapPropertyExpression(Type sourceType, Type targetType, LocalVariable parameterList, CompileState state)
+        private List<Expression> ValidateCompileStateAndCreateMapPropertyExpression(ExpressionInfo variableList, CompileState state)
+        {
+            if (state.Layer > this.CompilerConfig.ChildPropertyRecursiveCount) { return new List<Expression>(); }
+            state.Layer = state.Layer + 1;
+            var ee = CreateMapPropertyExpression(variableList, state);
+            state.Layer = state.Layer - 1;
+            return ee;
+        }
+        private List<Expression> CreateMapPropertyExpression(ExpressionInfo variableList, CompileState state)
         {
             var ee = new List<Expression>();
+            var p = variableList;
+            var sourceType = p.SourceType;
+            var targetType = p.TargetType;
             if (sourceType == typeof(String) || targetType == typeof(String)) { return ee; }
-            if (state.Layer > this.CompilerConfig.ChildPropertyRecursiveCount) { return ee; }
 
-            var p = parameterList;
             var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
             var pp = CreatePropertyMapping(sourceType, targetType);
@@ -882,7 +894,9 @@ namespace HigLabo.Core
                             {
                                 var sourceMember = Expression.Property(p.Source, sourceProperty);
                                 var targetMember = Expression.Property(p.Target, targetProperty);
-                                var elementParameter = new LocalVariable();
+                                var elementParameter = new ExpressionInfo();
+                                elementParameter.SourceType = sourceProperty.PropertyType;
+                                elementParameter.TargetType = targetProperty.PropertyType;
                                 elementParameter.Source = sourceMember;
                                 elementParameter.Target = targetMember;
                                 elementParameter.Context = p.Context;
@@ -891,8 +905,7 @@ namespace HigLabo.Core
                                 block.Add(Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
                                     , Expression.Assign(targetMember, Expression.New(targetProperty.PropertyType)))
                                     );
-                                state.Layer = state.Layer + 1;
-                                block.AddRange(CreateMapPropertyExpression(sourceProperty.PropertyType, targetProperty.PropertyType, elementParameter, state));
+                                block.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                 var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Constant(null, typeof(Object)))
                                           , Expression.Call(p.Target, setMethod, Expression.Default(targetProperty.PropertyType))
                                           , Expression.Block(block));
@@ -1016,11 +1029,12 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapCollectionExpression(Type sourceType, Type targetType, MapContext context, LocalVariable parameterList, CompileState state)
+        private List<Expression> CreateMapCollectionExpression(ExpressionInfo parameterList, CompileState state)
         {
-            var p = parameterList;
-
             var ee = new List<Expression>();
+            var p = parameterList;
+            var sourceType = p.SourceType;
+            var targetType = p.TargetType;
 
             var pp = this.CreateCollectionPropertyMapping(sourceType, targetType);
             if (pp.Count == 0) { return ee; }
@@ -1040,7 +1054,9 @@ namespace HigLabo.Core
                 {
                     var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                     var targetElement = Expression.Variable(targetElementType, "targetElement");
-                    var elementParameter = new LocalVariable();
+                    var elementParameter = new ExpressionInfo();
+                    elementParameter.SourceType = sourceElementType;
+                    elementParameter.TargetType = targetElementType;
                     elementParameter.Source = sourceElement;
                     elementParameter.Target = targetElement;
                     elementParameter.Context = p.Context;
@@ -1100,7 +1116,7 @@ namespace HigLabo.Core
                                     if (sourceElementType == targetElementType && (sourceElementType == typeof(String) || sourceElementType.IsPrimitive))
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                        loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                     }
                                     else 
                                     {
@@ -1108,7 +1124,7 @@ namespace HigLabo.Core
                                         if (targetConstructor != null)
                                         {
                                             loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                            loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                         }
                                     }
                                     break;
@@ -1116,12 +1132,12 @@ namespace HigLabo.Core
                                     if (sourceElementType == targetElementType)
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                        loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                     }
                                     else if ((targetElementType.IsAssignableFrom(sourceElementType)))
                                     {
                                         loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                        loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                     }
                                     break;
                                 default: throw new InvalidOperationException();
@@ -1188,7 +1204,9 @@ namespace HigLabo.Core
                     {
                         var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                         var targetElement = Expression.Variable(targetElementType, "targetElement");
-                        var elementParameter = new LocalVariable();
+                        var elementParameter = new ExpressionInfo();
+                        elementParameter.SourceType = sourceElementType;
+                        elementParameter.TargetType = targetElementType;
                         elementParameter.Source = sourceElement;
                         elementParameter.Target = targetElement;
                         elementParameter.Context = p.Context;
@@ -1224,18 +1242,18 @@ namespace HigLabo.Core
                                 {
                                     case CollectionElementCreateMode.NewObject:
                                         loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
-                                        loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                        loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                         break;
                                     case CollectionElementCreateMode.Assign:
                                         if (sourceElementType == targetElementType)
                                         {
                                             loopBlock.Add(Expression.Assign(targetElement, sourceElement));
-                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                            loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                         }
                                         else if ((targetElementType.IsAssignableFrom(sourceElementType)))
                                         {
                                             loopBlock.Add(Expression.Assign(targetElement, Expression.TypeAs(sourceElement, targetElementType)));
-                                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                                            loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                         }
                                         break;
                                     default: throw new InvalidOperationException();
@@ -1274,7 +1292,7 @@ namespace HigLabo.Core
                             loopBlock.Add(Expression.Assign(sourceElement, Expression.TypeAs(Expression.Property(enumerator, "Current"), sourceElementType)));
                             loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
 
-                            loopBlock.AddRange(CreateMapPropertyExpression(sourceElementType, targetElementType, elementParameter, state));
+                            loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                             loopBlock.Add(Expression.Call(targetMember, "Add", Type.EmptyTypes, targetElement));
 
                             var endLabel = Expression.Label("end");
@@ -1295,10 +1313,12 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapToDictionaryExpression(Type sourceType, Type targetType, LocalVariable parameterList)
+        private List<Expression> CreateMapToDictionaryExpression(ExpressionInfo parameterList)
         {
             var ee = new List<Expression>();
             var p = parameterList;
+            var sourceType = p.SourceType;
+            var targetType = p.TargetType;
 
             var pp = CreatePropertyToDictionaryMapping(sourceType, targetType);
             foreach (var item in pp)
@@ -1335,7 +1355,7 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, LocalVariable parameterList)
+        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, ExpressionInfo parameterList)
         {
             var ee = new List<Expression>();
             var p = parameterList;

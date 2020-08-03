@@ -21,7 +21,7 @@ namespace HigLabo.Core
         public ClassPropertyCreateMode ClassPropertyCreateMode { get; set; } = ClassPropertyCreateMode.NewObject;
         public CollectionPropertyCreateMode CollectionPropertyCreateMode { get; set; } = CollectionPropertyCreateMode.NewObject;
         public CollectionElementCreateMode CollectionElementCreateMode { get; set; } = CollectionElementCreateMode.NewObject;
-        public Int32 ChildPropertyRecursiveCount { get; set; } = 2;
+        public Int32 ChildPropertyRecursiveCount { get; set; } = 4;
 
         public Boolean MatchProperty(Type sourceType, PropertyInfo sourceProperty, Type targetType, PropertyInfo targetProperty)
         {

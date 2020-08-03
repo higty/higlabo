@@ -177,7 +177,12 @@ namespace HigLabo.Mapper.Test
             var mapper = new ObjectMapper();
 
             var s1 = new ArticleCategoryRecord();
+            var rCategory = new ArticleCategoryRecord();
+            rCategory.DisplayName = "C1";
+            s1.CategoryList.Add(rCategory);
             var s2 = mapper.Map(s1, new ArticleCategoryRecordChild());
+
+            Assert.AreEqual("C1", s2.CategoryList[0].DisplayName);
         }
         [TestMethod]
         public void ObjectMapper_Map_InnerClass()
