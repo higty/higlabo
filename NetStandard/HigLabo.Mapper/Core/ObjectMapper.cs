@@ -54,20 +54,6 @@ namespace HigLabo.Core
                 return !left.Equals(right);
             }
         }
-        private class MapContext
-        {
-            public ObjectMapper Mapper { get; private set; }
-
-            public MapContext(ObjectMapper mapper)
-            {
-                this.Mapper = mapper;
-            }
-        }
-        private class CompileState
-        {
-            public Int32 Layer { get; set; } = 0;
-        }
-
         private class MapperMethodAttribute : Attribute
         {
         }
@@ -334,28 +320,26 @@ namespace HigLabo.Core
                     type == typeof(Encoding);
             }
         }
-        private class PropertyMap
-        {
-            public PropertyInfo Source { get; set; }
-            public PropertyInfo Target { get; set; }
-        }
-        private class ExpressionInfo
+        private class MapParameter
         {
             public Type SourceType { get; set; }
             public Type TargetType { get; set; }
             public Expression Source { get; set; }
             public Expression Target { get; set; }
-            public ParameterExpression Context { get; set; }
+        }
+        private class CompileState
+        {
+            public Int32 Layer { get; set; } = 0;
         }
 
         private static readonly Object _LockObject = new Object();
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
+        private static readonly Dictionary<String, MethodInfo> _DictionaryMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<String, MethodInfo> _ParseOrNullMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
 
         public static ObjectMapper Default { get; private set; } = new ObjectMapper();
 
-        private MapContext _MapContext;
         private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>();
 
         public CompilerSetting CompilerConfig { get; private set; } = new CompilerSetting();
@@ -363,11 +347,8 @@ namespace HigLabo.Core
         static ObjectMapper()
         {
             InitializeParseMethodList();
+            InitializeDictionaryMethodList();
             InitializeCanConvertList();
-        }
-        public ObjectMapper()
-        {
-            _MapContext = new MapContext(this);
         }
 
         private static void InitializeParseMethodList()
@@ -382,6 +363,13 @@ namespace HigLabo.Core
             {
                 _ParseOrNullMethodList.Add(item.Name, item);
             }
+        }
+        private static void InitializeDictionaryMethodList()
+        {
+            _DictionaryMethodList.Add("MapDictionary_String_String", typeof(ObjectMapper).GetMethod("MapDictionary_String_String"));
+            _DictionaryMethodList.Add("MapDictionary_String_Object", typeof(ObjectMapper).GetMethod("MapDictionary_String_Object"));
+            _DictionaryMethodList.Add("MapDictionary_Object_String", typeof(ObjectMapper).GetMethod("MapDictionary_Object_String"));
+            _DictionaryMethodList.Add("MapDictionary_Object_Object", typeof(ObjectMapper).GetMethod("MapDictionary_Object_Object"));
         }
         private static void InitializeCanConvertList()
         {
@@ -445,23 +433,25 @@ namespace HigLabo.Core
 
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
-            return this.Map(source, target, _MapContext);
+            if (source == null || target == null) { return target; }
+            return this.Map(new ActionKey(source.GetType(), target.GetType()), source, target);
         }
         public Dictionary<String, Object> Map<TSource>(TSource source, Dictionary<String, Object> target)
         {
-            return this.Map(source, target, _MapContext);
+            if (source == null || target == null) { return target; }
+            return this.Map(new ActionKey(source.GetType(), target.GetType()), source, target);
         }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, Func<TTarget> func)
             where TTarget : class
         {
             if (source == null) { return null; }
-            return Map(source, func(), _MapContext);
+            return Map(source, func());
         }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, TTarget target)
             where TTarget: class
         {
             if (source == null) { return null; }
-            return Map(source, target, _MapContext);
+            return Map(source, target);
         }
         public void AddPostAction<TSource, TTarget>(Action<TSource, TTarget> action)
         {
@@ -474,9 +464,9 @@ namespace HigLabo.Core
                     _MapActionList[key] = defaultMapFunc;
                 }
             }
-            Func<Object, Object, MapContext, TTarget> newMapFunc = (source, target, context) =>
+            Func<Object, Object, TTarget> newMapFunc = (source, target) =>
             {
-                var t = ((Func<Object, Object, MapContext, TTarget>)defaultMapFunc)(source, target, context);
+                var t = ((Func<Object, Object, TTarget>)defaultMapFunc)(source, target);
                 action((TSource)source, (TTarget)target);
                 return t;
             };
@@ -487,7 +477,7 @@ namespace HigLabo.Core
         }
         public void ReplaceMap<TSource, TTarget>(Func<TSource, TTarget, TTarget> func)
         {
-            Func<Object, Object, MapContext, TTarget> newMapFunc = (source, target, context) =>
+            Func<Object, Object, TTarget> newMapFunc = (source, target) =>
             {
                 return func((TSource)source, (TTarget)target);
             };
@@ -497,20 +487,15 @@ namespace HigLabo.Core
             }
         }
 
-        private TTarget Map<TSource, TTarget>(TSource source, TTarget target, MapContext context)
-        {
-            if (source == null || target == null) { return target; }
-            return this.Map<TSource, TTarget>(new ActionKey(source.GetType(), target.GetType()), source, target, context);
-        }
-        private TTarget Map<TSource, TTarget>(TSource source, MapContext context)
+        private TTarget Map<TSource, TTarget>(TSource source)
             where TTarget: new()
         {
             var target = new TTarget();
-            this.Map<TSource, TTarget>(new ActionKey(source.GetType(), target.GetType()), source, target, context);
+            this.Map<TSource, TTarget>(new ActionKey(source.GetType(), target.GetType()), source, target);
             return target;
         }
 
-        private TTarget Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target, MapContext context)
+        private TTarget Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target)
         {
             if (_MapActionList.TryGetValue(key, out var func) == false)
             {
@@ -522,7 +507,7 @@ namespace HigLabo.Core
             }
             try
             {
-                return ((Func<Object, Object, MapContext, TTarget>)func)(source, target, context);
+                return ((Func<Object, Object, TTarget>)func)(source, target);
             }
             catch (Exception ex)
             {
@@ -752,10 +737,9 @@ namespace HigLabo.Core
 
         private LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType)
         {
-            var p = new ExpressionInfo();
+            var p = new MapParameter();
             var sourceParameter = Expression.Parameter(typeof(Object), "sourceParameter");
             var targetParameter = Expression.Parameter(typeof(Object), "targetParameter");
-            p.Context = Expression.Parameter(typeof(MapContext), "context");
 
             var ee = new List<Expression>();
             p.SourceType = sourceType;
@@ -786,11 +770,10 @@ namespace HigLabo.Core
                 if (targetType == typeof(Dictionary<String, String>) ||
                     targetType == typeof(Dictionary<String, Object>))
                 {
-                    var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
                     var methodName = String.Format("MapDictionary_{0}_{1}"
                         , sourceType.GetGenericArguments()[1].Name
                         , targetType.GetGenericArguments()[1].Name);
-                    var body = Expression.Call(mapperMember, methodName, Type.EmptyTypes, p.Source, p.Target);
+                    var body = Expression.Call(_DictionaryMethodList[methodName], p.Source, p.Target);
                     ee.Add(body);
                 }
                 else
@@ -825,27 +808,26 @@ namespace HigLabo.Core
             ee.Add(p.Target);
 
             BlockExpression block = Expression.Block(new[] { p.Source as ParameterExpression, p.Target as ParameterExpression }, ee);
-            LambdaExpression lambda = Expression.Lambda(block, new[] { sourceParameter, targetParameter, p.Context });
+            LambdaExpression lambda = Expression.Lambda(block, new[] { sourceParameter, targetParameter });
             return lambda;
         }
 
-        private List<Expression> ValidateCompileStateAndCreateMapPropertyExpression(ExpressionInfo variableList, CompileState state)
+        private List<Expression> ValidateCompileStateAndCreateMapPropertyExpression(MapParameter parameter, CompileState state)
         {
             if (state.Layer > this.CompilerConfig.ChildPropertyRecursiveCount) { return new List<Expression>(); }
             state.Layer = state.Layer + 1;
-            var ee = CreateMapPropertyExpression(variableList, state);
+            var ee = CreateMapPropertyExpression(parameter, state);
             state.Layer = state.Layer - 1;
             return ee;
         }
-        private List<Expression> CreateMapPropertyExpression(ExpressionInfo variableList, CompileState state)
+
+        private List<Expression> CreateMapPropertyExpression(MapParameter parameter, CompileState state)
         {
             var ee = new List<Expression>();
-            var p = variableList;
+            var p = parameter;
             var sourceType = p.SourceType;
             var targetType = p.TargetType;
             if (sourceType == typeof(String) || targetType == typeof(String)) { return ee; }
-
-            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
 
             var pp = CreatePropertyMapping(sourceType, targetType);
             foreach (var item in pp)
@@ -894,13 +876,12 @@ namespace HigLabo.Core
                             {
                                 var sourceMember = Expression.Property(p.Source, sourceProperty);
                                 var targetMember = Expression.Property(p.Target, targetProperty);
-                                var elementParameter = new ExpressionInfo();
+                                var elementParameter = new MapParameter();
                                 elementParameter.SourceType = sourceProperty.PropertyType;
                                 elementParameter.TargetType = targetProperty.PropertyType;
                                 elementParameter.Source = sourceMember;
                                 elementParameter.Target = targetMember;
-                                elementParameter.Context = p.Context;
-
+                                
                                 var block = new List<Expression>();
                                 block.Add(Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
                                     , Expression.Assign(targetMember, Expression.New(targetProperty.PropertyType)))
@@ -1029,10 +1010,10 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapCollectionExpression(ExpressionInfo parameterList, CompileState state)
+        private List<Expression> CreateMapCollectionExpression(MapParameter parameter, CompileState state)
         {
             var ee = new List<Expression>();
-            var p = parameterList;
+            var p = parameter;
             var sourceType = p.SourceType;
             var targetType = p.TargetType;
 
@@ -1054,13 +1035,12 @@ namespace HigLabo.Core
                 {
                     var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                     var targetElement = Expression.Variable(targetElementType, "targetElement");
-                    var elementParameter = new ExpressionInfo();
+                    var elementParameter = new MapParameter();
                     elementParameter.SourceType = sourceElementType;
                     elementParameter.TargetType = targetElementType;
                     elementParameter.Source = sourceElement;
                     elementParameter.Target = targetElement;
-                    elementParameter.Context = p.Context;
-
+                    
                     var loopBlock = new List<Expression>();
                     var endLoop = Expression.Label("endLoop");
 
@@ -1204,13 +1184,12 @@ namespace HigLabo.Core
                     {
                         var sourceElement = Expression.Variable(sourceElementType, "sourceElement");
                         var targetElement = Expression.Variable(targetElementType, "targetElement");
-                        var elementParameter = new ExpressionInfo();
+                        var elementParameter = new MapParameter();
                         elementParameter.SourceType = sourceElementType;
                         elementParameter.TargetType = targetElementType;
                         elementParameter.Source = sourceElement;
                         elementParameter.Target = targetElement;
-                        elementParameter.Context = p.Context;
-
+                        
                         var loopBlock = new List<Expression>();
                         var endLoop = Expression.Label("endLoop");
                         if (sourceProperty.PropertyType.IsICollectionT())
@@ -1313,10 +1292,10 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapToDictionaryExpression(ExpressionInfo parameterList)
+        private List<Expression> CreateMapToDictionaryExpression(MapParameter parameter)
         {
             var ee = new List<Expression>();
-            var p = parameterList;
+            var p = parameter;
             var sourceType = p.SourceType;
             var targetType = p.TargetType;
 
@@ -1355,11 +1334,10 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, ExpressionInfo parameterList)
+        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, MapParameter parameterList)
         {
             var ee = new List<Expression>();
             var p = parameterList;
-            var mapperMember = Expression.PropertyOrField(p.Context, "Mapper");
             var sourceDictionaryValueType = sourceType.GetGenericArguments()[1];
 
             var containsKeyMethod = sourceType.GetMethod("ContainsKey", new Type[] { typeof(String) });
@@ -1447,7 +1425,7 @@ namespace HigLabo.Core
 
             return ee;
         }
-        private Dictionary<String, String> MapDictionary_String_String(Dictionary<String, String> source, Dictionary<String, String> target)
+        private static Dictionary<String, String> MapDictionary_String_String(Dictionary<String, String> source, Dictionary<String, String> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1455,7 +1433,7 @@ namespace HigLabo.Core
             }
             return target;
         }
-        private Dictionary<String, Object> MapDictionary_String_Object(Dictionary<String, String> source, Dictionary<String, Object> target)
+        private static Dictionary<String, Object> MapDictionary_String_Object(Dictionary<String, String> source, Dictionary<String, Object> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1463,7 +1441,7 @@ namespace HigLabo.Core
             }
             return target;
         }
-        private Dictionary<String, String> MapDictionary_Object_String(Dictionary<String, Object> source, Dictionary<String, String> target)
+        private static Dictionary<String, String> MapDictionary_Object_String(Dictionary<String, Object> source, Dictionary<String, String> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1478,7 +1456,7 @@ namespace HigLabo.Core
             }
             return target;
         }
-        private Dictionary<String, Object> MapDictionary_Object_Object(Dictionary<String, Object> source, Dictionary<String, Object> target)
+        private static Dictionary<String, Object> MapDictionary_Object_Object(Dictionary<String, Object> source, Dictionary<String, Object> target)
         {
             foreach (var key in source.Keys)
             {
