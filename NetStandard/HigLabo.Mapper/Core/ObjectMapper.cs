@@ -340,7 +340,7 @@ namespace HigLabo.Core
 
         public static ObjectMapper Default { get; private set; } = new ObjectMapper();
 
-        private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>();
+        private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>(100);
 
         public CompilerSetting CompilerConfig { get; private set; } = new CompilerSetting();
 
@@ -485,14 +485,6 @@ namespace HigLabo.Core
             {
                 _MapActionList[new ActionKey(typeof(TSource), typeof(TTarget))] = newMapFunc;
             }
-        }
-
-        private TTarget Map<TSource, TTarget>(TSource source)
-            where TTarget: new()
-        {
-            var target = new TTarget();
-            this.Map<TSource, TTarget>(new ActionKey(source.GetType(), target.GetType()), source, target);
-            return target;
         }
 
         private TTarget Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target)
