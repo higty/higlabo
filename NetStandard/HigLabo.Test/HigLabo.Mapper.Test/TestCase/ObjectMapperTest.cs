@@ -20,8 +20,9 @@ namespace HigLabo.Mapper.Test
             var mapper = new ObjectMapper();
             //mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
 
+            var g = Guid.NewGuid();
             var u1 = new User();
-
+            u1.GuidList.Add(g);
             var u2 = mapper.Map(u1, new User());
 
             Assert.AreEqual(u1.Name, u2.Name);
@@ -35,6 +36,8 @@ namespace HigLabo.Mapper.Test
 
             Assert.AreEqual(u1.Vector2.X, u2.Vector2.X);
             Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
+
+            Assert.AreEqual(g, u2.GuidList[0]);
         }
         [TestMethod]
         public void ObjectMapper_Map_ValueType_ValueType()

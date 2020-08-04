@@ -38,6 +38,7 @@ namespace HigLabo.Mapper.Test
         public Vector2 Vector2 { get; set; }
         public User ParentUser { get; set; }
         public List<User> Users { get; set; }
+        public List<Guid> GuidList { get; private set; } = new List<Guid>();
         public String[] Tags { get; set; }
         public Dictionary<String, String> Dictionary { get; set; }
         public Byte[] Timestamp { get; set; }

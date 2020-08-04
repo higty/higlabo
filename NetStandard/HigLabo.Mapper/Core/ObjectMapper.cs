@@ -847,15 +847,59 @@ namespace HigLabo.Core
                         continue;
                     }
                 }
-                
 
-                if (targetProperty.PropertyType == typeof(Encoding))
+
+                if (sourceProperty.PropertyType == typeof(String))
                 {
-                    var parseMethod = _ParseOrNullMethodList[nameof(Encoding)];
-                    var getTargetValueMethod = targetProperty.GetGetMethod();
-                    var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
-                    var body = Expression.Call(p.Target, setMethod, parse);
-                    ee.Add(body);
+                    if (targetProperty.PropertyType.IsNullable())
+                    {
+                        var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
+                        if (ParseMethodList.HasParseMethod(targetNullableGenericType))
+                        {
+                            var targetGetMethod = targetProperty.GetGetMethod();
+                            var parseMethod = _ParseMethodList[targetNullableGenericType.Name];
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                        else if (targetNullableGenericType.IsEnum)
+                        {
+                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
+                            var getTargetValueMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+
+                    }
+                    else if (targetProperty.PropertyType == typeof(Encoding))
+                    {
+                        var parseMethod = _ParseOrNullMethodList[nameof(Encoding)];
+                        var getTargetValueMethod = targetProperty.GetGetMethod();
+                        var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
+                        var body = Expression.Call(p.Target, setMethod, parse);
+                        ee.Add(body);
+                    }
+                    else
+                    {
+                        if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
+                        {
+                            var targetGetMethod = targetProperty.GetGetMethod();
+                            var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                        else if (targetProperty.PropertyType.IsEnum)
+                        {
+                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetProperty.PropertyType);
+                            var getTargetMethod = targetProperty.GetGetMethod();
+                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetMethod));
+                            var body = Expression.Call(p.Target, setMethod, parse);
+                            ee.Add(body);
+                        }
+                    }
+
                 }
                 else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
                 {
@@ -930,51 +974,7 @@ namespace HigLabo.Core
                         }
                     }
                 }
-                else if (sourceProperty.PropertyType == typeof(String))
-                {
-                    if (targetProperty.PropertyType.IsNullable())
-                    {
-                        var targetNullableGenericType = targetProperty.PropertyType.GetGenericArguments()[0];
-                        if (ParseMethodList.HasParseMethod(targetNullableGenericType))
-                        {
-                            var targetGetMethod = targetProperty.GetGetMethod();
-                            var parseMethod = _ParseMethodList[targetNullableGenericType.Name];
-                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
-                        }
-                        else if (targetNullableGenericType.IsEnum)
-                        {
-                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
-                            var getTargetValueMethod = targetProperty.GetGetMethod();
-                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
-                        }
-
-                    }
-                    else
-                    {
-                        if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
-                        {
-                            var targetGetMethod = targetProperty.GetGetMethod();
-                            var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
-                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
-                        }
-                        else if (targetProperty.PropertyType.IsEnum)
-                        {
-                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetProperty.PropertyType);
-                            var getTargetMethod = targetProperty.GetGetMethod();
-                            var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetMethod));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
-                        }
-                    }
-
-                }
-                else 
+                else
                 {
                     if (sourceProperty.PropertyType.IsNullable())
                     {
@@ -1196,15 +1196,49 @@ namespace HigLabo.Core
                             if (targetElementType.IsNullable())
                             {
                                 var targetElementGenericType = targetElementType.GetGenericArguments()[0];
-                                var nullableTargetElement = Expression.TypeAs(Expression.New(targetElementGenericType), targetElementType);
-                                if (CanConvert(sourceElementType, targetElementGenericType))
+                                if (sourceElementType.IsNullable())
                                 {
-                                    loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                                    var sourceElementGenericType = sourceElementType.GetGenericArguments()[0];
+                                    if (sourceElementGenericType == targetElementGenericType)
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, sourceElement));
+                                    }
+                                    else if (CanConvert(sourceElementType, targetElementGenericType))
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                                    }
                                 }
                                 else
                                 {
-                                    //DoNothing
-                                    //public struct Vector { int X, int Y } does not convert to public struct MapPoint { int X, int Y }
+                                    if (sourceElementType == targetElementGenericType)
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement
+                                            , Expression.TypeAs(sourceElement, targetElementType)));
+                                    }
+                                    else if (CanConvert(sourceElementType, targetElementGenericType))
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                                    }
+                                }
+                            }
+                            else if (targetElementType.IsValueType)
+                            {
+                                if (sourceElementType.IsNullable())
+                                {
+                                    var sourceNullableGenericType = sourceElementType.GetGenericArguments()[0];
+                                    if (CanConvert(sourceNullableGenericType, targetElementType))
+                                    {
+                                        var ifThen = Expression.IfThen(Expression.NotEqual(sourceElement, Expression.Constant(null, typeof(Object)))
+                                            , Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                                        loopBlock.Add(ifThen);
+                                    }
+                                }
+                                else
+                                {
+                                    if (CanConvert(sourceElementType, targetElementType))
+                                    {
+                                        loopBlock.Add(Expression.Assign(targetElement, Expression.Convert(sourceElement, targetElementType)));
+                                    }
                                 }
                             }
                             else
@@ -1212,7 +1246,14 @@ namespace HigLabo.Core
                                 switch (this.CompilerConfig.CollectionElementCreateMode)
                                 {
                                     case CollectionElementCreateMode.NewObject:
-                                        loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                        if (sourceElementType.IsClass && targetElementType.IsClass)
+                                        {
+                                            var targetConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
+                                            if (targetConstructor != null)
+                                            {
+                                                loopBlock.Add(Expression.Assign(targetElement, Expression.New(targetElementType)));
+                                            }
+                                        }
                                         loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                         break;
                                     case CollectionElementCreateMode.Assign:
