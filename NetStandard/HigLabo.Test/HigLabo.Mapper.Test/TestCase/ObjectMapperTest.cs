@@ -23,6 +23,8 @@ namespace HigLabo.Mapper.Test
             var g = Guid.NewGuid();
             var u1 = new User();
             u1.GuidList.Add(g);
+            u1.ColorList = new Dictionary<String, ColorDefinition>();
+            u1.ColorList.Add("Red", new ColorDefinition("#ffffff", "#ff0000"));
             var u2 = mapper.Map(u1, new User());
 
             Assert.AreEqual(u1.Name, u2.Name);
@@ -38,6 +40,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Vector2.Y, u2.Vector2.Y);
 
             Assert.AreEqual(g, u2.GuidList[0]);
+            Assert.AreEqual(null, u2.ColorList);
         }
         [TestMethod]
         public void ObjectMapper_Map_ValueType_ValueType()
@@ -451,6 +454,22 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u1.Timestamp[2], u2.Timestamp[2]);
         }
 
+        [TestMethod]
+        public void ObjectMapper_Map_Dictionary_Guid()
+        {
+            var mapper = new ObjectMapper();
+
+            var d = new Dictionary<String, Object>();
+            var g = Guid.NewGuid();
+            d["Int32"] = null;
+            d["Int32Nullable"] = null;
+            d["Guid"] = g.ToString();
+            d["GuidNullable"] = g.ToString();
+            var u1 = mapper.Map(d, new User());
+
+            Assert.AreEqual(g, u1.Guid);
+            Assert.AreEqual(g, u1.GuidNullable);
+        }
         [TestMethod]
         public void ObjectMapper_Map_Dictionary_Encoding()
         {

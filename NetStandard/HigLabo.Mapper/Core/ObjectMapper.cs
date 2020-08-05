@@ -497,6 +497,9 @@ namespace HigLabo.Core
                     _MapActionList[key] = func;
                 }
             }
+#if DEBUG
+            return ((Func<Object, Object, TTarget>)func)(source, target);
+#else
             try
             {
                 return ((Func<Object, Object, TTarget>)func)(source, target);
@@ -512,6 +515,7 @@ namespace HigLabo.Core
                 ExceptionDispatchInfo.Capture(ex1).Throw();
             }
             throw new InvalidOperationException();
+#endif
         }
         private Delegate CreateMapMethod(Type sourceType, Type targetType)
         {
@@ -614,7 +618,7 @@ namespace HigLabo.Core
                 {
                     if (p.GetGetMethod() == null) { continue; }
                     if (p.PropertyType.Name == nameof(String)) { continue; }
-                    if (p.PropertyType.Name == "Dictionary`2") { continue; }
+                    if (p.PropertyType.Name == "Dictionary`2" || p.PropertyType.Name == "IDictionary`2") { continue; }
                     if (p.DeclaringType == typeof(Object)) { continue; }
                     if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
                     //Check source is IEnumerable
@@ -630,7 +634,7 @@ namespace HigLabo.Core
                 foreach (var p in item.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance))
                 {
                     if (p.PropertyType.Name == nameof(String)) { continue; }
-                    if (p.PropertyType.Name == "Dictionary`2") { continue; }
+                    if (p.PropertyType.Name == "Dictionary`2" || p.PropertyType.Name == "IDictionary`2") { continue; }
                     if (p.DeclaringType == typeof(Object)) { continue; }
                     if (targetPropertyList.Exists(el => el.Name == p.Name)) { continue; }
                     //Check source is ICollection
@@ -845,6 +849,10 @@ namespace HigLabo.Core
                         var body = Expression.Call(p.Target, setMethod, getMethod);
                         ee.Add(body);
                         continue;
+                    }
+                    else
+                    {
+
                     }
                 }
 
@@ -1376,36 +1384,33 @@ namespace HigLabo.Core
             var containsKeyMethod = sourceType.GetMethod("ContainsKey", new Type[] { typeof(String) });
             var tryGetMethod = typeof(ObjectMapper).GetMethod("TryGetValue", BindingFlags.NonPublic | BindingFlags.Static)
                 .MakeGenericMethod(sourceDictionaryValueType);
+            var tryGetStringMethod = typeof(ObjectMapper).GetMethod("TryGetStringValue", BindingFlags.NonPublic | BindingFlags.Static)
+                .MakeGenericMethod(sourceDictionaryValueType);
 
             var pp = CreatePropertyFromDictionaryMapping(sourceType, targetType);
             foreach (var item in pp)
             {
                 var sourceProperty = item.Item1;
                 var targetProperty = item.Item2;
-                var getMethod = Expression.Call(tryGetMethod, p.Source, Expression.Constant(targetProperty.Name));
+                var getMethod = Expression.Call(tryGetStringMethod, p.Source, Expression.Constant(targetProperty.Name));
                 var setMethod = targetProperty.GetSetMethod();
                 if (setMethod == null) { continue; }
 
                 if (sourceDictionaryValueType == typeof(Object))
                 {
-                    var convert = Expression.Call(p.Target, setMethod, Expression.Convert(getMethod, targetProperty.PropertyType));
-                    var body = Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
-                        , Expression.IfThen(Expression.TypeIs(getMethod, targetProperty.PropertyType), convert));
-                    ee.Add(body);
+                    getMethod = Expression.Call(tryGetStringMethod, p.Source, Expression.Constant(targetProperty.Name));
                 }
-                else if (targetProperty.PropertyType == typeof(String))
+                var ifThenBlock = new List<Expression>();
+                if (targetProperty.PropertyType == typeof(String))
                 {
-                    var body = Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
-                        , Expression.Call(p.Target, setMethod, getMethod));
-                    ee.Add(body);
+                    ifThenBlock.Add(Expression.Call(p.Target, setMethod, getMethod));
                 }
                 else if (targetProperty.PropertyType == typeof(Encoding))
                 {
                     var parseMethod = _ParseOrNullMethodList[nameof(Encoding)];
                     var getTargetValueMethod = targetProperty.GetGetMethod();
                     var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
-                    var body = Expression.Call(p.Target, setMethod, parse);
-                    ee.Add(body);
+                    ifThenBlock.Add(Expression.Call(p.Target, setMethod, parse));
                 }
                 else
                 {
@@ -1417,15 +1422,13 @@ namespace HigLabo.Core
                             var parseMethod = _ParseOrNullMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
                             var getTargetValueMethod = targetProperty.GetGetMethod();
                             var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
+                            ifThenBlock.Add(Expression.Call(p.Target, setMethod, parse));
                         }
                         else if (ParseMethodList.HasParseMethod(targetNullableGenericType))
                         {
                             var parseMethod = _ParseOrNullMethodList[targetNullableGenericType.Name];
                             var parse = Expression.Call(parseMethod, getMethod, Expression.Default(targetProperty.PropertyType));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
+                            ifThenBlock.Add(Expression.Call(p.Target, setMethod, parse));
                         }
                     }
                     else
@@ -1436,20 +1439,43 @@ namespace HigLabo.Core
                             var getTargetValueMethod = targetProperty.GetGetMethod();
                             var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
                             var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
+                            ifThenBlock.Add(body);
                         }
                         else if (ParseMethodList.HasParseMethod(targetProperty.PropertyType))
                         {
                             var parseMethod = _ParseMethodList[targetProperty.PropertyType.Name];
                             var getTargetValueMethod = targetProperty.GetGetMethod();
                             var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
-                            var body = Expression.Call(p.Target, setMethod, parse);
-                            ee.Add(body);
+                            ifThenBlock.Add(Expression.Call(p.Target, setMethod, parse));
+                        }
+                    }
+                }
+                if (ifThenBlock.Count > 0)
+                {
+                    if (sourceDictionaryValueType == typeof(String))
+                    {
+                        ee.Add(Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
+                            , Expression.Block(ifThenBlock)));
+                    }
+                    else if (sourceDictionaryValueType == typeof(Object))
+                    {
+                        var sourceValue = Expression.Call(tryGetMethod, p.Source, Expression.Constant(targetProperty.Name));
+                        if (targetProperty.PropertyType == typeof(String))
+                        {
+                            ee.Add(Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
+                                , Expression.Block(ifThenBlock)));
+                        }
+                        else
+                        {
+                            ee.Add(Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, Expression.Constant(targetProperty.Name))
+                                , Expression.IfThenElse(Expression.TypeIs(sourceValue, targetProperty.PropertyType)
+                                , Expression.Call(p.Target, setMethod, Expression.Convert(sourceValue, targetProperty.PropertyType))
+                                , Expression.Block(ifThenBlock))));
                         }
                     }
                 }
             }
- 
+
             LabelTarget returnTarget = Expression.Label();
             GotoExpression returnExpression = Expression.Return(returnTarget);
             LabelExpression returnLabel = Expression.Label(returnTarget);
@@ -1458,6 +1484,7 @@ namespace HigLabo.Core
 
             return ee;
         }
+
         private static Dictionary<String, String> MapDictionary_String_String(Dictionary<String, String> source, Dictionary<String, String> target)
         {
             foreach (var key in source.Keys)
@@ -1502,6 +1529,15 @@ namespace HigLabo.Core
         {
             if (dictionary.TryGetValue(key, out var value)) { return value; }
             return default(TValue);
+        }
+        private static String TryGetStringValue<TValue>(Dictionary<String, TValue> dictionary, String key)
+        {
+            if (dictionary.TryGetValue(key, out var value))
+            {
+                if (value == null) { return ""; }
+                return value.ToString();
+            }
+            return "";
         }
         private static Boolean CanConvert(Type sourceType, Type targetType)
         {

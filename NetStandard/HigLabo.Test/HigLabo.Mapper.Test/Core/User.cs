@@ -31,6 +31,7 @@ namespace HigLabo.Mapper.Test
         public Decimal? DecimalNullable { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public DayOfWeek? DayOfWeekNullable { get; set; }
+        public Guid Guid { get; set; }
         public Guid? GuidNullable { get; set; }
 
         public MapPoint MapPoint { get; set; }
@@ -41,6 +42,7 @@ namespace HigLabo.Mapper.Test
         public List<Guid> GuidList { get; private set; } = new List<Guid>();
         public String[] Tags { get; set; }
         public Dictionary<String, String> Dictionary { get; set; }
+        public IDictionary<String, ColorDefinition> ColorList { get; set; }
         public Byte[] Timestamp { get; set; }
 
         public String ReadOnlyProperty
@@ -65,6 +67,17 @@ namespace HigLabo.Mapper.Test
             this.MapPoint = new MapPoint();
 
             this.Users = new List<User>();
+        }
+    }
+    public class ColorDefinition
+    {
+        public virtual string Background { get; set; }
+        public virtual string Foreground { get; set; }
+        public ColorDefinition() { }
+        public ColorDefinition(String background, String foreground)
+        {
+            this.Background = background;
+            this.Foreground = foreground;
         }
     }
     public class UserFlatten
