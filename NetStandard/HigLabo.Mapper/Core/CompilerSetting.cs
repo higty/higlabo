@@ -7,7 +7,7 @@ namespace HigLabo.Core
 {
     public class CompilerSetting
     {
-        private Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> _PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == p2.Name;
+        private Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> _PropertyMatchRule = (c1, p1, c2, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
 
         public Func<Type, PropertyInfo, Type, PropertyInfo, Boolean> PropertyMatchRule
         {
