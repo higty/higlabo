@@ -9,6 +9,7 @@ It was https://github.com/higty/higlabo.netstandard repository.
 A mapper library like AutoMapper,EmitMapper,FastMapper,ExpressMapper..etc.
 I posted article to CodeProject.
 https://www.codeproject.com/Articles/5275388/HigLabo-Mapper-Creating-Fastest-Object-Mapper-in-t
+
 You can map object out of box without configuration.
 You can also customize completely as you can with AddPostAction,ReplaceMap method.
 
