@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Diagnostics;
@@ -340,7 +341,7 @@ namespace HigLabo.Core
 
         public static ObjectMapper Default { get; private set; } = new ObjectMapper();
 
-        private Dictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>(100);
+        private IDictionary<ActionKey, Delegate> _MapActionList = new Dictionary<ActionKey, Delegate>(100);
 
         public CompilerSetting CompilerConfig { get; private set; } = new CompilerSetting();
 
@@ -434,12 +435,32 @@ namespace HigLabo.Core
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
             if (source == null || target == null) { return target; }
-            return this.Map(new ActionKey(source.GetType(), target.GetType()), source, target);
-        }
-        public Dictionary<String, Object> Map<TSource>(TSource source, Dictionary<String, Object> target)
-        {
-            if (source == null || target == null) { return target; }
-            return this.Map(new ActionKey(source.GetType(), target.GetType()), source, target);
+
+            var key = new ActionKey(source.GetType(), target.GetType());
+            if (_MapActionList.TryGetValue(key, out var func) == false)
+            {
+                func = CreateMapMethod(key.Source, key.Target);
+                _MapActionList[key] = func;
+            }
+#if DEBUG
+            return ((Func<Object, Object, TTarget>)func)(source, target);
+#else
+            try
+            {
+                return ((Func<Object, Object, TTarget>)func)(source, target);
+            }
+            catch (Exception ex)
+            {
+                var ex1 = new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
+                        + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to GitHub issue." + Environment.NewLine
+                        + "https://github.com/higty/higlabo" + Environment.NewLine
+                        + "We will fix it. You can avoid this issue by using ReplaceMap method temporary." + Environment.NewLine
+                        + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
+                        , source, target, ex);
+                ExceptionDispatchInfo.Capture(ex1).Throw();
+            }
+            throw new InvalidOperationException();
+#endif
         }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, Func<TTarget> func)
             where TTarget : class
@@ -486,37 +507,16 @@ namespace HigLabo.Core
                 _MapActionList[new ActionKey(typeof(TSource), typeof(TTarget))] = newMapFunc;
             }
         }
-
-        private TTarget Map<TSource, TTarget>(ActionKey key, TSource source, TTarget target)
+        /// <summary>
+        /// That makes Map method thread safe.
+        /// Set ConcurrentDictionary to manage action list.
+        /// Performance goes worse.It may be 10%-20% slower.
+        /// </summary>
+        public void MakeMapAsThreadSafe()
         {
-            if (_MapActionList.TryGetValue(key, out var func) == false)
-            {
-                func = CreateMapMethod(key.Source, key.Target);
-                lock (_LockObject)
-                {
-                    _MapActionList[key] = func;
-                }
-            }
-#if DEBUG
-            return ((Func<Object, Object, TTarget>)func)(source, target);
-#else
-            try
-            {
-                return ((Func<Object, Object, TTarget>)func)(source, target);
-            }
-            catch (Exception ex)
-            {
-                var ex1 = new ObjectMapFailureException("Generated map method was failed.Maybe HigLabo.Mapper bug."
-                        + "Please notify SouceObject,TargetObject class of this ObjectMapFailureException object to GitHub issue." + Environment.NewLine
-                        + "https://github.com/higty/higlabo" + Environment.NewLine
-                        + "We will fix it. You can avoid this issue by using ReplaceMap method temporary." + Environment.NewLine
-                        + String.Format("SourceType={0}, TargetType={1}", source.GetType().Name, target.GetType().Name)
-                        , source, target, ex);
-                ExceptionDispatchInfo.Capture(ex1).Throw();
-            }
-            throw new InvalidOperationException();
-#endif
+            _MapActionList = new ConcurrentDictionary<ActionKey, Delegate>();
         }
+
         private Delegate CreateMapMethod(Type sourceType, Type targetType)
         {
             var lambda = CreateFunctionExpression(sourceType, targetType);
