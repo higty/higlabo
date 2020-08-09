@@ -10,6 +10,7 @@ using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
+using System.Threading;
 
 namespace HigLabo.Core
 {
@@ -333,7 +334,6 @@ namespace HigLabo.Core
             public Int32 Layer { get; set; } = 0;
         }
 
-        private static readonly Object _LockObject = new Object();
         private static readonly Dictionary<String, MethodInfo> _ParseMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<String, MethodInfo> _DictionaryMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<String, MethodInfo> _ParseOrNullMethodList = new Dictionary<string, MethodInfo>();
@@ -480,10 +480,7 @@ namespace HigLabo.Core
             if (_MapActionList.TryGetValue(key, out var defaultMapFunc) == false)
             {
                 defaultMapFunc = CreateMapMethod(typeof(TSource), typeof(TTarget));
-                lock (_LockObject)
-                {
-                    _MapActionList[key] = defaultMapFunc;
-                }
+                _MapActionList[key] = defaultMapFunc;
             }
             Func<Object, Object, TTarget> newMapFunc = (source, target) =>
             {
@@ -491,10 +488,7 @@ namespace HigLabo.Core
                 action((TSource)source, (TTarget)target);
                 return t;
             };
-            lock (_LockObject)
-            {
-                _MapActionList[key] = newMapFunc;
-            }
+            _MapActionList[key] = newMapFunc;
         }
         public void ReplaceMap<TSource, TTarget>(Func<TSource, TTarget, TTarget> func)
         {
@@ -502,19 +496,28 @@ namespace HigLabo.Core
             {
                 return func((TSource)source, (TTarget)target);
             };
-            lock (_LockObject)
-            {
-                _MapActionList[new ActionKey(typeof(TSource), typeof(TTarget))] = newMapFunc;
-            }
+            _MapActionList[new ActionKey(typeof(TSource), typeof(TTarget))] = newMapFunc;
         }
         /// <summary>
-        /// That makes Map method thread safe.
-        /// Set ConcurrentDictionary to manage action list.
-        /// Performance goes worse.It may be 10%-20% slower.
+        /// Set thread mode of Map method.
+        /// If you call this method, all customize by AddPostAction and ReplaceMap will be lost.
+        /// So, you should call this method on initialization process of application.
+        /// 
+        /// ThreadMode.Performance is not thread safe.This mode may be used on desktop, console application.
+        /// ThreadMode.ThreadSafe is thread safe mode from multithreading environment like web application.
+        /// If Mode is ThreadMode.ThreadSafe, the performance goes a little bit worse.
+        /// It may be 10%-20% slower than ThreadMode.Performance when you call Map method.
+        /// This method will set ConcurrentDictionary to private _MapActionList field to manage action list.
+        /// Be careful that you must call this method before calling AddPostAction, ReplaceMap method.
         /// </summary>
-        public void MakeMapAsThreadSafe()
+        public void SetThreadMode(ThreadMode mode)
         {
-            _MapActionList = new ConcurrentDictionary<ActionKey, Delegate>();
+            switch (mode)
+            {
+                case ThreadMode.Performance:_MapActionList = new Dictionary<ActionKey, Delegate>(100); break;
+                case ThreadMode.ThreadSafe:_MapActionList = new ConcurrentDictionary<ActionKey, Delegate>();break;
+                default:throw new InvalidOperationException();
+            }
         }
 
         private Delegate CreateMapMethod(Type sourceType, Type targetType)

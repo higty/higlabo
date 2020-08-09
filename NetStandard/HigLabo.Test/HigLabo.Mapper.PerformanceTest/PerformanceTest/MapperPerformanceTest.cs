@@ -21,12 +21,10 @@ namespace HigLabo.Mapper.PerformanceTest
     {
         public BenchmarkConfig()
         {
-            AddExporter(MarkdownExporter.GitHub); // ベンチマーク結果を書く時に出力させとくとベンリ
+            AddExporter(MarkdownExporter.GitHub); 
             AddDiagnoser(MemoryDiagnoser.Default);
 
-            // ShortRunを使うとサクッと終わらせられる、デフォルトだと本気で長いので短めにしとく。
-            // ShortRunは LaunchCount=1  TargetCount=3 WarmupCount = 3 のショートカット
-            AddJob(Job.ShortRun);
+            //AddJob(Job.ShortRun);
         }
     }
     [Config(typeof(BenchmarkConfig))]
@@ -87,7 +85,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Address, new Address());
+                var r = ObjectMapper.Default.Map(this.Address, new Address());
             }
         }
         [Benchmark]
