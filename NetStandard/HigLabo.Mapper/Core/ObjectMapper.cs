@@ -500,7 +500,7 @@ namespace HigLabo.Core
         }
         /// <summary>
         /// Set thread mode of Map method.
-        /// If you call this method, all customize by AddPostAction and ReplaceMap will be lost.
+        /// If you call this method, all customize by AddPostAction and ReplaceMap will be cleared.
         /// So, you should call this method on initialization process of application.
         /// 
         /// ThreadMode.Performance is not thread safe.This mode may be used on desktop, console application.

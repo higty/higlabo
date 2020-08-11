@@ -332,6 +332,14 @@ namespace HigLabo.Mapper.PerformanceTest
             }
         }
         [Benchmark]
+        public void HigLaboObjectMapConfig_Customer_CustomerDTO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = ObjectMapConfig.Current.Map(this.Customer, new CustomerDTO());
+            }
+        }
+        [Benchmark]
         public void Mapster_Customer_CustomerDTO()
         {
             for (int i = 0; i < ExecuteCount; i++)
