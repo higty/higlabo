@@ -1343,30 +1343,63 @@ namespace HigLabo.Core
             var sourceType = p.SourceType;
             var targetType = p.TargetType;
 
+            var toStringMethod = typeof(Object).GetMethod("ToString");
+            var addMethod = targetType.GetMethod("Add");
+
             var pp = CreatePropertyToDictionaryMapping(sourceType, targetType);
             foreach (var item in pp)
             {
-                var sourceProperty = item.Item1;
-                var targetProperty = item.Item2;
+                var sourceProperty = item.source;
+                var targetProperty = item.target;
                 if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
                 MemberExpression getMethod = Expression.Property(p.Source, sourceProperty);
-                var addMethod = targetType.GetMethod("Add");
 
                 {
                     var removeMethod = targetType.GetMethod("Remove", new Type[] { typeof(String) });
                     var body = Expression.Call(p.Target, removeMethod, Expression.Constant(sourceProperty.Name));
                     ee.Add(body);
                 }
+
+                var dictionaryValueType = targetProperty.PropertyType;
                 if (sourceProperty.PropertyType.IsValueType)
                 {
-                    var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
-                        , Expression.TypeAs(getMethod, typeof(Object)));
-                    ee.Add(body);
+                    if (dictionaryValueType == typeof(Object))
+                    {
+                        var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
+                            , Expression.TypeAs(getMethod, typeof(Object)));
+                        ee.Add(body);
+                    }
+                    else if (dictionaryValueType == typeof(String))
+                    {
+                        if (sourceProperty.PropertyType.IsNullable())
+                        {
+                            var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
+                                , Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
+                                , Expression.Call(Expression.TypeAs(getMethod, typeof(Object)), toStringMethod)));
+                            ee.Add(ifThen);
+                        }
+                        else
+                        {
+                            var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
+                                , Expression.Call(Expression.TypeAs(getMethod, typeof(Object)), toStringMethod));
+                            ee.Add(body);
+                        }
+                    }
                 }
                 else
                 {
-                    var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name), getMethod);
-                    ee.Add(body);
+                    if (dictionaryValueType == typeof(Object))
+                    {
+                        var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name), getMethod);
+                        ee.Add(body);
+                    }
+                    else if (dictionaryValueType == typeof(String))
+                    {
+                        var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
+                            , Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
+                            , Expression.Call(getMethod, toStringMethod)));
+                        ee.Add(ifThen);
+                    }
                 }
             }
             LabelTarget returnTarget = Expression.Label();

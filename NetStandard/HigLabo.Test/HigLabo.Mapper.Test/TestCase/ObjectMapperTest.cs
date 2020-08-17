@@ -403,7 +403,39 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(new Guid("7195FBEF-B18C-BC29-E339-39DDC81FC90F"), u2.GuidNullable);
         }
         [TestMethod]
-        public void ObjectMapper_Map_Object_Dictionary()
+        public void ObjectMapper_Map_Object_Dictionary_String()
+        {
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            var d = mapper.Map(u1, new Dictionary<String, String>());
+
+            Assert.AreEqual(u1.Name, d["Name"]);
+            Assert.AreEqual(u1.Int32.ToString(), d["Int32"]);
+            Assert.AreEqual(u1.Decimal.ToString(), d["Decimal"]);
+            Assert.AreEqual(u1.DateTime.ToString(), d["DateTime"]);
+            Assert.AreEqual(u1.DayOfWeek.ToString(), d["DayOfWeek"]);
+            Assert.AreEqual(u1.MapPoint.ToString(), d["MapPoint"]);
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_Object_Dictionary_String_Replace()
+        {
+            var mapper = new ObjectMapper();
+            mapper.ReplaceMap<User, Dictionary<String, String>>((source, target) =>
+            {
+                target["DateTime"] = source.DateTime.ToString("yyyy/MM/dd HH:mm");
+                target["MapPoint"] = String.Format("Lat={0}, Lon={1}", source.MapPoint.Latitude, source.MapPoint.Longitude);
+                return target;
+            });
+
+            var u1 = new User();
+            var d = mapper.Map(u1, new Dictionary<String, String>());
+
+            Assert.AreEqual(u1.DateTime.ToString("yyyy/MM/dd HH:mm"), d["DateTime"]);
+            Assert.AreEqual(String.Format("Lat={0}, Lon={1}", u1.MapPoint.Latitude, u1.MapPoint.Longitude), d["MapPoint"]);
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_Object_Dictionary_Object()
         {
             var mapper = new ObjectMapper();
 

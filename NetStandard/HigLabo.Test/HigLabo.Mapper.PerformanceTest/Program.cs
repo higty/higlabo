@@ -94,6 +94,7 @@ namespace HigLabo.Mapper.PerformanceTest
             //p1 = HigLabo.Core.ObjectMapper.Default.Map(p, p1);
 
             var customer = Customer.Create();
+            var d = HigLabo.Core.ObjectMapper.Default.Map(customer, new Dictionary<String, String>());
             //var d = new Dictionary<String, String>();
             //d["Id"] = "123";
             //d["Name"] = "Defaullt Name";
