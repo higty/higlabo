@@ -53,6 +53,43 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(v1.X, v2.X);
         }
         [TestMethod]
+        public void ObjectMapper_Map_ValueType_NullableValueType()
+        {
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            u1.Int32ToInt32Nullable = 3;
+            var u2 = mapper.Map(u1, new UserFlatten());
+
+            Assert.AreEqual(u1.Int32ToInt32Nullable, u2.Int32ToInt32Nullable);
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_Enum_NullableEnum()
+        {
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            u1.DayOfWeekToDayOfWeekNullable = DayOfWeek.Wednesday;
+            u1.Vector2ToString = new Vector2(3, 5);
+            var u2 = mapper.Map(u1, new UserFlatten());
+
+            Assert.AreEqual(u1.DayOfWeekToDayOfWeekNullable, u2.DayOfWeekToDayOfWeekNullable);
+            Assert.AreEqual("X=3, Y=5", u2.Vector2ToString);
+        }
+        [TestMethod]
+        public void ObjectMapper_Map_Enum_String()
+        {
+            var mapper = new ObjectMapper();
+
+            var u1 = new User();
+            u1.DayOfWeekToString = DayOfWeek.Wednesday;
+            u1.DayOfWeekNullableToString = DayOfWeek.Friday;
+            var u2 = mapper.Map(u1, new UserFlatten());
+
+            Assert.AreEqual(u1.DayOfWeekToString.ToStringFromEnum(), u2.DayOfWeekToString);
+            Assert.AreEqual(u1.DayOfWeekNullableToString.ToStringFromEnum(), u2.DayOfWeekNullableToString);
+        }
+        [TestMethod]
         public void ObjectMapper_Map_ValueType_Object()
         {
             var mapper = new ObjectMapper();

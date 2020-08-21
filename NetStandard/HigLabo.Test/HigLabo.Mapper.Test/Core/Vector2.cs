@@ -16,6 +16,10 @@ namespace HigLabo.Mapper.Test
             this.X = x;
             this.Y = y;
         }
+        public override string ToString()
+        {
+            return String.Format("X={0}, Y={1}", this.X, this.Y);
+        }
     }
     public class VectorInfo
     {

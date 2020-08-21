@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.ExceptionServices;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
@@ -338,6 +339,8 @@ namespace HigLabo.Core
         private static readonly Dictionary<String, MethodInfo> _DictionaryMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<String, MethodInfo> _ParseOrNullMethodList = new Dictionary<string, MethodInfo>();
         private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
+        private static readonly MethodInfo _ToStringMethod = typeof(Object).GetMethod("ToString");
+        private static readonly MethodInfo _ValueTypeToString = typeof(ObjectMapper).GetMethod("ValueTypeToString", BindingFlags.NonPublic | BindingFlags.Static);
 
         public static ObjectMapper Default { get; private set; } = new ObjectMapper();
 
@@ -997,6 +1000,14 @@ namespace HigLabo.Core
                             , Expression.Convert(getMethod, targetProperty.PropertyType)));
                             ee.Add(ifThen);
                         }
+                        else if (targetProperty.PropertyType == typeof(String))
+                        {
+                            //If Premitive or Enum, convert to string
+                            var toStringMethod = sourceProperty.PropertyType.GetMethods().First(el => el.Name == "ToString");
+                            var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
+                                , Expression.Call(p.Target, setMethod, Expression.Call(getMethod, toStringMethod)));
+                            ee.Add(ifThen);
+                        }
                     }
                     else
                     {
@@ -1005,6 +1016,12 @@ namespace HigLabo.Core
                             var body = Expression.Call(p.Target, setMethod
                             , Expression.Convert(getMethod, targetProperty.PropertyType));
                             ee.Add(body);
+                        }
+                        else if (targetProperty.PropertyType == typeof(String))
+                        {
+                            //If Premitive or Enum, convert to string
+                            var toStringMethod = sourceProperty.PropertyType.GetMethods().First(el => el.Name == "ToString");
+                            ee.Add(Expression.Call(p.Target, setMethod, Expression.Call(getMethod, toStringMethod)));
                         }
                     }
                 }
@@ -1343,7 +1360,6 @@ namespace HigLabo.Core
             var sourceType = p.SourceType;
             var targetType = p.TargetType;
 
-            var toStringMethod = typeof(Object).GetMethod("ToString");
             var addMethod = targetType.GetMethod("Add");
 
             var pp = CreatePropertyToDictionaryMapping(sourceType, targetType);
@@ -1375,13 +1391,13 @@ namespace HigLabo.Core
                         {
                             var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
                                 , Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
-                                , Expression.Call(Expression.TypeAs(getMethod, typeof(Object)), toStringMethod)));
+                                , Expression.Call(Expression.TypeAs(getMethod, typeof(Object)), _ToStringMethod)));
                             ee.Add(ifThen);
                         }
                         else
                         {
                             var body = Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
-                                , Expression.Call(Expression.TypeAs(getMethod, typeof(Object)), toStringMethod));
+                                , Expression.Call(Expression.TypeAs(getMethod, typeof(Object)), _ToStringMethod));
                             ee.Add(body);
                         }
                     }
@@ -1397,7 +1413,7 @@ namespace HigLabo.Core
                     {
                         var ifThen = Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
                             , Expression.Call(p.Target, addMethod, Expression.Constant(sourceProperty.Name)
-                            , Expression.Call(getMethod, toStringMethod)));
+                            , Expression.Call(getMethod, _ToStringMethod)));
                         ee.Add(ifThen);
                     }
                 }

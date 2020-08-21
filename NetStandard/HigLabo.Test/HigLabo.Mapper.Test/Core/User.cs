@@ -25,18 +25,23 @@ namespace HigLabo.Mapper.Test
         public Int32? Int32Nullable { get; set; }
         public Int32? Int32_Nullable { get; set; }
         public Int32? Int32NullableToInt32 { get; set; }
+        public Int32 Int32ToInt32Nullable { get; set; }
         public DateTime DateTime { get; set; }
         public DateTime? DateTimeNullable { get; set; }
         public Decimal Decimal { get; set; }
         public Decimal? DecimalNullable { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public DayOfWeek? DayOfWeekNullable { get; set; }
+        public DayOfWeek DayOfWeekToDayOfWeekNullable { get; set; }
+        public DayOfWeek DayOfWeekToString { get; set; }
+        public DayOfWeek? DayOfWeekNullableToString { get; set; }
         public Guid Guid { get; set; }
         public Guid? GuidNullable { get; set; }
 
         public MapPoint MapPoint { get; set; }
         public Vector2 VectorToNullable { get; set; }
         public Vector2 Vector2 { get; set; }
+        public Vector2 Vector2ToString { get; set; }
         public User ParentUser { get; set; }
         public List<User> Users { get; set; }
         public List<Guid> GuidList { get; private set; } = new List<Guid>();
@@ -88,14 +93,19 @@ namespace HigLabo.Mapper.Test
         public Int32 Int32 { get; set; }
         public Int32? Int32Nullable { get; set; }
         public Int32 Int32NullableToInt32 { get; set; }
+        public Int32? Int32ToInt32Nullable { get; set; }
         public DateTime DateTime { get; set; }
         public DateTime? DateTimeNullable { get; set; }
         public Decimal Decimal { get; set; }
         public Decimal? DecimalNullable { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
         public DayOfWeek? DayOfWeekNullable { get; set; }
+        public DayOfWeek? DayOfWeekToDayOfWeekNullable { get; set; }
+        public String DayOfWeekToString { get; set; }
+        public String DayOfWeekNullableToString { get; set; }
 
         public Vector2? VectorToNullable { get; set; }
+        public String Vector2ToString { get; set; }
         public Decimal Longitude { get; set; }
         public Decimal Latitude { get; set; }
         public Int32 X { get; set; }
