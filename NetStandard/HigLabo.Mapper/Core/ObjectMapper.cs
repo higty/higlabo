@@ -766,11 +766,9 @@ namespace HigLabo.Core
                 ee.Add(Expression.Assign(p.Target, Expression.TypeAs(targetParameter, targetType)));
             }
 
-            if (sourceType == typeof(Dictionary<String, String>) ||
-                sourceType == typeof(Dictionary<String, Object>))
+            if (sourceType.GetInterfaces().Any(el => el == typeof(IDictionary<String, String>) || el == typeof(IDictionary<String, Object>)))
             {
-                if (targetType == typeof(Dictionary<String, String>) ||
-                    targetType == typeof(Dictionary<String, Object>))
+                if (targetType.GetInterfaces().Any(el => el == typeof(IDictionary<String, String>) || targetType == typeof(IDictionary<String, Object>)))
                 {
                     var methodName = String.Format("MapDictionary_{0}_{1}"
                         , sourceType.GetGenericArguments()[1].Name
@@ -786,8 +784,7 @@ namespace HigLabo.Core
                     }
                 }
             }
-            else if (targetType == typeof(Dictionary<String, String>) ||
-                targetType == typeof(Dictionary<String, Object>))
+            else if (targetType.GetInterfaces().Any(el => el == typeof(IDictionary<String, String>) || el == typeof(IDictionary<String, Object>)))
             {
                 foreach (var item in CreateMapToDictionaryExpression(p))
                 {
@@ -1431,9 +1428,10 @@ namespace HigLabo.Core
         {
             var ee = new List<Expression>();
             var p = parameterList;
-            var sourceDictionaryValueType = sourceType.GetGenericArguments()[1];
+            var sourceTypeIDictionary = sourceType.GetInterface("IDictionary`2");
+            var sourceDictionaryValueType = sourceTypeIDictionary.GetGenericArguments()[1];
 
-            var containsKeyMethod = sourceType.GetMethod("ContainsKey", new Type[] { typeof(String) });
+            var containsKeyMethod = sourceTypeIDictionary.GetMethod("ContainsKey", new Type[] { typeof(String) });
             var tryGetMethod = typeof(ObjectMapper).GetMethod("TryGetValue", BindingFlags.NonPublic | BindingFlags.Static)
                 .MakeGenericMethod(sourceDictionaryValueType);
             var tryGetStringMethod = typeof(ObjectMapper).GetMethod("TryGetStringValue", BindingFlags.NonPublic | BindingFlags.Static)
@@ -1537,7 +1535,7 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private static Dictionary<String, String> MapDictionary_String_String(Dictionary<String, String> source, Dictionary<String, String> target)
+        private static IDictionary<String, String> MapDictionary_String_String(IDictionary<String, String> source, IDictionary<String, String> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1545,7 +1543,7 @@ namespace HigLabo.Core
             }
             return target;
         }
-        private static Dictionary<String, Object> MapDictionary_String_Object(Dictionary<String, String> source, Dictionary<String, Object> target)
+        private static IDictionary<String, Object> MapDictionary_String_Object(IDictionary<String, String> source, IDictionary<String, Object> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1553,7 +1551,7 @@ namespace HigLabo.Core
             }
             return target;
         }
-        private static Dictionary<String, String> MapDictionary_Object_String(Dictionary<String, Object> source, Dictionary<String, String> target)
+        private static IDictionary<String, String> MapDictionary_Object_String(IDictionary<String, Object> source, IDictionary<String, String> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1568,7 +1566,7 @@ namespace HigLabo.Core
             }
             return target;
         }
-        private static Dictionary<String, Object> MapDictionary_Object_Object(Dictionary<String, Object> source, Dictionary<String, Object> target)
+        private static IDictionary<String, Object> MapDictionary_Object_Object(IDictionary<String, Object> source, IDictionary<String, Object> target)
         {
             foreach (var key in source.Keys)
             {
@@ -1577,12 +1575,12 @@ namespace HigLabo.Core
             return target;
         }
 
-        private static TValue TryGetValue<TValue>(Dictionary<String, TValue> dictionary, String key)
+        private static TValue TryGetValue<TValue>(IDictionary<String, TValue> dictionary, String key)
         {
             if (dictionary.TryGetValue(key, out var value)) { return value; }
             return default(TValue);
         }
-        private static String TryGetStringValue<TValue>(Dictionary<String, TValue> dictionary, String key)
+        private static String TryGetStringValue<TValue>(IDictionary<String, TValue> dictionary, String key)
         {
             if (dictionary.TryGetValue(key, out var value))
             {

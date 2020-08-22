@@ -637,6 +637,22 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(u2.Int32, u1.Int32);
             Assert.AreEqual(u2.Name, u1.Name);
         }
+        [TestMethod]
+        public void ObjectMapper_Map_ExpandObject_Object()
+        {
+            var mapper = new ObjectMapper();
+
+            var d = new ExpandoObject();
+            var g = Guid.NewGuid();
+            d.TryAdd("Int32", null);
+            d.TryAdd("Int32Nullable", null);
+            d.TryAdd("Guid", g);
+            d.TryAdd("GuidNullable", g);
+            var u1 = mapper.Map(d, new User());
+
+            Assert.AreEqual(g, u1.Guid);
+            Assert.AreEqual(g, u1.GuidNullable);
+        }
 
         [TestMethod]
         public void ObjectMapper_Map_List_List()
