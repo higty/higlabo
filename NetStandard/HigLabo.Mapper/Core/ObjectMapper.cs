@@ -878,7 +878,7 @@ namespace HigLabo.Core
                         }
                         else if (targetNullableGenericType.IsEnum)
                         {
-                            var parseMethod = _ParseMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
+                            var parseMethod = _ParseOrNullMethodList[nameof(Enum)].MakeGenericMethod(targetNullableGenericType);
                             var getTargetValueMethod = targetProperty.GetGetMethod();
                             var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, getTargetValueMethod));
                             var body = Expression.Call(p.Target, setMethod, parse);

@@ -623,6 +623,22 @@ namespace HigLabo.Mapper.Test
         }
 
         [TestMethod]
+        public void ObjectMapper_Map_Dynamic_Object()
+        {
+            var mapper = new ObjectMapper();
+
+            dynamic u1 = new UserFlatten();
+            u1.Name = "User1";
+            u1.Int32 = 4;
+
+            var u2 = new User();
+            mapper.Map(u1, u2);
+
+            Assert.AreEqual(u2.Int32, u1.Int32);
+            Assert.AreEqual(u2.Name, u1.Name);
+        }
+
+        [TestMethod]
         public void ObjectMapper_Map_List_List()
         {
             var mapper = new ObjectMapper();
