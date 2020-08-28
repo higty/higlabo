@@ -56,6 +56,11 @@ namespace HigLabo.Core
             {
                 return !left.Equals(right);
             }
+
+            public override string ToString()
+            {
+                return String.Format("{0} - {1}", this.Source.Name, this.Target.Name);
+            }
         }
         private class MapperMethodAttribute : Attribute
         {

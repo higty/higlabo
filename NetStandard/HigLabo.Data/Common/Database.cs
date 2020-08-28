@@ -16,7 +16,7 @@ namespace HigLabo.Data
         public event EventHandler<ConnectionCreatedEventArgs> ConnectionCreated;
         public event EventHandler<CommandCreatedEventArgs> CommandCreated;
 
-        public static readonly DatabaseDefaultSettings Default = new DatabaseDefaultSettings();
+        public static readonly DatabaseDefaultSettings DefaultSettings = new DatabaseDefaultSettings();
 
         protected DbConnection Connection { get; set; }
         protected DbTransaction Transaction { get; set; }
@@ -38,7 +38,7 @@ namespace HigLabo.Data
 
         public Database()
         {
-            this.RetryIntervalMillisecondList.AddRange(Default.RetryIntervalMillisecondList);
+            this.RetryIntervalMillisecondList.AddRange(DefaultSettings.RetryIntervalMillisecondList);
         }
 
         public void Open()
