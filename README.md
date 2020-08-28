@@ -1,8 +1,11 @@
 # higlabo
-HigLabo library provide features of Mail, Ftp, Rss, Twitter, ObjectMapper, ORM, ASP.NET Mvc...etc.
+HigLabo library provide features 
+1. Object Mapper(fastest in the world)
+2. DbSharp(DAL generator)
+3. And other.(Mail, Ftp, Rss, Twitter...etc)
 
 I added .NET Standard version at 2020/07/03.
-It was https://github.com/higty/higlabo.netstandard repository.
+It was moved from https://github.com/higty/higlabo.netstandard repository.
 
 
 ## HigLabo.Mapper
