@@ -255,6 +255,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Config\GenerateSourceCodeWindowStateInfo.cs" />
     <Compile Include="Windows\CopyResultSetWindow.xaml.cs">
       <DependentUpon>CopyResultSetWindow.xaml</DependentUpon>
     </Compile>
@@ -282,7 +283,7 @@
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\MainWindowState.cs" />
+    <Compile Include="Core\MainWindowState.cs" />
     <Compile Include="Windows\ManageConnectionStringWindow.xaml.cs">
       <DependentUpon>ManageConnectionStringWindow.xaml</DependentUpon>
     </Compile>

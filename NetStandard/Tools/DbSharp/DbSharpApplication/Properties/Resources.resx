@@ -201,8 +201,8 @@
   <data name="Menu_GetAll" xml:space="preserve">
     <value>Get _All</value>
   </data>
-  <data name="Menu_ImportObject" xml:space="preserve">
-    <value>_ImportObject</value>
+  <data name="Menu_ReadDatabaseSchema" xml:space="preserve">
+    <value>_Read Database Schema</value>
   </data>
   <data name="Menu_ImportStoredProcedure" xml:space="preserve">
     <value>Import _StoredProcedure</value>

@@ -331,15 +331,6 @@ namespace HigLabo.DbSharpApplication.Properties {
         }
         
         /// <summary>
-        ///   _ImportObject に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        public static string Menu_ImportObject {
-            get {
-                return ResourceManager.GetString("Menu_ImportObject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Import _StoredProcedure に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Menu_ImportStoredProcedure {
@@ -435,6 +426,15 @@ namespace HigLabo.DbSharpApplication.Properties {
         public static string Menu_Quit {
             get {
                 return ResourceManager.GetString("Menu_Quit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   _Read Database Schema に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string Menu_ReadDatabaseSchema {
+            get {
+                return ResourceManager.GetString("Menu_ReadDatabaseSchema", resourceCulture);
             }
         }
         

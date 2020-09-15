@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -18,6 +19,8 @@ namespace HigLabo.Data
 
         public static readonly DatabaseDefaultSettings DefaultSettings = new DatabaseDefaultSettings();
 
+        private ConcurrentBag<Int32> _RetryIntervalMillisecondList = new ConcurrentBag<int>();
+
         protected DbConnection Connection { get; set; }
         protected DbTransaction Transaction { get; set; }
         public String ConnectionString { get; set; }
@@ -34,22 +37,24 @@ namespace HigLabo.Data
         {
             get { return this.Transaction != null; }
         }
-        public List<Int32> RetryIntervalMillisecondList { get; private set; } = new List<int>();
 
         public Database()
         {
-            this.RetryIntervalMillisecondList.AddRange(DefaultSettings.RetryIntervalMillisecondList);
+            foreach (var item in DefaultSettings.RetryIntervalMillisecondList)
+            {
+                this._RetryIntervalMillisecondList.Add(item);
+            }
         }
 
         public void Open()
         {
-            if (this.RetryIntervalMillisecondList.Count == 0)
+            if (this._RetryIntervalMillisecondList.Count == 0)
             {
                 this.OpenConnection();
             }
             else
             {
-                this.Open(this.RetryIntervalMillisecondList);
+                this.Open(this._RetryIntervalMillisecondList.ToList());
             }
         }
         private void OpenConnection()
@@ -91,6 +96,7 @@ namespace HigLabo.Data
                     {
                         throw;
                     }
+                    this.Close();
                     Thread.Sleep(retryIntervalMillisecondsList[i]);
                 }
             }
