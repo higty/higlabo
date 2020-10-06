@@ -39,7 +39,7 @@ namespace HigLabo.DbSharpApplication
             sv.ProcessProgress += CommandService_ProcessProgress;
             sv.Completed += CommandService_Completed;
 
-            AValue.ConfigData.ImportObjectWindow.Initialize(this);
+            AValue.ConfigData.ProgressWindow.Initialize(this);
 
             this.Loaded += ProgressWindow_Loaded;
         }

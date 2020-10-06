@@ -33,6 +33,7 @@ namespace HigLabo.DbSharpApplication
             this.SourceStoredProcedureComboBox.ItemsSource = _StoredProcedures;
 
             _StoredProcedures.AddRange(AValue.SchemaData.StoredProcedures.Where(el => el.ResultSets.Count > 0).OrderBy(el => el.Name));
+            this.SourceStoredProcedureResultSetComboBox.SelectedItem = storedProcedure;
             this.TargetStoredProcedureComboBox.SelectedItem = storedProcedure;
         }
         private void SourceStoredProcedureComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

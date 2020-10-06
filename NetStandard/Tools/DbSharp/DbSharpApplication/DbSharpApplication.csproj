@@ -255,7 +255,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Config\GenerateSourceCodeWindowStateInfo.cs" />
+    <Compile Include="Config\ImportObjectWindowStateInfo.cs" />
     <Compile Include="Windows\CopyResultSetWindow.xaml.cs">
       <DependentUpon>CopyResultSetWindow.xaml</DependentUpon>
     </Compile>

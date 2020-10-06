@@ -34,6 +34,7 @@ namespace HigLabo.DbSharpApplication
         public ImportObjectWindow()
         {
             InitializeComponent();
+            AValue.ConfigData.ImportObjectWindow.Initialize(this);
 
             this.ConnectionStringComboBox.ItemsSource = AValue.ConfigData.ConnectionStrings;
 
@@ -62,7 +63,6 @@ namespace HigLabo.DbSharpApplication
             {
                 this.ForeignKeyCheckBox.IsChecked = true;
             }
-            AValue.ConfigData.ImportObjectWindow.Initialize(this);
         }
         private void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
@@ -113,10 +113,9 @@ namespace HigLabo.DbSharpApplication
             _Tables.Clear();
             foreach (var item in l.Select(el => CheckedItem.Create(el)))
             {
-                item.IsChecked = true;
+                item.IsChecked = this.TableSelectAllCheckBox.IsChecked ?? item.IsChecked;
                 _Tables.Add(item);
             }
-            this.TableSelectAllCheckBox.IsChecked = true;
         }
         private void ImportStoredProcedure(String connectionString, Int32 offsetHour)
         {
@@ -137,10 +136,9 @@ namespace HigLabo.DbSharpApplication
             _StoredProcedures.Clear();
             foreach (var item in l.Select(el => CheckedItem.Create(el)))
             {
-                item.IsChecked = true;
+                item.IsChecked = this.StoredProcedureSelectAllCheckBox.IsChecked ?? item.IsChecked;
                 _StoredProcedures.Add(item);
             }
-            this.StoredProcedureSelectAllCheckBox.IsChecked = true;
         }
         private void ImportUserDefinedTableType(String connectionString, Int32 offsetHour)
         {
@@ -163,10 +161,9 @@ namespace HigLabo.DbSharpApplication
             _UserDefinedTableTypes.Clear();
             foreach (var item in l.Select(el => CheckedItem.Create(el)))
             {
-                item.IsChecked = true;
+                item.IsChecked = this.UserDefinedTableTypeSelectAllCheckBox.IsChecked ?? item.IsChecked;
                 _UserDefinedTableTypes.Add(item);
             }
-            this.UserDefinedTableTypeSelectAllCheckBox.IsChecked = true;
         }
         private void TableSelectAllCheckBox_Checked(object sender, RoutedEventArgs e)
         {
