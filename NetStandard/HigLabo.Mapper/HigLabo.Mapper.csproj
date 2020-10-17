@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>3.0.0.10</Version>
+    <Version>3.0.1.0</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>HigLabo.Mapper provide object map functionality like AutoMapper.Great performance with expression tree, and intuitive usage.</Description>
     <Product />

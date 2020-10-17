@@ -998,6 +998,73 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(45m, u2.MapPoint.Longitude);
         }
 
+        [TestMethod]
+        public void ObjectMapper_TC1_TS1_0()
+        {
+            var mapper = new ObjectMapper();
+
+            var s = new TC1();
+            s.I0 = TC0_Members.Create();
+            s.I1 = TC0_Members.Create();
+            s.I2 = TC0_Members.Create();
+            var t = mapper.Map(s, new TS1_0());
+
+            Assert.AreEqual(s.I0.BooleanMember, t.I0.BooleanMember);
+            Assert.AreEqual(s.I0.CharMember, t.I0.CharMember);
+            Assert.AreEqual(s.I0.SByteMember, t.I0.SByteMember);
+            Assert.AreEqual(s.I0.ByteMember, t.I0.ByteMember);
+            Assert.AreEqual(s.I0.Int16SMember, t.I0.Int16SMember);
+            Assert.AreEqual(s.I0.UInt16Member, t.I0.UInt16Member);
+            Assert.AreEqual(s.I0.Int32Member, t.I0.Int32Member);
+            Assert.AreEqual(s.I0.UInt32Member, t.I0.UInt32Member);
+            Assert.AreEqual(s.I0.Int64Member, t.I0.Int64Member);
+            Assert.AreEqual(s.I0.UInt64Member, t.I0.UInt64Member);
+            Assert.AreEqual(s.I0.SingleMember, t.I0.SingleMember);
+            Assert.AreEqual(s.I0.DoubleMember, t.I0.DoubleMember);
+            Assert.AreEqual(s.I0.DecimalMember, t.I0.DecimalMember);
+            Assert.AreEqual(s.I0.StringMember, t.I0.StringMember);
+
+            Assert.AreEqual(s.I1.BooleanMember, t.I1.BooleanMember);
+            Assert.AreEqual(s.I1.CharMember, t.I1.CharMember);
+            Assert.AreEqual(s.I1.SByteMember, t.I1.SByteMember);
+            Assert.AreEqual(s.I1.ByteMember, t.I1.ByteMember);
+            Assert.AreEqual(s.I1.Int16SMember, t.I1.Int16SMember);
+            Assert.AreEqual(s.I1.UInt16Member, t.I1.UInt16Member);
+            Assert.AreEqual(s.I1.Int32Member, t.I1.Int32Member);
+            Assert.AreEqual(s.I1.UInt32Member, t.I1.UInt32Member);
+            Assert.AreEqual(s.I1.Int64Member, t.I1.Int64Member);
+            Assert.AreEqual(s.I1.UInt64Member, t.I1.UInt64Member);
+            Assert.AreEqual(s.I1.SingleMember, t.I1.SingleMember);
+            Assert.AreEqual(s.I1.DoubleMember, t.I1.DoubleMember);
+            Assert.AreEqual(s.I1.DecimalMember, t.I1.DecimalMember);
+            Assert.AreEqual(s.I1.StringMember, t.I1.StringMember);
+            Assert.AreEqual(s.I1.GuidMember, t.I1.GuidMember);
+            Assert.AreEqual(s.I1.UndefinedEnumMember, t.I1.UndefinedEnumMember);
+            Assert.AreEqual(s.I1.EnumMember, t.I1.EnumMember);
+
+            Assert.AreEqual(s.I2.BooleanMember, t.I2.BooleanMember);
+            Assert.AreEqual(s.I2.CharMember, t.I2.CharMember);
+            Assert.AreEqual(s.I2.SByteMember, t.I2.SByteMember);
+            Assert.AreEqual(s.I2.ByteMember, t.I2.ByteMember);
+            Assert.AreEqual(s.I2.Int16SMember, t.I2.Int16SMember);
+            Assert.AreEqual(s.I2.UInt16Member, t.I2.UInt16Member);
+            Assert.AreEqual(s.I2.Int32Member, t.I2.Int32Member);
+            Assert.AreEqual(s.I2.UInt32Member, t.I2.UInt32Member);
+            Assert.AreEqual(s.I2.Int64Member, t.I2.Int64Member);
+            Assert.AreEqual(s.I2.UInt64Member, t.I2.UInt64Member);
+            Assert.AreEqual(s.I2.SingleMember, t.I2.SingleMember);
+            Assert.AreEqual(s.I2.DoubleMember, t.I2.DoubleMember);
+            Assert.AreEqual(s.I2.DecimalMember, t.I2.DecimalMember);
+            Assert.AreEqual(s.I2.StringMember, t.I2.StringMember);
+            Assert.AreEqual(s.I2.DateTimeMember, t.I2.DateTimeMember);
+            Assert.AreEqual(s.I2.DateTimeOffsetMember, t.I2.DateTimeOffsetMember);
+            Assert.AreEqual(s.I2.TimeSpanMember, t.I2.TimeSpanMember);
+            Assert.AreEqual(s.I2.GuidMember, t.I2.GuidMember);
+            Assert.AreEqual(s.I2.UndefinedEnumMember, t.I2.UndefinedEnumMember);
+            Assert.AreEqual(s.I2.EnumMember, t.I2.EnumMember);
+        }
+
+
 
         private MapPoint MapPointConverter(Object obj)
         {

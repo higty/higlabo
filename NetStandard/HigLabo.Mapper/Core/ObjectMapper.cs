@@ -864,7 +864,6 @@ namespace HigLabo.Core
                     }
                 }
 
-
                 if (sourceProperty.PropertyType == typeof(String))
                 {
                     if (targetProperty.PropertyType.IsNullable())
@@ -917,42 +916,66 @@ namespace HigLabo.Core
                     }
 
                 }
-                else if (sourceProperty.PropertyType.IsClass && targetProperty.PropertyType.IsClass)
+                else if (sourceProperty.PropertyType.IsClass)
                 {
-                    switch (this.CompilerConfig.ClassPropertyCreateMode)
+                    if (targetProperty.PropertyType.IsClass)
                     {
-                        case ClassPropertyCreateMode.None: break;
-                        case ClassPropertyCreateMode.NewObject:
-                            var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
-                            if (targetConstructor != null)
-                            {
-                                var sourceMember = Expression.Property(p.Source, sourceProperty);
-                                var targetMember = Expression.Property(p.Target, targetProperty);
-                                var elementParameter = new MapParameter();
-                                elementParameter.SourceType = sourceProperty.PropertyType;
-                                elementParameter.TargetType = targetProperty.PropertyType;
-                                elementParameter.Source = sourceMember;
-                                elementParameter.Target = targetMember;
-                                
-                                var block = new List<Expression>();
-                                block.Add(Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
-                                    , Expression.Assign(targetMember, Expression.New(targetProperty.PropertyType)))
-                                    );
-                                block.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
-                                var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Constant(null, typeof(Object)))
-                                          , Expression.Call(p.Target, setMethod, Expression.Default(targetProperty.PropertyType))
-                                          , Expression.Block(block));
-                                ee.Add(body);
-                            }
-                            break;
-                        case ClassPropertyCreateMode.Assign:
-                            if (targetProperty.PropertyType.IsAssignableFrom(sourceProperty.PropertyType))
-                            {
-                                var body = Expression.Call(p.Target, setMethod, getMethod);
-                                ee.Add(body);
-                            }
-                            break;
-                        default: throw new InvalidOperationException();
+                        switch (this.CompilerConfig.ClassPropertyCreateMode)
+                        {
+                            case ClassPropertyCreateMode.None: break;
+                            case ClassPropertyCreateMode.NewObject:
+                                var targetConstructor = targetProperty.PropertyType.GetConstructor(Type.EmptyTypes);
+                                if (targetConstructor != null)
+                                {
+                                    var sourceMember = Expression.Property(p.Source, sourceProperty);
+                                    var targetMember = Expression.Property(p.Target, targetProperty);
+                                    var elementParameter = new MapParameter();
+                                    elementParameter.SourceType = sourceProperty.PropertyType;
+                                    elementParameter.TargetType = targetProperty.PropertyType;
+                                    elementParameter.Source = sourceMember;
+                                    elementParameter.Target = targetMember;
+
+                                    var block = new List<Expression>();
+                                    block.Add(Expression.IfThen(Expression.Equal(targetMember, Expression.Constant(null, typeof(Object)))
+                                        , Expression.Assign(targetMember, Expression.New(targetProperty.PropertyType)))
+                                        );
+                                    block.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
+                                    var body = Expression.IfThenElse(Expression.Equal(getMethod, Expression.Constant(null, typeof(Object)))
+                                              , Expression.Call(p.Target, setMethod, Expression.Default(targetProperty.PropertyType))
+                                              , Expression.Block(block));
+                                    ee.Add(body);
+                                }
+                                break;
+                            case ClassPropertyCreateMode.Assign:
+                                if (targetProperty.PropertyType.IsAssignableFrom(sourceProperty.PropertyType))
+                                {
+                                    var body = Expression.Call(p.Target, setMethod, getMethod);
+                                    ee.Add(body);
+                                }
+                                break;
+                            default: throw new InvalidOperationException();
+                        }
+                    }
+                    else
+                    {
+                        var sourceMember = Expression.Property(p.Source, sourceProperty);
+                        var targetMember = Expression.Property(p.Target, targetProperty);
+                        var targetVariable = Expression.Variable(targetProperty.PropertyType, "targetVariable");
+                        var elementParameter = new MapParameter();
+                        elementParameter.SourceType = sourceProperty.PropertyType;
+                        elementParameter.TargetType = targetProperty.PropertyType;
+                        elementParameter.Source = sourceMember;
+                        elementParameter.Target = targetVariable;
+
+                        var block = new List<Expression>();
+                        block.Add(Expression.Assign(targetVariable, targetMember));
+                        block.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
+                        block.Add(Expression.Assign(targetMember, targetVariable));
+
+                        var body = Expression.Block(new[] { targetVariable }
+                        , Expression.IfThen(Expression.NotEqual(getMethod, Expression.Constant(null, typeof(Object)))
+                        , Expression.Block(block)));
+                        ee.Add(body);
                     }
                 }
                 else if (targetProperty.PropertyType.IsNullable())
