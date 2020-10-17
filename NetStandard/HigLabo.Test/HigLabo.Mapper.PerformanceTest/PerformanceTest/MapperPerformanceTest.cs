@@ -37,6 +37,7 @@ namespace HigLabo.Mapper.PerformanceTest
         public AutoMapper.IMapper AutoMapper = null;
         public Customer Customer = null;
         public Address Address = null;
+        public TC0_Members TC0_Members = null; 
 
         [GlobalSetup]
         public void Setup()
@@ -62,6 +63,7 @@ namespace HigLabo.Mapper.PerformanceTest
 
             this.Customer = Customer.Create();
             this.Address = Address.Create();
+            this.TC0_Members = TC0_Members.Create();
         }
 
         [Benchmark(Baseline = true)]
@@ -353,6 +355,23 @@ namespace HigLabo.Mapper.PerformanceTest
             for (int i = 0; i < ExecuteCount; i++)
             {
                 var r = this.AutoMapper.Map<CustomerDTO>(this.Customer);
+            }
+        }
+
+        [Benchmark]
+        public void HigLaboObjectMapper_TC0_Members_To_Tc0_I0_MembersO()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = HigLabo.Core.ObjectMapper.Default.Map(this.TC0_Members, new TC0_I0_Members());
+            }
+        }
+        [Benchmark]
+        public void Mapster_TC0_Members_To_Tc0_I0_Members()
+        {
+            for (int i = 0; i < ExecuteCount; i++)
+            {
+                var r = this.TC0_Members.Adapt(new TC0_I0_Members());
             }
         }
     }
