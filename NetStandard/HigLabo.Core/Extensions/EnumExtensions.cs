@@ -9,6 +9,8 @@ namespace HigLabo.Core
 {
     public static class EnumExtensions
     {
+        public static Boolean UseEmit { get; set; } = true;
+
         private static ConcurrentDictionary<Type, MulticastDelegate> _ToStringFromEnumMethods = new ConcurrentDictionary<Type, MulticastDelegate>();
 
         public static String ToStringOrNullFromEnum<T>(this Nullable<T> value)
@@ -26,6 +28,8 @@ namespace HigLabo.Core
         public static String ToStringFromEnum<T>(this T value)
             where T : struct
         {
+            if (UseEmit == false) { return value.ToString(); }
+
             var tp = typeof(T);
             if (tp.IsEnum == false) throw new ArgumentException("value must be a enum type");
 

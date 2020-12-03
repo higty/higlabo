@@ -198,8 +198,8 @@
   <data name="Menu_GetAll" xml:space="preserve">
     <value>全て取得(_A)</value>
   </data>
-  <data name="Menu_ImportObject" xml:space="preserve">
-    <value>インポート(_I)</value>
+  <data name="Menu_ReadDatabaseSchema" xml:space="preserve">
+    <value>DBのスキーマの読取(_R)</value>
   </data>
   <data name="Menu_ImportStoredProcedure" xml:space="preserve">
     <value>ストアドプロシージャのインポート(_S)</value>
