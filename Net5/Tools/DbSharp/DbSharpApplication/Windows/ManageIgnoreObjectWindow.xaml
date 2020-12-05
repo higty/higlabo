@@ -1,0 +1,26 @@
+﻿<Window x:Class="HigLabo.DbSharpApplication.ManageIgnoreObjectWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:HigLabo.DbSharpApplication.Properties"
+        Title="Ignore Objects List" Height="600" Width="800"
+        MinHeight="300" MinWidth="400"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <CheckBox x:Name="IgnoreObjectSelectAllCheckBox" Content="{x:Static p:Resources.SelectAll}" VerticalContentAlignment="Center"
+            	Checked="IgnoreObjectSelectAllCheckBox_Checked"
+            	Unchecked="IgnoreObjectSelectAllCheckBox_Checked" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Margin="10,0,0,0"/>
+            <ListBox Name="IgnoreObjectListBox" SelectionMode="Extended" Margin="10,24,10,0"
+                         ItemTemplate="{StaticResource ResourceKey=DatabaseObjectDataTemplate}">
+            </ListBox>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Button Name="RemoveButton" Content="{x:Static p:Resources.Menu_RemoveFromList}" Margin="10,0,0,10" Click="RemoveButton_Click" HorizontalAlignment="Left" Width="130" Height="40" VerticalAlignment="Bottom"/>
+            <Button Name="QuitButton" Content="{x:Static p:Resources.Menu_Quit}" Margin="0,0,10,10" Click="QuitButton_Click" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="76"/>
+        </Grid>
+    </Grid>
+</Window>

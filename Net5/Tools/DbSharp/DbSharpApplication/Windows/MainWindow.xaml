@@ -1,0 +1,282 @@
+﻿<Window x:Class="HigLabo.DbSharpApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:HigLabo.DbSharpApplication.Properties"
+        Title="HigLabo.DbSharpApplication" Width="800" Height="600" 
+        MinWidth="700" MinHeight="400" 
+        WindowStartupLocation="CenterScreen"
+        Icon="/Icon/DbSharp.ico">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Style TargetType="MenuItem">
+                <Setter Property="FontSize" Value="20"></Setter>
+                <Setter Property="Padding" Value="6,2,10,2"></Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="28"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Menu Grid.Row="0" Background="#f0f6ff" Margin="0,0,0,0">
+            <MenuItem Name="m0000" Header="{x:Static p:Resources.Menu_File}">
+                <MenuItem Name="m0001" Header="{x:Static p:Resources.Menu_New}" Click="m0001_Click"></MenuItem>
+                <MenuItem Name="m0002" Header="{x:Static p:Resources.Menu_OpenFile}" Click="m0002_Click"></MenuItem>
+                <MenuItem Name="m0003" Header="{x:Static p:Resources.Menu_RecentFiles}" Click="m0003_Click">
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock FontSize="12px" VerticalAlignment="Center"
+                                       Text="{Binding Path=FilePath, Converter={StaticResource RecentFilePathConverter}}"></TextBlock>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                </MenuItem>
+                <MenuItem Name="m0004" Header="{x:Static p:Resources.Menu_Save}" Click="m0004_Click"></MenuItem>
+                <MenuItem Name="m0005" Header="{x:Static p:Resources.Menu_SaveAs}" Click="m0005_Click"></MenuItem>
+                <MenuItem Name="m0006" Header="{x:Static p:Resources.Menu_Close}" Click="m0006_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="m0100" Header="{x:Static p:Resources.Menu_Edit}">
+                <MenuItem Name="m0101" Header="{x:Static p:Resources.Menu_ManageConnection}" Click="m0101_Click"></MenuItem>
+                <MenuItem Name="m0102" Header="{x:Static p:Resources.Menu_ReadDatabaseSchema}" Click="m0102_Click"></MenuItem>
+                <MenuItem Name="m0104" Header="{x:Static p:Resources.Menu_DeleteObject}" Click="m0104_Click"></MenuItem>
+                <MenuItem Name="m0105" Header="{x:Static p:Resources.Menu_GenerateCSharpCode}" Click="m0105_Click"></MenuItem>
+                <MenuItem Name="m0106" Header="{x:Static p:Resources.Menu_GenerateSqlScript}" Click="m0106_Click"></MenuItem>
+                <MenuItem Name="m0107" Header="{x:Static p:Resources.Menu_ManageIgnoreList}" Click="m0107_Click"></MenuItem>
+                <MenuItem Name="m0108" Header="{x:Static p:Resources.Menu_CopyResultSet}" Click="m0108_Click"></MenuItem>
+                <MenuItem Name="m0110" Header="{x:Static p:Resources.Menu_ImportUpdatedObjectAndGenerateFiles}" Click="m0110_Click"></MenuItem>
+                <MenuItem Name="m0190" Header="{x:Static p:Resources.Menu_Other}">
+                    <MenuItem Name="m0191" Header="{x:Static p:Resources.Menu_DeleteObjectAndAddToIgnoreList}" Click="m0191_Click"></MenuItem>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Name="m0200" Header="{x:Static p:Resources.Menu_View}">
+                <MenuItem Name="m0201" Header="{x:Static p:Resources.Menu_Table}" Click="m0201_Click"></MenuItem>
+                <MenuItem Name="m0202" Header="{x:Static p:Resources.Menu_StoredProcedure}" Click="m0202_Click"></MenuItem>
+                <MenuItem Name="m0203" Header="{x:Static p:Resources.Menu_UserDefinedTableType}" Click="m0203_Click"></MenuItem>
+            </MenuItem>
+            <MenuItem Name="m0300" Header="{x:Static p:Resources.Menu_Tools}">
+                <MenuItem Name="m0301" Header="{x:Static p:Resources.Menu_Options}" Click="m0301_Click"></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Grid Grid.Row="1">
+            <ComboBox Name="DatabaseTypeList" HorizontalAlignment="Left" Margin="10,4,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button Name="SelectDatabaseTypeButton" Content="Select" HorizontalAlignment="Left" Margin="130,4,0,0" VerticalAlignment="Top" Width="50" Click="SelectDatabaseTypeButton_Click" Height="21"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <TabControl Name="MainTab" Grid.Row="2" Margin="0,5,0,0">
+                <TabItem Name="MainTabTable" Header="{x:Static p:Resources.Table}">
+                    <Grid Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Name="TableGridColumn" Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Name="ColumnGridColumn" Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBox Name="SearchTableTextBox" KeyDown="SearchTableTextBox_KeyDown" Height="21" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <ListBox Name="TableListBox" SelectionMode="Single" Margin="0,26,0,0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                              ShowsPreview="true" ResizeDirection="Columns" Width="5" />
+                        <Grid Grid.Column="2" DataContext="{Binding ElementName=TableListBox, Path=SelectedItem}">
+                            <DataGrid Name="ColumnListBox" ItemsSource="{Binding Path=Columns}"
+                                      AutoGenerateColumns="False" FrozenColumnCount="2" CellEditEnding="ColumnListBox_CellEditEnding">
+                                <DataGrid.Columns>
+                                    <StaticResource ResourceKey="DataTypeOrdinal"/>
+                                    <StaticResource ResourceKey="DataTypeColumnName"/>
+                                    <StaticResource ResourceKey="DataTypeDbType"/>
+                                    <StaticResource ResourceKey="DataTypeLength"/>
+                                    <StaticResource ResourceKey="DataTypePrecision"/>
+                                    <StaticResource ResourceKey="DataTypeScale"/>
+                                    <StaticResource ResourceKey="DataTypeAllowNull"/>
+                                    <StaticResource ResourceKey="DataTypeIsPrimaryKey"/>
+                                    <StaticResource ResourceKey="DataTypeIsIdentity"/>
+                                    <StaticResource ResourceKey="DataTypeIsRowGuidCol"/>
+                                    <StaticResource ResourceKey="DataTypeUserTableTypeName"/>
+                                    <StaticResource ResourceKey="DataTypeUdtTypeName"/>
+                                    <StaticResource ResourceKey="DataTypeEnumName"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="MainTabStoredProcedure" Header="{x:Static p:Resources.StoredProcedure}">
+                    <Grid Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Name="StoredProcedureGridColumn" Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Name="ParameterResultSetGridColumn" Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <ComboBox Name="FilterStoredProcedureTypeListBox" SelectionChanged="FilterStoredProcedureTypeListBox_SelectionChanged"
+                                      HorizontalAlignment="Left" VerticalAlignment="Top" Width="80"/>
+                            <TextBox Name="SearchStoredProcedureTextBox" KeyDown="SearchStoredProcedureTextBox_KeyDown" Height="21" Margin="80,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <ListBox Name="StoredProcedureListBox" SelectionMode="Single" Margin="0,26,0,0"
+                                     SelectionChanged="StoredProcedureListBox_SelectionChanged">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                              ShowsPreview="true" ResizeDirection="Columns" Width="5" />
+                        <TabControl  DataContext="{Binding ElementName=StoredProcedureListBox, Path=SelectedItem}"
+                                     Name="StoredProcedureTab" Grid.Column="2" Margin="0,0,0,0">
+                            <TabItem Name="StoredProcedureTabNameBody" Header="Body">
+                                <Grid>
+                                    <TextBlock Text="{Binding Path=Name}" FontSize="16px" FontWeight="Bold"
+                                           Padding="2" Height="25" VerticalAlignment="Top"/>
+                                    <TextBox BorderThickness="1" Margin="0,25,0,0" Padding="2" Background="Transparent" TextAlignment="Left"
+                                                 Text="{Binding Path=Body}" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Visible" />
+                                </Grid>
+                            </TabItem>
+                            <TabItem Name="StoredProcedureTabParameterResultSets" Header="Parameter">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Name="ParameterGridRow" Height="1*"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Name="ResultSetGridRow" Height="1*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid Grid.Row="0">
+                                        <TextBlock Text="{Binding Path=Name}" FontSize="16px" FontWeight="Bold"
+                                           Padding="2" Height="25" VerticalAlignment="Top"/>
+                                        <DataGrid Name="ParameterListBox" 
+                                          ItemsSource="{Binding Path=Parameters}"
+                                          AutoGenerateColumns="False" FrozenColumnCount="2" Margin="0,26,0,0">
+                                            <DataGrid.Columns>
+                                                <StaticResource ResourceKey="DataTypeOrdinal"/>
+                                                <StaticResource ResourceKey="DataTypeColumnName"/>
+                                                <StaticResource ResourceKey="DataTypeDbType"/>
+                                                <StaticResource ResourceKey="DataTypeLength"/>
+                                                <StaticResource ResourceKey="DataTypePrecision"/>
+                                                <StaticResource ResourceKey="DataTypeScale"/>
+                                                <StaticResource ResourceKey="DataTypeAllowNull"/>
+                                                <StaticResource ResourceKey="DataTypeParameterDirection"/>
+                                                <StaticResource ResourceKey="DataTypeUserTableTypeName"/>
+                                                <StaticResource ResourceKey="DataTypeUdtTypeName"/>
+                                                <StaticResource ResourceKey="DataTypeEnumName"/>
+                                                <StaticResource ResourceKey="DataTypeValueForTest"/>
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                    </Grid>
+                                    <GridSplitter Name="ParameterResultSetSplitter" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                                                  ShowsPreview="true" ResizeDirection="Rows" Height="5" />
+                                    <Grid Grid.Row="2" Margin="0,0,0,0">
+                                        <ComboBox Name="ResultSetListBox" 
+                                          ItemsSource="{Binding Path=ResultSets}"
+                                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="0,0,0,0">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                        </ComboBox>
+                                        <Grid DataContext="{Binding ElementName=ResultSetListBox, Path=SelectedItem}">
+                                            <TextBox Name="ResultSetNameTextBox" 
+                                         Text="{Binding Path=Name}"  PreviewKeyDown="ResultSetNameTextBox_PreviewKeyDown"
+                                         VerticalContentAlignment="Center" Height="21" TextWrapping="Wrap" 
+                                         VerticalAlignment="Top" HorizontalAlignment="Left" Width="241" Margin="200,0,0,0"/>
+                                            <ComboBox Name="StoredProcedureTableListBox" 
+                                                      HorizontalAlignment="Left" VerticalAlignment="Top" Width="200" Margin="0,21,0,0">
+                                                <ComboBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                                    </DataTemplate>
+                                                </ComboBox.ItemTemplate>
+                                            </ComboBox>
+                                            <Button Name="ResultSetsTableNameApplyButton" Click="ResultSetsTableNameApplyButton_Click"
+                                        Content="Apply" HorizontalAlignment="Left" Margin="200,21,0,0" 
+                                        VerticalAlignment="Top" Width="50" Height="21"/>
+                                            <TextBox Name="StoredProcedureTableNameTextBox" 
+                                         Text="{Binding Path=TableName}" 
+                                         VerticalContentAlignment="Center" Height="21" TextWrapping="Wrap" 
+                                         VerticalAlignment="Top" HorizontalAlignment="Left" Width="191" Margin="250,21,0,0"/>
+                                            <CheckBox Name="AllAllowNullCheckBox" IsChecked="True"
+                                                      Checked="AllAllowNullCheckBox_Changed" Unchecked="AllAllowNullCheckBox_Changed" 
+                                                      Width="131" Content="AllowNull ON/OFF" Margin="0,48,0,0" Height="16" VerticalAlignment="Top" HorizontalAlignment="Left"></CheckBox>
+                                            <DataGrid Name="ResultSetParameterListBox" 
+                                          ItemsSource="{Binding Path=Columns}"
+                                          AutoGenerateColumns="False" FrozenColumnCount="2" Margin="0,70,0,0">
+                                                <DataGrid.Columns>
+                                                    <StaticResource ResourceKey="DataTypeOrdinal"/>
+                                                    <StaticResource ResourceKey="DataTypeColumnName"/>
+                                                    <StaticResource ResourceKey="DataTypeDbType"/>
+                                                    <StaticResource ResourceKey="DataTypeLength"/>
+                                                    <StaticResource ResourceKey="DataTypePrecision"/>
+                                                    <StaticResource ResourceKey="DataTypeScale"/>
+                                                    <StaticResource ResourceKey="DataTypeAllowNullEditable"/>
+                                                    <StaticResource ResourceKey="DataTypeUserTableTypeName"/>
+                                                    <StaticResource ResourceKey="DataTypeUdtTypeName"/>
+                                                    <StaticResource ResourceKey="DataTypeEnumName"/>
+                                                </DataGrid.Columns>
+                                            </DataGrid>
+                                        </Grid>
+                                    </Grid>
+                                </Grid>
+                            </TabItem>
+                            <TabItem Name="StoredProcedureTabAdvanced" Header="Advanced">
+                                <Grid>
+                                    <TextBlock Text="{Binding Path=Name}" FontSize="16px" FontWeight="Bold"
+                                           Padding="2" Height="25" VerticalAlignment="Top"/>
+                                    <Label Content="TableName" Padding="2" Height="24" Margin="9,30,0,0" HorizontalAlignment="Left" Width="71" VerticalAlignment="Top"/>
+                                    <TextBox BorderThickness="1" Margin="90,30,10,0" Padding="2" Background="Transparent" TextAlignment="Left"
+                                                 Text="{Binding Path=TableName}" TextWrapping="NoWrap" IsReadOnly="True" Height="24" VerticalAlignment="Top" />
+                                    <Label Content="Type" Padding="2" Height="24" Margin="10,59,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="70"/>
+                                    <TextBox BorderThickness="1" Margin="90,59,0,0" Padding="2" Background="Transparent" TextAlignment="Left"
+                                                 Text="{Binding Path=StoredProcedureType}" TextWrapping="NoWrap" IsReadOnly="True" Height="24" VerticalAlignment="Top" HorizontalAlignment="Left" Width="202" />
+                                </Grid>
+                            </TabItem>
+                        </TabControl>
+                    </Grid>
+                </TabItem>
+                <TabItem Name="MainTabUserDefinedTableType" Header="{x:Static p:Resources.UserDefinedTableType}">
+                    <Grid Margin="10,10,10,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Name="UserDefinedTableTypeGridColumn" Width="1*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Name="UserDefinedTableTypeColumnGridColumn" Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <TextBox Name="SearchUserDefinedTableTypeTextBox" KeyDown="SearchUserDefinedTableTypeTextBox_KeyDown" Height="21" TextWrapping="Wrap" VerticalAlignment="Top"/>
+                            <ListBox Name="UserDefinedTableTypeListBox" SelectionMode="Single" Margin="0,26,0,0">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Grid>
+                        <GridSplitter Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                              ShowsPreview="true" ResizeDirection="Columns" Width="5" />
+                        <Grid Grid.Column="2" DataContext="{Binding ElementName=UserDefinedTableTypeListBox, Path=SelectedItem}">
+                            <TextBlock Text="{Binding Path=StoredProcedureType}"
+                                        Padding="2" Height="22" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200"/>
+                            <DataGrid Name="UserDefinedTableTypeColumnListBox" 
+                                        ItemsSource="{Binding Path=Columns}"
+                                        AutoGenerateColumns="False" FrozenColumnCount="2" Margin="0,26,0,0">
+                                <DataGrid.Columns>
+                                    <StaticResource ResourceKey="DataTypeOrdinal"/>
+                                    <StaticResource ResourceKey="DataTypeColumnName"/>
+                                    <StaticResource ResourceKey="DataTypeDbType"/>
+                                    <StaticResource ResourceKey="DataTypeLength"/>
+                                    <StaticResource ResourceKey="DataTypePrecision"/>
+                                    <StaticResource ResourceKey="DataTypeScale"/>
+                                    <StaticResource ResourceKey="DataTypeAllowNull"/>
+                                    <StaticResource ResourceKey="DataTypeUdtTypeName"/>
+                                    <StaticResource ResourceKey="DataTypeEnumName"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Grid>
+</Window>
