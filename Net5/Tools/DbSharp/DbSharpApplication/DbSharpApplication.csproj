@@ -8,6 +8,7 @@
     <Authors>Higty</Authors>
     <RootNamespace>HigLabo.DbSharpApplication</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ApplicationIcon>Icon\DbSharp.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
