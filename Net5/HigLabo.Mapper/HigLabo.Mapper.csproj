@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <Version>5.0.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Higty</Authors>
+    <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
