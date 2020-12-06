@@ -73,4 +73,8 @@
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Properties\PublishProfiles\" />
+  </ItemGroup>
+
 </Project>
