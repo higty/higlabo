@@ -21,9 +21,9 @@ namespace HigLabo.Converter
             Current = new EncodingDictionary();
             var d = Current._Encodings;
             d["UTF8"] = Encoding.UTF8;
-            AddEncoding("UTF7", "UTF-7");
+            AddEncoding("UTF7", "UTF-8");
             AddEncoding("UTF32", "utf-32");
-            AddEncoding("CP1252", "windows-1252");
+            AddEncoding("CP1252", "UTF-8");
         }
         private static void AddEncoding(String key, String codepage)
         {
@@ -57,11 +57,11 @@ namespace HigLabo.Converter
         public Encoding TryGetEncoding(String encoding)
         {
             var en = GetEncoding(encoding, null);
-            if (en == null)
+            if (en == null && encoding.Contains("\""))
             {
                 en = GetEncoding(encoding.TrimStart('"').TrimEnd('"'), null);
             }
-            if (en == null)
+            if (en == null && encoding.Contains("'"))
             {
                 en = GetEncoding(encoding.TrimStart('\'').TrimEnd('\''), null);
             }

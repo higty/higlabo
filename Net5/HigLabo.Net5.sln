@@ -37,8 +37,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Converter", "HigLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Core", "HigLabo.Core\HigLabo.Core.csproj", "{2FBC473C-82AF-4482-9EA9-D8517313B989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Wpf", "HigLabo.Wpf\HigLabo.Wpf.csproj", "{2C184122-C43B-4B12-B313-4C1DB0344412}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,10 +111,6 @@ Global
 		{2FBC473C-82AF-4482-9EA9-D8517313B989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FBC473C-82AF-4482-9EA9-D8517313B989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FBC473C-82AF-4482-9EA9-D8517313B989}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2C184122-C43B-4B12-B313-4C1DB0344412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C184122-C43B-4B12-B313-4C1DB0344412}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C184122-C43B-4B12-B313-4C1DB0344412}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C184122-C43B-4B12-B313-4C1DB0344412}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

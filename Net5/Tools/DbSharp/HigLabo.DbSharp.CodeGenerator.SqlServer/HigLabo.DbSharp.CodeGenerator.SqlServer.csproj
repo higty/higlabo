@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HigLabo.DbSharp.CodeGenerator\HigLabo.DbSharp.CodeGenerator.csproj" />
+    <ProjectReference Include="..\HigLabo.DbSharp.SqlServer\HigLabo.DbSharp.SqlServer.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,10 @@
     <Reference Include="HigLabo.Data.SqlServer">
       <HintPath>..\Reference\HigLabo.Data.SqlServer.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>
