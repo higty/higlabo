@@ -22,7 +22,6 @@ Performance test at 2020/08/01.
 |----------------------------------------- |-------------:|------------:|-----------:|-------:|--------:|---------:|-------:|------:|----------:|
 |                  HandwriteMapper_Address |     7.552 us |   0.5069 us |  0.0278 us |   1.00 |    0.00 |   6.4163 |      - |     - |   40253 B |
 |              HigLaboObjectMapper_Address |    37.117 us |   3.9361 us |  0.2158 us |   4.92 |    0.04 |   7.6294 |      - |     - |   48000 B |
-|           HigLaboObjectMapConfig_Address |   148.455 us |  16.8335 us |  0.9227 us |  19.66 |    0.19 |  17.8223 |      - |     - |  112000 B |
 |                          Mapster_Address |    41.172 us |   2.6546 us |  0.1455 us |   5.45 |    0.02 |   7.6294 |      - |     - |   48000 B |
 |                       AutoMapper_Address |   113.133 us |  25.1448 us |  1.3783 us |  14.98 |    0.23 |        - |      - |     - |         - |
 |                    ExpressMapper_Address |   123.352 us |  12.8851 us |  0.7063 us |  16.33 |    0.14 |  13.9160 |      - |     - |   88000 B |
@@ -30,7 +29,6 @@ Performance test at 2020/08/01.
 |                       FastMapper_Address |   237.159 us |  16.1570 us |  0.8856 us |  31.40 |    0.16 |  59.8145 |      - |     - |  376000 B |
 |                       TinyMapper_Address |    82.067 us |   7.3080 us |  0.4006 us |  10.87 |    0.09 |  15.2588 |      - |     - |   96000 B |
 |           HigLaboObjectMapper_AddressDTO |    34.635 us |   3.0237 us |  0.1657 us |   4.59 |    0.04 |   6.3477 |      - |     - |   40000 B |
-|        HigLaboObjectMapConfig_AddressDTO |   139.313 us |   7.5495 us |  0.4138 us |  18.45 |    0.12 |  16.3574 |      - |     - |  104000 B |
 |                       Mapster_AddressDTO |    37.624 us |   5.9133 us |  0.3241 us |   4.98 |    0.06 |   6.3477 |      - |     - |   40000 B |
 |                    AutoMapper_AddressDTO |   121.693 us |   8.5257 us |  0.4673 us |  16.11 |    0.11 |   6.3477 |      - |     - |   40000 B |
 |                 ExpressMapper_AddressDTO |   127.495 us |  28.0275 us |  1.5363 us |  16.88 |    0.26 |  12.6953 |      - |     - |   80000 B |
@@ -38,7 +36,6 @@ Performance test at 2020/08/01.
 |                    FastMapper_AddressDTO |   230.696 us |  53.7239 us |  2.9448 us |  30.55 |    0.35 |  59.8145 |      - |     - |  376000 B |
 |                    TinyMapper_AddressDTO |    70.651 us |   4.1426 us |  0.2271 us |   9.36 |    0.05 |  13.9160 |      - |     - |   88000 B |
 |             HigLaboObjectMapper_Customer |    88.213 us |  12.1313 us |  0.6650 us |  11.68 |    0.11 |  47.1191 |      - |     - |  296000 B |
-|          HigLaboObjectMapConfig_Customer |   645.152 us |  57.3785 us |  3.1451 us |  85.43 |    0.55 | 100.5859 |      - |     - |  632000 B |
 |                         Mapster_Customer |   861.706 us |  69.4256 us |  3.8055 us | 114.11 |    0.32 |  64.4531 |      - |     - |  408000 B |
 |                      AutoMapper_Customer |   270.586 us |  50.3047 us |  2.7574 us |  35.83 |    0.49 |  35.6445 |      - |     - |  224000 B |
 |                   ExpressMapper_Customer |   344.622 us | 229.5338 us | 12.5815 us |  45.63 |    1.63 | 106.9336 | 0.4883 |     - |  673852 B |
