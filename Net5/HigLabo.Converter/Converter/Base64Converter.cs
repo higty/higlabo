@@ -124,15 +124,11 @@ namespace HigLabo.Converter
         }
         private Byte[] EncodeWithoutInsertingNewline(Byte[] input)
         {
-            Byte[] encoded = null;
-            if (input.Length % 3 == 0)
+            Byte[] encoded = (input.Length % 3) switch
             {
-                encoded = new Byte[(input.Length / 3) * 4];
-            }
-            else
-            {
-                encoded = new Byte[(input.Length / 3) * 4 + 4];
-            }
+                0 => new Byte[(input.Length / 3) * 4],
+                _ => new Byte[(input.Length / 3) * 4 + 4],
+            };
             Int32 encodedIndex = 0;
             Int32 loopCount = input.Length / 3;
             Byte c0, c1, c2;

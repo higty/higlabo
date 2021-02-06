@@ -13,9 +13,9 @@ namespace HigLabo.Converter
             'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
             '0','1','2','3','4','5','6','7','8','9'
         };
-        private Char[] _Chars = null;
-        private Byte[] _EncodeTable = null;
-        private Byte[] _DecodeTable = null;
+        private Char[] _Chars;
+        private Byte[] _EncodeTable;
+        private Byte[] _DecodeTable;
 
         public Byte[] EncodeTable
         {
@@ -37,12 +37,14 @@ namespace HigLabo.Converter
             cc[63] = char63;
             _Chars = cc;
 
+            _EncodeTable = new Byte[_Chars.Length];
+            _DecodeTable = new Byte[256];
+
             this.SetEncodeTable();
             this.SetDecodeTable();
         }
         private void SetEncodeTable()
         {
-            _EncodeTable = new Byte[_Chars.Length];
             for (int i = 0; i < _Chars.Length; i++)
             {
                 _EncodeTable[i] = (Byte)_Chars[i];
@@ -50,7 +52,6 @@ namespace HigLabo.Converter
         }
         private void SetDecodeTable()
         {
-            _DecodeTable = new Byte[256];
 
             for (int i = 0; i < 256; i++)
             {

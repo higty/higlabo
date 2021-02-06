@@ -8,7 +8,7 @@ namespace HigLabo.Converter
 {
     public class ModifiedUtf7Converter 
     {
-        private Base64Converter _Base64Converter = null;
+        private Base64Converter _Base64Converter;
 
         public ModifiedUtf7Converter(Int32 bufferSize)
         {

@@ -41,7 +41,7 @@ namespace HigLabo.Converter
             if (en == null) { throw new EncodingNotFoundException(encoding); }
             return en;
         }
-        public Encoding GetEncoding(String encoding, Encoding defaultEncoding)
+        public Encoding? GetEncoding(String encoding, Encoding? defaultEncoding)
         {
             var d = _Encodings;
             if (d.ContainsKey(encoding.ToUpper()) == true)
@@ -54,7 +54,7 @@ namespace HigLabo.Converter
             }
             catch { return defaultEncoding; }
         }
-        public Encoding TryGetEncoding(String encoding)
+        public Encoding? TryGetEncoding(String encoding)
         {
             var en = GetEncoding(encoding, null);
             if (en == null && encoding.Contains("\""))

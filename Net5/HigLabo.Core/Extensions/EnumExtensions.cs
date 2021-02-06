@@ -14,19 +14,19 @@ namespace HigLabo.Core
         private static ConcurrentDictionary<Type, MulticastDelegate> _ToStringFromEnumMethods = new ConcurrentDictionary<Type, MulticastDelegate>();
 
         public static String ToStringOrNullFromEnum<T>(this Nullable<T> value)
-            where T : struct
+            where T : struct, Enum
         {
             if (value.HasValue == true) return ToStringFromEnum(value.Value);
             return null;
         }
         public static String ToStringFromEnum<T>(this Nullable<T> value)
-            where T : struct
+            where T : struct, Enum
         {
             if (value.HasValue == true) return ToStringFromEnum(value.Value);
             return "";
         }
         public static String ToStringFromEnum<T>(this T value)
-            where T : struct
+            where T : Enum
         {
             if (UseEmit == false) { return value.ToString(); }
 

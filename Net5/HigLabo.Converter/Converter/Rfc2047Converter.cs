@@ -20,12 +20,12 @@ namespace HigLabo.Converter
         }
         private class ParseContextData
         {
-            private Base64Converter _Base64Converter = null;
-            private QuotedPrintableConverter _QuotedPrintableHeaderConverter = null;
+            private Base64Converter _Base64Converter;
+            private QuotedPrintableConverter _QuotedPrintableHeaderConverter;
             private List<Byte[]> _ByteList = new List<byte[]>();
 
             public Rfc2047Encoding? Encoding { get; private set; }
-            public Encoding Charset { get; private set; }
+            public Encoding? Charset { get; private set; }
 
             public ParseContextData(Base64Converter base64Converter, QuotedPrintableConverter quotedPrintableConverter)
             {
@@ -41,6 +41,7 @@ namespace HigLabo.Converter
             public String Decode()
             {
                 if (this.HasData() == false) { return ""; }
+                if (this.Charset is null) { throw new InvalidOperationException(); }
 
                 var bb = this.GetBytes();
                 switch (this.Encoding)
@@ -75,8 +76,8 @@ namespace HigLabo.Converter
                 return bb;
             }
         }
-        private Base64Converter _Base64Converter = null;
-        private QuotedPrintableConverter _QuotedPrintableHeaderConverter = null;
+        private Base64Converter _Base64Converter;
+        private QuotedPrintableConverter _QuotedPrintableHeaderConverter;
 
         public Encoding Encoding { get; set; }
 
@@ -107,7 +108,7 @@ namespace HigLabo.Converter
             Byte* rfc2047Start = null;
             Byte* rfc2047Current = null;
             Rfc2047ParsingState state = Rfc2047ParsingState.NotParsing;
-            Encoding charset = null;
+            Encoding? charset = null;
             Rfc2047Encoding? encoding = null;
             Int32 whiteSpaceCount = 0;
             StringBuilder sb = new StringBuilder(buffer.Length);
@@ -222,6 +223,10 @@ namespace HigLabo.Converter
                                     sb.Append(cx.Decode());
                                     cx.Clear();
                                 }
+                            }
+                            if (encoding.HasValue == false || charset == null)
+                            {
+                                throw new InvalidOperationException();
                             }
                             cx.Add(encoding.Value, charset, bb);
 

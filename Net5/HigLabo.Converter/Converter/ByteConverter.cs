@@ -7,7 +7,7 @@ namespace HigLabo.Converter
 {
     public abstract class ByteConverter
     {
-        private Byte[] _Buffer = null;
+        private Byte[]? _Buffer = null;
 
         public Int32 BufferSize { get; set; }
 

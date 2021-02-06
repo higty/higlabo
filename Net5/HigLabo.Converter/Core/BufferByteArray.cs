@@ -7,7 +7,7 @@ namespace HigLabo.Converter
 {
     public class BufferByteArray
     {
-        private Byte[] _Data = null;
+        private Byte[] _Data;
         public Int32 Length { get; set; }
 
         public Byte[] Data
