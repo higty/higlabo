@@ -4,44 +4,45 @@ using System.Text;
 using System.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Microsoft.Data.SqlClient.Server;
 using HigLabo.DbSharp;
 
 namespace HigLabo.DbSharpSample.SqlServer
 {
     public partial class MyTableType : UserDefinedTableType<MyTableType.Record>
     {
-        public override DataTable CreateDataTable()
+        public override SqlDataRecord CreateSqlDataRecord()
         {
-            var dt = new DataTable();
-            dt.Columns.Add("BigIntColumn", typeof(Int64));
-            dt.Columns.Add("BinaryColumn", typeof(Byte[]));
-            dt.Columns.Add("ImageColumn", typeof(Byte[]));
-            dt.Columns.Add("VarBinaryColumn", typeof(Byte[]));
-            dt.Columns.Add("BitColumn", typeof(Boolean));
-            dt.Columns.Add("CharColumn", typeof(String));
-            dt.Columns.Add("NCharColumn", typeof(String));
-            dt.Columns.Add("NTextColumn", typeof(String));
-            dt.Columns.Add("NVarCharColumn", typeof(String));
-            dt.Columns.Add("TextColumn", typeof(String));
-            dt.Columns.Add("VarCharColumn", typeof(String));
-            dt.Columns.Add("XmlColumn", typeof(String));
-            dt.Columns.Add("DateTimeColumn", typeof(DateTime));
-            dt.Columns.Add("SmallDateTimeColumn", typeof(DateTime));
-            dt.Columns.Add("DateColumn", typeof(DateTime));
-            dt.Columns.Add("TimeColumn", typeof(TimeSpan));
-            dt.Columns.Add("DateTime2Column", typeof(DateTime));
-            dt.Columns.Add("DecimalColumn", typeof(Decimal));
-            dt.Columns.Add("MoneyColumn", typeof(Decimal));
-            dt.Columns.Add("SmallMoneyColumn", typeof(Decimal));
-            dt.Columns.Add("FloatColumn", typeof(Double));
-            dt.Columns.Add("IntColumn", typeof(Int32));
-            dt.Columns.Add("RealColumn", typeof(Single));
-            dt.Columns.Add("UniqueIdentifierColumn", typeof(Guid));
-            dt.Columns.Add("SmallIntColumn", typeof(Int16));
-            dt.Columns.Add("TinyIntColumn", typeof(Byte));
-            dt.Columns.Add("DateTimeOffsetColumn", typeof(DateTimeOffset));
-            dt.Columns.Add("EnumColumn", typeof(String));
-            return dt;
+            SqlMetaData[] metaData = new SqlMetaData[28];
+            metaData[0] = new SqlMetaData("BigIntColumn", SqlDbType.BigInt);
+            metaData[1] = new SqlMetaData("BinaryColumn", SqlDbType.Binary, 100);
+            metaData[2] = new SqlMetaData("ImageColumn", SqlDbType.Image);
+            metaData[3] = new SqlMetaData("VarBinaryColumn", SqlDbType.VarBinary, 100);
+            metaData[4] = new SqlMetaData("BitColumn", SqlDbType.Bit);
+            metaData[5] = new SqlMetaData("CharColumn", SqlDbType.Char, 100);
+            metaData[6] = new SqlMetaData("NCharColumn", SqlDbType.NChar, 200);
+            metaData[7] = new SqlMetaData("NTextColumn", SqlDbType.NText);
+            metaData[8] = new SqlMetaData("NVarCharColumn", SqlDbType.NVarChar, 200);
+            metaData[9] = new SqlMetaData("TextColumn", SqlDbType.Text);
+            metaData[10] = new SqlMetaData("VarCharColumn", SqlDbType.VarChar, 100);
+            metaData[11] = new SqlMetaData("XmlColumn", SqlDbType.Xml);
+            metaData[12] = new SqlMetaData("DateTimeColumn", SqlDbType.DateTime);
+            metaData[13] = new SqlMetaData("SmallDateTimeColumn", SqlDbType.SmallDateTime);
+            metaData[14] = new SqlMetaData("DateColumn", SqlDbType.Date);
+            metaData[15] = new SqlMetaData("TimeColumn", SqlDbType.Time);
+            metaData[16] = new SqlMetaData("DateTime2Column", SqlDbType.DateTime2, 27, 0);
+            metaData[17] = new SqlMetaData("DecimalColumn", SqlDbType.Decimal, 18, 0);
+            metaData[18] = new SqlMetaData("MoneyColumn", SqlDbType.Money);
+            metaData[19] = new SqlMetaData("SmallMoneyColumn", SqlDbType.SmallMoney);
+            metaData[20] = new SqlMetaData("FloatColumn", SqlDbType.Float);
+            metaData[21] = new SqlMetaData("IntColumn", SqlDbType.Int);
+            metaData[22] = new SqlMetaData("RealColumn", SqlDbType.Real);
+            metaData[23] = new SqlMetaData("UniqueIdentifierColumn", SqlDbType.UniqueIdentifier);
+            metaData[24] = new SqlMetaData("SmallIntColumn", SqlDbType.SmallInt);
+            metaData[25] = new SqlMetaData("TinyIntColumn", SqlDbType.TinyInt);
+            metaData[26] = new SqlMetaData("DateTimeOffsetColumn", SqlDbType.DateTimeOffset, 34, 0);
+            metaData[27] = new SqlMetaData("EnumColumn", SqlDbType.NVarChar, 40);
+            return new SqlDataRecord(metaData);
         }
 
         public partial class Record : UserDefinedTableTypeRecord

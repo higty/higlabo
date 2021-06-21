@@ -95,9 +95,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; if (reader[index] != DBNull.Value) r.TinyIntColumn = reader.GetByte(index);
                 index += 1; if (reader[index] != DBNull.Value) r.DateTimeOffsetColumn = (DateTimeOffset)reader[index];
                 index += 1; if (reader[index] != DBNull.Value) r.SqlVariantColumn = reader[index] as Object;
-                index += 1; if (reader[index] != DBNull.Value) r.GeometryColumn = (global::Microsoft.SqlServer.Types.SqlGeometry)reader[index];
-                index += 1; if (reader[index] != DBNull.Value) r.GeographyColumn = (global::Microsoft.SqlServer.Types.SqlGeography)reader[index];
-                index += 1; if (reader[index] != DBNull.Value) r.HierarchyIDColumn = (global::Microsoft.SqlServer.Types.SqlHierarchyId)reader[index];
                 index += 1; if (reader[index] != DBNull.Value) r.EnumColumn = StoredProcedure.ToEnum<MyEnum>(reader[index] as String) ?? r.EnumColumn;
                 index += 1; r.NotNullBigIntColumn = reader.GetInt64(index);
                 index += 1; r.NotNullBinaryColumn = reader[index] as Byte[];
@@ -127,12 +124,9 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; r.NotNullTinyIntColumn = reader.GetByte(index);
                 index += 1; r.NotNullDateTimeOffsetColumn = (DateTimeOffset)reader[index];
                 index += 1; r.NotNullSqlVariantColumn = reader[index] as Object;
-                index += 1; r.NotNullGeometryColumn = (global::Microsoft.SqlServer.Types.SqlGeometry)reader[index];
-                index += 1; r.NotNullGeographyColumn = (global::Microsoft.SqlServer.Types.SqlGeography)reader[index];
-                index += 1; r.NotNullHierarchyIDColumn = (global::Microsoft.SqlServer.Types.SqlHierarchyId)reader[index];
                 index += 1; r.NotNullEnumColumn = StoredProcedure.ToEnum<MyEnum>(reader[index] as String) ?? r.NotNullEnumColumn;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }
@@ -146,7 +140,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; r.IntColumn = reader.GetInt32(index);
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }
@@ -160,7 +154,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; r.RowGuidColumn = reader.GetGuid(index);
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }
@@ -182,7 +176,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; if (reader[index] != DBNull.Value) r.NTextColumn = reader[index] as String;
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }
@@ -242,22 +236,19 @@ namespace HigLabo.DbSharpSample.SqlServer
             private Byte? _TinyIntColumn;
             private DateTimeOffset? _DateTimeOffsetColumn;
             private Object _SqlVariantColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeometry _GeometryColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeography _GeographyColumn;
-            private global::Microsoft.SqlServer.Types.SqlHierarchyId? _HierarchyIDColumn;
             private MyEnum? _EnumColumn;
             private Int64 _NotNullBigIntColumn;
             private Byte[] _NotNullBinaryColumn;
             private Byte[] _NotNullImageColumn;
             private Byte[] _NotNullVarBinaryColumn;
             private Boolean _NotNullBitColumn;
-            private String _NotNullCharColumn = null;
-            private String _NotNullNCharColumn = null;
-            private String _NotNullNTextColumn = null;
-            private String _NotNullNVarCharColumn = null;
-            private String _NotNullTextColumn = null;
-            private String _NotNullVarCharColumn = null;
-            private String _NotNullXmlColumn = null;
+            private String _NotNullCharColumn = "";
+            private String _NotNullNCharColumn = "";
+            private String _NotNullNTextColumn = "";
+            private String _NotNullNVarCharColumn = "";
+            private String _NotNullTextColumn = "";
+            private String _NotNullVarCharColumn = "";
+            private String _NotNullXmlColumn = "";
             private DateTime _NotNullDateTimeColumn;
             private DateTime _NotNullSmallDateTimeColumn;
             private DateTime _NotNullDateColumn;
@@ -274,9 +265,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             private Byte _NotNullTinyIntColumn;
             private DateTimeOffset _NotNullDateTimeOffsetColumn;
             private Object _NotNullSqlVariantColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeometry _NotNullGeometryColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeography _NotNullGeographyColumn;
-            private global::Microsoft.SqlServer.Types.SqlHierarchyId _NotNullHierarchyIDColumn;
             private MyEnum _NotNullEnumColumn;
 
             public Int64 PrimaryKeyColumn
@@ -609,39 +597,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                     this.SetPropertyValue(ref _SqlVariantColumn, value, this.GetPropertyChangedEventHandler());
                 }
             }
-            public global::Microsoft.SqlServer.Types.SqlGeometry GeometryColumn
-            {
-                get
-                {
-                    return _GeometryColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _GeometryColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlGeography GeographyColumn
-            {
-                get
-                {
-                    return _GeographyColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _GeographyColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlHierarchyId? HierarchyIDColumn
-            {
-                get
-                {
-                    return _HierarchyIDColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _HierarchyIDColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
             public MyEnum? EnumColumn
             {
                 get
@@ -961,39 +916,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                     this.SetPropertyValue(ref _NotNullSqlVariantColumn, value, this.GetPropertyChangedEventHandler());
                 }
             }
-            public global::Microsoft.SqlServer.Types.SqlGeometry NotNullGeometryColumn
-            {
-                get
-                {
-                    return _NotNullGeometryColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _NotNullGeometryColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlGeography NotNullGeographyColumn
-            {
-                get
-                {
-                    return _NotNullGeographyColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _NotNullGeographyColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlHierarchyId NotNullHierarchyIDColumn
-            {
-                get
-                {
-                    return _NotNullHierarchyIDColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _NotNullHierarchyIDColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
             public MyEnum NotNullEnumColumn
             {
                 get
@@ -1042,9 +964,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 TinyIntColumn = r.TinyIntColumn;
                 DateTimeOffsetColumn = r.DateTimeOffsetColumn;
                 SqlVariantColumn = r.SqlVariantColumn;
-                GeometryColumn = r.GeometryColumn;
-                GeographyColumn = r.GeographyColumn;
-                HierarchyIDColumn = r.HierarchyIDColumn;
                 EnumColumn = r.EnumColumn;
                 NotNullBigIntColumn = r.NotNullBigIntColumn;
                 NotNullBinaryColumn = r.NotNullBinaryColumn;
@@ -1074,9 +993,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 NotNullTinyIntColumn = r.NotNullTinyIntColumn;
                 NotNullDateTimeOffsetColumn = r.NotNullDateTimeOffsetColumn;
                 NotNullSqlVariantColumn = r.NotNullSqlVariantColumn;
-                NotNullGeometryColumn = r.NotNullGeometryColumn;
-                NotNullGeographyColumn = r.NotNullGeographyColumn;
-                NotNullHierarchyIDColumn = r.NotNullHierarchyIDColumn;
                 NotNullEnumColumn = r.NotNullEnumColumn;
             }
             internal AllDataTypeTableResultSet(Usp_SelectMultiTable storedProcedure)
@@ -1118,9 +1034,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 sb.AppendFormat("TinyIntColumn={0}", this.TinyIntColumn); sb.AppendLine();
                 sb.AppendFormat("DateTimeOffsetColumn={0}", this.DateTimeOffsetColumn); sb.AppendLine();
                 sb.AppendFormat("SqlVariantColumn={0}", this.SqlVariantColumn); sb.AppendLine();
-                sb.AppendFormat("GeometryColumn={0}", this.GeometryColumn); sb.AppendLine();
-                sb.AppendFormat("GeographyColumn={0}", this.GeographyColumn); sb.AppendLine();
-                sb.AppendFormat("HierarchyIDColumn={0}", this.HierarchyIDColumn); sb.AppendLine();
                 sb.AppendFormat("EnumColumn={0}", this.EnumColumn); sb.AppendLine();
                 sb.AppendFormat("NotNullBigIntColumn={0}", this.NotNullBigIntColumn); sb.AppendLine();
                 sb.AppendFormat("NotNullBinaryColumn={0}", this.NotNullBinaryColumn); sb.AppendLine();
@@ -1150,9 +1063,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 sb.AppendFormat("NotNullTinyIntColumn={0}", this.NotNullTinyIntColumn); sb.AppendLine();
                 sb.AppendFormat("NotNullDateTimeOffsetColumn={0}", this.NotNullDateTimeOffsetColumn); sb.AppendLine();
                 sb.AppendFormat("NotNullSqlVariantColumn={0}", this.NotNullSqlVariantColumn); sb.AppendLine();
-                sb.AppendFormat("NotNullGeometryColumn={0}", this.NotNullGeometryColumn); sb.AppendLine();
-                sb.AppendFormat("NotNullGeographyColumn={0}", this.NotNullGeographyColumn); sb.AppendLine();
-                sb.AppendFormat("NotNullHierarchyIDColumn={0}", this.NotNullHierarchyIDColumn); sb.AppendLine();
                 sb.AppendFormat("NotNullEnumColumn={0}", this.NotNullEnumColumn); sb.AppendLine();
                 return sb.ToString();
             }

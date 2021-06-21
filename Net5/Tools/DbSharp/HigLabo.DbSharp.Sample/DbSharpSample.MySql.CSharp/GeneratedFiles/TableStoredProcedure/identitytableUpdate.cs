@@ -114,12 +114,14 @@ namespace HigLabo.DbSharpSample.MySql
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.InputOutput;
             p.Value = this.IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TimestampColumn", MySqlDbType.Timestamp, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.InputOutput;
             p.Value = this.TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NVarCharColumn", MySqlDbType.VarChar, null, null);
@@ -127,24 +129,23 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NVarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_IntColumn", MySqlDbType.Int32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_TimestampColumn", MySqlDbType.Timestamp, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Threading;
 
 namespace HigLabo.Data
@@ -540,7 +541,7 @@ namespace HigLabo.Data
             if (e.ThrowException == true)
             {
                 var ex = this.CreateException(e);
-                throw ex;
+                ExceptionDispatchInfo.Capture(ex).Throw();
             }
         }
 

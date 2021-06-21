@@ -28,17 +28,21 @@ namespace HigLaboSampleApp.MultiDatabase
 
             try
             {
-                //CrudOperationTest_SqlServer();
+                CrudOperationTest_SqlServer();
                 //CrudOperationTest_SqlServer_Azure();
                 //CrudOperationTest_MySql();
             }
-            catch (DbSharpTestFailureException)
+            catch (DbSharpTestFailureException ex)
             {
-                Console.WriteLine("Test failed");
+                Console.WriteLine("Test failed" + ex.ToString());
             }
-            catch (DatabaseException)
+            catch (DatabaseException ex)
             {
-                Console.WriteLine("Test failed");
+                Console.WriteLine("Test failed" + ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Test failed" + ex.ToString());
             }
             Console.WriteLine("All test done!");
             Console.Read();
@@ -56,6 +60,7 @@ namespace HigLaboSampleApp.MultiDatabase
                 throw new DbSharpTestFailureException();
             }
         }
+     
         private static void CrudOperationTest_SqlServer()
         {
             var db = DatabaseFactory.Current.CreateDatabase(DatabaseKey_SqlServer);
@@ -86,6 +91,10 @@ namespace HigLaboSampleApp.MultiDatabase
 
             var x3 = t.Delete(12, r.TimestampColumn);
             OutputTestResult("AllDataTypeTable.Delete", x3 == 1);
+
+            _ = Usp_Structure().Result;
+            _ = Usp_OutputParameter().Result;
+            Usp_SelectMultiTable();
         }
         private static StoredProcedure InsertRecord_SqlServer(Int32 primaryKeyColumnValue)
         {
@@ -128,9 +137,9 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.VarCharColumn = "VarChar";
             sp.XmlColumn = "<xml></xml>";
 
-            sp.GeometryColumn = SqlGeometry.Point(137, 42, 4320);
-            sp.GeographyColumn = SqlGeography.Point(42, 135, 4326);
-            sp.HierarchyIDColumn = SqlHierarchyId.Parse("/1/2/" + primaryKeyColumnValue + "/");
+            //sp.GeometryColumn = SqlGeometry.Point(137, 42, 4320);
+            //sp.GeographyColumn = SqlGeography.Point(42, 135, 4326);
+            //sp.HierarchyIDColumn = SqlHierarchyId.Parse("/1/2/" + primaryKeyColumnValue + "/");
 
             sp.EnumColumn = HigLabo.DbSharpSample.SqlServer.MyEnum.Value1;
 
@@ -169,14 +178,122 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.NotNullVarCharColumn = "VarChar";
             sp.NotNullXmlColumn = "<xml></xml>";
 
-            sp.NotNullGeometryColumn = SqlGeometry.Point(137, 42, 4320);
-            sp.NotNullGeographyColumn = SqlGeography.Point(42, 135, 4326);
-            sp.NotNullHierarchyIDColumn = SqlHierarchyId.Parse("/1/2/" + primaryKeyColumnValue + "/");
+            //sp.NotNullGeometryColumn = SqlGeometry.Point(137, 42, 4320);
+            //sp.NotNullGeographyColumn = SqlGeography.Point(42, 135, 4326);
+            //sp.NotNullHierarchyIDColumn = SqlHierarchyId.Parse("/1/2/" + primaryKeyColumnValue + "/");
 
             sp.NotNullEnumColumn = HigLabo.DbSharpSample.SqlServer.MyEnum.Value1;
 
             return sp;
         }
+        private static async Task<Boolean> Usp_Structure()
+        {
+            var sp = new Usp_Structure();
+            sp.BigIntColumn = 7;
+
+            var r = new MyTableType.Record();
+            r.BigIntColumn = 2;
+            r.BinaryColumn = null;
+            r.BitColumn = true;
+            r.CharColumn = "Char";
+            r.DateColumn = DateTime.Now;
+            r.DateTime2Column = DateTime.Now;
+            r.DateTimeColumn = DateTime.Now;
+            r.DateTimeOffsetColumn = DateTime.Now;
+            r.DecimalColumn = 0;
+            r.FloatColumn = 3;
+            r.ImageColumn = new Byte[0];
+            r.IntColumn = 14;
+            r.MoneyColumn = 122;
+            r.NCharColumn = "NChar";
+            r.NTextColumn = "NText";
+            r.NVarCharColumn = "NVarChar";
+            r.RealColumn = 100;
+            r.SmallDateTimeColumn = new DateTime(2013, 2, 2);
+            r.SmallIntColumn = 2;
+            r.SmallMoneyColumn = 200;
+            r.TextColumn = "Text";
+            r.TimeColumn = new TimeSpan(9, 0, 0);
+            r.TinyIntColumn = 3;
+            r.UniqueIdentifierColumn = Guid.NewGuid();
+            r.VarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
+            r.VarCharColumn = "VarChar";
+            r.XmlColumn = "<xml></xml>";
+            r.EnumColumn = HigLabo.DbSharpSample.SqlServer.MyEnum.Default;
+
+            sp.StructuredColumn.Records.Add(r);
+
+            var x = await sp.ExecuteNonQueryAsync();
+
+            OutputTestResult("Usp_Structure", sp.BigIntColumn == 9);
+
+            return true;
+        }
+        private static async Task<Boolean> Usp_OutputParameter()
+        {
+            var sp = new HigLabo.DbSharpSample.SqlServer.Usp_OutputParameter();
+
+            sp.BigIntColumn = 1;
+            sp.BinaryColumn = null;
+            sp.BitColumn = true;
+            sp.CharColumn = "Char";
+            sp.DateColumn = DateTime.Now;
+            sp.DateTime2Column = DateTime.Now;
+            sp.DateTimeColumn = DateTime.Now;
+            sp.DateTimeOffsetColumn = DateTime.Now;
+            sp.DecimalColumn = 0;
+            sp.FloatColumn = 3;
+            sp.ImageColumn = new Byte[0];
+            sp.IntColumn = 14;
+            sp.MoneyColumn = 122;
+            sp.NCharColumn = "NChar";
+            sp.NTextColumn = "NText";
+            sp.NVarCharColumn = "NVarChar";
+            sp.RealColumn = 100;
+            sp.SmallDateTimeColumn = new DateTime(2013, 2, 2);
+            sp.SmallIntColumn = 2;
+            sp.SmallMoneyColumn = 200;
+            sp.TextColumn = "Text";
+            sp.TimeColumn = new TimeSpan(9, 0, 0);
+            sp.TinyIntColumn = 3;
+            sp.UniqueIdentifierColumn = Guid.NewGuid();
+            sp.VarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
+            sp.VarCharColumn = "VarChar";
+            sp.XmlColumn = "<xml></xml>";
+
+            //sp.GeometryColumn = SqlGeometry.Point(137, 42, 4320);
+            //sp.GeographyColumn = SqlGeography.Point(42, 135, 4326);
+            //sp.HierarchyIDColumn = SqlHierarchyId.Parse("/1/2/" + primaryKeyColumnValue + "/");
+
+            sp.EnumColumn = HigLabo.DbSharpSample.SqlServer.MyEnum.Value1;
+
+            var x = await sp.ExecuteNonQueryAsync();
+
+            OutputTestResult("Usp_OutputParameter.BigIntColumn", sp.BigIntColumn == 2);
+            OutputTestResult("Usp_OutputParameter.SmallIntColumn", sp.SmallIntColumn == 3);
+
+            return true;
+        }
+        private static void Usp_SelectMultiTable()
+        {
+            var sp = new Usp_SelectMultiTable();
+            var rsl = sp.GetResultSetsList();
+            foreach (var item in rsl.AllDataTypeTableResultSetList)
+            {
+            }
+            foreach (var item in rsl.IdentityTableResultSetList)
+            {
+            }
+            foreach (var item in rsl.RowGuidColTableResultSetList)
+            {
+            }
+            foreach (var item in rsl.MultiPkTableResultSetList)
+            {
+            }
+            OutputTestResult("Usp_SelectMultiTable", true);
+        }
+
+
         private static void CrudOperationTest_SqlServer_Azure()
         {
             var db = DatabaseFactory.Current.CreateDatabase(DatabaseKey_SqlServer);

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DbSharpSampleApp.MultiDatabase": {
+      "commandName": "Project",
+      "commandLineArgs": "Server=.;Database=DbSharpSample_Net5;Trusted_Connection=Yes;"
+    }
+  }
+}

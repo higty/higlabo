@@ -16,6 +16,12 @@ namespace HigLabo.Core
     public static class SequentialGuid
     {
         private static readonly RandomNumberGenerator _rng = RandomNumberGenerator.Create();
+        public static SequentialGuidType Default = SequentialGuidType.AtEnd;
+
+        public static Guid NewGuid()
+        {
+            return NewGuid(Default);
+        }
         /// <summary>
         /// 
         /// </summary>

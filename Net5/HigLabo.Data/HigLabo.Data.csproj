@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <Version>5.0.0.0</Version>
+    <Version>5.0.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Higty</Authors>
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>

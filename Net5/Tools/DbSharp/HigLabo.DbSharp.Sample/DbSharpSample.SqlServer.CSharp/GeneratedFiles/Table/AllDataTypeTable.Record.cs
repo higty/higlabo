@@ -41,22 +41,19 @@ namespace HigLabo.DbSharpSample.SqlServer
             private Byte? _TinyIntColumn;
             private DateTimeOffset? _DateTimeOffsetColumn;
             private Object _SqlVariantColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeometry _GeometryColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeography _GeographyColumn;
-            private global::Microsoft.SqlServer.Types.SqlHierarchyId? _HierarchyIDColumn;
             private MyEnum? _EnumColumn;
             private Int64 _NotNullBigIntColumn;
             private Byte[] _NotNullBinaryColumn;
             private Byte[] _NotNullImageColumn;
             private Byte[] _NotNullVarBinaryColumn;
             private Boolean _NotNullBitColumn;
-            private String _NotNullCharColumn = null;
-            private String _NotNullNCharColumn = null;
-            private String _NotNullNTextColumn = null;
-            private String _NotNullNVarCharColumn = null;
-            private String _NotNullTextColumn = null;
-            private String _NotNullVarCharColumn = null;
-            private String _NotNullXmlColumn = null;
+            private String _NotNullCharColumn = "";
+            private String _NotNullNCharColumn = "";
+            private String _NotNullNTextColumn = "";
+            private String _NotNullNVarCharColumn = "";
+            private String _NotNullTextColumn = "";
+            private String _NotNullVarCharColumn = "";
+            private String _NotNullXmlColumn = "";
             private DateTime _NotNullDateTimeColumn;
             private DateTime _NotNullSmallDateTimeColumn;
             private DateTime _NotNullDateColumn;
@@ -73,9 +70,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             private Byte _NotNullTinyIntColumn;
             private DateTimeOffset _NotNullDateTimeOffsetColumn;
             private Object _NotNullSqlVariantColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeometry _NotNullGeometryColumn;
-            private global::Microsoft.SqlServer.Types.SqlGeography _NotNullGeographyColumn;
-            private global::Microsoft.SqlServer.Types.SqlHierarchyId _NotNullHierarchyIDColumn;
             private MyEnum _NotNullEnumColumn;
 
             public SaveMode SaveMode
@@ -419,39 +413,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                     this.SetPropertyValue(ref _SqlVariantColumn, value, this.GetPropertyChangedEventHandler());
                 }
             }
-            public global::Microsoft.SqlServer.Types.SqlGeometry GeometryColumn
-            {
-                get
-                {
-                    return _GeometryColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _GeometryColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlGeography GeographyColumn
-            {
-                get
-                {
-                    return _GeographyColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _GeographyColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlHierarchyId? HierarchyIDColumn
-            {
-                get
-                {
-                    return _HierarchyIDColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _HierarchyIDColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
             public MyEnum? EnumColumn
             {
                 get
@@ -771,39 +732,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                     this.SetPropertyValue(ref _NotNullSqlVariantColumn, value, this.GetPropertyChangedEventHandler());
                 }
             }
-            public global::Microsoft.SqlServer.Types.SqlGeometry NotNullGeometryColumn
-            {
-                get
-                {
-                    return _NotNullGeometryColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _NotNullGeometryColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlGeography NotNullGeographyColumn
-            {
-                get
-                {
-                    return _NotNullGeographyColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _NotNullGeographyColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
-            public global::Microsoft.SqlServer.Types.SqlHierarchyId NotNullHierarchyIDColumn
-            {
-                get
-                {
-                    return _NotNullHierarchyIDColumn;
-                }
-                set
-                {
-                    this.SetPropertyValue(ref _NotNullHierarchyIDColumn, value, this.GetPropertyChangedEventHandler());
-                }
-            }
             public MyEnum NotNullEnumColumn
             {
                 get
@@ -869,9 +797,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 this.TinyIntColumn = r.TinyIntColumn;
                 this.DateTimeOffsetColumn = r.DateTimeOffsetColumn;
                 this.SqlVariantColumn = r.SqlVariantColumn;
-                this.GeometryColumn = r.GeometryColumn;
-                this.GeographyColumn = r.GeographyColumn;
-                this.HierarchyIDColumn = r.HierarchyIDColumn;
                 this.EnumColumn = r.EnumColumn;
                 this.NotNullBigIntColumn = r.NotNullBigIntColumn;
                 this.NotNullBinaryColumn = r.NotNullBinaryColumn;
@@ -901,9 +826,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 this.NotNullTinyIntColumn = r.NotNullTinyIntColumn;
                 this.NotNullDateTimeOffsetColumn = r.NotNullDateTimeOffsetColumn;
                 this.NotNullSqlVariantColumn = r.NotNullSqlVariantColumn;
-                this.NotNullGeometryColumn = r.NotNullGeometryColumn;
-                this.NotNullGeographyColumn = r.NotNullGeographyColumn;
-                this.NotNullHierarchyIDColumn = r.NotNullHierarchyIDColumn;
                 this.NotNullEnumColumn = r.NotNullEnumColumn;
             }
             public override Boolean CompareAllColumn(Record record)
@@ -940,9 +862,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 Object.Equals(this.TinyIntColumn, r.TinyIntColumn) && 
                 Object.Equals(this.DateTimeOffsetColumn, r.DateTimeOffsetColumn) && 
                 Object.Equals(this.SqlVariantColumn, r.SqlVariantColumn) && 
-                Object.Equals(this.GeometryColumn, r.GeometryColumn) && 
-                Object.Equals(this.GeographyColumn, r.GeographyColumn) && 
-                Object.Equals(this.HierarchyIDColumn, r.HierarchyIDColumn) && 
                 Object.Equals(this.EnumColumn, r.EnumColumn) && 
                 Object.Equals(this.NotNullBigIntColumn, r.NotNullBigIntColumn) && 
                 Object.Equals(this.NotNullBinaryColumn, r.NotNullBinaryColumn) && 
@@ -972,9 +891,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                 Object.Equals(this.NotNullTinyIntColumn, r.NotNullTinyIntColumn) && 
                 Object.Equals(this.NotNullDateTimeOffsetColumn, r.NotNullDateTimeOffsetColumn) && 
                 Object.Equals(this.NotNullSqlVariantColumn, r.NotNullSqlVariantColumn) && 
-                Object.Equals(this.NotNullGeometryColumn, r.NotNullGeometryColumn) && 
-                Object.Equals(this.NotNullGeographyColumn, r.NotNullGeographyColumn) && 
-                Object.Equals(this.NotNullHierarchyIDColumn, r.NotNullHierarchyIDColumn) && 
                 Object.Equals(this.NotNullEnumColumn, r.NotNullEnumColumn);
             }
             public override Boolean ComparePrimaryKeyColumn(Record record)
@@ -1017,42 +933,36 @@ namespace HigLabo.DbSharpSample.SqlServer
                     case 27: return this.TinyIntColumn;
                     case 28: return this.DateTimeOffsetColumn;
                     case 29: return this.SqlVariantColumn;
-                    case 30: return this.GeometryColumn;
-                    case 31: return this.GeographyColumn;
-                    case 32: return this.HierarchyIDColumn;
-                    case 33: return this.EnumColumn;
-                    case 34: return this.NotNullBigIntColumn;
-                    case 35: return this.NotNullBinaryColumn;
-                    case 36: return this.NotNullImageColumn;
-                    case 37: return this.NotNullVarBinaryColumn;
-                    case 38: return this.NotNullBitColumn;
-                    case 39: return this.NotNullCharColumn;
-                    case 40: return this.NotNullNCharColumn;
-                    case 41: return this.NotNullNTextColumn;
-                    case 42: return this.NotNullNVarCharColumn;
-                    case 43: return this.NotNullTextColumn;
-                    case 44: return this.NotNullVarCharColumn;
-                    case 45: return this.NotNullXmlColumn;
-                    case 46: return this.NotNullDateTimeColumn;
-                    case 47: return this.NotNullSmallDateTimeColumn;
-                    case 48: return this.NotNullDateColumn;
-                    case 49: return this.NotNullTimeColumn;
-                    case 50: return this.NotNullDateTime2Column;
-                    case 51: return this.NotNullDecimalColumn;
-                    case 52: return this.NotNullMoneyColumn;
-                    case 53: return this.NotNullSmallMoneyColumn;
-                    case 54: return this.NotNullFloatColumn;
-                    case 55: return this.NotNullIntColumn;
-                    case 56: return this.NotNullRealColumn;
-                    case 57: return this.NotNullUniqueIdentifierColumn;
-                    case 58: return this.NotNullSmallIntColumn;
-                    case 59: return this.NotNullTinyIntColumn;
-                    case 60: return this.NotNullDateTimeOffsetColumn;
-                    case 61: return this.NotNullSqlVariantColumn;
-                    case 62: return this.NotNullGeometryColumn;
-                    case 63: return this.NotNullGeographyColumn;
-                    case 64: return this.NotNullHierarchyIDColumn;
-                    case 65: return this.NotNullEnumColumn;
+                    case 30: return this.EnumColumn;
+                    case 31: return this.NotNullBigIntColumn;
+                    case 32: return this.NotNullBinaryColumn;
+                    case 33: return this.NotNullImageColumn;
+                    case 34: return this.NotNullVarBinaryColumn;
+                    case 35: return this.NotNullBitColumn;
+                    case 36: return this.NotNullCharColumn;
+                    case 37: return this.NotNullNCharColumn;
+                    case 38: return this.NotNullNTextColumn;
+                    case 39: return this.NotNullNVarCharColumn;
+                    case 40: return this.NotNullTextColumn;
+                    case 41: return this.NotNullVarCharColumn;
+                    case 42: return this.NotNullXmlColumn;
+                    case 43: return this.NotNullDateTimeColumn;
+                    case 44: return this.NotNullSmallDateTimeColumn;
+                    case 45: return this.NotNullDateColumn;
+                    case 46: return this.NotNullTimeColumn;
+                    case 47: return this.NotNullDateTime2Column;
+                    case 48: return this.NotNullDecimalColumn;
+                    case 49: return this.NotNullMoneyColumn;
+                    case 50: return this.NotNullSmallMoneyColumn;
+                    case 51: return this.NotNullFloatColumn;
+                    case 52: return this.NotNullIntColumn;
+                    case 53: return this.NotNullRealColumn;
+                    case 54: return this.NotNullUniqueIdentifierColumn;
+                    case 55: return this.NotNullSmallIntColumn;
+                    case 56: return this.NotNullTinyIntColumn;
+                    case 57: return this.NotNullDateTimeOffsetColumn;
+                    case 58: return this.NotNullSqlVariantColumn;
+                    case 59: return this.NotNullEnumColumn;
                 }
                 throw new ArgumentOutOfRangeException();
             }
@@ -1451,45 +1361,6 @@ namespace HigLabo.DbSharpSample.SqlServer
                     case 30:
                         if (value == null)
                         {
-                            this.GeometryColumn = null;
-                            return true;
-                        }
-                        else
-                        {
-                            var newValue = value as global::Microsoft.SqlServer.Types.SqlGeometry;
-                            if (newValue == null) return false;
-                            this.GeometryColumn = newValue;
-                            return true;
-                        }
-                    case 31:
-                        if (value == null)
-                        {
-                            this.GeographyColumn = null;
-                            return true;
-                        }
-                        else
-                        {
-                            var newValue = value as global::Microsoft.SqlServer.Types.SqlGeography;
-                            if (newValue == null) return false;
-                            this.GeographyColumn = newValue;
-                            return true;
-                        }
-                    case 32:
-                        if (value == null)
-                        {
-                            this.HierarchyIDColumn = null;
-                            return true;
-                        }
-                        else
-                        {
-                            var newValue = value as global::Microsoft.SqlServer.Types.SqlHierarchyId?;
-                            if (newValue == null) return false;
-                            this.HierarchyIDColumn = newValue.Value;
-                            return true;
-                        }
-                    case 33:
-                        if (value == null)
-                        {
                             this.EnumColumn = null;
                             return true;
                         }
@@ -1500,7 +1371,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.EnumColumn = newValue.Value;
                             return true;
                         }
-                    case 34:
+                    case 31:
                         if (value == null)
                         {
                             return false;
@@ -1512,7 +1383,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullBigIntColumn = newValue.Value;
                             return true;
                         }
-                    case 35:
+                    case 32:
                         if (value == null)
                         {
                             return false;
@@ -1524,7 +1395,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullBinaryColumn = newValue;
                             return true;
                         }
-                    case 36:
+                    case 33:
                         if (value == null)
                         {
                             return false;
@@ -1536,7 +1407,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullImageColumn = newValue;
                             return true;
                         }
-                    case 37:
+                    case 34:
                         if (value == null)
                         {
                             return false;
@@ -1548,7 +1419,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullVarBinaryColumn = newValue;
                             return true;
                         }
-                    case 38:
+                    case 35:
                         if (value == null)
                         {
                             return false;
@@ -1560,7 +1431,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullBitColumn = newValue.Value;
                             return true;
                         }
-                    case 39:
+                    case 36:
                         if (value == null)
                         {
                             return false;
@@ -1572,7 +1443,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullCharColumn = newValue;
                             return true;
                         }
-                    case 40:
+                    case 37:
                         if (value == null)
                         {
                             return false;
@@ -1584,7 +1455,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullNCharColumn = newValue;
                             return true;
                         }
-                    case 41:
+                    case 38:
                         if (value == null)
                         {
                             return false;
@@ -1596,7 +1467,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullNTextColumn = newValue;
                             return true;
                         }
-                    case 42:
+                    case 39:
                         if (value == null)
                         {
                             return false;
@@ -1608,7 +1479,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullNVarCharColumn = newValue;
                             return true;
                         }
-                    case 43:
+                    case 40:
                         if (value == null)
                         {
                             return false;
@@ -1620,7 +1491,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullTextColumn = newValue;
                             return true;
                         }
-                    case 44:
+                    case 41:
                         if (value == null)
                         {
                             return false;
@@ -1632,7 +1503,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullVarCharColumn = newValue;
                             return true;
                         }
-                    case 45:
+                    case 42:
                         if (value == null)
                         {
                             return false;
@@ -1644,7 +1515,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullXmlColumn = newValue;
                             return true;
                         }
-                    case 46:
+                    case 43:
                         if (value == null)
                         {
                             return false;
@@ -1656,7 +1527,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullDateTimeColumn = newValue.Value;
                             return true;
                         }
-                    case 47:
+                    case 44:
                         if (value == null)
                         {
                             return false;
@@ -1668,7 +1539,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullSmallDateTimeColumn = newValue.Value;
                             return true;
                         }
-                    case 48:
+                    case 45:
                         if (value == null)
                         {
                             return false;
@@ -1680,7 +1551,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullDateColumn = newValue.Value;
                             return true;
                         }
-                    case 49:
+                    case 46:
                         if (value == null)
                         {
                             return false;
@@ -1692,7 +1563,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullTimeColumn = newValue.Value;
                             return true;
                         }
-                    case 50:
+                    case 47:
                         if (value == null)
                         {
                             return false;
@@ -1704,7 +1575,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullDateTime2Column = newValue.Value;
                             return true;
                         }
-                    case 51:
+                    case 48:
                         if (value == null)
                         {
                             return false;
@@ -1716,7 +1587,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullDecimalColumn = newValue.Value;
                             return true;
                         }
-                    case 52:
+                    case 49:
                         if (value == null)
                         {
                             return false;
@@ -1728,7 +1599,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullMoneyColumn = newValue.Value;
                             return true;
                         }
-                    case 53:
+                    case 50:
                         if (value == null)
                         {
                             return false;
@@ -1740,7 +1611,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullSmallMoneyColumn = newValue.Value;
                             return true;
                         }
-                    case 54:
+                    case 51:
                         if (value == null)
                         {
                             return false;
@@ -1752,7 +1623,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullFloatColumn = newValue.Value;
                             return true;
                         }
-                    case 55:
+                    case 52:
                         if (value == null)
                         {
                             return false;
@@ -1764,7 +1635,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullIntColumn = newValue.Value;
                             return true;
                         }
-                    case 56:
+                    case 53:
                         if (value == null)
                         {
                             return false;
@@ -1776,7 +1647,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullRealColumn = newValue.Value;
                             return true;
                         }
-                    case 57:
+                    case 54:
                         if (value == null)
                         {
                             return false;
@@ -1788,7 +1659,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullUniqueIdentifierColumn = newValue.Value;
                             return true;
                         }
-                    case 58:
+                    case 55:
                         if (value == null)
                         {
                             return false;
@@ -1800,7 +1671,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullSmallIntColumn = newValue.Value;
                             return true;
                         }
-                    case 59:
+                    case 56:
                         if (value == null)
                         {
                             return false;
@@ -1812,7 +1683,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullTinyIntColumn = newValue.Value;
                             return true;
                         }
-                    case 60:
+                    case 57:
                         if (value == null)
                         {
                             return false;
@@ -1824,7 +1695,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullDateTimeOffsetColumn = newValue.Value;
                             return true;
                         }
-                    case 61:
+                    case 58:
                         if (value == null)
                         {
                             return false;
@@ -1836,43 +1707,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                             this.NotNullSqlVariantColumn = newValue;
                             return true;
                         }
-                    case 62:
-                        if (value == null)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            var newValue = value as global::Microsoft.SqlServer.Types.SqlGeometry;
-                            if (newValue == null) return false;
-                            this.NotNullGeometryColumn = newValue;
-                            return true;
-                        }
-                    case 63:
-                        if (value == null)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            var newValue = value as global::Microsoft.SqlServer.Types.SqlGeography;
-                            if (newValue == null) return false;
-                            this.NotNullGeographyColumn = newValue;
-                            return true;
-                        }
-                    case 64:
-                        if (value == null)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            var newValue = value as global::Microsoft.SqlServer.Types.SqlHierarchyId?;
-                            if (newValue == null) return false;
-                            this.NotNullHierarchyIDColumn = newValue.Value;
-                            return true;
-                        }
-                    case 65:
+                    case 59:
                         if (value == null)
                         {
                             return false;
@@ -1885,11 +1720,11 @@ namespace HigLabo.DbSharpSample.SqlServer
                             return true;
                         }
                 }
-                throw new ArgumentOutOfRangeException("index", index, "index must be 0-65");
+                throw new ArgumentOutOfRangeException("index", index, "index must be 0-59");
             }
             public override Int32 GetColumnCount()
             {
-                return 66;
+                return 60;
             }
         }
     }

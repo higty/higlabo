@@ -64,12 +64,9 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)
@@ -88,7 +85,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; r.IntColumn = reader.GetInt32(index);
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }

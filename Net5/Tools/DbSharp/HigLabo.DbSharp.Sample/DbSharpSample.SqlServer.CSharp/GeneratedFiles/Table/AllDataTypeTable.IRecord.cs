@@ -40,9 +40,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             Byte? TinyIntColumn { get; set; }
             DateTimeOffset? DateTimeOffsetColumn { get; set; }
             Object SqlVariantColumn { get; set; }
-            global::Microsoft.SqlServer.Types.SqlGeometry GeometryColumn { get; set; }
-            global::Microsoft.SqlServer.Types.SqlGeography GeographyColumn { get; set; }
-            global::Microsoft.SqlServer.Types.SqlHierarchyId? HierarchyIDColumn { get; set; }
             MyEnum? EnumColumn { get; set; }
             Int64 NotNullBigIntColumn { get; set; }
             Byte[] NotNullBinaryColumn { get; set; }
@@ -72,9 +69,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             Byte NotNullTinyIntColumn { get; set; }
             DateTimeOffset NotNullDateTimeOffsetColumn { get; set; }
             Object NotNullSqlVariantColumn { get; set; }
-            global::Microsoft.SqlServer.Types.SqlGeometry NotNullGeometryColumn { get; set; }
-            global::Microsoft.SqlServer.Types.SqlGeography NotNullGeographyColumn { get; set; }
-            global::Microsoft.SqlServer.Types.SqlHierarchyId NotNullHierarchyIDColumn { get; set; }
             MyEnum NotNullEnumColumn { get; set; }
         }
     }

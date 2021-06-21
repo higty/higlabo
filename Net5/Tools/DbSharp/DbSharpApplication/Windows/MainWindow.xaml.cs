@@ -37,8 +37,10 @@ namespace HigLabo.DbSharpApplication
         public MainWindow()
         {
             InitializeComponent();
+
             this.Loaded += MainWindow_Loaded;
             AValue.ConfigData.MainWindow.Initialize(this);
+            this.Closing += MainWindow_Closing;
         }
 
         void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -595,6 +597,11 @@ namespace HigLabo.DbSharpApplication
                     column.EnumValues = c.EnumValues;
                 }
             }
+        }
+
+        private void MainWindow_Closing(object sender, CancelEventArgs e)
+        {
+            AValue.ConfigData.Save();
         }
 
     }

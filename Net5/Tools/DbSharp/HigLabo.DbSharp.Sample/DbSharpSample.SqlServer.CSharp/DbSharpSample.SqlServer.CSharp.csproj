@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.2" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="HigLabo.Converter">
       <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
     </Reference>
@@ -22,9 +27,6 @@
     </Reference>
     <Reference Include="HigLabo.DbSharp.SqlServer">
       <HintPath>..\Reference\HigLabo.DbSharp.SqlServer.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.SqlServer.Types">
-      <HintPath>..\Reference\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
   </ItemGroup>
 

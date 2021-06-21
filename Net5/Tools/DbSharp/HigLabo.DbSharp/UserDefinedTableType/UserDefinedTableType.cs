@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data;
-using System.Threading.Tasks;
+using Microsoft.Data.SqlClient.Server;
 
 namespace HigLabo.DbSharp
 {
@@ -16,15 +13,17 @@ namespace HigLabo.DbSharp
             get { return _Records; }
         }
 
-        public abstract DataTable CreateDataTable();
-        public DataTable CreateDataTable(IEnumerable<T> records)
+        public abstract SqlDataRecord CreateSqlDataRecord();
+        public List<SqlDataRecord> CreateSqlDataRecords(IEnumerable<T> records)
         {
-            var dt = this.CreateDataTable();
+            var l = new List<SqlDataRecord>();
             foreach (var item in records)
             {
-                dt.Rows.Add(item.GetValues());
+                var r = CreateSqlDataRecord();
+                r.SetValues(item.GetValues());
+                l.Add(r);
             }
-            return dt;
+            return l;
         }
     }
 }

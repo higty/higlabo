@@ -4,20 +4,21 @@ using System.Text;
 using System.Data;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Microsoft.Data.SqlClient.Server;
 using HigLabo.DbSharp;
 
 namespace HigLabo.DbSharpSample.SqlServer
 {
     public partial class MyTableType1 : UserDefinedTableType<MyTableType1.Record>
     {
-        public override DataTable CreateDataTable()
+        public override SqlDataRecord CreateSqlDataRecord()
         {
-            var dt = new DataTable();
-            dt.Columns.Add("BigIntColumn", typeof(Int64));
-            dt.Columns.Add("BinaryColumn", typeof(Byte[]));
-            dt.Columns.Add("ImageColumn", typeof(Byte[]));
-            dt.Columns.Add("VarBinaryColumn", typeof(Byte[]));
-            return dt;
+            SqlMetaData[] metaData = new SqlMetaData[4];
+            metaData[0] = new SqlMetaData("BigIntColumn", SqlDbType.BigInt);
+            metaData[1] = new SqlMetaData("BinaryColumn", SqlDbType.Binary, 100);
+            metaData[2] = new SqlMetaData("ImageColumn", SqlDbType.Image);
+            metaData[3] = new SqlMetaData("VarBinaryColumn", SqlDbType.VarBinary, 100);
+            return new SqlDataRecord(metaData);
         }
 
         public partial class Record : UserDefinedTableTypeRecord

@@ -121,7 +121,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; r.NotNullSqlVariantColumn = reader[index] as Object;
                 index += 1; r.NotNullEnumColumn = StoredProcedure.ToEnum<MyEnum>(reader[index] as String) ?? r.NotNullEnumColumn;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }
@@ -171,13 +171,13 @@ namespace HigLabo.DbSharpSample.SqlServer
             private Byte[] _NotNullImageColumn;
             private Byte[] _NotNullVarBinaryColumn;
             private Boolean _NotNullBitColumn;
-            private String _NotNullCharColumn = null;
-            private String _NotNullNCharColumn = null;
-            private String _NotNullNTextColumn = null;
-            private String _NotNullNVarCharColumn = null;
-            private String _NotNullTextColumn = null;
-            private String _NotNullVarCharColumn = null;
-            private String _NotNullXmlColumn = null;
+            private String _NotNullCharColumn = "";
+            private String _NotNullNCharColumn = "";
+            private String _NotNullNTextColumn = "";
+            private String _NotNullNVarCharColumn = "";
+            private String _NotNullTextColumn = "";
+            private String _NotNullVarCharColumn = "";
+            private String _NotNullXmlColumn = "";
             private DateTime _NotNullDateTimeColumn;
             private DateTime _NotNullSmallDateTimeColumn;
             private DateTime _NotNullDateColumn;

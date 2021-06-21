@@ -210,18 +210,21 @@ namespace HigLabo.DbSharpSample.MySql
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@IntColumn", MySqlDbType.Int32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@FloatColumn", MySqlDbType.Float, 12, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.FloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BinaryColumn", MySqlDbType.Binary, null, null);
@@ -229,12 +232,14 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.BinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TimestampColumn", MySqlDbType.Timestamp, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.InputOutput;
             p.Value = this.TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@VarBinaryColumn", MySqlDbType.VarBinary, null, null);
@@ -242,12 +247,14 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.VarBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BitColumn", MySqlDbType.Bit, 1, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BitColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NCharColumn", MySqlDbType.String, null, null);
@@ -255,6 +262,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NVarCharColumn", MySqlDbType.VarChar, null, null);
@@ -262,36 +270,37 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NVarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_BigIntColumn", MySqlDbType.Int64, 19, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_BigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_IntColumn", MySqlDbType.Int32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_FloatColumn", MySqlDbType.Float, 12, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_FloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_TimestampColumn", MySqlDbType.Timestamp, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)

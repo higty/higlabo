@@ -37,6 +37,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Converter", "HigLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Core", "HigLabo.Core\HigLabo.Core.csproj", "{2FBC473C-82AF-4482-9EA9-D8517313B989}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web", "HigLabo.Web\HigLabo.Web.csproj", "{3693FC5A-D05A-4C78-9843-8E0D69FFD56B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.UI", "HigLabo.Web.UI\HigLabo.Web.UI.csproj", "{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +115,14 @@ Global
 		{2FBC473C-82AF-4482-9EA9-D8517313B989}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FBC473C-82AF-4482-9EA9-D8517313B989}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FBC473C-82AF-4482-9EA9-D8517313B989}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3693FC5A-D05A-4C78-9843-8E0D69FFD56B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3693FC5A-D05A-4C78-9843-8E0D69FFD56B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3693FC5A-D05A-4C78-9843-8E0D69FFD56B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3693FC5A-D05A-4C78-9843-8E0D69FFD56B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

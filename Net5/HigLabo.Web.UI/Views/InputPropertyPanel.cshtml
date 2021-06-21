@@ -1,0 +1,203 @@
+﻿@model HigLabo.Web.UI.InputPropertyPanel
+
+<div class="input-property-panel @Model.ElementType.ToString().ToLower()"
+     input-property-panel="true" element-type="@Model.ElementType.ToStringFromEnum()"
+     @Model.PanelAttributes.GetHtmlString()
+     @Model.GetRecordTypeAttributeHtmlString()
+     api-path-search="@Model.ApiPathSearch" api-parameter="@Model.ApiParameter"
+     api-path-default-get="@Model.ApiPathDefaultGet"
+     template-id="@Model.TemplateID"
+     search-template-id="@Model.GetSearchTemplateID()"
+     add-record-mode="@Model.AddRecordMode.ToStringFromEnum()"
+     select-record-mode="@Model.SelectRecordMode.ToStringFromEnum()"
+     default-record="@Model.GetDefaultRecordJson()">
+    @if (Model.ElementType != InputElementType.CheckBox)
+    {
+        <div class="property-name">@Model.Text</div>
+    }
+    <div class="property-value-panel">
+        @switch (Model.ElementType)
+        {
+            case InputElementType.Hidden:<input type="hidden" value="@Model.Value" @Model.InputAttributes.GetHtmlString() /> break;
+            case InputElementType.TextBox: <input type="text" value="@Model.Value" @Model.InputAttributes.GetHtmlString() /> break;
+            case InputElementType.TextArea:<textarea @Model.InputAttributes.GetHtmlString()>@Model.Value</textarea> break;
+            case InputElementType.RichTextBox: <textarea class="textarea" id="RichTextBox" @Model.InputAttributes.GetHtmlString()></textarea> break;
+            case InputElementType.Password:<input type="password" h-name="@Model.Name" value="@Model.Value" @Model.InputAttributes.GetHtmlString() /> break;
+            case InputElementType.Color:
+                {
+                    <input type="text" color-picker="true" value="@Model.Value" class="color" placeholder="#FFFFFF"
+                           @Model.InputAttributes.GetHtmlString() />
+                    <span class="color-panel" color-panel="true" style="background-color:@Model.Value"></span>
+                    break;
+                }
+            case InputElementType.Date:
+                <input type="text" value="@Model.Value" date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() /> break;
+            case InputElementType.Time:
+                <input type="text" value="@Model.Value" time-picker="true" class="hour-minute" @Model.InputAttributes.GetHtmlString() /> break;
+            case InputElementType.DateTime:
+                {
+                    <div class="flex-panel">
+                        <input type="text" h-name="Date" value="@Model.Value"
+                               date-picker="true" class="date" />
+                        <input type="text" h-name="HourMinute" value="@Model.Value"
+                               time-picker="true" class="hour-minute" />
+                    </div>
+                    break;
+                }
+            case InputElementType.DateTimeDuration:
+                {
+                    <div h-name="SetByEndTime">
+                        <span class="checkbox-panel">
+                            @{ var endTimeID = @String.Format("{0}_SetByEndTime", Model.Name);}
+                            <input type="checkbox"
+                                   id="@endTimeID" set-by-end-time="true" />
+                            <label for="@endTimeID"></label>
+                            <span></span>
+                        </span>
+                        <label for="@endTimeID" class="checkbox-text">@Model.TextSettings.SetByEndTime</label>
+                    </div>
+                    <div class="flex-panel">
+                        <span class="duration-start-panel">
+                            <input type="text" h-name="StartDate"
+                                   date-picker="true" class="date" />
+                            <input type="text" h-name="StartHourMinute"
+                                   time-picker="true" class="hour-minute" />
+                        </span>
+                        <span class="radio-button-list-panel duration-list-panel" duration-list-panel="true">
+                            @for (int i = 0; i < Model.DurationList.Count; i++)
+                            {
+                                var id = @String.Format("{0}_Duration_{1}", Model.Name, i);
+                                var item = Model.DurationList[i];
+                                <span class="radio-button-panel">
+                                    <input type="radio" h-name="@Model.Name"
+                                           id="@id" name="@String.Format("{0}_Duration", Model.Name)" value="@item.Value"
+                                           @Html.InputChecked(String.Equals(item.Value, Model.SelectedDuration, StringComparison.OrdinalIgnoreCase)) />
+                                    <label for="@id">@item.Text</label>
+                                </span>
+                            }
+                        </span>
+                        <span class="duration-end-panel" duration-end-panel="true">
+                            <span class="flex-panel">
+                                <span class="duration-separator">-</span>
+                                <input type="text" h-name="EndDate"
+                                       date-picker="true" class="date" />
+                                <input type="text" h-name="EndHourMinute"
+                                       time-picker="true" class="hour-minute" />
+                            </span>
+                        </span>
+                    </div>
+                    break;
+                }
+            case InputElementType.CheckBox:
+                {
+                    <div class="checkbox-panel">
+                        <input type="checkbox" h-name="@Model.Name" @Model.InputAttributes.GetHtmlString()
+                               @Html.InputChecked(String.Equals(Model.Value, "true", StringComparison.OrdinalIgnoreCase)) />
+                        <label></label>
+                    </div>
+                    <label checkbox-label="true" class="checkbox-text">@Model.Text</label>
+                    break;
+                }
+            case InputElementType.SelectButton:
+            case InputElementType.RadioButtonList:
+                {
+                    foreach (var item in Model.ItemList)
+                    {
+                        <span class="radio-button-panel">
+                            <input type="radio" h-name="@Model.Name" name="@Model.RadioButtonGroupName"
+                                   @Html.InputChecked(String.Equals(item.Value, Model.Value, StringComparison.OrdinalIgnoreCase))
+                                   value="@item.Value" />
+                            <label radio-button-label="true">@item.Text</label>
+                        </span>
+                    }
+                    break;
+                }
+            case InputElementType.DropDownList:
+                {
+                    <select @Model.InputAttributes.GetHtmlString()>
+                        @foreach (var item in Model.ItemList)
+                        {
+                            <option value="@item.Value"
+                                    @Html.OptionSelected(Model.Value == item.Value)>
+                                @item.Text
+                                </option>
+                            }
+                    </select>
+                    break;
+                }
+            case InputElementType.CheckBoxList:
+                {
+                    @foreach (var item in Model.ItemList)
+                    {
+                        <span class="checkbox-panel" h-record="true">
+                            <input type="hidden" h-name="Value" value="@item.Value" />
+                            <input type="checkbox" h-name="Checked" @Html.InputChecked(item.Checked)
+                                   name="@Model.RadioButtonGroupName" />
+                            <label checkbox-label="true" class="checkbox-text">@item.Text</label>
+                        </span>
+                    }
+                    break;
+                }
+            case InputElementType.Record:
+                {
+                    <div class="select-record-panel" select-record-panel="true" tabindex="0"
+                         default-text="@Model.TextSettings.SelectUserDefaultText">
+                        <span>@Model.TextSettings.SelectUserDefaultText</span>
+                    </div>
+                    break;
+                }
+            case InputElementType.RecordList:
+                {
+                    <div class="select-record-list-panel" select-record-list-panel="true"></div>
+                    <div class="button-list-panel" button-list-panel="true">
+                        @if (Model.CanAdd)
+                        {
+                            <input type="button" class="button" add-record-button="true" value="@Model.TextSettings.AddRecord" />
+                        }
+                        @if (Model.CanSort)
+                        {
+                            <input type="button" class="button" sort-button="true" value="@Model.TextSettings.SortBy" />
+                        }
+                    </div>
+                    break;
+                }
+            default: break;
+        }
+        @if (Model.ElementType == InputElementType.Record || Model.ElementType == InputElementType.RecordList)
+        {
+            <div class="search-record-list-panel" search-record-list-panel="true">
+                <div class="header-panel">
+                    <input type="text" search-textbox="true" />
+                    <input type="button" class="button search-button" search-button="true" value="@Model.TextSettings.Search" />
+                    <input type="button" class="button" close-button="true" value="@Model.TextSettings.Close" />
+                </div>
+                <div class="content-panel">
+                    <div class="record-list-panel" record-list-panel="true" data-simplebar="true"></div>
+                </div>
+            </div>
+        }
+
+    </div>
+    @if (Model.ElementType == InputElementType.Color)
+    {
+        <div class="color-talbe-panel" color-table-panel="true">
+            <table class="color-table">
+                @foreach (var item in Model.ColorTableRowList)
+                {
+                    <tr>
+                        @foreach (var color in item.ColorList)
+                        {
+                            <td style="background-color:@color" class="color-cell" color="@color"
+                                tabindex="0"></td>
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+    @{
+        await Html.RenderPartialAsync(Model.InputPropertyPanelMessagePanel);
+        await Html.RenderPartialAsync(Model.ValidationResultMessagePanel);
+    }
+</div>
+

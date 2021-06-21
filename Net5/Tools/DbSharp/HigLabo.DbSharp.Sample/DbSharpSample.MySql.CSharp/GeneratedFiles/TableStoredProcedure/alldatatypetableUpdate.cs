@@ -53,8 +53,8 @@ namespace HigLabo.DbSharpSample.MySql
         private global::MySql.Data.Types.MySqlGeometry? _GeometryColumn;
         private MyEnum? _EnumColumn;
         private MySet? _SetColumn;
-        private String _NotNullCharColumn = null;
-        private String _NotNullVarCharColumn = null;
+        private String _NotNullCharColumn = "";
+        private String _NotNullVarCharColumn = "";
         private Boolean _NotNullBitColumn;
         private SByte _NotNullTinyIntColumn;
         private Int16 _NotNullSmallIntColumn;
@@ -77,13 +77,13 @@ namespace HigLabo.DbSharpSample.MySql
         private Byte[] _NotNullBinaryColumn;
         private Byte[] _NotNullVarBinaryColumn;
         private Byte[] _NotNullTinyBlobColumn;
-        private String _NotNullTinyTextColumn = null;
+        private String _NotNullTinyTextColumn = "";
         private Byte[] _NotNullBlobColumn;
-        private String _NotNullTextColumn = null;
+        private String _NotNullTextColumn = "";
         private Byte[] _NotNullMediumBlobColumn;
-        private String _NotNullMediumTextColumn = null;
+        private String _NotNullMediumTextColumn = "";
         private Byte[] _NotNullLongBlobColumn;
-        private String _NotNullLongTextColumn = null;
+        private String _NotNullLongTextColumn = "";
         private global::MySql.Data.Types.MySqlGeometry _NotNullGeometryColumn;
         private MyEnum _NotNullEnumColumn;
         private MySet _NotNullSetColumn;
@@ -918,12 +918,14 @@ namespace HigLabo.DbSharpSample.MySql
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PrimaryKeyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TimestampColumn", MySqlDbType.Timestamp, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.InputOutput;
             p.Value = this.TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@CharColumn", MySqlDbType.String, null, null);
@@ -931,6 +933,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.CharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@VarCharColumn", MySqlDbType.VarChar, null, null);
@@ -938,120 +941,140 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.VarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BitColumn", MySqlDbType.Bit, 1, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BitColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TinyIntColumn", MySqlDbType.Byte, 3, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.TinyIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SmallIntColumn", MySqlDbType.Int16, 5, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.SmallIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@MediumIntColumn", MySqlDbType.Int24, 7, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.MediumIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@IntColumn", MySqlDbType.Int32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BigIntColumn", MySqlDbType.Int64, 19, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TinyIntUnsignedColumn", MySqlDbType.UByte, 3, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.TinyIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SmallIntUnsignedColumn", MySqlDbType.UInt16, 5, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.SmallIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@MediumIntUnsignedColumn", MySqlDbType.UInt24, 7, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.MediumIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@IntUnsignedColumn", MySqlDbType.UInt32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.IntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BigIntUnsignedColumn", MySqlDbType.UInt64, 20, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BigIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@FloatColumn", MySqlDbType.Float, 8, 4);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.FloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DoubleColumn", MySqlDbType.Double, 9, 5);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DoubleColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DecimalColumn", MySqlDbType.Decimal, 10, 5);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DecimalColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NumericColumn", MySqlDbType.Decimal, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NumericColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DateColumn", MySqlDbType.Date, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DateColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DateTimeColumn", MySqlDbType.DateTime, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DateTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TimeColumn", MySqlDbType.Time, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.TimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@YearColumn", MySqlDbType.Year, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.YearColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BinaryColumn", MySqlDbType.Binary, null, null);
@@ -1059,6 +1082,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.BinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@VarBinaryColumn", MySqlDbType.VarBinary, null, null);
@@ -1066,6 +1090,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.VarBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TinyBlobColumn", MySqlDbType.TinyBlob, null, null);
@@ -1073,6 +1098,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 255;
             p.Value = this.TinyBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@MediumBlobColumn", MySqlDbType.MediumBlob, null, null);
@@ -1080,6 +1106,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 16777215;
             p.Value = this.MediumBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BlobColumn", MySqlDbType.Blob, null, null);
@@ -1087,12 +1114,14 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 65535;
             p.Value = this.BlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@LongBlobColumn", MySqlDbType.LongBlob, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.LongBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TinyTextColumn", MySqlDbType.TinyText, null, null);
@@ -1100,6 +1129,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 255;
             p.Value = this.TinyTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@MediumTextColumn", MySqlDbType.MediumText, null, null);
@@ -1107,6 +1137,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 16777215;
             p.Value = this.MediumTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TextColumn", MySqlDbType.Text, null, null);
@@ -1114,18 +1145,21 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 65535;
             p.Value = this.TextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@LongTextColumn", MySqlDbType.LongText, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.LongTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@GeometryColumn", MySqlDbType.Geometry, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.GeometryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@EnumColumn", MySqlDbType.Enum, null, null);
@@ -1133,6 +1167,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 7;
             p.Value = this.EnumColumn.ToStringOrNullFromEnum();
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SetColumn", MySqlDbType.Set, null, null);
@@ -1140,6 +1175,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 20;
             p.Value = this.SetColumn.ToStringOrNullFromEnum();
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullCharColumn", MySqlDbType.String, null, null);
@@ -1147,6 +1183,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullVarCharColumn", MySqlDbType.VarChar, null, null);
@@ -1154,120 +1191,140 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullVarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBitColumn", MySqlDbType.Bit, 1, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullBitColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTinyIntColumn", MySqlDbType.Byte, 3, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullTinyIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSmallIntColumn", MySqlDbType.Int16, 5, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullSmallIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullMediumIntColumn", MySqlDbType.Int24, 7, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullMediumIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullIntColumn", MySqlDbType.Int32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBigIntColumn", MySqlDbType.Int64, 19, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullBigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTinyIntUnsignedColumn", MySqlDbType.UByte, 3, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullTinyIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSmallIntUnsignedColumn", MySqlDbType.UInt16, 5, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullSmallIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullMediumIntUnsignedColumn", MySqlDbType.UInt24, 7, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullMediumIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullIntUnsignedColumn", MySqlDbType.UInt32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBigIntUnsignedColumn", MySqlDbType.UInt64, 20, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullBigIntUnsignedColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullFloatColumn", MySqlDbType.Float, 8, 4);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullFloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDoubleColumn", MySqlDbType.Double, 9, 5);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDoubleColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDecimalColumn", MySqlDbType.Decimal, 10, 5);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDecimalColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullNumericColumn", MySqlDbType.Decimal, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullNumericColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDateColumn", MySqlDbType.Date, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDateColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDateTimeColumn", MySqlDbType.DateTime, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDateTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTimeColumn", MySqlDbType.Time, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullYearColumn", MySqlDbType.Year, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullYearColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBinaryColumn", MySqlDbType.Binary, null, null);
@@ -1275,6 +1332,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullVarBinaryColumn", MySqlDbType.VarBinary, null, null);
@@ -1282,6 +1340,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullVarBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTinyBlobColumn", MySqlDbType.TinyBlob, null, null);
@@ -1289,6 +1348,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 255;
             p.Value = this.NotNullTinyBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTinyTextColumn", MySqlDbType.TinyText, null, null);
@@ -1296,6 +1356,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 255;
             p.Value = this.NotNullTinyTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBlobColumn", MySqlDbType.Blob, null, null);
@@ -1303,6 +1364,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 65535;
             p.Value = this.NotNullBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTextColumn", MySqlDbType.Text, null, null);
@@ -1310,6 +1372,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 65535;
             p.Value = this.NotNullTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullMediumBlobColumn", MySqlDbType.MediumBlob, null, null);
@@ -1317,6 +1380,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 16777215;
             p.Value = this.NotNullMediumBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullMediumTextColumn", MySqlDbType.MediumText, null, null);
@@ -1324,24 +1388,28 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 16777215;
             p.Value = this.NotNullMediumTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullLongBlobColumn", MySqlDbType.LongBlob, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullLongBlobColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullLongTextColumn", MySqlDbType.LongText, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullLongTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullGeometryColumn", MySqlDbType.Geometry, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullGeometryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullEnumColumn", MySqlDbType.Enum, null, null);
@@ -1349,6 +1417,7 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 7;
             p.Value = this.NotNullEnumColumn.ToStringFromEnum();
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSetColumn", MySqlDbType.Set, null, null);
@@ -1356,24 +1425,23 @@ namespace HigLabo.DbSharpSample.MySql
             p.Direction = ParameterDirection.Input;
             p.Size = 20;
             p.Value = this.NotNullSetColumn.ToStringFromEnum();
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_PrimaryKeyColumn", MySqlDbType.Int64, 19, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_PrimaryKeyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_TimestampColumn", MySqlDbType.Timestamp, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)

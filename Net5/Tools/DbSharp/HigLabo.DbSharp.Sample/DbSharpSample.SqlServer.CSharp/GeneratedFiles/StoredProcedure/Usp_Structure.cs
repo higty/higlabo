@@ -76,27 +76,19 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.InputOutput;
             p.Value = this.BigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@StructuredColumn", SqlDbType.Structured, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.SetTypeName("MyTableType");
-            
+            if (this.StructuredColumn.Records.Count > 0)
             {
-                var dt = this.StructuredColumn.CreateDataTable();
-                foreach (var item in this.StructuredColumn.Records)
-                {
-                    dt.Rows.Add(item.GetValues());
-                }
-                p.Value = dt;
+                p.Value = this.StructuredColumn.CreateSqlDataRecords(this.StructuredColumn.Records);
             }
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)

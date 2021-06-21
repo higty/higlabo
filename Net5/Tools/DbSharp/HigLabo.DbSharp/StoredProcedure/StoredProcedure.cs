@@ -10,6 +10,7 @@ using HigLabo.Core;
 using HigLabo.Data;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.Threading;
 
 namespace HigLabo.DbSharp
 {
@@ -36,6 +37,30 @@ namespace HigLabo.DbSharp
             return this.CreateCommand(this.GetDatabase());
         }
         public abstract DbCommand CreateCommand(Database database);
+
+        private async Task<ExecuteNonQueryResult> GetExecuteNonQueryResultAsync(Database database, CancellationToken cancellationToken)
+        {
+            if (database == null) throw new ArgumentNullException("database");
+            var affectedRecordCount = -1;
+            var previousState = database.ConnectionState;
+
+            try
+            {
+                var cm = CreateCommand(database);
+                var e = new StoredProcedureExecutingEventArgs(this, cm);
+                StoredProcedure.OnExecuting(e);
+                if (e.Cancel == true) { return new ExecuteNonQueryResult(database, affectedRecordCount); }
+                affectedRecordCount = await database.ExecuteCommandAsync(cm, cancellationToken).ConfigureAwait(false);
+                this.SetOutputParameterValue(cm);
+            }
+            finally
+            {
+                if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
+                if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
+            }
+            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
+            return new ExecuteNonQueryResult(database, affectedRecordCount);
+        }
         public Int32 ExecuteNonQuery()
         {
             return this.ExecuteNonQuery(this.GetDatabase());
@@ -69,10 +94,14 @@ namespace HigLabo.DbSharp
         }
         public IEnumerable<ExecuteNonQueryResult> ExecuteNonQuery(IEnumerable<Database> databases)
         {
+            return ExecuteNonQuery(databases, CancellationToken.None);
+        }
+        public IEnumerable<ExecuteNonQueryResult> ExecuteNonQuery(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        {
             var tt = new List<Task<ExecuteNonQueryResult>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetExecuteNonQueryResultAsync(db));
+                tt.Add(this.GetExecuteNonQueryResultAsync(db, cancellationToken));
             }
             var l = new List<ExecuteNonQueryResult>();
             return Task.WhenAll(tt).GetAwaiter().GetResult();
@@ -80,51 +109,39 @@ namespace HigLabo.DbSharp
 
         public async Task<Int32> ExecuteNonQueryAsync()
         {
-            var rs = await this.GetExecuteNonQueryResultAsync().ConfigureAwait(false);
-            return rs.AffectedRecordCount;
+            return await this.ExecuteNonQueryAsync(this.GetDatabase(), CancellationToken.None);
         }
-        private async Task<ExecuteNonQueryResult> GetExecuteNonQueryResultAsync()
+        public async Task<Int32> ExecuteNonQueryAsync(CancellationToken cancellationToken)
         {
-            return await this.GetExecuteNonQueryResultAsync(this.GetDatabase()).ConfigureAwait(false);
-        }
-        public async Task<Int32> ExecuteNonQueryAsync(Database database)
-        {
-            var rs = await this.GetExecuteNonQueryResultAsync(database).ConfigureAwait(false);
-            return rs.AffectedRecordCount;
+            return await this.ExecuteNonQueryAsync(this.GetDatabase(), cancellationToken);
         }
         public async Task<Int32> ExecuteNonQueryAsync(TransactionContext context)
         {
             return await this.ExecuteNonQueryAsync(context.Database);
         }
-        private async Task<ExecuteNonQueryResult> GetExecuteNonQueryResultAsync(Database database)
+        public async Task<Int32> ExecuteNonQueryAsync(TransactionContext context, CancellationToken cancellationToken)
         {
-            if (database == null) throw new ArgumentNullException("database");
-            var affectedRecordCount = -1;
-            var previousState = database.ConnectionState;
-
-            try
-            {
-                var cm = CreateCommand(database);
-                var e = new StoredProcedureExecutingEventArgs(this, cm);
-                StoredProcedure.OnExecuting(e);
-                if (e.Cancel == true) { return new ExecuteNonQueryResult(database, affectedRecordCount); }
-                affectedRecordCount = await database.ExecuteCommandAsync(cm).ConfigureAwait(false);
-                this.SetOutputParameterValue(cm);
-            }
-            finally
-            {
-                if (previousState == ConnectionState.Closed && database.ConnectionState == ConnectionState.Open) { database.Close(); }
-                if (previousState == ConnectionState.Closed && database.OnTransaction == false) { database.Dispose(); }
-            }
-            StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
-            return new ExecuteNonQueryResult(database, affectedRecordCount);
+            return await this.ExecuteNonQueryAsync(context.Database, cancellationToken);
+        }
+        public async Task<Int32> ExecuteNonQueryAsync(Database database)
+        {
+            return await this.ExecuteNonQueryAsync(database, CancellationToken.None);
+        }
+        public async Task<Int32> ExecuteNonQueryAsync(Database database, CancellationToken cancellationToken)
+        {
+            var rs = await this.GetExecuteNonQueryResultAsync(database, cancellationToken).ConfigureAwait(false);
+            return rs.AffectedRecordCount;
         }
         public async Task<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQueryAsync(IEnumerable<Database> databases)
+        {
+            return await ExecuteNonQueryAsync(databases, CancellationToken.None);
+        }
+        public async Task<IEnumerable<ExecuteNonQueryResult>> ExecuteNonQueryAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             var tt = new List<Task<ExecuteNonQueryResult>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetExecuteNonQueryResultAsync(db));
+                tt.Add(this.GetExecuteNonQueryResultAsync(db, cancellationToken));
             }
             var results = await Task.WhenAll(tt).ConfigureAwait(false);
             return results;

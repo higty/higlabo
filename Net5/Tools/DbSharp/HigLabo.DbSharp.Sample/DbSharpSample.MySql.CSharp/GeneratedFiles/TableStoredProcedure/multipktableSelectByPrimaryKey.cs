@@ -90,24 +90,23 @@ namespace HigLabo.DbSharpSample.MySql
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_BigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_IntColumn", MySqlDbType.Int32, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@PK_FloatColumn", MySqlDbType.Float, 12, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_FloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)
@@ -133,7 +132,7 @@ namespace HigLabo.DbSharpSample.MySql
                 index += 1; if (reader[index] != DBNull.Value) r.NCharColumn = reader[index] as String;
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }

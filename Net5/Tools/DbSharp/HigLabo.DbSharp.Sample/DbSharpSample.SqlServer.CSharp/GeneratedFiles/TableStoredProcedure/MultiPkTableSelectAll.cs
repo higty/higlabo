@@ -71,7 +71,7 @@ namespace HigLabo.DbSharpSample.SqlServer
                 index += 1; if (reader[index] != DBNull.Value) r.NTextColumn = reader[index] as String;
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }

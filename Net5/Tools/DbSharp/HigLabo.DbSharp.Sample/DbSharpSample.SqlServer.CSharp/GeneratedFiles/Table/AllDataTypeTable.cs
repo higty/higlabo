@@ -148,9 +148,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             sp.TinyIntColumn = record.TinyIntColumn;
             sp.DateTimeOffsetColumn = record.DateTimeOffsetColumn;
             sp.SqlVariantColumn = record.SqlVariantColumn;
-            sp.GeometryColumn = record.GeometryColumn;
-            sp.GeographyColumn = record.GeographyColumn;
-            sp.HierarchyIDColumn = record.HierarchyIDColumn;
             sp.EnumColumn = record.EnumColumn;
             sp.NotNullBigIntColumn = record.NotNullBigIntColumn;
             sp.NotNullBinaryColumn = record.NotNullBinaryColumn;
@@ -180,9 +177,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             sp.NotNullTinyIntColumn = record.NotNullTinyIntColumn;
             sp.NotNullDateTimeOffsetColumn = record.NotNullDateTimeOffsetColumn;
             sp.NotNullSqlVariantColumn = record.NotNullSqlVariantColumn;
-            sp.NotNullGeometryColumn = record.NotNullGeometryColumn;
-            sp.NotNullGeographyColumn = record.NotNullGeographyColumn;
-            sp.NotNullHierarchyIDColumn = record.NotNullHierarchyIDColumn;
             sp.NotNullEnumColumn = record.NotNullEnumColumn;
             return sp;
         }
@@ -221,9 +215,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             sp.TinyIntColumn = record.TinyIntColumn;
             sp.DateTimeOffsetColumn = record.DateTimeOffsetColumn;
             sp.SqlVariantColumn = record.SqlVariantColumn;
-            sp.GeometryColumn = record.GeometryColumn;
-            sp.GeographyColumn = record.GeographyColumn;
-            sp.HierarchyIDColumn = record.HierarchyIDColumn;
             sp.EnumColumn = record.EnumColumn;
             sp.NotNullBigIntColumn = record.NotNullBigIntColumn;
             sp.NotNullBinaryColumn = record.NotNullBinaryColumn;
@@ -253,9 +244,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             sp.NotNullTinyIntColumn = record.NotNullTinyIntColumn;
             sp.NotNullDateTimeOffsetColumn = record.NotNullDateTimeOffsetColumn;
             sp.NotNullSqlVariantColumn = record.NotNullSqlVariantColumn;
-            sp.NotNullGeometryColumn = record.NotNullGeometryColumn;
-            sp.NotNullGeographyColumn = record.NotNullGeographyColumn;
-            sp.NotNullHierarchyIDColumn = record.NotNullHierarchyIDColumn;
             sp.NotNullEnumColumn = record.NotNullEnumColumn;
             sp.PK_PrimaryKeyColumn = record.OldRecord.PrimaryKeyColumn;
             sp.PK_TimestampColumn = record.OldRecord.TimestampColumn;
@@ -304,9 +292,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             dt.Columns.Add("@TinyIntColumn", typeof(Byte));
             dt.Columns.Add("@DateTimeOffsetColumn", typeof(DateTimeOffset));
             dt.Columns.Add("@SqlVariantColumn", typeof(Object));
-            dt.Columns.Add("@GeometryColumn", typeof(global::Microsoft.SqlServer.Types.SqlGeometry));
-            dt.Columns.Add("@GeographyColumn", typeof(global::Microsoft.SqlServer.Types.SqlGeography));
-            dt.Columns.Add("@HierarchyIDColumn", typeof(global::Microsoft.SqlServer.Types.SqlHierarchyId));
             dt.Columns.Add("@EnumColumn", typeof(String));
             dt.Columns.Add("@NotNullBigIntColumn", typeof(Int64));
             dt.Columns.Add("@NotNullBinaryColumn", typeof(Byte[]));
@@ -336,9 +321,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             dt.Columns.Add("@NotNullTinyIntColumn", typeof(Byte));
             dt.Columns.Add("@NotNullDateTimeOffsetColumn", typeof(DateTimeOffset));
             dt.Columns.Add("@NotNullSqlVariantColumn", typeof(Object));
-            dt.Columns.Add("@NotNullGeometryColumn", typeof(global::Microsoft.SqlServer.Types.SqlGeometry));
-            dt.Columns.Add("@NotNullGeographyColumn", typeof(global::Microsoft.SqlServer.Types.SqlGeography));
-            dt.Columns.Add("@NotNullHierarchyIDColumn", typeof(global::Microsoft.SqlServer.Types.SqlHierarchyId));
             dt.Columns.Add("@NotNullEnumColumn", typeof(String));
             return dt;
         }
@@ -379,9 +361,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             dataRow["@TinyIntColumn"] = GetValueOrDBNull(record.TinyIntColumn);
             dataRow["@DateTimeOffsetColumn"] = GetValueOrDBNull(record.DateTimeOffsetColumn);
             dataRow["@SqlVariantColumn"] = GetValueOrDBNull(record.SqlVariantColumn);
-            dataRow["@GeometryColumn"] = GetValueOrDBNull(record.GeometryColumn);
-            dataRow["@GeographyColumn"] = GetValueOrDBNull(record.GeographyColumn);
-            dataRow["@HierarchyIDColumn"] = GetValueOrDBNull(record.HierarchyIDColumn);
             dataRow["@EnumColumn"] = GetValueOrDBNull(record.EnumColumn);
             dataRow["@NotNullBigIntColumn"] = GetValueOrDBNull(record.NotNullBigIntColumn);
             dataRow["@NotNullBinaryColumn"] = GetValueOrDBNull(record.NotNullBinaryColumn);
@@ -411,9 +390,6 @@ namespace HigLabo.DbSharpSample.SqlServer
             dataRow["@NotNullTinyIntColumn"] = GetValueOrDBNull(record.NotNullTinyIntColumn);
             dataRow["@NotNullDateTimeOffsetColumn"] = GetValueOrDBNull(record.NotNullDateTimeOffsetColumn);
             dataRow["@NotNullSqlVariantColumn"] = GetValueOrDBNull(record.NotNullSqlVariantColumn);
-            dataRow["@NotNullGeometryColumn"] = GetValueOrDBNull(record.NotNullGeometryColumn);
-            dataRow["@NotNullGeographyColumn"] = GetValueOrDBNull(record.NotNullGeographyColumn);
-            dataRow["@NotNullHierarchyIDColumn"] = GetValueOrDBNull(record.NotNullHierarchyIDColumn);
             dataRow["@NotNullEnumColumn"] = GetValueOrDBNull(record.NotNullEnumColumn);
             return dataRow;
         }

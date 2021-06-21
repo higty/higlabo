@@ -1,0 +1,163 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="StaticFiles\DateTime.js" />
+    <None Remove="StaticFiles\DateTime.js.map" />
+    <None Remove="StaticFiles\DateTime.min.js" />
+    <None Remove="StaticFiles\DateTime.ts" />
+    <None Remove="StaticFiles\HigLabo.css" />
+    <None Remove="StaticFiles\HigLabo.min.css" />
+    <None Remove="StaticFiles\HigLabo.scss" />
+    <None Remove="StaticFiles\HigLaboQuery.min.js" />
+    <None Remove="StaticFiles\HigLaboVue.js" />
+    <None Remove="StaticFiles\HigLaboVue.js.map" />
+    <None Remove="StaticFiles\HigLaboVue.min.js" />
+    <None Remove="StaticFiles\HigLaboVue.ts" />
+    <None Remove="StaticFiles\HtmlElementQuery.js" />
+    <None Remove="StaticFiles\HtmlElementQuery.js.map" />
+    <None Remove="StaticFiles\HtmlElementQuery.min.js" />
+    <None Remove="StaticFiles\HtmlElementQuery.ts" />
+    <None Remove="StaticFiles\HttpClient.js" />
+    <None Remove="StaticFiles\HttpClient.js.map" />
+    <None Remove="StaticFiles\HttpClient.min.js" />
+    <None Remove="StaticFiles\HttpClient.ts" />
+    <None Remove="StaticFiles\InputPropertyPanel.js" />
+    <None Remove="StaticFiles\InputPropertyPanel.js.map" />
+    <None Remove="StaticFiles\InputPropertyPanel.min.js" />
+    <None Remove="StaticFiles\InputPropertyPanel.ts" />
+    <None Remove="StaticFiles\linq\Collections.js" />
+    <None Remove="StaticFiles\linq\Collections.js.map" />
+    <None Remove="StaticFiles\linq\Comparers.js" />
+    <None Remove="StaticFiles\linq\Comparers.js.map" />
+    <None Remove="StaticFiles\linq\Enumerables.js" />
+    <None Remove="StaticFiles\linq\Enumerables.js.map" />
+    <None Remove="StaticFiles\linq\Iterators.js" />
+    <None Remove="StaticFiles\linq\Iterators.js.map" />
+    <None Remove="StaticFiles\linq\Linq.js" />
+    <None Remove="StaticFiles\linq\Linq.js.map" />
+    <None Remove="StaticFiles\linq\Types.js" />
+    <None Remove="StaticFiles\linq\Types.js.map" />
+    <None Remove="StaticFiles\linq\Utils.js" />
+    <None Remove="StaticFiles\linq\Utils.js.map" />
+    <None Remove="StaticFiles\RichTextbox.js" />
+    <None Remove="StaticFiles\RichTextbox.js.map" />
+    <None Remove="StaticFiles\RichTextbox.min.js" />
+    <None Remove="StaticFiles\RichTextbox.ts" />
+    <None Remove="StaticFiles\SelectTimePopupPanel.js" />
+    <None Remove="StaticFiles\SelectTimePopupPanel.js.map" />
+    <None Remove="StaticFiles\SelectTimePopupPanel.min.js" />
+    <None Remove="StaticFiles\SelectTimePopupPanel.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="StaticFiles\DateTime.js" />
+    <Content Include="StaticFiles\DateTime.js.map" />
+    <Content Include="StaticFiles\DateTime.min.js" />
+    <Content Include="StaticFiles\DateTime.ts" />
+    <Content Include="StaticFiles\HigLabo.css" />
+    <Content Include="StaticFiles\HigLabo.min.css" />
+    <Content Include="StaticFiles\HigLabo.scss" />
+    <Content Include="StaticFiles\HigLaboQuery.min.js" />
+    <Content Include="StaticFiles\HigLaboVue.js" />
+    <Content Include="StaticFiles\HigLaboVue.js.map" />
+    <Content Include="StaticFiles\HigLaboVue.min.js" />
+    <Content Include="StaticFiles\HigLaboVue.ts" />
+    <Content Include="StaticFiles\HtmlElementQuery.js" />
+    <Content Include="StaticFiles\HtmlElementQuery.js.map" />
+    <Content Include="StaticFiles\HtmlElementQuery.min.js" />
+    <Content Include="StaticFiles\HtmlElementQuery.ts" />
+    <Content Include="StaticFiles\HttpClient.js" />
+    <Content Include="StaticFiles\HttpClient.js.map" />
+    <Content Include="StaticFiles\HttpClient.min.js" />
+    <Content Include="StaticFiles\HttpClient.ts" />
+    <Content Include="StaticFiles\InputPropertyPanel.js" />
+    <Content Include="StaticFiles\InputPropertyPanel.js.map" />
+    <Content Include="StaticFiles\InputPropertyPanel.min.js" />
+    <Content Include="StaticFiles\InputPropertyPanel.ts" />
+    <Content Include="StaticFiles\linq\Collections.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Collections.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Comparers.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Comparers.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Enumerables.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Enumerables.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Iterators.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Iterators.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Linq.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Linq.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Types.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Types.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Utils.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\linq\Utils.js.map">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="StaticFiles\RichTextbox.js" />
+    <Content Include="StaticFiles\RichTextbox.js.map" />
+    <Content Include="StaticFiles\RichTextbox.min.js" />
+    <Content Include="StaticFiles\RichTextbox.ts" />
+    <Content Include="StaticFiles\SelectTimePopupPanel.js" />
+    <Content Include="StaticFiles\SelectTimePopupPanel.js.map" />
+    <Content Include="StaticFiles\SelectTimePopupPanel.min.js" />
+    <Content Include="StaticFiles\SelectTimePopupPanel.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+    <ProjectReference Include="..\HigLabo.Web\HigLabo.Web.csproj" />
+  </ItemGroup>
+  
+
+
+</Project>

@@ -247,19 +247,16 @@ namespace HigLabo.DbSharp.CodeGenerator
                         case SqlParameterConvertType.Default:
                             if (parameter.DbType.IsUserDefinedTableType() == true)
                             {
-                                var dtCodeBlock = new CodeBlock(SourceCodeLanguage.CSharp, "");
+                                var dtCodeBlock = new CodeBlock(SourceCodeLanguage.CSharp, "if (this.{0}.Records.Count > 0)", pName);
                                 dtCodeBlock.CurlyBracket = true;
-                                dtCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "var dt = this.{0}.CreateDataTable();", pName));
-                                var foreachCodeBlock = new CodeBlock(SourceCodeLanguage.CSharp, "foreach (var item in this.{0}.Records)", pName);
-                                foreachCodeBlock.CurlyBracket = true;
-                                foreachCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "dt.Rows.Add(item.GetValues());"));
-                                dtCodeBlock.CodeBlocks.Add(foreachCodeBlock);
-                                dtCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = dt;"));
+                                dtCodeBlock.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp
+                                    , "p.Value = this.{0}.CreateSqlDataRecords(this.{0}.Records);", pName));
                                 yield return dtCodeBlock;
                             }
                             else
                             {
                                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0};", pName);
+                                yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = p.Value ?? DBNull.Value;", pName);
                             }
                             break;
                         case SqlParameterConvertType.Enum:
@@ -268,17 +265,14 @@ namespace HigLabo.DbSharp.CodeGenerator
                             {
                                 methodName = "ToStringOrNullFromEnum";
                             }
-                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0}.{1}();", pName, methodName); break;
+                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0}.{1}();", pName, methodName); 
+                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = p.Value ?? DBNull.Value;", pName);
+                            break;
                         default: throw new InvalidOperationException();
                     }
                     yield return new CodeBlock(SourceCodeLanguage.CSharp, "cm.Parameters.Add(p);");
                     yield return new CodeBlock(SourceCodeLanguage.CSharp, "");
                 }
-
-                var cb = new CodeBlock(SourceCodeLanguage.CSharp, "for (int i = 0; i < cm.Parameters.Count; i++)");
-                cb.CurlyBracket = true;
-                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;"));
-                yield return cb;
             }
 
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "return cm;");

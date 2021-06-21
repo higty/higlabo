@@ -66,12 +66,9 @@ namespace HigLabo.DbSharpSample.MySql
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PK_PrimaryKeyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)
@@ -158,7 +155,7 @@ namespace HigLabo.DbSharpSample.MySql
                 index += 1; r.NotNullEnumColumn = StoredProcedure.ToEnum<MyEnum>(reader[index] as String) ?? r.NotNullEnumColumn;
                 index += 1; r.NotNullSetColumn = StoredProcedure.ToEnum<MySet>(reader[index] as String) ?? r.NotNullSetColumn;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }
@@ -209,8 +206,8 @@ namespace HigLabo.DbSharpSample.MySql
             private global::MySql.Data.Types.MySqlGeometry? _GeometryColumn;
             private MyEnum? _EnumColumn;
             private MySet? _SetColumn;
-            private String _NotNullCharColumn = null;
-            private String _NotNullVarCharColumn = null;
+            private String _NotNullCharColumn = "";
+            private String _NotNullVarCharColumn = "";
             private Boolean _NotNullBitColumn;
             private SByte _NotNullTinyIntColumn;
             private Int16 _NotNullSmallIntColumn;
@@ -233,13 +230,13 @@ namespace HigLabo.DbSharpSample.MySql
             private Byte[] _NotNullBinaryColumn;
             private Byte[] _NotNullVarBinaryColumn;
             private Byte[] _NotNullTinyBlobColumn;
-            private String _NotNullTinyTextColumn = null;
+            private String _NotNullTinyTextColumn = "";
             private Byte[] _NotNullBlobColumn;
-            private String _NotNullTextColumn = null;
+            private String _NotNullTextColumn = "";
             private Byte[] _NotNullMediumBlobColumn;
-            private String _NotNullMediumTextColumn = null;
+            private String _NotNullMediumTextColumn = "";
             private Byte[] _NotNullLongBlobColumn;
-            private String _NotNullLongTextColumn = null;
+            private String _NotNullLongTextColumn = "";
             private global::MySql.Data.Types.MySqlGeometry _NotNullGeometryColumn;
             private MyEnum _NotNullEnumColumn;
             private MySet _NotNullSetColumn;

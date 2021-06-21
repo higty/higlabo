@@ -100,7 +100,7 @@ namespace HigLabo.DbSharpApplication
             AValue.SchemaData.NamespaceName = this.NamespaceNameTextBox.Text;
             AValue.SchemaData.DatabaseKey = this.DatabaseKeyTextBox.Text;
             AValue.EnsureGenerateSourceCodeFolder(path);
-
+            
             var sv = new CommandService();
             var cm = new GenerateSourceCodeCommand(AValue.ConfigData.GetOutputDirectoryPath(), AValue.SchemaData);
             if (AValue.ConfigData.UseTableFeature)
@@ -118,6 +118,7 @@ namespace HigLabo.DbSharpApplication
                 MessageBox.Show(Properties.Resources.PleaseSelectItem);
                 return;
             }
+            AValue.ConfigData.Save();
 
             this.Hide();
 

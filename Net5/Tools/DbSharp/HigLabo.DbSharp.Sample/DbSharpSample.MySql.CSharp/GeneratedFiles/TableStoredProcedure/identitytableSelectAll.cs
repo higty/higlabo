@@ -66,7 +66,7 @@ namespace HigLabo.DbSharpSample.MySql
                 index += 1; if (reader[index] != DBNull.Value) r.TimestampColumn = reader.GetDateTime(index);
                 index += 1; if (reader[index] != DBNull.Value) r.NVarCharColumn = reader[index] as String;
             }
-            catch (InvalidCastException ex)
+            catch (Exception ex)
             {
                 throw new StoredProcedureSchemaMismatchedException(this, index, ex);
             }

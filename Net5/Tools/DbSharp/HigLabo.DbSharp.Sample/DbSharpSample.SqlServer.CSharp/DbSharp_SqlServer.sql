@@ -1,4 +1,3 @@
-
 Create Type MyTableType As Table
 (BigIntColumn bigint not null
 ,BinaryColumn binary(100)
@@ -86,9 +85,9 @@ Create Table AllDataTypeTable
 ,TinyIntColumn tinyint
 ,DateTimeOffsetColumn datetimeoffset(7)
 ,SqlVariantColumn sql_variant
-,GeometryColumn geometry 
-,GeographyColumn geography 
-,HierarchyIDColumn Hierarchyid 
+--,GeometryColumn geometry 
+--,GeographyColumn geography 
+--,HierarchyIDColumn Hierarchyid 
 ,EnumColumn nvarchar(20)
 
 ,NotNullBigIntColumn bigint not null
@@ -119,9 +118,9 @@ Create Table AllDataTypeTable
 ,NotNullTinyIntColumn tinyint not null
 ,NotNullDateTimeOffsetColumn datetimeoffset(7) not null
 ,NotNullSqlVariantColumn sql_variant not null
-,NotNullGeometryColumn geometry not null
-,NotNullGeographyColumn geography not null
-,NotNullHierarchyIDColumn Hierarchyid not null
+--,NotNullGeometryColumn geometry not null
+--,NotNullGeographyColumn geography not null
+--,NotNullHierarchyIDColumn Hierarchyid not null
 ,NotNullEnumColumn nvarchar(20) not null
 
 ,Constraint [PK_AllDataTypeTable] Primary Key NonClustered (PrimaryKeyColumn)
@@ -248,9 +247,9 @@ Create Procedure Usp_OutputParameter
 ,@SmallIntColumn smallint  out
 ,@TinyIntColumn tinyint out
 ,@DateTimeOffsetColumn datetimeoffset(7) out
-,@GeometryColumn geometry out 
-,@GeographyColumn geography out
-,@HierarchyIDColumn Hierarchyid 
+--,@GeometryColumn geometry out 
+--,@GeographyColumn geography out
+--,@HierarchyIDColumn Hierarchyid 
 ,@EnumColumn nvarchar(20) out
 ) As 
 
@@ -315,3 +314,5 @@ select * from RowGuidColTable with(nolock)
 select * from MultiPkTable with(nolock)
 
 Go
+
+

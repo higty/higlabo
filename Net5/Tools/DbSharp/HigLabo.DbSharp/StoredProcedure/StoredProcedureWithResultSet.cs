@@ -9,118 +9,80 @@ using System.Data;
 using HigLabo.Data;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.Threading;
 
 namespace HigLabo.DbSharp
 {
     public abstract class StoredProcedureWithResultSet : StoredProcedure
     {
-        /// <summary>
-        /// 
-        /// </summary>
         protected StoredProcedureWithResultSet()
         {
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <returns></returns>
         protected abstract StoredProcedureResultSet CreateResultSets(IDataReader reader);
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public StoredProcedureResultSet GetFirstResultSet()
         {
             return this.GetResultSets().FirstOrDefault();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public StoredProcedureResultSet GetFirstResultSet(Database database)
         {
             return this.GetResultSets(database).FirstOrDefault();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
         public StoredProcedureResultSet GetFirstResultSet(IEnumerable<Database> databases)
         {
             var results = this.GetResultSets(databases);
             return results.FirstOrDefault();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync()
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase()).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database)
         {
-            return (await this.GetResultSetsAsync(database)).FirstOrDefault();
+            return await this.GetFirstResultSetAsync(database, CancellationToken.None);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
+        {
+            return (await this.GetResultSetsAsync(database, cancellationToken)).FirstOrDefault();
+        }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases)
         {
-            var results = await this.GetResultSetsAsync(databases).ConfigureAwait(false);
+            return await this.GetFirstResultSetAsync(databases, CancellationToken.None);
+        }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        {
+            var results = await this.GetResultSetsAsync(databases, cancellationToken).ConfigureAwait(false);
             return results.FirstOrDefault();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public List<StoredProcedureResultSet> GetResultSets()
         {
             return EnumerateResultSets().ToList();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public List<StoredProcedureResultSet> GetResultSets(Database database)
         {
             return EnumerateResultSets(database).ToList();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
         public List<StoredProcedureResultSet> GetResultSets(IEnumerable<Database> databases)
         {
             return this.GetResultSetsAsync(databases).GetAwaiter().GetResult().ToList();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync()
         {
             return await this.GetResultSetsAsync(this.GetDatabase()).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database)
+        {
+            return await this.GetResultSetsAsync(database, CommandBehavior.Default, CancellationToken.None);
+        }
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior)
+        {
+            return await this.GetResultSetsAsync(database, commandBehavior, CancellationToken.None);
+        }
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CancellationToken cancellationToken)
+        {
+            return await this.GetResultSetsAsync(database, CommandBehavior.Default, cancellationToken);
+        }
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             if (database == null) throw new ArgumentNullException("database");
             DbDataReader dr = null;
@@ -132,7 +94,7 @@ namespace HigLabo.DbSharp
                 var cm = CreateCommand(database);
                 var e = new StoredProcedureExecutingEventArgs(this, cm);
                 StoredProcedure.OnExecuting(e);
-                dr = await database.ExecuteReaderAsync(cm).ConfigureAwait(false);
+                dr = await database.ExecuteReaderAsync(cm, commandBehavior, cancellationToken).ConfigureAwait(false);
                 while (dr.Read())
                 {
                     var rs = CreateResultSets(dr);
@@ -150,35 +112,25 @@ namespace HigLabo.DbSharp
             StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return resultsets;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="databases"></param>
-        /// <returns></returns>
         public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
+        {
+            return await this.GetResultSetsAsync(databases, CancellationToken.None);
+        }
+        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             var tt = new List<Task<List<StoredProcedureResultSet>>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetResultSetsAsync(db));
+                tt.Add(this.GetResultSetsAsync(db, cancellationToken));
             }
             var results = await Task.WhenAll(tt).ConfigureAwait(false);
             return results.SelectMany(el => el);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public IEnumerable<StoredProcedureResultSet> EnumerateResultSets()
         {
             return EnumerateResultSets(this.GetDatabase());
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public IEnumerable<StoredProcedureResultSet> EnumerateResultSets(Database database)
         {
             if (database == null) throw new ArgumentNullException("database");
@@ -208,19 +160,10 @@ namespace HigLabo.DbSharp
             StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public DataTable GetDataTable()
         {
             return GetDataTable(this.GetDatabase());
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="database"></param>
-        /// <returns></returns>
         public DataTable GetDataTable(Database database)
         {
             if (database == null) throw new ArgumentNullException("database");

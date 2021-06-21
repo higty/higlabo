@@ -51,13 +51,13 @@ namespace HigLabo.DbSharpSample.SqlServer
         private Byte[] _NotNullImageColumn;
         private Byte[] _NotNullVarBinaryColumn;
         private Boolean _NotNullBitColumn;
-        private String _NotNullCharColumn = null;
-        private String _NotNullNCharColumn = null;
-        private String _NotNullNTextColumn = null;
-        private String _NotNullNVarCharColumn = null;
-        private String _NotNullTextColumn = null;
-        private String _NotNullVarCharColumn = null;
-        private String _NotNullXmlColumn = null;
+        private String _NotNullCharColumn = "";
+        private String _NotNullNCharColumn = "";
+        private String _NotNullNTextColumn = "";
+        private String _NotNullNVarCharColumn = "";
+        private String _NotNullTextColumn = "";
+        private String _NotNullVarCharColumn = "";
+        private String _NotNullXmlColumn = "";
         private DateTime _NotNullDateTimeColumn;
         private DateTime _NotNullSmallDateTimeColumn;
         private DateTime _NotNullDateColumn;
@@ -772,18 +772,21 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.PrimaryKeyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TimestampColumn", SqlDbType.Timestamp, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.InputOutput;
             p.Value = this.TimestampColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BigIntColumn", SqlDbType.BigInt, 19, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BinaryColumn", SqlDbType.Binary, null, null);
@@ -791,6 +794,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.BinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@ImageColumn", SqlDbType.Image, null, null);
@@ -798,6 +802,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 2147483647;
             p.Value = this.ImageColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@VarBinaryColumn", SqlDbType.VarBinary, null, null);
@@ -805,12 +810,14 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.VarBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@BitColumn", SqlDbType.Bit, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.BitColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@CharColumn", SqlDbType.Char, null, null);
@@ -818,6 +825,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.CharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NCharColumn", SqlDbType.NChar, null, null);
@@ -825,6 +833,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NTextColumn", SqlDbType.NText, null, null);
@@ -832,6 +841,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 1073741823;
             p.Value = this.NTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NVarCharColumn", SqlDbType.NVarChar, null, null);
@@ -839,6 +849,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NVarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TextColumn", SqlDbType.Text, null, null);
@@ -846,6 +857,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 2147483647;
             p.Value = this.TextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@VarCharColumn", SqlDbType.VarChar, null, null);
@@ -853,6 +865,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.VarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@XmlColumn", SqlDbType.Xml, null, null);
@@ -860,96 +873,112 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = -1;
             p.Value = this.XmlColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DateTimeColumn", SqlDbType.DateTime, null, 3);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DateTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SmallDateTimeColumn", SqlDbType.SmallDateTime, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.SmallDateTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DateColumn", SqlDbType.Date, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DateColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TimeColumn", SqlDbType.Time, null, 7);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.TimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DateTime2Column", SqlDbType.DateTime2, null, 7);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DateTime2Column;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DecimalColumn", SqlDbType.Decimal, 18, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DecimalColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@MoneyColumn", SqlDbType.Money, 19, 4);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.MoneyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SmallMoneyColumn", SqlDbType.SmallMoney, 10, 4);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.SmallMoneyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@FloatColumn", SqlDbType.Float, 53, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.FloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@IntColumn", SqlDbType.Int, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.IntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@RealColumn", SqlDbType.Real, 24, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.RealColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@UniqueIdentifierColumn", SqlDbType.UniqueIdentifier, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.UniqueIdentifierColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SmallIntColumn", SqlDbType.SmallInt, 5, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.SmallIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@TinyIntColumn", SqlDbType.TinyInt, 3, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.TinyIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@DateTimeOffsetColumn", SqlDbType.DateTimeOffset, null, 7);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.DateTimeOffsetColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@SqlVariantColumn", SqlDbType.Variant, null, null);
@@ -957,6 +986,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 0;
             p.Value = this.SqlVariantColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@EnumColumn", SqlDbType.NVarChar, null, null);
@@ -964,12 +994,14 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 20;
             p.Value = this.EnumColumn.ToStringOrNullFromEnum();
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBigIntColumn", SqlDbType.BigInt, 19, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullBigIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBinaryColumn", SqlDbType.Binary, null, null);
@@ -977,6 +1009,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullImageColumn", SqlDbType.Image, null, null);
@@ -984,6 +1017,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 2147483647;
             p.Value = this.NotNullImageColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullVarBinaryColumn", SqlDbType.VarBinary, null, null);
@@ -991,12 +1025,14 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullVarBinaryColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullBitColumn", SqlDbType.Bit, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullBitColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullCharColumn", SqlDbType.Char, null, null);
@@ -1004,6 +1040,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullNCharColumn", SqlDbType.NChar, null, null);
@@ -1011,6 +1048,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullNCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullNTextColumn", SqlDbType.NText, null, null);
@@ -1018,6 +1056,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 1073741823;
             p.Value = this.NotNullNTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullNVarCharColumn", SqlDbType.NVarChar, null, null);
@@ -1025,6 +1064,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullNVarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTextColumn", SqlDbType.Text, null, null);
@@ -1032,6 +1072,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 2147483647;
             p.Value = this.NotNullTextColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullVarCharColumn", SqlDbType.VarChar, null, null);
@@ -1039,6 +1080,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 100;
             p.Value = this.NotNullVarCharColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullXmlColumn", SqlDbType.Xml, null, null);
@@ -1046,96 +1088,112 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = -1;
             p.Value = this.NotNullXmlColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDateTimeColumn", SqlDbType.DateTime, null, 3);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDateTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSmallDateTimeColumn", SqlDbType.SmallDateTime, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullSmallDateTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDateColumn", SqlDbType.Date, null, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDateColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTimeColumn", SqlDbType.Time, null, 7);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullTimeColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDateTime2Column", SqlDbType.DateTime2, null, 7);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDateTime2Column;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDecimalColumn", SqlDbType.Decimal, 18, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDecimalColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullMoneyColumn", SqlDbType.Money, 19, 4);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullMoneyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSmallMoneyColumn", SqlDbType.SmallMoney, 10, 4);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullSmallMoneyColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullFloatColumn", SqlDbType.Float, 53, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullFloatColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullIntColumn", SqlDbType.Int, 10, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullRealColumn", SqlDbType.Real, 24, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullRealColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullUniqueIdentifierColumn", SqlDbType.UniqueIdentifier, null, null);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullUniqueIdentifierColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSmallIntColumn", SqlDbType.SmallInt, 5, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullSmallIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullTinyIntColumn", SqlDbType.TinyInt, 3, 0);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullTinyIntColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullDateTimeOffsetColumn", SqlDbType.DateTimeOffset, null, 7);
             p.SourceColumn = p.ParameterName;
             p.Direction = ParameterDirection.Input;
             p.Value = this.NotNullDateTimeOffsetColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullSqlVariantColumn", SqlDbType.Variant, null, null);
@@ -1143,6 +1201,7 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 0;
             p.Value = this.NotNullSqlVariantColumn;
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
             p = db.CreateParameter("@NotNullEnumColumn", SqlDbType.NVarChar, null, null);
@@ -1150,12 +1209,9 @@ namespace HigLabo.DbSharpSample.SqlServer
             p.Direction = ParameterDirection.Input;
             p.Size = 20;
             p.Value = this.NotNullEnumColumn.ToStringFromEnum();
+            p.Value = p.Value ?? DBNull.Value;
             cm.Parameters.Add(p);
             
-            for (int i = 0; i < cm.Parameters.Count; i++)
-            {
-                if (cm.Parameters[i].Value == null) cm.Parameters[i].Value = DBNull.Value;
-            }
             return cm;
         }
         protected override void SetOutputParameterValue(DbCommand command)
