@@ -46,9 +46,10 @@
                 <Label Content="Target"></Label>
                 <ComboBox Name="TargetStoredProcedureComboBox" Margin="0,26,0,0" VerticalAlignment="Top"
                           SelectionChanged="TargetStoredProcedureComboBox_SelectionChanged"></ComboBox>
-                <ComboBox Name="TargetStoredProcedureResultSetComboBox" Margin="0,48,0,0"
+                <ComboBox Name="TargetStoredProcedureResultSetComboBox" Margin="0,48,0,0" VerticalAlignment="Top"
+                          SelectionChanged="TargetStoredProcedureResultSetComboBox_SelectionChanged"
                           DataContext="{Binding ElementName=TargetStoredProcedureComboBox, Path=SelectedItem}"
-                          ItemsSource="{Binding Path=ResultSets}" VerticalAlignment="Top">
+                          ItemsSource="{Binding Path=ResultSets}" >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Path=Name}"></TextBlock>

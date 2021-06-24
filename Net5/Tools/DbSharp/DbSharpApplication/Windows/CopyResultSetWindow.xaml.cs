@@ -47,7 +47,49 @@ namespace HigLabo.DbSharpApplication
             var sp = this.TargetStoredProcedureComboBox.SelectedItem as StoredProcedure;
             if (sp == null || sp.ResultSets.Count == 0) { return; }
             this.TargetStoredProcedureResultSetComboBox.SelectedItem = sp.ResultSets[0];
+    
+            this.SetComboBoxIndex(sp);
         }
+        private void SetComboBoxIndex(StoredProcedure storedProcedure)
+        {
+            var count = 1;
+
+            while (storedProcedure.Name.Length > count)
+            {
+                var s = storedProcedure.Name.Substring(0, count);
+                foreach (var sp in _StoredProcedures.OrderBy(el => el.Name))
+                {
+                    if (sp == storedProcedure) { continue; }
+                    if (sp.Name.StartsWith(s))
+                    {
+                        this.SourceStoredProcedureComboBox.SelectedItem = sp;
+                        break;
+                    }
+                }
+                count++;
+                if (count > 300) { break; }
+            }
+        }
+        private void TargetStoredProcedureResultSetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var rs = this.TargetStoredProcedureResultSetComboBox.SelectedItem as StoredProcedureResultSetColumn;
+
+            this.SetResultSetIndex(rs);
+        }
+        private void SetResultSetIndex(StoredProcedureResultSetColumn resultSet)
+        {
+            var sp = this.SourceStoredProcedureComboBox.SelectedItem as StoredProcedure;
+            var rs = resultSet;
+            foreach (var item in sp.ResultSets)
+            {
+                if (item.Name == rs.Name)
+                {
+                    this.SourceStoredProcedureResultSetComboBox.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             Analytics.TrackEvent("CopyResultSet Execute");
