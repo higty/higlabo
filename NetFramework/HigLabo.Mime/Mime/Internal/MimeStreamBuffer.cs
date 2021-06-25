@@ -134,7 +134,12 @@ namespace HigLabo.Mime.Internal
                 //That avoid method call of CheckBoundary and improve performance.
                 if (*line_Start == 45 && boundaryLength > -1)
                 {
-                    var lastOfLine = this._Current - 2;
+                    //We found the end of the string by ASC 10 and assume that the end of the string is \r\n,
+                    var lastOfLine = this._Current - 1;
+                    //not in all cases :(
+                    if (*lastOfLine == 13)
+                        lastOfLine--;
+
                     var length = lastOfLine - line_Start + 1;
                     if (length == boundaryLength || length == boundaryLength + 2)
                     {
