@@ -731,7 +731,9 @@ namespace HigLabo.Mime
                 mc.BodyData = bodyBytes;
 
                 var charSet = mc.ContentType.CharsetEncoding;
-                if (charSet == null) { return; }
+                //if charset is ommit - use ASCII
+                if (charSet == null)
+                    charSet = Encoding.ASCII;
 
                 switch (mc.ContentTransferEncoding)
                 {
