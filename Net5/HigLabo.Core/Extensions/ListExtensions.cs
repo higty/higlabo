@@ -10,11 +10,11 @@ namespace HigLabo.Core
     /// </summary>
     public static class ListExtensions
     {
-        public static void Sort<T, TKey>(this List<T> list, params Func<T, TKey>[] keySelectors)
+        public static void Sort<T, TKey>(this List<T> list, params Func<T, TKey>[] keySelector)
         {
             List<Comparison<T>> l = new List<Comparison<T>>();
 
-            foreach (var selector in keySelectors)
+            foreach (var selector in keySelector)
             {
                 l.Add((x, y) => Comparer<TKey>.Default.Compare(selector(x), selector(y)));
             }
@@ -35,12 +35,12 @@ namespace HigLabo.Core
             };
             list.Sort(md);
         }
-        public static void Sort<T, TValue>(this List<T> records, Func<T, TValue, Boolean> func, params TValue[] valueList)
+        public static void Sort<T, TValue>(this List<T> records, Func<T, TValue> keySelector, params TValue[] valueList)
         {
             var l = new List<T>();
             foreach (var name in valueList)
             {
-                var rr = records.FindAll(el => func(el, name));
+                var rr = records.FindAll(el => Op.Eq(keySelector(el), name));
                 foreach (var r in rr)
                 {
                     records.Remove(r);

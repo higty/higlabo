@@ -13,7 +13,7 @@ export class HigLaboVue {
 
     private static createApp(templateID: string, data: any) {
         var template = document.getElementById(templateID);
-        if (template == null) { throw new Error("Template not found. id is " + template); }
+        if (template == null) { throw new Error("Template not found. id is " + templateID); }
         const app = window["Vue"].createApp({
             data() { return data; },
             template: template.innerHTML,

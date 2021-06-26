@@ -103,6 +103,28 @@ namespace HigLabo.Web.UI
             public String Close { get; set; } = InputPropertyPanel.Default.Close;
         }
 
+        public class PropertyValueItem
+        {
+            public String Value { get; set; } = "";
+            public String Text { get; set; } = "";
+            public Boolean Checked { get; set; }
+            public Object? Data { get; set; }
+
+            /// <summary>
+            /// For deserialization
+            /// </summary>
+            public PropertyValueItem() { }
+            public PropertyValueItem(String value)
+            {
+                this.Value = value;
+                this.Text = value;
+            }
+            public PropertyValueItem(String value, String text)
+            {
+                this.Value = value;
+                this.Text = text;
+            }
+        }
         public class DateTimeItem
         {
             private DateTime? _DateTime = null;
@@ -262,6 +284,7 @@ namespace HigLabo.Web.UI
         public String Text { get; set; } = "";
         public String Value { get; set; } = "";
         public String RadioButtonGroupName { get; set; } = "";
+        public String RadioButtonPartialViewName { get; set; } = "";
         public InputPropertyPanelMessagePanel InputPropertyPanelMessagePanel { get; private set; } = new InputPropertyPanelMessagePanel("");
         public ValidationResultMessagePanel ValidationResultMessagePanel { get; private set; } = new ValidationResultMessagePanel();
 
@@ -376,27 +399,6 @@ namespace HigLabo.Web.UI
                 row.ColorList.AddRange(item.ColorList);
                 this.ColorTableRowList.Add(row);
             }
-        }
-    }
-    public class PropertyValueItem
-    {
-        public String Value { get; set; } = "";
-        public String Text { get; set; } = "";
-        public Boolean Checked { get; set; }
-
-        /// <summary>
-        /// For deserialization
-        /// </summary>
-        public PropertyValueItem() { }
-        public PropertyValueItem(String value)
-        {
-            this.Value = value;
-            this.Text = value;
-        }
-        public PropertyValueItem(String value, String text)
-        {
-            this.Value = value;
-            this.Text = text;
         }
     }
 }

@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     <TypescriptOutDir>wwwroot</TypescriptOutDir>
+    <Version>1.0.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

@@ -44,6 +44,19 @@
                     </div>
                     break;
                 }
+            case InputElementType.DateDuration:
+                {
+                    <div class="flex-panel">
+                        <span class="duration-start-panel">
+                            <input type="text" h-name="StartDate"
+                                   date-picker="true" class="date" />
+                            <span class="duration-separator">-</span>
+                            <input type="text" h-name="EndDate"
+                                   date-picker="true" class="date" />
+                        </span>
+                    </div>
+                    break;
+                }
             case InputElementType.DateTimeDuration:
                 {
                     <div h-name="SetByEndTime">
@@ -107,7 +120,18 @@
                             <input type="radio" h-name="@Model.Name" name="@Model.RadioButtonGroupName"
                                    @Html.InputChecked(String.Equals(item.Value, Model.Value, StringComparison.OrdinalIgnoreCase))
                                    value="@item.Value" />
-                            <label radio-button-label="true">@item.Text</label>
+                            @if (Model.RadioButtonPartialViewName.IsNullOrEmpty())
+                            {
+                                <label radio-button-label="true">@item.Text</label>
+                            }
+                            else
+                            {
+                                <label radio-button-label="true">
+                                    @{
+                                        await Html.RenderPartialAsync(Model.RadioButtonPartialViewName, item);
+                                    }
+                                </label>
+                            }
                         </span>
                     }
                     break;
