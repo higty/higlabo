@@ -35,7 +35,7 @@ namespace HigLabo.Core
             };
             list.Sort(md);
         }
-        public static void Sort<T, TValue>(this List<T> records, Func<T, TValue> keySelector, params TValue[] valueList)
+        public static void Sort<T, TValue>(this List<T> records, Func<T, TValue> keySelector, TValue[] valueList)
         {
             var l = new List<T>();
             foreach (var name in valueList)
