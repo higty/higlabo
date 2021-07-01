@@ -21,7 +21,7 @@
         , progressCallback?: EventListener, context?: any) {
         const request = new XMLHttpRequest();
         request.open("post", url, true);
-        HttpClient.setProperty(request, callback, errorCallback, context);
+        HttpClient.setProperty(request, formData, callback, errorCallback, context);
 
         if (progressCallback != null) {
             request.upload.addEventListener("progress", progressCallback);
