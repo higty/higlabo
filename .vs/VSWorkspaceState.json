@@ -1,13 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\NetStandard",
-    "\\NetStandard\\HigLabo.Test",
-    "\\NetStandard\\HigLabo.Test\\.vs",
-    "\\NetStandard\\Tools",
-    "\\NetStandard\\Tools\\DbSharp",
-    "\\NetStandard\\Tools\\DbSharp\\Release"
+    ""
   ],
-  "SelectedNode": "\\NetStandard\\Tools\\DbSharp\\Release",
+  "SelectedNode": "\\HigLabo.Net5.sln",
   "PreviewInSolutionExplorer": false
 }
