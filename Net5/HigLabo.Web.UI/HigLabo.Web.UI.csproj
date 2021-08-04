@@ -14,7 +14,6 @@
     <None Remove="StaticFiles\HigLabo.css" />
     <None Remove="StaticFiles\HigLabo.min.css" />
     <None Remove="StaticFiles\HigLabo.scss" />
-    <None Remove="StaticFiles\HigLaboQuery.min.js" />
     <None Remove="StaticFiles\HigLaboVue.js" />
     <None Remove="StaticFiles\HigLaboVue.js.map" />
     <None Remove="StaticFiles\HigLaboVue.min.js" />
@@ -63,7 +62,6 @@
     <Content Include="StaticFiles\HigLabo.css" />
     <Content Include="StaticFiles\HigLabo.min.css" />
     <Content Include="StaticFiles\HigLabo.scss" />
-    <Content Include="StaticFiles\HigLaboQuery.min.js" />
     <Content Include="StaticFiles\HigLaboVue.js" />
     <Content Include="StaticFiles\HigLaboVue.js.map" />
     <Content Include="StaticFiles\HigLaboVue.min.js" />

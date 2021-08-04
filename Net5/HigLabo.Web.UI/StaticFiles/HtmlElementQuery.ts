@@ -145,7 +145,6 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             const element = this._elementList[i] as HTMLInputElement;
             if (element === null) { continue; }
-            if ($(element).getAttribute("type").toLowerCase() == "file") { continue; }
             element.value = value;
         }
         return this;

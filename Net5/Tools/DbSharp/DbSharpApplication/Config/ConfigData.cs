@@ -55,7 +55,7 @@ namespace HigLabo.DbSharpApplication.Core
 
             this.MainWindow = new MainWindowStateInfo(800, 600);
             this.ManageConnectionStringWindow = new WindowStateInfo(700, 400);
-            this.EditConnectionStringWindow = new WindowStateInfo(500, 160);
+            this.EditConnectionStringWindow = new WindowStateInfo(900, 160);
             this.ImportObjectWindow = new ImportObjectWindowStateInfo(900, 700);
             this.DeleteObjectWindow = new WindowStateInfo(800, 500);
             this.CopyResultSetWindow = new WindowStateInfo(800, 600);

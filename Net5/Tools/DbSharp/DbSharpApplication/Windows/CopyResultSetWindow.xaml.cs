@@ -63,12 +63,13 @@ namespace HigLabo.DbSharpApplication
                     if (sp.Name.StartsWith(s))
                     {
                         this.SourceStoredProcedureComboBox.SelectedItem = sp;
-                        break;
+                        return;
                     }
                 }
                 count++;
                 if (count > 300) { break; }
             }
+            this.SourceStoredProcedureComboBox.SelectedItem = _StoredProcedures.FirstOrDefault();
         }
         private void TargetStoredProcedureResultSetComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -79,6 +80,7 @@ namespace HigLabo.DbSharpApplication
         private void SetResultSetIndex(StoredProcedureResultSetColumn resultSet)
         {
             var sp = this.SourceStoredProcedureComboBox.SelectedItem as StoredProcedure;
+            if (sp == null) { return; }
             var rs = resultSet;
             foreach (var item in sp.ResultSets)
             {
