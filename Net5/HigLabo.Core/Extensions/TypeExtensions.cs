@@ -87,5 +87,18 @@ namespace HigLabo.Core
                 return sb.ToString();
             }
         }
+        public static String GetTypeName<T>(this T source)
+        {
+            return GetTypeNameCache<T>.Name;
+        }
+        private static class GetTypeNameCache<T>
+        {
+            public static readonly string Name;
+
+            static GetTypeNameCache()
+            {
+                Name = typeof(T).Name;
+            }
+        }
     }
 }

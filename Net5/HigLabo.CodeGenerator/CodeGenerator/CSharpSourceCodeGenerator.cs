@@ -428,7 +428,10 @@ namespace HigLabo.CodeGenerator
                 }
                 if (c.ImplementInterfaces.Count > 0)
                 {
-                    writer.Write(", ");
+                    if (c.BaseClass != null)
+                    {
+                        writer.Write(", ");
+                    }
                     for (int i = 0; i < c.ImplementInterfaces.Count; i++)
                     {
                         writer.Write(c.ImplementInterfaces[i].Name);
@@ -576,6 +579,19 @@ namespace HigLabo.CodeGenerator
             writer.Write(" interface ");
             this.WriteElementName(c.Name);
 
+            if (c.ImplementInterfaces.Count > 0)
+            {
+                writer.Write(" : ");
+                for (int i = 0; i < c.ImplementInterfaces.Count; i++)
+                {
+                    writer.Write(c.ImplementInterfaces[i].Name);
+                    if (i < c.ImplementInterfaces.Count - 1)
+                    {
+                        writer.Write(", ");
+                    }
+                }
+            }
+
             this.WriteLineAndIndent();
             writer.WriteLine("{");
 
@@ -597,6 +613,13 @@ namespace HigLabo.CodeGenerator
 
             this.CurrentIndentLevel += 1;
             foreach (var item in @namespace.Enums)
+            {
+                this.Write(item);
+            }
+            this.CurrentIndentLevel -= 1;
+
+            this.CurrentIndentLevel += 1;
+            foreach (var item in @namespace.Interfaces)
             {
                 this.Write(item);
             }

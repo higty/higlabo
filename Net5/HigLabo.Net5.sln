@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Csv", "HigLabo.Csv\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Bot.Facebook", "HigLabo.Bot.Facebook\HigLabo.Bot.Facebook.csproj", "{86E12851-2F24-4DFF-BF13-17074F0E4473}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net", "HigLabo.Net\HigLabo.Net.csproj", "{3B81FB01-BE76-4F2B-8DB8-36D34CA9CCE8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Bot.Line", "HigLabo.Bot.Line\HigLabo.Bot.Line.csproj", "{E92E8FD5-3EE1-47C8-AC47-ABA7498A11A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.Socket", "HigLabo.Net.Socket\HigLabo.Net.Socket.csproj", "{B61EA467-E153-4EB0-9E8F-509BE0C9A359}"
@@ -41,6 +39,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web", "HigLabo.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.UI", "HigLabo.Web.UI\HigLabo.Web.UI.csproj", "{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.CodeGenerator", "HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj", "{2AF83017-5118-4E08-9F34-E4DB80EFD186}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net", "HigLabo.Net\HigLabo.Net.csproj", "{3CEE0FF8-EA29-47F2-97FB-5B113CD03F78}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Service", "HigLabo.Service\HigLabo.Service.csproj", "{5ECE73B4-975F-44B8-B65B-676357CFFED9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +63,6 @@ Global
 		{86E12851-2F24-4DFF-BF13-17074F0E4473}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86E12851-2F24-4DFF-BF13-17074F0E4473}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86E12851-2F24-4DFF-BF13-17074F0E4473}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3B81FB01-BE76-4F2B-8DB8-36D34CA9CCE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3B81FB01-BE76-4F2B-8DB8-36D34CA9CCE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3B81FB01-BE76-4F2B-8DB8-36D34CA9CCE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3B81FB01-BE76-4F2B-8DB8-36D34CA9CCE8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E92E8FD5-3EE1-47C8-AC47-ABA7498A11A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E92E8FD5-3EE1-47C8-AC47-ABA7498A11A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E92E8FD5-3EE1-47C8-AC47-ABA7498A11A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -123,6 +123,18 @@ Global
 		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3F4BBB4-A7A2-4E73-AA2E-351ACADB8BD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AF83017-5118-4E08-9F34-E4DB80EFD186}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AF83017-5118-4E08-9F34-E4DB80EFD186}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AF83017-5118-4E08-9F34-E4DB80EFD186}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AF83017-5118-4E08-9F34-E4DB80EFD186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CEE0FF8-EA29-47F2-97FB-5B113CD03F78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CEE0FF8-EA29-47F2-97FB-5B113CD03F78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CEE0FF8-EA29-47F2-97FB-5B113CD03F78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CEE0FF8-EA29-47F2-97FB-5B113CD03F78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

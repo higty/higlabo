@@ -10,14 +10,13 @@ namespace HigLabo.CodeGenerator
     {
         public AccessModifier Modifier { get; set; }
         public String Name { get; set; }
-        public List<InterfaceProperty> Properties { get; private set; }
-        public List<InterfaceMethod> Methods { get; private set; }
+        public List<TypeName> ImplementInterfaces { get; private set; } = new List<TypeName>();
+        public List<InterfaceProperty> Properties { get; private set; } = new List<InterfaceProperty>();
+        public List<InterfaceMethod> Methods { get; private set; } = new List<InterfaceMethod>();
         public Interface(String name)
         {
             this.Modifier = AccessModifier.Public;
             this.Name = name;
-            this.Properties = new List<InterfaceProperty>();
-            this.Methods = new List<InterfaceMethod>();
         }
         public override string ToString()
         {

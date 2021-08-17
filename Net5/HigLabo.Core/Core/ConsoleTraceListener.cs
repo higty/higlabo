@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 
-namespace App.Core
+namespace HigLabo.Core
 {
     public class ConsoleTraceListener : TextWriterTraceListener
     {
