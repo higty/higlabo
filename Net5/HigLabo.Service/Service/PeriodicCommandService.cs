@@ -38,7 +38,7 @@ namespace HigLabo.Service
                     continue;
                 }
                 var now = DateTime.UtcNow;
-                var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0);
+                var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Utc);
                 foreach (var cm in _CommandList)
                 {
                     try
@@ -61,6 +61,18 @@ namespace HigLabo.Service
             var now = DateTime.UtcNow;
             var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0).AddMinutes(1);
             return scheduleTime - DateTime.UtcNow;
+        }
+
+        public void AddCommand(PeriodicCommand command)
+        {
+            _CommandList.Add(command);
+        }
+        public void AddCommand(IEnumerable<PeriodicCommand> commandList)
+        {
+            foreach (var command in commandList)
+            {
+                _CommandList.Add(command);
+            }
         }
     }
 }

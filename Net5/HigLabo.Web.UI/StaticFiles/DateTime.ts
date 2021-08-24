@@ -209,7 +209,8 @@
             f: this.milliSecond
         };
         const v = dateFormat.replace(/(M+|d+|h+|H+|m+|s+|f+)/g, function (v) {
-            return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2)
+            let length = v.length;
+            return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-length)
         });
 
         const fullYear = this.year.toString();

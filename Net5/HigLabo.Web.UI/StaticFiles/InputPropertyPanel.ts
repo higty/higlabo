@@ -808,7 +808,7 @@ export class InputPropertyPanel {
         setTimeout(function () {
             for (var i = 0; i < vv.length; i++) {
                 let vr = vv[i];
-                let pl = $("[h-validation-name='" + vr.ParameterName + "']");
+                let pl = $("[h-validation-name='" + vr.Name + "']");
                 pl.find("[text-panel]").setInnerText(vr.Message);
                 pl.addClass("fadein");
             }
@@ -818,7 +818,7 @@ export class InputPropertyPanel {
 
 
 export class ValidationResult {
-    public ParameterName: string;
+    public Name: string;
     public Message: string;
     public Value: any;
 }

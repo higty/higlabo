@@ -363,12 +363,7 @@ namespace HigLabo.CodeGenerator
             this.Write(property.TypeName);
             writer.Write(" ");
             this.WriteElementName(property.Name);
-            if (property.Get != null && property.Get.IsAutomaticProperty == true &&
-                property.Set != null && property.Set.IsAutomaticProperty == true)
-            {
-                writer.WriteLine(" { get; set; }");
-            }
-            else
+
             {
                 writer.WriteLine();
                 this.WriteIndent();

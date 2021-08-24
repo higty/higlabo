@@ -8,7 +8,7 @@ namespace HigLabo.Service
 {
     public abstract class ServiceCommand
     {
-        public DateTimeOffset ScheduleTime { get; set; } = DateTimeOffset.Now;
+        public DateTimeOffset? ScheduleTime { get; set; } 
         public DateTimeOffset? CommandStartTime { get; set; }
         public DateTimeOffset? CommandEndTime { get; set; }
         public abstract void Execute();

@@ -39,7 +39,6 @@ namespace HigLabo.Service
 
         private Thread _Thread = null;
         private AutoResetEvent _AutoResetEvent = new AutoResetEvent(true);
-        private Int32 _ThreadSleepSecondsPerCommand = 0;
         private ConcurrentQueue<ServiceCommand> _CommandList = new ConcurrentQueue<ServiceCommand>();
         private ServiceCommand _CurrentCommand = null;
         private List<ServiceCommand> _PreviousCommandList = new List<ServiceCommand>();
@@ -65,6 +64,7 @@ namespace HigLabo.Service
                 }
             }
         }
+        public Int32 ThreadSleepSecondsPerCommand { get; set; }
         public Int64 ExecutedCommandCount
         {
             get { return Interlocked.Read(ref _ExecutedCommandCount); }
@@ -81,11 +81,11 @@ namespace HigLabo.Service
         public BackgroundService(String name, Int32 threadSleepSecondsPerCommand)
         {
             this.Name = name;
-            _ThreadSleepSecondsPerCommand = threadSleepSecondsPerCommand;
+            this.ThreadSleepSecondsPerCommand = threadSleepSecondsPerCommand;
         }
         public void StartThread()
         {
-            if (_Thread != null) { throw new InvalidOperationException(); }
+            if (_Thread != null) { throw new InvalidOperationException("You can't call StartThread method twice."); }
 
             _Thread = new Thread(() => this.Start());
             _Thread.Name = String.Format("{0}({1})", nameof(BackgroundService), this.Name);
@@ -98,6 +98,11 @@ namespace HigLabo.Service
         {
             while (true)
             {
+                if (_IsSuspend == 1)
+                {
+                    _AutoResetEvent.WaitOne();
+                    continue;
+                }
                 var l = new List<ServiceCommand>();
                 while (_CommandList.TryDequeue(out var cm))
                 {
@@ -109,6 +114,7 @@ namespace HigLabo.Service
                 DateTimeOffset? minNextStartTime = null;
                 foreach (var cm in l)
                 {
+                    //Not execute command until schedule time will come.
                     if (cm.ScheduleTime > now)
                     {
                         _CommandList.Enqueue(cm);
@@ -116,6 +122,7 @@ namespace HigLabo.Service
                         {
                             minNextStartTime = cm.ScheduleTime;
                         }
+                        continue;
                     }
                     try
                     {
@@ -145,9 +152,9 @@ namespace HigLabo.Service
                     {
                         _CurrentCommand = null;
                     }
-                    if (_ThreadSleepSecondsPerCommand > 0)
+                    if (this.ThreadSleepSecondsPerCommand > 0)
                     {
-                        Thread.Sleep(_ThreadSleepSecondsPerCommand);
+                        Thread.Sleep(this.ThreadSleepSecondsPerCommand);
                     }
                 }
                 _PreviousCommandList = l;
@@ -155,7 +162,14 @@ namespace HigLabo.Service
                 if (minNextStartTime.HasValue)
                 {
                     var ts = minNextStartTime.Value - DateTimeOffset.Now;
-                    _AutoResetEvent.WaitOne((Int32)ts.TotalMilliseconds);
+                    if (ts.TotalMilliseconds > 0)
+                    {
+                        _AutoResetEvent.WaitOne((Int32)ts.TotalMilliseconds);
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
                 else
                 {
@@ -170,18 +184,15 @@ namespace HigLabo.Service
         public void Resume()
         {
             Interlocked.Exchange(ref _IsSuspend, 0);
+            _AutoResetEvent.Set();
         }
         public void AddCommand(ServiceCommand command)
         {
-            if (_Thread == null) { return; }
-            if (_IsSuspend == 1) { return; }
             _CommandList.Enqueue(command);
             _AutoResetEvent.Set();
         }
         public void AddCommand(IEnumerable<ServiceCommand> commandList)
         {
-            if (_Thread == null) { return; }
-            if (_IsSuspend == 1) { return; }
             foreach (var command in commandList)
             {
                 _CommandList.Enqueue(command);
