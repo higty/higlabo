@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -10,6 +11,8 @@ namespace HigLabo.Service
     public class PeriodicCommandService
     {
         private Thread _Thread = null;
+
+        private Object _LockObject = new Object();
         private List<PeriodicCommand> _CommandList = new List<PeriodicCommand>();
 
         public String Name { get; set; }
@@ -32,28 +35,46 @@ namespace HigLabo.Service
         {
             while (true)
             {
-                if (this.Available == false)
+                try
                 {
-                    Thread.Sleep(this.GetNextExecuteTimeSpan());
-                    continue;
-                }
-                var now = DateTime.UtcNow;
-                var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Utc);
-                foreach (var cm in _CommandList)
-                {
-                    try
+                    if (this.Available == false)
                     {
-                        if (cm.IsExecute(scheduleTime))
+                        Thread.Sleep(this.GetNextExecuteTimeSpan());
+                        continue;
+                    }
+                    var now = DateTime.UtcNow;
+                    Trace.WriteLine(String.Format("{0} {1} started.", now.ToString("yyyy/MM/dd HH:mm:ss"), this.Name));
+                    var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Utc);
+
+                    var l = new List<PeriodicCommand>();
+                    lock (this._LockObject)
+                    {
+                        foreach (var item in _CommandList)
                         {
-                            if (cm.Service != null)
-                            {
-                                cm.Service.AddCommand(cm);
-                            }
+                            l.Add(item);
                         }
                     }
-                    catch { }
+                    foreach (var cm in l)
+                    {
+                        try
+                        {
+                            if (cm.IsExecute(scheduleTime))
+                            {
+                                if (cm.Service != null)
+                                {
+                                    cm.Service.AddCommand(cm);
+                                }
+                            }
+                        }
+                        catch { }
+                    }
+                    Thread.Sleep(this.GetNextExecuteTimeSpan());
                 }
-                Thread.Sleep(this.GetNextExecuteTimeSpan());
+                catch (Exception ex)
+                {
+                    Trace.WriteLine(ex.ToString());
+                    Thread.Sleep(this.GetNextExecuteTimeSpan());
+                }
             }
         }
         private TimeSpan GetNextExecuteTimeSpan()
@@ -65,13 +86,19 @@ namespace HigLabo.Service
 
         public void AddCommand(PeriodicCommand command)
         {
-            _CommandList.Add(command);
+            lock (this._LockObject)
+            {
+                _CommandList.Add(command);
+            }
         }
         public void AddCommand(IEnumerable<PeriodicCommand> commandList)
         {
-            foreach (var command in commandList)
+            lock (this._LockObject)
             {
-                _CommandList.Add(command);
+                foreach (var command in commandList)
+                {
+                    _CommandList.Add(command);
+                }
             }
         }
     }
