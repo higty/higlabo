@@ -85,12 +85,25 @@ namespace HigLabo.Service
         }
         public void StartThread()
         {
+            this.StartThread(thd => { });
+        }
+        public void StartThread(ThreadPriority priority)
+        {
+            this.StartThread(thd => thd.Priority = priority);
+        }
+        public void StartThread(Action<Thread> setPropertyFunc)
+        {
             if (_Thread != null) { throw new InvalidOperationException("You can't call StartThread method twice."); }
 
             _Thread = new Thread(() => this.Start());
             _Thread.Name = String.Format("{0}({1})", nameof(BackgroundService), this.Name);
             _Thread.IsBackground = true;
             _Thread.Priority = ThreadPriority.BelowNormal;
+
+            if (setPropertyFunc != null)
+            {
+                setPropertyFunc(_Thread);
+            }
             _Thread.Start();
             _IsStarted = true;
         }

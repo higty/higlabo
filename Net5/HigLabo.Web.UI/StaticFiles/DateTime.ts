@@ -216,7 +216,7 @@
                 return v;
             }
             else {
-                return ((match.length > 1 ? "0" : "") + v).slice(-length);
+                return ((match.length > 1 ? "0" : "") + v).slice(-2);
             }
         });
 
