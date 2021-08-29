@@ -16,7 +16,7 @@ namespace HigLabo.Service
         private List<PeriodicCommand> _CommandList = new List<PeriodicCommand>();
 
         public String Name { get; set; }
-
+        public Boolean IsStarted { get; set; } = false;
         public Boolean Available { get; set; } = true;
 
         public PeriodicCommandService(String name)
@@ -25,11 +25,24 @@ namespace HigLabo.Service
         }
         public void StartThread()
         {
+            this.StartThread(thd => { });
+        }
+        public void StartThread(ThreadPriority priority)
+        {
+            this.StartThread(thd => thd.Priority = priority);
+        }
+        public void StartThread(Action<Thread> setPropertyFunc)
+        {
             _Thread = new Thread(() => this.Start());
             _Thread.Name = String.Format("{0}({1})", nameof(PeriodicCommandService), this.Name);
             _Thread.Priority = ThreadPriority.BelowNormal;
             _Thread.IsBackground = true;
+            if (setPropertyFunc != null)
+            {
+                setPropertyFunc(_Thread);
+            }
             _Thread.Start();
+            this.IsStarted = true;
         }
         private void Start()
         {
