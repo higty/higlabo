@@ -79,7 +79,10 @@ namespace HigLabo.Service
                                 }
                             }
                         }
-                        catch { }
+                        catch (Exception ex)
+                        {
+                            Trace.WriteLine(ex.ToString());
+                        }
                     }
                     Thread.Sleep(this.GetNextExecuteTimeSpan());
                 }

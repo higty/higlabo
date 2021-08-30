@@ -159,7 +159,11 @@ namespace HigLabo.Service
                     catch (Exception ex)
                     {
                         cm.CommandEndTime = DateTimeOffset.Now;
-                        this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
+                        try
+                        {
+                            this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
+                        }
+                        catch { }
                     }
                     finally
                     {
