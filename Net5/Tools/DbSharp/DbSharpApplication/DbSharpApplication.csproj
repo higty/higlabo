@@ -9,6 +9,8 @@
     <RootNamespace>HigLabo.DbSharpApplication</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ApplicationIcon>Icon\DbSharp.ico</ApplicationIcon>
+    <AssemblyVersion>5.0.0.3</AssemblyVersion>
+    <FileVersion>5.0.0.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

@@ -53,21 +53,29 @@ namespace HigLabo.DbSharpApplication
         private void SetComboBoxIndex(StoredProcedure storedProcedure)
         {
             var count = 1;
+            var previousList = new List<StoredProcedure>();
 
             while (storedProcedure.Name.Length > count)
             {
                 var s = storedProcedure.Name.Substring(0, count);
-                foreach (var sp in _StoredProcedures.OrderBy(el => el.Name))
+                var spList = _StoredProcedures.Where(el => el.Name != storedProcedure.Name && el.Name.StartsWith(s, StringComparison.OrdinalIgnoreCase))
+                    .OrderBy(el => el.Name).ToList();
+                if (spList.Count == 0)
                 {
-                    if (sp == storedProcedure) { continue; }
-                    if (sp.Name.StartsWith(s))
-                    {
-                        this.SourceStoredProcedureComboBox.SelectedItem = sp;
-                        return;
-                    }
+                    this.SourceStoredProcedureComboBox.SelectedItem = previousList[previousList.Count - 1];
+                    return;
+                }
+                else if (spList.Count == 1)
+                {
+                    this.SourceStoredProcedureComboBox.SelectedItem = spList[0];
+                    return;
+                }
+                else if (spList.Count > 1)
+                {
+                    previousList = spList;
                 }
                 count++;
-                if (count > 300) { break; }
+                if (count > 1000) { break; }
             }
             this.SourceStoredProcedureComboBox.SelectedItem = _StoredProcedures.FirstOrDefault();
         }
@@ -107,6 +115,7 @@ namespace HigLabo.DbSharpApplication
             var sResultSet = (this.SourceStoredProcedureResultSetComboBox.SelectedItem as StoredProcedureResultSetColumn);
             var tResultSet = (this.TargetStoredProcedureResultSetComboBox.SelectedItem as StoredProcedureResultSetColumn);
 
+            tResultSet.Name = sResultSet.Name;
             foreach (var c in tResultSet.Columns)
             {
                 var sColumn = sResultSet.Columns.Find(el => el.Name == c.Name);
