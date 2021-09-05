@@ -416,6 +416,8 @@ ORDER BY name ASC
                 return @"
 SELECT name,create_date,modify_date FROM sys.tables 
 where name != 'sysdiagrams'
+and name != 'sp_renamediagram'
+and name != 'sp_upgraddiagrams'
 ORDER BY name
 ";
             }
