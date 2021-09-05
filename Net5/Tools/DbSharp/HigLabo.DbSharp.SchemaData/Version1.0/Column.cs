@@ -12,6 +12,10 @@ namespace HigLabo.DbSharp.MetaData
         public Boolean IsPrimaryKey { get; set; }
         public Boolean IsIdentity { get; set; }
         public Boolean IsRowGuidCol { get; set; }
+        public DefaultCostraint DefaultCostraint { get; set; }
+        public String Clustered { get; set; } = "";
+        public ForeignKeyColumn ForeignKey { get; set; }
+
         public Boolean IsServerAutomaticallyInsertValueColumn()
         {
             return this.DbType.IsTimestamp() == true ||
@@ -23,5 +27,14 @@ namespace HigLabo.DbSharp.MetaData
             return this.DbType.IsTimestamp() == false &&
                 this.IsIdentity == false;
         }
+    }
+    public class ForeignKeyColumn
+    {
+        public String TableName { get; set; } = "";
+        public String ColumnName { get; set; } = "";
+        public String ParentTableName { get; set; } = "";
+        public String ParentColumnName { get; set; } = "";
+        public String OnUpdate { get; set; } = "";
+        public String OnDelete { get; set; } = "";
     }
 }

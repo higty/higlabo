@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -47,49 +48,163 @@ namespace HigLabo.DbSharp.MetaData
                 t.CreateTime = reader.GetDateTime(1);
                 t.LastAlteredTime = reader.GetDateTime(2);
             }
-            foreach (var column in this.GetColumns(name))
+            var px = new ParalellExecutionContext();
+            px.TaskList.Add(this.GetColumnListAsync(name));
+            px.TaskList.Add(this.GetPrimaryKeyAsync(name));
+            px.TaskList.Add(this.GetDefaultCostraintAsync(name));
+            px.TaskList.Add(this.GetForeignKeyColumnAsync(name));
+            px.TaskList.Add(this.GetCheckConstraintAsync(name));
+            var ex = px.Execute();
+            if (ex != null) { ExceptionDispatchInfo.Capture(ex).Throw(); }
+
+            foreach (var item in px.GetResults<List<Column>>().SelectMany(el => el))
             {
-                t.Columns.Add(column);
+                t.Columns.Add(item);
+            }
+            foreach (var item in px.GetResults<List<PrimaryKeyConstraint>>().SelectMany(el => el))
+            {
+                var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                c.IsPrimaryKey = true;
+                c.Clustered = item.Clustered;
+            }
+            foreach (var item in px.GetResults<List<DefaultCostraint>>().SelectMany(el => el))
+            {
+                var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                c.DefaultCostraint = item;
+            }
+            foreach (var item in px.GetResults<List<ForeignKeyColumn>>().SelectMany(el => el))
+            {
+                var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                c.ForeignKey = item;
+            }
+            foreach (var item in px.GetResults<List<CheckConstraint>>().SelectMany(el => el))
+            {
+                t.CheckConstraintList.Add(item);
             }
             return t;
         }
-        public virtual List<Column> GetColumns(String tableName)
+        public virtual async Task<List<PrimaryKeyConstraint>> GetPrimaryKeyAsync(String tableName)
         {
-            var l = new List<Column>();
-            Column c = null;
-            Int32 name = 1;
-            Int32 IsPrimaryKey = 2;
-            Int32 dbType = 3;
-            Int32 columnLength = 4;
-            Int32 columnPrecision = 5;
-            Int32 columnScale = 6;
-            Int32 allowNull = 7;
-            Int32 IsIdentity = 8;
-            Int32 IsRowGuidCol = 9;
-            Int32 udtTypeName = 10;
-            Int32 enumValues = 11;
+            var l = new List<PrimaryKeyConstraint>();
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetColumns(tableName));
-
-                while (reader.Read())
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetPrimaryKey(tableName));
+                while (await reader.ReadAsync())
                 {
-                    c = new Column();
-                    c.Name = reader.GetString(name);
+                    var c = new PrimaryKeyConstraint();
+                    c.Name = reader.GetString(0);
+                    c.TableName = reader.GetString(1);
+                    c.ColumnName = reader.GetString(2);
+                    c.Clustered = reader.GetString(3);
+                    l.Add(c);
+                }
+            }
+            return l;
+        }
+        public virtual async Task<List<DefaultCostraint>> GetDefaultCostraintAsync(String tableName)
+        {
+            var l = new List<DefaultCostraint>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetDefaultConstraints(tableName));
+                while (await reader.ReadAsync())
+                {
+                    var c = new DefaultCostraint();
+                    c.Name = reader.GetString(0);
+                    c.TableName = reader.GetString(1);
+                    c.ColumnName = reader.GetString(2);
+                    c.Definition = reader.GetString(3);
+                    l.Add(c);
+                }
+            }
+            return l;
+        }
+        public virtual async Task<List<ForeignKeyColumn>> GetForeignKeyColumnAsync(String tableName)
+        {
+            var l = new List<ForeignKeyColumn>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetForeignKeys(tableName));
+                while (await reader.ReadAsync())
+                {
+                    var c = new ForeignKeyColumn();
+                    c.TableName = reader.GetString(1);
+                    c.ColumnName = reader.GetString(2);
+                    c.ParentTableName = reader.GetString(3);
+                    c.ParentColumnName = reader.GetString(4);
+                    c.OnUpdate = reader.GetString(5);
+                    c.OnDelete = reader.GetString(6);
+                    l.Add(c);
+                }
+            }
+            return l;
+        }
+        public virtual async Task<List<CheckConstraint>> GetCheckConstraintAsync(String tableName)
+        {
+            var l = new List<CheckConstraint>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetCheckConstraints(tableName));
+                while (await reader.ReadAsync())
+                {
+                    var c = new CheckConstraint();
+                    c.Name = reader.GetString(0);
+                    c.TableName = tableName;
+                    c.Definition = reader.GetString(2);
+                    l.Add(c);
+                }
+            }
+            return l;
+        }
+        public virtual async Task<List<Column>> GetColumnListAsync(String tableName)
+        {
+            var l = new List<Column>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetColumns(tableName));
+
+                while (await reader.ReadAsync())
+                {
+                    var c = new Column();
+                    c.Name = reader.GetString(1);
                     c.Ordinal = l.Count;
-                    c.IsPrimaryKey = reader.GetBoolean(IsPrimaryKey);
-                    c.DbType = this.CreateDbType(reader[dbType]);
-                    c.UdtTypeName = reader.GetString(udtTypeName);//UdtTypeName
-                    if (reader[columnLength] != DBNull.Value) c.Length = AppEnvironment.Settings.TypeConverter.ToInt32(reader[columnLength]);
-                    if (reader[columnPrecision] != DBNull.Value) c.Precision = AppEnvironment.Settings.TypeConverter.ToInt32(reader[columnPrecision]);
-                    if (reader[columnScale] != DBNull.Value) c.Scale = AppEnvironment.Settings.TypeConverter.ToInt32(reader[columnScale]);
-                    c.AllowNull = reader.GetBoolean(allowNull);
-                    c.IsIdentity = reader.GetBoolean(IsIdentity);
-                    c.IsRowGuidCol = reader.GetBoolean(IsRowGuidCol);
-                    if (reader[enumValues] != DBNull.Value) c.EnumValues = reader.GetString(enumValues);
+                    c.IsPrimaryKey = reader.GetBoolean(2);
+                    c.DbType = this.CreateDbType(reader[3]);
+                    if (reader[4] != DBNull.Value) c.Length = AppEnvironment.Settings.TypeConverter.ToInt32(reader[4]);
+                    if (reader[5] != DBNull.Value) c.Precision = AppEnvironment.Settings.TypeConverter.ToInt32(reader[5]);
+                    if (reader[6] != DBNull.Value) c.Scale = AppEnvironment.Settings.TypeConverter.ToInt32(reader[6]);
+                    c.AllowNull = reader.GetBoolean(7);
+                    c.IsIdentity = reader.GetBoolean(8);
+                    c.IsRowGuidCol = reader.GetBoolean(9);
+                    c.UdtTypeName = reader.GetString(10);//UdtTypeName
+                    if (reader[11] != DBNull.Value) c.EnumValues = reader.GetString(11);
 
                     l.Add(c);
+                }
+            }
+            return l;
+        }
+
+        public virtual List<DatabaseObject> GetViews()
+        {
+            var l = new List<DatabaseObject>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = db.ExecuteReader(this.QueryBuilder.GetViews());
+                while (reader.Read())
+                {
+                    var o = new DatabaseObject(DatabaseObjectType.View);
+                    o.Name = reader.GetString(0);
+                    o.CreateTime = reader.GetDateTime(1);
+                    o.LastAlteredTime = reader.GetDateTime(2);
+                    o.Body = reader.GetString(3);
+                    l.Add(o);
                 }
             }
             return l;
@@ -97,10 +212,6 @@ namespace HigLabo.DbSharp.MetaData
         public virtual List<DatabaseObject> GetStoredProcedures()
         {
             var l = new List<DatabaseObject>();
-            Int32 storedProcedureName = 0;
-            Int32 body = 1;
-            Int32 createTime = 2;
-            Int32 lastAlteredTime = 3;
 
             using (Database db = this.CreateDatabase())
             {
@@ -108,10 +219,10 @@ namespace HigLabo.DbSharp.MetaData
                 while (reader.Read())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.StoredProcedure);
-                    o.Name = reader.GetString(storedProcedureName);
-                    o.Body = reader.GetString(body);
-                    o.CreateTime = reader.GetDateTime(createTime);
-                    o.LastAlteredTime = reader.GetDateTime(lastAlteredTime);
+                    o.Name = reader.GetString(0);
+                    if (reader[1] != DBNull.Value) o.Body = reader.GetString(1);
+                    o.CreateTime = reader.GetDateTime(2);
+                    o.LastAlteredTime = reader.GetDateTime(3);
                     l.Add(o);
                 }
             }
@@ -133,19 +244,15 @@ namespace HigLabo.DbSharp.MetaData
         public virtual StoredProcedure GetStoredProcedure(String name)
         {
             var sp = new StoredProcedure(this.DatabaseServer, name);
-            Int32 storedProcedureName = 0;
-            Int32 body = 1;
-            Int32 createTime = 2;
-            Int32 lastAlteredTime = 3;
             
             using (Database db = this.CreateDatabase())
             {
                 var reader = db.ExecuteReader(this.QueryBuilder.GetStoredProcedure(name));
                 if (reader.Read() == false) throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name));
-                sp.Name = reader.GetString(storedProcedureName);
-                sp.Body = reader.GetString(body).TrimStart();
-                sp.CreateTime = reader.GetDateTime(createTime);
-                sp.LastAlteredTime = reader.GetDateTime(lastAlteredTime);
+                sp.Name = reader.GetString(0);
+                if (reader[1] == DBNull.Value) sp.Body = reader.GetString(1).TrimStart();
+                sp.CreateTime = reader.GetDateTime(2);
+                sp.LastAlteredTime = reader.GetDateTime(3);
             }
             foreach (var parameter in this.GetParameters(name))
             {
@@ -203,6 +310,26 @@ namespace HigLabo.DbSharp.MetaData
         }
         public abstract void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values);
 
+        public virtual List<DatabaseObject> GetStoredFunctions()
+        {
+            var l = new List<DatabaseObject>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = db.ExecuteReader(this.QueryBuilder.GetStoredFunctions());
+                while (reader.Read())
+                {
+                    var o = new DatabaseObject(DatabaseObjectType.StoredFunction);
+                    o.Name = reader.GetString(0);
+                    o.Body = reader.GetString(1);
+                    o.CreateTime = reader.GetDateTime(2);
+                    o.LastAlteredTime = reader.GetDateTime(3);
+                    l.Add(o);
+                }
+            }
+            return l;
+        }
+
         public virtual List<DatabaseObject> GetUserDefinedTableTypes()
         {
             throw new NotSupportedException();
@@ -236,5 +363,7 @@ namespace HigLabo.DbSharp.MetaData
         }
         protected abstract IDbDataParameter CreateParameter(String name, DataType dataType);
         protected abstract Object GetParameterValue(DataType dataType, Object dbType);
+
+        public abstract String GetDefinitionText(Table table);
     }
 }

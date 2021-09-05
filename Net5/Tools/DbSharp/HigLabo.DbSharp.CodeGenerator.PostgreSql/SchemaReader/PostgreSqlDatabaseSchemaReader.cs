@@ -272,6 +272,11 @@ namespace HigLabo.DbSharp.MetaData
             }
         }
 
+        public override string GetDefinitionText(Table table)
+        {
+            throw new NotImplementedException();
+        }
+
         private class PostgreSqlDatabaseSchemaQueryBuilder : DatabaseSchemaQueryBuilder
         {
             public override String GetDatabases()
@@ -301,15 +306,6 @@ ORDER BY TABLE_NAME ASC
                     ";
                 return String.Format(q, name);
             }
-            public override String GetViews()
-            {
-                return @"
-SELECT TABLE_NAME AS VIEW_NAME
-FROM INFORMATION_SCHEMA.VIEWS
-where table_schema = (SELECT DATABASE() FROM DUAL)
-ORDER BY VIEW_NAME ASC
-";
-            }
             public override String GetColumns(String tableName)
             {
                 var q = @"
@@ -319,6 +315,7 @@ SELECT T01.TABLE_NAME AS TableName
 	When 'PRI' Then 1 
 	Else 0
 End As IsPrimaryKey 
+, '' as Clustered
 ,Case T01.DATA_TYPE 
 	When 'char' Then 'String' 
 	When 'tinyint' Then Case InStr(T01.COLUMN_TYPE, 'unsigned') When 0 Then 'Byte' Else 'UByte' End
@@ -344,6 +341,39 @@ where Table_Schema = (SELECT DATABASE() FROM DUAL)
 And TABLE_NAME = '{0}'
 ";
                 return String.Format(q, tableName);
+            }
+            public override String GetPrimaryKey(String tableName)
+            {
+                throw new NotImplementedException();
+            }
+            public override String GetForeignKeys(String tableName)
+            {
+                throw new NotImplementedException();
+            }
+            public override String GetDefaultConstraints(String tableName)
+            {
+                throw new NotImplementedException();
+            }
+            public override String GetCheckConstraints(String tableName)
+            {
+                throw new NotImplementedException();
+            }
+            public override String GetViews()
+            {
+                return @"
+SELECT TABLE_NAME AS VIEW_NAME
+FROM INFORMATION_SCHEMA.VIEWS
+where table_schema = (SELECT DATABASE() FROM DUAL)
+ORDER BY VIEW_NAME ASC
+";
+            }
+            public override String GetUserDefinedTypes()
+            {
+                throw new NotImplementedException();
+            }
+            public override String GetUserDefinedTypeColumns(String name)
+            {
+                throw new NotImplementedException();
             }
             public override String GetStoredProcedures()
             {
@@ -398,13 +428,9 @@ Order by Ordinal_Position
 ";
                 return String.Format(q, storedProcedureName);
             }
-            public override String GetUserDefinedTypes()
+            public override String GetStoredFunctions()
             {
-                throw new NotSupportedException();
-            }
-            public override String GetUserDefinedTypeColumns(String name)
-            {
-                throw new NotSupportedException();
+                throw new NotImplementedException();
             }
         }
     }

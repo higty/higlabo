@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace HigLabo.DbSharp.MetaData
 {
-    public enum DatabaseObjectType
+    public class CheckConstraint
     {
-        Unknown,
-        Table,
-        View,
-        UserDefinedTableType,
-        StoredProcedure,
-        StoredFunction,
+        public String Name { get; set; }
+        public String TableName { get; set; }
+        public String Definition { get; set; }
     }
 }

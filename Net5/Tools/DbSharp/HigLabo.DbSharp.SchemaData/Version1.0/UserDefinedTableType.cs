@@ -31,5 +31,39 @@ namespace HigLabo.DbSharp.MetaData
             this.CreateTime = DateTime.Now;
             this.LastAlteredTime = DateTime.Now;
         }
+
+        public String GetDefinitionText()
+        {
+            var u = this;
+            var sb = new StringBuilder();
+
+            sb.AppendFormat("Create Type {0} As Table", u.Name).AppendLine();
+            for (int i = 0; i < u.Columns.Count; i++)
+            {
+                var c = u.Columns[i];
+                if (i == 0)
+                {
+                    sb.Append("(");
+                    sb.Append(c.GetDeclareParameterText());
+                }
+                else
+                {
+                    sb.Append(",");
+                    sb.Append(c.GetDeclareParameterText());
+                }
+                if (c.AllowNull == false)
+                {
+                    sb.Append(" Not Null");
+                }
+                sb.AppendLine();
+            }
+            sb.Append(")");
+
+            return sb.ToString();
+        }
+        public override string ToString()
+        {
+            return this.Name;
+        }
     }
 }

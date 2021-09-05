@@ -100,6 +100,29 @@ namespace HigLabo.DbSharp.MetaData
                 default: throw new InvalidOperationException();
             }
         }
+        public Boolean CanDeclarePrecisionScale()
+        {
+            switch (this.DatabaseServer)
+            {
+                case DatabaseServer.SqlServer:
+                    {
+                        var type = this.SqlServerDbType.Value;
+                        return type == SqlServer2012DbType.Decimal ||
+                            type == SqlServer2012DbType.Float;
+                    }
+                case DatabaseServer.MySql:
+                    {
+                        var type = this.MySqlServerDbType;
+                        return type == MySqlDbType.Decimal ||
+                            type == MySqlDbType.NewDecimal ||
+                            type == MySqlDbType.Double ||
+                            type == MySqlDbType.Float;
+                    }
+                case DatabaseServer.Oracle:
+                case DatabaseServer.PostgreSql: throw new NotImplementedException();
+                default: throw new InvalidOperationException();
+            }
+        }
         public Boolean CanDeclareScale()
         {
             switch (this.DatabaseServer)
@@ -119,29 +142,6 @@ namespace HigLabo.DbSharp.MetaData
                             type == MySqlDbType.DateTime ||
                             type == MySqlDbType.Time ||
                             type == MySqlDbType.Year;
-                    }
-                case DatabaseServer.Oracle:
-                case DatabaseServer.PostgreSql: throw new NotImplementedException();
-                default: throw new InvalidOperationException();
-            }
-        }
-        public Boolean CanDeclarePrecisionScale()
-        {
-            switch (this.DatabaseServer)
-            {
-                case DatabaseServer.SqlServer:
-                    {
-                        var type = this.SqlServerDbType.Value;
-                        return type == SqlServer2012DbType.Decimal ||
-                            type == SqlServer2012DbType.Float;
-                    }
-                case DatabaseServer.MySql:
-                    {
-                        var type = this.MySqlServerDbType;
-                        return type == MySqlDbType.Decimal ||
-                            type == MySqlDbType.NewDecimal ||
-                            type == MySqlDbType.Double ||
-                            type == MySqlDbType.Float;
                     }
                 case DatabaseServer.Oracle:
                 case DatabaseServer.PostgreSql: throw new NotImplementedException();

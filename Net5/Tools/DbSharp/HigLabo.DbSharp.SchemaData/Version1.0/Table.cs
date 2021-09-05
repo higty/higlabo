@@ -13,7 +13,9 @@ namespace HigLabo.DbSharp.MetaData
         {
             get { return base.ObjectType; }
         }
-        public List<Column> Columns { get; private set; }
+        public List<Column> Columns { get; private set; } = new List<Column>();
+        public List<CheckConstraint> CheckConstraintList { get; private set; } = new List<CheckConstraint>();
+
         public Table()
             : this("")
         {
@@ -22,7 +24,6 @@ namespace HigLabo.DbSharp.MetaData
             : base(DatabaseObjectType.Table)
         {
             this.Name = name;
-            this.Columns = new List<Column>();
         }
         public IEnumerable<Column> GetColumns(Boolean? primaryKey, Boolean includeServerAutomaticallyInsertValueColumn)
         {

@@ -11,9 +11,6 @@ namespace HigLabo.Data
 {
     public partial class Database
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public async Task<Int32> OpenAsync()
         {
             if (this.Connection == null)
@@ -31,44 +28,24 @@ namespace HigLabo.Data
             return 0;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="commandBehavior"></param>
-        /// <returns></returns>
+        public async Task<DbDataReader> ExecuteReaderAsync(String query)
+        {
+            return await ExecuteReaderAsync(query, CommandBehavior.Default);
+        }
         public async Task<DbDataReader> ExecuteReaderAsync(String query, CommandBehavior commandBehavior)
         {
             var cm = this.CreateCommand(query);
             cm.CommandType = CommandType.Text;
             return await ExecuteReaderAsync(cm, commandBehavior).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         public async Task<DbDataReader> ExecuteReaderAsync(DbCommand command)
         {
             return await ExecuteReaderAsync(command, CommandBehavior.Default, CancellationToken.None).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="commandBehavior"></param>
-        /// <returns></returns>
         public async Task<DbDataReader> ExecuteReaderAsync(DbCommand command, CommandBehavior commandBehavior)
         {
             return await ExecuteReaderAsync(command, commandBehavior, CancellationToken.None).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="commandBehavior"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public async Task<DbDataReader> ExecuteReaderAsync(DbCommand command, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             DbDataReader dr = null;
@@ -103,32 +80,16 @@ namespace HigLabo.Data
             return dr;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
         public async Task<Object> ExecuteScalarAsync(String query)
         {
             var cm = this.CreateCommand(query);
             cm.CommandType = CommandType.Text;
             return await this.ExecuteScalarAsync(cm).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         public async Task<Object> ExecuteScalarAsync(DbCommand command)
         {
             return await ExecuteScalarAsync(command, CancellationToken.None).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="cancellationToken"></param>
-        /// <returns></returns>
         public async Task<Object> ExecuteScalarAsync(DbCommand command, CancellationToken cancellationToken)
         {
             Object o = null;
@@ -170,32 +131,16 @@ namespace HigLabo.Data
             return o;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
         public async Task<Int32> ExecuteCommandAsync(String query)
         {
             var cm = this.CreateCommand(query);
             cm.CommandType = CommandType.Text;
             return await ExecuteCommandAsync(cm).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <returns></returns>
         public async Task<Int32> ExecuteCommandAsync(DbCommand command)
         {
             return await ExecuteCommandAsync(command, CancellationToken.None).ConfigureAwait(false);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="command"></param>
-        /// <param name="connectionAutoClose"></param>
-        /// <returns></returns>
         public async Task<Int32> ExecuteCommandAsync(DbCommand command, CancellationToken cancellationToken)
         {
             var affectRecordNumber = Int32.MinValue;

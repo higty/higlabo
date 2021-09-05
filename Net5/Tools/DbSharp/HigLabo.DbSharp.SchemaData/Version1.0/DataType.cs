@@ -10,6 +10,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class DataType : INotifyPropertyChanged
     {
+        public static readonly String[] KeywordList = new[] { "when", "case" };
         public event PropertyChangedEventHandler PropertyChanged;
 
         private String _Name = "";
@@ -101,37 +102,42 @@ namespace HigLabo.DbSharp.MetaData
         }
         public String GetDeclareParameterText()
         {
+            var name = this.Name;
             switch (this.DbType.DatabaseServer)
             {
                 case DatabaseServer.SqlServer:
                     #region
                     {
+                        if (KeywordList.Contains(name, StringComparer.OrdinalIgnoreCase))
+                        {
+                            name = "[" + name + "]";
+                        }
                         var tp = this.DbType;
                         if (tp.CanDeclareLength() == true && this.Length.HasValue == true)
                         {
                             if (this.Length > 8000 ||
                                 this.Length == -1)
                             {
-                                return String.Format("{0} {1} (max)", this.Name, this.GetDeclareTypeName());
+                                return String.Format("{0} {1} (max)", name, this.GetDeclareTypeName());
                             }
                             else if (this.Length > 0)
                             {
-                                return String.Format("{0} {1} ({2})", this.Name, this.GetDeclareTypeName(), this.Length);
+                                return String.Format("{0} {1} ({2})", name, this.GetDeclareTypeName(), this.Length);
                             }
                         }
                         else if (tp.CanDeclarePrecisionScale() == true && this.Precision.HasValue == true)
                         {
-                            if (this.Scale.HasValue == true)
+                            if (tp.CanDeclareScale() == true && this.Scale.HasValue == true)
                             {
-                                return String.Format("{0} {1} ({2}, {3})", this.Name, this.GetDeclareTypeName(), this.Precision, this.Scale);
+                                return String.Format("{0} {1} ({2}, {3})", name, this.GetDeclareTypeName(), this.Precision, this.Scale);
                             }
-                            return String.Format("{0} {1} ({2})", this.Name, this.GetDeclareTypeName(), this.Precision);
+                            return String.Format("{0} {1} ({2})", name, this.GetDeclareTypeName(), this.Precision);
                         }
                         else if (tp.CanDeclareScale() == true && this.Scale > 0)
                         {
-                            return String.Format("{0} {1} ({2})", this.Name, this.GetDeclareTypeName(), this.Scale);
+                            return String.Format("{0} {1} ({2})", name, this.GetDeclareTypeName(), this.Scale);
                         }
-                        return String.Format("{0} {1}", this.Name, this.GetDeclareTypeName());
+                        return String.Format("{0} {1}", name, this.GetDeclareTypeName());
                     }
                     #endregion
                 case DatabaseServer.MySql:
@@ -140,35 +146,35 @@ namespace HigLabo.DbSharp.MetaData
                         var tp = this.DbType;
                         if (tp.CanDeclareLength() == true && this.Length.HasValue == true)
                         {
-                            return String.Format("{0} {1} ({2})", this.Name, this.GetDeclareTypeName(), this.Length);
+                            return String.Format("{0} {1} ({2})", name, this.GetDeclareTypeName(), this.Length);
                         }
                         else if (tp.CanDeclarePrecisionScale() == true && this.Precision.HasValue == true)
                         {
                             if (this.Scale.HasValue == true)
                             {
-                                return String.Format("{0} {1} ({2}, {3})", this.Name, this.GetDeclareTypeName(), this.Precision, this.Scale);
+                                return String.Format("{0} {1} ({2}, {3})", name, this.GetDeclareTypeName(), this.Precision, this.Scale);
                             }
-                            return String.Format("{0} {1} ({2})", this.Name, this.GetDeclareTypeName(), this.Precision);
+                            return String.Format("{0} {1} ({2})", name, this.GetDeclareTypeName(), this.Precision);
                         }
                         else if (tp.CanDeclareScale() == true && this.Scale > 0)
                         {
-                            return String.Format("{0} {1} ({2})", this.Name, this.GetDeclareTypeName(), this.Scale);
+                            return String.Format("{0} {1} ({2})", name, this.GetDeclareTypeName(), this.Scale);
                         }
                         //Unsigned type are UIntX and it does not have length,precision,scale.
                         if (tp.CanDeclareUnsigned() == true)
                         {
-                            return String.Format("{0} {1} unsigned", this.Name, this.GetDeclareTypeName());
+                            return String.Format("{0} {1} unsigned", name, this.GetDeclareTypeName());
                         }
                         if (tp.MySqlServerDbType.Value == MySqlDbType.Year)
                         {
-                            return String.Format("{0} year(4)", this.Name);
+                            return String.Format("{0} year(4)", name);
                         }
                         if (tp.MySqlServerDbType.Value == MySqlDbType.Enum ||
                             tp.MySqlServerDbType.Value == MySqlDbType.Set)
                         {
-                            return String.Format("{0} {1}", this.Name, this.EnumValues);
+                            return String.Format("{0} {1}", name, this.EnumValues);
                         }
-                        return String.Format("{0} {1}", this.Name, this.GetDeclareTypeName());
+                        return String.Format("{0} {1}", name, this.GetDeclareTypeName());
                     }
                     #endregion
                 case DatabaseServer.Oracle:
