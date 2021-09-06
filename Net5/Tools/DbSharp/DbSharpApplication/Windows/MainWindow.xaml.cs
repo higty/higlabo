@@ -57,11 +57,6 @@ namespace HigLabo.DbSharpApplication
             {
                 this.SetSchemaData();
             }
-            Task.Run(() =>
-            {
-                var r = new SqlServerDatabaseSchemaReader("Server=tcp:medopty.database.windows.net,1433;Database=Medopty_Dev;UID=mo_db_user;Password=Ohku@0813;Encrypt=True;TrustServerCertificate=False;Connection Timeout=120;");
-                var t = r.GetTable("sysdiagrams");
-            });
         }
 
         private void SetDatabaseTypeList()
