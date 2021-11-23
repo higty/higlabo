@@ -12,5 +12,6 @@ namespace HigLabo.Net.Mail
         YahooMail,
         AolMail,
         ZohoMail,
+        Yandex
     }
 }

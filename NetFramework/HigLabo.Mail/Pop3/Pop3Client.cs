@@ -118,6 +118,7 @@ namespace HigLabo.Net.Pop3
                 case EmailServiceProvider.YahooMail: serverName = "pop.mail.yahoo.com"; break;
                 case EmailServiceProvider.AolMail: serverName = "pop.aol.com"; break;
                 case EmailServiceProvider.ZohoMail: serverName = "pop.zoho.com"; break;
+                case EmailServiceProvider.Yandex: serverName = "pop.yandex.ru"; break;
                 default: throw new InvalidOperationException();
             }
             this.ServerName = serverName;

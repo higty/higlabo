@@ -154,6 +154,7 @@ namespace HigLabo.Net.Imap
                 case EmailServiceProvider.YahooMail: serverName = "imap.mail.yahoo.com"; break;
                 case EmailServiceProvider.AolMail: serverName = "imap.aol.com"; break;
                 case EmailServiceProvider.ZohoMail: serverName = "imap.zoho.com"; break;
+                case EmailServiceProvider.ZohoMail: serverName = "imap.yandex.ru"; break;
                 default: throw new InvalidOperationException();
             }
             this.ServerName = serverName;
@@ -1165,6 +1166,7 @@ namespace HigLabo.Net.Imap
                 commandText = String.Format(this.Tag + " FETCH {0} (BODY.PEEK[])", mailIndex);
             }
             var result = this.Execute(commandText);
+            if (result.Status == ImapCommandResultStatus.Bad) { throw new MailClientException(result.Text); }
             var text = this.GetMessageText(result.Text);
             this.MimeParser.Encoding = this.ResponseEncoding;
             return this.MimeParser.ToMailMessage(text);
@@ -1198,6 +1200,7 @@ namespace HigLabo.Net.Imap
             this.ValidateState(ImapConnectionState.Authenticated, true);
             String commandText = String.Format(this.Tag + " FETCH {0} (BODY.PEEK[])", this.CreateIndexList(mailIndexList));
             var result = this.Execute(commandText);
+            if (result.Status == ImapCommandResultStatus.Bad) { throw new MailClientException(result.Text); }
             var l = this.CreateMailMessages(result.Text);
             return l;
         }

@@ -124,6 +124,7 @@ namespace HigLabo.Net.Imap
             if (userName.EndsWith("@yahoo.com")) { this.SetProperty(EmailServiceProvider.YahooMail); }
             if (userName.EndsWith("@aol.com")) { this.SetProperty(EmailServiceProvider.AolMail); }
             if (userName.EndsWith("@zoho.com")) { this.SetProperty(EmailServiceProvider.ZohoMail); }
+            if (userName.EndsWith("@yandex.ru")) { this.SetProperty(EmailServiceProvider.Yandex); }
         }
         public ImapClient(String serverName)
             : this(serverName, Default.Port, Default.UserName, Default.Password)
@@ -146,6 +147,7 @@ namespace HigLabo.Net.Imap
                 case EmailServiceProvider.YahooMail: serverName = "imap.mail.yahoo.com"; break;
                 case EmailServiceProvider.AolMail: serverName = "imap.aol.com"; break;
                 case EmailServiceProvider.ZohoMail: serverName = "imap.zoho.com"; break;
+                case EmailServiceProvider.ZohoMail: serverName = "imap.yandex.ru"; break;
                 default: throw new InvalidOperationException();
             }
             this.ServerName = serverName;

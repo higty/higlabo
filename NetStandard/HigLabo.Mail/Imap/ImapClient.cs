@@ -146,6 +146,7 @@ namespace HigLabo.Net.Imap
                 case EmailServiceProvider.YahooMail: serverName = "imap.mail.yahoo.com"; break;
                 case EmailServiceProvider.AolMail: serverName = "imap.aol.com"; break;
                 case EmailServiceProvider.ZohoMail: serverName = "imap.zoho.com"; break;
+                case EmailServiceProvider.ZohoMail: serverName = "imap.yandex.ru"; break;
                 default: throw new InvalidOperationException();
             }
             this.ServerName = serverName;
