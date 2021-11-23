@@ -170,6 +170,8 @@ namespace HigLabo.Net.Smtp
                 case EmailServiceProvider.YahooMail: serverName = "smtp.mail.yahoo.com"; encryptedCommunication = SmtpEncryptedCommunication.Ssl; break;
                 case EmailServiceProvider.AolMail: serverName = "smtp.aol.com"; encryptedCommunication = SmtpEncryptedCommunication.Tls; break;
                 case EmailServiceProvider.ZohoMail: serverName = "smtp.zoho.com"; encryptedCommunication = SmtpEncryptedCommunication.Ssl; break;
+                case EmailServiceProvider.Yandex: serverName = "smtp.yandex.ru"; encryptedCommunication = SmtpEncryptedCommunication.Ssl; break;
+
                 default: throw new InvalidOperationException();
             }
             this.ServerName = serverName;
@@ -350,7 +352,7 @@ namespace HigLabo.Net.Smtp
             {
                 if (this.EnsureOpen() == SmtpConnectionState.Connected)
                 {
-                    rs = this.ExecuteEhlo();
+                    rs = this.ExecuteEhloAndHelo();
                     String s = rs.Message.ToUpper();
                     //SMTP認証に対応している場合
                     if (s.Contains("AUTH") == true)
@@ -417,6 +419,11 @@ namespace HigLabo.Net.Smtp
                 {
                     this._State = SmtpConnectionState.Authenticated;
                 }
+                else
+                {
+                    throw new SmtpAuthenticateException(rs.Message);
+                }
+
             }
             return this._State == SmtpConnectionState.Authenticated;
         }
@@ -440,9 +447,15 @@ namespace HigLabo.Net.Smtp
                 { return false; }
                 //パスワード送信
                 rs = this.Execute(Base64Converter.Encode(Encoding.UTF8.GetBytes(this.Password)));
+                //Yandex check for bot
+                //5.7.8 Error: authentication failed: Your message looks like spam. You need to use web for sending or prove you are not a robot using the following link http://ya.cc....
                 if (rs.StatusCode == SmtpCommandResultCode.AuthenticationSuccessful)
                 {
                     this._State = SmtpConnectionState.Authenticated;
+                }
+                else
+                {
+                    throw new SmtpAuthenticateException(rs.Message);
                 }
             }
             return this._State == SmtpConnectionState.Authenticated;
@@ -467,6 +480,10 @@ namespace HigLabo.Net.Smtp
                 if (rs.StatusCode == SmtpCommandResultCode.AuthenticationSuccessful)
                 {
                     this._State = SmtpConnectionState.Authenticated;
+                }
+                else
+                {
+                    throw new SmtpAuthenticateException(rs.Message);
                 }
             }
             return this._State == SmtpConnectionState.Authenticated;
