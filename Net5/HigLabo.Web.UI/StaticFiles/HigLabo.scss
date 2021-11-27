@@ -142,6 +142,11 @@
     }
 
     &[element-type='Color'] {
+        table {
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+
         .property-value-panel {
             @include display__flex();
             align-items: center;
@@ -599,8 +604,8 @@
         border-right: 12px solid transparent;
         border-left: 12px solid transparent;
         margin-left: 20px;
-        width: 0;
-        height: 0;
+        width: 24px;
+        height: 12px;
     }
 
     .text-panel {

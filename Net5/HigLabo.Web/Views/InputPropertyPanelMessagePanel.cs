@@ -8,8 +8,8 @@ namespace HigLabo.Web.UI
 {
     public class InputPropertyPanelMessagePanel
     {
-        public String PropertyName { get; set; } = "";
         public String Text { get; set; } = "";
+        public Boolean Visible { get; set; } = false;
 
         public InputPropertyPanelMessagePanel(String text)
         {

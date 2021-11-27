@@ -1,0 +1,33 @@
+﻿@model HigLabo.Web.UI.EditRecordPanelTemplate
+
+<template id="@Model.ID">
+    <div class="edit-record-panel" edit-record-panel="true"
+         h-record="true" :h-key="@Model.Key" is-delete="false"
+         toggle-state="@Model.ToggleState.ToStringFromEnum()" can-toggle="@Model.CanToggle.ToString().ToLower()">
+        <input type="hidden" h-name="@Model.Key" :value="@Model.Key" />
+        <input type="hidden" h-name="IsDelete" value="false" />
+        <div class="title-panel">
+            <div class="flex-left-panel" toggle-content-panel="true">
+                <span class="text" header-text="true" tabindex="0">{{ @Model.HeaderName }}</span>
+            </div>
+            <div class="flex-right-panel">
+                @if (Model.CanDelete)
+                {
+                    <span class="delete-link" delete-candidate-link="true" tabindex="0">×</span>
+                }
+            </div>
+        </div>
+        <div class="content-panel" content-panel="true">
+            @if (Model.HeaderTextBindingPanel is not null)
+            {
+                <div header-text-binding-panel="true">
+                    @{ await Html.RenderPartialAsync(Model.HeaderTextBindingPanel); }
+                </div>
+            }
+            @foreach (var item in Model.InputList)
+            {
+                await Html.RenderPartialAsync(item);
+            }
+        </div>
+    </div>
+</template>

@@ -15,6 +15,7 @@ namespace HigLabo.Service
         private Object _LockObject = new Object();
         private List<PeriodicCommand> _CommandList = new List<PeriodicCommand>();
 
+        public event EventHandler<ServiceCommandEventArgs> Error;
         public String Name { get; set; }
         public Boolean IsStarted { get; set; } = false;
         public Boolean Available { get; set; } = true;
@@ -81,6 +82,7 @@ namespace HigLabo.Service
                         }
                         catch (Exception ex)
                         {
+                            this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
                             Trace.WriteLine(ex.ToString());
                         }
                     }

@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.CodeGenerator", "Hi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net", "HigLabo.Net\HigLabo.Net.csproj", "{3CEE0FF8-EA29-47F2-97FB-5B113CD03F78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Service", "HigLabo.Service\HigLabo.Service.csproj", "{5ECE73B4-975F-44B8-B65B-676357CFFED9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Service", "HigLabo.Service\HigLabo.Service.csproj", "{5ECE73B4-975F-44B8-B65B-676357CFFED9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLaboWebSite", "HigLaboWebSite\HigLaboWebSite.csproj", "{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,10 @@ Global
 		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ECE73B4-975F-44B8-B65B-676357CFFED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

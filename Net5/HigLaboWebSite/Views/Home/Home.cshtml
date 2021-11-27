@@ -1,0 +1,105 @@
+﻿@{ 
+
+}
+
+
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/simplebar@latest/dist/simplebar.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="/HigLabo/HigLabo.css">
+    <style>
+        .user-record-panel {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync(HigLaboView.CommonTemplate);
+        await Html.RenderPartialAsync(HigLaboView.SelectTimePopupPanel, new SelectTimePopupPanel());
+
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Hidden, "ScheduleCD"));
+        await Html.RenderPartialAsync(new InputPropertyPanel("Title", "タイトル"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.TextArea, "Description", "詳細"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.RichTextBox, "RichTextBox", "HTML"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Password, "Password", "パスワード"));
+
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Color, "BackColor", "背景色"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Date, "StartDate", "開始日"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Time, "StartTime", "開始時刻"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateTime, "EndTime", "終了時刻"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateDuration, "DateDuration", "日程"));
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateTimeDuration, "DateTimeDuration", "開始-終了"));
+
+        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.CheckBox, "Enable", "有効"));
+
+        {
+            var pl = new InputPropertyPanel(InputElementType.CheckBoxList, "ServiceList", "サービス一覧");
+            for (int i = 0; i < 10; i++)
+            {
+                pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "Item" + i));
+            }
+            await Html.RenderPartialAsync(pl);
+        }
+        {
+            var pl = new InputPropertyPanel(InputElementType.SelectButton, "PermissionList", "権限一覧");
+            for (int i = 0; i < 10; i++)
+            {
+                pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "権限" + i));
+            }
+            await Html.RenderPartialAsync(pl);
+        }
+        {
+            var pl = new InputPropertyPanel(InputElementType.RadioButtonList, "ShopList", "店舗一覧");
+            for (int i = 0; i < 10; i++)
+            {
+                pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "店舗" + i));
+            }
+            await Html.RenderPartialAsync(pl);
+        }
+        {
+            var pl = new InputPropertyPanel(InputElementType.DropDownList, "RoomList", "部屋一覧");
+            for (int i = 0; i < 10; i++)
+            {
+                pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "部屋" + i));
+            }
+            await Html.RenderPartialAsync(pl);
+        }
+        {
+            var pl = new InputPropertyPanel(InputElementType.Record, "Category", "カテゴリ");
+            pl.ApiPathSearch = "/Api/Category/Search";
+            pl.TemplateID = "CategoryNamePanelTemplate";
+            await Html.RenderPartialAsync(pl);
+        }
+        {
+            var pl = new InputPropertyPanel(InputElementType.RecordList, "UserList", "ユーザー");
+            pl.ApiPathSearch = "/Api/User/Search";
+            pl.TemplateID = "UserNamePanelTemplate";
+            await Html.RenderPartialAsync(pl);
+        }
+        <div style="height: 400px;"></div>
+    }
+    <template id="CategoryNamePanelTemplate">
+        <div class="category-record-panel" h-record="true" :h-key="CategoryCD">
+            <span>{{ DisplayName }}</span>
+        </div>
+    </template>
+    <template id="UserNamePanelTemplate">
+        <div class="user-record-panel" h-record="true" :h-key="UserCD">
+            <span>{{ DisplayName }}</span>
+            <span class="delete-link" delete-link="true">×</span>
+        </div>
+    </template>
+
+    <script src="https://unpkg.com/simplebar@5.2.1/dist/simplebar.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/ja.js"></script>
+    <script src="/HigLabo/vue.js" type="module"></script>
+    <script src="/HigLabo/ckeditor/ckeditor.js" type="module"></script>
+    <script src="/HigLabo/ckeditor/ckeditor-language-ja.js" type="module"></script>
+    <script src="/Views/Home/Home.js" type="module"></script>
+
+</body>
+</html>

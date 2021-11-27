@@ -34,23 +34,47 @@ namespace HigLabo.DbSharp
         }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync()
         {
-            return await this.GetFirstResultSetAsync(this.GetDatabase()).ConfigureAwait(false);
+            return await this.GetFirstResultSetAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
+        }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(CommandBehavior commandBehavior)
+        {
+            return await this.GetFirstResultSetAsync(this.GetDatabase(), commandBehavior, CancellationToken.None);
+        }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(CancellationToken cancellationToken)
+        {
+            return await this.GetFirstResultSetAsync(this.GetDatabase(), CommandBehavior.Default, cancellationToken);
         }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database)
         {
             return await this.GetFirstResultSetAsync(database, CancellationToken.None);
         }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior)
+        {
+            return await this.GetFirstResultSetAsync(database, commandBehavior, CancellationToken.None);
+        }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
         {
-            return (await this.GetResultSetsAsync(database, cancellationToken)).FirstOrDefault();
+            return await this.GetFirstResultSetAsync(database, CommandBehavior.Default, cancellationToken);
+        }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        {
+            return await this.GetFirstResultSetAsync(database, commandBehavior, cancellationToken);
         }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases)
         {
             return await this.GetFirstResultSetAsync(databases, CancellationToken.None);
         }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
+        {
+            return await this.GetFirstResultSetAsync(databases, commandBehavior, CancellationToken.None);
+        }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
-            var results = await this.GetResultSetsAsync(databases, cancellationToken).ConfigureAwait(false);
+            return await this.GetFirstResultSetAsync(databases, CommandBehavior.Default, cancellationToken);
+        }
+        public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        {
+            var results = await this.GetResultSetsAsync(databases, commandBehavior, cancellationToken);
             return results.FirstOrDefault();
         }
 
@@ -68,7 +92,15 @@ namespace HigLabo.DbSharp
         }
         public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync()
         {
-            return await this.GetResultSetsAsync(this.GetDatabase()).ConfigureAwait(false);
+            return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, CancellationToken.None);
+        }
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(CommandBehavior commandBehavior)
+        {
+            return await this.GetResultSetsAsync(this.GetDatabase(), commandBehavior, CancellationToken.None);
+        }
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(CancellationToken cancellationToken)
+        {
+            return await this.GetResultSetsAsync(this.GetDatabase(), CommandBehavior.Default, cancellationToken);
         }
         public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(Database database)
         {
@@ -116,12 +148,20 @@ namespace HigLabo.DbSharp
         {
             return await this.GetResultSetsAsync(databases, CancellationToken.None);
         }
+        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
+        {
+            return await this.GetResultSetsAsync(databases, commandBehavior, CancellationToken.None);
+        }
         public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        {
+            return await this.GetResultSetsAsync(databases, CommandBehavior.Default, cancellationToken);
+        }
+        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var tt = new List<Task<List<StoredProcedureResultSet>>>();
             foreach (var db in databases)
             {
-                tt.Add(this.GetResultSetsAsync(db, cancellationToken));
+                tt.Add(this.GetResultSetsAsync(db, commandBehavior, cancellationToken));
             }
             var results = await Task.WhenAll(tt).ConfigureAwait(false);
             return results.SelectMany(el => el);

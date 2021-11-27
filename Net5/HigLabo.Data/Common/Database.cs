@@ -24,6 +24,7 @@ namespace HigLabo.Data
 
         protected DbConnection Connection { get; set; }
         protected DbTransaction Transaction { get; set; }
+
         public String ConnectionString { get; set; }
         public ConnectionState ConnectionState
         {

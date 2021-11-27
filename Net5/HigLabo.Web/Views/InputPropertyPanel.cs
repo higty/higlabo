@@ -145,11 +145,21 @@ namespace HigLabo.Web.UI
             }
             public String Date { get; set; } = "";
             public String HourMinute { get; set; } = "";
+            public Boolean AllowHourMinuteEmpty { get; set; } = false;
+
             public DateTime? GetDateTime()
             {
                 var dtime = this.Date.ToDateTime();
                 if (dtime.HasValue == false) { return null; }
-                if (TimeSpan.TryParse(this.HourMinute, out var ts))
+                var ts = this.HourMinute.ToTimeSpan();
+                if (ts == null)
+                {
+                    if (this.AllowHourMinuteEmpty)
+                    {
+                        return dtime;
+                    }
+                }
+                else
                 {
                     return dtime + ts;
                 }
@@ -196,12 +206,21 @@ namespace HigLabo.Web.UI
             public String EndHourMinute { get; set; } = "";
             public String Duration { get; set; } = "";
             public Boolean SetByEndTime { get; set; }
+            public Boolean AllowHourMinuteEmpty { get; set; } = false;
 
             public DateTime? GetStartTime()
             {
                 var dtime = this.StartDate.ToDateTime();
                 if (dtime.HasValue == false) { return null; }
-                if (TimeSpan.TryParse(this.StartHourMinute, out var ts))
+                var ts = this.StartHourMinute.ToTimeSpan();
+                if (ts == null)
+                {
+                    if (this.AllowHourMinuteEmpty)
+                    {
+                        return dtime;
+                    }
+                }
+                else
                 {
                     return dtime + ts;
                 }
@@ -211,27 +230,34 @@ namespace HigLabo.Web.UI
             {
                 if (this.SetByEndTime)
                 {
-                    return String.Format("{0} {1}", this.EndDate, this.EndHourMinute).ToDateTime();
-                }
-                else
-                {
-                    var startTime = this.GetStartTime();
-                    if (startTime.HasValue)
+                    var dtime = this.EndDate.ToDateTime();
+                    if (dtime.HasValue == false) { return null; }
+                    var ts = this.EndHourMinute.ToTimeSpan();
+                    if (ts == null)
                     {
-                        if (TimeSpan.TryParse(this.Duration, out var ts))
+                        if (this.AllowHourMinuteEmpty)
                         {
-                            return startTime + ts;
-                        }
-                        else
-                        {
-                            return null;
+                            return dtime;
                         }
                     }
                     else
                     {
-                        return null;
+                        return dtime + ts;
                     }
                 }
+                else
+                {
+                    var dtime = this.GetStartTime();
+                    if (dtime.HasValue)
+                    {
+                        var ts = this.Duration.ToTimeSpan();
+                        if (ts != null)
+                        {
+                            return dtime + ts;
+                        }
+                    }
+                }
+                return null;
             }
             public DateTimeOffset? GetStartTime(TimeSpan offset)
             {
@@ -305,6 +331,7 @@ namespace HigLabo.Web.UI
         public Object DefaultRecord { get; set; } = new { };
         public HtmlAttributes PanelAttributes { get; private set; } = new HtmlAttributes();
         public HtmlAttributes InputAttributes { get; private set; } = new HtmlAttributes();
+        public Boolean DisplayHourMinute { get; set; } = true;
 
         public InputPropertyPanel() { }
         public InputPropertyPanel(String name, String text)

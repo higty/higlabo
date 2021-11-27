@@ -15,13 +15,11 @@ namespace HigLabo.Core
         }
 
         public TypeConverter TypeConverter { get; set; }
-        public Serializer JsonSerializer { get; set; }
         public Serializer XmlSerializer { get; set; }
 
         public AppEnvironment()
         {
             this.TypeConverter = new TypeConverter();
-            //this.JsonSerializer = new JsonSerializer();
             this.XmlSerializer = new XmlSerializer();
         }
     }
