@@ -37,6 +37,10 @@ input:focus-visible {
     outline: none;
 }
 
+.display-none {
+    display: none;
+}
+
 :root {
     --color-button-text-color: #ffffff;
     --color-text-color-dark-background: #ffffff;
@@ -127,6 +131,7 @@ input:focus-visible {
         }
     }
 
+    input[type=checkbox],
     input[type=radio] {
         cursor: pointer;
     }
@@ -303,6 +308,14 @@ input:focus-visible {
                     }
                 }
             }
+        }
+    }
+
+    &[element-type='CheckBoxList'] {
+        .filter-textbox-panel {
+            @include display__flex();
+            align-items: center;
+            margin-bottom: 4px;
         }
     }
 

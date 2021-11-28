@@ -108,6 +108,7 @@ namespace HigLabo.Web.UI
             public String Value { get; set; } = "";
             public String Text { get; set; } = "";
             public Boolean Checked { get; set; }
+            public String FilterText { get; set; } = "";
             public Object? Data { get; set; }
 
             /// <summary>
@@ -123,6 +124,7 @@ namespace HigLabo.Web.UI
             {
                 this.Value = value;
                 this.Text = text;
+                this.FilterText = text;
             }
         }
         public class DateTimeItem
@@ -322,6 +324,7 @@ namespace HigLabo.Web.UI
         public Boolean CanAdd { get; set; } = true;
         public AddRecordMode AddRecordMode { get; set; } = AddRecordMode.Search;
         public Boolean CanSort { get; set; } = false;
+        public Boolean CanFilter { get; set; } = false;
         public SelectRecordMode SelectRecordMode { get; set; } = SelectRecordMode.Html;
         public String ApiPathSearch { get; set; } = "";
         public String ApiPathDefaultGet { get; set; } = "";

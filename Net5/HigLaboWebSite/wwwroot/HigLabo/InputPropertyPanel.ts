@@ -25,6 +25,7 @@ export class InputPropertyPanel {
 
         $("body").on("click", "[input-property-panel]  [radio-button-label]", this.radioButtonLabel_Click.bind(this));
         $("body").on("click", "[input-property-panel]  [checkbox-label]", this.checkBoxLabel_Click.bind(this));
+        $("body").on("input", "[input-property-panel] [filter-textbox]", this.filterTextBox_Keydown.bind(this));
 
         $("body").on("keydown", "[input-property-panel] [delete-link]", this.deleteLink_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [delete-link]", this.deleteLink_Click.bind(this));
@@ -242,6 +243,17 @@ export class InputPropertyPanel {
     }
     private checkBoxLabel_Click(target: Element, e: Event) {
         $(target).getNearest("input[type='checkbox']").toggleChecked().triggerEvent("change");
+    }
+    private filterTextBox_Keydown(target: Element, e: KeyboardEvent) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const text = $(target).getValue();
+        if (text == "") {
+            $(ipl).find("[filter-text]").removeClass("display-none");
+        }
+        else {
+            $(ipl).find("[filter-text]").addClass("display-none");
+            $(ipl).find("[filter-text*='" + text + "']").removeClass("display-none");
+        }
     }
 
     private selectRecordPanel_Click(target: Element, e: Event) {

@@ -145,16 +145,22 @@
                             <option value="@item.Value"
                                     @Html.OptionSelected(Model.Value == item.Value)>
                                 @item.Text
-                                </option>
-                            }
+                            </option>
+                        }
                     </select>
                     break;
                 }
             case InputElementType.CheckBoxList:
                 {
+                    if (Model.CanFilter)
+                    {
+                        <div class="filter-textbox-panel">
+                            <input type="text" filter-textbox="true" />
+                        </div>
+                    }
                     @foreach (var item in Model.ItemList)
                     {
-                        <span class="checkbox-panel" h-record="true">
+                        <span class="checkbox-panel" h-record="true" filter-text="@item.FilterText">
                             <input type="hidden" h-name="Value" value="@item.Value" />
                             <input type="checkbox" h-name="Checked" @Html.InputChecked(item.Checked)
                                    name="@Model.RadioButtonGroupName" />

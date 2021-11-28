@@ -1,6 +1,9 @@
 ﻿input:focus-visible {
   outline: none; }
 
+.display-none {
+  display: none; }
+
 :root {
   --color-button-text-color: #ffffff;
   --color-text-color-dark-background: #ffffff;
@@ -222,6 +225,13 @@
             -ms-transition: all 0.4s;
             -o-transition: all 0.4s;
             transition: all 0.4s; }
+  .input-property-panel[element-type='CheckBoxList'] .filter-textbox-panel {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center; }
   .input-property-panel .checkbox-text {
     cursor: pointer; }
   .input-property-panel[element-type='SelectButton'] .property-value-panel {

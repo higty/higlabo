@@ -33,7 +33,16 @@
 }
 
 
+input:focus-visible {
+    outline: none;
+}
+
+.display-none {
+    display: none;
+}
+
 :root {
+    --color-button-text-color: #ffffff;
     --color-text-color-dark-background: #ffffff;
     --color-text-color-light-background: #111111;
     --color-body-back-color: #f8f4f0;
@@ -74,11 +83,12 @@
     padding: 10px;
 
     .button {
+        height: 32px;
+        padding: 2px 8px;
         border: none;
         color: var(--color-button-text-color);
         background-color: var(--color-button-back-color);
         font-size: 14px;
-        padding: 2px 8px;
         cursor: pointer;
         text-decoration: none;
         @include box_sizing__border_box();
@@ -121,6 +131,7 @@
         }
     }
 
+    input[type=checkbox],
     input[type=radio] {
         cursor: pointer;
     }
@@ -297,6 +308,14 @@
                     }
                 }
             }
+        }
+    }
+
+    &[element-type='CheckBoxList'] {
+        .filter-textbox-panel {
+            @include display__flex();
+            align-items: center;
+            margin-bottom: 4px;
         }
     }
 
