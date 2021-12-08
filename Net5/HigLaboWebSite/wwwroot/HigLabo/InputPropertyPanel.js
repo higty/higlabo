@@ -5,6 +5,7 @@ import { HttpClient } from "./HttpClient.js";
 import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
 export class InputPropertyPanel {
     constructor() {
+        this._eventHandlerList = new Array();
         this.selectTimePopupPanel = new SelectTimePopupPanel();
     }
     initialize() {
@@ -37,6 +38,9 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Click.bind(this));
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
+    }
+    registerEventHandler(hander) {
+        this._eventHandlerList.push(hander);
     }
     dateTimeTextBox_Focusin(target, e) {
         $(target).select();
@@ -307,6 +311,15 @@ export class InputPropertyPanel {
         this.recordAdded(ipl);
     }
     recordAdded(inputPropertyPanel) {
+        const e = new RecordAddedEvent(inputPropertyPanel);
+        for (var i = 0; i < this._eventHandlerList.length; i++) {
+            try {
+                var f = this._eventHandlerList[i];
+                f(this, e);
+            }
+            catch (_a) {
+            }
+        }
     }
     showSearchRecordListPanel(target) {
         const pl = $(target).getNearestElement("[search-record-list-panel]");
@@ -808,5 +821,10 @@ export class InputPropertyPanel {
     }
 }
 export class ValidationResult {
+}
+export class RecordAddedEvent {
+    constructor(inputPropertyPanel) {
+        this.InputPropertyPanel = inputPropertyPanel;
+    }
 }
 //# sourceMappingURL=InputPropertyPanel.js.map

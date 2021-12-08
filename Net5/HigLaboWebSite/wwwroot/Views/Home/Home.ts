@@ -1,5 +1,5 @@
 ﻿import { HtmlElementQuery } from "../../HigLabo/HtmlElementQuery.js";
-import { InputPropertyPanel } from "../../HigLabo/InputPropertyPanel.js";
+import { InputPropertyPanel, RecordAddedEvent } from "../../HigLabo/InputPropertyPanel.js";
 import { RichTextbox } from "../../HigLabo/RichTextbox.js";
 import SelectTimePopupPanel from "../../HigLabo/SelectTimePopupPanel.js";
 
@@ -10,8 +10,12 @@ class Page {
 
     public initialize() {
         this.inputPropertyPanel.initialize();
+        this.inputPropertyPanel.registerEventHandler(this.recordAdded.bind(this));
         this.selectTimePopupPanel.initialize();
         this.richTextBox.initialize(document.getElementById("RichTextBox"));
+    }
+    private recordAdded(panel: InputPropertyPanel, e: RecordAddedEvent) {
+        alert("Record added");
     }
 }
 

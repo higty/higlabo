@@ -6,6 +6,7 @@ import { RichTextbox } from "./RichTextbox.js";
 import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
 
 export class InputPropertyPanel {
+    private _eventHandlerList = new Array<RecordAddedEventHandler>();
     public selectTimePopupPanel = new SelectTimePopupPanel();
 
     public initialize() {
@@ -44,6 +45,9 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Click.bind(this));
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
+    }
+    public registerEventHandler(hander: RecordAddedEventHandler) {
+        this._eventHandlerList.push(hander);
     }
 
     private dateTimeTextBox_Focusin(target: Element, e: Event) {
@@ -329,8 +333,17 @@ export class InputPropertyPanel {
         $(element).find("input[type='text']").setFocus();
         this.recordAdded(ipl);
     }
-    public recordAdded(inputPropertyPanel: Element) {
+    private recordAdded(inputPropertyPanel: Element) {
+        const e = new RecordAddedEvent(inputPropertyPanel);
+        for (var i = 0; i < this._eventHandlerList.length; i++) {
+            try {
+                var f = this._eventHandlerList[i];
+                f(this, e);
+            }
+            catch {
 
+            }
+        }
     }
     private showSearchRecordListPanel(target: Element) {
         const pl = $(target).getNearestElement("[search-record-list-panel]");
@@ -843,3 +856,14 @@ export class ValidationResult {
     public Message: string;
     public Value: any;
 }
+export interface RecordAddedEventHandler {
+    (sender: InputPropertyPanel, e: RecordAddedEvent): any;
+}
+export class RecordAddedEvent {
+    public InputPropertyPanel: Element;
+
+    constructor(inputPropertyPanel: Element) {
+        this.InputPropertyPanel = inputPropertyPanel;
+    }
+}
+

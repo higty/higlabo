@@ -10,8 +10,12 @@ class Page {
     }
     initialize() {
         this.inputPropertyPanel.initialize();
+        this.inputPropertyPanel.registerEventHandler(this.recordAdded.bind(this));
         this.selectTimePopupPanel.initialize();
         this.richTextBox.initialize(document.getElementById("RichTextBox"));
+    }
+    recordAdded(panel, e) {
+        alert("Record added");
     }
 }
 HtmlElementQuery.domContentLoaded(e => {
