@@ -99,13 +99,18 @@ export class HigLaboVue {
         const f = new Intl.NumberFormat(culture);
         return f.format(value);
     }
-    public static currencyFormat(value, culture: string, currency: string) {
+    public static currencyFormat(value, culture: string, currency: string
+        , minimumFractionDigits: number, maximumFractionDigits: number) {
         if (value == null) { return ""; }
         if (culture == null) { culture = HigLaboVue.defaultSettings.culture; }
         if (currency == null) { currency = HigLaboVue.defaultSettings.currency; }
+        if (minimumFractionDigits == null) { minimumFractionDigits = 0; }
+        if (maximumFractionDigits == null) { maximumFractionDigits = 0; }
         const f = new Intl.NumberFormat(culture, {
             style: "currency",
             currency: currency,
+            minimumFractionDigits: minimumFractionDigits,
+            maximumFractionDigits: maximumFractionDigits,
         });
         return f.format(value);
     }

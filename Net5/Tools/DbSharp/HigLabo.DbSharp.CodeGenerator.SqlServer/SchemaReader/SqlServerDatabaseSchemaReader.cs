@@ -415,16 +415,16 @@ ORDER BY name ASC
             {
                 return @"
 SELECT name,create_date,modify_date FROM sys.tables 
-where name != 'sysdiagrams'
-and name != 'sp_renamediagram'
-and name != 'sp_upgraddiagrams'
+where name != N'sysdiagrams'
+and name != N'sp_renamediagram'
+and name != N'sp_upgraddiagrams'
 ORDER BY name
 ";
             }
             public override String GetTable(String name)
             {
                 var q = @"
-SELECT name,create_date,modify_date FROM sys.tables WHERE name = '{0}'
+SELECT name,create_date,modify_date FROM sys.tables WHERE name = N'{0}'
 ";
                 return String.Format(q, name);
             }
@@ -438,31 +438,31 @@ SELECT T1.TABLE_NAME AS TableName
     Else convert(bit, 0) 
 End As IsPrimaryKey
 ,CASE T6.is_table_type 
-	When 1 Then 'structured' 
+	When 1 Then N'structured' 
 	Else
 		Case T6.is_assembly_type
-		When 1 Then 'udt' 
+		When 1 Then N'udt' 
 		Else 
 			Case T1.DATA_TYPE 
-			When 'sql_variant' Then 'variant'
+			When N'sql_variant' Then N'variant'
 			Else T1.DATA_TYPE End 
 		End 
 	End As DbType
 ,T1.CHARACTER_MAXIMUM_LENGTH AS ColumnLength
 ,T1.NUMERIC_PRECISION AS ColumnPrecision
 ,IsNull(T1.NUMERIC_SCALE,T1.DATETIME_PRECISION) AS ColumnScale
-,Case T1.IS_NULLABLE When 'YES' Then convert(bit, 1) Else convert(bit, 0) End As AllowNull
-,convert(bit, COLUMNPROPERTY(OBJECT_ID(QUOTENAME(T1.TABLE_SCHEMA) + '.' + QUOTENAME(T1.TABLE_NAME)), T1.COLUMN_NAME, 'IsIdentity')) as IsIdentity
-,convert(bit, COLUMNPROPERTY(OBJECT_ID(QUOTENAME(T1.TABLE_SCHEMA) + '.' + QUOTENAME(T1.TABLE_NAME)), T1.COLUMN_NAME, 'IsRowGuidCol')) as IsRowGuid
+,Case T1.IS_NULLABLE When N'YES' Then convert(bit, 1) Else convert(bit, 0) End As AllowNull
+,convert(bit, COLUMNPROPERTY(OBJECT_ID(QUOTENAME(T1.TABLE_SCHEMA) + N'.' + QUOTENAME(T1.TABLE_NAME)), T1.COLUMN_NAME, N'IsIdentity')) as IsIdentity
+,convert(bit, COLUMNPROPERTY(OBJECT_ID(QUOTENAME(T1.TABLE_SCHEMA) + N'.' + QUOTENAME(T1.TABLE_NAME)), T1.COLUMN_NAME, N'IsRowGuidCol')) as IsRowGuid
 ,CASE T6.is_table_type 
 	When 1 Then T6.name 
 	Else
 		Case T6.is_assembly_type
 		When 1 Then T6.name
-		Else '' 
+		Else N'' 
 	End
 End as UdtTypeName
-,'' as EnumValues
+,N'' as EnumValues
 FROM INFORMATION_SCHEMA.COLUMNS AS T1
 LEFT JOIN (
 	SELECT T2.CONSTRAINT_NAME
@@ -471,12 +471,12 @@ LEFT JOIN (
 	FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS T2
 	LEFT JOIN sys.key_constraints AS S01
 	ON T2.CONSTRAINT_NAME = S01.name
-	WHERE S01.type = 'PK'
+	WHERE S01.type = N'PK'
 ) AS T3 ON T1.TABLE_NAME = T3.TABLE_NAME AND T1.COLUMN_NAME = T3.COLUMN_NAME
 Inner Join sys.tables as T4 ON T1.TABLE_NAME = T4.name 
 Inner Join sys.columns as T5 ON T4.object_id = T5.object_id AND T1.COLUMN_NAME = T5.name 
 Inner Join sys.types as T6 ON T5.user_type_id = T6.user_type_id
-WHERE T1.TABLE_NAME = '{0}'
+WHERE T1.TABLE_NAME = N'{0}'
 ORDER BY T1.ORDINAL_POSITION
 ";
                 return String.Format(q, tableName);
@@ -490,8 +490,8 @@ inner join sys.columns as T2 on T1.object_id = T2.object_id
 inner join sys.index_columns as T3 on T1.object_id = T3.object_id and T2.column_id = T3.column_id 
 inner join sys.indexes as T4 on T1.object_id = T4.object_id and  T3.index_id = T4.index_id 
 inner join INFORMATION_SCHEMA.KEY_COLUMN_USAGE as T5 on T1.name = T5.table_name and T2.name = T5.column_name
-inner join sys.key_constraints as T6 on T5.constraint_name = T6.name and T6.type = 'PK'
-where T1.name = '{0}'
+inner join sys.key_constraints as T6 on T5.constraint_name = T6.name and T6.type = N'PK'
+where T1.name = N'{0}'
 ";
                 return String.Format(q, tableName);
             }
@@ -505,7 +505,7 @@ SELECT T1.name
 FROM sys.default_constraints as T1
 inner join sys.tables as T2 on T1.parent_object_id = T2.object_id
 inner join sys.columns as T3 on T2.object_id = T3.object_id and T1.parent_column_id = T3.column_id
-where T2.name = '{0}'
+where T2.name = N'{0}'
 ";
                 return String.Format(q, tableName);
             }
@@ -520,7 +520,7 @@ inner join sys.tables as T2 on T1.parent_object_id = T2.object_id
 inner join sys.columns as T3 on T1.parent_object_id = T3.object_id and T1.parent_column_id = T3.column_id
 inner join sys.tables as T4 on T1.referenced_object_id = T4.object_id 
 inner join sys.columns as T5 on T1.referenced_object_id = T5.object_id and T1.referenced_column_id = T5.column_id
-where T2.name = '{0}'
+where T2.name = N'{0}'
 ";
                 return String.Format(q, tableName);
             }
@@ -531,8 +531,8 @@ SELECT constraint_name as Name
 ,table_name as TableName
 ,object_definition(OBJECT_ID(CONSTRAINT_NAME)) as Definition
 FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
-where table_name = '{0}'
-and CONSTRAINT_TYPE = 'CHECK' 
+where table_name = N'{0}'
+and CONSTRAINT_TYPE = N'CHECK' 
 ";
                 return String.Format(q, tableName);
             }
@@ -542,7 +542,7 @@ and CONSTRAINT_TYPE = 'CHECK'
 select name,create_date,modify_date,definition
 from sys.objects as T1
 join sys.sql_modules T2 on T1.object_id = T2.object_id
-where T1.type = 'V' and is_ms_shipped = 0
+where T1.type = N'V' and is_ms_shipped = 0
 order by T1.name
 ";
             }
@@ -558,7 +558,7 @@ ON T01.system_type_id = T03.system_type_id
 and T01.user_type_id = T03.user_type_id 
 Inner Join sys.types as T06 
 ON T03.user_type_id = T06.user_type_id
-Where T03.name != 'sysname'
+Where T03.name != N'sysname'
 group by T02.name
 order by T02.name
 ";
@@ -569,13 +569,13 @@ order by T02.name
                 var q = @"
 Select T01.name AS ColumnName
 ,CASE T06.is_table_type 
-	When 1 Then 'structured' 
+	When 1 Then N'structured' 
 	Else
 		Case T06.is_assembly_type
-		When 1 Then 'udt' 
+		When 1 Then N'udt' 
 		Else 
 			Case T03.name 
-			When 'sql_variant' Then 'variant'
+			When N'sql_variant' Then N'variant'
 			Else T03.name End 
 		End 
 	End As ColumnType
@@ -592,15 +592,15 @@ Select T01.name AS ColumnName
 	Else
 		Case T06.is_assembly_type
 		When 1 Then T06.name
-		Else '' 
+		Else N'' 
 	End
 End as UdtTypeName
 From sys.columns AS T01
 Inner Join sys.table_types AS T02 ON T01.object_id = T02.type_table_object_id
 Inner Join sys.types AS T03 ON T01.system_type_id = T03.system_type_id and T01.user_type_id = T03.user_type_id 
 Inner Join sys.types as T06 ON T03.user_type_id = T06.user_type_id
-Where T02.name = '{0}' 
-And T03.name != 'sysname'
+Where T02.name = N'{0}' 
+And T03.name != N'sysname'
 order by column_id 
 ";
                 return String.Format(q, name);
@@ -612,7 +612,7 @@ SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES as T1
 join sys.sql_modules as T2 
 on OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
-WHERE ROUTINE_TYPE = 'PROCEDURE'
+WHERE ROUTINE_TYPE = N'PROCEDURE'
 ORDER BY SPECIFIC_NAME
 ";
             }
@@ -623,8 +623,8 @@ SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES as T1
 join sys.sql_modules as T2 
 on OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
-WHERE ROUTINE_TYPE = 'PROCEDURE'
-AND SPECIFIC_NAME = '{0}'
+WHERE ROUTINE_TYPE = N'PROCEDURE'
+AND SPECIFIC_NAME = N'{0}'
 ORDER BY SPECIFIC_NAME
 ";
                 return String.Format(q, name);
@@ -635,13 +635,13 @@ ORDER BY SPECIFIC_NAME
 SELECT T01.SPECIFIC_NAME as StoredProcedureName
 ,T01.PARAMETER_NAME as ParameterName 
 ,CASE T04.is_table_type 
-	When 1 Then 'structured' 
+	When 1 Then N'structured' 
 	Else 
 		Case T04.is_assembly_type
-		When 1 Then 'udt' 
+		When 1 Then N'udt' 
 		Else
 			Case T04.name 
-			When 'sql_variant' Then 'variant'
+			When N'sql_variant' Then N'variant'
 			Else T04.name 
 			End
 	End
@@ -650,14 +650,14 @@ End as DbType
 ,T01.Numeric_Precision as ParameterPrecision
 ,IsNull(T01.Numeric_Scale,T01.DateTime_Precision) as ParameterScale
 ,Case T01.Parameter_Mode 
-	When 'OUT' Then convert(bit, 1) 
-	When 'INOUT' Then convert(bit, 1) 
+	When N'OUT' Then convert(bit, 1) 
+	When N'INOUT' Then convert(bit, 1) 
 	Else convert(bit, 0) 
 End as IsOutput
-,IsNull(USER_DEFINED_TYPE_NAME,'') as UserTableTypeName
+,IsNull(USER_DEFINED_TYPE_NAME,N'') as UserTableTypeName
 ,Case T04.is_assembly_type
 When 1 Then T04.name
-Else '' 
+Else N'' 
 End as UdtTypeName 
 FROM INFORMATION_SCHEMA.PARAMETERS As T01 
 Inner Join sys.procedures as T02 
@@ -667,7 +667,7 @@ ON T02.object_id = T03.object_id
 and T01.PARAMETER_NAME = T03.name
 Inner Join sys.types as T04 
 ON T03.user_type_id = T04.user_type_id
-Where SPECIFIC_NAME = '{0}'
+Where SPECIFIC_NAME = N'{0}'
 Order by Ordinal_Position
 ";
                 return String.Format(q, storedProcedureName);
@@ -678,8 +678,8 @@ Order by Ordinal_Position
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
 FROM INFORMATION_SCHEMA.ROUTINES as T1
 inner join sys.sql_modules as T2 on OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
-WHERE ROUTINE_TYPE = 'FUNCTION'
-and SPECIFIC_NAME != 'fn_diagramobjects'
+WHERE ROUTINE_TYPE = N'FUNCTION'
+and SPECIFIC_NAME != N'fn_diagramobjects'
 ORDER BY SPECIFIC_NAME
 ";
             }

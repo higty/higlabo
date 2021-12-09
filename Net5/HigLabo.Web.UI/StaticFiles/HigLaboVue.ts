@@ -105,7 +105,7 @@ export class HigLaboVue {
         if (currency == null) { currency = HigLaboVue.defaultSettings.currency; }
         const f = new Intl.NumberFormat(culture, {
             style: "currency",
-            currency: currency,
+            currency: currency
         });
         return f.format(value);
     }
