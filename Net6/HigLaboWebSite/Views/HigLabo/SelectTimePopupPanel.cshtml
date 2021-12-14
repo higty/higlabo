@@ -1,0 +1,87 @@
+﻿@model HigLabo.Web.UI.SelectTimePopupPanel
+@{
+    var minuteList = new Int32[] { 0, 10, 15, 20, 30, 40, 45, 50 };
+    var durationList = new List<Int32> { 15, 30, 60, 90 };
+    for (int i = 2; i < 14; i++)
+    {
+        durationList.Add(i * 60);
+    }
+    var workStartHour = Model.StartHour;
+    var workEndHour = Model.EndHour;
+}
+<div id="SelectTimePopupPanel" class="select-time-popup-panel" popup-panel="true"
+     data-simplebar="true">
+    <div class="header-panel">
+        <input type="checkbox" id="SelectTimePopupPanelShowAllChekBox" hide-slide-menu-panel="false" />
+        <label for="SelectTimePopupPanelShowAllChekBox" hide-slide-menu-panel="false">@Model.TextSettings.DisplayAll</label>
+    </div>
+    <table>
+        @for (int i = 0; i < 24; i++)
+        {
+            var inWorkHour = true;
+            if (i < workStartHour || workEndHour < i) { inWorkHour = false; }
+            <tr class="hour-minute-panel" @Html.Text(inWorkHour == false, "option-setting=\"true\"")>
+                <td class="hour-panel">@i.ToString("00")</td>
+                @foreach (var minute in minuteList)
+                {
+                    <td class="minute-panel" minute-panel="true"
+                        hour="@i.ToString("00")" minute="@minute.ToString("00")"
+                        @Html.Text(minute % 30 != 0, "option-setting=\"true\"")>
+                        @minute.ToString("00")
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+<div id="SelectDurationPopupPanel" class="select-duration-popup-panel" popup-panel="true" data-simplebar="true">
+    @foreach (var minute in durationList)
+    {
+        var ts = TimeSpan.FromMinutes(minute);
+        @if (minute < 60)
+        {
+            <div class="duration-minute-panel" duration-minute="true"
+                 minute="@minute.ToString()">@String.Format("{0}{1}", minute, Model.TextSettings.Minute)</div>
+            }
+            else
+            {
+                if (ts.Minutes == 0)
+                {
+                    <div class="duration-minute-panel" duration-minute="true"
+                         minute="@minute.ToString()">
+                        @String.Format("{0}{1}", ts.Hours, Model.TextSettings.Hour)
+                    </div>
+                }
+                else
+                {
+                    <div class="duration-minute-panel" duration-minute="true"
+                         minute="@minute.ToString()">
+                        @String.Format("{0}{1}{2}{3}", ts.Hours, Model.TextSettings.Hour
+                            , ts.Minutes, Model.TextSettings.Minute)
+                    </div>
+                }
+            }
+    }
+</div>
+
+<div id="SelectEndTimePopupPanel" class="select-time-popup-panel" popup-panel="true" data-simplebar="true">
+    <table>
+        @for (int i = 0; i < 24; i++)
+        {
+            var inWorkHour = true;
+            if (i < workStartHour || workEndHour < i) { inWorkHour = false; }
+            <tr class="hour-minute-panel" @Html.Text(inWorkHour == false, "option-setting=\"true\"")>
+                <td class="hour-panel">@i.ToString("00")</td>
+                @foreach (var minute in minuteList)
+                {
+                    <td class="minute-panel" minute-panel="true"
+                        hour="@i.ToString("00")" minute="@minute.ToString("00")"
+                        @Html.Text(minute % 30 != 0, "option-setting=\"true\"")>
+                        @minute.ToString("00")
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</div>

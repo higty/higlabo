@@ -1,0 +1,13 @@
+﻿@model HigLabo.Web.UI.InputPropertyPanelMessagePanel
+@{
+    var display = "none";
+    if (Model.Visible)
+    {
+        display = "block";
+    }
+}
+
+<div class="input-property-panel-message-panel" style="display:@display;">
+    <div class="baloon"></div>
+    <div class="text-panel multiline" text-panel="true">@Model.Text</div>
+</div>

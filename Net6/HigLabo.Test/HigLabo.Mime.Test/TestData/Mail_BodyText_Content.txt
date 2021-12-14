@@ -1,0 +1,40 @@
+﻿MIME-Version: 1.0
+Date: Fri, 14 Feb 2014 12:06:27 +0000
+From: =?iso-2022-jp?B?GyRCTmtMWjBsTzobKEIgPHN1enVraUBnbWFpbC5jb20+?=
+Subject: =?iso-2022-jp?B?U3ViamVjdCAbJEJEOSQkN29MPiEhGyhCMDEyMzQ1Njc4OQ==?=
+	=?iso-2022-jp?B?MDEyMzQ1Njc4OTAxMjM0NTY3ODkwMTIzNDU2Nzg5MDEyMzQ1Njc4OTA=?=
+	=?iso-2022-jp?B?MTIzNDU2Nzg5?=
+X-Priority: 3
+To: =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIwIDxoYW5ha29fMEBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIxIDxoYW5ha29fMUBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIyIDxoYW5ha29fMkBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEIzIDxoYW5ha29fM0BnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI0IDxoYW5ha29fNEBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI1IDxoYW5ha29fNUBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI2IDxoYW5ha29fNkBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI3IDxoYW5ha29fN0BnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI4IDxoYW5ha29fOEBnbWFpbC5jb20+?=
+	, =?iso-2022-jp?B?GyRCTmtMWjJWO1IbKEI5IDxoYW5ha29fOUBnbWFpbC5jb20+?=
+Content-Type: multipart/mixed;
+	boundary="859fc7b9-65bf-4c8c-b047-a03d1c3c3435"
+
+This mail client does not support mime format.
+
+--859fc7b9-65bf-4c8c-b047-a03d1c3c3435
+Content-Type: text/plain;
+	charset="utf-8";
+Content-Transfer-Encoding: 8bit
+
+祇園精舎の鐘の声
+諸行無常の響きあり
+沙羅双樹の花の色
+盛者必衰の理をあらわす
+
+--859fc7b9-65bf-4c8c-b047-a03d1c3c3435
+Content-Type: text/plain;
+	charset="utf8";
+Content-Transfer-Encoding: Base64
+
+VGhpcyBpcyBhIHRleHQvcGxhaW4gYm9keSB0ZXh0Lg==
+--859fc7b9-65bf-4c8c-b047-a03d1c3c3435--
+.

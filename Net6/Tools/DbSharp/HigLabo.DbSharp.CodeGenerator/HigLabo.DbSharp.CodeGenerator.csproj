@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>5.0.1.0</Version>
+    <Authors>Higty</Authors>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+    <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.DbSharp.SchemaData\HigLabo.DbSharp.SchemaData.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.CodeGenerator">
+      <HintPath>..\Reference\HigLabo.CodeGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

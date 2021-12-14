@@ -1,0 +1,26 @@
+﻿<Window x:Class="HigLabo.DbSharpApplication.GenerateSqlScriptWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Generate SqlScript settings" Width="800" Height="240" 
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Label Content="OutputDirectoryPath" HorizontalAlignment="Left" Margin="10,10,0,0" Padding="0" VerticalAlignment="Top" Width="139" Height="20"/>
+            <TextBox Name="OutputDirectoryPathTextBox" Padding="0" Height="20" Margin="154,10,10,0" AcceptsReturn="False" TextWrapping="NoWrap" VerticalAlignment="Top" />
+        </Grid>
+        <Grid Grid.Row="1">
+            <TextBox Name="ResultLabel" BorderThickness="0" Margin="10,0" Padding="2" Background="Transparent" TextAlignment="Left"
+                                                         TextWrapping="Wrap" IsReadOnly="True" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Button Name="ExecuteButton" Content="_Execute" Margin="0,0,92,10" VerticalAlignment="Bottom" Height="40" Click="ExecuteButton_Click" HorizontalAlignment="Right" Width="76"/>
+            <Button Name="QuitButton" Content="_Quit" Margin="0,0,16,10" Click="QuitButton_Click" Height="40" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="76"/>
+        </Grid>
+    </Grid>
+</Window>

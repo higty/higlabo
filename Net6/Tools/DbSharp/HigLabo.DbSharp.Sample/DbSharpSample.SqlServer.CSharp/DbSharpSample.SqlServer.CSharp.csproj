@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.2" />
+    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.SqlServer">
+      <HintPath>..\Reference\HigLabo.Data.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp">
+      <HintPath>..\Reference\HigLabo.DbSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.DbSharp.SqlServer">
+      <HintPath>..\Reference\HigLabo.DbSharp.SqlServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
