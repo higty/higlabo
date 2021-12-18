@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30711.63
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Data", "HigLabo.Data\HigLabo.Data.csproj", "{AFD7D54A-2878-47C6-B3E6-8C14BA0D4BC1}"
 EndProject
@@ -45,7 +45,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net", "HigLabo.Net\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Service", "HigLabo.Service\HigLabo.Service.csproj", "{5ECE73B4-975F-44B8-B65B-676357CFFED9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLaboWebSite", "HigLaboWebSite\HigLaboWebSite.csproj", "{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLaboWebSite", "HigLaboWebSite\HigLaboWebSite.csproj", "{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Nuget", "HigLabo.Nuget\HigLabo.Nuget.csproj", "{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -7,6 +7,7 @@
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
     <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>

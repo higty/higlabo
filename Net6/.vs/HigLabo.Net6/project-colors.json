@@ -115,7 +115,12 @@
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "その他のファイル",
       "ColorIndex": -1
+    },
+    "861e9f96-bbf5-4bc4-86be-e9d1b13d3806": {
+      "ProjectGuid": "861e9f96-bbf5-4bc4-86be-e9d1b13d3806",
+      "DisplayName": "HigLabo.Nuget",
+      "ColorIndex": 6
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 7
 }
