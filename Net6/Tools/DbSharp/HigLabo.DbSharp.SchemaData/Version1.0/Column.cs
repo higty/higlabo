@@ -30,6 +30,7 @@ namespace HigLabo.DbSharp.MetaData
     }
     public class ForeignKeyColumn
     {
+        public String ForeignKeyName { get; set; } = "";
         public String TableName { get; set; } = "";
         public String ColumnName { get; set; } = "";
         public String ParentTableName { get; set; } = "";

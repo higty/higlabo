@@ -18,31 +18,31 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             this.DatabaseSchemaReader = reader;
         }
-        public List<StoredProcedure> CreateTableStoredProcedures(Table table)
+        public async Task<List<StoredProcedure>> CreateTableStoredProceduresAsync(Table table)
         {
             var l = new List<StoredProcedure>();
             var r = this.DatabaseSchemaReader;
 
             using (var db = r.CreateDatabase())
             {
-                l.Add(this.CreateStoredProcedure(db, table, StoredProcedureType.SelectAll, this.CreateQueryOfTableNameSelectAll(table)));
-                l.Add(this.CreateStoredProcedure(db, table, StoredProcedureType.Insert, this.CreateQueryOfTableNameInsert(table)));
+                l.Add(await this.CreateStoredProcedureAsync(db, table, StoredProcedureType.SelectAll, this.CreateQueryOfTableNameSelectAll(table)));
+                l.Add(await this.CreateStoredProcedureAsync(db, table, StoredProcedureType.Insert, this.CreateQueryOfTableNameInsert(table)));
                 if (table.HasPrimaryKeyColumn() == true)
                 {
-                    l.Add(this.CreateStoredProcedure(db, table, StoredProcedureType.SelectByPrimaryKey, this.CreateQueryOfTableNameSelectByPrimaryKey(table)));
-                    l.Add(this.CreateStoredProcedure(db, table, StoredProcedureType.Update, this.CreateQueryOfTableNameUpdate(table)));
-                    l.Add(this.CreateStoredProcedure(db, table, StoredProcedureType.Delete, this.CreateQueryOfTableNameDelete(table)));
+                    l.Add(await this.CreateStoredProcedureAsync(db, table, StoredProcedureType.SelectByPrimaryKey, this.CreateQueryOfTableNameSelectByPrimaryKey(table)));
+                    l.Add(await this.CreateStoredProcedureAsync(db, table, StoredProcedureType.Update, this.CreateQueryOfTableNameUpdate(table)));
+                    l.Add(await this.CreateStoredProcedureAsync(db, table, StoredProcedureType.Delete, this.CreateQueryOfTableNameDelete(table)));
                 }
             }
             return l;
         }
-        private StoredProcedure CreateStoredProcedure(Database database, Table table, StoredProcedureType storedProcedureType, String query)
+        private async Task<StoredProcedure> CreateStoredProcedureAsync(Database database, Table table, StoredProcedureType storedProcedureType, String query)
         {
             var r = this.DatabaseSchemaReader;
             var db = database;
             var storedProcedureName = table.Name + storedProcedureType.ToString();
 
-            if (r.ExistStoredProcedure(storedProcedureName) == true)
+            if (await r.ExistStoredProcedure(storedProcedureName) == true)
             {
                 db.ExecuteCommand("drop procedure " + storedProcedureName);
             }

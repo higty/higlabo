@@ -19,13 +19,13 @@ namespace HigLabo.DbSharp.MetaData
         public abstract Boolean SupportUserDefinedTableType { get; }
 
         public abstract Database CreateDatabase();
-        public virtual List<DatabaseObject> GetTables()
+        public virtual async Task<List<DatabaseObject>> GetTablesAsync()
         {
             var l = new List<DatabaseObject>();
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetTables());
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetTables());
                 while (reader.Read())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.Table);
@@ -34,50 +34,55 @@ namespace HigLabo.DbSharp.MetaData
                     o.LastAlteredTime = reader.GetDateTime(2);
                     l.Add(o);
                 }
+                db.Close();
             }
             return l;
         }
-        public virtual Table GetTable(String name)
+        public virtual async Task<Table> GetTableAsync(String name)
         {
             var t = new Table(name);
             using (Database db = this.CreateDatabase())
             {
                 var reader = db.ExecuteReader(this.QueryBuilder.GetTable(name));
-                if (reader.Read() == false) throw new InvalidOperationException(String.Format("Table {0} does not exist.", name));
+                if (reader.Read() == false) { throw new InvalidOperationException(String.Format("Table {0} does not exist.", name)); }
                 t.Name = reader.GetString(0);
                 t.CreateTime = reader.GetDateTime(1);
                 t.LastAlteredTime = reader.GetDateTime(2);
+                db.Close();
             }
-            var px = new ParalellExecutionContext();
-            px.TaskList.Add(this.GetColumnListAsync(name));
-            px.TaskList.Add(this.GetPrimaryKeyAsync(name));
-            px.TaskList.Add(this.GetDefaultCostraintAsync(name));
-            px.TaskList.Add(this.GetForeignKeyColumnAsync(name));
-            px.TaskList.Add(this.GetCheckConstraintAsync(name));
-            var ex = px.Execute();
-            if (ex != null) { ExceptionDispatchInfo.Capture(ex).Throw(); }
-
-            foreach (var item in px.GetResults<List<Column>>().SelectMany(el => el))
+            foreach (var item in await this.GetColumnListAsync(name))
             {
                 t.Columns.Add(item);
             }
-            foreach (var item in px.GetResults<List<PrimaryKeyConstraint>>().SelectMany(el => el))
+            foreach (var item in await this.GetPrimaryKeyAsync(name))
             {
                 var c = t.Columns.Find(el => el.Name == item.ColumnName);
                 c.IsPrimaryKey = true;
                 c.Clustered = item.Clustered;
             }
-            foreach (var item in px.GetResults<List<DefaultCostraint>>().SelectMany(el => el))
+            foreach (var item in await this.GetIndexAsync(name))
+            {
+                var columnList = new List<Column>();
+                foreach (var indexColumn in item.Columns)
+                {
+                    var c = t.Columns.Find(el => el.Name == indexColumn.Name);
+                    columnList.Add(c);
+                }
+                item.Columns.Clear();
+                item.Columns.AddRange(columnList);
+                t.IndexList.Add(item);
+            }
+            foreach (var item in await this.GetDefaultCostraintAsync(name))
             {
                 var c = t.Columns.Find(el => el.Name == item.ColumnName);
                 c.DefaultCostraint = item;
             }
-            foreach (var item in px.GetResults<List<ForeignKeyColumn>>().SelectMany(el => el))
+            foreach (var item in await this.GetForeignKeyColumnAsync(name))
             {
                 var c = t.Columns.Find(el => el.Name == item.ColumnName);
                 c.ForeignKey = item;
             }
-            foreach (var item in px.GetResults<List<CheckConstraint>>().SelectMany(el => el))
+            foreach (var item in await this.GetCheckConstraintAsync(name))
             {
                 t.CheckConstraintList.Add(item);
             }
@@ -99,6 +104,36 @@ namespace HigLabo.DbSharp.MetaData
                     c.Clustered = reader.GetString(3);
                     l.Add(c);
                 }
+                db.Close();
+            }
+            return l;
+        }
+        public virtual async Task<List<Index>> GetIndexAsync(String tableName)
+        {
+            var l = new List<Index>();
+
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetIndex(tableName));
+                Index ix = null;
+                while (await reader.ReadAsync())
+                {
+                    var indexName = reader.GetString(0);
+                    ix = l.Find(el => el.Name == indexName);
+                    if (ix == null)
+                    {
+                        ix = new Index();
+                        ix.Name = indexName;
+                        ix.TableName = reader.GetString(1);
+                        ix.IndexType = reader.GetString(3);
+                        ix.IsUnique = reader.GetBoolean(4);
+                        ix.ObjectType = reader.GetString(5);
+                    }
+                    var columnName = reader.GetString(2); 
+                    ix.Columns.Add(new Column() { Name = columnName });
+                    l.Add(ix);
+                }
+                db.Close();
             }
             return l;
         }
@@ -118,6 +153,7 @@ namespace HigLabo.DbSharp.MetaData
                     c.Definition = reader.GetString(3);
                     l.Add(c);
                 }
+                db.Close();
             }
             return l;
         }
@@ -131,6 +167,7 @@ namespace HigLabo.DbSharp.MetaData
                 while (await reader.ReadAsync())
                 {
                     var c = new ForeignKeyColumn();
+                    c.ForeignKeyName = reader.GetString(0);
                     c.TableName = reader.GetString(1);
                     c.ColumnName = reader.GetString(2);
                     c.ParentTableName = reader.GetString(3);
@@ -139,6 +176,7 @@ namespace HigLabo.DbSharp.MetaData
                     c.OnDelete = reader.GetString(6);
                     l.Add(c);
                 }
+                db.Close();
             }
             return l;
         }
@@ -157,6 +195,7 @@ namespace HigLabo.DbSharp.MetaData
                     c.Definition = reader.GetString(2);
                     l.Add(c);
                 }
+                db.Close();
             }
             return l;
         }
@@ -173,31 +212,45 @@ namespace HigLabo.DbSharp.MetaData
                     var c = new Column();
                     c.Name = reader.GetString(1);
                     c.Ordinal = l.Count;
-                    c.IsPrimaryKey = reader.GetBoolean(2);
-                    c.DbType = this.CreateDbType(reader[3]);
-                    if (reader[4] != DBNull.Value) c.Length = AppEnvironment.Settings.TypeConverter.ToInt32(reader[4]);
-                    if (reader[5] != DBNull.Value) c.Precision = AppEnvironment.Settings.TypeConverter.ToInt32(reader[5]);
-                    if (reader[6] != DBNull.Value) c.Scale = AppEnvironment.Settings.TypeConverter.ToInt32(reader[6]);
-                    c.AllowNull = reader.GetBoolean(7);
-                    c.IsIdentity = reader.GetBoolean(8);
-                    c.IsRowGuidCol = reader.GetBoolean(9);
-                    c.UdtTypeName = reader.GetString(10);//UdtTypeName
-                    if (reader[11] != DBNull.Value) c.EnumValues = reader.GetString(11);
+                    c.IsPrimaryKey = false;
+                    c.DbType = this.CreateDbType(reader[2]);
+                    if (reader[3] != DBNull.Value) c.Length = AppEnvironment.Settings.TypeConverter.ToInt32(reader[4]);
+                    if (reader[4] != DBNull.Value) c.Precision = AppEnvironment.Settings.TypeConverter.ToInt32(reader[5]);
+                    if (reader[5] != DBNull.Value) c.Scale = AppEnvironment.Settings.TypeConverter.ToInt32(reader[6]);
+                    c.AllowNull = reader.GetBoolean(6);
+                    c.IsIdentity = reader.GetBoolean(7);
+                    c.IsRowGuidCol = reader.GetBoolean(8);
+                    c.UdtTypeName = reader.GetString(9);//UdtTypeName
+                    if (reader[10] != DBNull.Value) c.EnumValues = reader.GetString(10);
 
                     l.Add(c);
                 }
+                db.Close();
+            }
+            using (Database db = this.CreateDatabase())
+            {
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetPrimaryKey(tableName));
+
+                while (await reader.ReadAsync())
+                {
+                    var columnName = reader.GetString(2);
+                    var c = l.Find(el => el.Name == columnName);
+                    c.IsPrimaryKey = true;
+                    c.Clustered = reader.GetString(3);
+                }
+                db.Close();
             }
             return l;
         }
 
-        public virtual List<DatabaseObject> GetViews()
+        public virtual async Task<List<DatabaseObject>> GetViewsAsync()
         {
             var l = new List<DatabaseObject>();
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetViews());
-                while (reader.Read())
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetViews());
+                while (await reader.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.View);
                     o.Name = reader.GetString(0);
@@ -206,16 +259,17 @@ namespace HigLabo.DbSharp.MetaData
                     o.Body = reader.GetString(3);
                     l.Add(o);
                 }
+                db.Close();
             }
             return l;
         }
-        public virtual List<DatabaseObject> GetStoredProcedures()
+        public virtual async Task<List<DatabaseObject>> GetStoredProceduresAsync()
         {
             var l = new List<DatabaseObject>();
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetStoredProcedures());
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredProcedures());
                 while (reader.Read())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.StoredProcedure);
@@ -225,42 +279,44 @@ namespace HigLabo.DbSharp.MetaData
                     o.LastAlteredTime = reader.GetDateTime(3);
                     l.Add(o);
                 }
+                db.Close();
             }
             return l;
         }
-        public virtual Boolean ExistStoredProcedure(String name)
+        public virtual async Task<Boolean> ExistStoredProcedure(String name)
         {
             var q = this.QueryBuilder;
             using (var db = this.CreateDatabase())
             {
-                var dr = db.ExecuteReader(q.GetStoredProcedure(name));
-                while (dr.Read())
+                var dr = await db.ExecuteReaderAsync(q.GetStoredProcedure(name));
+                while (await dr.ReadAsync())
                 {
                     return true;
                 }
+                db.Close();
             }
             return false;
         }
-        public virtual StoredProcedure GetStoredProcedure(String name)
+        public virtual async Task<StoredProcedure> GetStoredProcedureAsync(String name)
         {
             var sp = new StoredProcedure(this.DatabaseServer, name);
             
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetStoredProcedure(name));
-                if (reader.Read() == false) throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name));
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredProcedure(name));
+                if (await reader.ReadAsync() == false) throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name));
                 sp.Name = reader.GetString(0);
                 if (reader[1] == DBNull.Value) sp.Body = reader.GetString(1).TrimStart();
                 sp.CreateTime = reader.GetDateTime(2);
                 sp.LastAlteredTime = reader.GetDateTime(3);
             }
-            foreach (var parameter in this.GetParameters(name))
+            foreach (var parameter in await this.GetParametersAsync(name))
             {
                 sp.Parameters.Add(parameter);
             }
             return sp;
         }
-        public virtual List<SqlInputParameter> GetParameters(String storedProcedureName)
+        public virtual async Task<List<SqlInputParameter>> GetParametersAsync(String storedProcedureName)
         {
             var l = new List<SqlInputParameter>();
             SqlInputParameter p = null;
@@ -275,9 +331,9 @@ namespace HigLabo.DbSharp.MetaData
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetParameters(storedProcedureName));
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetParameters(storedProcedureName));
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     p = new SqlInputParameter();
                     p.Name = reader.GetString(name);
@@ -305,19 +361,21 @@ namespace HigLabo.DbSharp.MetaData
                     }
                     l.Add(p);
                 }
+
+                db.Close();
             }
             return l;
         }
-        public abstract void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values);
+        public abstract Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values);
 
-        public virtual List<DatabaseObject> GetStoredFunctions()
+        public virtual async Task<List<DatabaseObject>> GetStoredFunctionsAsync()
         {
             var l = new List<DatabaseObject>();
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetStoredFunctions());
-                while (reader.Read())
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredFunctions());
+                while (await reader.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.StoredFunction);
                     o.Name = reader.GetString(0);
@@ -330,17 +388,17 @@ namespace HigLabo.DbSharp.MetaData
             return l;
         }
 
-        public virtual List<DatabaseObject> GetUserDefinedTableTypes()
+        public virtual async Task<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
         {
-            throw new NotSupportedException();
+            return await Task.FromResult(new List<DatabaseObject>());
         }
-        public virtual UserDefinedTableType GetUserDefinedTableType(string name)
+        public virtual async Task<UserDefinedTableType> GetUserDefinedTableTypeAsync(string name)
         {
-            throw new NotSupportedException();
+            return await Task.FromResult(new UserDefinedTableType());
         }
-        public virtual List<DataType> GetUserDefinedTableTypeColumns(string name)
+        public virtual async Task<List<DataType>> GetUserDefinedTableTypeColumnsAsync(string name)
         {
-            throw new NotSupportedException();
+            return await Task.FromResult(new List<DataType>());
         }
         protected abstract MetaData.DbType CreateDbType(Object value);
 

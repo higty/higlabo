@@ -17,7 +17,7 @@ namespace HigLabo.DbSharp.Service
         {
             this.Names = new List<string>();
         }
-        protected override void Execute()
+        protected override async Task ExecuteAsync()
         {
             var db = this.DatabaseSchemaReader.CreateDatabase();
             try
@@ -27,7 +27,7 @@ namespace HigLabo.DbSharp.Service
                     this.OnProcessProgress(new ProcessProgressEventArgs("Disable ForeignKey...", 0));
                     db.ExecuteCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
                 }
-                this.Import();
+                await this.Import();
             }
             finally
             {
@@ -40,7 +40,7 @@ namespace HigLabo.DbSharp.Service
             }
 
         }
-        private void Import()
+        private async Task Import()
         {
             var r = this.DatabaseSchemaReader;
             var names = this.Names;
@@ -51,12 +51,12 @@ namespace HigLabo.DbSharp.Service
             {
                 var name = names[i];
                 var spExisted = this.SchemaData.StoredProcedures.FirstOrDefault(el => el.Name == name);
-                var sp = r.GetStoredProcedure(name);
+                var sp = await r.GetStoredProcedureAsync(name);
                 var d = new Dictionary<String, Object>();
 
                 if (spExisted == null)
                 {
-                    r.SetResultSetsList(sp, d);
+                    await r.SetResultSetsListAsync(sp, d);
                     ss.Add(sp);
                 }
                 else
@@ -65,7 +65,7 @@ namespace HigLabo.DbSharp.Service
                         spExisted.StoredProcedureType == StoredProcedureType.SelectAll ||
                         spExisted.StoredProcedureType == StoredProcedureType.SelectByPrimaryKey)
                     {
-                        r.SetResultSetsList(sp, d);
+                        await r.SetResultSetsListAsync(sp, d);
                     }
                     sp.TableName = spExisted.TableName;
                     sp.StoredProcedureType = spExisted.StoredProcedureType;

@@ -34,7 +34,7 @@ namespace HigLabo.DbSharp.MetaData
             return new OracleDatabase(this.ConnectionString);
         }
 
-        public override void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values)
+        public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
         {
             List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
             StoredProcedureResultSetColumn resultSets = null;
@@ -50,7 +50,7 @@ namespace HigLabo.DbSharp.MetaData
                     db.Open();
                     db.BeginTransaction(IsolationLevel.ReadCommitted);
 
-                    using (IDataReader r = db.ExecuteReader(cm))
+                    using (IDataReader r = await db.ExecuteReaderAsync(cm))
                     {
                         var schemaDataTable = r.GetSchemaTable();
                         if (schemaDataTable == null) return;
@@ -290,6 +290,10 @@ And TABLE_NAME = '{0}'
                 return String.Format(q, tableName);
             }
             public override String GetPrimaryKey(String tableName)
+            {
+                throw new NotImplementedException();
+            }
+            public override String GetIndex(String tableName)
             {
                 throw new NotImplementedException();
             }

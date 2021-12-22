@@ -17,7 +17,7 @@ namespace HigLabo.DbSharp.Service
         {
             this.Names = new List<string>();
         }
-        protected override void Execute()
+        protected override async Task ExecuteAsync()
         {
             DatabaseSchemaReader r = this.DatabaseSchemaReader;
             var names = this.Names;
@@ -28,7 +28,7 @@ namespace HigLabo.DbSharp.Service
             for (int i = 0; i < totalCount; i++)
             {
                 var name = names[i];
-                var t = r.GetTable(name);
+                var t = await r.GetTableAsync(name);
 
                 var tExisted = this.SchemaData.Tables.FirstOrDefault(el => el.Name == t.Name);
                 if (tExisted == null)
@@ -47,7 +47,7 @@ namespace HigLabo.DbSharp.Service
                     tt.Add(t);
                 }
                 //CRUD用のストアドをDBに追加
-                ss.AddRange(this.AddStoredProcedure(t));
+                ss.AddRange(await this.AddStoredProcedureAsync(t));
                 this.OnProcessProgress(new ProcessProgressEventArgs(t.Name, i / totalCount));
             }
             //スキーマファイルに追加
@@ -55,10 +55,10 @@ namespace HigLabo.DbSharp.Service
             this.AddOrReplace(this.SchemaData.StoredProcedures, ss, (item, element) => item.Name == element.Name);
             this.SchemaData.LastExecuteTimeOfImportTable = DateTime.Now;
         }
-        public List<MetaData.StoredProcedure> AddStoredProcedure(Table table)
+        public async Task<List<MetaData.StoredProcedure>> AddStoredProcedureAsync(Table table)
         {
             var f = CreateTableStoredProcedureFactory(this.DatabaseSchemaReader);
-            return f.CreateTableStoredProcedures(table);
+            return await f.CreateTableStoredProceduresAsync(table);
         }
     }
 }

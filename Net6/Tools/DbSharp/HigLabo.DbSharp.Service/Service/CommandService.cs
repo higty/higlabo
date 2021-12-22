@@ -25,12 +25,12 @@ namespace HigLabo.DbSharp.Service
 
         public void Start()
         {
-            _Thread = new Thread(this.Execute);
+            _Thread = new Thread(async () => await this.ExecuteAsync());
             _Thread.IsBackground = true;
             _Thread.Name = "CommandService";
             _Thread.Start();
         }
-        private void Execute()
+        private async Task ExecuteAsync()
         {
             var cx = new CommandServiceContext(this);
 
@@ -50,7 +50,7 @@ namespace HigLabo.DbSharp.Service
                     var progressed = d * i;
                     cm.ProcessProgress += (o, e) => this.OnProcessProgress(new ProcessProgressEventArgs(e.Message, progressed + e.Progress / count));
                     cm.Completed += (o, e) => this.OnCommandCompleted(new CommandCompletedEventArgs(o as DbSharpCommand));
-                    cm.Execute(cx);
+                    await cm.ExecuteAsync(cx);
                     cx.PreviousCommand = cm;
                 }
             }

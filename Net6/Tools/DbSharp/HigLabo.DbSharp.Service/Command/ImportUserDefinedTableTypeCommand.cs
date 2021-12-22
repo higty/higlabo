@@ -16,7 +16,7 @@ namespace HigLabo.DbSharp.Service
         {
             this.Names = new List<string>();
         }
-        protected override void Execute()
+        protected override async Task ExecuteAsync()
         {
             var r = this.DatabaseSchemaReader;
             if (r.SupportUserDefinedTableType == false) { return; }
@@ -28,7 +28,7 @@ namespace HigLabo.DbSharp.Service
             for (int i = 0; i < totalCount; i++)
             {
                 var name = names[i];
-                var st = r.GetUserDefinedTableType(name);
+                var st = await r.GetUserDefinedTableTypeAsync(name);
 
                 var stExisted = this.SchemaData.UserDefinedTableTypes.FirstOrDefault(el => el.Name == st.Name);
                 if (stExisted == null)

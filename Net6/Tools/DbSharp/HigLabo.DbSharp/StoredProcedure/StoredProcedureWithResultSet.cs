@@ -58,7 +58,8 @@ namespace HigLabo.DbSharp
         }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(Database database, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
-            return await this.GetFirstResultSetAsync(database, commandBehavior, cancellationToken);
+            var results = await this.GetResultSetsAsync(database, commandBehavior, cancellationToken);
+            return results.FirstOrDefault();
         }
         public async Task<StoredProcedureResultSet> GetFirstResultSetAsync(IEnumerable<Database> databases)
         {

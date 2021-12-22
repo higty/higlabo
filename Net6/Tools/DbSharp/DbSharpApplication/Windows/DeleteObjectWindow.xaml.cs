@@ -48,7 +48,7 @@ namespace HigLabo.DbSharpApplication
             var ci = this.ConnectionStringComboBox.SelectedValue as ConnectionStringInfo;
             return ci.ConnectionString;
         }
-        private void ConnectButton_Click(object sender, RoutedEventArgs e)
+        private async void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.ConnectionStringComboBox.SelectedIndex == -1)
             {
@@ -62,9 +62,9 @@ namespace HigLabo.DbSharpApplication
                 return;
             }
             
-            this.ImportTable();
-            this.ImportStoredProcedure();
-            this.ImportUserDefinedTableType();
+            await this.ImportTable();
+            await this.ImportStoredProcedure();
+            await this.ImportUserDefinedTableType();
 
             if (this.TableListBox.Items.Count == 0 &&
                 this.StoredProcedureListBox.Items.Count == 0 &&
@@ -76,10 +76,10 @@ namespace HigLabo.DbSharpApplication
             AValue.ConfigData.MoveConnectionStringToFirst(ci);
             this.ConnectionStringComboBox.SelectedItem = AValue.ConfigData.ConnectionStrings[0];
         }
-        private void ImportTable()
+        private async Task ImportTable()
         {
             DatabaseSchemaReader db = ImportSchemaCommand.CreateDatabaseSchemaReader(AValue.SchemaData.DatabaseServer, this.GetSelectedConnectionString());
-            var l = db.GetTables().ToList();
+            var l = (await db.GetTablesAsync()).ToList();
 
             _Tables.Clear();
             foreach (var item in AValue.SchemaData.Tables.Where(el => l.Exists(t => t.Name == el.Name) == false).Select(el => CheckedItem.Create(el)))
@@ -88,10 +88,10 @@ namespace HigLabo.DbSharpApplication
             }
             this.TableSelectAllCheckBox.IsChecked = true;
         }
-        private void ImportStoredProcedure()
+        private async Task ImportStoredProcedure()
         {
             DatabaseSchemaReader db = ImportSchemaCommand.CreateDatabaseSchemaReader(AValue.SchemaData.DatabaseServer, this.GetSelectedConnectionString());
-            var l = db.GetStoredProcedures().ToList();
+            var l = (await db.GetStoredProceduresAsync()).ToList();
 
             _StoredProcedures.Clear();
             foreach (var item in AValue.SchemaData.StoredProcedures.Where(el => l.Exists(sp => sp.Name == el.Name) == false).Select(el => CheckedItem.Create(el)))
@@ -100,10 +100,10 @@ namespace HigLabo.DbSharpApplication
             }
             this.StoredProcedureSelectAllCheckBox.IsChecked = true;
         }
-        private void ImportUserDefinedTableType()
+        private async Task ImportUserDefinedTableType()
         {
             var db = ImportSchemaCommand.CreateDatabaseSchemaReader(AValue.SchemaData.DatabaseServer, this.GetSelectedConnectionString());
-            var l = db.GetUserDefinedTableTypes().ToList();
+            var l = (await db.GetUserDefinedTableTypesAsync()).ToList();
 
             _UserDefinedTableTypes.Clear();
             foreach (var item in AValue.SchemaData.UserDefinedTableTypes.Where(el => l.Exists(sp => sp.Name == el.Name) == false).Select(el => CheckedItem.Create(el)))

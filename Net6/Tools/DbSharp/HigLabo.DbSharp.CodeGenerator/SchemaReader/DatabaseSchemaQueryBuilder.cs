@@ -13,6 +13,7 @@ namespace HigLabo.DbSharp.MetaData
         public abstract String GetTable(String name);
         public abstract String GetColumns(String tableName);
         public abstract String GetPrimaryKey(String tableName);
+        public abstract String GetIndex(String tableName);
         public abstract String GetForeignKeys(String tableName);
         public abstract String GetCheckConstraints(String tableName);
         public abstract String GetDefaultConstraints(String tableName);

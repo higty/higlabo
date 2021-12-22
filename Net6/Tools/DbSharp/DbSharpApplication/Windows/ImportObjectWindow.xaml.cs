@@ -64,7 +64,7 @@ namespace HigLabo.DbSharpApplication
                 this.ForeignKeyCheckBox.IsChecked = true;
             }
         }
-        private void ConnectButton_Click(object sender, RoutedEventArgs e)
+        private async void ConnectButton_Click(object sender, RoutedEventArgs e)
         {
             if (this.ConnectionStringComboBox.SelectedIndex == -1)
             {
@@ -75,10 +75,10 @@ namespace HigLabo.DbSharpApplication
             var offsetHour = ci.TimeZone;
             if (AValue.ConfigData.UseTableFeature)
             {
-                this.ImportTable(ci.ConnectionString, offsetHour);
+                await this.ImportTable(ci.ConnectionString, offsetHour);
             }
-            this.ImportStoredProcedure(ci.ConnectionString, offsetHour);
-            this.ImportUserDefinedTableType(ci.ConnectionString, offsetHour);
+            await this.ImportStoredProcedure(ci.ConnectionString, offsetHour);
+            await this.ImportUserDefinedTableType(ci.ConnectionString, offsetHour);
 
             if (this.TableListBox.Items.Count == 0 &&
                 this.StoredProcedureListBox.Items.Count == 0 &&
@@ -94,12 +94,12 @@ namespace HigLabo.DbSharpApplication
         {
             return this.ConnectionStringComboBox.SelectedValue as ConnectionStringInfo;
         }
-        private void ImportTable(String connectionString, Int32 offsetHour)
+        private async Task ImportTable(String connectionString, Int32 offsetHour)
         {
             var l = new List<DatabaseObject>();
             var db = ImportSchemaCommand.CreateDatabaseSchemaReader(AValue.SchemaData.DatabaseServer, connectionString);
 
-            foreach (var item in db.GetTables())
+            foreach (var item in await db.GetTablesAsync())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
                     item.LastAlteredTime + TimeSpan.FromHours(offsetHour) < AValue.SchemaData.LastExecuteTimeOfImportTable)
@@ -117,12 +117,12 @@ namespace HigLabo.DbSharpApplication
                 _Tables.Add(item);
             }
         }
-        private void ImportStoredProcedure(String connectionString, Int32 offsetHour)
+        private async Task ImportStoredProcedure(String connectionString, Int32 offsetHour)
         {
             var l = new List<DatabaseObject>();
             var db = ImportSchemaCommand.CreateDatabaseSchemaReader(AValue.SchemaData.DatabaseServer, connectionString);
             
-            foreach (var item in db.GetStoredProcedures())
+            foreach (var item in await db.GetStoredProceduresAsync())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
                     item.LastAlteredTime + TimeSpan.FromHours(offsetHour) < AValue.SchemaData.LastExecuteTimeOfImportStoredProcedure)
@@ -140,14 +140,14 @@ namespace HigLabo.DbSharpApplication
                 _StoredProcedures.Add(item);
             }
         }
-        private void ImportUserDefinedTableType(String connectionString, Int32 offsetHour)
+        private async Task ImportUserDefinedTableType(String connectionString, Int32 offsetHour)
         {
             var l = new List<DatabaseObject>();
             var db = ImportSchemaCommand.CreateDatabaseSchemaReader(AValue.SchemaData.DatabaseServer, connectionString);
 
             if (db.SupportUserDefinedTableType == false) { return; }
 
-            foreach (var item in db.GetUserDefinedTableTypes())
+            foreach (var item in await db.GetUserDefinedTableTypesAsync())
             {
                 if (this.ImportAllCheckBox.IsChecked == false &&
                     item.LastAlteredTime + TimeSpan.FromHours(offsetHour) < AValue.SchemaData.LastExecuteTimeOfImportUserDefinedTableType)

@@ -14,6 +14,7 @@ namespace HigLabo.DbSharp.MetaData
             get { return base.ObjectType; }
         }
         public List<Column> Columns { get; private set; } = new List<Column>();
+        public List<Index> IndexList { get; private set; } = new List<Index>();
         public List<CheckConstraint> CheckConstraintList { get; private set; } = new List<CheckConstraint>();
 
         public Table()

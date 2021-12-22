@@ -26,7 +26,7 @@ namespace HigLabo.DbSharp.Service
             this.UserDefinedTableTypes = new List<string>();
         }
 
-        protected override void Execute()
+        protected override Task ExecuteAsync()
         {
             var totalCount = this.TableNames.Count + this.StoredProcedures.Count + this.UserDefinedTableTypes.Count;
             Int32 removed = 0;
@@ -71,6 +71,7 @@ namespace HigLabo.DbSharp.Service
                     removed++;
                 }
             }
+            return Task.FromResult(0);
         }
         private void DeleteFile(String objectTypeName, String fileName)
         {

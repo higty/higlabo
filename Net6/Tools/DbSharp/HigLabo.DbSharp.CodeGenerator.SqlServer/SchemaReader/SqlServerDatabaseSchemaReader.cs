@@ -36,7 +36,7 @@ namespace HigLabo.DbSharp.MetaData
             return new SqlServerDatabase(this.ConnectionString);
         }
 
-        public override void SetResultSetsList(StoredProcedure sp, Dictionary<String, Object> values)
+        public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
         {
             List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
             StoredProcedureResultSetColumn resultSets = null;
@@ -48,7 +48,7 @@ namespace HigLabo.DbSharp.MetaData
             foreach (var item in sp.Parameters.Where(el => el.DbType.SqlServerDbType == SqlServer2012DbType.Structured))
             {
                 var dt = cm.Parameters[item.Name].Value as DataTable;
-                var udt = this.GetUserDefinedTableType(item.UserTableTypeName);
+                var udt = await this.GetUserDefinedTableTypeAsync(item.UserTableTypeName);
                 foreach (var column in udt.Columns)
                 {
                     dt.Columns.Add(new DataColumn(column.Name, column.GetClassNameType().ToType()));
@@ -166,15 +166,15 @@ namespace HigLabo.DbSharp.MetaData
                 sp.ResultSets.Add(item);
             }
         }
-        public override List<DatabaseObject> GetUserDefinedTableTypes()
+        public override async Task<List<DatabaseObject>> GetUserDefinedTableTypesAsync()
         {
             var l = new List<DatabaseObject>();
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetUserDefinedTypes());
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypes());
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.UserDefinedTableType);
                     o.Name = reader.GetString(0);
@@ -185,25 +185,25 @@ namespace HigLabo.DbSharp.MetaData
             }
             return l;
         }
-        public override UserDefinedTableType GetUserDefinedTableType(String name)
+        public override async Task<UserDefinedTableType> GetUserDefinedTableTypeAsync(String name)
         {
             UserDefinedTableType st = new UserDefinedTableType(name);
-            foreach (var column in this.GetUserDefinedTableTypeColumns(name))
+            foreach (var column in await this.GetUserDefinedTableTypeColumnsAsync(name))
             {
                 st.Columns.Add(column);
             }
             return st;
         }
-        public override List<DataType> GetUserDefinedTableTypeColumns(String name)
+        public override async Task<List<DataType>> GetUserDefinedTableTypeColumnsAsync(String name)
         {
             List<DataType> l = new List<DataType>();
             DataType c = null;
 
             using (Database db = this.CreateDatabase())
             {
-                var reader = db.ExecuteReader(this.QueryBuilder.GetUserDefinedTypeColumns(name));
+                var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypeColumns(name));
 
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     c = new DataType();
                     c.Name = reader.GetString(0);
@@ -364,6 +364,7 @@ namespace HigLabo.DbSharp.MetaData
                 sb.AppendLine();
             }
             sb.AppendLine();
+
             {
                 var cc = t.GetPrimaryKeyColumns().ToList();
                 if (cc.Count > 0)
@@ -380,12 +381,6 @@ namespace HigLabo.DbSharp.MetaData
                     sb.AppendLine(")");
                 }
             }
-            foreach (var cc in t.CheckConstraintList)
-            {
-                sb.AppendFormat(",Constraint {0} Check({1})"
-                    , cc.Name, cc.Definition);
-                sb.AppendLine();
-            }
             foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
             {
                 sb.AppendFormat(",Constraint {0}_Fk_{1} Foreign Key({1}) References {2}({3}) On Update {4} On Delete {5}"
@@ -394,6 +389,26 @@ namespace HigLabo.DbSharp.MetaData
                     , c.ForeignKey.OnDelete.Replace("_", " "));
                 sb.AppendLine();
             }
+            foreach (var cc in t.CheckConstraintList)
+            {
+                sb.AppendFormat(",Constraint {0} Check({1})", cc.Name, cc.Definition);
+                sb.AppendLine();
+            }
+            foreach (var ix in t.IndexList)
+            {
+                //Pass PrimaryKey
+                if (ix.IsUnique == true) { continue; }
+                //Index only
+                if (String.Equals(ix.IndexType, "Clustered", StringComparison.OrdinalIgnoreCase) == false &&
+                    String.Equals(ix.IndexType, "NonClustered", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+
+                sb.AppendFormat(",Index {0} {1} ({2})"
+                    , ix.Name
+                    , ix.IndexType
+                    , String.Join(',', ix.Columns.Select(el => el.Name)));
+                sb.AppendLine();
+            }
+
             sb.AppendLine(")");
 
             return sb.ToString();
@@ -406,7 +421,7 @@ namespace HigLabo.DbSharp.MetaData
                 return
     @"
 SELECT name AS DATABASE_NAME
-FROM sys.databases
+FROM sys.databases with(nolock) 
 WHERE database_id > 4
 ORDER BY name ASC
 ";
@@ -414,7 +429,7 @@ ORDER BY name ASC
             public override String GetTables()
             {
                 return @"
-SELECT name,create_date,modify_date FROM sys.tables 
+SELECT name,create_date,modify_date FROM sys.tables with(nolock) 
 where name != N'sysdiagrams'
 and name != N'sp_renamediagram'
 and name != N'sp_upgraddiagrams'
@@ -424,7 +439,7 @@ ORDER BY name
             public override String GetTable(String name)
             {
                 var q = @"
-SELECT name,create_date,modify_date FROM sys.tables WHERE name = N'{0}'
+SELECT name,create_date,modify_date FROM sys.tables with(nolock) WHERE name = N'{0}'
 ";
                 return String.Format(q, name);
             }
@@ -433,10 +448,6 @@ SELECT name,create_date,modify_date FROM sys.tables WHERE name = N'{0}'
                 var q = @"
 SELECT T1.TABLE_NAME AS TableName
 ,T1.COLUMN_NAME AS ColumnName
-,CASE T3.COLUMN_NAME 
-    When T1.COLUMN_NAME Then convert(bit, 1) 
-    Else convert(bit, 0) 
-End As IsPrimaryKey
 ,CASE T6.is_table_type 
 	When 1 Then N'structured' 
 	Else
@@ -463,19 +474,10 @@ End As IsPrimaryKey
 	End
 End as UdtTypeName
 ,N'' as EnumValues
-FROM INFORMATION_SCHEMA.COLUMNS AS T1
-LEFT JOIN (
-	SELECT T2.CONSTRAINT_NAME
-	, T2.TABLE_NAME
-	, T2.COLUMN_NAME
-	FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS T2
-	LEFT JOIN sys.key_constraints AS S01
-	ON T2.CONSTRAINT_NAME = S01.name
-	WHERE S01.type = N'PK'
-) AS T3 ON T1.TABLE_NAME = T3.TABLE_NAME AND T1.COLUMN_NAME = T3.COLUMN_NAME
-Inner Join sys.tables as T4 ON T1.TABLE_NAME = T4.name 
-Inner Join sys.columns as T5 ON T4.object_id = T5.object_id AND T1.COLUMN_NAME = T5.name 
-Inner Join sys.types as T6 ON T5.user_type_id = T6.user_type_id
+FROM INFORMATION_SCHEMA.COLUMNS AS T1 with(nolock) 
+Inner Join sys.tables as T4  with(nolock) ON T1.TABLE_NAME = T4.name 
+Inner Join sys.columns as T5  with(nolock) ON T4.object_id = T5.object_id AND T1.COLUMN_NAME = T5.name 
+Inner Join sys.types as T6 with(nolock) ON T5.user_type_id = T6.user_type_id
 WHERE T1.TABLE_NAME = N'{0}'
 ORDER BY T1.ORDINAL_POSITION
 ";
@@ -485,13 +487,43 @@ ORDER BY T1.ORDINAL_POSITION
             {
                 var q = @"
 select T6.name as Name, T1.name as TableName, T2.name as ColumnName,T4.type_desc
-from sys.tables as T1
-inner join sys.columns as T2 on T1.object_id = T2.object_id 
-inner join sys.index_columns as T3 on T1.object_id = T3.object_id and T2.column_id = T3.column_id 
-inner join sys.indexes as T4 on T1.object_id = T4.object_id and  T3.index_id = T4.index_id 
-inner join INFORMATION_SCHEMA.KEY_COLUMN_USAGE as T5 on T1.name = T5.table_name and T2.name = T5.column_name
-inner join sys.key_constraints as T6 on T5.constraint_name = T6.name and T6.type = N'PK'
+from sys.tables as T1 with(nolock)
+inner join sys.columns as T2 with(nolock) on T1.object_id = T2.object_id 
+inner join sys.index_columns as T3 with(nolock) on T1.object_id = T3.object_id and T2.column_id = T3.column_id 
+inner join sys.indexes as T4 with(nolock) on T1.object_id = T4.object_id and  T3.index_id = T4.index_id 
+inner join INFORMATION_SCHEMA.KEY_COLUMN_USAGE as T5 with(nolock) on T1.name = T5.table_name and T2.name = T5.column_name
+inner join sys.key_constraints as T6 with(nolock) on T5.constraint_name = T6.name and T6.type = N'PK'
 where T1.name = N'{0}'
+";
+                return String.Format(q, tableName);
+            }
+            public override String GetIndex(String tableName)
+            {
+                var q = @"
+select T2.[name] as IndexName
+,T1.[name] as TableName
+,T4.[name] as ColumnName
+,case 
+when T2.[type] = 1 then N'Clustered'
+when T2.[type] = 2 then N'NonClustered'
+when T2.[type] = 3 then N'XML'
+when T2.[type] = 4 then N'Spatial'
+when T2.[type] = 5 then N'Clustered ColumnStore'
+when T2.[type] = 6 then N'NonClustered ColumnStore'
+when T2.[type] = 7 then N'NonClustered hash'
+end as IndexType
+,T2.is_unique as IsUnique
+,case when T1.[type] = N'U' then N'Table'
+when T1.[type] = N'V' then N'View'
+end as [object_type]
+from sys.objects as T1 with(nolock)
+inner join sys.indexes as T2 with(nolock) on T1.object_id = T2.object_id
+inner join sys.index_columns as T3 with(nolock) on T2.object_id = T3.object_id and T2.index_id = T3.index_id
+inner join sys.columns as T4 with(nolock) on T3.object_id = T4.object_id and T3.column_id = T4.column_id
+where T1.is_ms_shipped <> 1
+and T2.index_id > 0
+and T1.[name] = N'{0}'
+order by T2.[name]
 ";
                 return String.Format(q, tableName);
             }
@@ -502,9 +534,9 @@ SELECT T1.name
 ,T2.name as TableName
 ,T3.name as ColumnName
 ,object_definition(OBJECT_ID(T1.name)) as Definition
-FROM sys.default_constraints as T1
-inner join sys.tables as T2 on T1.parent_object_id = T2.object_id
-inner join sys.columns as T3 on T2.object_id = T3.object_id and T1.parent_column_id = T3.column_id
+FROM sys.default_constraints as T1 with(nolock)
+inner join sys.tables as T2 with(nolock) on T1.parent_object_id = T2.object_id
+inner join sys.columns as T3 with(nolock) on T2.object_id = T3.object_id and T1.parent_column_id = T3.column_id
 where T2.name = N'{0}'
 ";
                 return String.Format(q, tableName);
@@ -514,12 +546,12 @@ where T2.name = N'{0}'
                 var q = @"
 select T0.name,T2.name as TableName,T3.name as ColumnName,T4.name as ParentTableName,T5.name as ParentColumnName
 , update_referential_action_desc,delete_referential_action_desc
-from sys.foreign_keys as T0
-inner join sys.foreign_key_columns as T1 on T0.object_id = T1.constraint_object_id
-inner join sys.tables as T2 on T1.parent_object_id = T2.object_id 
-inner join sys.columns as T3 on T1.parent_object_id = T3.object_id and T1.parent_column_id = T3.column_id
-inner join sys.tables as T4 on T1.referenced_object_id = T4.object_id 
-inner join sys.columns as T5 on T1.referenced_object_id = T5.object_id and T1.referenced_column_id = T5.column_id
+from sys.foreign_keys as T0 with(nolock)
+inner join sys.foreign_key_columns as T1 with(nolock) on T0.object_id = T1.constraint_object_id
+inner join sys.tables as T2 with(nolock) on T1.parent_object_id = T2.object_id 
+inner join sys.columns as T3 with(nolock) on T1.parent_object_id = T3.object_id and T1.parent_column_id = T3.column_id
+inner join sys.tables as T4 with(nolock) on T1.referenced_object_id = T4.object_id 
+inner join sys.columns as T5 with(nolock) on T1.referenced_object_id = T5.object_id and T1.referenced_column_id = T5.column_id
 where T2.name = N'{0}'
 ";
                 return String.Format(q, tableName);
@@ -530,7 +562,7 @@ where T2.name = N'{0}'
 SELECT constraint_name as Name
 ,table_name as TableName
 ,object_definition(OBJECT_ID(CONSTRAINT_NAME)) as Definition
-FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS
+FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS with(nolock)
 where table_name = N'{0}'
 and CONSTRAINT_TYPE = N'CHECK' 
 ";
@@ -540,8 +572,8 @@ and CONSTRAINT_TYPE = N'CHECK'
             {
                 return @"
 select name,create_date,modify_date,definition
-from sys.objects as T1
-join sys.sql_modules T2 on T1.object_id = T2.object_id
+from sys.objects as T1 with(nolock)
+join sys.sql_modules T2 with(nolock) on T1.object_id = T2.object_id
 where T1.type = N'V' and is_ms_shipped = 0
 order by T1.name
 ";
@@ -550,14 +582,10 @@ order by T1.name
             {
                 var q = @"
 Select T02.name As Name 
-From sys.columns AS T01
-Inner Join sys.table_types AS T02
-ON T01.object_id = T02.type_table_object_id
-Inner Join sys.types AS T03
-ON T01.system_type_id = T03.system_type_id 
-and T01.user_type_id = T03.user_type_id 
-Inner Join sys.types as T06 
-ON T03.user_type_id = T06.user_type_id
+From sys.columns AS T01 with(nolock)
+Inner Join sys.table_types AS T02 with(nolock) ON T01.object_id = T02.type_table_object_id
+Inner Join sys.types AS T03 with(nolock) ON T01.system_type_id = T03.system_type_id and T01.user_type_id = T03.user_type_id 
+Inner Join sys.types AS T06 with(nolock) ON T03.user_type_id = T06.user_type_id
 Where T03.name != N'sysname'
 group by T02.name
 order by T02.name
@@ -595,10 +623,10 @@ Select T01.name AS ColumnName
 		Else N'' 
 	End
 End as UdtTypeName
-From sys.columns AS T01
-Inner Join sys.table_types AS T02 ON T01.object_id = T02.type_table_object_id
-Inner Join sys.types AS T03 ON T01.system_type_id = T03.system_type_id and T01.user_type_id = T03.user_type_id 
-Inner Join sys.types as T06 ON T03.user_type_id = T06.user_type_id
+From sys.columns AS T01 with(nolock)
+Inner Join sys.table_types AS T02 with(nolock) ON T01.object_id = T02.type_table_object_id
+Inner Join sys.types AS T03 with(nolock) ON T01.system_type_id = T03.system_type_id and T01.user_type_id = T03.user_type_id 
+Inner Join sys.types AS T06 with(nolock) ON T03.user_type_id = T06.user_type_id
 Where T02.name = N'{0}' 
 And T03.name != N'sysname'
 order by column_id 
@@ -609,9 +637,8 @@ order by column_id
             {
                 return @"
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
-FROM INFORMATION_SCHEMA.ROUTINES as T1
-join sys.sql_modules as T2 
-on OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
+FROM INFORMATION_SCHEMA.ROUTINES as T1 with(nolock)
+join sys.sql_modules AS T2 ON OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
 WHERE ROUTINE_TYPE = N'PROCEDURE'
 ORDER BY SPECIFIC_NAME
 ";
@@ -620,9 +647,8 @@ ORDER BY SPECIFIC_NAME
             {
                 var q = @"
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
-FROM INFORMATION_SCHEMA.ROUTINES as T1
-join sys.sql_modules as T2 
-on OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
+FROM INFORMATION_SCHEMA.ROUTINES as T1 with(nolock)
+JOIN sys.sql_modules AS T2 with(nolock) ON OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
 WHERE ROUTINE_TYPE = N'PROCEDURE'
 AND SPECIFIC_NAME = N'{0}'
 ORDER BY SPECIFIC_NAME
@@ -659,14 +685,10 @@ End as IsOutput
 When 1 Then T04.name
 Else N'' 
 End as UdtTypeName 
-FROM INFORMATION_SCHEMA.PARAMETERS As T01 
-Inner Join sys.procedures as T02 
-ON T01.SPECIFIC_NAME = T02.name 
-Inner Join sys.parameters as T03 
-ON T02.object_id = T03.object_id 
-and T01.PARAMETER_NAME = T03.name
-Inner Join sys.types as T04 
-ON T03.user_type_id = T04.user_type_id
+FROM INFORMATION_SCHEMA.PARAMETERS As T01 with(nolock) 
+Inner Join sys.procedures as T02 with(nolock) ON T01.SPECIFIC_NAME = T02.name 
+Inner Join sys.parameters as T03 with(nolock) ON T02.object_id = T03.object_id and T01.PARAMETER_NAME = T03.name
+Inner Join sys.types as T04 with(nolock) ON T03.user_type_id = T04.user_type_id
 Where SPECIFIC_NAME = N'{0}'
 Order by Ordinal_Position
 ";
@@ -676,8 +698,8 @@ Order by Ordinal_Position
             {
                 return @"
 SELECT SPECIFIC_NAME,T2.definition,CREATED,LAST_ALTERED
-FROM INFORMATION_SCHEMA.ROUTINES as T1
-inner join sys.sql_modules as T2 on OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
+FROM INFORMATION_SCHEMA.ROUTINES AS T1 with(nolock)
+inner join sys.sql_modules as T2 with(nolock) ON OBJECT_ID(T1.SPECIFIC_NAME) = T2.object_id
 WHERE ROUTINE_TYPE = N'FUNCTION'
 and SPECIFIC_NAME != N'fn_diagramobjects'
 ORDER BY SPECIFIC_NAME

@@ -20,7 +20,7 @@ namespace HigLabo.DbSharp.Service
             this.ImportAllObject = false;
             this.DeleteExistedFiles = false;
         }
-        public void LoadCommand(String connectionString, String outputDirectoryPath, String namespaceName, String databaseKey)
+        public async Task LoadCommand(String connectionString, String outputDirectoryPath, String namespaceName, String databaseKey)
         {
             this.Commands.Clear();
 
@@ -31,9 +31,9 @@ namespace HigLabo.DbSharp.Service
 
             var db = ImportSchemaCommand.CreateDatabaseSchemaReader(sc.DatabaseServer, connectionString);
 
-            var tt = db.GetTables();
-            var ss = db.GetStoredProcedures();
-            var uu = db.GetUserDefinedTableTypes();
+            var tt = await db.GetTablesAsync();
+            var ss = await db.GetStoredProceduresAsync();
+            var uu = await db.GetUserDefinedTableTypesAsync();
 
             {
                 var cm = new ImportTableCommand(sc, connectionString);
@@ -56,11 +56,11 @@ namespace HigLabo.DbSharp.Service
 
             {
                 var cm = new DeleteObjectCommand(outputDirectoryPath, sc, connectionString);
-                cm.Started += (o, ea) =>
+                cm.Started += async (o, ea) =>
                 {
-                    var tNames = db.GetTables().Select(el => el.Name).ToList();
-                    var sNames = db.GetStoredProcedures().Select(el => el.Name).ToList();
-                    var uNames = db.GetUserDefinedTableTypes().Select(el => el.Name).ToList();
+                    var tNames = (await db.GetTablesAsync()).Select(el => el.Name).ToList();
+                    var sNames = (await db.GetStoredProceduresAsync()).Select(el => el.Name).ToList();
+                    var uNames = (await db.GetUserDefinedTableTypesAsync()).Select(el => el.Name).ToList();
                     cm.TableNames.AddRange(sc.Tables.Where(el => tNames.Contains(el.Name) == false).Select(el => el.Name));
                     cm.StoredProcedures.AddRange(sc.StoredProcedures.Where(el => sNames.Contains(el.Name) == false).Select(el => el.Name));
                     cm.UserDefinedTableTypes.AddRange(sc.UserDefinedTableTypes.Where(el => uNames.Contains(el.Name) == false).Select(el => el.Name));

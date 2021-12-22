@@ -23,14 +23,14 @@ namespace HigLabo.DbSharp.Service
         {
             this.CommandName = commandName;
         }
-        public void Execute(CommandServiceContext context)
+        public async Task ExecuteAsync(CommandServiceContext context)
         {
             this.Context = context;
             this.OnStarted();
-            this.Execute();
+            await this.ExecuteAsync();
             this.OnCompleted();
         }
-        protected abstract void Execute();
+        protected abstract Task ExecuteAsync();
 
         private void OnStarted()
         {

@@ -40,7 +40,7 @@ namespace HigLabo.DbSharp.Service
             this.UserDefinedTableTypes = new List<UserDefinedTableType>();
         }
 
-        protected override void Execute()
+        protected override Task ExecuteAsync()
         {
             String path = this.OutputDirectoryPath;
             var tablePath = Path.Combine(path, "Table");
@@ -93,6 +93,7 @@ namespace HigLabo.DbSharp.Service
                     this.OnFileGenerated(new SourceCodeFileGeneratedEventArgs(file, DateTime.Now));
                 }
             }
+            return Task.FromResult(0);
         }
         protected void OnFileGenerated(SourceCodeFileGeneratedEventArgs e)
         {
