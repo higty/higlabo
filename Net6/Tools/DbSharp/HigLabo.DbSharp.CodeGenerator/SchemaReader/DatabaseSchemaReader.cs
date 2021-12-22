@@ -270,11 +270,11 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredProcedures());
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.StoredProcedure);
                     o.Name = reader.GetString(0);
-                    if (reader[1] != DBNull.Value) o.Body = reader.GetString(1);
+                    if (reader[1] != DBNull.Value) { o.Body = reader.GetString(1); }
                     o.CreateTime = reader.GetDateTime(2);
                     o.LastAlteredTime = reader.GetDateTime(3);
                     l.Add(o);
@@ -304,9 +304,12 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredProcedure(name));
-                if (await reader.ReadAsync() == false) throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name));
+                if (await reader.ReadAsync() == false) { throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name)); }
                 sp.Name = reader.GetString(0);
-                if (reader[1] == DBNull.Value) sp.Body = reader.GetString(1).TrimStart();
+                if (reader[1] != DBNull.Value)
+                {
+                    sp.Body = reader.GetString(1).TrimStart();
+                }
                 sp.CreateTime = reader.GetDateTime(2);
                 sp.LastAlteredTime = reader.GetDateTime(3);
             }

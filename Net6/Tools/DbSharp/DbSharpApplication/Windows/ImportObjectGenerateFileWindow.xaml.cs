@@ -46,7 +46,7 @@ namespace HigLabo.DbSharpApplication
             return ci.ConnectionString;
         }
 
-        private void ExecuteButton_Click(object sender, RoutedEventArgs e)
+        private async void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
             Analytics.TrackEvent("ImportObjectGenerateFile Execute");
 
@@ -72,7 +72,7 @@ namespace HigLabo.DbSharpApplication
 
             var sv = new ImportObjectGenerateFileCommandService(AValue.SchemaData);
             sv.ImportAllObject = this.ImportAllObjectCheckBox.IsChecked == true;
-            sv.LoadCommand(ci.ConnectionString, path, this.NamespaceNameTextBox.Text, this.DatabaseKeyTextBox.Text);
+            await sv.LoadCommand(ci.ConnectionString, path, this.NamespaceNameTextBox.Text, this.DatabaseKeyTextBox.Text);
 
             AValue.ConfigData.MoveConnectionStringToFirst(ci);
             this.ConnectionStringComboBox.SelectedItem = AValue.ConfigData.ConnectionStrings[0];

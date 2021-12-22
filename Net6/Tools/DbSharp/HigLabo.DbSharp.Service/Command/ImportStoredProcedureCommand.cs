@@ -25,7 +25,10 @@ namespace HigLabo.DbSharp.Service
                 if (this.DisableForeignKey)
                 {
                     this.OnProcessProgress(new ProcessProgressEventArgs("Disable ForeignKey...", 0));
-                    db.ExecuteCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? NOCHECK CONSTRAINT all'");
+                    foreach (var item in await this.DatabaseSchemaReader.GetTablesAsync())
+                    {
+                        db.ExecuteCommand(String.Format("Alter Table {0} NoCheck Constraint All", item.Name));
+                    }
                 }
                 await this.Import();
             }
@@ -34,7 +37,10 @@ namespace HigLabo.DbSharp.Service
                 if (this.DisableForeignKey)
                 {
                     this.OnProcessProgress(new ProcessProgressEventArgs("Enable ForeignKey...", 100));
-                    db.ExecuteCommand("EXEC sp_MSforeachtable 'ALTER TABLE ? WITH CHECK CHECK CONSTRAINT all'");
+                    foreach (var item in await this.DatabaseSchemaReader.GetTablesAsync())
+                    {
+                        db.ExecuteCommand(String.Format("Alter Table {0} With Check Check Constraint All", item.Name));
+                    }
                     this.OnProcessProgress(new ProcessProgressEventArgs("Enable ForeignKey completed", 100));
                 }
             }
@@ -61,6 +67,9 @@ namespace HigLabo.DbSharp.Service
                 }
                 else
                 {
+                    d = spExisted.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
+                        .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
+
                     if (spExisted.StoredProcedureType == StoredProcedureType.Custom ||
                         spExisted.StoredProcedureType == StoredProcedureType.SelectAll ||
                         spExisted.StoredProcedureType == StoredProcedureType.SelectByPrimaryKey)
@@ -72,8 +81,6 @@ namespace HigLabo.DbSharp.Service
 
                     if (spExisted.StoredProcedureType == StoredProcedureType.Custom)
                     {
-                        d = spExisted.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
-                            .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
                         foreach (var parameter in sp.Parameters)
                         {
                             var p = spExisted.Parameters.Find(el => el.Name == parameter.Name);

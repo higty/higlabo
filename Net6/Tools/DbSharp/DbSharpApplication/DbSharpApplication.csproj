@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>6.1.0.0</Version>
+    <Version>6.2.0.0</Version>
     <Authors>Higty</Authors>
     <RootNamespace>HigLabo.DbSharpApplication</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
