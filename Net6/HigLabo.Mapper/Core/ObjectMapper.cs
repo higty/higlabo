@@ -140,6 +140,18 @@ namespace HigLabo.Core
                 return defaultValue;
             }
             [MapperMethod]
+            public static DateOnly DateOnly(String value, DateOnly defaultValue)
+            {
+                if (System.DateOnly.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static TimeOnly TimeOnly(String value, TimeOnly defaultValue)
+            {
+                if (System.TimeOnly.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
             public static Decimal Decimal(String value, Decimal defaultValue)
             {
                 if (System.Decimal.TryParse(value, out var v)) { return v; }
@@ -185,6 +197,8 @@ namespace HigLabo.Core
                     type == typeof(DateTime) ||
                     type == typeof(DateTimeOffset) ||
                     type == typeof(TimeSpan) ||
+                    type == typeof(DateOnly) ||
+                    type == typeof(TimeOnly) ||
                     type == typeof(Decimal) ||
                     type == typeof(Single) ||
                     type == typeof(Double) ||
@@ -266,6 +280,18 @@ namespace HigLabo.Core
                 return defaultValue;
             }
             [MapperMethod]
+            public static DateOnly? DateOnly(String value, DateOnly? defaultValue)
+            {
+                if (System.DateOnly.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
+            public static TimeOnly? TimeOnly(String value, TimeOnly? defaultValue)
+            {
+                if (System.TimeOnly.TryParse(value, out var v)) { return v; }
+                return defaultValue;
+            }
+            [MapperMethod]
             public static Decimal? Decimal(String value, Decimal? defaultValue)
             {
                 if (System.Decimal.TryParse(value, out var v)) { return v; }
@@ -321,6 +347,8 @@ namespace HigLabo.Core
                     type == typeof(DateTime) ||
                     type == typeof(DateTimeOffset) ||
                     type == typeof(TimeSpan) ||
+                    type == typeof(DateOnly) ||
+                    type == typeof(TimeOnly) ||
                     type == typeof(Decimal) ||
                     type == typeof(Single) ||
                     type == typeof(Double) ||
@@ -346,6 +374,10 @@ namespace HigLabo.Core
         private static readonly Dictionary<ActionKey, Boolean> _CanConvertList = new Dictionary<ActionKey, bool>();
         private static readonly MethodInfo _ToStringMethod = typeof(Object).GetMethod("ToString");
         private static readonly MethodInfo _ValueTypeToString = typeof(ObjectMapper).GetMethod("ValueTypeToString", BindingFlags.NonPublic | BindingFlags.Static);
+        private static readonly MethodInfo _DateOnlyToDateTime = typeof(DateOnly).GetMethod("ToDateTime", new Type[] { typeof(TimeOnly) });
+        private static readonly MethodInfo _DateOnlyToDateTimeOffset = typeof(ObjectMapper).GetMethod("ToDateTimeOffset", BindingFlags.NonPublic | BindingFlags.Static, new Type[] { typeof(DateOnly) });
+        private static readonly MethodInfo _TimeOnlyToTimeSpan = typeof(TimeOnly).GetMethod("ToTimeSpan");
+        private static readonly PropertyInfo _TimeOnlyMinValue = typeof(TimeOnly).GetRuntimeProperty("MinValue");
 
         public static ObjectMapper Default { get; private set; } = new ObjectMapper();
 
@@ -360,6 +392,10 @@ namespace HigLabo.Core
             InitializeCanConvertList();
         }
 
+        private static DateTimeOffset ToDateTimeOffset(DateOnly value)
+        {
+            return new DateTimeOffset(value.ToDateTime(TimeOnly.MinValue), TimeSpan.Zero);
+        }
         private static void InitializeParseMethodList()
         {
             foreach (var item in typeof(ObjectMapper.ParseMethodList).GetMethods()
@@ -915,6 +951,29 @@ namespace HigLabo.Core
                         }
                     }
 
+                }
+                else if (sourceProperty.PropertyType == typeof(DateOnly))
+                {
+                    if (targetProperty.PropertyType == typeof(DateTime))
+                    {
+                        var toMethod = Expression.Call(getMethod, _DateOnlyToDateTime, Expression.Property(null, _TimeOnlyMinValue));
+                        var body = Expression.Call(p.Target, setMethod, toMethod);
+                        ee.Add(body);
+                    }
+                    if (targetProperty.PropertyType == typeof(DateTimeOffset))
+                    {
+                        var body = Expression.Call(p.Target, setMethod, Expression.Call(null, _DateOnlyToDateTimeOffset, getMethod));
+                        ee.Add(body);
+                    }
+                }
+                else if (sourceProperty.PropertyType == typeof(TimeOnly))
+                {
+                    if (targetProperty.PropertyType == typeof(TimeSpan))
+                    {
+                        var toMethod = Expression.Call(getMethod, _TimeOnlyToTimeSpan);
+                        var body = Expression.Call(p.Target, setMethod, toMethod);
+                        ee.Add(body);
+                    }
                 }
                 else if (sourceProperty.PropertyType.IsClass)
                 {

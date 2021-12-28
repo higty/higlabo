@@ -12,46 +12,30 @@ namespace HigLabo.DbSharp.CodeGenerator
     {
         public abstract SourceCodeFile Create(String directoryPath, String namespaceName);
 
-        public static void AddPropertyAndField(Class @class, IEnumerable<DataType> parameters)
+        public static void AddPropertyAndField(Class @class, IEnumerable<DataType> parameters, AccessModifier? accessModifier)
         {
             var c = @class;
-            Property p = null;
-            Field f = null;
-            String pName = "";
 
             foreach (var parameter in parameters)
             {
-                pName = parameter.GetNameWithoutAtmark();
-                f = new Field(parameter.GetClassName(), "_" + pName);
-                if (f.TypeName.Name == "String")
+                var pName = parameter.GetNameWithoutAtmark();
+                var p = new Property(parameter.GetClassName(), pName, true);
+                p.Set.Modifier = accessModifier;
+                if (p.TypeName.Name == "String")
                 {
                     if (parameter.AllowNull)
                     {
-                        f.Initializer = "null";
+                        p.Initializer = "null";
                     }
                     else
                     {
-                        f.Initializer = "\"\"";
+                        p.Initializer = "\"\"";
                     }
                 }
                 else if (parameter.DbType.IsUserDefinedTableType() == true)
                 {
-                    f.Initializer = String.Format("new {0}()", parameter.GetClassName());
+                    p.Initializer = String.Format("new {0}()", parameter.GetClassName());
                 }
-                c.Fields.Add(f);
-
-                p = new Property(parameter.GetClassName(), pName);
-                p.Get.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", pName);
-
-                if (f.TypeName.Name == "String" && parameter.AllowNull == false)
-                {
-                    p.Set.Body.Add(SourceCodeLanguage.CSharp, "this.SetPropertyValue(ref _{0}, value ?? \"\", this.GetPropertyChangedEventHandler());", pName);
-                }
-                else
-                {
-                    p.Set.Body.Add(SourceCodeLanguage.CSharp, "this.SetPropertyValue(ref _{0}, value, this.GetPropertyChangedEventHandler());", pName);
-                }
-
                 c.Properties.Add(p);
             }
         }

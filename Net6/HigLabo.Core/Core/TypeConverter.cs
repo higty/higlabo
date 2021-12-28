@@ -703,6 +703,37 @@ namespace HigLabo.Core
             }
             return null;
         }
+        public virtual TimeOnly? ToTimeOnly(Object value)
+        {
+            TimeOnly x;
+
+            if (value == null) return null;
+            var tp = value.GetType();
+            if (tp == typeof(TimeOnly)) return (TimeOnly)value;
+            if (tp == typeof(String) && TimeOnly.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), out x))
+            {
+                return x;
+            }
+            return null;
+        }
+        public virtual DateOnly? ToDateOnly(Object value)
+        {
+            return ToDateOnly(value, this.DateTimeStyle, null);
+        }
+        public virtual DateOnly? ToDateOnly(Object value, DateTimeStyles dateTimeStyle, IFormatProvider formatProvider)
+        {
+            DateOnly x;
+
+            if (value == null) return null;
+            var tp = value.GetType();
+            if (tp == typeof(DateOnly)) return (DateOnly)value;
+            if (tp == typeof(String) &&
+                DateOnly.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), formatProvider, dateTimeStyle, out x))
+            {
+                return x;
+            }
+            return null;
+        }
         public virtual TimeSpan? ToTimeSpan(Object value)
         {
             TimeSpan x;
@@ -710,6 +741,7 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(TimeSpan)) return (TimeSpan)value;
+            if (tp == typeof(TimeOnly)) return ((TimeOnly)value).ToTimeSpan();
             if (tp == typeof(String) && TimeSpan.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), out x))
             {
                 return x;
@@ -745,6 +777,7 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(DateTime)) return (DateTime)value;
+            if (tp == typeof(DateOnly)) return ((DateOnly)value).ToDateTime(TimeOnly.MinValue);
             if (tp == typeof(String) && DateTime.TryParseExact(this.ConvertFromFullWidthToHalfWidth((String)value), format, formatProvider, dateTimeStyle, out x))
             {
                 return x;
@@ -787,6 +820,7 @@ namespace HigLabo.Core
             if (value == null) return null;
             var tp = value.GetType();
             if (tp == typeof(DateTimeOffset)) return (DateTimeOffset)value;
+            if (tp == typeof(DateOnly)) return ((DateOnly)value).ToDateTime(TimeOnly.MinValue);
             if (tp == typeof(String) && DateTimeOffset.TryParseExact(this.ConvertFromFullWidthToHalfWidth((String)value), format, formatProvider, dateTimeStyle, out x))
             {
                 return x;

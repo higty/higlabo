@@ -33,6 +33,9 @@ export class DateTime {
         else if (typeof value === "string") {
             this.rawValue = new Date(value);
         }
+        else if (value instanceof DateOnly) {
+            this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
+        }
     }
     get value() {
         return this.rawValue;
@@ -257,4 +260,8 @@ export var DayOfWeek;
     DayOfWeek[DayOfWeek["Friday"] = 5] = "Friday";
     DayOfWeek[DayOfWeek["Saturday"] = 6] = "Saturday";
 })(DayOfWeek || (DayOfWeek = {}));
+export class DateOnly {
+}
+export class TimeOnly {
+}
 //# sourceMappingURL=DateTime.js.map

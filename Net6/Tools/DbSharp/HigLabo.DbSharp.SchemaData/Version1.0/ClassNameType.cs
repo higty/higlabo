@@ -8,106 +8,33 @@ namespace HigLabo.DbSharp.MetaData
 {
     public enum ClassNameType
     {
-        /// <summary>
-        /// 
-        /// </summary>
         Object,
-        /// <summary>
-        /// 
-        /// </summary>
         Boolean,
-        /// <summary>
-        /// 
-        /// </summary>
         String,
-        /// <summary>
-        /// 
-        /// </summary>
         ByteArray,
-        /// <summary>
-        /// 
-        /// </summary>
         SByte,
-        /// <summary>
-        /// 
-        /// </summary>
         Int16,
-        /// <summary>
-        /// 
-        /// </summary>
         Int32,
-        /// <summary>
-        /// 
-        /// </summary>
         Int64,
-        /// <summary>
-        /// 
-        /// </summary>
         Byte,
-        /// <summary>
-        /// 
-        /// </summary>
         UInt16,
-        /// <summary>
-        /// 
-        /// </summary>
         UInt32,
-        /// <summary>
-        /// 
-        /// </summary>
         UInt64,
-        /// <summary>
-        /// 
-        /// </summary>
         Single,
-        /// <summary>
-        /// 
-        /// </summary>
         Double,
-        /// <summary>
-        /// 
-        /// </summary>
         Decimal,
-        /// <summary>
-        /// 
-        /// </summary>
         Guid,
-        /// <summary>
-        /// 
-        /// </summary>
         TimeSpan,
-        /// <summary>
-        /// 
-        /// </summary>
         DateTime,
-        /// <summary>
-        /// 
-        /// </summary>
         DateTimeOffset,
-        /// <summary>
-        /// 
-        /// </summary>
+        DateOnly,
+        TimeOnly,
         UserDefinedTableType,
-        /// <summary>
-        /// 
-        /// </summary>
         Geometry,
-        /// <summary>
-        /// 
-        /// </summary>
         Geography,
-        /// <summary>
-        /// 
-        /// </summary>
         HierarchyId,
-        /// <summary>
-        /// 
-        /// </summary>
         MySqlGeometry,
     }
-    /// <summary>
-    /// 
-    /// </summary>
     public static class ClassNameTypeExtensions
     {
         public static Type ToType(this ClassNameType classNameType)
@@ -133,6 +60,8 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.TimeSpan: return typeof(TimeSpan);
                 case ClassNameType.DateTime: return typeof(DateTime);
                 case ClassNameType.DateTimeOffset: return typeof(DateTimeOffset);
+                case ClassNameType.DateOnly: return typeof(DateOnly);
+                case ClassNameType.TimeOnly: return typeof(TimeOnly);
                 case ClassNameType.MySqlGeometry: return Type.GetType("global::MySql.Data.Types.MySqlGeometry");
                 case ClassNameType.Geometry: return Type.GetType("global::Microsoft.SqlServer.Types.SqlGeometry");
                 case ClassNameType.Geography: return Type.GetType("global::Microsoft.SqlServer.Types.SqlGeography");
@@ -163,6 +92,8 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.TimeSpan: return "TimeSpan";
                 case ClassNameType.DateTime: return "DateTime";
                 case ClassNameType.DateTimeOffset: return "DateTimeOffset";
+                case ClassNameType.DateOnly: return "DateOnly";
+                case ClassNameType.TimeOnly: return "TimeOnly";
                 case ClassNameType.MySqlGeometry: return "global::MySql.Data.Types.MySqlGeometry";
                 case ClassNameType.Geometry: return "global::Microsoft.SqlServer.Types.SqlGeometry";
                 case ClassNameType.Geography: return "global::Microsoft.SqlServer.Types.SqlGeography";
@@ -193,6 +124,8 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.TimeSpan:return true;
                 case ClassNameType.DateTime: return true;
                 case ClassNameType.DateTimeOffset: return true;
+                case ClassNameType.DateOnly: return true;
+                case ClassNameType.TimeOnly: return true;
                 case ClassNameType.UserDefinedTableType: return false;
                 case ClassNameType.MySqlGeometry: return true;
                 case ClassNameType.Geometry: return false;

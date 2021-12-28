@@ -25,12 +25,14 @@ namespace HigLabo.DbSharp.CodeGenerator
 
             c.Modifier.Partial = true;
             c.BaseClass = new TypeName(String.Format("StoredProcedureResultSet", this.StoredProcedureName));
+
+            AccessModifier? accessModifier = AccessModifier.Internal;
             if (String.IsNullOrEmpty(this.ResultSet.TableName) == false)
             {
+                accessModifier = null;
                 c.ImplementInterfaces.Add(new TypeName(this.ResultSet.TableName + ".IRecord"));
             }
-
-            ClassSourceCodeFileFactory.AddPropertyAndField(c, this.ResultSet.Columns);
+            ClassSourceCodeFileFactory.AddPropertyAndField(c, this.ResultSet.Columns, accessModifier);
 
             c.Constructors.Add(new Constructor(AccessModifier.Public, this.ResultSet.Name));
             c.Constructors.Add(CreateResultSetConstructor());

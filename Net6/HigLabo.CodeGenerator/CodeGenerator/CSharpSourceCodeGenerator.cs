@@ -318,37 +318,55 @@ namespace HigLabo.CodeGenerator
         {
             var writer = this.TextWriter;
 
-            this.WriteIndent();
-            if (propertyBody.Modifier.HasValue == true)
+            if (propertyBody.IsAutomaticProperty)
             {
-                this.Write(propertyBody.Modifier.Value);
+                if (propertyBody.Modifier.HasValue == true)
+                {
+                    this.Write(propertyBody.Modifier.Value);
+                    writer.Write(" ");
+                }
+                switch (propertyBody.BodyType)
+                {
+                    case PropertyBodyType.Get: writer.Write("get;"); break;
+                    case PropertyBodyType.Set: writer.Write("set;"); break;
+                    default: throw new InvalidOperationException();
+                }
                 writer.Write(" ");
             }
-            switch (propertyBody.BodyType)
+            else
             {
-                case PropertyBodyType.Get: writer.Write("get"); break;
-                case PropertyBodyType.Set: writer.Write("set"); break;
-                default: throw new InvalidOperationException();
-            }
-            if (propertyBody.IsAutomaticProperty == true)
-            {
-                writer.WriteLine(";");
-                return;
-            }
-
-            writer.WriteLine();
-            this.WriteIndent();
-            writer.WriteLine("{");
-            {
-                this.CurrentIndentLevel += 1;
-                foreach (var item in propertyBody.Body)
+                this.WriteIndent();
+                if (propertyBody.Modifier.HasValue == true)
                 {
-                    this.Write(item);
+                    this.Write(propertyBody.Modifier.Value);
+                    writer.Write(" ");
                 }
-                this.CurrentIndentLevel -= 1;
+                switch (propertyBody.BodyType)
+                {
+                    case PropertyBodyType.Get: writer.Write("get"); break;
+                    case PropertyBodyType.Set: writer.Write("set"); break;
+                    default: throw new InvalidOperationException();
+                }
+                if (propertyBody.IsAutomaticProperty == true)
+                {
+                    writer.WriteLine(";");
+                    return;
+                }
+
+                writer.WriteLine();
+                this.WriteIndent();
+                writer.WriteLine("{");
+                {
+                    this.CurrentIndentLevel += 1;
+                    foreach (var item in propertyBody.Body)
+                    {
+                        this.Write(item);
+                    }
+                    this.CurrentIndentLevel -= 1;
+                }
+                this.WriteIndent();
+                writer.WriteLine("}");
             }
-            this.WriteIndent();
-            writer.WriteLine("}");
         }
         public override void Write(Property property)
         {
@@ -364,6 +382,27 @@ namespace HigLabo.CodeGenerator
             writer.Write(" ");
             this.WriteElementName(property.Name);
 
+            if (property.Get.IsAutomaticProperty && property.Set.IsAutomaticProperty)
+            {
+                writer.Write(" { ");
+                if (property.Get != null)
+                {
+                    this.Write(property.Get);
+                }
+                if (property.Set != null)
+                {
+                    this.Write(property.Set);
+                }
+                writer.Write("}");
+                if (String.IsNullOrWhiteSpace(property.Initializer) == false)
+                {
+                    writer.Write(" = ");
+                    writer.Write(property.Initializer);
+                    writer.Write(";");
+                }
+                writer.WriteLine();
+            }
+            else
             {
                 writer.WriteLine();
                 this.WriteIndent();
@@ -379,10 +418,16 @@ namespace HigLabo.CodeGenerator
                 }
                 this.CurrentIndentLevel -= 1;
                 this.WriteIndent();
-                writer.WriteLine("}");
+                writer.Write("}");
+                if (String.IsNullOrWhiteSpace(property.Initializer) == false)
+                {
+                    writer.Write(" = ");
+                    writer.Write(property.Initializer);
+                }
+                writer.WriteLine();
             }
         }
-        
+
         public override void Write(ClassModifier modifier)
         {
             var writer = this.TextWriter;

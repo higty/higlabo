@@ -214,9 +214,9 @@ namespace HigLabo.DbSharp.MetaData
                     c.Ordinal = l.Count;
                     c.IsPrimaryKey = false;
                     c.DbType = this.CreateDbType(reader[2]);
-                    if (reader[3] != DBNull.Value) c.Length = AppEnvironment.Settings.TypeConverter.ToInt32(reader[4]);
-                    if (reader[4] != DBNull.Value) c.Precision = AppEnvironment.Settings.TypeConverter.ToInt32(reader[5]);
-                    if (reader[5] != DBNull.Value) c.Scale = AppEnvironment.Settings.TypeConverter.ToInt32(reader[6]);
+                    if (reader[3] != DBNull.Value) c.Length = AppEnvironment.Settings.TypeConverter.ToInt32(reader[3]);
+                    if (reader[4] != DBNull.Value) c.Precision = AppEnvironment.Settings.TypeConverter.ToInt32(reader[4]);
+                    if (reader[5] != DBNull.Value) c.Scale = AppEnvironment.Settings.TypeConverter.ToInt32(reader[5]);
                     c.AllowNull = reader.GetBoolean(6);
                     c.IsIdentity = reader.GetBoolean(7);
                     c.IsRowGuidCol = reader.GetBoolean(8);

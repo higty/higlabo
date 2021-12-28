@@ -7,7 +7,7 @@ using HigLabo.Core;
 
 namespace HigLabo.DbSharp
 {
-    public abstract class TableRecord : DatabaseRecord, ISaveMode
+    public abstract class TableRecord : DatabaseRecord, System.ComponentModel.INotifyPropertyChanged, ISaveMode
     {
         public static readonly Object SkipSetValue = new object();
         public static TypeConverter TypeConverter { get; set; }

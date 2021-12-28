@@ -63,6 +63,13 @@ namespace HigLabo.DbSharpApplication
 
             AValue.ConfigData.GenerateSourceCodeWindow.Initialize(this);
         }
+
+        private void SelectFolderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dg = new System.Windows.Forms.FolderBrowserDialog();
+            dg.ShowDialog();
+            this.OutputDirectoryPathTextBox.Text = dg.SelectedPath;
+        }
         private void TableSelectAllCheckBox_Checked(object sender, RoutedEventArgs e)
         {
             foreach (var item in _Tables)
@@ -132,5 +139,6 @@ namespace HigLabo.DbSharpApplication
         {
             this.Close();
         }
+
     }
 }

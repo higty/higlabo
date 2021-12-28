@@ -11,8 +11,9 @@ namespace HigLabo.CodeGenerator
     {
         public FieldModifier Modifier { get; private set; }
         public TypeName TypeName { get; private set; }
-        public String Name { get; set; }
-        public String Initializer { get; set; }
+        public String Name { get; set; } = "";
+        public String Initializer { get; set; } = "";
+
         public Field(String typeName, String name)
             : this(new TypeName(typeName), name)
         {

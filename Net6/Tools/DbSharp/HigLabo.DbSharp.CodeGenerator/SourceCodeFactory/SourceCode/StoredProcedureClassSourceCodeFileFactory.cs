@@ -88,7 +88,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 c.Properties.Add(CreateDatabaseKeyProperty());
             }
 
-            ClassSourceCodeFileFactory.AddPropertyAndField(c, sp.Parameters);
+            ClassSourceCodeFileFactory.AddPropertyAndField(c, sp.Parameters, null);
 
             c.Constructors.Add(CreateConstructor());
 
@@ -255,7 +255,25 @@ namespace HigLabo.DbSharp.CodeGenerator
                             }
                             else
                             {
-                                yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0};", pName);
+                                var questionMark = "";
+                                if (parameter.AllowNull)
+                                {
+                                    questionMark = "?";
+                                }
+                                switch (parameter.GetClassNameType())
+                                {
+                                    case ClassNameType.DateOnly:
+                                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0}{1}.ToDateTime(TimeOnly.MinValue);"
+                                            , pName, questionMark);
+                                        break;
+                                    case ClassNameType.TimeOnly:
+                                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0}{1}.ToTimeSpan();"
+                                            , pName, questionMark);
+                                        break;
+                                    default:
+                                        yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = this.{0};", pName);
+                                        break;
+                                }
                                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.Value = p.Value ?? DBNull.Value;", pName);
                             }
                             break;
@@ -317,8 +335,21 @@ namespace HigLabo.DbSharp.CodeGenerator
                         }
                         else
                         {
-                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (p.Value != DBNull.Value && p.Value != null) this.{0} = ({1})p.Value;"
-                                , parameter.GetNameWithoutAtmark(), parameter.GetClassNameText());
+                            switch (parameter.GetClassNameType())
+                            {
+                                case ClassNameType.DateOnly:
+                                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (p.Value != DBNull.Value && p.Value != null) this.{0} = DateOnly.FromDateTime((DateTime)p.Value);"
+                                        , parameter.GetNameWithoutAtmark(), parameter.GetClassNameText());
+                                    break;
+                                case ClassNameType.TimeOnly:
+                                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (p.Value != DBNull.Value && p.Value != null) this.{0} = TimeOnly.FromTimeSpan((TimeSpan)p.Value);"
+                                        , parameter.GetNameWithoutAtmark(), parameter.GetClassNameText());
+                                    break;
+                                default:
+                                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (p.Value != DBNull.Value && p.Value != null) this.{0} = ({1})p.Value;"
+                                        , parameter.GetNameWithoutAtmark(), parameter.GetClassNameText());
+                                    break;
+                            }
                         }
                         break;
                     case SqlParameterConvertType.Enum:
@@ -435,12 +466,13 @@ namespace HigLabo.DbSharp.CodeGenerator
 
                 case SqlServer2012DbType.DateTime:
                 case SqlServer2012DbType.SmallDateTime:
-                case SqlServer2012DbType.Date:
                 case SqlServer2012DbType.DateTime2:
                     return "reader.GetDateTime(index)";
 
+                case SqlServer2012DbType.Date:
+                    return "DateOnly.FromDateTime((DateTime)reader[index])";
                 case SqlServer2012DbType.Time:
-                    return "(TimeSpan)reader[index]";
+                    return "TimeOnly.FromTimeSpan((TimeSpan)reader[index])";
 
                 case SqlServer2012DbType.DateTimeOffset:
                     return "(DateTimeOffset)reader[index]";

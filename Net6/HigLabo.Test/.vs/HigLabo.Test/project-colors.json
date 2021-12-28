@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "69130117-d1a6-47a6-a154-bc85b36453c4": {
+      "ProjectGuid": "69130117-d1a6-47a6-a154-bc85b36453c4",
+      "DisplayName": "HigLabo.Mapper.PerformanceTest",
+      "ColorIndex": 0
+    },
+    "b9ea4994-8763-4340-bf62-359868888f4d": {
+      "ProjectGuid": "b9ea4994-8763-4340-bf62-359868888f4d",
+      "DisplayName": "HigLabo.Mapper",
+      "ColorIndex": 1
+    },
+    "eefe479f-338d-4c97-9c87-eabc2580e85c": {
+      "ProjectGuid": "eefe479f-338d-4c97-9c87-eabc2580e85c",
+      "DisplayName": "HigLabo.Mapper.Test",
+      "ColorIndex": 2
+    },
+    "524f35c7-9a9c-48b7-b922-d81dcc767393": {
+      "ProjectGuid": "524f35c7-9a9c-48b7-b922-d81dcc767393",
+      "DisplayName": "HigLabo.CodeGenerator",
+      "ColorIndex": 3
+    },
+    "cfe827fc-8ba7-4f9c-ac84-bb452597f206": {
+      "ProjectGuid": "cfe827fc-8ba7-4f9c-ac84-bb452597f206",
+      "DisplayName": "HigLabo.CodeGenerator.Test",
+      "ColorIndex": 4
+    },
+    "38700de0-47c9-4788-be9d-eacc6d3df2f0": {
+      "ProjectGuid": "38700de0-47c9-4788-be9d-eacc6d3df2f0",
+      "DisplayName": "HigLabo.Converter.Test",
+      "ColorIndex": 5
+    },
+    "f4b1df2c-53b6-45b7-898c-64983d96c531": {
+      "ProjectGuid": "f4b1df2c-53b6-45b7-898c-64983d96c531",
+      "DisplayName": "HigLabo.Core.Test",
+      "ColorIndex": 6
+    },
+    "ba9a2157-cd4c-434e-ab2a-14a77ae07579": {
+      "ProjectGuid": "ba9a2157-cd4c-434e-ab2a-14a77ae07579",
+      "DisplayName": "HigLabo.Mime.Test",
+      "ColorIndex": 7
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "その他のファイル",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 8
+}

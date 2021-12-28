@@ -106,7 +106,7 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.BinaryColumn = null;
             sp.BitColumn = true;
             sp.CharColumn = "Char";
-            sp.DateColumn = DateTime.Now;
+            sp.DateColumn = DateOnly.FromDateTime(DateTime.Now);
             sp.DateTime2Column = DateTime.Now;
             sp.DateTimeColumn = DateTime.Now;
             sp.DateTimeOffsetColumn = DateTime.Now;
@@ -130,7 +130,7 @@ namespace HigLaboSampleApp.MultiDatabase
                 case 3: sp.SqlVariantColumn = true; break;
             }
             sp.TextColumn = "Text";
-            sp.TimeColumn = new TimeSpan(9, 0, 0);
+            sp.TimeColumn = new TimeOnly(9, 0, 0);
             sp.TinyIntColumn = 3;
             sp.UniqueIdentifierColumn = Guid.NewGuid();
             sp.VarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
@@ -147,7 +147,7 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.NotNullBinaryColumn = new Byte[] { 3, 2, 7 };
             sp.NotNullBitColumn = true;
             sp.NotNullCharColumn = "Char";
-            sp.NotNullDateColumn = DateTime.Now;
+            sp.NotNullDateColumn = DateOnly.FromDateTime(DateTime.Now);
             sp.NotNullDateTime2Column = DateTime.Now;
             sp.NotNullDateTimeColumn = DateTime.Now;
             sp.NotNullDateTimeOffsetColumn = DateTime.Now;
@@ -171,7 +171,7 @@ namespace HigLaboSampleApp.MultiDatabase
                 case 3: sp.NotNullSqlVariantColumn = true; break;
             }
             sp.NotNullTextColumn = "Text";
-            sp.NotNullTimeColumn = new TimeSpan(9, 0, 0);
+            sp.NotNullTimeColumn = new TimeOnly(9, 0, 0);
             sp.NotNullTinyIntColumn = 3;
             sp.NotNullUniqueIdentifierColumn = Guid.NewGuid();
             sp.NotNullVarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
@@ -196,7 +196,7 @@ namespace HigLaboSampleApp.MultiDatabase
             r.BinaryColumn = null;
             r.BitColumn = true;
             r.CharColumn = "Char";
-            r.DateColumn = DateTime.Now;
+            r.DateColumn = DateOnly.FromDateTime(DateTime.Now);
             r.DateTime2Column = DateTime.Now;
             r.DateTimeColumn = DateTime.Now;
             r.DateTimeOffsetColumn = DateTime.Now;
@@ -213,7 +213,7 @@ namespace HigLaboSampleApp.MultiDatabase
             r.SmallIntColumn = 2;
             r.SmallMoneyColumn = 200;
             r.TextColumn = "Text";
-            r.TimeColumn = new TimeSpan(9, 0, 0);
+            r.TimeColumn = new TimeOnly(9, 0, 0);
             r.TinyIntColumn = 3;
             r.UniqueIdentifierColumn = Guid.NewGuid();
             r.VarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
@@ -237,7 +237,7 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.BinaryColumn = null;
             sp.BitColumn = true;
             sp.CharColumn = "Char";
-            sp.DateColumn = DateTime.Now;
+            sp.DateColumn = DateOnly.FromDateTime(DateTime.Now);
             sp.DateTime2Column = DateTime.Now;
             sp.DateTimeColumn = DateTime.Now;
             sp.DateTimeOffsetColumn = DateTime.Now;
@@ -254,7 +254,7 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.SmallIntColumn = 2;
             sp.SmallMoneyColumn = 200;
             sp.TextColumn = "Text";
-            sp.TimeColumn = new TimeSpan(9, 0, 0);
+            sp.TimeColumn = new TimeOnly(9, 0, 0);
             sp.TinyIntColumn = 3;
             sp.UniqueIdentifierColumn = Guid.NewGuid();
             sp.VarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
@@ -335,7 +335,7 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.BinaryColumn = null;
             sp.BitColumn = true;
             sp.CharColumn = "Char";
-            sp.DateColumn = DateTime.Now;
+            sp.DateColumn = DateOnly.FromDateTime(DateTime.Now);
             sp.DateTime2Column = DateTime.Now;
             sp.DateTimeColumn = DateTime.Now;
             sp.DateTimeOffsetColumn = DateTime.Now;
@@ -359,7 +359,7 @@ namespace HigLaboSampleApp.MultiDatabase
                 case 3: sp.SqlVariantColumn = true; break;
             }
             sp.TextColumn = "Text";
-            sp.TimeColumn = new TimeSpan(9, 0, 0);
+            sp.TimeColumn = new TimeOnly(9, 0, 0);
             sp.TinyIntColumn = 3;
             sp.UniqueIdentifierColumn = Guid.NewGuid();
             sp.VarBinaryColumn = new Byte[] { 1, 2, 3, 4 };
@@ -372,7 +372,7 @@ namespace HigLaboSampleApp.MultiDatabase
             sp.NotNullBinaryColumn = new Byte[] { 3, 2, 7 };
             sp.NotNullBitColumn = true;
             sp.NotNullCharColumn = "Char";
-            sp.NotNullDateColumn = DateTime.Now;
+            sp.NotNullDateColumn = DateOnly.FromDateTime(DateTime.Now);
             sp.NotNullDateTime2Column = DateTime.Now;
             sp.NotNullDateTimeColumn = DateTime.Now;
             sp.NotNullDateTimeOffsetColumn = DateTime.Now;
@@ -396,7 +396,7 @@ namespace HigLaboSampleApp.MultiDatabase
                 case 3: sp.NotNullSqlVariantColumn = true; break;
             }
             sp.NotNullTextColumn = "Text";
-            sp.NotNullTimeColumn = new TimeSpan(9, 0, 0);
+            sp.NotNullTimeColumn = new TimeOnly(9, 0, 0);
             sp.NotNullTinyIntColumn = 3;
             sp.NotNullUniqueIdentifierColumn = Guid.NewGuid();
             sp.NotNullVarBinaryColumn = new Byte[] { 1, 2, 3, 4 };

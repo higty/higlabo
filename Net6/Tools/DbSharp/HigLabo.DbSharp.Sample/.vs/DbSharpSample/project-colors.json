@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "1b080e16-475a-4a34-9252-df066934529f": {
+      "ProjectGuid": "1b080e16-475a-4a34-9252-df066934529f",
+      "DisplayName": "DbSharpSample.SqlServer.CSharp",
+      "ColorIndex": 0
+    },
+    "ee0fce18-c1fe-4382-9780-bbdecd635fec": {
+      "ProjectGuid": "ee0fce18-c1fe-4382-9780-bbdecd635fec",
+      "DisplayName": "DbSharpSample.MySql.CSharp",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "その他のファイル",
+      "ColorIndex": -1
+    },
+    "46820693-6c03-47ee-a473-ff40336fcae6": {
+      "ProjectGuid": "46820693-6c03-47ee-a473-ff40336fcae6",
+      "DisplayName": "DbSharpSampleApp.MultiDatabase",
+      "ColorIndex": 2
+    }
+  },
+  "NextColorIndex": 3
+}

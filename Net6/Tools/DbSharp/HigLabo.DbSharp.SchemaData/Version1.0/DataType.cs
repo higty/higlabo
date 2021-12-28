@@ -303,12 +303,12 @@ namespace HigLabo.DbSharp.MetaData
 
                 case SqlServer2012DbType.DateTime:
                 case SqlServer2012DbType.SmallDateTime:
-                case SqlServer2012DbType.Date:
                 case SqlServer2012DbType.DateTime2:
                     return ClassNameType.DateTime;
-
+                case SqlServer2012DbType.Date:
+                    return ClassNameType.DateOnly;
                 case SqlServer2012DbType.Time:
-                    return ClassNameType.TimeSpan;
+                    return ClassNameType.TimeOnly;
 
                 case SqlServer2012DbType.Decimal:
                 case SqlServer2012DbType.Money:

@@ -23,7 +23,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             c.Modifier.Partial = true;
             c.BaseClass = new TypeName("UserDefinedTableTypeRecord");
 
-            ClassSourceCodeFileFactory.AddPropertyAndField(c, this.UserDefinedTableType.Columns);
+            ClassSourceCodeFileFactory.AddPropertyAndField(c, this.UserDefinedTableType.Columns, null);
 
             c.Constructors.Add(new Constructor(AccessModifier.Public, "Record"));
             c.Methods.Add(this.CreateGetValuesMethod());
@@ -60,7 +60,25 @@ namespace HigLabo.DbSharp.CodeGenerator
                 }
                 else
                 {
-                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1};", i, t.Columns[i].Name);
+                    var questionMark = "";
+                    if (column.AllowNull)
+                    {
+                        questionMark = "?";
+                    }
+                    switch (column.GetClassNameType())
+                    {
+                        case ClassNameType.DateOnly:
+                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}{2}.ToDateTime(TimeOnly.MinValue);"
+                                , i, t.Columns[i].Name, questionMark);
+                            break;
+                        case ClassNameType.TimeOnly:
+                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1}{2}.ToTimeSpan();"
+                                , i, t.Columns[i].Name, questionMark);
+                            break;
+                        default:
+                            yield return new CodeBlock(SourceCodeLanguage.CSharp, "oo[{0}] = this.{1};", i, t.Columns[i].Name);
+                            break;
+                    }
                 }
             }
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "return oo;");

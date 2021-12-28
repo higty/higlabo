@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.DbSharp
 {
-    public abstract class DatabaseRecord : INotifyPropertyChanged
+    public abstract class DatabaseRecord
     {
         /// <summary>
         /// 

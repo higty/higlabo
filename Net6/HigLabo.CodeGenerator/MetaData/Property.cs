@@ -14,6 +14,8 @@ namespace HigLabo.CodeGenerator
         public String Name { get; set; }
         public PropertyBody Get { get; set; }
         public PropertyBody Set { get; set; }
+        public String Initializer { get; set; } = "";
+
         public Property(String typeName, String name)
             : this(new TypeName(typeName), name)
         {

@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace HigLabo.DbSharp
 {
-    public abstract class StoredProcedure : INotifyPropertyChanged, IDatabaseContext
+    public abstract class StoredProcedure : IDatabaseContext
     {
         public static event EventHandler<StoredProcedureExecutingEventArgs> Executing;
         public static event EventHandler<StoredProcedureExecutedEventArgs> Executed;

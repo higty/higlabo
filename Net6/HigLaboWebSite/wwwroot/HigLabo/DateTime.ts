@@ -68,7 +68,7 @@
         throw new Error("Invalid dayOfWeek");
     }
 
-    constructor(value: Date | string | number) {
+    constructor(value: Date | string | number | DateOnly) {
         if (value instanceof Date) {
             this.rawValue = value;
         }
@@ -77,6 +77,9 @@
         }
         else if (typeof value === "string") {
             this.rawValue = new Date(value);
+        }
+        else if (value instanceof DateOnly) {
+            this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
         }
     }
 
@@ -267,4 +270,17 @@ export enum DayOfWeek {
     Friday = 5,
     Saturday = 6,
 }
+export class DateOnly {
+    public Year: number;
+    public Month: number;
+    public Day: number;
+}
+export class TimeOnly {
+    public Hour: number;
+    public Minute: number;
+    public Second: number;
+    public Millisecond: number;
+    public Ticks: number;
+}
+
 

@@ -73,7 +73,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             {
                 c.Properties.Add(CreateSaveModeProperty());
             }
-            ClassSourceCodeFileFactory.AddPropertyAndField(c, t.Columns);
+            ClassSourceCodeFileFactory.AddPropertyAndField(c, t.Columns, null);
 
             return c;
         }

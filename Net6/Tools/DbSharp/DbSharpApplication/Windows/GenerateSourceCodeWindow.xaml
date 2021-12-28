@@ -13,12 +13,14 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" Name="SettingGrid">
             <Label Content="OutputDirectoryPath" HorizontalAlignment="Left" Margin="10,10,0,0" Padding="0" VerticalAlignment="Top" Width="139" Height="20"/>
-            <TextBox Name="OutputDirectoryPathTextBox" Text="{Binding Path=OutputDirectoryPath}" Padding="0" Height="20" Margin="154,10,10,0" 
+            <TextBox Name="OutputDirectoryPathTextBox" Text="{Binding Path=OutputDirectoryPath}" Padding="0" Height="20" Margin="154,10,45,0" 
                      AcceptsReturn="False" TextWrapping="NoWrap" VerticalAlignment="Top" />
-
+            <Button x:Name="SelectFolderButton" Content="..." Click="SelectFolderButton_Click" 
+                    Width="35" Height="20" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,10,10,0">
+            </Button>
             <Label Content="RootNamespaceName" HorizontalAlignment="Left" Margin="10,35,0,0" Padding="0" VerticalAlignment="Top" Width="139" Height="20"/>
-            <TextBox Name="NamespaceNameTextBox" Text="{Binding Path=NamespaceName}" Padding="0" Height="20" Margin="154,35,10,0" 
-                     AcceptsReturn="False" TextWrapping="NoWrap" VerticalAlignment="Top" />
+            <TextBox Name="NamespaceNameTextBox" Text="{Binding Path=NamespaceName}" Padding="0" Height="20" Margin="154,35,0,0" 
+                     AcceptsReturn="False" TextWrapping="NoWrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="300" />
 
             <Label Content="DatabaseKey" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top" Padding="0" Height="20"/>
             <TextBox Name="DatabaseKeyTextBox" Text="{Binding Path=DatabaseKey}" VerticalContentAlignment="Center" HorizontalAlignment="Left" Height="20" Margin="154,60,0,0" 

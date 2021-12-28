@@ -693,7 +693,9 @@ export class InputPropertyPanel {
     }
 
     public static setElementProperty(recordElement: Element, record: unknown, key: string) {
+        const zeroPad2Digits = new Intl.NumberFormat('ja', { minimumIntegerDigits: 2 });
         const propertyList = Object.getOwnPropertyNames(record);
+
         for (var i = 0; i < propertyList.length; i++) {
             var name = propertyList[i];
             let v = record[name];
@@ -725,14 +727,23 @@ export class InputPropertyPanel {
                 propertyPanel.find("input[type=radio][value='" + v + "']").setChecked(true);
             }
             else if (elementType == "Date") {
-                if (v != null && v.length > 10) {
-                    v = v.replace(/-/g, "/").substr(0, 10);
-                    $(propertyPanel).find("[date-picker]").setValue(v);
+                if (v != null) {
+                    if (v.Year != null && v.Month != null && v.Day != null) {
+                        v = new DateTime(v.Year + "/" + v.Month + "/" + v.Day).toString("yyyy/MM/dd");
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                    else if (v.length > 10) {
+                        v = v.replace(/-/g, "/").substr(0, 10);
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
                 }
             }
             else if (elementType == "Time") {
                 if (v != null) {
-                    if (v.length > 5) {
+                    if (v.Hour != null && v.Minute != null && v.Second != null) {
+                        v = zeroPad2Digits.format(v.Hour) + ":" + zeroPad2Digits.format(v.Minute) + ":" + zeroPad2Digits.format(v.Second);
+                    }
+                    else if (v.length > 5) {
                         v = v.replace(/-/g, "/").substr(0, 5);
                     }
                     $(propertyPanel).find("input").setValue(v);

@@ -1065,6 +1065,23 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(s.I2.EnumMember, t.I2.EnumMember);
         }
 
+        [TestMethod]
+        public void ObjectMapper_DateOnly_TimeOnly_DateTime()
+        {
+            var mapper = new ObjectMapper();
+            //mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
+            var dt0 = new DateOnlyTimeOnlyClass();
+            dt0.Date = new DateOnly(2000, 1, 1);
+            dt0.Time = new TimeOnly(12, 0, 0);
+            var dt1 = new DateTimeClass();
+
+            dt0.Map(dt1);
+            var dt2 = dt0.Map(new DateTimeOffsetClass());
+
+            Assert.AreEqual(new DateTime(2000, 1, 1), dt1.Date);
+            Assert.AreEqual(new TimeSpan(12, 0, 0), dt1.Time);
+            Assert.AreEqual(new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.Zero), dt2.Date);
+        }
 
 
         private MapPoint MapPointConverter(Object obj)
