@@ -19,23 +19,36 @@ namespace HigLabo.DbSharp.CodeGenerator
             foreach (var parameter in parameters)
             {
                 var pName = parameter.GetNameWithoutAtmark();
-                var p = new Property(parameter.GetClassName(), pName, true);
-                p.Set.Modifier = accessModifier;
-                if (p.TypeName.Name == "String")
+                var f = new Field(parameter.GetClassName(), "_" + pName);
+                if (f.TypeName.Name == "String")
                 {
                     if (parameter.AllowNull)
                     {
-                        p.Initializer = "null";
+                        f.Initializer = "null";
                     }
                     else
                     {
-                        p.Initializer = "\"\"";
+                        f.Initializer = "\"\"";
                     }
                 }
                 else if (parameter.DbType.IsUserDefinedTableType() == true)
                 {
-                    p.Initializer = String.Format("new {0}()", parameter.GetClassName());
+                    f.Initializer = String.Format("new {0}()", parameter.GetClassName());
                 }
+                c.Fields.Add(f);
+
+                var p = new Property(parameter.GetClassName(), pName);
+                p.Get.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", pName);
+
+                if (f.TypeName.Name == "String" && parameter.AllowNull == false)
+                {
+                    p.Set.Body.Add(SourceCodeLanguage.CSharp, "_{0} = value ?? \"\";", pName);
+                }
+                else
+                {
+                    p.Set.Body.Add(SourceCodeLanguage.CSharp, "_{0} = value;", pName);
+                }
+
                 c.Properties.Add(p);
             }
         }
