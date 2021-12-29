@@ -7,6 +7,10 @@ namespace HigLabo.Core
 {
     public static class DateTimeOffsetExtensions
     {
+        public static DateOnly ToDateOnly(this DateTimeOffset value)
+        {
+            return DateOnly.FromDateTime(value.Date);
+        }
         public static DateTimeOffset ToOffset(this DateTimeOffset value, Int32 hours)
         {
             return ToOffset(value, hours, 0);

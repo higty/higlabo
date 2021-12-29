@@ -778,7 +778,7 @@ namespace HigLabo.Core
             return pp;
         }
 
-        private LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType)
+        public LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType)
         {
             var p = new MapParameter();
             var sourceParameter = Expression.Parameter(typeof(Object), "sourceParameter");

@@ -136,7 +136,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Address, new AddressDTO());
+                var r = ObjectMapper.Default.Map(this.Address, new AddressDTO());
             }
         }
         [Benchmark]
@@ -189,7 +189,7 @@ namespace HigLabo.Mapper.PerformanceTest
         {
             for (int i = 0; i < ExecuteCount; i++)
             {
-                var r = HigLabo.Core.ObjectMapper.Default.Map(this.Customer, new Customer());
+                var r = ObjectMapper.Default.Map(this.Customer, new Customer());
             }
         }
         [Benchmark]
