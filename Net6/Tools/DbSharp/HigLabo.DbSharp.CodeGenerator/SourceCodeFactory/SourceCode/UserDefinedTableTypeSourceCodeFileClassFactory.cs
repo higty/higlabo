@@ -66,49 +66,49 @@ namespace HigLabo.DbSharp.CodeGenerator
                 var column = this.UserDefinedTableType.Columns[i];
                 switch (column.DbType.SqlServerDbType.Value)
                 {
-                    case SqlServer2012DbType.Decimal:
+                    case SqlServer2022DbType.Decimal:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2}, {3}, {4});"
                             , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Precision, column.Scale);
                         break;
-                    case SqlServer2012DbType.Binary:
-                    case SqlServer2012DbType.VarBinary:
-                    case SqlServer2012DbType.Variant:
-                    case SqlServer2012DbType.Char:
-                    case SqlServer2012DbType.VarChar:
-                    case SqlServer2012DbType.NChar:
-                    case SqlServer2012DbType.NVarChar:
+                    case SqlServer2022DbType.Binary:
+                    case SqlServer2022DbType.VarBinary:
+                    case SqlServer2022DbType.Variant:
+                    case SqlServer2022DbType.Char:
+                    case SqlServer2022DbType.VarChar:
+                    case SqlServer2022DbType.NChar:
+                    case SqlServer2022DbType.NVarChar:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2}, {3});"
                             , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Length);
                         break;
-                    case SqlServer2012DbType.DateTime2:
-                    case SqlServer2012DbType.DateTimeOffset:
+                    case SqlServer2022DbType.DateTime2:
+                    case SqlServer2022DbType.DateTimeOffset:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2}, 0, {3});"
                             , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Scale);
                         break;
-                    case SqlServer2012DbType.Bit:
-                    case SqlServer2012DbType.TinyInt:
-                    case SqlServer2012DbType.SmallInt:
-                    case SqlServer2012DbType.Int:
-                    case SqlServer2012DbType.BigInt:
-                    case SqlServer2012DbType.Image:
-                    case SqlServer2012DbType.Text:
-                    case SqlServer2012DbType.NText:
-                    case SqlServer2012DbType.Float:
-                    case SqlServer2012DbType.Real:
-                    case SqlServer2012DbType.SmallDateTime:
-                    case SqlServer2012DbType.DateTime:
-                    case SqlServer2012DbType.Date:
-                    case SqlServer2012DbType.Time:
-                    case SqlServer2012DbType.UniqueIdentifier:
-                    case SqlServer2012DbType.SmallMoney:
-                    case SqlServer2012DbType.Money:
-                    case SqlServer2012DbType.Timestamp:
-                    case SqlServer2012DbType.Xml:
-                    case SqlServer2012DbType.Udt:
-                    case SqlServer2012DbType.Structured:
+                    case SqlServer2022DbType.Bit:
+                    case SqlServer2022DbType.TinyInt:
+                    case SqlServer2022DbType.SmallInt:
+                    case SqlServer2022DbType.Int:
+                    case SqlServer2022DbType.BigInt:
+                    case SqlServer2022DbType.Image:
+                    case SqlServer2022DbType.Text:
+                    case SqlServer2022DbType.NText:
+                    case SqlServer2022DbType.Float:
+                    case SqlServer2022DbType.Real:
+                    case SqlServer2022DbType.SmallDateTime:
+                    case SqlServer2022DbType.DateTime:
+                    case SqlServer2022DbType.Date:
+                    case SqlServer2022DbType.Time:
+                    case SqlServer2022DbType.UniqueIdentifier:
+                    case SqlServer2022DbType.SmallMoney:
+                    case SqlServer2022DbType.Money:
+                    case SqlServer2022DbType.Timestamp:
+                    case SqlServer2022DbType.Xml:
+                    case SqlServer2022DbType.Udt:
+                    case SqlServer2022DbType.Structured:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2});"
                             , i, column.Name, column.DbType.GetDbTypeCodeBlock());

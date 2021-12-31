@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 using HigLabo.Data;
 using System.Data;
 using HigLabo.Core;
-using System.Data.SqlClient;
 using HigLabo.CodeGenerator;
 using System.Reflection;
 using System.Data.Common;
-using Microsoft.SqlServer.Types;
 using Microsoft.Data.SqlClient;
 
 namespace HigLabo.DbSharp.MetaData
@@ -45,7 +43,7 @@ namespace HigLabo.DbSharp.MetaData
             var cm = CreateTestSqlCommand<SqlCommand>(sp, values);
 
             //UserDefinedTableType
-            foreach (var item in sp.Parameters.Where(el => el.DbType.SqlServerDbType == SqlServer2012DbType.Structured))
+            foreach (var item in sp.Parameters.Where(el => el.DbType.SqlServerDbType == SqlServer2022DbType.Structured))
             {
                 var dt = cm.Parameters[item.Name].Value as DataTable;
                 var udt = await this.GetUserDefinedTableTypeAsync(item.UserTableTypeName);
@@ -57,7 +55,7 @@ namespace HigLabo.DbSharp.MetaData
                 for (int i = 0; i < udt.Columns.Count; i++)
                 {
                     c = udt.Columns[i];
-                    oo[i] = this.GetParameterValue(c, c.DbType.SqlServerDbType.Value, udt.Name);
+                    oo[i] = this.GetParameterValue(c, c.DbType.SqlServerDbType.Value);
                 }
                 dt.Rows.Add(oo);
             }
@@ -91,6 +89,7 @@ namespace HigLabo.DbSharp.MetaData
                 }
                 catch
                 {
+                    System.Diagnostics.Debugger.Break();
                     if (db.OnTransaction == true)
                     {
                         db.RollBackTransaction();
@@ -131,13 +130,6 @@ namespace HigLabo.DbSharp.MetaData
                         else
                         {
                             typeName = tp.FullName;
-                        }
-                        switch (typeName)
-                        {
-                            case "Microsoft.SqlServer.Types.SqlGeometry": c.UdtTypeName = "geometry"; break;
-                            case "Microsoft.SqlServer.Types.SqlGeography": c.UdtTypeName = "geography"; break;
-                            case "Microsoft.SqlServer.Types.SqlHierarchyId": c.UdtTypeName = "hierarchyid"; break;
-                            default: throw new InvalidOperationException();
                         }
                     }
 
@@ -223,7 +215,7 @@ namespace HigLabo.DbSharp.MetaData
 
         protected override MetaData.DbType CreateDbType(Object value)
         {
-            var tp = AppEnvironment.Settings.TypeConverter.ToEnum<SqlServer2012DbType>(value);
+            var tp = AppEnvironment.Settings.TypeConverter.ToEnum<SqlServer2022DbType>(value);
             if (tp.HasValue == false) throw new InvalidCastException();
             return new MetaData.DbType(tp.Value);
         }
@@ -237,10 +229,10 @@ namespace HigLabo.DbSharp.MetaData
             }
             if (p.Direction != ParameterDirection.Output)
             {
-                if (dataType.DbType.SqlServerDbType == SqlServer2012DbType.Udt)
+                if (dataType.DbType.SqlServerDbType == SqlServer2022DbType.Udt)
                 {
                     p.SetUdtTypeName(dataType.UdtTypeName);
-                    p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType.Value, dataType.UdtTypeName);
+                    p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType.Value);
                 }
                 else
                 {
@@ -251,86 +243,74 @@ namespace HigLabo.DbSharp.MetaData
         }
         protected override Object GetParameterValue(DataType dataType, Object sqlDbType)
         {
-            switch ((SqlServer2012DbType)sqlDbType)
+            switch ((SqlServer2022DbType)sqlDbType)
             {
-                case SqlServer2012DbType.BigInt:
+                case SqlServer2022DbType.BigInt:
                     return 1;
 
-                case SqlServer2012DbType.Binary:
-                case SqlServer2012DbType.Image:
-                case SqlServer2012DbType.Timestamp:
-                case SqlServer2012DbType.VarBinary:
+                case SqlServer2022DbType.Binary:
+                case SqlServer2022DbType.Image:
+                case SqlServer2022DbType.Timestamp:
+                case SqlServer2022DbType.VarBinary:
                     return new Byte[0];
 
-                case SqlServer2012DbType.Bit:
+                case SqlServer2022DbType.Bit:
                     return true;
 
-                case SqlServer2012DbType.Char:
-                case SqlServer2012DbType.NChar:
-                case SqlServer2012DbType.NText:
-                case SqlServer2012DbType.NVarChar:
-                case SqlServer2012DbType.Text:
-                case SqlServer2012DbType.VarChar:
+                case SqlServer2022DbType.Char:
+                case SqlServer2022DbType.NChar:
+                case SqlServer2022DbType.NText:
+                case SqlServer2022DbType.NVarChar:
+                case SqlServer2022DbType.Text:
+                case SqlServer2022DbType.VarChar:
                     return "a";
-                case SqlServer2012DbType.Xml:
+                case SqlServer2022DbType.Xml:
                     return "<xml></xml>";
 
-                case SqlServer2012DbType.DateTime:
-                case SqlServer2012DbType.SmallDateTime:
-                case SqlServer2012DbType.Date:
-                case SqlServer2012DbType.DateTime2:
+                case SqlServer2022DbType.DateTime:
+                case SqlServer2022DbType.SmallDateTime:
+                case SqlServer2022DbType.Date:
+                case SqlServer2022DbType.DateTime2:
                     return new DateTime(2000, 1, 1);
-
-                case SqlServer2012DbType.Time:
+                case SqlServer2022DbType.Time:
                     return new TimeSpan(2, 0, 0);
 
-                case SqlServer2012DbType.Decimal:
-                case SqlServer2012DbType.Money:
-                case SqlServer2012DbType.SmallMoney:
+                case SqlServer2022DbType.Decimal:
+                case SqlServer2022DbType.Money:
+                case SqlServer2022DbType.SmallMoney:
                     return 1;
 
-                case SqlServer2012DbType.Float:
+                case SqlServer2022DbType.Float:
                     return 1;
 
-                case SqlServer2012DbType.Int:
+                case SqlServer2022DbType.Int:
                     return 1;
 
-                case SqlServer2012DbType.Real:
+                case SqlServer2022DbType.Real:
                     return 1;
 
-                case SqlServer2012DbType.UniqueIdentifier:
+                case SqlServer2022DbType.UniqueIdentifier:
                     return Guid.NewGuid();
 
-                case SqlServer2012DbType.SmallInt:
+                case SqlServer2022DbType.SmallInt:
                     return 1;
 
-                case SqlServer2012DbType.TinyInt:
+                case SqlServer2022DbType.TinyInt:
                     return 1;
 
-                case SqlServer2012DbType.Variant:
+                case SqlServer2022DbType.Variant:
                     return DateTime.Now;
-                case SqlServer2012DbType.Udt:
+                case SqlServer2022DbType.Udt:
                     return new Object();
 
-                case SqlServer2012DbType.Structured:
+                case SqlServer2022DbType.Structured:
                     return new DataTable();
 
-                case SqlServer2012DbType.DateTimeOffset:
+                case SqlServer2022DbType.DateTimeOffset:
                     return new DateTimeOffset(2000, 1, 1, 0, 0, 0, TimeSpan.FromHours(9));
 
                 default: throw new ArgumentException();
             }
-        }
-        private Object GetParameterValue(DataType dataType, Object sqlDbType, String udtTypeName)
-        {
-            switch (udtTypeName)
-            {
-                case "geometry": return SqlGeometry.Point(137, 42, 4320);
-                case "geography": return SqlGeography.Point(42, 135, 4326);
-                case "hierarchyid": return SqlHierarchyId.Parse("/1/2/3/");
-                default: break;
-            }
-            return GetParameterValue(dataType, sqlDbType);
         }
 
         public override string GetDefinitionText(Table table)

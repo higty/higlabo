@@ -10,7 +10,7 @@ namespace HigLabo.DbSharp.MetaData
     public class DbType
     {
         public DatabaseServer DatabaseServer { get; set; }
-        public SqlServer2012DbType? SqlServerDbType { get; set; }
+        public SqlServer2022DbType? SqlServerDbType { get; set; }
         public OracleDbType? OracleServerDbType { get; set; }
         public NpgsqlDbType? PostgreSqlServerDbType { get; set; }
         public MySqlDbType? MySqlServerDbType { get; set; }
@@ -18,7 +18,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             this.DatabaseServer = DatabaseServer.SqlServer;
         }
-        public DbType(SqlServer2012DbType type)
+        public DbType(SqlServer2022DbType type)
         {
             this.DatabaseServer = DatabaseServer.SqlServer;
             this.SqlServerDbType = type;
@@ -53,7 +53,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2012DbType.Timestamp;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Timestamp;
                 case DatabaseServer.Oracle:
                     {
                         return this.OracleServerDbType.Value == OracleDbType.TimeStamp ||
@@ -76,13 +76,13 @@ namespace HigLabo.DbSharp.MetaData
                 case DatabaseServer.SqlServer:
                     {
                         var type = this.SqlServerDbType.Value;
-                        return type == SqlServer2012DbType.Char ||
-                            type == SqlServer2012DbType.NChar ||
-                            type == SqlServer2012DbType.VarChar ||
-                            type == SqlServer2012DbType.NVarChar ||
-                            type == SqlServer2012DbType.Binary ||
-                            type == SqlServer2012DbType.VarBinary ||
-                            type == SqlServer2012DbType.Variant;
+                        return type == SqlServer2022DbType.Char ||
+                            type == SqlServer2022DbType.NChar ||
+                            type == SqlServer2022DbType.VarChar ||
+                            type == SqlServer2022DbType.NVarChar ||
+                            type == SqlServer2022DbType.Binary ||
+                            type == SqlServer2022DbType.VarBinary ||
+                            type == SqlServer2022DbType.Variant;
                     }
                 case DatabaseServer.MySql:
                     {
@@ -107,8 +107,8 @@ namespace HigLabo.DbSharp.MetaData
                 case DatabaseServer.SqlServer:
                     {
                         var type = this.SqlServerDbType.Value;
-                        return type == SqlServer2012DbType.Decimal ||
-                            type == SqlServer2012DbType.Float;
+                        return type == SqlServer2022DbType.Decimal ||
+                            type == SqlServer2022DbType.Float;
                     }
                 case DatabaseServer.MySql:
                     {
@@ -130,9 +130,9 @@ namespace HigLabo.DbSharp.MetaData
                 case DatabaseServer.SqlServer:
                     {
                         var type = this.SqlServerDbType.Value;
-                        return type == SqlServer2012DbType.Time ||
-                            type == SqlServer2012DbType.DateTime2 ||
-                            type == SqlServer2012DbType.DateTimeOffset;
+                        return type == SqlServer2022DbType.Time ||
+                            type == SqlServer2022DbType.DateTime2 ||
+                            type == SqlServer2022DbType.DateTimeOffset;
                     }
                 case DatabaseServer.MySql:
                     {
@@ -171,7 +171,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2012DbType.Structured;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Structured;
                 case DatabaseServer.Oracle: return false;
                 case DatabaseServer.MySql: return false;
                 case DatabaseServer.PostgreSql: return false;
@@ -182,7 +182,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2012DbType.Udt;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Udt;
                 case DatabaseServer.Oracle: return false;
                 case DatabaseServer.MySql: return false;
                 case DatabaseServer.PostgreSql: return false;
@@ -193,7 +193,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2012DbType.Structured;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Structured;
                 case DatabaseServer.Oracle: return false;
                 case DatabaseServer.MySql: return false;
                 case DatabaseServer.PostgreSql: return false;

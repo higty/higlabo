@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>6.3.0.0</Version>
+    <Authors>Higty</Authors>
+    <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.DbSharp.CodeGenerator\HigLabo.DbSharp.CodeGenerator.csproj" />
+    <ProjectReference Include="..\HigLabo.DbSharp.SqlServer\HigLabo.DbSharp.SqlServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HigLabo.CodeGenerator">
+      <HintPath>..\Reference\HigLabo.CodeGenerator.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Converter">
+      <HintPath>..\Reference\HigLabo.Converter.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Core">
+      <HintPath>..\Reference\HigLabo.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data">
+      <HintPath>..\Reference\HigLabo.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="HigLabo.Data.SqlServer">
+      <HintPath>..\Reference\HigLabo.Data.SqlServer.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
+</Project>

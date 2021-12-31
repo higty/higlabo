@@ -249,10 +249,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                     (tp == ClassNameType.Object ||
                     tp == ClassNameType.String ||
                     tp == ClassNameType.ByteArray ||
-                    tp == ClassNameType.MySqlGeometry ||
-                    tp == ClassNameType.Geography ||
-                    tp == ClassNameType.Geometry ||
-                    tp == ClassNameType.HierarchyId);
+                    tp == ClassNameType.MySqlGeometry);
 
                 cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "case {0}:", index));
                 cbIf = new CodeBlock(SourceCodeLanguage.CSharp, "if (value == null)");

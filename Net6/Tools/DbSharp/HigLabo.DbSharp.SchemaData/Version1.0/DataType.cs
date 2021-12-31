@@ -189,15 +189,15 @@ namespace HigLabo.DbSharp.MetaData
                 case DatabaseServer.SqlServer:
                     {
                         var tp = this.DbType.SqlServerDbType.Value;
-                        if (tp == SqlServer2012DbType.Structured)
+                        if (tp == SqlServer2022DbType.Structured)
                         {
                             throw new InvalidOperationException("DataType.DbType must not be DbType.Structured.");
                         }
-                        else if (tp == SqlServer2012DbType.Udt)
+                        else if (tp == SqlServer2022DbType.Udt)
                         {
                             return this.UdtTypeName;
                         }
-                        else if (tp == SqlServer2012DbType.Variant) { return "sql_variant"; }
+                        else if (tp == SqlServer2022DbType.Variant) { return "sql_variant"; }
                         return tp.ToString();
                     }
                 case DatabaseServer.Oracle: return this.DbType.OracleServerDbType.ToString();
@@ -258,89 +258,78 @@ namespace HigLabo.DbSharp.MetaData
             var type = this.DbType;
             switch (type.DatabaseServer)
             {
-                case DatabaseServer.SqlServer:
-                    if (this.DbType.SqlServerDbType.Value == SqlServer2012DbType.Udt)
-                    {
-                        switch (this.UdtTypeName)
-                        {
-                            case "geometry": return ClassNameType.Geometry;
-                            case "geography": return ClassNameType.Geography;
-                            case "hierarchyid": return ClassNameType.HierarchyId;
-                            default: break;
-                        }
-                    }
-                    return GetClassNameType(type.SqlServerDbType.Value);
+                case DatabaseServer.SqlServer: return GetClassNameType(type.SqlServerDbType.Value);
                 case DatabaseServer.Oracle: return GetClassNameType(type.OracleServerDbType.Value);
                 case DatabaseServer.MySql: return GetClassNameType(type.MySqlServerDbType.Value);
                 case DatabaseServer.PostgreSql:
                 default: throw new InvalidOperationException();
             }
         }
-        private static ClassNameType GetClassNameType(SqlServer2012DbType sqlType)
+        private static ClassNameType GetClassNameType(SqlServer2022DbType sqlType)
         {
             switch (sqlType)
             {
-                case SqlServer2012DbType.BigInt:
+                case SqlServer2022DbType.BigInt:
                     return ClassNameType.Int64;
 
-                case SqlServer2012DbType.Binary:
-                case SqlServer2012DbType.Image:
-                case SqlServer2012DbType.Timestamp:
-                case SqlServer2012DbType.VarBinary:
+                case SqlServer2022DbType.Binary:
+                case SqlServer2022DbType.Image:
+                case SqlServer2022DbType.Timestamp:
+                case SqlServer2022DbType.VarBinary:
                     return ClassNameType.ByteArray;
 
-                case SqlServer2012DbType.Bit:
+                case SqlServer2022DbType.Bit:
                     return ClassNameType.Boolean;
 
-                case SqlServer2012DbType.Char:
-                case SqlServer2012DbType.NChar:
-                case SqlServer2012DbType.NText:
-                case SqlServer2012DbType.NVarChar:
-                case SqlServer2012DbType.Text:
-                case SqlServer2012DbType.VarChar:
-                case SqlServer2012DbType.Xml:
+                case SqlServer2022DbType.Char:
+                case SqlServer2022DbType.NChar:
+                case SqlServer2022DbType.NText:
+                case SqlServer2022DbType.NVarChar:
+                case SqlServer2022DbType.Text:
+                case SqlServer2022DbType.VarChar:
+                case SqlServer2022DbType.Xml:
                     return ClassNameType.String;
 
-                case SqlServer2012DbType.DateTime:
-                case SqlServer2012DbType.SmallDateTime:
-                case SqlServer2012DbType.DateTime2:
+                case SqlServer2022DbType.DateTime:
+                case SqlServer2022DbType.SmallDateTime:
+                case SqlServer2022DbType.DateTime2:
                     return ClassNameType.DateTime;
-                case SqlServer2012DbType.Date:
+                case SqlServer2022DbType.Date:
                     return ClassNameType.DateOnly;
-                case SqlServer2012DbType.Time:
+                case SqlServer2022DbType.Time:
                     return ClassNameType.TimeOnly;
 
-                case SqlServer2012DbType.Decimal:
-                case SqlServer2012DbType.Money:
-                case SqlServer2012DbType.SmallMoney:
+                case SqlServer2022DbType.Decimal:
+                case SqlServer2022DbType.Money:
+                case SqlServer2022DbType.SmallMoney:
                     return ClassNameType.Decimal;
 
-                case SqlServer2012DbType.Float:
+                case SqlServer2022DbType.Float:
                     return ClassNameType.Double;
 
-                case SqlServer2012DbType.Int:
+                case SqlServer2022DbType.Int:
                     return ClassNameType.Int32;
 
-                case SqlServer2012DbType.Real:
+                case SqlServer2022DbType.Real:
                     return ClassNameType.Single;
 
-                case SqlServer2012DbType.UniqueIdentifier:
+                case SqlServer2022DbType.UniqueIdentifier:
                     return ClassNameType.Guid;
 
-                case SqlServer2012DbType.SmallInt:
+                case SqlServer2022DbType.SmallInt:
                     return ClassNameType.Int16;
 
-                case SqlServer2012DbType.TinyInt:
+                case SqlServer2022DbType.TinyInt:
                     return ClassNameType.Byte;
 
-                case SqlServer2012DbType.Variant:
-                case SqlServer2012DbType.Udt:
+                case SqlServer2022DbType.Variant:
+                case SqlServer2022DbType.Udt:
                     return ClassNameType.Object;
 
-                case SqlServer2012DbType.Structured:
+                case SqlServer2022DbType.Structured:
                     return ClassNameType.UserDefinedTableType;
 
-                case SqlServer2012DbType.DateTimeOffset:
+                case SqlServer2022DbType.DateTimeOffset:
                     return ClassNameType.DateTimeOffset;
 
                 default: return ClassNameType.Object;

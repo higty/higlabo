@@ -30,9 +30,6 @@ namespace HigLabo.DbSharp.MetaData
         DateOnly,
         TimeOnly,
         UserDefinedTableType,
-        Geometry,
-        Geography,
-        HierarchyId,
         MySqlGeometry,
     }
     public static class ClassNameTypeExtensions
@@ -60,12 +57,9 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.TimeSpan: return typeof(TimeSpan);
                 case ClassNameType.DateTime: return typeof(DateTime);
                 case ClassNameType.DateTimeOffset: return typeof(DateTimeOffset);
-                case ClassNameType.DateOnly: return typeof(DateOnly);
-                case ClassNameType.TimeOnly: return typeof(TimeOnly);
+                case ClassNameType.DateOnly: return typeof(DateTime);
+                case ClassNameType.TimeOnly: return typeof(TimeSpan);
                 case ClassNameType.MySqlGeometry: return Type.GetType("global::MySql.Data.Types.MySqlGeometry");
-                case ClassNameType.Geometry: return Type.GetType("global::Microsoft.SqlServer.Types.SqlGeometry");
-                case ClassNameType.Geography: return Type.GetType("global::Microsoft.SqlServer.Types.SqlGeography");
-                case ClassNameType.HierarchyId: return Type.GetType("global::Microsoft.SqlServer.Types.SqlHierarchyId");
                 default: throw new ArgumentException();
             }
         }
@@ -95,9 +89,6 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.DateOnly: return "DateOnly";
                 case ClassNameType.TimeOnly: return "TimeOnly";
                 case ClassNameType.MySqlGeometry: return "global::MySql.Data.Types.MySqlGeometry";
-                case ClassNameType.Geometry: return "global::Microsoft.SqlServer.Types.SqlGeometry";
-                case ClassNameType.Geography: return "global::Microsoft.SqlServer.Types.SqlGeography";
-                case ClassNameType.HierarchyId: return "global::Microsoft.SqlServer.Types.SqlHierarchyId";
                 default: throw new ArgumentException();
             }
         }
@@ -128,9 +119,6 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.TimeOnly: return true;
                 case ClassNameType.UserDefinedTableType: return false;
                 case ClassNameType.MySqlGeometry: return true;
-                case ClassNameType.Geometry: return false;
-                case ClassNameType.Geography: return false;
-                case ClassNameType.HierarchyId: return true;
                 default: throw new ArgumentException();
             }
         }

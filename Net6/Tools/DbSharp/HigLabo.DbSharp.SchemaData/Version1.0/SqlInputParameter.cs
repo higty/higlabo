@@ -51,7 +51,7 @@ namespace HigLabo.DbSharp.MetaData
                 case DatabaseServer.SqlServer:
                     {
                         var tp = this.DbType.SqlServerDbType.Value;
-                        if (tp == SqlServer2012DbType.Structured)
+                        if (tp == SqlServer2022DbType.Structured)
                         {
                             return this.UserTableTypeName;
                         }
