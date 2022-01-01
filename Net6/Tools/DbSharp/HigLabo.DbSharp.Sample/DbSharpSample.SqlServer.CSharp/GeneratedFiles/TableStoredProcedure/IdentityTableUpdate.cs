@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,9 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class IdentityTableUpdate : StoredProcedure
     {
         public const String Name = "IdentityTableUpdate";
+        private Int32 _IntColumn;
+        private String _NVarCharColumn = null;
+        private Int32 _PK_IntColumn;
 
         public String DatabaseKey
         {
@@ -28,9 +31,39 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Int32 IntColumn { get; set; }
-        public String NVarCharColumn { get; set; } = null;
-        public Int32 PK_IntColumn { get; set; }
+        public Int32 IntColumn
+        {
+            get
+            {
+                return _IntColumn;
+            }
+            set
+            {
+                _IntColumn = value;
+            }
+        }
+        public String NVarCharColumn
+        {
+            get
+            {
+                return _NVarCharColumn;
+            }
+            set
+            {
+                _NVarCharColumn = value;
+            }
+        }
+        public Int32 PK_IntColumn
+        {
+            get
+            {
+                return _PK_IntColumn;
+            }
+            set
+            {
+                _PK_IntColumn = value;
+            }
+        }
 
         public IdentityTableUpdate()
         {

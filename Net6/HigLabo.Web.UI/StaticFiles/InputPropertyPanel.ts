@@ -45,9 +45,18 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Click.bind(this));
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
+
+        this.initializeSetByEndTimeProperty();
     }
     public registerEventHandler(hander: RecordAddedEventHandler) {
         this._eventHandlerList.push(hander);
+    }
+
+    private initializeSetByEndTimeProperty() {
+        var ipl = this;
+        $("[input-property-panel] [set-by-end-time]").forEach((element, index) => {
+            ipl.toggleDateTimeDurationList(element);
+        });
     }
 
     private dateTimeTextBox_Focusin(target: Element, e: Event) {

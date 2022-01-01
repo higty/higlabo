@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,8 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class AllDataTypeTable_AzureDelete : StoredProcedure
     {
         public const String Name = "AllDataTypeTable_AzureDelete";
+        private Int64 _PK_PrimaryKeyColumn;
+        private Byte[] _PK_TimestampColumn;
 
         public String DatabaseKey
         {
@@ -28,8 +30,28 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Int64 PK_PrimaryKeyColumn { get; set; }
-        public Byte[] PK_TimestampColumn { get; set; }
+        public Int64 PK_PrimaryKeyColumn
+        {
+            get
+            {
+                return _PK_PrimaryKeyColumn;
+            }
+            set
+            {
+                _PK_PrimaryKeyColumn = value;
+            }
+        }
+        public Byte[] PK_TimestampColumn
+        {
+            get
+            {
+                return _PK_TimestampColumn;
+            }
+            set
+            {
+                _PK_TimestampColumn = value;
+            }
+        }
 
         public AllDataTypeTable_AzureDelete()
         {

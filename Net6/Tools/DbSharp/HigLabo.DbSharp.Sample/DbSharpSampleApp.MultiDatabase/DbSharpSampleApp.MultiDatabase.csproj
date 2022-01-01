@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="4.0.0" />
-    <PackageReference Include="Microsoft.SqlServer.Types" Version="14.0.1016.290" />
   </ItemGroup>
 
   <ItemGroup>

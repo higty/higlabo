@@ -44,7 +44,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = db.ExecuteReader(this.QueryBuilder.GetTable(name));
-                if (reader.Read() == false) { throw new InvalidOperationException(String.Format("Table {0} does not exist.", name)); }
+                if (await reader.ReadAsync() == false) { throw new InvalidOperationException(String.Format("Table {0} does not exist.", name)); }
                 t.Name = reader.GetString(0);
                 t.CreateTime = reader.GetDateTime(1);
                 t.LastAlteredTime = reader.GetDateTime(2);
@@ -72,11 +72,6 @@ namespace HigLabo.DbSharp.MetaData
                 item.Columns.AddRange(columnList);
                 t.IndexList.Add(item);
             }
-            foreach (var item in await this.GetDefaultCostraintAsync(name))
-            {
-                var c = t.Columns.Find(el => el.Name == item.ColumnName);
-                c.DefaultCostraint = item;
-            }
             foreach (var item in await this.GetForeignKeyColumnAsync(name))
             {
                 var c = t.Columns.Find(el => el.Name == item.ColumnName);
@@ -85,6 +80,11 @@ namespace HigLabo.DbSharp.MetaData
             foreach (var item in await this.GetCheckConstraintAsync(name))
             {
                 t.CheckConstraintList.Add(item);
+            }
+            foreach (var item in await this.GetDefaultCostraintAsync(name))
+            {
+                var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                c.DefaultCostraint = item;
             }
             return t;
         }
@@ -147,7 +147,7 @@ namespace HigLabo.DbSharp.MetaData
                 while (await reader.ReadAsync())
                 {
                     var c = new DefaultCostraint();
-                    c.Name = reader.GetString(0);
+                    c.Name = reader.GetString(0) ?? "";
                     c.TableName = reader.GetString(1);
                     c.ColumnName = reader.GetString(2);
                     c.Definition = reader.GetString(3);

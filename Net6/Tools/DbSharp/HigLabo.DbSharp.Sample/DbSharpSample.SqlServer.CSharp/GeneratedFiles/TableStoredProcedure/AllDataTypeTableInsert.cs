@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,66 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class AllDataTypeTableInsert : StoredProcedure
     {
         public const String Name = "AllDataTypeTableInsert";
+        private Int64 _PrimaryKeyColumn;
+        private Byte[] _TimestampColumn;
+        private Int64? _BigIntColumn;
+        private Byte[] _BinaryColumn;
+        private Byte[] _ImageColumn;
+        private Byte[] _VarBinaryColumn;
+        private Boolean? _BitColumn;
+        private String _CharColumn = null;
+        private String _NCharColumn = null;
+        private String _NTextColumn = null;
+        private String _NVarCharColumn = null;
+        private String _TextColumn = null;
+        private String _VarCharColumn = null;
+        private String _XmlColumn = null;
+        private DateTime? _DateTimeColumn;
+        private DateTime? _SmallDateTimeColumn;
+        private DateOnly? _DateColumn;
+        private TimeOnly? _TimeColumn;
+        private DateTime? _DateTime2Column;
+        private Decimal? _DecimalColumn;
+        private Decimal? _MoneyColumn;
+        private Decimal? _SmallMoneyColumn;
+        private Double? _FloatColumn;
+        private Int32? _IntColumn;
+        private Single? _RealColumn;
+        private Guid? _UniqueIdentifierColumn;
+        private Int16? _SmallIntColumn;
+        private Byte? _TinyIntColumn;
+        private DateTimeOffset? _DateTimeOffsetColumn;
+        private Object _SqlVariantColumn;
+        private MyEnum? _EnumColumn;
+        private Int64 _NotNullBigIntColumn;
+        private Byte[] _NotNullBinaryColumn;
+        private Byte[] _NotNullImageColumn;
+        private Byte[] _NotNullVarBinaryColumn;
+        private Boolean _NotNullBitColumn;
+        private String _NotNullCharColumn = "";
+        private String _NotNullNCharColumn = "";
+        private String _NotNullNTextColumn = "";
+        private String _NotNullNVarCharColumn = "";
+        private String _NotNullTextColumn = "";
+        private String _NotNullVarCharColumn = "";
+        private String _NotNullXmlColumn = "";
+        private DateTime _NotNullDateTimeColumn;
+        private DateTime _NotNullSmallDateTimeColumn;
+        private DateOnly _NotNullDateColumn;
+        private TimeOnly _NotNullTimeColumn;
+        private DateTime _NotNullDateTime2Column;
+        private Decimal _NotNullDecimalColumn;
+        private Decimal _NotNullMoneyColumn;
+        private Decimal _NotNullSmallMoneyColumn;
+        private Double _NotNullFloatColumn;
+        private Int32 _NotNullIntColumn;
+        private Single _NotNullRealColumn;
+        private Guid _NotNullUniqueIdentifierColumn;
+        private Int16 _NotNullSmallIntColumn;
+        private Byte _NotNullTinyIntColumn;
+        private DateTimeOffset _NotNullDateTimeOffsetColumn;
+        private Object _NotNullSqlVariantColumn;
+        private MyEnum _NotNullEnumColumn;
 
         public String DatabaseKey
         {
@@ -28,66 +88,666 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Int64 PrimaryKeyColumn { get; set; }
-        public Byte[] TimestampColumn { get; set; }
-        public Int64? BigIntColumn { get; set; }
-        public Byte[] BinaryColumn { get; set; }
-        public Byte[] ImageColumn { get; set; }
-        public Byte[] VarBinaryColumn { get; set; }
-        public Boolean? BitColumn { get; set; }
-        public String CharColumn { get; set; } = null;
-        public String NCharColumn { get; set; } = null;
-        public String NTextColumn { get; set; } = null;
-        public String NVarCharColumn { get; set; } = null;
-        public String TextColumn { get; set; } = null;
-        public String VarCharColumn { get; set; } = null;
-        public String XmlColumn { get; set; } = null;
-        public DateTime? DateTimeColumn { get; set; }
-        public DateTime? SmallDateTimeColumn { get; set; }
-        public DateOnly? DateColumn { get; set; }
-        public TimeOnly? TimeColumn { get; set; }
-        public DateTime? DateTime2Column { get; set; }
-        public Decimal? DecimalColumn { get; set; }
-        public Decimal? MoneyColumn { get; set; }
-        public Decimal? SmallMoneyColumn { get; set; }
-        public Double? FloatColumn { get; set; }
-        public Int32? IntColumn { get; set; }
-        public Single? RealColumn { get; set; }
-        public Guid? UniqueIdentifierColumn { get; set; }
-        public Int16? SmallIntColumn { get; set; }
-        public Byte? TinyIntColumn { get; set; }
-        public DateTimeOffset? DateTimeOffsetColumn { get; set; }
-        public Object SqlVariantColumn { get; set; }
-        public MyEnum? EnumColumn { get; set; }
-        public Int64 NotNullBigIntColumn { get; set; }
-        public Byte[] NotNullBinaryColumn { get; set; }
-        public Byte[] NotNullImageColumn { get; set; }
-        public Byte[] NotNullVarBinaryColumn { get; set; }
-        public Boolean NotNullBitColumn { get; set; }
-        public String NotNullCharColumn { get; set; } = "";
-        public String NotNullNCharColumn { get; set; } = "";
-        public String NotNullNTextColumn { get; set; } = "";
-        public String NotNullNVarCharColumn { get; set; } = "";
-        public String NotNullTextColumn { get; set; } = "";
-        public String NotNullVarCharColumn { get; set; } = "";
-        public String NotNullXmlColumn { get; set; } = "";
-        public DateTime NotNullDateTimeColumn { get; set; }
-        public DateTime NotNullSmallDateTimeColumn { get; set; }
-        public DateOnly NotNullDateColumn { get; set; }
-        public TimeOnly NotNullTimeColumn { get; set; }
-        public DateTime NotNullDateTime2Column { get; set; }
-        public Decimal NotNullDecimalColumn { get; set; }
-        public Decimal NotNullMoneyColumn { get; set; }
-        public Decimal NotNullSmallMoneyColumn { get; set; }
-        public Double NotNullFloatColumn { get; set; }
-        public Int32 NotNullIntColumn { get; set; }
-        public Single NotNullRealColumn { get; set; }
-        public Guid NotNullUniqueIdentifierColumn { get; set; }
-        public Int16 NotNullSmallIntColumn { get; set; }
-        public Byte NotNullTinyIntColumn { get; set; }
-        public DateTimeOffset NotNullDateTimeOffsetColumn { get; set; }
-        public Object NotNullSqlVariantColumn { get; set; }
-        public MyEnum NotNullEnumColumn { get; set; }
+        public Int64 PrimaryKeyColumn
+        {
+            get
+            {
+                return _PrimaryKeyColumn;
+            }
+            set
+            {
+                _PrimaryKeyColumn = value;
+            }
+        }
+        public Byte[] TimestampColumn
+        {
+            get
+            {
+                return _TimestampColumn;
+            }
+            set
+            {
+                _TimestampColumn = value;
+            }
+        }
+        public Int64? BigIntColumn
+        {
+            get
+            {
+                return _BigIntColumn;
+            }
+            set
+            {
+                _BigIntColumn = value;
+            }
+        }
+        public Byte[] BinaryColumn
+        {
+            get
+            {
+                return _BinaryColumn;
+            }
+            set
+            {
+                _BinaryColumn = value;
+            }
+        }
+        public Byte[] ImageColumn
+        {
+            get
+            {
+                return _ImageColumn;
+            }
+            set
+            {
+                _ImageColumn = value;
+            }
+        }
+        public Byte[] VarBinaryColumn
+        {
+            get
+            {
+                return _VarBinaryColumn;
+            }
+            set
+            {
+                _VarBinaryColumn = value;
+            }
+        }
+        public Boolean? BitColumn
+        {
+            get
+            {
+                return _BitColumn;
+            }
+            set
+            {
+                _BitColumn = value;
+            }
+        }
+        public String CharColumn
+        {
+            get
+            {
+                return _CharColumn;
+            }
+            set
+            {
+                _CharColumn = value;
+            }
+        }
+        public String NCharColumn
+        {
+            get
+            {
+                return _NCharColumn;
+            }
+            set
+            {
+                _NCharColumn = value;
+            }
+        }
+        public String NTextColumn
+        {
+            get
+            {
+                return _NTextColumn;
+            }
+            set
+            {
+                _NTextColumn = value;
+            }
+        }
+        public String NVarCharColumn
+        {
+            get
+            {
+                return _NVarCharColumn;
+            }
+            set
+            {
+                _NVarCharColumn = value;
+            }
+        }
+        public String TextColumn
+        {
+            get
+            {
+                return _TextColumn;
+            }
+            set
+            {
+                _TextColumn = value;
+            }
+        }
+        public String VarCharColumn
+        {
+            get
+            {
+                return _VarCharColumn;
+            }
+            set
+            {
+                _VarCharColumn = value;
+            }
+        }
+        public String XmlColumn
+        {
+            get
+            {
+                return _XmlColumn;
+            }
+            set
+            {
+                _XmlColumn = value;
+            }
+        }
+        public DateTime? DateTimeColumn
+        {
+            get
+            {
+                return _DateTimeColumn;
+            }
+            set
+            {
+                _DateTimeColumn = value;
+            }
+        }
+        public DateTime? SmallDateTimeColumn
+        {
+            get
+            {
+                return _SmallDateTimeColumn;
+            }
+            set
+            {
+                _SmallDateTimeColumn = value;
+            }
+        }
+        public DateOnly? DateColumn
+        {
+            get
+            {
+                return _DateColumn;
+            }
+            set
+            {
+                _DateColumn = value;
+            }
+        }
+        public TimeOnly? TimeColumn
+        {
+            get
+            {
+                return _TimeColumn;
+            }
+            set
+            {
+                _TimeColumn = value;
+            }
+        }
+        public DateTime? DateTime2Column
+        {
+            get
+            {
+                return _DateTime2Column;
+            }
+            set
+            {
+                _DateTime2Column = value;
+            }
+        }
+        public Decimal? DecimalColumn
+        {
+            get
+            {
+                return _DecimalColumn;
+            }
+            set
+            {
+                _DecimalColumn = value;
+            }
+        }
+        public Decimal? MoneyColumn
+        {
+            get
+            {
+                return _MoneyColumn;
+            }
+            set
+            {
+                _MoneyColumn = value;
+            }
+        }
+        public Decimal? SmallMoneyColumn
+        {
+            get
+            {
+                return _SmallMoneyColumn;
+            }
+            set
+            {
+                _SmallMoneyColumn = value;
+            }
+        }
+        public Double? FloatColumn
+        {
+            get
+            {
+                return _FloatColumn;
+            }
+            set
+            {
+                _FloatColumn = value;
+            }
+        }
+        public Int32? IntColumn
+        {
+            get
+            {
+                return _IntColumn;
+            }
+            set
+            {
+                _IntColumn = value;
+            }
+        }
+        public Single? RealColumn
+        {
+            get
+            {
+                return _RealColumn;
+            }
+            set
+            {
+                _RealColumn = value;
+            }
+        }
+        public Guid? UniqueIdentifierColumn
+        {
+            get
+            {
+                return _UniqueIdentifierColumn;
+            }
+            set
+            {
+                _UniqueIdentifierColumn = value;
+            }
+        }
+        public Int16? SmallIntColumn
+        {
+            get
+            {
+                return _SmallIntColumn;
+            }
+            set
+            {
+                _SmallIntColumn = value;
+            }
+        }
+        public Byte? TinyIntColumn
+        {
+            get
+            {
+                return _TinyIntColumn;
+            }
+            set
+            {
+                _TinyIntColumn = value;
+            }
+        }
+        public DateTimeOffset? DateTimeOffsetColumn
+        {
+            get
+            {
+                return _DateTimeOffsetColumn;
+            }
+            set
+            {
+                _DateTimeOffsetColumn = value;
+            }
+        }
+        public Object SqlVariantColumn
+        {
+            get
+            {
+                return _SqlVariantColumn;
+            }
+            set
+            {
+                _SqlVariantColumn = value;
+            }
+        }
+        public MyEnum? EnumColumn
+        {
+            get
+            {
+                return _EnumColumn;
+            }
+            set
+            {
+                _EnumColumn = value;
+            }
+        }
+        public Int64 NotNullBigIntColumn
+        {
+            get
+            {
+                return _NotNullBigIntColumn;
+            }
+            set
+            {
+                _NotNullBigIntColumn = value;
+            }
+        }
+        public Byte[] NotNullBinaryColumn
+        {
+            get
+            {
+                return _NotNullBinaryColumn;
+            }
+            set
+            {
+                _NotNullBinaryColumn = value;
+            }
+        }
+        public Byte[] NotNullImageColumn
+        {
+            get
+            {
+                return _NotNullImageColumn;
+            }
+            set
+            {
+                _NotNullImageColumn = value;
+            }
+        }
+        public Byte[] NotNullVarBinaryColumn
+        {
+            get
+            {
+                return _NotNullVarBinaryColumn;
+            }
+            set
+            {
+                _NotNullVarBinaryColumn = value;
+            }
+        }
+        public Boolean NotNullBitColumn
+        {
+            get
+            {
+                return _NotNullBitColumn;
+            }
+            set
+            {
+                _NotNullBitColumn = value;
+            }
+        }
+        public String NotNullCharColumn
+        {
+            get
+            {
+                return _NotNullCharColumn;
+            }
+            set
+            {
+                _NotNullCharColumn = value ?? "";
+            }
+        }
+        public String NotNullNCharColumn
+        {
+            get
+            {
+                return _NotNullNCharColumn;
+            }
+            set
+            {
+                _NotNullNCharColumn = value ?? "";
+            }
+        }
+        public String NotNullNTextColumn
+        {
+            get
+            {
+                return _NotNullNTextColumn;
+            }
+            set
+            {
+                _NotNullNTextColumn = value ?? "";
+            }
+        }
+        public String NotNullNVarCharColumn
+        {
+            get
+            {
+                return _NotNullNVarCharColumn;
+            }
+            set
+            {
+                _NotNullNVarCharColumn = value ?? "";
+            }
+        }
+        public String NotNullTextColumn
+        {
+            get
+            {
+                return _NotNullTextColumn;
+            }
+            set
+            {
+                _NotNullTextColumn = value ?? "";
+            }
+        }
+        public String NotNullVarCharColumn
+        {
+            get
+            {
+                return _NotNullVarCharColumn;
+            }
+            set
+            {
+                _NotNullVarCharColumn = value ?? "";
+            }
+        }
+        public String NotNullXmlColumn
+        {
+            get
+            {
+                return _NotNullXmlColumn;
+            }
+            set
+            {
+                _NotNullXmlColumn = value ?? "";
+            }
+        }
+        public DateTime NotNullDateTimeColumn
+        {
+            get
+            {
+                return _NotNullDateTimeColumn;
+            }
+            set
+            {
+                _NotNullDateTimeColumn = value;
+            }
+        }
+        public DateTime NotNullSmallDateTimeColumn
+        {
+            get
+            {
+                return _NotNullSmallDateTimeColumn;
+            }
+            set
+            {
+                _NotNullSmallDateTimeColumn = value;
+            }
+        }
+        public DateOnly NotNullDateColumn
+        {
+            get
+            {
+                return _NotNullDateColumn;
+            }
+            set
+            {
+                _NotNullDateColumn = value;
+            }
+        }
+        public TimeOnly NotNullTimeColumn
+        {
+            get
+            {
+                return _NotNullTimeColumn;
+            }
+            set
+            {
+                _NotNullTimeColumn = value;
+            }
+        }
+        public DateTime NotNullDateTime2Column
+        {
+            get
+            {
+                return _NotNullDateTime2Column;
+            }
+            set
+            {
+                _NotNullDateTime2Column = value;
+            }
+        }
+        public Decimal NotNullDecimalColumn
+        {
+            get
+            {
+                return _NotNullDecimalColumn;
+            }
+            set
+            {
+                _NotNullDecimalColumn = value;
+            }
+        }
+        public Decimal NotNullMoneyColumn
+        {
+            get
+            {
+                return _NotNullMoneyColumn;
+            }
+            set
+            {
+                _NotNullMoneyColumn = value;
+            }
+        }
+        public Decimal NotNullSmallMoneyColumn
+        {
+            get
+            {
+                return _NotNullSmallMoneyColumn;
+            }
+            set
+            {
+                _NotNullSmallMoneyColumn = value;
+            }
+        }
+        public Double NotNullFloatColumn
+        {
+            get
+            {
+                return _NotNullFloatColumn;
+            }
+            set
+            {
+                _NotNullFloatColumn = value;
+            }
+        }
+        public Int32 NotNullIntColumn
+        {
+            get
+            {
+                return _NotNullIntColumn;
+            }
+            set
+            {
+                _NotNullIntColumn = value;
+            }
+        }
+        public Single NotNullRealColumn
+        {
+            get
+            {
+                return _NotNullRealColumn;
+            }
+            set
+            {
+                _NotNullRealColumn = value;
+            }
+        }
+        public Guid NotNullUniqueIdentifierColumn
+        {
+            get
+            {
+                return _NotNullUniqueIdentifierColumn;
+            }
+            set
+            {
+                _NotNullUniqueIdentifierColumn = value;
+            }
+        }
+        public Int16 NotNullSmallIntColumn
+        {
+            get
+            {
+                return _NotNullSmallIntColumn;
+            }
+            set
+            {
+                _NotNullSmallIntColumn = value;
+            }
+        }
+        public Byte NotNullTinyIntColumn
+        {
+            get
+            {
+                return _NotNullTinyIntColumn;
+            }
+            set
+            {
+                _NotNullTinyIntColumn = value;
+            }
+        }
+        public DateTimeOffset NotNullDateTimeOffsetColumn
+        {
+            get
+            {
+                return _NotNullDateTimeOffsetColumn;
+            }
+            set
+            {
+                _NotNullDateTimeOffsetColumn = value;
+            }
+        }
+        public Object NotNullSqlVariantColumn
+        {
+            get
+            {
+                return _NotNullSqlVariantColumn;
+            }
+            set
+            {
+                _NotNullSqlVariantColumn = value;
+            }
+        }
+        public MyEnum NotNullEnumColumn
+        {
+            get
+            {
+                return _NotNullEnumColumn;
+            }
+            set
+            {
+                _NotNullEnumColumn = value;
+            }
+        }
 
         public AllDataTypeTableInsert()
         {

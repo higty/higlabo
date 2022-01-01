@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Linq;

@@ -11,6 +11,11 @@ namespace HigLabo.Mapper.Test
         public DateOnly Date { get; set; }
         public TimeOnly Time { get; set; }
     }
+    public class DateOnlyTimeOnlyNullableClass
+    {
+        public DateOnly? Date { get; set; }
+        public TimeOnly? Time { get; set; }
+    }
     public class DateTimeClass
     {
         public DateTime Date { get; set; }

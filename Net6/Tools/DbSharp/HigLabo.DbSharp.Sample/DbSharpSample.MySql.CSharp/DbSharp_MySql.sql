@@ -75,10 +75,10 @@ Create Table AllDataTypeTable
 ,NotNullEnumColumn enum('Default','Value1','Value2') not null
 ,NotNullSetColumn set('Value0','Value1','Value2') not null
 
+, CONSTRAINT PK_AllDataTypeTable PRIMARY KEY NONCLUSTERED (PrimaryKeyColumn)
+, CONSTRAINT AllDataTypeTable_Check_IntColumn CHECK (IntColumn>0)
 );
 
-ALTER TABLE AllDataTypeTable ADD CONSTRAINT PK_AllDataTypeTable 
-PRIMARY KEY NONCLUSTERED (PrimaryKeyColumn);
 
 DELIMITER //
 Create Procedure Usp_OutputParameter
@@ -155,6 +155,28 @@ Create Table MultiPkTable
 
 ALTER TABLE MultiPkTable ADD CONSTRAINT PK_MultiPkTable 
 PRIMARY KEY NONCLUSTERED (BigIntColumn,IntColumn,FloatColumn);
+
+
+SHOW KEYS FROM alldatatypetable WHERE Key_name = 'PRIMARY'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

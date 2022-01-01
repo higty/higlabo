@@ -256,12 +256,7 @@ ORDER BY TABLE_NAME ASC
             {
                 var q = @"
 SELECT T01.TABLE_NAME AS TableName
-, T01.COLUMN_NAME AS ColumnName
-, Case T01.COLUMN_KEY 
-	When 'PRI' Then 1 
-	Else 0
-End As IsPrimaryKey 
-, '' as Clustered
+,T01.COLUMN_NAME AS ColumnName
 ,Case T01.DATA_TYPE 
 	When 'char' Then 'String' 
 	When 'tinyint' Then Case InStr(T01.COLUMN_TYPE, 'unsigned') When 0 Then 'Byte' Else 'UByte' End
@@ -285,28 +280,79 @@ End as IsIdentity
 from information_schema.columns as T01
 where Table_Schema = (SELECT DATABASE() FROM DUAL) 
 And TABLE_NAME = '{0}'
+order by ORDINAL_POSITION
 ";
                 return String.Format(q, tableName);
             }
             public override String GetPrimaryKey(String tableName)
             {
-                throw new NotImplementedException();
+                var q = @"
+SELECT '' as Name
+, T01.TABLE_NAME AS TableName
+, T01.COLUMN_NAME AS ColumnName
+, '' as type_desc
+from information_schema.columns as T01
+where Table_Schema = (SELECT DATABASE() FROM DUAL) 
+and TABLE_NAME = '{0}'
+and T01.COLUMN_KEY = 'PRI'
+";
+                return String.Format(q, tableName);
             }
             public override String GetIndex(String tableName)
             {
-                throw new NotImplementedException();
-            }
-            public override String GetForeignKeys(String tableName)
-            {
-                throw new NotImplementedException();
+                var q = @"
+select index_name
+,table_name
+,column_name
+,INDEX_TYPE AS IndexType
+,CASE NON_UNIQUE when 1 then 0 else 1 end as IsUnique
+,'Table' as ObjectType 
+from information_schema.statistics where table_name = '{0}';
+";
+                return String.Format(q, tableName);
             }
             public override String GetDefaultConstraints(String tableName)
             {
-                throw new NotImplementedException();
+                var q = @"
+SELECT '' as Name
+,cols.TABLE_NAME
+,cols.COLUMN_NAME
+,cols.COLUMN_DEFAULT
+FROM INFORMATION_SCHEMA.`COLUMNS` as cols
+WHERE cols.TABLE_SCHEMA=DATABASE()
+AND cols.TABLE_NAME='{0}'
+AND cols.COLUMN_DEFAULT IS NOT NULL"
+;
+                return String.Format(q, tableName);
+            }
+            public override String GetForeignKeys(String tableName)
+            {
+                var q = @"
+SELECT T1.constraint_name as Name
+, T1.table_name as TableName
+, T1.column_name as ColumnName
+, T1.referenced_table_name as ParentTableName
+, T1.referenced_column_name as ParentColumnName
+, T2.update_rule
+, T2.delete_rule 
+FROM INFORMATION_SCHEMA.key_column_usage T1
+JOIN INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS as T2 on T1.constraint_name = T2.constraint_name
+WHERE T1.referenced_table_schema = '{0}' 
+AND T1.referenced_table_name IS NOT NULL 
+ORDER BY T1.table_name, T1.column_name
+";
+                return String.Format(q, tableName);
             }
             public override String GetCheckConstraints(String tableName)
             {
-                throw new NotImplementedException();
+                var q = @"
+SELECT constraint_name as Name
+,table_name as TableName
+,'' as Definition
+FROM information_schema.table_constraints 
+where table_name = N'{0}'
+and CONSTRAINT_TYPE = N'CHECK';";
+                return String.Format(q, tableName);
             }
             public override String GetViews()
             {

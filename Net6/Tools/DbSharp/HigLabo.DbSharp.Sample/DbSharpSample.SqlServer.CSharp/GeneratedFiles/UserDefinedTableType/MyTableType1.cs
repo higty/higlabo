@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Text;
@@ -24,10 +24,55 @@ namespace HigLabo.DbSharpSample.SqlServer
 
         public partial class Record : UserDefinedTableTypeRecord
         {
-            public Int64 BigIntColumn { get; set; }
-            public Byte[] BinaryColumn { get; set; }
-            public Byte[] ImageColumn { get; set; }
-            public Byte[] VarBinaryColumn { get; set; }
+            private Int64 _BigIntColumn;
+            private Byte[] _BinaryColumn;
+            private Byte[] _ImageColumn;
+            private Byte[] _VarBinaryColumn;
+
+            public Int64 BigIntColumn
+            {
+                get
+                {
+                    return _BigIntColumn;
+                }
+                set
+                {
+                    _BigIntColumn = value;
+                }
+            }
+            public Byte[] BinaryColumn
+            {
+                get
+                {
+                    return _BinaryColumn;
+                }
+                set
+                {
+                    _BinaryColumn = value;
+                }
+            }
+            public Byte[] ImageColumn
+            {
+                get
+                {
+                    return _ImageColumn;
+                }
+                set
+                {
+                    _ImageColumn = value;
+                }
+            }
+            public Byte[] VarBinaryColumn
+            {
+                get
+                {
+                    return _VarBinaryColumn;
+                }
+                set
+                {
+                    _VarBinaryColumn = value;
+                }
+            }
 
             public Record()
             {

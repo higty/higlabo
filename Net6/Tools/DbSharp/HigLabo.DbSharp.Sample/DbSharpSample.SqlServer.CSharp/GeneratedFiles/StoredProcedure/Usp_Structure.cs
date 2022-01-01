@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,8 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class Usp_Structure : StoredProcedure
     {
         public const String Name = "Usp_Structure";
+        private Int64? _BigIntColumn;
+        private MyTableType _StructuredColumn = new MyTableType();
 
         public String DatabaseKey
         {
@@ -28,8 +30,28 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Int64? BigIntColumn { get; set; }
-        public MyTableType StructuredColumn { get; set; } = new MyTableType();
+        public Int64? BigIntColumn
+        {
+            get
+            {
+                return _BigIntColumn;
+            }
+            set
+            {
+                _BigIntColumn = value;
+            }
+        }
+        public MyTableType StructuredColumn
+        {
+            get
+            {
+                return _StructuredColumn;
+            }
+            set
+            {
+                _StructuredColumn = value;
+            }
+        }
 
         public Usp_Structure()
         {

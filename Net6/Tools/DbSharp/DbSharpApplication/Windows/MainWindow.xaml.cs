@@ -119,6 +119,7 @@ namespace HigLabo.DbSharpApplication
             String xml = File.ReadAllText(filePath);
             AValue.LoadSchemaData(xml);
             AValue.ConfigData.SchemaFilePath = filePath;
+            this.Title = filePath;
             this.SetSchemaData();
         }
         private void SetSchemaData()

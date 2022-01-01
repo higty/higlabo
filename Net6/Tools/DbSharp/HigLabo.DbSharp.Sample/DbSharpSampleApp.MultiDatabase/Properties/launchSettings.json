@@ -2,7 +2,7 @@
   "profiles": {
     "DbSharpSampleApp.MultiDatabase": {
       "commandName": "Project",
-      "commandLineArgs": "Server=.;Database=DbSharpSample_Net5;Trusted_Connection=Yes;TrustServerCertificate=True;"
+      "commandLineArgs": "Server=.;Database=DbSharpSample_Net5;Trusted_Connection=Yes;TrustServerCertificate=True; Server=localhost;Database=dbsharpsample;Username=root;Password=Li0n@,./m"
     }
   }
 }

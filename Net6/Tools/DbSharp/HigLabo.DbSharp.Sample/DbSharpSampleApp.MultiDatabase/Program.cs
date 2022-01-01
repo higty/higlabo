@@ -7,7 +7,6 @@ using HigLabo.DbSharpSample.SqlServer;
 using HigLabo.DbSharpSample.MySql;
 using HigLabo.Data;
 using HigLabo.DbSharp;
-using Microsoft.SqlServer.Types;
 using System.Data;
 using MySql.Data.Types;
 
@@ -28,9 +27,11 @@ namespace HigLaboSampleApp.MultiDatabase
 
             try
             {
+                Console.WriteLine("■SQL SERVER");
                 CrudOperationTest_SqlServer();
                 //CrudOperationTest_SqlServer_Azure();
-                //CrudOperationTest_MySql();
+                Console.WriteLine("■MYSQL");
+                CrudOperationTest_MySql();
             }
             catch (DbSharpTestFailureException ex)
             {

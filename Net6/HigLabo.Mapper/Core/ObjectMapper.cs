@@ -899,6 +899,29 @@ namespace HigLabo.Core
 
                     }
                 }
+                if (sourceProperty.PropertyType == typeof(DateOnly))
+                {
+                    if (targetProperty.PropertyType == typeof(DateTime))
+                    {
+                        var toMethod = Expression.Call(getMethod, _DateOnlyToDateTime, Expression.Property(null, _TimeOnlyMinValue));
+                        var body = Expression.Call(p.Target, setMethod, toMethod);
+                        ee.Add(body);
+                    }
+                    if (targetProperty.PropertyType == typeof(DateTimeOffset))
+                    {
+                        var body = Expression.Call(p.Target, setMethod, Expression.Call(null, _DateOnlyToDateTimeOffset, getMethod));
+                        ee.Add(body);
+                    }
+                }
+                if (sourceProperty.PropertyType == typeof(TimeOnly))
+                {
+                    if (targetProperty.PropertyType == typeof(TimeSpan))
+                    {
+                        var toMethod = Expression.Call(getMethod, _TimeOnlyToTimeSpan);
+                        var body = Expression.Call(p.Target, setMethod, toMethod);
+                        ee.Add(body);
+                    }
+                }
 
                 if (sourceProperty.PropertyType == typeof(String))
                 {
@@ -951,29 +974,6 @@ namespace HigLabo.Core
                         }
                     }
 
-                }
-                else if (sourceProperty.PropertyType == typeof(DateOnly))
-                {
-                    if (targetProperty.PropertyType == typeof(DateTime))
-                    {
-                        var toMethod = Expression.Call(getMethod, _DateOnlyToDateTime, Expression.Property(null, _TimeOnlyMinValue));
-                        var body = Expression.Call(p.Target, setMethod, toMethod);
-                        ee.Add(body);
-                    }
-                    if (targetProperty.PropertyType == typeof(DateTimeOffset))
-                    {
-                        var body = Expression.Call(p.Target, setMethod, Expression.Call(null, _DateOnlyToDateTimeOffset, getMethod));
-                        ee.Add(body);
-                    }
-                }
-                else if (sourceProperty.PropertyType == typeof(TimeOnly))
-                {
-                    if (targetProperty.PropertyType == typeof(TimeSpan))
-                    {
-                        var toMethod = Expression.Call(getMethod, _TimeOnlyToTimeSpan);
-                        var body = Expression.Call(p.Target, setMethod, toMethod);
-                        ee.Add(body);
-                    }
                 }
                 else if (sourceProperty.PropertyType.IsClass)
                 {

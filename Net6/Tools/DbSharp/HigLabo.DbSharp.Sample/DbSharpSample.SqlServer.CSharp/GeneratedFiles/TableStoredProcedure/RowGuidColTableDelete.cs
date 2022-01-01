@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,7 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class RowGuidColTableDelete : StoredProcedure
     {
         public const String Name = "RowGuidColTableDelete";
+        private Guid _PK_RowGuidColumn;
 
         public String DatabaseKey
         {
@@ -28,7 +29,17 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Guid PK_RowGuidColumn { get; set; }
+        public Guid PK_RowGuidColumn
+        {
+            get
+            {
+                return _PK_RowGuidColumn;
+            }
+            set
+            {
+                _PK_RowGuidColumn = value;
+            }
+        }
 
         public RowGuidColTableDelete()
         {

@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,9 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class MultiPkTableSelectByPrimaryKey : StoredProcedureWithResultSet<MultiPkTableSelectByPrimaryKey.ResultSet>
     {
         public const String Name = "MultiPkTableSelectByPrimaryKey";
+        private Int64 _PK_BigIntColumn;
+        private Int32 _PK_IntColumn;
+        private Double _PK_FloatColumn;
 
         public String DatabaseKey
         {
@@ -28,9 +31,39 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Int64 PK_BigIntColumn { get; set; }
-        public Int32 PK_IntColumn { get; set; }
-        public Double PK_FloatColumn { get; set; }
+        public Int64 PK_BigIntColumn
+        {
+            get
+            {
+                return _PK_BigIntColumn;
+            }
+            set
+            {
+                _PK_BigIntColumn = value;
+            }
+        }
+        public Int32 PK_IntColumn
+        {
+            get
+            {
+                return _PK_IntColumn;
+            }
+            set
+            {
+                _PK_IntColumn = value;
+            }
+        }
+        public Double PK_FloatColumn
+        {
+            get
+            {
+                return _PK_FloatColumn;
+            }
+            set
+            {
+                _PK_FloatColumn = value;
+            }
+        }
 
         public MultiPkTableSelectByPrimaryKey()
         {
@@ -116,16 +149,127 @@ namespace HigLabo.DbSharpSample.SqlServer
 
         public partial class ResultSet : StoredProcedureResultSet, MultiPkTable.IRecord
         {
-            public Int64 BigIntColumn { get; set; }
-            public Int32 IntColumn { get; set; }
-            public Double FloatColumn { get; set; }
-            public Byte[] BinaryColumn { get; set; }
-            public Byte[] TimestampColumn { get; set; }
-            public Byte[] VarBinaryColumn { get; set; }
-            public Boolean? BitColumn { get; set; }
-            public String NCharColumn { get; set; } = null;
-            public String NTextColumn { get; set; } = null;
-            public String NVarCharColumn { get; set; } = null;
+            private Int64 _BigIntColumn;
+            private Int32 _IntColumn;
+            private Double _FloatColumn;
+            private Byte[] _BinaryColumn;
+            private Byte[] _TimestampColumn;
+            private Byte[] _VarBinaryColumn;
+            private Boolean? _BitColumn;
+            private String _NCharColumn = null;
+            private String _NTextColumn = null;
+            private String _NVarCharColumn = null;
+
+            public Int64 BigIntColumn
+            {
+                get
+                {
+                    return _BigIntColumn;
+                }
+                set
+                {
+                    _BigIntColumn = value;
+                }
+            }
+            public Int32 IntColumn
+            {
+                get
+                {
+                    return _IntColumn;
+                }
+                set
+                {
+                    _IntColumn = value;
+                }
+            }
+            public Double FloatColumn
+            {
+                get
+                {
+                    return _FloatColumn;
+                }
+                set
+                {
+                    _FloatColumn = value;
+                }
+            }
+            public Byte[] BinaryColumn
+            {
+                get
+                {
+                    return _BinaryColumn;
+                }
+                set
+                {
+                    _BinaryColumn = value;
+                }
+            }
+            public Byte[] TimestampColumn
+            {
+                get
+                {
+                    return _TimestampColumn;
+                }
+                set
+                {
+                    _TimestampColumn = value;
+                }
+            }
+            public Byte[] VarBinaryColumn
+            {
+                get
+                {
+                    return _VarBinaryColumn;
+                }
+                set
+                {
+                    _VarBinaryColumn = value;
+                }
+            }
+            public Boolean? BitColumn
+            {
+                get
+                {
+                    return _BitColumn;
+                }
+                set
+                {
+                    _BitColumn = value;
+                }
+            }
+            public String NCharColumn
+            {
+                get
+                {
+                    return _NCharColumn;
+                }
+                set
+                {
+                    _NCharColumn = value;
+                }
+            }
+            public String NTextColumn
+            {
+                get
+                {
+                    return _NTextColumn;
+                }
+                set
+                {
+                    _NTextColumn = value;
+                }
+            }
+            public String NVarCharColumn
+            {
+                get
+                {
+                    return _NVarCharColumn;
+                }
+                set
+                {
+                    _NVarCharColumn = value;
+                }
+            }
 
             public ResultSet()
             {

@@ -1,4 +1,4 @@
-﻿//Generated at 2021/12/28 12:32:44 by DbSharpApplication.
+﻿//Generated at 2022/01/01 08:20:25 by DbSharpApplication.
 //https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp
 using System;
 using System.Data;
@@ -16,6 +16,10 @@ namespace HigLabo.DbSharpSample.SqlServer
     public partial class MultiPkTableDelete : StoredProcedure
     {
         public const String Name = "MultiPkTableDelete";
+        private Int64 _PK_BigIntColumn;
+        private Int32 _PK_IntColumn;
+        private Double _PK_FloatColumn;
+        private Byte[] _PK_TimestampColumn;
 
         public String DatabaseKey
         {
@@ -28,10 +32,50 @@ namespace HigLabo.DbSharpSample.SqlServer
                 ((IDatabaseContext)this).DatabaseKey = value;
             }
         }
-        public Int64 PK_BigIntColumn { get; set; }
-        public Int32 PK_IntColumn { get; set; }
-        public Double PK_FloatColumn { get; set; }
-        public Byte[] PK_TimestampColumn { get; set; }
+        public Int64 PK_BigIntColumn
+        {
+            get
+            {
+                return _PK_BigIntColumn;
+            }
+            set
+            {
+                _PK_BigIntColumn = value;
+            }
+        }
+        public Int32 PK_IntColumn
+        {
+            get
+            {
+                return _PK_IntColumn;
+            }
+            set
+            {
+                _PK_IntColumn = value;
+            }
+        }
+        public Double PK_FloatColumn
+        {
+            get
+            {
+                return _PK_FloatColumn;
+            }
+            set
+            {
+                _PK_FloatColumn = value;
+            }
+        }
+        public Byte[] PK_TimestampColumn
+        {
+            get
+            {
+                return _PK_TimestampColumn;
+            }
+            set
+            {
+                _PK_TimestampColumn = value;
+            }
+        }
 
         public MultiPkTableDelete()
         {

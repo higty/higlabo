@@ -9,6 +9,7 @@ namespace HigLabo.Web
     public class HigLaboView
     {
         public const String CommonTemplate = "/Views/HigLabo/CommonTemplate.cshtml";
+        public const String FileUploadPanel = "/Views/HigLabo/FileUploadPanel.cshtml";
         public const String SelectTimePopupPanel = "/Views/HigLabo/SelectTimePopupPanel.cshtml";
         public const String InputPropertyPanel = "/Views/HigLabo/InputPropertyPanel.cshtml";
         public const String InputPropertyPanelMessagePanel = "/Views/HigLabo/InputPropertyPanelMessagePanel.cshtml";

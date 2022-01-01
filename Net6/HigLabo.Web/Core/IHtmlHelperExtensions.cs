@@ -43,6 +43,10 @@ namespace HigLabo.Web
         {
             await html.RenderPartialAsync(HigLaboView.CommonTemplate);
         }
+        public static async Task RenderPartialAsync(this IHtmlHelper html, FileUploadPanel panel)
+        {
+            await html.RenderPartialAsync(HigLaboView.FileUploadPanel, panel);
+        }
         public static async Task RenderPartialAsync(this IHtmlHelper html, SelectTimePopupPanel panel)
         {
             await html.RenderPartialAsync(HigLaboView.SelectTimePopupPanel, panel);
