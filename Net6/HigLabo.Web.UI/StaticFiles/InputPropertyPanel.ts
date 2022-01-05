@@ -43,7 +43,7 @@ export class InputPropertyPanel {
         $("body").on("keyup", "[input-property-panel] [select-record-list-panel] [header-text-binding-panel] input[type=text]", this.editRecordPanelTextBox_Keyup.bind(this));
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Click.bind(this));
-        $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Keydown.bind(this));
+        $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [header-text]", this.headerText_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
 
         this.initializeSetByEndTimeProperty();
@@ -561,8 +561,8 @@ export class InputPropertyPanel {
         if ($(target).getParentAttribute("can-toggle") == "false") { return; }
         $(target).getParent("[h-record]").toggleAttributeValue("toggle-state", "Expand", "Collapse");
     }
-    private deleteCandidateLink_Keydown(target: Element, e: KeyboardEvent) {
-        if (e.keyCode == 13) {
+    private headerText_Keydown(target: Element, e: KeyboardEvent) {
+        if (e.keyCode == 46) {
             this.deleteCandidate(target);
         }
     }

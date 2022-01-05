@@ -494,6 +494,7 @@ input:focus-visible {
                         display: inline-block;
                         padding: 10px;
                     }
+
                     .textbox {
                         margin: 2px;
                     }
@@ -511,6 +512,10 @@ input:focus-visible {
 
                 .title-panel .text {
                     text-decoration: line-through;
+
+                    &:focus {
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -581,14 +586,16 @@ input:focus-visible {
     }
 
     .button-list-panel {
-        display: grid;
-        place-items: center;
+        @include display__flex();
+        align-items: center;
         margin-top: 4px;
+        justify-content: center;
 
         .button {
             font-size: 16px;
             height: 32px;
             padding: 0 16px;
+            margin: 0 2px;
             @include border_radius(16px);
         }
     }
