@@ -36,6 +36,7 @@ namespace HigLabo.Web.UI
     }
     public enum AddRecordMode
     {
+        None,
         Search,
         Api,
     }

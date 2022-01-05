@@ -23,6 +23,12 @@
     -moz-opacity: $value * 0.01;
     opacity: $value * 0.01;
 }
+@mixin border_radius($size) {
+    -webkit-border-radius: #{$size};
+    -moz-border-radius: #{$size};
+    -o-border-radius: #{$size};
+    border-radius: #{$size};
+}
 
 @mixin transition($propertyName, $value) {
     -webkit-transition: $propertyName $value;
@@ -465,6 +471,7 @@ input:focus-visible {
             .title-panel {
                 @include display__flex();
                 align-items: center;
+                padding: 0;
                 height: 36px;
                 cursor: pointer;
                 @include box_sizing__border_box();
@@ -481,7 +488,15 @@ input:focus-visible {
 
                 > .flex-left-panel {
                     flex: 0 1 100%;
-                    padding: 10px;
+                    height: 36px;
+
+                    .text {
+                        display: inline-block;
+                        padding: 10px;
+                    }
+                    .textbox {
+                        margin: 2px;
+                    }
                 }
 
                 > .flex-right-panel {
@@ -566,12 +581,15 @@ input:focus-visible {
     }
 
     .button-list-panel {
-        @include display__flex();
-        align-items: center;
+        display: grid;
+        place-items: center;
+        margin-top: 4px;
 
         .button {
             font-size: 16px;
-            margin-right: 4px;
+            height: 32px;
+            padding: 0 16px;
+            @include border_radius(16px);
         }
     }
 

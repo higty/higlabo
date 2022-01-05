@@ -317,6 +317,9 @@ export class InputPropertyPanel {
         const mode = ipl.getAttribute("add-record-mode");
 
         switch (mode) {
+            case "None":
+                this.setDefaultRecord(ipl.getFirstElement(), {});
+                break;
             case "Search":
                 $(target).getParent("[button-list-panel]").hide();
                 this.showSearchRecordListPanel(target);
@@ -330,17 +333,24 @@ export class InputPropertyPanel {
             default:
         }
     }
-    private getDefaultRecordCallback(response: HttpResponse, inputPropertyPanel: Element) {
+    private setDefaultRecord(inputPropertyPanel: Element, record) {
+        const r = record;
+
         const ipl = inputPropertyPanel;
         const templateID = ipl.getAttribute("template-id");
         const rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
-        const r = response.jsonParse();
         const element = HigLaboVue.append(rpl, templateID, r)[0];
-        $(element).setAttribute("toggle-state", "Expand");
+        if ($(element).getAttribute("header-mode") == "Label") {
+            $(element).setAttribute("toggle-state", "Expand");
+        }
         var key = $(element).getAttribute("h-key");
         InputPropertyPanel.setElementProperty(element, r, key);
         $(element).find("input[type='text']").setFocus();
         this.recordAdded(ipl);
+    }
+    private getDefaultRecordCallback(response: HttpResponse, inputPropertyPanel: Element) {
+        const r = response.jsonParse();
+        this.setDefaultRecord(inputPropertyPanel, r);
     }
     private recordAdded(inputPropertyPanel: Element) {
         const e = new RecordAddedEvent(inputPropertyPanel);

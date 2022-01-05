@@ -11,15 +11,21 @@ namespace HigLabo.Web.UI
         Collapse,
         Expand,
     }
+    public enum EditRecordPanelHeaderMode
+    {
+        Label,
+        TextBox,
+    }
     public class EditRecordPanelTemplate
     {
         public String ID { get; set; } = "";
         public String Key { get; set; } = "";
-        public String HeaderName { get; set; } = "DisplayName";
         public ToggleState ToggleState { get; set; } = ToggleState.Collapse;
         public Boolean CanToggle { get; set; } = true;
         public Boolean CanDelete { get; set; } = true;
 
+        public EditRecordPanelHeaderMode HeaderMode { get; private set; } = EditRecordPanelHeaderMode.Label;
+        public String HeaderName { get; set; } = "DisplayName";
         public InputPropertyPanel? HeaderTextBindingPanel { get; set; }
         public List<InputPropertyPanel> InputList { get; private set; } = new List<InputPropertyPanel>();
 
@@ -28,7 +34,15 @@ namespace HigLabo.Web.UI
             this.ID = id;
             this.Key = key;
         }
-
+        public void SetHeaderMode(EditRecordPanelHeaderMode headerMode)
+        {
+            this.HeaderMode = headerMode;
+            if (headerMode == EditRecordPanelHeaderMode.TextBox)
+            {
+                this.CanToggle = false;
+                this.ToggleState = ToggleState.Collapse;
+            }
+        }
         public static InputPropertyPanel CreateInputPropertyPanel(String name, String text, String validationValue)
         {
             var pl = new InputPropertyPanel(name, text);

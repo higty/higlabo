@@ -8,6 +8,7 @@ Copy "%path%StaticFiles\HigLaboVue.ts" "%targetPath%wwwroot\HigLabo\HigLaboVue.t
 Copy "%path%StaticFiles\HtmlElementQuery.ts" "%targetPath%wwwroot\HigLabo\HtmlElementQuery.ts"
 Copy "%path%StaticFiles\HttpClient.ts" "%targetPath%wwwroot\HigLabo\HttpClient.ts"
 Copy "%path%StaticFiles\InputPropertyPanel.ts" "%targetPath%wwwroot\HigLabo\InputPropertyPanel.ts"
+Copy "%path%StaticFiles\PopupPanel.ts" "%targetPath%wwwroot\HigLabo\PopupPanel.ts"
 Copy "%path%StaticFiles\RichTextbox.ts" "%targetPath%wwwroot\HigLabo\RichTextbox.ts"
 Copy "%path%StaticFiles\SelectTimePopupPanel.ts" "%targetPath%wwwroot\HigLabo\SelectTimePopupPanel.ts"
 Copy "%path%StaticFiles\ViewPanel.ts" "%targetPath%wwwroot\HigLabo\ViewPanel.ts"
@@ -19,6 +20,7 @@ Copy "%path%StaticFiles\ckeditor\ckeditor-language-ja.js" "%targetPath%wwwroot\H
 
 Copy "%path%Views\CommonTemplate.cshtml" "%targetPath%Views\HigLabo\CommonTemplate.cshtml"
 Copy "%path%Views\EditRecordPanelTemplate.cshtml" "%targetPath%Views\HigLabo\EditRecordPanelTemplate.cshtml"
+Copy "%path%Views\FileUploadPanel.cshtml" "%targetPath%Views\HigLabo\FileUploadPanel.cshtml"
 Copy "%path%Views\InputPropertyPanel.cshtml" "%targetPath%Views\HigLabo\InputPropertyPanel.cshtml"
 Copy "%path%Views\InputPropertyPanelMessagePanel.cshtml" "%targetPath%Views\HigLabo\InputPropertyPanelMessagePanel.cshtml"
 Copy "%path%Views\SelectTimePopupPanel.cshtml" "%targetPath%Views\HigLabo\SelectTimePopupPanel.cshtml"

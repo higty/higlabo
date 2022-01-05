@@ -109,7 +109,7 @@ namespace HigLabo.DbSharpApplication
             AValue.EnsureGenerateSourceCodeFolder(path);
             
             var sv = new CommandService();
-            var cm = new GenerateSourceCodeCommand(AValue.ConfigData.GetOutputDirectoryPath(), AValue.SchemaData);
+            var cm = new GenerateSourceCodeCommand(path, AValue.SchemaData);
             if (AValue.ConfigData.UseTableFeature)
             {
                 cm.Tables.AddRange(_Tables.Where(el => el.IsChecked).Select(el => el.Item));
