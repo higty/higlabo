@@ -1,4 +1,4 @@
-﻿import { DateTime } from "./DateTime.js";
+﻿import { DateOnly, DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
 import { HigLaboVue } from "./HigLaboVue.js";
 import { HttpClient, HttpResponse } from "./HttpClient.js";
@@ -11,6 +11,11 @@ export class InputPropertyPanel {
 
     public initialize() {
         this.selectTimePopupPanel.initialize();
+
+        $("body").find("input").forEach((element, index) => {
+            $(element).setAttribute("previous-value", $(element).getValue());
+        });
+        $("body").on("change", "input", this.input_Change.bind(this));
 
         $("body").on("focusin", "input[date-picker],input[time-picker]", this.dateTimeTextBox_Focusin.bind(this));
         $("body").on("keydown", "input[date-picker]", this.dateTextBox_Keydown.bind(this));
@@ -59,6 +64,9 @@ export class InputPropertyPanel {
         });
     }
 
+    private input_Change(target: Element, e: Event) {
+        $(target).setAttribute("previous-value", $(target).getValue());
+    }
     private dateTimeTextBox_Focusin(target: Element, e: Event) {
         $(target).select();
     }
@@ -77,36 +85,50 @@ export class InputPropertyPanel {
 
         var tx = $(target);
         var text = tx.getValue();
-        var today = DateTime.getToday();
-        var date = null;
+        var value = parseInt(text);
 
-        if (text.length == 1) {
-            date = today.toString("yyyy/MM/") + text;
-        }
-        else if (text.length == 2) {
-            date = today.toString("yyyy/MM/") + text;
+        if (isNaN(value) == true) { return; }
+
+        var today = DateTime.getToday();
+        var date = new DateOnly();
+
+        if (text.length <= 2) {
+            date.Year = today.year;
+            date.Month = today.month;
+            date.Day = value;
         }
         else if (text.length == 3) {
-            date = today.toString("yyyy") + "/" + text.substr(0, 1) + "/" + text.substr(1, 2);
+            date.Year = today.year;
+            date.Month = parseInt(text.substr(0, 1));
+            date.Day = parseInt(text.substr(1, 2));
         }
         else if (text.length == 4) {
-            date = today.toString("yyyy") + "/" + text.substr(0, 2) + "/" + text.substr(2, 2);
+            date.Year = today.year;
+            date.Month = parseInt(text.substr(0, 2));
+            date.Day = parseInt(text.substr(2, 2));
         }
         else if (text.length == 5) {
-            date = "20" + text.substr(0, 2) + "/" + text.substr(2, 1) + "/" + text.substr(3, 2);
+            date.Year = parseInt("20" + text.substr(0, 2));
+            date.Month = parseInt(text.substr(2, 1));
+            date.Day = parseInt(text.substr(3, 2));
         }
         else if (text.length == 6) {
-            date = "20" + text.substr(0, 2) + "/" + text.substr(2, 2) + "/" + text.substr(4, 2);
+            date.Year = parseInt("20" + text.substr(0, 2));
+            date.Month = parseInt(text.substr(2, 2));
+            date.Day = parseInt(text.substr(4, 2));
         }
         else if (text.length == 8) {
-            date = text.substr(0, 4) + "/" + text.substr(4, 2) + "/" + text.substr(6, 2);
+            date.Year = parseInt(text.substr(0, 4));
+            date.Month = parseInt(text.substr(4, 2));
+            date.Day = parseInt(text.substr(6, 2));
         }
-        if (date == null) {
+        else {
             return;
         }
+
         let dateTime = new DateTime(date);
         if (text.length == 1 || text.length == 2) {
-            if (dateTime < today) {
+            if (dateTime.value < today.value) {
                 dateTime = today.addMonth(1);
             }
         }
@@ -571,7 +593,8 @@ export class InputPropertyPanel {
     }
     private deleteCandidate(target: Element) {
         $(target).getParent("[h-record]").toggleAttributeValue("is-delete", "true", "false");
-        $(target).getParent("[h-record]").find("input[h-name='IsDelete']").setValue("true");
+        const v = $(target).getParent("[h-record]").getAttribute("is-delete");
+        $(target).getParent("[h-record]").find("input[h-name='IsDelete']").setValue(v);
     }
 
     public static createRecord(recordElement: Element): any {
@@ -687,6 +710,7 @@ export class InputPropertyPanel {
             var recordPanel = recordList[i];
             if ($(recordPanel).getParent("[h-record-list]").getFirstElement() != recordListElement) { continue; }
             if ($(recordPanel).getParent("[search-record-list-panel]").getElementCount() > 0) { continue; }
+            if ($(recordPanel).getParent("[input-property-panel][element-type='Record']").getElementCount() > 0) { continue; }
 
             let r = InputPropertyPanel.createRecord(recordPanel);
             rr.push(r);
@@ -857,11 +881,13 @@ export class InputPropertyPanel {
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
     }
     private static setRecordList(propertyPanel: Element, recordList: Array<unknown>) {
-        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]");
+        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]").getFirstElement();
+        if (recordListPanel == null) { return; }
+
         const templateID = propertyPanel.getAttribute("template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
-            var element = HigLaboVue.append(recordListPanel.getFirstElement(), templateID, recordList[i])[0];
+            var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];
             var key = $(element).getAttribute("h-key");
             InputPropertyPanel.setElementProperty(element, recordList[i], key);
         }

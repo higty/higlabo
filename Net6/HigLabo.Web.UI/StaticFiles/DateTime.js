@@ -1,15 +1,5 @@
-var DateTime = (function () {
-    function DateTime(value, timeZoneHour) {
-        this.i18n = {
-            dayNames: [
-                "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-            ],
-            monthNames: [
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-            ]
-        };
+export class DateTime {
+    constructor(value) {
         this.dateFormat = {
             default: "ddd mmm dd yyyy HH:MM:ss",
             shortDate: "m/d/yy",
@@ -33,111 +23,74 @@ var DateTime = (function () {
         else if (typeof value === "string") {
             this.rawValue = new Date(value);
         }
+        else if (value != null && value.Year != null && value.Month != null && value.Day != null) {
+            this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
+        }
     }
-    Object.defineProperty(DateTime.prototype, "value", {
-        get: function () {
-            return this.rawValue;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "ticks", {
-        get: function () {
-            return this.rawValue.valueOf();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "milliSecond", {
-        get: function () {
-            return this.rawValue.getMilliseconds();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "second", {
-        get: function () {
-            return this.rawValue.getSeconds();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "minute", {
-        get: function () {
-            return this.rawValue.getMinutes();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "hours", {
-        get: function () {
-            return this.rawValue.getHours();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "day", {
-        get: function () {
-            return this.rawValue.getDate();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "month", {
-        get: function () {
-            return this.rawValue.getMonth() + 1;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "year", {
-        get: function () {
-            return this.rawValue.getFullYear();
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(DateTime.prototype, "dayOfWeek", {
-        get: function () {
-            var dw = this.rawValue.getDay();
-            switch (dw) {
-                case 0: return DayOfWeek.Sunday;
-                case 1: return DayOfWeek.Monday;
-                case 2: return DayOfWeek.Tuesday;
-                case 3: return DayOfWeek.Wednesday;
-                case 4: return DayOfWeek.Thursday;
-                case 5: return DayOfWeek.Friday;
-                case 6: return DayOfWeek.Saturday;
-            }
-            throw new Error("Invalid dayOfWeek");
-        },
-        enumerable: false,
-        configurable: true
-    });
-    DateTime.prototype.addMilliSecond = function (value) {
-        var v = this.rawValue.valueOf() + value;
+    get value() {
+        return this.rawValue;
+    }
+    get ticks() {
+        return this.rawValue.valueOf();
+    }
+    get milliSecond() {
+        return this.rawValue.getMilliseconds();
+    }
+    get second() {
+        return this.rawValue.getSeconds();
+    }
+    get minute() {
+        return this.rawValue.getMinutes();
+    }
+    get hours() {
+        return this.rawValue.getHours();
+    }
+    get day() {
+        return this.rawValue.getDate();
+    }
+    get month() {
+        return this.rawValue.getMonth() + 1;
+    }
+    get year() {
+        return this.rawValue.getFullYear();
+    }
+    get dayOfWeek() {
+        const dw = this.rawValue.getDay();
+        switch (dw) {
+            case 0: return DayOfWeek.Sunday;
+            case 1: return DayOfWeek.Monday;
+            case 2: return DayOfWeek.Tuesday;
+            case 3: return DayOfWeek.Wednesday;
+            case 4: return DayOfWeek.Thursday;
+            case 5: return DayOfWeek.Friday;
+            case 6: return DayOfWeek.Saturday;
+        }
+        throw new Error("Invalid dayOfWeek");
+    }
+    addMilliSecond(value) {
+        const v = this.rawValue.valueOf() + value;
         return new DateTime(new Date(v));
-    };
-    DateTime.prototype.addSecond = function (value) {
-        var v = this.rawValue.valueOf() + value * 1000;
+    }
+    addSecond(value) {
+        const v = this.rawValue.valueOf() + value * 1000;
         return new DateTime(new Date(v));
-    };
-    DateTime.prototype.addMinute = function (value) {
-        var v = this.rawValue.valueOf() + value * 60 * 1000;
+    }
+    addMinute(value) {
+        const v = this.rawValue.valueOf() + value * 60 * 1000;
         return new DateTime(new Date(v));
-    };
-    DateTime.prototype.addHour = function (value) {
-        var v = this.rawValue.valueOf() + value * 3600 * 1000;
+    }
+    addHour(value) {
+        const v = this.rawValue.valueOf() + value * 3600 * 1000;
         return new DateTime(new Date(v));
-    };
-    DateTime.prototype.addDay = function (value) {
-        var v = this.rawValue.valueOf() + value * 24 * 3600 * 1000;
+    }
+    addDay(value) {
+        const v = this.rawValue.valueOf() + value * 24 * 3600 * 1000;
         return new DateTime(new Date(v));
-    };
-    DateTime.prototype.addMonth = function (value) {
-        var newMonth = (this.month + value);
+    }
+    addMonth(value) {
+        const newMonth = (this.month + value);
         if (newMonth > 12) {
-            var dayOfMonth = this.dayOfMonth(this.year + (newMonth / 12), newMonth % 12);
+            const dayOfMonth = this.dayOfMonth(this.year + (newMonth / 12), newMonth % 12);
             if (this.day > dayOfMonth) {
                 return new DateTime(new Date(this.year + (newMonth / 12), newMonth % 12 - 1, dayOfMonth));
             }
@@ -146,7 +99,7 @@ var DateTime = (function () {
             }
         }
         else {
-            var dayOfMonth = this.dayOfMonth(this.year, newMonth);
+            const dayOfMonth = this.dayOfMonth(this.year, newMonth);
             if (this.day > dayOfMonth) {
                 return new DateTime(new Date(this.year, newMonth - 1, dayOfMonth));
             }
@@ -154,22 +107,22 @@ var DateTime = (function () {
                 return new DateTime(new Date(this.year, newMonth - 1, this.day));
             }
         }
-    };
-    DateTime.prototype.addYear = function (value) {
-        var dayOfMonth = this.dayOfMonth(this.year + value, this.month);
+    }
+    addYear(value) {
+        const dayOfMonth = this.dayOfMonth(this.year + value, this.month);
         if (this.day > dayOfMonth) {
             return new DateTime(new Date(this.year + value, this.month, dayOfMonth));
         }
         else {
             return new DateTime(new Date(this.year + value, this.month, this.day));
         }
-    };
-    DateTime.prototype.add = function (value) {
-        var v = this.rawValue.valueOf() + value.totalMilliSeconds;
+    }
+    add(value) {
+        const v = this.rawValue.valueOf() + value.totalMilliSeconds;
         return new DateTime(new Date(v));
-    };
-    DateTime.prototype.getDayOfWeekName = function () {
-        var dw = this.rawValue.getDay();
+    }
+    getDayOfWeekName() {
+        const dw = this.rawValue.getDay();
         switch (dw) {
             case 0: return "Sunday";
             case 1: return "Monday";
@@ -180,117 +133,130 @@ var DateTime = (function () {
             case 6: return "Saturday";
         }
         throw new Error("Invalid dayOfWeek");
-    };
-    DateTime.getToday = function () {
-        var d = new DateTime(new Date());
+    }
+    getDayOfWeekText() {
+        const dw = this.rawValue.getDay();
+        return DateTime.dayOfWeekList[dw];
+    }
+    getTimezoneOffset() {
+        if (this.rawValue == null) {
+            return null;
+        }
+        return this.rawValue.getTimezoneOffset();
+    }
+    setTimeZone(timeZoneMinute) {
+        const currentTimeZone = -this.rawValue.getTimezoneOffset();
+        if (timeZoneMinute == null) {
+            timeZoneMinute = DateTime.timeZoneMinute;
+        }
+        const dtime = new DateTime(this.rawValue).addMinute(timeZoneMinute - currentTimeZone);
+        return dtime;
+    }
+    static getToday() {
+        const d = new DateTime(new Date());
         return new DateTime(new Date(d.year, d.month - 1, d.day));
-    };
-    DateTime.prototype.isToday = function () {
-        var d = new DateTime(new Date());
-        var today = new DateTime(new Date(d.year, d.month - 1, d.day));
+    }
+    isToday() {
+        const d = new DateTime(new Date());
+        const today = new DateTime(new Date(d.year, d.month - 1, d.day));
         return this.year == today.year && this.month == today.month && this.day == today.day;
-    };
-    DateTime.prototype.timeOfDay = function () {
-        var s = (24 * 3600 * this.day + 3600 * this.hours + 60 * this.minute + this.second);
+    }
+    timeOfDay() {
+        const s = (24 * 3600 * this.day + 3600 * this.hours + 60 * this.minute + this.second);
         return new TimeSpan(s * 1000 + this.milliSecond);
-    };
-    DateTime.prototype.isEqual = function (value) {
+    }
+    isEqual(value) {
         return this.rawValue.getTime() === value.rawValue.getTime();
-    };
-    DateTime.prototype.isDateEqual = function (value) {
+    }
+    isDateEqual(value) {
         return this.year == value.year && this.month == value.month && this.day == value.day;
-    };
-    DateTime.prototype.isTimeEqual = function (value) {
+    }
+    isTimeEqual(value) {
         return this.hours == value.hours && this.minute == value.minute && this.second == value.second && this.milliSecond == value.milliSecond;
-    };
-    DateTime.prototype.dayOfMonth = function (year, month) {
+    }
+    dayOfMonth(year, month) {
         if (month == 12) {
-            var d = new DateTime(new Date(year + 1, 1, 1));
+            const d = new DateTime(new Date(year + 1, 1, 1));
             d.addDay(-1);
             return d.day;
         }
         else {
-            var d = new DateTime(new Date(year, month, 1));
+            const d = new DateTime(new Date(year, month, 1));
             d.addDay(-1);
             return d.day;
         }
-    };
-    DateTime.prototype.toString = function (dateFormat) {
+    }
+    toString(dateFormat) {
         if (this.rawValue.toString() == "Invalid Date") {
             return "";
         }
-        var z = {
+        const z = {
             M: this.month,
             d: this.day,
             h: this.hours,
+            H: this.hours,
             m: this.minute,
             s: this.second,
-            f: this.milliSecond
+            f: this.milliSecond,
+            ddd: this.getDayOfWeekText()
         };
-        var v = dateFormat.replace(/(M+|d+|h+|m+|s+|f+)/g, function (v) {
-            return ((v.length > 1 ? "0" : "") + z[v.slice(-1)]).slice(-2);
+        const v = dateFormat.replace(/(M+|d+|h+|H+|m+|s+|f+)/g, function (match) {
+            if (match == "ddd") {
+                return z["ddd"];
+            }
+            else {
+                const length = match.length;
+                const f = match.slice(-1);
+                const v = z[match.slice(-1)];
+                if (f == 'f') {
+                    return v;
+                }
+                else {
+                    return ((match.length > 1 ? "0" : "") + v).slice(-2);
+                }
+            }
         });
-        var fullYear = this.year.toString();
-        var dateTimeText = v.replace(/(y+)/g, function (v) {
+        const fullYear = this.year.toString();
+        const dateTimeText = v.replace(/(y+)/g, function (v) {
             return fullYear.slice(-v.length);
         });
         return dateTimeText;
-    };
-    return DateTime;
-}());
-export { DateTime };
-var TimeSpan = (function () {
-    function TimeSpan(milliseconds) {
+    }
+    static TryCreate(value) {
+        if (value == null || value == "") {
+            return null;
+        }
+        return new DateTime(value);
+    }
+}
+DateTime.timeZoneMinute = 9 * 60;
+DateTime.dayOfWeekList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+export class TimeSpan {
+    constructor(milliseconds) {
         this._TotalMilliSeconds = milliseconds;
     }
-    Object.defineProperty(TimeSpan.prototype, "totalMilliSeconds", {
-        get: function () {
-            return this._TotalMilliSeconds;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(TimeSpan.prototype, "milliSeconds", {
-        get: function () {
-            return this._TotalMilliSeconds % 1000;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(TimeSpan.prototype, "seconds", {
-        get: function () {
-            return Math.floor(this._TotalMilliSeconds / 1000) % 60;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(TimeSpan.prototype, "minutes", {
-        get: function () {
-            return Math.floor(this._TotalMilliSeconds / (60 * 1000)) % 60;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(TimeSpan.prototype, "hours", {
-        get: function () {
-            return Math.floor(this._TotalMilliSeconds / (60 * 60 * 1000)) % 24;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    Object.defineProperty(TimeSpan.prototype, "days", {
-        get: function () {
-            return Math.floor(this._TotalMilliSeconds / (24 * 3600 * 1000));
-        },
-        enumerable: false,
-        configurable: true
-    });
-    TimeSpan.substract = function (value1, value2) {
+    get totalMilliSeconds() {
+        return this._TotalMilliSeconds;
+    }
+    get milliSeconds() {
+        return this._TotalMilliSeconds % 1000;
+    }
+    get seconds() {
+        return Math.floor(this._TotalMilliSeconds / 1000) % 60;
+    }
+    get minutes() {
+        return Math.floor(this._TotalMilliSeconds / (60 * 1000)) % 60;
+    }
+    get hours() {
+        return Math.floor(this._TotalMilliSeconds / (60 * 60 * 1000)) % 24;
+    }
+    get days() {
+        return Math.floor(this._TotalMilliSeconds / (24 * 3600 * 1000));
+    }
+    static substract(value1, value2) {
         return new TimeSpan(value1.ticks - value2.ticks);
-    };
-    return TimeSpan;
-}());
-export { TimeSpan };
+    }
+}
 export var DayOfWeek;
 (function (DayOfWeek) {
     DayOfWeek[DayOfWeek["Sunday"] = 0] = "Sunday";
@@ -301,4 +267,8 @@ export var DayOfWeek;
     DayOfWeek[DayOfWeek["Friday"] = 5] = "Friday";
     DayOfWeek[DayOfWeek["Saturday"] = 6] = "Saturday";
 })(DayOfWeek || (DayOfWeek = {}));
+export class DateOnly {
+}
+export class TimeOnly {
+}
 //# sourceMappingURL=DateTime.js.map

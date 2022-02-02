@@ -1,28 +1,26 @@
-var ArrayIterator = (function () {
-    function ArrayIterator(source) {
+export class ArrayIterator {
+    constructor(source) {
         this.source = source;
         this.reset();
     }
-    ArrayIterator.prototype.copy = function () {
+    copy() {
         return new ArrayIterator(this.source);
-    };
-    ArrayIterator.prototype.reset = function () {
+    }
+    reset() {
         this._index = -1;
-    };
-    ArrayIterator.prototype.isValidIndex = function () {
+    }
+    isValidIndex() {
         return this._index >= 0 && this._index < this.source.length;
-    };
-    ArrayIterator.prototype.next = function () {
+    }
+    next() {
         ++this._index;
         return this.isValidIndex();
-    };
-    ArrayIterator.prototype.value = function () {
+    }
+    value() {
         if (!this.isValidIndex()) {
             throw new Error("Out of bounds");
         }
         return this.source[this._index];
-    };
-    return ArrayIterator;
-}());
-export { ArrayIterator };
+    }
+}
 //# sourceMappingURL=Iterators.js.map

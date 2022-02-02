@@ -26,6 +26,7 @@ namespace HigLabo.Web.UI
 
         public EditRecordPanelHeaderMode HeaderMode { get; private set; } = EditRecordPanelHeaderMode.Label;
         public String HeaderName { get; set; } = "DisplayName";
+        public ValidationResultMessagePanel HeaderValidationPanel { get; set; }
         public InputPropertyPanel? HeaderTextBindingPanel { get; set; }
         public List<InputPropertyPanel> InputList { get; private set; } = new List<InputPropertyPanel>();
 

@@ -3,8 +3,8 @@ export function $(value) {
         return new HtmlElementQuery([]);
     }
     if (typeof value === "string") {
-        var ee = document.querySelectorAll(value);
-        var hh = [];
+        const ee = document.querySelectorAll(value);
+        const hh = [];
         for (var i = 0; i < ee.length; i++) {
             hh.push(ee[i]);
         }
@@ -23,47 +23,50 @@ export function $(value) {
         return new HtmlElementQuery([value]);
     }
 }
-var HtmlElementQuery = (function () {
-    function HtmlElementQuery(element) {
-        var _this = this;
+export function $fromJson(obj, json) {
+    const r = JSON.parse(json);
+    return Object.assign(obj, r);
+}
+export class HtmlElementQuery {
+    constructor(element) {
         this._elementList = new Array();
-        element.forEach(function (el) {
-            _this._elementList.push(el);
+        element.forEach(el => {
+            this._elementList.push(el);
         });
     }
-    HtmlElementQuery.prototype.getTagName = function () {
+    getTagName() {
         if (this._elementList.length > 0) {
-            var v = this._elementList[0].tagName;
+            const v = this._elementList[0].tagName;
             if (v == null) {
                 return "";
             }
             return v;
         }
         return "";
-    };
-    HtmlElementQuery.prototype.getAttribute = function (name) {
+    }
+    getAttribute(name) {
         if (this._elementList.length > 0) {
-            var v = this._elementList[0].getAttribute(name);
+            const v = this._elementList[0].getAttribute(name);
             if (v == null) {
                 return "";
             }
             return v;
         }
         return "";
-    };
-    HtmlElementQuery.prototype.hasAttribute = function (name) {
+    }
+    hasAttribute(name) {
         if (this._elementList.length > 0) {
             return this._elementList[0].hasAttribute(name);
         }
         return false;
-    };
-    HtmlElementQuery.prototype.setAttribute = function (name, value) {
-        this._elementList.forEach(function (el) {
+    }
+    setAttribute(name, value) {
+        this._elementList.forEach(el => {
             el.setAttribute(name, value.toString());
         });
         return this;
-    };
-    HtmlElementQuery.prototype.toggleAttributeValue = function (name, value1, value2) {
+    }
+    toggleAttributeValue(name, value1, value2) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             if (element.getAttribute(name) == value1) {
@@ -74,32 +77,38 @@ var HtmlElementQuery = (function () {
             }
         }
         return this;
-    };
-    HtmlElementQuery.prototype.removeAttribute = function (name) {
+    }
+    removeAttribute(name) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.removeAttribute(name);
         }
         return this;
-    };
-    HtmlElementQuery.prototype.getParentAttribute = function (name) {
+    }
+    getParentAttribute(name) {
         if (this.hasAttribute(name)) {
             return this.getAttribute(name);
         }
         return this.getParent("[" + name + "]").getAttribute(name);
-    };
-    HtmlElementQuery.prototype.hasParentAttribute = function (name) {
+    }
+    setParentAttribute(name, value) {
+        if (this.hasAttribute(name)) {
+            return this.getAttribute(name);
+        }
+        this.getParent("[" + name + "]").setAttribute(name, value);
+    }
+    hasParentAttribute(name) {
         if (this.hasAttribute(name)) {
             return true;
         }
         return this.getParent("[" + name + "]").hasAttribute(name);
-    };
-    HtmlElementQuery.prototype.getNearestAttribute = function (name) {
+    }
+    getNearestAttribute(name) {
         return this.getNearest("[" + name + "]").getAttribute(name);
-    };
-    HtmlElementQuery.prototype.getValue = function () {
+    }
+    getValue() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element === null) {
                 return "";
             }
@@ -109,50 +118,47 @@ var HtmlElementQuery = (function () {
             return element.value;
         }
         return "";
-    };
-    HtmlElementQuery.prototype.getSelectedValue = function () {
+    }
+    getSelectedValue() {
         for (var i = 0; i < this._elementList.length; i++) {
             if (this._elementList[i] instanceof HTMLSelectElement) {
-                var dl = this._elementList[i];
+                let dl = this._elementList[i];
                 return dl.options[dl.selectedIndex].value;
             }
         }
         return "";
-    };
-    HtmlElementQuery.prototype.getSelectedText = function () {
+    }
+    getSelectedText() {
         for (var i = 0; i < this._elementList.length; i++) {
             if (this._elementList[i] instanceof HTMLSelectElement) {
-                var dl = this._elementList[i];
+                let dl = this._elementList[i];
                 return dl.options[dl.selectedIndex].textContent;
             }
         }
         return "";
-    };
-    HtmlElementQuery.prototype.setValue = function (value) {
+    }
+    setValue(value) {
         for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
+            const element = this._elementList[i];
             if (element === null) {
-                continue;
-            }
-            if ($(element).getAttribute("type").toLowerCase() == "file") {
                 continue;
             }
             element.value = value;
         }
         return this;
-    };
-    HtmlElementQuery.prototype.setSelectedValue = function (value) {
+    }
+    setSelectedValue(value) {
         for (var i = 0; i < this._elementList.length; i++) {
             if (this._elementList[i] instanceof HTMLSelectElement) {
-                var dl = this._elementList[i];
+                let dl = this._elementList[i];
                 if (dl.options[dl.selectedIndex].value == value) {
                     dl.options[dl.selectedIndex].selected = true;
                 }
             }
         }
         return "";
-    };
-    HtmlElementQuery.prototype.toggleChecked = function () {
+    }
+    toggleChecked() {
         for (var i = 0; i < this._elementList.length; i++) {
             if ($(this._elementList[i]).isChecked() == true) {
                 $(this._elementList[i]).setChecked(false);
@@ -162,41 +168,41 @@ var HtmlElementQuery = (function () {
             }
         }
         return this;
-    };
-    HtmlElementQuery.prototype.getIndex = function () {
+    }
+    getIndex() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
-            var parent_1 = element.parentElement;
-            for (var i = 0; i < parent_1.children.length; i++) {
-                if (parent_1.children[i] == element) {
+            const element = this._elementList[0];
+            const parent = element.parentElement;
+            for (var i = 0; i < parent.children.length; i++) {
+                if (parent.children[i] == element) {
                     return i;
                 }
             }
             return -1;
         }
         return -1;
-    };
-    HtmlElementQuery.prototype.setFocus = function (options) {
+    }
+    setFocus(options) {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element === null) {
                 return;
             }
             element.focus(options);
         }
         return this;
-    };
-    HtmlElementQuery.prototype.select = function () {
+    }
+    select() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element === null) {
                 return;
             }
             element.select();
         }
         return this;
-    };
-    HtmlElementQuery.prototype.setChecked = function (value) {
+    }
+    setChecked(value) {
         for (var i = 0; i < this._elementList.length; i++) {
             var rb = this._elementList[i];
             if (rb.type == null) {
@@ -208,8 +214,8 @@ var HtmlElementQuery = (function () {
             }
         }
         return this;
-    };
-    HtmlElementQuery.prototype.isChecked = function () {
+    }
+    isChecked() {
         for (var i = 0; i < this._elementList.length; i++) {
             var rb = this._elementList[i];
             if (rb.type == null) {
@@ -221,91 +227,91 @@ var HtmlElementQuery = (function () {
             }
         }
         return null;
-    };
-    HtmlElementQuery.prototype.getInnerWidth = function () {
+    }
+    getInnerWidth() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element instanceof Window) {
                 return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
             }
             return element.clientWidth;
         }
         return null;
-    };
-    HtmlElementQuery.prototype.getInnerHeight = function () {
+    }
+    getInnerHeight() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element instanceof Window) {
                 return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
             }
             return element.clientHeight;
         }
         return null;
-    };
-    HtmlElementQuery.prototype.getOuterWidth = function () {
+    }
+    getOuterWidth() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element instanceof Window) {
                 return window.outerWidth || document.documentElement.clientWidth || document.body.clientWidth;
             }
             return element.offsetWidth;
         }
         return null;
-    };
-    HtmlElementQuery.prototype.getOuterHeight = function () {
+    }
+    getOuterHeight() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element instanceof Window) {
                 return window.outerHeight || document.documentElement.clientHeight || document.body.clientHeight;
             }
             return element.offsetHeight;
         }
         return null;
-    };
-    HtmlElementQuery.prototype.getOffset = function () {
+    }
+    getOffset() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             var box = { top: 0, left: 0 };
-            var doc = element && element.ownerDocument;
-            var docElem = doc.documentElement;
+            const doc = element && element.ownerDocument;
+            const docElem = doc.documentElement;
             if (typeof element.getBoundingClientRect !== typeof undefined) {
                 box = element.getBoundingClientRect();
             }
-            var win = this.getWindow(doc);
+            const win = this.getWindow(doc);
             return {
                 top: box.top + win.pageYOffset - docElem.clientTop,
                 left: box.left + win.pageXOffset - docElem.clientLeft
             };
         }
         return null;
-    };
-    HtmlElementQuery.prototype.isWindow = function (obj) {
+    }
+    isWindow(obj) {
         return obj != null && obj === obj.window;
-    };
-    HtmlElementQuery.prototype.getWindow = function (element) {
+    }
+    getWindow(element) {
         return this.isWindow(element) ? element : element.nodeType === 9 && element.defaultView;
-    };
-    HtmlElementQuery.prototype.getScrollLeft = function () {
+    }
+    getScrollLeft() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element instanceof Window) {
                 return document.documentElement.scrollLeft || document.body.scrollLeft;
             }
             return this._elementList[0].scrollLeft;
         }
         return null;
-    };
-    HtmlElementQuery.prototype.getScrollTop = function () {
+    }
+    getScrollTop() {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
+            const element = this._elementList[0];
             if (element instanceof Window) {
                 return document.documentElement.scrollTop || document.body.scrollTop;
             }
             return this._elementList[0].scrollTop;
         }
         return null;
-    };
-    HtmlElementQuery.prototype.setScrollLeft = function (value) {
+    }
+    setScrollLeft(value) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             if (element instanceof Window) {
@@ -318,8 +324,8 @@ var HtmlElementQuery = (function () {
             }
             element.scrollLeft = value;
         }
-    };
-    HtmlElementQuery.prototype.setScrollTop = function (value) {
+    }
+    setScrollTop(value) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             if (element instanceof Window) {
@@ -332,62 +338,62 @@ var HtmlElementQuery = (function () {
             }
             element.scrollTop = value;
         }
-    };
-    HtmlElementQuery.prototype.getInnerText = function () {
+    }
+    getInnerText() {
         if (this._elementList.length > 0) {
             return this._elementList[0].textContent;
         }
         return "";
-    };
-    HtmlElementQuery.prototype.getInnerHtml = function () {
+    }
+    getInnerHtml() {
         if (this._elementList.length > 0) {
             return this._elementList[0].innerHTML;
         }
         return "";
-    };
-    HtmlElementQuery.prototype.getOuterHtml = function () {
+    }
+    getOuterHtml() {
         if (this._elementList.length > 0) {
             return this._elementList[0].outerHTML;
         }
         return "";
-    };
-    HtmlElementQuery.prototype.setInnerText = function (value) {
+    }
+    setInnerText(value) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].textContent = value;
         }
         return this;
-    };
-    HtmlElementQuery.prototype.setInnerHtml = function (html) {
+    }
+    setInnerHtml(html) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].innerHTML = html;
         }
         return this;
-    };
-    HtmlElementQuery.prototype.getStyle = function (name) {
+    }
+    getStyle(name) {
         if (this._elementList.length > 0) {
-            var element = this._elementList[0];
-            var styles = window.getComputedStyle(element);
+            const element = this._elementList[0];
+            const styles = window.getComputedStyle(element);
             return styles[name];
         }
         return "";
-    };
-    HtmlElementQuery.prototype.setStyle = function (name, value) {
+    }
+    setStyle(name, value) {
         for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
+            const element = this._elementList[i];
             element.style[name] = value;
         }
         return this;
-    };
-    HtmlElementQuery.prototype.removeStyle = function (name) {
+    }
+    removeStyle(name) {
         for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
+            const element = this._elementList[i];
             element.style[name] = null;
         }
         return this;
-    };
-    HtmlElementQuery.prototype.toggleStyle = function (name, value1, value2) {
+    }
+    toggleStyle(name, value1, value2) {
         for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
+            let element = this._elementList[i];
             if (element.style[name] == value1) {
                 element.style[name] = value2;
             }
@@ -396,91 +402,93 @@ var HtmlElementQuery = (function () {
             }
         }
         return this;
-    };
-    HtmlElementQuery.prototype.getHexColor = function (name) {
-        var rgb = this.getStyle(name);
+    }
+    getHexColor(name) {
+        const rgb = this.getStyle(name);
         return "#" + rgb.match(/\d+/g).map(function (value) {
             return ("0" + parseInt(value).toString(16)).slice(-2);
         }).join("");
-    };
-    HtmlElementQuery.prototype.addClass = function (className) {
+    }
+    addClass(className) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].classList.add(className);
         }
         return this;
-    };
-    HtmlElementQuery.prototype.hasClass = function (className) {
+    }
+    hasClass(className) {
         if (this._elementList.length > 0) {
             return this._elementList[0].classList.contains(className);
         }
         return false;
-    };
-    HtmlElementQuery.prototype.toggleClass = function (className) {
+    }
+    toggleClass(className) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].classList.toggle(className);
         }
         return this;
-    };
-    HtmlElementQuery.prototype.removeClass = function (className) {
+    }
+    removeClass(className) {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].classList.remove(className);
         }
         return this;
-    };
-    HtmlElementQuery.prototype.getParentElementList = function () {
+    }
+    getParentElementList() {
         if (this._elementList.length > 0) {
             var element = this._elementList[0];
             var result = new Array();
-            for (var p = element && element.parentElement; p; p = p.parentElement) {
+            let p = element.parentElement;
+            while (p != null) {
                 result.push(p);
+                p = p.parentElement;
             }
             return result;
         }
         return HtmlElementQuery._emptyElementList;
-    };
-    HtmlElementQuery.prototype.getFirstParent = function (selector) {
+    }
+    getFirstParent(selector) {
         return $(this.getParent(selector).getFirstElement());
-    };
-    HtmlElementQuery.prototype.getParent = function (selector) {
-        var parentList = new Array();
+    }
+    getParent(selector) {
+        const parentList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
-            var element = this._elementList[i];
-            var p = element;
-            while (p.parentElement != null) {
-                parentList.push(p.parentElement);
+            let element = this._elementList[i];
+            let p = element.parentElement;
+            while (p != null) {
+                parentList.push(p);
                 p = p.parentElement;
             }
         }
-        var filterList = $(selector).getElementList();
-        var l = new Array();
+        const filterList = $(selector).getElementList();
+        const l = new Array();
         for (var pIndex = 0; pIndex < parentList.length; pIndex++) {
             for (var i = 0; i < filterList.length; i++) {
                 if (filterList[i] == parentList[pIndex]) {
-                    $(filterList[i]).forEach(function (element) {
+                    $(filterList[i]).forEach(element => {
                         l.push(element);
                     });
                 }
             }
         }
         return $(l);
-    };
-    HtmlElementQuery.prototype.remove = function () {
+    }
+    remove() {
         for (var i = 0; i < this._elementList.length; i++) {
             this._elementList[i].remove();
         }
         return this;
-    };
-    HtmlElementQuery.prototype.on = function (eventType, selector, callback) {
+    }
+    on(eventType, selector, callback) {
         for (var i = 0; i < this._elementList.length; i++) {
             this.addEventListener(this._elementList[i], eventType, selector, callback);
         }
-    };
-    HtmlElementQuery.prototype.addEventListener = function (element, eventType, selector, callback) {
-        var f = new OnEventHandler();
+    }
+    addEventListener(element, eventType, selector, callback) {
+        let f = new OnEventHandler();
         f.element = element;
         f.eventType = eventType;
         f.handler = function (e) {
-            var l = element.querySelectorAll(selector);
+            const l = element.querySelectorAll(selector);
             for (var i = 0; i < l.length; i++) {
                 if (event.target == l[i]) {
                     callback(l[i], e);
@@ -495,16 +503,16 @@ var HtmlElementQuery = (function () {
                 }
             }
         }.bind(this);
-        if (HtmlElementQuery._onEventHandlerList.find(function (el) { return el.element == element && el.eventType == eventType; }) == null) {
+        if (HtmlElementQuery._onEventHandlerList.find(el => el.element == element && el.eventType == eventType) == null) {
             element.addEventListener(eventType, function (e) {
                 this.triggerOnEventHandler(element, eventType, e);
             }.bind(this));
         }
         HtmlElementQuery._onEventHandlerList.push(f);
-    };
-    HtmlElementQuery.prototype.triggerOnEventHandler = function (element, eventType, e) {
+    }
+    triggerOnEventHandler(element, eventType, e) {
         for (var i = 0; i < HtmlElementQuery._onEventHandlerList.length; i++) {
-            var f = HtmlElementQuery._onEventHandlerList[i];
+            let f = HtmlElementQuery._onEventHandlerList[i];
             if (f.element != element || f.eventType != eventType) {
                 continue;
             }
@@ -513,17 +521,17 @@ var HtmlElementQuery = (function () {
                 break;
             }
         }
-    };
-    HtmlElementQuery.prototype.addEventListenerToAllElement = function (eventType, callback) {
+    }
+    addEventListenerToAllElement(eventType, callback) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener(eventType, callback);
         }
-    };
-    HtmlElementQuery.prototype.resize = function (callback) {
+    }
+    resize(callback) {
         this.addEventListenerToAllElement("resize", callback);
-    };
-    HtmlElementQuery.prototype.keydown = function (callback, keyCode) {
+    }
+    keydown(callback, keyCode) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keydown", function (e) {
@@ -532,8 +540,8 @@ var HtmlElementQuery = (function () {
                 }
             });
         }
-    };
-    HtmlElementQuery.prototype.keyup = function (callback, keyCode) {
+    }
+    keyup(callback, keyCode) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             element.addEventListener("keyup", function (e) {
@@ -542,35 +550,41 @@ var HtmlElementQuery = (function () {
                 }
             });
         }
-    };
-    HtmlElementQuery.prototype.click = function (callback) {
+    }
+    click(callback) {
         this.addEventListenerToAllElement("click", callback);
-    };
-    HtmlElementQuery.prototype.mousedown = function (callback) {
+    }
+    mousedown(callback) {
         this.addEventListenerToAllElement("mousedown", callback);
-    };
-    HtmlElementQuery.prototype.mousemove = function (callback) {
+    }
+    mousemove(callback) {
         this.addEventListenerToAllElement("mousemove", callback);
-    };
-    HtmlElementQuery.prototype.mouseup = function (callback) {
+    }
+    mouseup(callback) {
         this.addEventListenerToAllElement("mouseup", callback);
-    };
-    HtmlElementQuery.prototype.mouseover = function (callback) {
+    }
+    mouseover(callback) {
         this.addEventListenerToAllElement("mouseover", callback);
-    };
-    HtmlElementQuery.prototype.change = function (callback) {
+    }
+    mouseenter(callback) {
+        this.addEventListenerToAllElement("mouseenter", callback);
+    }
+    mouseleave(callback) {
+        this.addEventListenerToAllElement("mouseleave", callback);
+    }
+    change(callback) {
         this.addEventListenerToAllElement("change", callback);
-    };
-    HtmlElementQuery.prototype.focus = function (callback) {
+    }
+    focus(callback) {
         this.addEventListenerToAllElement("focus", callback);
-    };
-    HtmlElementQuery.prototype.blur = function (callback) {
+    }
+    blur(callback) {
         this.addEventListenerToAllElement("blur", callback);
-    };
-    HtmlElementQuery.prototype.scroll = function (callback) {
+    }
+    scroll(callback) {
         this.addEventListenerToAllElement("scroll", callback);
-    };
-    HtmlElementQuery.prototype.triggerEvent = function (event) {
+    }
+    triggerEvent(event) {
         if (event instanceof Event) {
             for (var i = 0; i < this._elementList.length; i++) {
                 var element = this._elementList[i];
@@ -587,34 +601,34 @@ var HtmlElementQuery = (function () {
                 }
             }
         }
-    };
-    HtmlElementQuery.prototype.hide = function () {
+    }
+    hide() {
         this.setStyle("display", "none");
         return this;
-    };
-    HtmlElementQuery.prototype.getElementCount = function () {
+    }
+    getElementCount() {
         if (this._elementList == null) {
             return 0;
         }
         return this._elementList.length;
-    };
-    HtmlElementQuery.prototype.getElementList = function () {
+    }
+    getElementList() {
         return this._elementList;
-    };
-    HtmlElementQuery.prototype.getFirstElement = function () {
+    }
+    getFirstElement() {
         if (this._elementList.length === 0) {
             return null;
         }
         return this._elementList[0];
-    };
-    HtmlElementQuery.prototype.getLastElement = function () {
+    }
+    getLastElement() {
         if (this._elementList.length === 0) {
             return null;
         }
         return this._elementList[this._elementList.length - 1];
-    };
-    HtmlElementQuery.prototype.getChildElementList = function () {
-        var elementList = new Array();
+    }
+    getChildElementList() {
+        const elementList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
             for (var cIndex = 0; cIndex < element.children.length; cIndex++) {
@@ -622,14 +636,14 @@ var HtmlElementQuery = (function () {
             }
         }
         return elementList;
-    };
-    HtmlElementQuery.prototype.getSibling = function (direction) {
-        var elementList = new Array();
+    }
+    getSibling(direction) {
+        const elementList = new Array();
         switch (direction) {
             case "Previous":
                 for (var i = 0; i < this._elementList.length; i++) {
-                    var element = this._elementList[i];
-                    var nodeList = element.parentElement.children;
+                    let element = this._elementList[i];
+                    let nodeList = element.parentElement.children;
                     for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
                         if (nodeList[nIndex] == element) {
                             break;
@@ -640,9 +654,9 @@ var HtmlElementQuery = (function () {
                 break;
             case "Next":
                 for (var i = 0; i < this._elementList.length; i++) {
-                    var element = this._elementList[i];
-                    var nodeList = element.parentElement.children;
-                    var isStarted = false;
+                    let element = this._elementList[i];
+                    let nodeList = element.parentElement.children;
+                    let isStarted = false;
                     for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
                         if (isStarted == true) {
                             elementList.push(nodeList[nIndex]);
@@ -656,67 +670,56 @@ var HtmlElementQuery = (function () {
             default:
         }
         return new HtmlElementQuery(elementList);
-    };
-    HtmlElementQuery.prototype.getNearest = function (selector) {
+    }
+    getNearest(selector) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
-            for (var p = element && element.parentElement; p; p = p.parentElement) {
+            let p = element.parentElement;
+            while (p != null) {
                 var child = $(p).find(selector).getFirstElement();
                 if (child !== null) {
                     return $(child);
                 }
+                p = p.parentElement;
             }
         }
         return HtmlElementQuery._emptyHtmlElementQuery;
-    };
-    HtmlElementQuery.prototype.getNearestElement = function (selector) {
+    }
+    getNearestElement(selector) {
         for (var i = 0; i < this._elementList.length; i++) {
             var element = this._elementList[i];
-            for (var p = element && element.parentElement; p; p = p.parentElement) {
+            let p = element.parentElement;
+            while (p != null) {
                 var childList = $(p).find(selector).getElementList();
                 for (var cIndex = 0; cIndex < childList.length; cIndex++) {
                     if (childList[cIndex] !== element) {
                         return childList[cIndex];
                     }
                 }
+                p = p.parentElement;
             }
         }
-    };
-    HtmlElementQuery.prototype.find = function (selector) {
-        var elementList = new Array();
+    }
+    find(selector) {
+        const elementList = new Array();
         for (var i = 0; i < this._elementList.length; i++) {
-            var nodeList = this._elementList[i].querySelectorAll(selector);
+            let nodeList = this._elementList[i].querySelectorAll(selector);
             for (var nIndex = 0; nIndex < nodeList.length; nIndex++) {
                 elementList.push(nodeList[nIndex]);
             }
         }
         return new HtmlElementQuery(elementList);
-    };
-    HtmlElementQuery.prototype.forEach = function (callback) {
-        this._elementList.forEach(callback);
-    };
-    HtmlElementQuery.domContentLoaded = function (callback) {
-        document.addEventListener("DOMContentLoaded", callback);
-    };
-    HtmlElementQuery._emptyElementList = new Array();
-    HtmlElementQuery._emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
-    HtmlElementQuery._onEventHandlerList = new Array();
-    return HtmlElementQuery;
-}());
-export { HtmlElementQuery };
-var OnEventHandler = (function () {
-    function OnEventHandler() {
     }
-    return OnEventHandler;
-}());
-var person = (function (el) {
-    return {
-        set age(v) {
-            el.value = v;
-        },
-        get age() {
-            return el.value;
-        }
-    };
-})(document.getElementById("age"));
+    forEach(callback) {
+        this._elementList.forEach(callback);
+    }
+    static domContentLoaded(callback) {
+        document.addEventListener("DOMContentLoaded", callback);
+    }
+}
+HtmlElementQuery._emptyElementList = new Array();
+HtmlElementQuery._emptyHtmlElementQuery = new HtmlElementQuery(HtmlElementQuery._emptyElementList);
+HtmlElementQuery._onEventHandlerList = new Array();
+class OnEventHandler {
+}
 //# sourceMappingURL=HtmlElementQuery.js.map

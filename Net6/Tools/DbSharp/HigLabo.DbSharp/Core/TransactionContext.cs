@@ -37,32 +37,20 @@ namespace HigLabo.DbSharp
                 }
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
+
         public void Open()
         {
             this.Database.Open();
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public void Close()
         {
             this.Database.Close();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="isolationLevel"></param>
         public void BeginTransaction(IsolationLevel isolationLevel)
         {
             this.Database.BeginTransaction(isolationLevel);
             TransactionContext.OnTransactionStarted(new EventArgs());
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public void CommitTransaction()
         {
             Database db = this.Database;
@@ -74,9 +62,6 @@ namespace HigLabo.DbSharp
             }
             db.CommitTransaction();
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public void RollbackTransaction()
         {
             Database db = this.Database;
@@ -88,10 +73,6 @@ namespace HigLabo.DbSharp
             }
             db.RollBackTransaction();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="e"></param>
         protected static void OnTransactionStarted(EventArgs e)
         {
             var eh = TransactionContext.TransactionStarted;
@@ -100,9 +81,6 @@ namespace HigLabo.DbSharp
                 eh(null, e);
             }
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public void Dispose()
         {
             Database db = this.Database;

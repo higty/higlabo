@@ -1,14 +1,19 @@
-import { DateTime } from "./DateTime.js";
+import { DateOnly, DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
 import { HigLaboVue } from "./HigLaboVue.js";
 import { HttpClient } from "./HttpClient.js";
 import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
-var InputPropertyPanel = (function () {
-    function InputPropertyPanel() {
+export class InputPropertyPanel {
+    constructor() {
+        this._eventHandlerList = new Array();
         this.selectTimePopupPanel = new SelectTimePopupPanel();
     }
-    InputPropertyPanel.prototype.initialize = function () {
+    initialize() {
         this.selectTimePopupPanel.initialize();
+        $("body").find("input").forEach((element, index) => {
+            $(element).setAttribute("previous-value", $(element).getValue());
+        });
+        $("body").on("change", "input", this.input_Change.bind(this));
         $("body").on("focusin", "input[date-picker],input[time-picker]", this.dateTimeTextBox_Focusin.bind(this));
         $("body").on("keydown", "input[date-picker]", this.dateTextBox_Keydown.bind(this));
         $("body").on("keydown", "input[time-picker]", this.timeTextBox_Keydown.bind(this));
@@ -20,6 +25,7 @@ var InputPropertyPanel = (function () {
         $("body").on("change", "[input-property-panel] [set-by-end-time]", this.dateTimeDurationList_Change.bind(this));
         $("body").on("click", "[input-property-panel]  [radio-button-label]", this.radioButtonLabel_Click.bind(this));
         $("body").on("click", "[input-property-panel]  [checkbox-label]", this.checkBoxLabel_Click.bind(this));
+        $("body").on("input", "[input-property-panel] [filter-textbox]", this.filterTextBox_Keydown.bind(this));
         $("body").on("keydown", "[input-property-panel] [delete-link]", this.deleteLink_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [delete-link]", this.deleteLink_Click.bind(this));
         $("body").on("click", "[input-property-panel] [add-record-button]", this.addRecordButton_Click.bind(this));
@@ -34,14 +40,27 @@ var InputPropertyPanel = (function () {
         $("body").on("keyup", "[input-property-panel] [select-record-list-panel] [header-text-binding-panel] input[type=text]", this.editRecordPanelTextBox_Keyup.bind(this));
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Click.bind(this));
-        $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Keydown.bind(this));
+        $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [header-text]", this.headerText_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
-    };
-    InputPropertyPanel.prototype.dateTimeTextBox_Focusin = function (target, e) {
+        this.initializeSetByEndTimeProperty();
+    }
+    registerEventHandler(hander) {
+        this._eventHandlerList.push(hander);
+    }
+    initializeSetByEndTimeProperty() {
+        var ipl = this;
+        $("[input-property-panel] [set-by-end-time]").forEach((element, index) => {
+            ipl.toggleDateTimeDurationList(element);
+        });
+    }
+    input_Change(target, e) {
+        $(target).setAttribute("previous-value", $(target).getValue());
+    }
+    dateTimeTextBox_Focusin(target, e) {
         $(target).select();
-    };
-    InputPropertyPanel.prototype.dateTextBox_Keydown = function (target, e) {
-        var ftx = target;
+    }
+    dateTextBox_Keydown(target, e) {
+        const ftx = target;
         if (ftx._flatpickr != null) {
             if (e.keyCode == 40) {
                 ftx._flatpickr.open();
@@ -55,41 +74,54 @@ var InputPropertyPanel = (function () {
         }
         var tx = $(target);
         var text = tx.getValue();
-        var today = DateTime.getToday();
-        var date = null;
-        if (text.length == 1) {
-            date = today.toString("yyyy/MM/") + text;
-        }
-        else if (text.length == 2) {
-            date = today.toString("yyyy/MM/") + text;
-        }
-        else if (text.length == 3) {
-            date = today.toString("yyyy") + "/" + text.substr(0, 1) + "/" + text.substr(1, 2);
-        }
-        else if (text.length == 4) {
-            date = today.toString("yyyy") + "/" + text.substr(0, 2) + "/" + text.substr(2, 2);
-        }
-        else if (text.length == 5) {
-            date = "20" + text.substr(0, 2) + "/" + text.substr(2, 1) + "/" + text.substr(3, 2);
-        }
-        else if (text.length == 6) {
-            date = "20" + text.substr(0, 2) + "/" + text.substr(2, 2) + "/" + text.substr(4, 2);
-        }
-        else if (text.length == 8) {
-            date = text.substr(0, 4) + "/" + text.substr(4, 2) + "/" + text.substr(6, 2);
-        }
-        if (date == null) {
+        var value = parseInt(text);
+        if (isNaN(value) == true) {
             return;
         }
-        var dateTime = new DateTime(date);
+        var today = DateTime.getToday();
+        var date = new DateOnly();
+        if (text.length <= 2) {
+            date.Year = today.year;
+            date.Month = today.month;
+            date.Day = value;
+        }
+        else if (text.length == 3) {
+            date.Year = today.year;
+            date.Month = parseInt(text.substr(0, 1));
+            date.Day = parseInt(text.substr(1, 2));
+        }
+        else if (text.length == 4) {
+            date.Year = today.year;
+            date.Month = parseInt(text.substr(0, 2));
+            date.Day = parseInt(text.substr(2, 2));
+        }
+        else if (text.length == 5) {
+            date.Year = parseInt("20" + text.substr(0, 2));
+            date.Month = parseInt(text.substr(2, 1));
+            date.Day = parseInt(text.substr(3, 2));
+        }
+        else if (text.length == 6) {
+            date.Year = parseInt("20" + text.substr(0, 2));
+            date.Month = parseInt(text.substr(2, 2));
+            date.Day = parseInt(text.substr(4, 2));
+        }
+        else if (text.length == 8) {
+            date.Year = parseInt(text.substr(0, 4));
+            date.Month = parseInt(text.substr(4, 2));
+            date.Day = parseInt(text.substr(6, 2));
+        }
+        else {
+            return;
+        }
+        let dateTime = new DateTime(date);
         if (text.length == 1 || text.length == 2) {
-            if (dateTime < today) {
+            if (dateTime.value < today.value) {
                 dateTime = today.addMonth(1);
             }
         }
         tx.setValue(dateTime.toString("yyyy/MM/dd"));
-    };
-    InputPropertyPanel.prototype.timeTextBox_Keydown = function (target, e) {
+    }
+    timeTextBox_Keydown(target, e) {
         if (e.keyCode == 40) {
             this.selectTimePopupPanel.show(target);
         }
@@ -146,62 +178,74 @@ var InputPropertyPanel = (function () {
         else {
             tx.setValue("");
         }
-    };
-    InputPropertyPanel.prototype.colorTextBox_Keydown = function (target, e) {
+    }
+    colorTextBox_Keydown(target, e) {
         if (e.keyCode == 13) {
             this.showColorTable(target);
         }
-    };
-    InputPropertyPanel.prototype.colorTextBox_Keyup = function (target, e) {
+    }
+    colorTextBox_Keyup(target, e) {
         $(target).getNearest("[color-panel]").setStyle("background-color", $(target).getValue());
-    };
-    InputPropertyPanel.prototype.colorPanel_Click = function (target, e) {
+    }
+    colorPanel_Click(target, e) {
         this.showColorTable(target);
-    };
-    InputPropertyPanel.prototype.showColorTable = function (target) {
+    }
+    showColorTable(target) {
         $(target).getNearest("[color-table-panel]").setStyle("display", "block");
         $(target).getNearest("[color-table-panel]").find("td").setFocus();
-    };
-    InputPropertyPanel.prototype.colorCell_Click = function (target, e) {
+    }
+    colorCell_Click(target, e) {
         var color = $(target).getAttribute("color");
         this.setColor(target, color);
-    };
-    InputPropertyPanel.prototype.colorCell_Keydown = function (target, e) {
-        var tr = target.parentElement;
+    }
+    colorCell_Keydown(target, e) {
+        const tr = target.parentElement;
         if (e.keyCode == 13) {
             var color = $(target).getAttribute("color");
             this.setColor(target, color);
         }
         else if (e.keyCode == 37) {
-            $(target.previousElementSibling).setFocus();
-            e.stopPropagation();
+            if (target.previousElementSibling == null) {
+                const td = $(target).getParent("tr").find("td").getLastElement();
+                $(td).setFocus();
+            }
+            else {
+                $(target.previousElementSibling).setFocus();
+            }
+            e.preventDefault();
         }
         else if (e.keyCode == 38) {
-            var index = $(target).getIndex();
+            const index = $(target).getIndex();
             $(tr.previousElementSibling.children[index]).setFocus();
             e.preventDefault();
         }
         else if (e.keyCode == 39) {
-            $(target.nextElementSibling).setFocus();
-            e.stopPropagation();
+            if (target.nextElementSibling == null) {
+                const td = $(target).getParent("tr").find("td").getFirstElement();
+                $(td).setFocus();
+            }
+            else {
+                $(target.nextElementSibling).setFocus();
+            }
+            e.preventDefault();
         }
         else if (e.keyCode == 40) {
-            var index = $(target).getIndex();
+            const index = $(target).getIndex();
             $(tr.nextElementSibling.children[index]).setFocus();
             e.preventDefault();
         }
-    };
-    InputPropertyPanel.prototype.setColor = function (target, color) {
+    }
+    setColor(target, color) {
         $(target).getNearest("[color-panel]").setStyle("background-color", color);
         $(target).getNearest("[color-table-panel]").hide();
         $(target).getNearest("input[type='text']").setValue(color).setFocus().select();
-    };
-    InputPropertyPanel.prototype.dateTimeDurationList_Change = function (target, e) {
+    }
+    dateTimeDurationList_Change(target, e) {
         this.toggleDateTimeDurationList(target);
-    };
-    InputPropertyPanel.prototype.toggleDateTimeDurationList = function (target) {
-        var durationListPanel = $(target).getNearestElement("[duration-list-panel]");
-        var durationEndPanel = $(target).getNearestElement("[duration-end-panel]");
+    }
+    toggleDateTimeDurationList(target) {
+        const durationListPanel = $(target).getNearestElement("[duration-list-panel]");
+        const durationEndPanel = $(target).getNearestElement("[duration-end-panel]");
         if ($(target).isChecked()) {
             $(durationListPanel).setStyle("display", "none");
             $(durationEndPanel).setStyle("display", "inline");
@@ -210,29 +254,40 @@ var InputPropertyPanel = (function () {
             $(durationListPanel).setStyle("display", "inline");
             $(durationEndPanel).setStyle("display", "none");
         }
-    };
-    InputPropertyPanel.prototype.radioButtonLabel_Click = function (target, e) {
+    }
+    radioButtonLabel_Click(target, e) {
         $(target).getNearest("input[type='radio']").setChecked(true).triggerEvent("change");
-    };
-    InputPropertyPanel.prototype.checkBoxLabel_Click = function (target, e) {
+    }
+    checkBoxLabel_Click(target, e) {
         $(target).getNearest("input[type='checkbox']").toggleChecked().triggerEvent("change");
-    };
-    InputPropertyPanel.prototype.selectRecordPanel_Click = function (target, e) {
+    }
+    filterTextBox_Keydown(target, e) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const text = $(target).getValue();
+        if (text == "") {
+            $(ipl).find("[filter-text]").removeClass("display-none");
+        }
+        else {
+            $(ipl).find("[filter-text]").addClass("display-none");
+            $(ipl).find("[filter-text*='" + text + "']").removeClass("display-none");
+        }
+    }
+    selectRecordPanel_Click(target, e) {
         this.showSearchRecordListPanel(target);
-    };
-    InputPropertyPanel.prototype.selectRecordPanel_Keydown = function (target, e) {
+    }
+    selectRecordPanel_Keydown(target, e) {
         if (e.keyCode == 13) {
             this.showSearchRecordListPanel(target);
         }
-    };
-    InputPropertyPanel.prototype.deleteLink_Click = function (target, e) {
+    }
+    deleteLink_Click(target, e) {
         this.deleteRecord(target);
         e.preventDefault();
-    };
-    InputPropertyPanel.prototype.deleteLink_Keydown = function (target, e) {
+    }
+    deleteLink_Keydown(target, e) {
         if (e.keyCode == 13) {
-            var pl = $(target).getParent("[h-record]").getFirstElement();
-            var focusElement = pl.nextElementSibling;
+            const pl = $(target).getParent("[h-record]").getFirstElement();
+            let focusElement = pl.nextElementSibling;
             if (focusElement == null) {
                 focusElement = pl.previousElementSibling;
             }
@@ -241,60 +296,80 @@ var InputPropertyPanel = (function () {
             }
             this.deleteRecord(target);
         }
-    };
-    InputPropertyPanel.prototype.deleteRecord = function (target) {
-        var pl = $(target).getParent("[h-record]").getFirstElement();
-        var elementType = $(target).getParentAttribute("element-type");
+    }
+    deleteRecord(target) {
+        const pl = $(target).getParent("[h-record]").getFirstElement();
+        const elementType = $(target).getParentAttribute("element-type");
         if (elementType == "Record") {
-            var rpl = $(target).getNearestElement("[select-record-panel]");
+            const rpl = $(target).getNearestElement("[select-record-panel]");
             $(rpl).setInnerHtml("");
-            var span = document.createElement("span");
+            const span = document.createElement("span");
             $(span).setInnerText(rpl.getAttribute("default-text"));
             rpl.appendChild(span);
             $(rpl).setFocus();
         }
         pl.remove();
-    };
-    InputPropertyPanel.prototype.addRecordButton_Click = function (target, e) {
-        var ipl = $(target).getParent("[input-property-panel]");
-        var mode = ipl.getAttribute("add-record-mode");
+    }
+    addRecordButton_Click(target, e) {
+        const ipl = $(target).getParent("[input-property-panel]");
+        const mode = ipl.getAttribute("add-record-mode");
         switch (mode) {
+            case "None":
+                this.setDefaultRecord(ipl.getFirstElement(), {});
+                break;
             case "Search":
                 $(target).getParent("[button-list-panel]").hide();
                 this.showSearchRecordListPanel(target);
                 break;
             case "Api":
-                var apiPath = ipl.getAttribute("api-path-default-get");
+                const apiPath = ipl.getAttribute("api-path-default-get");
                 HttpClient.postJson(apiPath, {}, this.getDefaultRecordCallback.bind(this), null, ipl.getFirstElement());
                 break;
             default:
         }
-    };
-    InputPropertyPanel.prototype.getDefaultRecordCallback = function (response, inputPropertyPanel) {
-        var ipl = inputPropertyPanel;
-        var templateID = ipl.getAttribute("template-id");
-        var rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
-        var r = response.jsonParse();
-        var element = HigLaboVue.append(rpl, templateID, r)[0];
+    }
+    setDefaultRecord(inputPropertyPanel, record) {
+        const r = record;
+        const ipl = inputPropertyPanel;
+        const templateID = ipl.getAttribute("template-id");
+        const rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
+        const element = HigLaboVue.append(rpl, templateID, r)[0];
+        if ($(element).getAttribute("header-mode") == "Label") {
+            $(element).setAttribute("toggle-state", "Expand");
+        }
         var key = $(element).getAttribute("h-key");
         InputPropertyPanel.setElementProperty(element, r, key);
-        this.recordAdded();
-    };
-    InputPropertyPanel.prototype.recordAdded = function () {
-    };
-    InputPropertyPanel.prototype.showSearchRecordListPanel = function (target) {
-        var pl = $(target).getNearestElement("[search-record-list-panel]");
+        $(element).find("input[type='text']").setFocus();
+        this.recordAdded(ipl);
+    }
+    getDefaultRecordCallback(response, inputPropertyPanel) {
+        const r = response.jsonParse();
+        this.setDefaultRecord(inputPropertyPanel, r);
+    }
+    recordAdded(inputPropertyPanel) {
+        const e = new RecordAddedEvent(inputPropertyPanel);
+        for (var i = 0; i < this._eventHandlerList.length; i++) {
+            try {
+                var f = this._eventHandlerList[i];
+                f(this, e);
+            }
+            catch (_a) {
+            }
+        }
+    }
+    showSearchRecordListPanel(target) {
+        const pl = $(target).getNearestElement("[search-record-list-panel]");
         $(pl).addClass("slide-down");
         $(target).getNearest("[search-textbox]").setFocus();
         this.search(target);
-    };
-    InputPropertyPanel.prototype.searchButton_Click = function (target, e) {
+    }
+    searchButton_Click(target, e) {
         this.search(target);
-    };
-    InputPropertyPanel.prototype.searchTextBox_Keydown = function (target, e) {
-        var pl = $(target).getNearest("[search-record-list-panel]");
-        var currentElement = pl.find("[current]").getFirstElement();
-        var targetElement = null;
+    }
+    searchTextBox_Keydown(target, e) {
+        const pl = $(target).getNearest("[search-record-list-panel]");
+        const currentElement = pl.find("[current]").getFirstElement();
+        let targetElement = null;
         if (e.keyCode == 13) {
             if (currentElement == null) {
                 this.search(target);
@@ -305,13 +380,13 @@ var InputPropertyPanel = (function () {
                 if (targetElement == null) {
                     targetElement = currentElement.previousElementSibling;
                 }
-                var selected = this.selectRecord(currentElement);
+                const selected = this.selectRecord(currentElement);
                 if (selected == false) {
                     return;
                 }
             }
         }
-        var elementList = pl.find("[h-record]").getElementList();
+        const elementList = pl.find("[h-record]").getElementList();
         if (elementList.length == 0) {
             return;
         }
@@ -328,31 +403,31 @@ var InputPropertyPanel = (function () {
             }
         }
         else if (e.keyCode == 40) {
-            var currentElement_1 = pl.find("[current]").getFirstElement();
-            if (currentElement_1 == null) {
+            const currentElement = pl.find("[current]").getFirstElement();
+            if (currentElement == null) {
                 targetElement = elementList[0];
             }
             else {
-                currentElement_1.removeAttribute("current");
-                targetElement = currentElement_1.nextElementSibling;
+                currentElement.removeAttribute("current");
+                targetElement = currentElement.nextElementSibling;
             }
         }
         if (targetElement == null) {
             pl.find("[current]").removeAttribute("current");
         }
         else {
-            var rpl = pl.find("[record-list-panel]");
-            var parentOffset = rpl.getOffset();
-            var scrollTop = rpl.getScrollTop();
-            var offset = $(targetElement).getOffset();
+            const rpl = pl.find("[record-list-panel]");
+            const parentOffset = rpl.getOffset();
+            const scrollTop = rpl.getScrollTop();
+            const offset = $(targetElement).getOffset();
             rpl.setScrollTop((offset.top) - (parentOffset.top - scrollTop) - (rpl.getOuterHeight() / 2) + 40);
         }
         $(targetElement).setAttribute("current", "true");
-    };
-    InputPropertyPanel.prototype.search = function (target) {
-        var pl = $(target).getParent("[api-path-search]");
-        var url = $(pl).getAttribute("api-path-search");
-        var p = null;
+    }
+    search(target) {
+        const pl = $(target).getParent("[api-path-search]");
+        const url = $(pl).getAttribute("api-path-search");
+        let p = null;
         try {
             p = JSON.parse($(pl).getAttribute("api-parameter"));
         }
@@ -362,38 +437,38 @@ var InputPropertyPanel = (function () {
         }
         p.SearchText = $(pl).find("[search-textbox]").getValue();
         HttpClient.postJson(url, p, this.search_Callback.bind(this), null, pl);
-    };
-    InputPropertyPanel.prototype.search_Callback = function (response, context) {
-        var data = response.jsonParse();
-        var pl = context;
-        var recordListPanel = $(pl).find("[record-list-panel]").getFirstElement();
-        var templateID = $(pl).getAttribute("search-template-id");
+    }
+    search_Callback(response, context) {
+        const data = response.jsonParse();
+        const pl = context;
+        const recordListPanel = $(pl).find("[record-list-panel]").getFirstElement();
+        const templateID = $(pl).getAttribute("search-template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < data.Data.length; i++) {
             HigLaboVue.append(recordListPanel, templateID, data.Data[i]);
         }
-    };
-    InputPropertyPanel.prototype.record_Click = function (target, e) {
+    }
+    record_Click(target, e) {
         this.selectRecord(target);
-    };
-    InputPropertyPanel.prototype.selectRecord = function (target) {
-        var ipl = $(target).getParent("[input-property-panel]");
-        var name = $(ipl).getAttribute("h-record-list");
-        var elementType = ipl.getAttribute("element-type");
-        var mode = ipl.getAttribute("select-record-mode");
-        var rpl = $(target).getFirstElement();
+    }
+    selectRecord(target) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const name = $(ipl).getAttribute("h-record-list");
+        const elementType = $(ipl).getAttribute("element-type");
+        const mode = $(ipl).getAttribute("select-record-mode");
+        const rpl = $(target).getFirstElement();
         switch (mode) {
             case "Html":
                 if (elementType == "Record") {
-                    var spl = $(ipl).find("[select-record-panel]").getFirstElement();
+                    const spl = $(ipl).find("[select-record-panel]").getFirstElement();
                     $(spl).setInnerHtml("");
                     spl.appendChild(rpl);
                     $(spl).setFocus();
                     this.closeSearchRecordListPanel(target);
                 }
                 else if (elementType == "RecordList") {
-                    var spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
-                    var hKey = $(rpl).getAttribute("h-key");
+                    const spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
+                    const hKey = $(rpl).getAttribute("h-key");
                     if ($(spl).find("[h-key='" + hKey + "']").getElementCount() > 0) {
                         return false;
                     }
@@ -402,25 +477,26 @@ var InputPropertyPanel = (function () {
                 }
                 break;
             case "Template":
-                var templateID = ipl.getAttribute("template-id");
+                const templateID = $(ipl).getAttribute("template-id");
                 if (elementType == "Record") {
-                    var spl = $(ipl).find("[select-record-panel]").getFirstElement();
+                    const spl = $(ipl).find("[select-record-panel]").getFirstElement();
                     $(rpl).setInnerHtml("");
-                    var r = InputPropertyPanel.createRecord(rpl);
-                    var pl = HigLaboVue.append(spl, templateID, r);
+                    const r = InputPropertyPanel.createRecord(rpl);
+                    const pl = HigLaboVue.append(spl, templateID, r);
                     $(spl).setFocus();
                     this.closeSearchRecordListPanel(target);
                 }
                 else if (elementType == "RecordList") {
-                    var spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
-                    var hKey = $(rpl).getAttribute("h-key");
+                    const spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
+                    const hKey = $(rpl).getAttribute("h-key");
                     if ($(spl).find("[h-key='" + hKey + "']").getElementCount() > 0) {
                         return false;
                     }
-                    var r = InputPropertyPanel.createRecord(rpl);
-                    var pl = HigLaboVue.append(spl, templateID, r)[0];
+                    const r = InputPropertyPanel.createRecord(rpl);
+                    const pl = HigLaboVue.append(spl, templateID, r)[0];
+                    $(pl).setAttribute("toggle-state", "Expand");
                     InputPropertyPanel.setRadioButtonProperty(pl, name, hKey);
-                    var checkBoxList = $(pl).find("input[type='checkbox']").getElementList();
+                    const checkBoxList = $(pl).find("input[type='checkbox']").getElementList();
                     for (var i = 0; i < checkBoxList.length; i++) {
                     }
                     spl.scrollTop = 20000;
@@ -428,18 +504,18 @@ var InputPropertyPanel = (function () {
                 break;
             default:
         }
-        this.recordAdded();
+        this.recordAdded(ipl);
         return true;
-    };
-    InputPropertyPanel.prototype.sortButton_Click = function (target, e) {
-        var rpl = $(target).getNearest("[select-record-list-panel]").getFirstElement();
+    }
+    sortButton_Click(target, e) {
+        const rpl = $(target).getNearest("[select-record-list-panel]").getFirstElement();
         $(rpl).find("[h-record]").setAttribute("sort-record", "true");
         HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(target).getValue() });
         $(rpl).getNearest("[sort-button]").hide();
-    };
-    InputPropertyPanel.prototype.sortRecord_Click = function (target, e) {
-        var rpl = $(target).getParent("[select-record-list-panel]").getFirstElement();
-        var linePanel = $(rpl).find("[sort-line-panel]").getFirstElement();
+    }
+    sortRecord_Click(target, e) {
+        const rpl = $(target).getParent("[select-record-list-panel]").getFirstElement();
+        const linePanel = $(rpl).find("[sort-line-panel]").getFirstElement();
         rpl.insertBefore(target, linePanel);
         $(target).removeAttribute("sort-record");
         if ($(rpl).find("[sort-record]").getElementCount() == 0) {
@@ -447,77 +523,82 @@ var InputPropertyPanel = (function () {
             $(rpl).getNearest("[sort-button]").removeStyle("display");
         }
         e.preventDefault();
-    };
-    InputPropertyPanel.prototype.closeButton_Click = function (target, e) {
+    }
+    closeButton_Click(target, e) {
         this.closeSearchRecordListPanel(target);
-    };
-    InputPropertyPanel.prototype.closeSearchRecordListPanel = function (target) {
-        var rpl = $(target).getNearestElement("[search-record-list-panel]");
+    }
+    closeSearchRecordListPanel(target) {
+        const rpl = $(target).getNearestElement("[search-record-list-panel]");
         $(rpl).removeClass("slide-down");
-        $(target).getNearest("[button-list-panel]").setStyle("display", "initial");
-    };
-    InputPropertyPanel.prototype.editRecordPanelTextBox_Keyup = function (target, e) {
-        var text = $(target).getValue();
+        $(target).getNearest("[button-list-panel]").removeStyle("display");
+        $(target).getNearest("[add-record-button]").setFocus();
+    }
+    editRecordPanelTextBox_Keyup(target, e) {
+        const text = $(target).getValue();
         $(target).getNearest("[header-text]").setInnerText(text);
-    };
-    InputPropertyPanel.prototype.toggleContentPanel_Keydown = function (target, e) {
+    }
+    toggleContentPanel_Keydown(target, e) {
         if (e.keyCode == 13) {
             $(target).getParent("[h-record]").toggleAttributeValue("toggle-state", "Expand", "Collapse");
         }
-    };
-    InputPropertyPanel.prototype.toggleContentPanel_Click = function (target, e) {
+    }
+    toggleContentPanel_Click(target, e) {
+        if ($(target).getParentAttribute("can-toggle") == "false") {
+            return;
+        }
         $(target).getParent("[h-record]").toggleAttributeValue("toggle-state", "Expand", "Collapse");
-    };
-    InputPropertyPanel.prototype.deleteCandidateLink_Keydown = function (target, e) {
-        if (e.keyCode == 13) {
+    }
+    headerText_Keydown(target, e) {
+        if (e.keyCode == 46) {
             this.deleteCandidate(target);
         }
-    };
-    InputPropertyPanel.prototype.deleteCandidateLink_Click = function (target, e) {
+    }
+    deleteCandidateLink_Click(target, e) {
         this.deleteCandidate(target);
-    };
-    InputPropertyPanel.prototype.deleteCandidate = function (target) {
+    }
+    deleteCandidate(target) {
         $(target).getParent("[h-record]").toggleAttributeValue("is-delete", "true", "false");
-        $(target).getParent("[h-record]").find("input[h-name='IsDelete']").setValue("true");
-    };
-    InputPropertyPanel.createRecord = function (recordElement) {
-        var record = {};
-        var propertyPanelList = new Array();
+        const v = $(target).getParent("[h-record]").getAttribute("is-delete");
+        $(target).getParent("[h-record]").find("input[h-name='IsDelete']").setValue(v);
+    }
+    static createRecord(recordElement) {
+        let record = {};
+        const propertyPanelList = new Array();
         this.findChildNodes(recordElement, propertyPanelList);
         var name = "";
         for (var i = 0; i < propertyPanelList.length; i++) {
-            var propertyPanel = propertyPanelList[i];
+            let propertyPanel = propertyPanelList[i];
             name = $(propertyPanel).getAttribute("h-record-list");
-            if (name != "") {
+            if (name != "" && record[name] == null) {
                 record[name] = this.createRecordList(propertyPanel);
                 continue;
             }
             name = $(propertyPanel).getAttribute("h-record");
-            if (name != "") {
-                var r = this.createRecord(propertyPanel);
+            if (name != "" && record[name] == null) {
+                let r = this.createRecord(propertyPanel);
                 record[name] = r;
                 continue;
             }
             name = $(propertyPanel).getAttribute("h-name");
-            if (name != "") {
+            if (name != "" && record[name] == null) {
                 InputPropertyPanel.setRecordProperty(record, propertyPanel);
             }
         }
         return record;
-    };
-    InputPropertyPanel.setRecordProperty = function (record, propertyPanel) {
-        var name = $(propertyPanel).getAttribute("h-name");
+    }
+    static setRecordProperty(record, propertyPanel) {
+        let name = $(propertyPanel).getAttribute("h-name");
         {
-            var hRecord = $(propertyPanel).find("[h-record]").getFirstElement();
+            let hRecord = $(propertyPanel).find("[h-record]").getFirstElement();
             if (hRecord != null) {
                 record[name] = InputPropertyPanel.createRecord(hRecord);
                 return;
             }
         }
         {
-            var textarea = $(propertyPanel).find("textarea").getFirstElement();
+            let textarea = $(propertyPanel).find("textarea").getFirstElement();
             if (textarea != null) {
-                var richTextbox = textarea.richTextbox;
+                let richTextbox = textarea.richTextbox;
                 if (richTextbox == null) {
                     record[name] = $(textarea).getValue();
                 }
@@ -528,16 +609,16 @@ var InputPropertyPanel = (function () {
             }
         }
         {
-            var dl = $(propertyPanel).find("select").getFirstElement();
+            const dl = $(propertyPanel).find("select").getFirstElement();
             if (dl != null) {
                 record[name] = $(dl).getValue();
                 return;
             }
         }
         {
-            var radioButtonList = $(propertyPanel).find("input[type='radio']").getElementList();
+            const radioButtonList = $(propertyPanel).find("input[type='radio']").getElementList();
             for (var i = 0; i < radioButtonList.length; i++) {
-                var rb = $(radioButtonList[i]);
+                let rb = $(radioButtonList[i]);
                 if (rb.isChecked()) {
                     record[name] = rb.getValue();
                     return;
@@ -548,7 +629,7 @@ var InputPropertyPanel = (function () {
             }
         }
         {
-            var element = $(propertyPanel).find("input").getFirstElement();
+            let element = $(propertyPanel).find("input").getFirstElement();
             if (element == null) {
                 if (propertyPanel.tagName.toUpperCase() == "INPUT") {
                     element = propertyPanel;
@@ -557,13 +638,13 @@ var InputPropertyPanel = (function () {
             if (element == null) {
                 return;
             }
-            var control = $(element);
+            let control = $(element);
             switch (control.getAttribute("type")) {
                 case "text":
                 case "password":
                 case "hidden":
                     {
-                        var v = control.getValue();
+                        let v = control.getValue();
                         if (v != null) {
                             record[name] = v;
                         }
@@ -584,10 +665,10 @@ var InputPropertyPanel = (function () {
                 default:
             }
         }
-    };
-    InputPropertyPanel.createRecordList = function (recordListElement) {
-        var rr = new Array();
-        var recordList = $(recordListElement).find("[h-record]").getElementList();
+    }
+    static createRecordList(recordListElement) {
+        const rr = new Array();
+        const recordList = $(recordListElement).find("[h-record]").getElementList();
         for (var i = 0; i < recordList.length; i++) {
             var recordPanel = recordList[i];
             if ($(recordPanel).getParent("[h-record-list]").getFirstElement() != recordListElement) {
@@ -596,13 +677,16 @@ var InputPropertyPanel = (function () {
             if ($(recordPanel).getParent("[search-record-list-panel]").getElementCount() > 0) {
                 continue;
             }
-            var r = InputPropertyPanel.createRecord(recordPanel);
+            if ($(recordPanel).getParent("[input-property-panel][element-type='Record']").getElementCount() > 0) {
+                continue;
+            }
+            let r = InputPropertyPanel.createRecord(recordPanel);
             rr.push(r);
         }
         return rr;
-    };
-    InputPropertyPanel.findChildNodes = function (element, elementList) {
-        var childList = $(element).getChildElementList();
+    }
+    static findChildNodes(element, elementList) {
+        const childList = $(element).getChildElementList();
         for (var i = 0; i < childList.length; i++) {
             var child = childList[i];
             if ($(child).getAttribute("[search-record-list-panel]") != "") {
@@ -618,14 +702,15 @@ var InputPropertyPanel = (function () {
             }
         }
         return elementList;
-    };
-    InputPropertyPanel.setElementProperty = function (recordElement, record, key) {
-        var propertyList = Object.getOwnPropertyNames(record);
+    }
+    static setElementProperty(recordElement, record, key) {
+        const zeroPad2Digits = new Intl.NumberFormat('ja', { minimumIntegerDigits: 2 });
+        const propertyList = Object.getOwnPropertyNames(record);
         for (var i = 0; i < propertyList.length; i++) {
             var name = propertyList[i];
-            var v = record[name];
-            var propertyPanel = $(recordElement).find("[h-name='" + name + "'],[h-record='" + name + "'],[h-record-list='" + name + "']");
-            var elementType = propertyPanel.getAttribute("element-type");
+            let v = record[name];
+            let propertyPanel = $(recordElement).find("[h-name='" + name + "'],[h-record='" + name + "'],[h-record-list='" + name + "']");
+            let elementType = propertyPanel.getAttribute("element-type");
             if (elementType == "Color") {
                 propertyPanel.find("input").setValue(v);
                 propertyPanel.find("[color-panel]").setStyle("background-color", v);
@@ -636,9 +721,9 @@ var InputPropertyPanel = (function () {
                 propertyPanel.find("input").setChecked(v);
             }
             else if (elementType == "CheckBoxList") {
-                var vv = v;
+                const vv = v;
                 for (var vIndex = 0; vIndex < vv.length; vIndex++) {
-                    var hidden = propertyPanel.find("input[h-name='Value'][value='" + vv[vIndex].Value + "']").getFirstElement();
+                    let hidden = propertyPanel.find("input[h-name='Value'][value='" + vv[vIndex].Value + "']").getFirstElement();
                     if (hidden == null) {
                         continue;
                     }
@@ -652,9 +737,26 @@ var InputPropertyPanel = (function () {
                 propertyPanel.find("input[type=radio][value='" + v + "']").setChecked(true);
             }
             else if (elementType == "Date") {
-                if (v != null && v.length > 10) {
-                    v = v.replace(/-/g, "/").substr(0, 10);
-                    $(propertyPanel).find("[date-picker]").setValue(v);
+                if (v != null) {
+                    if (v.Year != null && v.Month != null && v.Day != null) {
+                        v = new DateTime(v.Year + "/" + v.Month + "/" + v.Day).toString("yyyy/MM/dd");
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                    else if (v.length > 10) {
+                        v = v.replace(/-/g, "/").substr(0, 10);
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                }
+            }
+            else if (elementType == "Time") {
+                if (v != null) {
+                    if (v.Hour != null && v.Minute != null && v.Second != null) {
+                        v = zeroPad2Digits.format(v.Hour) + ":" + zeroPad2Digits.format(v.Minute) + ":" + zeroPad2Digits.format(v.Second);
+                    }
+                    else if (v.length > 5) {
+                        v = v.replace(/-/g, "/").substr(0, 5);
+                    }
+                    $(propertyPanel).find("input").setValue(v);
                 }
             }
             else if (elementType == "DateTime") {
@@ -680,7 +782,7 @@ var InputPropertyPanel = (function () {
                 InputPropertyPanel.setRecordList(propertyPanel.getFirstElement(), v);
             }
             else {
-                var element = propertyPanel.getFirstElement();
+                let element = propertyPanel.getFirstElement();
                 if (element == null) {
                     continue;
                 }
@@ -688,7 +790,7 @@ var InputPropertyPanel = (function () {
                     $(element).setValue(v);
                 }
                 else {
-                    var input = propertyPanel.find("input").getFirstElement();
+                    let input = propertyPanel.find("input").getFirstElement();
                     switch ($(input).getAttribute("type").toLowerCase()) {
                         case "radio":
                         case "checkbox":
@@ -705,9 +807,9 @@ var InputPropertyPanel = (function () {
                 }
             }
         }
-    };
-    InputPropertyPanel.setRadioButtonProperty = function (element, name, key) {
-        var radioButtonList = $(element).find("input[type='radio']").getElementList();
+    }
+    static setRadioButtonProperty(element, name, key) {
+        const radioButtonList = $(element).find("input[type='radio']").getElementList();
         for (var i = 0; i < radioButtonList.length; i++) {
             var rb = radioButtonList[i];
             var rbValue = $(rb).getValue();
@@ -717,65 +819,67 @@ var InputPropertyPanel = (function () {
             $(rb).setAttribute("id", rName + "_" + rbValue);
             $(rb).getNearest("label").setAttribute("for", rName + "_" + rbValue);
         }
-    };
-    InputPropertyPanel.setCheckBoxProperty = function (element, name, key) {
-        var hName = $(element).getAttribute("h-name");
-        var id = "CheckBox_" + name + "_" + key + "_" + hName;
+    }
+    static setCheckBoxProperty(element, name, key) {
+        const hName = $(element).getAttribute("h-name");
+        const id = "CheckBox_" + name + "_" + key + "_" + hName;
         $(element).find("input[type='checkbox']").setAttribute("id", id);
         $(element).find("label").setAttribute("for", id);
-    };
-    InputPropertyPanel.setTextArea = function (element, value) {
-        var v = value;
+    }
+    static setTextArea(element, value) {
+        let v = value;
         if (v == null) {
             v = "";
         }
-        var textarea = element;
-        var richTextbox = textarea.richTextbox;
+        const textarea = element;
+        let richTextbox = textarea.richTextbox;
         if (richTextbox == null) {
             $(textarea).setValue(v);
         }
         else {
             richTextbox.setData(v);
         }
-    };
-    InputPropertyPanel.setRecord = function (propertyPanel, record) {
+    }
+    static setRecord(propertyPanel, record) {
         if (record == null) {
             return;
         }
-        var selectRecordPanel = $(propertyPanel).find("[select-record-panel]");
-        var templateID = propertyPanel.getAttribute("template-id");
+        const selectRecordPanel = $(propertyPanel).find("[select-record-panel]");
+        const templateID = propertyPanel.getAttribute("template-id");
         $(selectRecordPanel).setInnerHtml("");
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
-    };
-    InputPropertyPanel.setRecordList = function (propertyPanel, recordList) {
-        var recordListPanel = $(propertyPanel).find("[select-record-list-panel]");
-        var templateID = propertyPanel.getAttribute("template-id");
+    }
+    static setRecordList(propertyPanel, recordList) {
+        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]").getFirstElement();
+        if (recordListPanel == null) {
+            return;
+        }
+        const templateID = propertyPanel.getAttribute("template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
-            var element = HigLaboVue.append(recordListPanel.getFirstElement(), templateID, recordList[i])[0];
+            var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];
             var key = $(element).getAttribute("h-key");
             InputPropertyPanel.setElementProperty(element, recordList[i], key);
         }
-    };
-    InputPropertyPanel.setValidationResult = function (element, validationResultList) {
-        var vv = validationResultList;
+    }
+    static setValidationResult(element, validationResultList) {
+        const vv = validationResultList;
         $(element).find("[h-validation-name]").removeClass("fadein");
         setTimeout(function () {
             for (var i = 0; i < vv.length; i++) {
-                var vr = vv[i];
-                var pl = $("[h-validation-name='" + vr.ParameterName + "']");
+                let vr = vv[i];
+                let pl = $("[h-validation-name='" + vr.Name + "']");
                 pl.find("[text-panel]").setInnerText(vr.Message);
                 pl.addClass("fadein");
             }
         }, 10);
-    };
-    return InputPropertyPanel;
-}());
-export { InputPropertyPanel };
-var ValidationResult = (function () {
-    function ValidationResult() {
     }
-    return ValidationResult;
-}());
-export { ValidationResult };
+}
+export class ValidationResult {
+}
+export class RecordAddedEvent {
+    constructor(inputPropertyPanel) {
+        this.InputPropertyPanel = inputPropertyPanel;
+    }
+}
 //# sourceMappingURL=InputPropertyPanel.js.map

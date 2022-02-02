@@ -1,28 +1,22 @@
-var Cached = (function () {
-    function Cached() {
+export class Cached {
+    constructor() {
         this._isValid = false;
     }
-    Cached.prototype.invalidate = function () {
+    invalidate() {
         this._isValid = false;
-    };
-    Cached.prototype.isValid = function () {
+    }
+    isValid() {
         return this._isValid;
-    };
-    Object.defineProperty(Cached.prototype, "value", {
-        get: function () {
-            if (!this._isValid) {
-                throw new Error("Trying to get value of invalid cache");
-            }
-            return this._value;
-        },
-        set: function (value) {
-            this._value = value;
-            this._isValid = true;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    return Cached;
-}());
-export { Cached };
+    }
+    get value() {
+        if (!this._isValid) {
+            throw new Error("Trying to get value of invalid cache");
+        }
+        return this._value;
+    }
+    set value(value) {
+        this._value = value;
+        this._isValid = true;
+    }
+}
 //# sourceMappingURL=Utils.js.map

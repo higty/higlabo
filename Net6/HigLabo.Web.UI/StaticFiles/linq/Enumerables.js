@@ -1,66 +1,53 @@
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 import { ArrayIterator } from "./Iterators.js";
 import { strictEqualityComparer, combineComparers, createComparer } from "./Comparers.js";
 import { Dictionary, List } from "./Collections.js";
 import { Cached } from "./Utils.js";
-var EnumerableBase = (function () {
-    function EnumerableBase(source) {
+export class EnumerableBase {
+    constructor(source) {
         this.source = source;
     }
-    EnumerableBase.prototype.reset = function () {
+    reset() {
         this.source.reset();
-    };
-    EnumerableBase.prototype.next = function () {
+    }
+    next() {
         return this.source.next();
-    };
-    EnumerableBase.prototype.asEnumerable = function () {
+    }
+    asEnumerable() {
         return this;
-    };
-    EnumerableBase.prototype.toArray = function () {
-        var result = [];
+    }
+    toArray() {
+        const result = [];
         this.reset();
         while (this.next()) {
             result.push(this.value());
         }
         return result;
-    };
-    EnumerableBase.prototype.toList = function () {
+    }
+    toList() {
         return new List(this.toArray());
-    };
-    EnumerableBase.prototype.toDictionary = function (keySelector, valueSelector) {
+    }
+    toDictionary(keySelector, valueSelector) {
         return Dictionary.fromArray(this.toArray(), keySelector, valueSelector);
-    };
-    EnumerableBase.prototype.count = function (predicate) {
+    }
+    count(predicate) {
         if (predicate !== undefined) {
             return new ConditionalEnumerable(this, predicate).count();
         }
-        var result = 0;
+        let result = 0;
         this.reset();
         while (this.next()) {
             ++result;
         }
         return result >>> 0;
-    };
-    EnumerableBase.prototype.any = function (predicate) {
+    }
+    any(predicate) {
         if (predicate !== undefined) {
             return new ConditionalEnumerable(this, predicate).any();
         }
         this.reset();
         return this.next();
-    };
-    EnumerableBase.prototype.all = function (predicate) {
+    }
+    all(predicate) {
         this.reset();
         while (this.next()) {
             if (!predicate(this.value())) {
@@ -68,16 +55,15 @@ var EnumerableBase = (function () {
             }
         }
         return true;
-    };
-    EnumerableBase.prototype.reverse = function () {
+    }
+    reverse() {
         return new ReverseEnumerable(this.copy());
-    };
-    EnumerableBase.prototype.contains = function (element) {
-        return this.any(function (e) { return e === element; });
-    };
-    EnumerableBase.prototype.sequenceEqual = function (other, comparer) {
-        if (comparer === void 0) { comparer = strictEqualityComparer(); }
-        var otherEnumerable = other instanceof Array
+    }
+    contains(element) {
+        return this.any(e => e === element);
+    }
+    sequenceEqual(other, comparer = strictEqualityComparer()) {
+        const otherEnumerable = other instanceof Array
             ? new ArrayEnumerable(other)
             : other.asEnumerable();
         this.reset();
@@ -88,59 +74,55 @@ var EnumerableBase = (function () {
             }
         }
         return !otherEnumerable.next();
-    };
-    EnumerableBase.prototype.where = function (predicate) {
+    }
+    where(predicate) {
         return new ConditionalEnumerable(this.copy(), predicate);
-    };
-    EnumerableBase.prototype.select = function (selector) {
+    }
+    select(selector) {
         return new TransformEnumerable(this.copy(), selector);
-    };
-    EnumerableBase.prototype.selectMany = function (selector) {
-        var selectToEnumerable = function (e) {
-            var ie = selector(e);
+    }
+    selectMany(selector) {
+        const selectToEnumerable = (e) => {
+            const ie = selector(e);
             return Array.isArray(ie)
                 ? new ArrayEnumerable(ie)
                 : ie.asEnumerable();
         };
         return this
             .select(selectToEnumerable).toArray()
-            .reduce(function (p, c) { return new ConcatEnumerable(p, c); }, Enumerable.empty());
-    };
-    EnumerableBase.prototype.skipWhile = function (predicate) {
+            .reduce((p, c) => new ConcatEnumerable(p, c), Enumerable.empty());
+    }
+    skipWhile(predicate) {
         return new SkipWhileEnumerable(this.copy(), predicate);
-    };
-    EnumerableBase.prototype.concat = function (other) {
-        var others = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            others[_i - 1] = arguments[_i];
-        }
-        var asEnumerable = function (e) {
+    }
+    concat(other, ...others) {
+        const asEnumerable = (e) => {
             return e instanceof Array
                 ? new ArrayEnumerable(e)
                 : e.asEnumerable();
         };
-        var result = new ConcatEnumerable(this.copy(), asEnumerable(other).copy());
-        for (var i = 0, end = others.length; i < end; ++i) {
+        let result = new ConcatEnumerable(this.copy(), asEnumerable(other).copy());
+        for (let i = 0, end = others.length; i < end; ++i) {
             result = new ConcatEnumerable(result, asEnumerable(others[i]).copy());
         }
         return result;
-    };
-    EnumerableBase.prototype.defaultIfEmpty = function (defaultValue) {
+    }
+    defaultIfEmpty(defaultValue) {
         return new DefaultIfEmptyEnumerable(this, defaultValue);
-    };
-    EnumerableBase.prototype.elementAt = function (index) {
-        var element = this.elementAtOrDefault(index);
+    }
+    elementAt(index) {
+        const element = this.elementAtOrDefault(index);
         if (element === undefined) {
             throw new Error("Out of bounds");
         }
         return element;
-    };
-    EnumerableBase.prototype.elementAtOrDefault = function (index) {
+    }
+    elementAtOrDefault(index) {
         if (index < 0) {
             throw new Error("Negative index is forbiden");
         }
         this.reset();
-        var currentIndex = -1;
+        let currentIndex = -1;
         while (this.next()) {
             ++currentIndex;
             if (currentIndex === index) {
@@ -151,12 +133,12 @@ var EnumerableBase = (function () {
             return undefined;
         }
         return this.value();
-    };
-    EnumerableBase.prototype.except = function (other) {
-        return this.where(function (e) { return !other.contains(e); });
-    };
-    EnumerableBase.prototype.first = function (predicate) {
-        var element;
+    }
+    except(other) {
+        return this.where(e => !other.contains(e));
+    }
+    first(predicate) {
+        let element;
         if (predicate !== undefined) {
             element = this.firstOrDefault(predicate);
         }
@@ -167,8 +149,8 @@ var EnumerableBase = (function () {
             throw new Error("Sequence contains no elements");
         }
         return element;
-    };
-    EnumerableBase.prototype.firstOrDefault = function (predicate) {
+    }
+    firstOrDefault(predicate) {
         if (predicate !== undefined) {
             return new ConditionalEnumerable(this, predicate).firstOrDefault();
         }
@@ -177,19 +159,19 @@ var EnumerableBase = (function () {
             return undefined;
         }
         return this.value();
-    };
-    EnumerableBase.prototype.forEach = function (action) {
+    }
+    forEach(action) {
         this.reset();
-        for (var i = 0; this.next(); ++i) {
+        for (let i = 0; this.next(); ++i) {
             action(this.value(), i);
         }
-    };
-    EnumerableBase.prototype.groupBy = function (keySelector, valueSelector) {
-        var array = this.toArray();
-        var dictionary = new Dictionary();
-        for (var i = 0; i < array.length; ++i) {
-            var key = keySelector(array[i]);
-            var value = valueSelector !== undefined
+    }
+    groupBy(keySelector, valueSelector) {
+        const array = this.toArray();
+        const dictionary = new Dictionary();
+        for (let i = 0; i < array.length; ++i) {
+            const key = keySelector(array[i]);
+            const value = valueSelector !== undefined
                 ? valueSelector(array[i])
                 : array[i];
             if (!dictionary.containsKey(key)) {
@@ -198,9 +180,9 @@ var EnumerableBase = (function () {
             dictionary.get(key).push(value);
         }
         return dictionary.asEnumerable();
-    };
-    EnumerableBase.prototype.last = function (predicate) {
-        var element;
+    }
+    last(predicate) {
+        let element;
         if (predicate !== undefined) {
             element = this.lastOrDefault(predicate);
         }
@@ -211,20 +193,20 @@ var EnumerableBase = (function () {
             throw new Error("Sequence contains no elements");
         }
         return element;
-    };
-    EnumerableBase.prototype.lastOrDefault = function (predicate) {
+    }
+    lastOrDefault(predicate) {
         if (predicate !== undefined) {
             return new ConditionalEnumerable(this, predicate).lastOrDefault();
         }
-        var reversed = new ReverseEnumerable(this);
+        const reversed = new ReverseEnumerable(this);
         reversed.reset();
         if (!reversed.next()) {
             return undefined;
         }
         return reversed.value();
-    };
-    EnumerableBase.prototype.single = function (predicate) {
-        var element;
+    }
+    single(predicate) {
+        let element;
         if (predicate !== undefined) {
             element = this.singleOrDefault(predicate);
         }
@@ -235,8 +217,8 @@ var EnumerableBase = (function () {
             throw new Error("Sequence contains no elements");
         }
         return element;
-    };
-    EnumerableBase.prototype.singleOrDefault = function (predicate) {
+    }
+    singleOrDefault(predicate) {
         if (predicate !== undefined) {
             return new ConditionalEnumerable(this, predicate).singleOrDefault();
         }
@@ -244,17 +226,17 @@ var EnumerableBase = (function () {
         if (!this.next()) {
             return undefined;
         }
-        var element = this.value();
+        const element = this.value();
         if (this.next()) {
             throw new Error("Sequence contains more than 1 element");
         }
         return element;
-    };
-    EnumerableBase.prototype.distinct = function (keySelector) {
+    }
+    distinct(keySelector) {
         return new UniqueEnumerable(this.copy(), keySelector);
-    };
-    EnumerableBase.prototype.aggregate = function (aggregator, initialValue) {
-        var value = initialValue;
+    }
+    aggregate(aggregator, initialValue) {
+        let value = initialValue;
         this.reset();
         if (initialValue === undefined) {
             if (!this.next()) {
@@ -266,228 +248,203 @@ var EnumerableBase = (function () {
             value = aggregator(value, this.value());
         }
         return value;
-    };
-    EnumerableBase.prototype.min = function (selector) {
+    }
+    min(selector) {
         if (selector !== undefined) {
             return new TransformEnumerable(this, selector).min();
         }
-        return this.aggregate(function (previous, current) {
-            return (previous !== undefined && previous < current)
-                ? previous
-                : current;
-        });
-    };
-    EnumerableBase.prototype.orderBy = function (keySelector, comparer) {
+        return this.aggregate((previous, current) => (previous !== undefined && previous < current)
+            ? previous
+            : current);
+    }
+    orderBy(keySelector, comparer) {
         return new OrderedEnumerable(this.copy(), createComparer(keySelector, true, comparer));
-    };
-    EnumerableBase.prototype.orderByDescending = function (keySelector) {
+    }
+    orderByDescending(keySelector) {
         return new OrderedEnumerable(this.copy(), createComparer(keySelector, false, undefined));
-    };
-    EnumerableBase.prototype.max = function (selector) {
+    }
+    max(selector) {
         if (selector !== undefined) {
             return new TransformEnumerable(this, selector).max();
         }
-        return this.aggregate(function (previous, current) {
-            return (previous !== undefined && previous > current)
-                ? previous
-                : current;
-        });
-    };
-    EnumerableBase.prototype.sum = function (selector) {
-        return this.aggregate(function (previous, current) { return previous + selector(current); }, 0);
-    };
-    EnumerableBase.prototype.average = function (selector) {
+        return this.aggregate((previous, current) => (previous !== undefined && previous > current)
+            ? previous
+            : current);
+    }
+    sum(selector) {
+        return this.aggregate((previous, current) => previous + selector(current), 0);
+    }
+    average(selector) {
         this.reset();
         if (!this.next()) {
             throw new Error("Sequence contains no elements");
         }
-        var sum = 0;
-        var count = 0;
+        let sum = 0;
+        let count = 0;
         do {
             sum += selector(this.value());
             ++count;
         } while (this.next());
         return sum / count;
-    };
-    EnumerableBase.prototype.skip = function (amount) {
+    }
+    skip(amount) {
         return new RangeEnumerable(this.copy(), amount, undefined);
-    };
-    EnumerableBase.prototype.take = function (amount) {
+    }
+    take(amount) {
         return new RangeEnumerable(this.copy(), undefined, amount);
-    };
-    EnumerableBase.prototype.takeWhile = function (predicate) {
+    }
+    takeWhile(predicate) {
         return new TakeWhileEnumerable(this.copy(), predicate);
-    };
-    EnumerableBase.prototype.union = function (other) {
+    }
+    union(other) {
         return new UniqueEnumerable(this.concat(other));
-    };
-    EnumerableBase.prototype.zip = function (other, selector) {
-        var otherAsEnumerable = other instanceof Array
+    }
+    zip(other, selector) {
+        const otherAsEnumerable = other instanceof Array
             ? new ArrayEnumerable(other)
             : other.asEnumerable();
         return new ZippedEnumerable(this, otherAsEnumerable, selector);
-    };
-    return EnumerableBase;
-}());
-export { EnumerableBase };
-var Enumerable = (function (_super) {
-    __extends(Enumerable, _super);
-    function Enumerable(source) {
-        var _this = _super.call(this, source) || this;
-        _this.currentValue = new Cached();
-        return _this;
     }
-    Enumerable.fromSource = function (source) {
+}
+export class Enumerable extends EnumerableBase {
+    constructor(source) {
+        super(source);
+        this.currentValue = new Cached();
+    }
+    static fromSource(source) {
         if (source instanceof Array) {
             return new ArrayEnumerable(source);
         }
         return new Enumerable(source);
-    };
-    Enumerable.empty = function () {
+    }
+    static empty() {
         return Enumerable.fromSource([]);
-    };
-    Enumerable.range = function (start, count, ascending) {
-        if (ascending === void 0) { ascending = true; }
+    }
+    static range(start, count, ascending = true) {
         if (count < 0) {
             throw new Error("Count must be >= 0");
         }
-        var source = new Array(count);
+        const source = new Array(count);
         if (ascending) {
-            for (var i = 0; i < count; source[i] = start + (i++))
+            for (let i = 0; i < count; source[i] = start + (i++))
                 ;
         }
         else {
-            for (var i = 0; i < count; source[i] = start - (i++))
+            for (let i = 0; i < count; source[i] = start - (i++))
                 ;
         }
         return new ArrayEnumerable(source);
-    };
-    Enumerable.repeat = function (element, count) {
+    }
+    static repeat(element, count) {
         if (count < 0) {
             throw new Error("Count must me >= 0");
         }
-        var source = new Array(count);
-        for (var i = 0; i < count; ++i) {
+        const source = new Array(count);
+        for (let i = 0; i < count; ++i) {
             source[i] = element;
         }
         return new ArrayEnumerable(source);
-    };
-    Enumerable.prototype.copy = function () {
+    }
+    copy() {
         return new Enumerable(this.source.copy());
-    };
-    Enumerable.prototype.value = function () {
+    }
+    value() {
         if (!this.currentValue.isValid()) {
             this.currentValue.value = this.source.value();
         }
         return this.currentValue.value;
-    };
-    Enumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
-        this.currentValue.invalidate();
-    };
-    Enumerable.prototype.next = function () {
-        this.currentValue.invalidate();
-        return _super.prototype.next.call(this);
-    };
-    return Enumerable;
-}(EnumerableBase));
-export { Enumerable };
-var ConditionalEnumerable = (function (_super) {
-    __extends(ConditionalEnumerable, _super);
-    function ConditionalEnumerable(source, predicate) {
-        var _this = _super.call(this, source) || this;
-        _this._predicate = predicate;
-        return _this;
     }
-    ConditionalEnumerable.prototype.copy = function () {
+    reset() {
+        super.reset();
+        this.currentValue.invalidate();
+    }
+    next() {
+        this.currentValue.invalidate();
+        return super.next();
+    }
+}
+export class ConditionalEnumerable extends Enumerable {
+    constructor(source, predicate) {
+        super(source);
+        this._predicate = predicate;
+    }
+    copy() {
         return new ConditionalEnumerable(this.source.copy(), this._predicate);
-    };
-    ConditionalEnumerable.prototype.next = function () {
-        var hasValue;
+    }
+    next() {
+        let hasValue;
         do {
-            hasValue = _super.prototype.next.call(this);
+            hasValue = super.next();
         } while (hasValue && !this._predicate(this.value()));
         return hasValue;
-    };
-    return ConditionalEnumerable;
-}(Enumerable));
-export { ConditionalEnumerable };
-var SkipWhileEnumerable = (function (_super) {
-    __extends(SkipWhileEnumerable, _super);
-    function SkipWhileEnumerable(source, predicate) {
-        var _this = _super.call(this, source) || this;
-        _this._predicate = predicate;
-        _this._shouldContinueChecking = true;
-        return _this;
     }
-    SkipWhileEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
+}
+export class SkipWhileEnumerable extends Enumerable {
+    constructor(source, predicate) {
+        super(source);
+        this._predicate = predicate;
         this._shouldContinueChecking = true;
-    };
-    SkipWhileEnumerable.prototype.copy = function () {
+    }
+    reset() {
+        super.reset();
+        this._shouldContinueChecking = true;
+    }
+    copy() {
         return new SkipWhileEnumerable(this.source.copy(), this._predicate);
-    };
-    SkipWhileEnumerable.prototype.next = function () {
+    }
+    next() {
         if (!this._shouldContinueChecking) {
-            return _super.prototype.next.call(this);
+            return super.next();
         }
-        var hasValue;
+        let hasValue;
         do {
-            hasValue = _super.prototype.next.call(this);
+            hasValue = super.next();
         } while (hasValue && this._predicate(this.value()));
         this._shouldContinueChecking = false;
         return hasValue;
-    };
-    return SkipWhileEnumerable;
-}(Enumerable));
-export { SkipWhileEnumerable };
-var TakeWhileEnumerable = (function (_super) {
-    __extends(TakeWhileEnumerable, _super);
-    function TakeWhileEnumerable(source, predicate) {
-        var _this = _super.call(this, source) || this;
-        _this._predicate = predicate;
-        _this._shouldContinueTaking = true;
-        return _this;
     }
-    TakeWhileEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
+}
+export class TakeWhileEnumerable extends Enumerable {
+    constructor(source, predicate) {
+        super(source);
+        this._predicate = predicate;
         this._shouldContinueTaking = true;
-    };
-    TakeWhileEnumerable.prototype.copy = function () {
+    }
+    reset() {
+        super.reset();
+        this._shouldContinueTaking = true;
+    }
+    copy() {
         return new TakeWhileEnumerable(this.source.copy(), this._predicate);
-    };
-    TakeWhileEnumerable.prototype.next = function () {
-        if (_super.prototype.next.call(this)) {
+    }
+    next() {
+        if (super.next()) {
             if (this._shouldContinueTaking && this._predicate(this.value())) {
                 return true;
             }
         }
         this._shouldContinueTaking = false;
         return false;
-    };
-    return TakeWhileEnumerable;
-}(Enumerable));
-export { TakeWhileEnumerable };
-var ConcatEnumerable = (function (_super) {
-    __extends(ConcatEnumerable, _super);
-    function ConcatEnumerable(left, right) {
-        var _this = _super.call(this, left) || this;
-        _this._otherSource = right;
-        _this._isFirstSourceFinished = false;
-        return _this;
     }
-    ConcatEnumerable.prototype.copy = function () {
+}
+export class ConcatEnumerable extends Enumerable {
+    constructor(left, right) {
+        super(left);
+        this._otherSource = right;
+        this._isFirstSourceFinished = false;
+    }
+    copy() {
         return new ConcatEnumerable(this.source.copy(), this._otherSource.copy());
-    };
-    ConcatEnumerable.prototype.reset = function () {
+    }
+    reset() {
         this.source.reset();
         this._otherSource.reset();
         this._isFirstSourceFinished = false;
         this.currentValue.invalidate();
-    };
-    ConcatEnumerable.prototype.next = function () {
+    }
+    next() {
         this.currentValue.invalidate();
-        var hasValue = !this._isFirstSourceFinished
+        const hasValue = !this._isFirstSourceFinished
             ? this.source.next()
             : this._otherSource.next();
         if (!hasValue && !this._isFirstSourceFinished) {
@@ -495,38 +452,34 @@ var ConcatEnumerable = (function (_super) {
             return this.next();
         }
         return hasValue;
-    };
-    ConcatEnumerable.prototype.value = function () {
+    }
+    value() {
         if (!this.currentValue.isValid()) {
             this.currentValue.value = !this._isFirstSourceFinished
                 ? this.source.value()
                 : this._otherSource.value();
         }
         return this.currentValue.value;
-    };
-    return ConcatEnumerable;
-}(Enumerable));
-export { ConcatEnumerable };
-var UniqueEnumerable = (function (_super) {
-    __extends(UniqueEnumerable, _super);
-    function UniqueEnumerable(source, keySelector) {
-        var _this = _super.call(this, source) || this;
-        _this._keySelector = keySelector;
-        _this._seen = { primitive: { number: {}, string: {}, boolean: {} }, complex: [] };
-        return _this;
     }
-    UniqueEnumerable.prototype.copy = function () {
-        return new UniqueEnumerable(this.source.copy(), this._keySelector);
-    };
-    UniqueEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
+}
+export class UniqueEnumerable extends Enumerable {
+    constructor(source, keySelector) {
+        super(source);
+        this._keySelector = keySelector;
         this._seen = { primitive: { number: {}, string: {}, boolean: {} }, complex: [] };
-    };
-    UniqueEnumerable.prototype.isUnique = function (element) {
-        var key = this._keySelector !== undefined
+    }
+    copy() {
+        return new UniqueEnumerable(this.source.copy(), this._keySelector);
+    }
+    reset() {
+        super.reset();
+        this._seen = { primitive: { number: {}, string: {}, boolean: {} }, complex: [] };
+    }
+    isUnique(element) {
+        const key = this._keySelector !== undefined
             ? this._keySelector(element)
             : element;
-        var type = typeof key;
+        const type = typeof key;
         return (type in this._seen.primitive)
             ? this._seen.primitive[type].hasOwnProperty(key)
                 ? false
@@ -534,335 +487,304 @@ var UniqueEnumerable = (function (_super) {
             : this._seen.complex.indexOf(key) !== -1
                 ? false
                 : this._seen.complex.push(key) > -1;
-    };
-    UniqueEnumerable.prototype.next = function () {
-        var hasValue;
+    }
+    next() {
+        let hasValue;
         do {
-            hasValue = _super.prototype.next.call(this);
+            hasValue = super.next();
         } while (hasValue && !this.isUnique(this.value()));
         return hasValue;
-    };
-    return UniqueEnumerable;
-}(Enumerable));
-export { UniqueEnumerable };
-var RangeEnumerable = (function (_super) {
-    __extends(RangeEnumerable, _super);
-    function RangeEnumerable(source, start, count) {
-        var _this = this;
+    }
+}
+export class RangeEnumerable extends Enumerable {
+    constructor(source, start, count) {
         if ((start !== undefined && start < 0) || (count !== undefined && count < 0)) {
             throw new Error("Incorrect parameters");
         }
-        _this = _super.call(this, source) || this;
-        _this._start = start;
-        _this._count = count;
-        _this._currentIndex = -1;
-        return _this;
-    }
-    RangeEnumerable.prototype.copy = function () {
-        return new RangeEnumerable(this.source.copy(), this._start, this._count);
-    };
-    RangeEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
+        super(source);
+        this._start = start;
+        this._count = count;
         this._currentIndex = -1;
-    };
-    RangeEnumerable.prototype.isValidIndex = function () {
-        var start = this._start !== undefined ? this._start : 0;
-        var end = this._count !== undefined ? start + this._count : undefined;
+    }
+    copy() {
+        return new RangeEnumerable(this.source.copy(), this._start, this._count);
+    }
+    reset() {
+        super.reset();
+        this._currentIndex = -1;
+    }
+    isValidIndex() {
+        const start = this._start !== undefined ? this._start : 0;
+        const end = this._count !== undefined ? start + this._count : undefined;
         return this._currentIndex >= start && (end === undefined || this._currentIndex < end);
-    };
-    RangeEnumerable.prototype.performSkip = function () {
-        var start = this._start !== undefined ? this._start : 0;
-        var hasValue = true;
+    }
+    performSkip() {
+        const start = this._start !== undefined ? this._start : 0;
+        let hasValue = true;
         while (hasValue && this._currentIndex + 1 < start) {
-            hasValue = _super.prototype.next.call(this);
+            hasValue = super.next();
             ++this._currentIndex;
         }
         return hasValue;
-    };
-    RangeEnumerable.prototype.next = function () {
+    }
+    next() {
         if (this._currentIndex < 0 && !this.performSkip()) {
             return false;
         }
         ++this._currentIndex;
-        return _super.prototype.next.call(this) && this.isValidIndex();
-    };
-    RangeEnumerable.prototype.value = function () {
+        return super.next() && this.isValidIndex();
+    }
+    value() {
         if (!this.isValidIndex()) {
             throw new Error("Out of bounds");
         }
-        return _super.prototype.value.call(this);
-    };
-    return RangeEnumerable;
-}(Enumerable));
-export { RangeEnumerable };
-var TransformEnumerable = (function (_super) {
-    __extends(TransformEnumerable, _super);
-    function TransformEnumerable(source, transform) {
-        var _this = _super.call(this, source) || this;
-        _this._transform = transform;
-        _this._currentValue = new Cached();
-        return _this;
+        return super.value();
     }
-    TransformEnumerable.prototype.copy = function () {
+}
+export class TransformEnumerable extends EnumerableBase {
+    constructor(source, transform) {
+        super(source);
+        this._transform = transform;
+        this._currentValue = new Cached();
+    }
+    copy() {
         return new TransformEnumerable(this.source.copy(), this._transform);
-    };
-    TransformEnumerable.prototype.value = function () {
+    }
+    value() {
         if (!this._currentValue.isValid()) {
             this._currentValue.value = this._transform(this.source.value());
         }
         return this._currentValue.value;
-    };
-    TransformEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
-        this._currentValue.invalidate();
-    };
-    TransformEnumerable.prototype.next = function () {
-        this._currentValue.invalidate();
-        return _super.prototype.next.call(this);
-    };
-    return TransformEnumerable;
-}(EnumerableBase));
-export { TransformEnumerable };
-var ReverseEnumerable = (function (_super) {
-    __extends(ReverseEnumerable, _super);
-    function ReverseEnumerable(source) {
-        var _this = _super.call(this, source) || this;
-        _this._elements = new Cached();
-        _this._currentIndex = -1;
-        return _this;
     }
-    ReverseEnumerable.prototype.copy = function () {
+    reset() {
+        super.reset();
+        this._currentValue.invalidate();
+    }
+    next() {
+        this._currentValue.invalidate();
+        return super.next();
+    }
+}
+export class ReverseEnumerable extends Enumerable {
+    constructor(source) {
+        super(source);
+        this._elements = new Cached();
+        this._currentIndex = -1;
+    }
+    copy() {
         return new ReverseEnumerable(this.source.copy());
-    };
-    ReverseEnumerable.prototype.reset = function () {
+    }
+    reset() {
         this._elements.invalidate();
         this._currentIndex = -1;
-    };
-    ReverseEnumerable.prototype.isValidIndex = function () {
+    }
+    isValidIndex() {
         return this._currentIndex >= 0
             && this._currentIndex < this._elements.value.length;
-    };
-    ReverseEnumerable.prototype.all = function (predicate) {
+    }
+    all(predicate) {
         return this.source.all(predicate);
-    };
-    ReverseEnumerable.prototype.any = function (predicate) {
+    }
+    any(predicate) {
         if (predicate !== undefined) {
             return this.source.any(predicate);
         }
         return this.source.any();
-    };
-    ReverseEnumerable.prototype.average = function (selector) {
+    }
+    average(selector) {
         return this.source.average(selector);
-    };
-    ReverseEnumerable.prototype.count = function (predicate) {
+    }
+    count(predicate) {
         if (predicate !== undefined) {
             return this.source.count(predicate);
         }
         return this.source.count();
-    };
-    ReverseEnumerable.prototype.max = function (selector) {
+    }
+    max(selector) {
         if (selector !== undefined) {
             return this.source.max(selector);
         }
         return this.source.max();
-    };
-    ReverseEnumerable.prototype.min = function (selector) {
+    }
+    min(selector) {
         if (selector !== undefined) {
             return this.source.min(selector);
         }
         return this.source.min();
-    };
-    ReverseEnumerable.prototype.reverse = function () {
+    }
+    reverse() {
         return this.source.copy();
-    };
-    ReverseEnumerable.prototype.sum = function (selector) {
+    }
+    sum(selector) {
         return this.source.sum(selector);
-    };
-    ReverseEnumerable.prototype.next = function () {
+    }
+    next() {
         if (!this._elements.isValid()) {
             this._elements.value = this.source.toArray();
         }
         ++this._currentIndex;
         return this.isValidIndex();
-    };
-    ReverseEnumerable.prototype.value = function () {
+    }
+    value() {
         if (!this._elements.isValid() || !this.isValidIndex()) {
             throw new Error("Out of bounds");
         }
         return this._elements.value[(this._elements.value.length - 1) - this._currentIndex];
-    };
-    return ReverseEnumerable;
-}(Enumerable));
-export { ReverseEnumerable };
-var OrderedEnumerable = (function (_super) {
-    __extends(OrderedEnumerable, _super);
-    function OrderedEnumerable(source, comparer) {
-        var _this = _super.call(this, source) || this;
-        _this._comparer = comparer;
-        _this._elements = new Cached();
-        _this._currentIndex = -1;
-        return _this;
     }
-    OrderedEnumerable.prototype.isValidIndex = function () {
+}
+export class OrderedEnumerable extends EnumerableBase {
+    constructor(source, comparer) {
+        super(source);
+        this._comparer = comparer;
+        this._elements = new Cached();
+        this._currentIndex = -1;
+    }
+    isValidIndex() {
         return this._currentIndex >= 0
             && this._currentIndex < this._elements.value.length;
-    };
-    OrderedEnumerable.prototype.orderBy = function (keySelector, comparer) {
+    }
+    orderBy(keySelector, comparer) {
         return new OrderedEnumerable(this.source.copy(), createComparer(keySelector, true, comparer));
-    };
-    OrderedEnumerable.prototype.orderByDescending = function (keySelector) {
+    }
+    orderByDescending(keySelector) {
         return new OrderedEnumerable(this.source.copy(), createComparer(keySelector, false, undefined));
-    };
-    OrderedEnumerable.prototype.thenBy = function (keySelector, comparer) {
+    }
+    thenBy(keySelector, comparer) {
         return new OrderedEnumerable(this.source.copy(), combineComparers(this._comparer, createComparer(keySelector, true, comparer)));
-    };
-    OrderedEnumerable.prototype.thenByDescending = function (keySelector) {
+    }
+    thenByDescending(keySelector) {
         return new OrderedEnumerable(this.source.copy(), combineComparers(this._comparer, createComparer(keySelector, false, undefined)));
-    };
-    OrderedEnumerable.prototype.reset = function () {
+    }
+    reset() {
         this._elements.invalidate();
         this._currentIndex = -1;
-    };
-    OrderedEnumerable.prototype.copy = function () {
+    }
+    copy() {
         return new OrderedEnumerable(this.source.copy(), this._comparer);
-    };
-    OrderedEnumerable.prototype.value = function () {
+    }
+    value() {
         if (!this._elements.isValid() || !this.isValidIndex()) {
             throw new Error("Out of bounds");
         }
         return this._elements.value[this._currentIndex];
-    };
-    OrderedEnumerable.prototype.next = function () {
+    }
+    next() {
         if (!this._elements.isValid()) {
             this._elements.value = this.toArray();
         }
         ++this._currentIndex;
         return this.isValidIndex();
-    };
-    OrderedEnumerable.prototype.toArray = function () {
-        var result = this.source.toArray();
-        return result.sort(this._comparer);
-    };
-    return OrderedEnumerable;
-}(EnumerableBase));
-export { OrderedEnumerable };
-var ArrayEnumerable = (function (_super) {
-    __extends(ArrayEnumerable, _super);
-    function ArrayEnumerable(source) {
-        var _this = _super.call(this, new ArrayIterator(source)) || this;
-        _this.list = new List(source);
-        return _this;
     }
-    ArrayEnumerable.prototype.toArray = function () {
+    toArray() {
+        const result = this.source.toArray();
+        return result.sort(this._comparer);
+    }
+}
+export class ArrayEnumerable extends Enumerable {
+    constructor(source) {
+        super(new ArrayIterator(source));
+        this.list = new List(source);
+    }
+    toArray() {
         return this.list.toArray();
-    };
-    ArrayEnumerable.prototype.aggregate = function (aggregator, initialValue) {
+    }
+    aggregate(aggregator, initialValue) {
         if (initialValue !== undefined) {
             return this.list.aggregate(aggregator, initialValue);
         }
         return this.list.aggregate(aggregator);
-    };
-    ArrayEnumerable.prototype.any = function (predicate) {
+    }
+    any(predicate) {
         if (predicate !== undefined) {
             return this.list.any(predicate);
         }
         return this.list.any();
-    };
-    ArrayEnumerable.prototype.all = function (predicate) {
+    }
+    all(predicate) {
         return this.list.all(predicate);
-    };
-    ArrayEnumerable.prototype.average = function (selector) {
+    }
+    average(selector) {
         return this.list.average(selector);
-    };
-    ArrayEnumerable.prototype.count = function (predicate) {
+    }
+    count(predicate) {
         if (predicate !== undefined) {
             return this.list.count(predicate);
         }
         return this.list.count();
-    };
-    ArrayEnumerable.prototype.copy = function () {
+    }
+    copy() {
         return new ArrayEnumerable(this.list.asArray());
-    };
-    ArrayEnumerable.prototype.elementAtOrDefault = function (index) {
+    }
+    elementAtOrDefault(index) {
         return this.list.elementAtOrDefault(index);
-    };
-    ArrayEnumerable.prototype.firstOrDefault = function (predicate) {
+    }
+    firstOrDefault(predicate) {
         if (predicate !== undefined) {
             return this.list.firstOrDefault(predicate);
         }
         return this.list.firstOrDefault();
-    };
-    ArrayEnumerable.prototype.lastOrDefault = function (predicate) {
+    }
+    lastOrDefault(predicate) {
         if (predicate !== undefined) {
             return this.list.lastOrDefault(predicate);
         }
         return this.list.lastOrDefault();
-    };
-    return ArrayEnumerable;
-}(Enumerable));
-export { ArrayEnumerable };
-var DefaultIfEmptyEnumerable = (function (_super) {
-    __extends(DefaultIfEmptyEnumerable, _super);
-    function DefaultIfEmptyEnumerable(source, defaultValue) {
-        var _this = _super.call(this, source) || this;
-        _this._mustUseDefaultValue = undefined;
-        _this._defaultValue = defaultValue;
-        return _this;
     }
-    DefaultIfEmptyEnumerable.prototype.copy = function () {
+}
+export class DefaultIfEmptyEnumerable extends EnumerableBase {
+    constructor(source, defaultValue) {
+        super(source);
+        this._mustUseDefaultValue = undefined;
+        this._defaultValue = defaultValue;
+    }
+    copy() {
         return new DefaultIfEmptyEnumerable(this.source.copy(), this._defaultValue);
-    };
-    DefaultIfEmptyEnumerable.prototype.value = function () {
+    }
+    value() {
         if (this._mustUseDefaultValue) {
             return this._defaultValue;
         }
         return this.source.value();
-    };
-    DefaultIfEmptyEnumerable.prototype.next = function () {
-        var hasNextElement = _super.prototype.next.call(this);
+    }
+    next() {
+        const hasNextElement = super.next();
         this._mustUseDefaultValue = this._mustUseDefaultValue === undefined && !hasNextElement;
         return this._mustUseDefaultValue || hasNextElement;
-    };
-    DefaultIfEmptyEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
-        this._mustUseDefaultValue = undefined;
-    };
-    return DefaultIfEmptyEnumerable;
-}(EnumerableBase));
-export { DefaultIfEmptyEnumerable };
-var ZippedEnumerable = (function (_super) {
-    __extends(ZippedEnumerable, _super);
-    function ZippedEnumerable(source, otherSource, selector) {
-        var _this = _super.call(this, source) || this;
-        _this._otherSource = otherSource;
-        _this._isOneOfTheSourcesFinished = false;
-        _this._currentValue = new Cached();
-        _this._selector = selector;
-        return _this;
     }
-    ZippedEnumerable.prototype.copy = function () {
+    reset() {
+        super.reset();
+        this._mustUseDefaultValue = undefined;
+    }
+}
+export class ZippedEnumerable extends EnumerableBase {
+    constructor(source, otherSource, selector) {
+        super(source);
+        this._otherSource = otherSource;
+        this._isOneOfTheSourcesFinished = false;
+        this._currentValue = new Cached();
+        this._selector = selector;
+    }
+    copy() {
         return new ZippedEnumerable(this.source.copy(), this._otherSource.copy(), this._selector);
-    };
-    ZippedEnumerable.prototype.value = function () {
+    }
+    value() {
         if (!this._currentValue.isValid()) {
             this._currentValue.value = this._selector(this.source.value(), this._otherSource.value());
         }
         return this._currentValue.value;
-    };
-    ZippedEnumerable.prototype.reset = function () {
-        _super.prototype.reset.call(this);
+    }
+    reset() {
+        super.reset();
         this._otherSource.reset();
         this._isOneOfTheSourcesFinished = false;
         this._currentValue.invalidate();
-    };
-    ZippedEnumerable.prototype.next = function () {
+    }
+    next() {
         this._currentValue.invalidate();
         if (!this._isOneOfTheSourcesFinished) {
-            this._isOneOfTheSourcesFinished = !_super.prototype.next.call(this) || !this._otherSource.next();
+            this._isOneOfTheSourcesFinished = !super.next() || !this._otherSource.next();
         }
         return !this._isOneOfTheSourcesFinished;
-    };
-    return ZippedEnumerable;
-}(EnumerableBase));
-export { ZippedEnumerable };
+    }
+}
 //# sourceMappingURL=Enumerables.js.map

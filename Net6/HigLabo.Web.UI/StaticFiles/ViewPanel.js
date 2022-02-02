@@ -1,22 +1,19 @@
-﻿import { WebApiResult } from "./WebApiResult.js";
 import { $ } from "./HtmlElementQuery.js";
 import { HigLaboVue } from ".//HigLaboVue.js";
-import { HttpClient, HttpResponse } from "./HttpClient.js";
+import { HttpClient } from "./HttpClient.js";
 import { InputPropertyPanel } from "./InputPropertyPanel.js";
 import { List } from "./linq/Linq.js";
-
 export class ViewPanel {
-    public viewPanel: Element = document.getElementById("ViewPanel");
-    public templateID = "";
-    public recordList: List<any> = new List<any>();
-    public isHideViewPanel = true;
-    public isLoadOnInitialize = true;
-
-    public initialize() {
+    constructor() {
+        this.viewPanel = document.getElementById("ViewPanel");
+        this.templateID = "";
+        this.recordList = new List();
+        this.isHideViewPanel = true;
+        this.isLoadOnInitialize = true;
+    }
+    initialize() {
         this.templateID = $(document.getElementById("ViewPanel")).getAttribute("template-id");
-
         window.addEventListener("hashchange", this.window_HashChange.bind(this));
-
         if (this.isLoadOnInitialize == true) {
             if (location.hash == "") {
                 this.loadData();
@@ -26,17 +23,15 @@ export class ViewPanel {
             }
         }
     }
-    private window_HashChange(e: Event) {
+    window_HashChange(e) {
         this.loadDataByHash();
     }
-    protected loadDataByHash() {
+    loadDataByHash() {
         const d = location.hash.replace("#", "").split("&").map(v => v.split("="))
-            .reduce((pre, [key, value]) => ({ ...pre, [key]: value }), {});
-
+            .reduce((pre, [key, value]) => (Object.assign(Object.assign({}, pre), { [key]: value })), {});
         this.loadData();
     }
-
-    public loadData() {
+    loadData() {
         const json = $("#JsonData").getAttribute("view-json-data");
         if (json != "") {
             $("#JsonData").removeAttribute("view-json-data");
@@ -45,12 +40,13 @@ export class ViewPanel {
                 this.setData(data);
                 return;
             }
-            catch { }
+            catch (_a) { }
         }
         const p = InputPropertyPanel.createRecord($("#FilterConditionPanel").getFirstElement());
         const apiPath = $("#ViewPanel").getAttribute("api-path-load");
-        if (apiPath == "") { return; }
-
+        if (apiPath == "") {
+            return;
+        }
         $("#NoDataMessagePanel").hide();
         if (this.isHideViewPanel == true) {
             $(this.viewPanel).getNearest("[loading-image-panel]").setStyle("display", "block");
@@ -59,9 +55,8 @@ export class ViewPanel {
         this.recordList.clear();
         HttpClient.postJson(apiPath, p, this.loadDataCallback.bind(this));
     }
-    private loadDataCallback(response: HttpResponse) {
-        const r = response.jsonParse() as WebApiResult;
-
+    loadDataCallback(response) {
+        const r = response.jsonParse();
         $(this.viewPanel).getNearest("[loading-image-panel]").hide();
         $(document.getElementById("FilterTextBox")).setValue("");
         if (this.viewPanel.tagName.toLowerCase() === "table") {
@@ -72,13 +67,11 @@ export class ViewPanel {
         }
         this.setData(r.Data);
     }
-    protected setData(data: any) {
+    setData(data) {
         $(this.viewPanel).setInnerHtml("");
-
         let rr = data;
         if (data.PageCount != null) {
             rr = data.RecordList;
-
             if (document.getElementById("PagingListPanel") != null) {
                 $("#PagingListPanel").setInnerHtml("");
                 const pageCount = data.PageCount;
@@ -87,7 +80,6 @@ export class ViewPanel {
                 }
             }
         }
-
         let isTable = false;
         if (this.viewPanel.tagName.toLowerCase() === "table") {
             isTable = true;
@@ -111,27 +103,25 @@ export class ViewPanel {
             this.recordList.push(rr);
             HigLaboVue.append(this.viewPanel, this.templateID, rr);
         }
-
         if (rr.length == 0) {
             $(this.viewPanel).hide();
             $("#NoDataMessagePanel").setStyle("display", "block");
         }
         this.loadDataCompleted(data);
-
     }
-    protected loadDataCompleted(data: any) {
+    loadDataCompleted(data) {
     }
-
-    public getRecord(key: string) {
+    getRecord(key) {
         return this.recordList.firstOrDefault(el => this.selectKeyColumn(el) == key);
     }
-    public addRecord(record: any) {
+    addRecord(record) {
         return this.recordList.push(record);
     }
-    public replaceRecord(record: any) {
+    replaceRecord(record) {
         const key = this.selectKeyColumn(record);
-        if (key == null) { return; }
-        //Reeplace record object on memory.
+        if (key == null) {
+            return;
+        }
         const r = this.getRecord(key);
         if (r == null) {
             this.recordList.push(record);
@@ -142,16 +132,18 @@ export class ViewPanel {
             this.recordList.insert(index, record);
         }
     }
-    public replaceElement(key: string): List<Element> {
+    replaceElement(key) {
         const r = this.getRecord(key);
-        if (r == null) { return; }
-        //Replace element on UI.
-        const l = new List<Element>();
+        if (r == null) {
+            return;
+        }
+        const l = new List();
         const elementList = $("body").find("[h-key='" + key + "']").getElementList();
         for (var i = 0; i < elementList.length; i++) {
             let element = elementList[i];
-            if ($(element).getParent("#SlideMenuPanel").getElementCount() > 0) { continue; }
-
+            if ($(element).getParent("#SlideMenuPanel").getElementCount() > 0) {
+                continue;
+            }
             HigLaboVue.insertBefore(element, this.templateID, r).forEach(newElement => {
                 l.push(newElement);
             });
@@ -159,19 +151,25 @@ export class ViewPanel {
         }
         return l;
     }
-    public deleteRecord(record: any) {
+    deleteRecord(record) {
         return this.recordList.remove(record);
     }
-    public deleteElement(key: string) {
+    deleteElement(key) {
         $("body").find("[h-key='" + key + "']").forEach(element => {
             element.remove();
         });
     }
-    protected selectKeyColumn(record: any): string {
-        if (record.SeatCD) { return record.SeatCD; }
-        if (record.EquipmentCD) { return record.EquipmentCD; }
-        if (record.ObjectCD) { return record.ObjectCD; }
+    selectKeyColumn(record) {
+        if (record.SeatCD) {
+            return record.SeatCD;
+        }
+        if (record.EquipmentCD) {
+            return record.EquipmentCD;
+        }
+        if (record.ObjectCD) {
+            return record.ObjectCD;
+        }
         return undefined;
     }
-
 }
+//# sourceMappingURL=ViewPanel.js.map

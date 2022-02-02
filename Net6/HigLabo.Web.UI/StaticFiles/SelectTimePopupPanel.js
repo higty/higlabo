@@ -1,7 +1,7 @@
 import { DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
-var SelectTimePopupPanel = (function () {
-    function SelectTimePopupPanel() {
+export default class SelectTimePopupPanel {
+    constructor() {
         this._funcList = new Array();
         this.selectDuration = false;
         this.selectEndTime = false;
@@ -9,7 +9,7 @@ var SelectTimePopupPanel = (function () {
         this._durationPanel = document.getElementById("SelectDurationPopupPanel");
         this._endTimePanel = document.getElementById("SelectEndTimePopupPanel");
     }
-    SelectTimePopupPanel.prototype.initialize = function () {
+    initialize() {
         $(document).on("click", "input[time-picker]", this.textBox_Click.bind(this));
         $("input[time-picker]").keydown(this.textBox_Keydown.bind(this));
         $("#SelectTimePopupPanelShowAllChekBox").change(this.showAllChekBox_Change.bind(this));
@@ -17,18 +17,18 @@ var SelectTimePopupPanel = (function () {
         $(this.panel).on("dblclick", "[minute-panel]", this.minutePanel_DoubleClick.bind(this));
         $(this._durationPanel).on("click", "[duration-minute]", this.durationMinutePanel_Click.bind(this));
         $(this._endTimePanel).on("click", "[minute-panel]", this.endTimeMinutePanel_Click.bind(this));
-    };
-    SelectTimePopupPanel.prototype.textBox_Click = function (target, e) {
+    }
+    textBox_Click(target, e) {
         var tx = target;
         if (tx != null) {
             this.textBox = tx;
             this.show(this.textBox);
         }
-    };
-    SelectTimePopupPanel.prototype.textBox_Keydown = function (target, e) {
+    }
+    textBox_Keydown(target, e) {
         this.hide();
-    };
-    SelectTimePopupPanel.prototype.showAllChekBox_Change = function (target, e) {
+    }
+    showAllChekBox_Change(target, e) {
         var chx = $("#SelectTimePopupPanelShowAllChekBox");
         if (chx.isChecked()) {
             $(this.panel).setAttribute("display-all", "true");
@@ -38,18 +38,18 @@ var SelectTimePopupPanel = (function () {
             $(this.panel).setAttribute("display-all", "false");
             $(this._endTimePanel).setAttribute("display-all", "false");
         }
-    };
-    SelectTimePopupPanel.prototype.minutePanel_Click = function (target, e) {
+    }
+    minutePanel_Click(target, e) {
         this.setTextBoxValue(target);
         this.isDisplayNextPopupPanel(target);
         e.stopPropagation();
-    };
-    SelectTimePopupPanel.prototype.minutePanel_DoubleClick = function (target, e) {
+    }
+    minutePanel_DoubleClick(target, e) {
         this.setTextBoxValue(target);
         this.hide();
         e.stopPropagation();
-    };
-    SelectTimePopupPanel.prototype.setTextBoxValue = function (element) {
+    }
+    setTextBoxValue(element) {
         var div = $(element);
         var hour = div.getAttribute("hour");
         var minute = div.getAttribute("minute");
@@ -58,14 +58,14 @@ var SelectTimePopupPanel = (function () {
             this.startTime = $(this.textBox).getValue();
         }
         this.executeFunction();
-    };
-    SelectTimePopupPanel.prototype.executeFunction = function () {
+    }
+    executeFunction() {
         for (var i = 0; i < this._funcList.length; i++) {
             var f = this._funcList[i];
             f(this, {});
         }
-    };
-    SelectTimePopupPanel.prototype.isDisplayNextPopupPanel = function (element) {
+    }
+    isDisplayNextPopupPanel(element) {
         var tr = $(element).getParent("tr").getFirstElement();
         var rect = tr.getBoundingClientRect();
         if (this.selectDuration == true) {
@@ -84,8 +84,8 @@ var SelectTimePopupPanel = (function () {
             this.textBox = null;
             this.hide();
         }
-    };
-    SelectTimePopupPanel.prototype.durationMinutePanel_Click = function (target, e) {
+    }
+    durationMinutePanel_Click(target, e) {
         var div = $(target);
         var minute = parseInt(div.getAttribute("minute"));
         var startTime = new DateTime("2000/1/1 " + $(this.textBox).getValue());
@@ -96,8 +96,8 @@ var SelectTimePopupPanel = (function () {
         this.endTimeTextBox = null;
         this.hide();
         e.stopPropagation();
-    };
-    SelectTimePopupPanel.prototype.endTimeMinutePanel_Click = function (target, e) {
+    }
+    endTimeMinutePanel_Click(target, e) {
         var div = $(target);
         var hour = div.getAttribute("hour");
         var minute = div.getAttribute("minute");
@@ -107,8 +107,8 @@ var SelectTimePopupPanel = (function () {
         this.endTimeTextBox = null;
         this.hide();
         e.stopPropagation();
-    };
-    SelectTimePopupPanel.prototype.show = function (offsetPanel) {
+    }
+    show(offsetPanel) {
         this.selectDuration = false;
         this.selectEndTime = false;
         if ($(this.textBox).getAttribute("select-duration") == "true") {
@@ -118,23 +118,23 @@ var SelectTimePopupPanel = (function () {
             this.selectEndTime = true;
         }
         this.endTimeTextBox = $(this.textBox).getNearestElement("[time-picker]");
-        var popupPanel = this.panel;
-        var offset = $(offsetPanel).getOffset();
-        var top = offset.top + $(offsetPanel).getOuterHeight();
+        const popupPanel = this.panel;
+        const offset = $(offsetPanel).getOffset();
+        const top = offset.top + $(offsetPanel).getOuterHeight();
         $(popupPanel).setStyle("left", offset.left + "px");
         $(popupPanel).setStyle("top", top + "px");
         $(popupPanel).setStyle("display", "initial");
         this.ensureInsideWindow(popupPanel, offsetPanel);
-    };
-    SelectTimePopupPanel.prototype.ensureInsideWindow = function (popupPanel, offsetPanel) {
-        var pl = $(popupPanel);
-        var offset = pl.getOffset();
-        var left = offset.left;
-        var top = offset.top;
-        var windowMaxWidth = window.innerWidth;
-        var windowMaxHeight = window.innerHeight + $(window).getScrollTop() - 24;
-        var width = pl.getOuterWidth();
-        var height = pl.getOuterHeight();
+    }
+    ensureInsideWindow(popupPanel, offsetPanel) {
+        const pl = $(popupPanel);
+        const offset = pl.getOffset();
+        let left = offset.left;
+        let top = offset.top;
+        const windowMaxWidth = window.innerWidth;
+        const windowMaxHeight = window.innerHeight + $(window).getScrollTop() - 24;
+        const width = pl.getOuterWidth();
+        const height = pl.getOuterHeight();
         if (left + width > windowMaxWidth - 10) {
             left = windowMaxWidth - width - 10;
             pl.setStyle("left", left + "px");
@@ -173,16 +173,14 @@ var SelectTimePopupPanel = (function () {
                 pl.setStyle("top", top + "px");
             }
         }
-    };
-    SelectTimePopupPanel.prototype.hide = function () {
+    }
+    hide() {
         $(this.panel).hide();
         $(this._durationPanel).hide();
         $(this._endTimePanel).hide();
-    };
-    SelectTimePopupPanel.prototype.changed = function (func) {
+    }
+    changed(func) {
         this._funcList.push(func);
-    };
-    return SelectTimePopupPanel;
-}());
-export default SelectTimePopupPanel;
+    }
+}
 //# sourceMappingURL=SelectTimePopupPanel.js.map

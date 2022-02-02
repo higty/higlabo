@@ -111,6 +111,7 @@ namespace HigLabo.Web.UI
             public Boolean Checked { get; set; }
             public String FilterText { get; set; } = "";
             public Object? Data { get; set; }
+            public HtmlAttributes Attributes { get; private set; } = new HtmlAttributes();
 
             /// <summary>
             /// For deserialization

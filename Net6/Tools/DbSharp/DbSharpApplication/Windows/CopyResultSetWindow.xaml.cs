@@ -90,6 +90,8 @@ namespace HigLabo.DbSharpApplication
             var sp = this.SourceStoredProcedureComboBox.SelectedItem as StoredProcedure;
             if (sp == null) { return; }
             var rs = resultSet;
+            if (resultSet == null) { return; }
+
             foreach (var item in sp.ResultSets)
             {
                 if (item.Name == rs.Name)

@@ -1,24 +1,24 @@
-export var strictEqualityComparer = function () { return function (left, right) { return left === right; }; };
+export const strictEqualityComparer = () => (left, right) => left === right;
 export function combineComparers(left, right) {
-    return function (l, r) { return left(l, r) || right(l, r); };
+    return (l, r) => left(l, r) || right(l, r);
 }
 export function createComparer(keySelector, ascending, customComparer) {
     if (customComparer !== undefined) {
-        return function (l, r) { return customComparer(keySelector(l), keySelector(r)); };
+        return (l, r) => customComparer(keySelector(l), keySelector(r));
     }
     return ascending
-        ? function (l, r) {
-            var left = keySelector(l);
-            var right = keySelector(r);
+        ? (l, r) => {
+            const left = keySelector(l);
+            const right = keySelector(r);
             return left < right
                 ? -1
                 : left > right
                     ? 1
                     : 0;
         }
-        : function (l, r) {
-            var left = keySelector(l);
-            var right = keySelector(r);
+        : (l, r) => {
+            const left = keySelector(l);
+            const right = keySelector(r);
             return left < right
                 ? 1
                 : left > right

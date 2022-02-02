@@ -23,6 +23,7 @@
     -moz-opacity: $value * 0.01;
     opacity: $value * 0.01;
 }
+
 @mixin border_radius($size) {
     -webkit-border-radius: #{$size};
     -moz-border-radius: #{$size};
@@ -270,8 +271,6 @@ input:focus-visible {
     $width-checkbox-circle: 20px;
 
     &[element-type='CheckBox'] {
-        padding: 5px 10px;
-
         .property-value-panel {
             @include display__flex();
             align-items: center;
@@ -337,11 +336,32 @@ input:focus-visible {
         }
     }
 
+    &[element-type='CheckBox'] {
+        padding: 5px 10px;
+    }
+
     &[element-type='CheckBoxList'] {
         .filter-textbox-panel {
             @include display__flex();
             align-items: center;
             margin-bottom: 4px;
+        }
+
+        .property-value-panel {
+            border: solid 1px var(--color-input-element-border-color);
+            padding: 2px;
+
+            .checkbox-panel {
+                font-size: 16px;
+                display: block;
+                padding: 4px;
+
+                input[type='checkbox'] {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 2px;
+                }
+            }
         }
     }
 
@@ -472,7 +492,6 @@ input:focus-visible {
                 @include display__flex();
                 align-items: center;
                 padding: 0;
-                height: 36px;
                 cursor: pointer;
                 @include box_sizing__border_box();
 
@@ -488,7 +507,6 @@ input:focus-visible {
 
                 > .flex-left-panel {
                     flex: 0 1 100%;
-                    height: 36px;
 
                     .text {
                         display: inline-block;
@@ -498,10 +516,15 @@ input:focus-visible {
                     .textbox {
                         margin: 2px;
                     }
+
+                    .validation-result-message-panel {
+                        margin: 0 0 4px 2px;
+                    }
                 }
 
                 > .flex-right-panel {
                     flex: 0 0 40px;
+                    height: 36px;
                     margin-left: auto;
                     padding: 4px;
                 }
@@ -588,7 +611,7 @@ input:focus-visible {
     .button-list-panel {
         @include display__flex();
         align-items: center;
-        margin-top: 4px;
+        margin: 4px 0;
         justify-content: center;
 
         .button {

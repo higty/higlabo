@@ -230,6 +230,11 @@
         });
         return dateTimeText;
     }
+
+    public static TryCreate(value): DateTime {
+        if (value == null || value == "") { return null; }
+        return new DateTime(value);
+    }
 }
 
 export class TimeSpan {

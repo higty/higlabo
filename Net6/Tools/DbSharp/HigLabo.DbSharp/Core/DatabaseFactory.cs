@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace HigLabo.DbSharp
     public class DatabaseFactory
     {
         private static readonly DatabaseFactory _Current = new DatabaseFactory();
-        private Dictionary<String, Func<Database>> _CreateDatabaseMethodList = new Dictionary<string, Func<Database>>();
+        private Hashtable _CreateDatabaseMethodList = new ();
 
         public static DatabaseFactory Current
         {
@@ -23,19 +24,15 @@ namespace HigLabo.DbSharp
         }
         public Database CreateDatabase(String databaseKey)
         {
-            Func<Database> func = null;
+            var f = _CreateDatabaseMethodList[databaseKey] as Func<Database>;
 
-            if (_CreateDatabaseMethodList.TryGetValue(databaseKey, out func) == true)
+            if (f != null)
             {
-                return func();
+                return f();
             }
             throw new InvalidOperationException("You must set up DatabaseFactory class."
             + "Please call SetCreateDatabaseMethod method of HigLabo.DbSharp.DatabaseFactory class." + Environment.NewLine
             + "DatabaseKey=" + databaseKey);
-        }
-        public TransactionContext CreateDatabaseContext(String databaseKey)
-        {
-            return new TransactionContext(CreateDatabase(databaseKey));
         }
     }
 }

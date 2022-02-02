@@ -17,6 +17,10 @@
                         break;
                     case EditRecordPanelHeaderMode.TextBox:
                         <input type="text" class="textbox" h-name="@Model.HeaderName" :value="@Model.HeaderName" />
+                        if (Model.HeaderValidationPanel != null)
+                        {
+                        await Html.RenderPartialAsync(Model.HeaderValidationPanel);                           
+                        }
                         break;
                 }
             </div>

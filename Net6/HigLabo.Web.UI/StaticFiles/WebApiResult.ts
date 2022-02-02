@@ -1,4 +1,4 @@
-﻿import { ValidationResult } from "../HigLabo/InputPropertyPanel.js";
+﻿import { ValidationResult } from "./InputPropertyPanel.js";
 
 export class WebApiResult {
     public HttpStatusCode: number;
@@ -7,6 +7,4 @@ export class WebApiResult {
     public Url: string;
     public ValidationResultList: Array<ValidationResult>;
 }
-
-
 
