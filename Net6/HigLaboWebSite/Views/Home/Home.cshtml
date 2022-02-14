@@ -27,6 +27,14 @@
         await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Password, "Password", "パスワード"));
 
         await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Color, "BackColor", "背景色"));
+        {
+            var ipl = new InputPropertyPanel(InputElementType.DateDropDownList, "CreateDate", "登録日");
+            ipl.DateDropdDownList.SetJapaneseCalendar();
+            ipl.DateDropdDownList.SelectedYear = 1978;
+            ipl.DateDropdDownList.SelectedMonth = 4;
+            ipl.DateDropdDownList.SelectedDay = 8;
+            await Html.RenderPartialAsync(ipl);
+        }
         await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Date, "StartDate", "開始日"));
         await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Time, "StartTime", "開始時刻"));
         await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateTime, "EndTime", "終了時刻"));

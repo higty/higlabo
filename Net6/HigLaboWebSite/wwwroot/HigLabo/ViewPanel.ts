@@ -1,27 +1,30 @@
-﻿import { WebApiResult } from "../HigLabo/WebApiResult.js";
-import { $ } from "../HigLabo/HtmlElementQuery.js";
-import { HigLaboVue } from "../HigLabo/HigLaboVue.js";
-import { HttpClient, HttpResponse } from "../HigLabo/HttpClient.js";
-import { InputPropertyPanel } from "../HigLabo/InputPropertyPanel.js";
-import { List } from "../HigLabo/linq/Linq.js";
+﻿import { WebApiResult } from "./WebApiResult.js";
+import { $ } from "./HtmlElementQuery.js";
+import { HigLaboVue } from ".//HigLaboVue.js";
+import { HttpClient, HttpResponse } from "./HttpClient.js";
+import { InputPropertyPanel } from "./InputPropertyPanel.js";
+import { List } from "./linq/Linq.js";
 
 export class ViewPanel {
     public viewPanel: Element = document.getElementById("ViewPanel");
     public templateID = "";
     public recordList: List<any> = new List<any>();
     public isHideViewPanel = true;
+    public isLoadOnInitialize = true;
 
     public initialize() {
         this.templateID = $(document.getElementById("ViewPanel")).getAttribute("template-id");
 
         window.addEventListener("hashchange", this.window_HashChange.bind(this));
-        if (location.hash == "") {
-            this.loadData();
-        }
-        else {
-            this.loadDataByHash();
-        }
 
+        if (this.isLoadOnInitialize == true) {
+            if (location.hash == "") {
+                this.loadData();
+            }
+            else {
+                this.loadDataByHash();
+            }
+        }
     }
     private window_HashChange(e: Event) {
         this.loadDataByHash();

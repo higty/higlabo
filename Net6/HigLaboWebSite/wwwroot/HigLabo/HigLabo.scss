@@ -24,6 +24,13 @@
     opacity: $value * 0.01;
 }
 
+@mixin border_radius($size) {
+    -webkit-border-radius: #{$size};
+    -moz-border-radius: #{$size};
+    -o-border-radius: #{$size};
+    border-radius: #{$size};
+}
+
 @mixin transition($propertyName, $value) {
     -webkit-transition: $propertyName $value;
     -moz-transition: $propertyName $value;
@@ -77,6 +84,26 @@ input:focus-visible {
     margin-left: auto;
     color: var(--color-text-color-dark-background);
     background-color: #ff0000;
+}
+
+.file-upload-panel {
+    cursor: pointer;
+    border: dotted 3px var(--color-input-element-border-color);
+
+    &:hover {
+        background-color: var(--color-input-element-mouse-over-color);
+    }
+
+    input[type=file] {
+        display: none;
+    }
+
+    .text-panel {
+        width: 90%;
+        margin: 0 auto;
+        padding: 10px;
+        text-align: center;
+    }
 }
 
 .input-property-panel {
@@ -199,6 +226,22 @@ input:focus-visible {
         }
     }
 
+    &[element-type='DateDropDownList'] {
+        .flex-panel {
+            .year {
+                width: 100px;
+            }
+
+            .month {
+                width: 60px;
+            }
+
+            .day {
+                width: 60px;
+            }
+        }
+    }
+
     &[element-type='DateTimeDuration'] .property-value-panel {
         > .flex-panel {
             @include display__flex();
@@ -244,8 +287,6 @@ input:focus-visible {
     $width-checkbox-circle: 20px;
 
     &[element-type='CheckBox'] {
-        padding: 5px 10px;
-
         .property-value-panel {
             @include display__flex();
             align-items: center;
@@ -311,11 +352,32 @@ input:focus-visible {
         }
     }
 
+    &[element-type='CheckBox'] {
+        padding: 5px 10px;
+    }
+
     &[element-type='CheckBoxList'] {
         .filter-textbox-panel {
             @include display__flex();
             align-items: center;
             margin-bottom: 4px;
+        }
+
+        .property-value-panel {
+            border: solid 1px var(--color-input-element-border-color);
+            padding: 2px;
+
+            .checkbox-panel {
+                font-size: 16px;
+                display: block;
+                padding: 4px;
+
+                input[type='checkbox'] {
+                    width: 16px;
+                    height: 16px;
+                    margin-right: 2px;
+                }
+            }
         }
     }
 
@@ -445,7 +507,7 @@ input:focus-visible {
             .title-panel {
                 @include display__flex();
                 align-items: center;
-                height: 36px;
+                padding: 0;
                 cursor: pointer;
                 @include box_sizing__border_box();
 
@@ -461,11 +523,24 @@ input:focus-visible {
 
                 > .flex-left-panel {
                     flex: 0 1 100%;
-                    padding: 10px;
+
+                    .text {
+                        display: inline-block;
+                        padding: 10px;
+                    }
+
+                    .textbox {
+                        margin: 2px;
+                    }
+
+                    .validation-result-message-panel {
+                        margin: 0 0 4px 2px;
+                    }
                 }
 
                 > .flex-right-panel {
                     flex: 0 0 40px;
+                    height: 36px;
                     margin-left: auto;
                     padding: 4px;
                 }
@@ -476,6 +551,10 @@ input:focus-visible {
 
                 .title-panel .text {
                     text-decoration: line-through;
+
+                    &:focus {
+                        text-decoration: underline;
+                    }
                 }
             }
 
@@ -548,10 +627,15 @@ input:focus-visible {
     .button-list-panel {
         @include display__flex();
         align-items: center;
+        margin: 4px 0;
+        justify-content: center;
 
         .button {
             font-size: 16px;
-            margin-right: 4px;
+            height: 32px;
+            padding: 0 16px;
+            margin: 0 2px;
+            @include border_radius(16px);
         }
     }
 

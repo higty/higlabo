@@ -1,6 +1,6 @@
-﻿import { $ } from "../HigLabo/HtmlElementQuery.js";
-import { HttpClient, HttpResponse } from "../HigLabo/HttpClient.js";
-import { InputPropertyPanel } from "../HigLabo/InputPropertyPanel.js";
+﻿import { $ } from "./HtmlElementQuery.js";
+import { HttpClient, HttpResponse } from "./HttpClient.js";
+import { InputPropertyPanel } from "./InputPropertyPanel.js";
 import { WebApiResult } from "./WebApiResult.js";
 
 export class EditPanel {

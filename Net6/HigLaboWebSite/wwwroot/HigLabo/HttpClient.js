@@ -76,5 +76,8 @@ export class HttpResponse {
             console.log("JSON parse error. \r\n" + this.responseText);
         }
     }
+    getWebApiResult() {
+        return this.jsonParse();
+    }
 }
 //# sourceMappingURL=HttpClient.js.map

@@ -3,22 +3,36 @@
 <template id="@Model.ID">
     <div class="edit-record-panel" edit-record-panel="true"
          h-record="true" :h-key="@Model.Key" is-delete="false"
-         toggle-state="@Model.ToggleState.ToStringFromEnum()" can-toggle="@Model.CanToggle.ToString().ToLower()">
+         toggle-state="@Model.ToggleState.ToStringFromEnum()" 
+         can-toggle="@Model.CanToggle.ToString().ToLower()"
+         header-mode="@Model.HeaderMode.ToStringFromEnum()">
         <input type="hidden" h-name="@Model.Key" :value="@Model.Key" />
         <input type="hidden" h-name="IsDelete" value="false" />
         <div class="title-panel">
             <div class="flex-left-panel" toggle-content-panel="true">
-                <span class="text" header-text="true" tabindex="0">{{ @Model.HeaderName }}</span>
+                @switch (Model.HeaderMode)
+                {
+                    case EditRecordPanelHeaderMode.Label:
+                        <span class="text" header-text="true" tabindex="0">{{ @Model.HeaderName }}</span>
+                        break;
+                    case EditRecordPanelHeaderMode.TextBox:
+                        <input type="text" class="textbox" h-name="@Model.HeaderName" :value="@Model.HeaderName" />
+                        if (Model.HeaderValidationPanel != null)
+                        {
+                        await Html.RenderPartialAsync(Model.HeaderValidationPanel);                           
+                        }
+                        break;
+                }
             </div>
             <div class="flex-right-panel">
                 @if (Model.CanDelete)
                 {
-                    <span class="delete-link" delete-candidate-link="true" tabindex="0">×</span>
+                    <span class="delete-link" delete-candidate-link="true">×</span>
                 }
             </div>
         </div>
         <div class="content-panel" content-panel="true">
-            @if (Model.HeaderTextBindingPanel is not null)
+            @if (Model.HeaderTextBindingPanel != null)
             {
                 <div header-text-binding-panel="true">
                     @{ await Html.RenderPartialAsync(Model.HeaderTextBindingPanel); }

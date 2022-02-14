@@ -2,16 +2,7 @@
     public static timeZoneMinute = 9 * 60;
 
     private rawValue: Date;
-    private i18n = {
-        dayNames: [
-            "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
-            "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-        ],
-        monthNames: [
-            "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-            "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-        ]
-    }
+    public static dayOfWeekList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
     public dateFormat = {
         default: "ddd mmm dd yyyy HH:MM:ss",
         shortDate: "m/d/yy",
@@ -78,7 +69,7 @@
         else if (typeof value === "string") {
             this.rawValue = new Date(value);
         }
-        else if (value instanceof DateOnly) {
+        else if (value != null && value.Year != null && value.Month != null && value.Day != null) {
             this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
         }
     }
@@ -150,6 +141,10 @@
         }
         throw new Error("Invalid dayOfWeek");
     }
+    public getDayOfWeekText(): string {
+        const dw = this.rawValue.getDay();
+        return DateTime.dayOfWeekList[dw];
+    }
     public getTimezoneOffset(): number {
         if (this.rawValue == null) { return null; }
         return this.rawValue.getTimezoneOffset();
@@ -209,17 +204,23 @@
             H: this.hours,
             m: this.minute,
             s: this.second,
-            f: this.milliSecond
+            f: this.milliSecond,
+            ddd: this.getDayOfWeekText()
         };
         const v = dateFormat.replace(/(M+|d+|h+|H+|m+|s+|f+)/g, function (match) {
-            const length = match.length;
-            const f = match.slice(-1);
-            const v = z[match.slice(-1)];
-            if (f == 'f') {
-                return v;
+            if (match == "ddd") {
+                return z["ddd"];
             }
             else {
-                return ((match.length > 1 ? "0" : "") + v).slice(-2);
+                const length = match.length;
+                const f = match.slice(-1);
+                const v = z[match.slice(-1)];
+                if (f == 'f') {
+                    return v;
+                }
+                else {
+                    return ((match.length > 1 ? "0" : "") + v).slice(-2);
+                }
             }
         });
 
@@ -228,6 +229,11 @@
             return fullYear.slice(-v.length)
         });
         return dateTimeText;
+    }
+
+    public static TryCreate(value): DateTime {
+        if (value == null || value == "") { return null; }
+        return new DateTime(value);
     }
 }
 

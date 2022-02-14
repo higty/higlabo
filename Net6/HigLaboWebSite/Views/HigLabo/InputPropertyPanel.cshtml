@@ -2,8 +2,6 @@
 
 <div class="input-property-panel @Model.ElementType.ToString().ToLower()"
      input-property-panel="true" element-type="@Model.ElementType.ToStringFromEnum()"
-     @Model.PanelAttributes.GetHtmlString()
-     @Model.GetRecordTypeAttributeHtmlString()
      api-path-search="@Model.ApiPathSearch" api-parameter="@Model.ApiParameter"
      api-path-default-get="@Model.ApiPathDefaultGet"
      template-id="@Model.TemplateID"
@@ -11,7 +9,9 @@
      add-record-mode="@Model.AddRecordMode.ToStringFromEnum()"
      select-record-mode="@Model.SelectRecordMode.ToStringFromEnum()"
      default-record="@Model.GetDefaultRecordJson()"
-     display-hour-minute="@Model.DisplayHourMinute.ToString().ToLower()">
+     display-hour-minute="@Model.DisplayHourMinute.ToString().ToLower()"
+     @Model.PanelAttributes.GetHtmlString() 
+     @Model.GetRecordTypeAttributeHtmlString()>
     @if (Model.ElementType != InputElementType.CheckBox)
     {
         <div class="property-name" property-name="true">@Model.Text</div>
@@ -32,7 +32,37 @@
                     break;
                 }
             case InputElementType.Date:
-                <input type="text" value="@Model.Value" date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() /> break;
+                <input type="text" value="@Model.Value" date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() />
+                break;
+            case InputElementType.DateDropDownList:
+                {
+                    var lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear, Model.DateDropdDownList.SelectedMonth);
+                    <div class="flex-panel" h-record="true">
+                        <select h-name="Year" class="year" year="true" @Model.InputAttributes.GetHtmlString()>
+                            @for(var i = Model.DateDropdDownList.StartYear; i <= Model.DateDropdDownList.EndYear; i++)
+                            {
+                                <option value="@i.ToString()" 
+                                @Html.OptionSelected(i == Model.DateDropdDownList.SelectedYear)>@Model.DateDropdDownList.GetYearText(i)</option>
+                            }
+                        </select>
+                        <select h-name="Month" class="month" month="true" @Model.InputAttributes.GetHtmlString()>
+                            @for(var i = 1; i <= 12; i++)
+                            {
+                                <option value="@i.ToString()"
+                                @Html.OptionSelected(i == Model.DateDropdDownList.SelectedMonth)>@i.ToString("00")</option>
+                            }
+                        </select>
+                        <select h-name="Day" class="day" day="true" @Model.InputAttributes.GetHtmlString()>
+                            @for(var i = 1; i <= lastDayOfMonth; i++)
+                            {
+                                <option value="@i.ToString()"
+                                @Html.OptionSelected(i == Model.DateDropdDownList.SelectedDay)>@i.ToString("00")</option>
+                            }
+
+                        </select>
+                    </div>
+                }
+                break;
             case InputElementType.Time:
                 <input type="text" value="@Model.Value" time-picker="true" class="hour-minute" @Model.InputAttributes.GetHtmlString() /> break;
             case InputElementType.DateTime:
@@ -117,7 +147,7 @@
                 {
                     foreach (var item in Model.ItemList)
                     {
-                        <span class="radio-button-panel">
+                        <span class="radio-button-panel" @item.Attributes.GetHtmlString()>
                             <input type="radio" h-name="@Model.Name" name="@Model.RadioButtonGroupName"
                                    @Html.InputChecked(String.Equals(item.Value, Model.Value, StringComparison.OrdinalIgnoreCase))
                                    value="@item.Value" />
@@ -142,8 +172,9 @@
                     <select @Model.InputAttributes.GetHtmlString()>
                         @foreach (var item in Model.ItemList)
                         {
-                            <option value="@item.Value"
-                                    @Html.OptionSelected(Model.Value == item.Value)>
+                            <option value="@item.Value" 
+                            @Html.OptionSelected(Model.Value == item.Value)
+                            @item.Attributes.GetHtmlString()>
                                 @item.Text
                             </option>
                         }
@@ -160,7 +191,8 @@
                     }
                     @foreach (var item in Model.ItemList)
                     {
-                        <span class="checkbox-panel" h-record="true" filter-text="@item.FilterText">
+                        <span class="checkbox-panel" h-record="true" filter-text="@item.FilterText"
+                        @item.Attributes.GetHtmlString()>
                             <input type="hidden" h-name="Value" value="@item.Value" />
                             <input type="checkbox" h-name="Checked" @Html.InputChecked(item.Checked)
                                    name="@Model.RadioButtonGroupName" />

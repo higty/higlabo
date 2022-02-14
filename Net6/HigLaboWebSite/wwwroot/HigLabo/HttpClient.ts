@@ -1,4 +1,6 @@
-﻿export class HttpClient {
+﻿import { WebApiResult } from "./WebApiResult.js";
+
+export class HttpClient {
     public static errorCallback: HttpRequestCallback;
 
     public static get(url: string, loadCallback: HttpRequestCallback, errorCallback?: HttpRequestCallback, context?: any) {
@@ -86,6 +88,9 @@ export class HttpResponse {
         catch (ex) {
             console.log("JSON parse error. \r\n" + this.responseText);
         }
+    }
+    public getWebApiResult(): WebApiResult {
+        return this.jsonParse() as WebApiResult;
     }
 }
 export interface HttpRequestCallback {

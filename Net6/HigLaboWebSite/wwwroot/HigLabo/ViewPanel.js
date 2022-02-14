@@ -1,23 +1,26 @@
-import { $ } from "../HigLabo/HtmlElementQuery.js";
-import { HigLaboVue } from "../HigLabo/HigLaboVue.js";
-import { HttpClient } from "../HigLabo/HttpClient.js";
-import { InputPropertyPanel } from "../HigLabo/InputPropertyPanel.js";
-import { List } from "../HigLabo/linq/Linq.js";
+import { $ } from "./HtmlElementQuery.js";
+import { HigLaboVue } from ".//HigLaboVue.js";
+import { HttpClient } from "./HttpClient.js";
+import { InputPropertyPanel } from "./InputPropertyPanel.js";
+import { List } from "./linq/Linq.js";
 export class ViewPanel {
     constructor() {
         this.viewPanel = document.getElementById("ViewPanel");
         this.templateID = "";
         this.recordList = new List();
         this.isHideViewPanel = true;
+        this.isLoadOnInitialize = true;
     }
     initialize() {
         this.templateID = $(document.getElementById("ViewPanel")).getAttribute("template-id");
         window.addEventListener("hashchange", this.window_HashChange.bind(this));
-        if (location.hash == "") {
-            this.loadData();
-        }
-        else {
-            this.loadDataByHash();
+        if (this.isLoadOnInitialize == true) {
+            if (location.hash == "") {
+                this.loadData();
+            }
+            else {
+                this.loadDataByHash();
+            }
         }
     }
     window_HashChange(e) {

@@ -1,15 +1,5 @@
 export class DateTime {
     constructor(value) {
-        this.i18n = {
-            dayNames: [
-                "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat",
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
-            ],
-            monthNames: [
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
-            ]
-        };
         this.dateFormat = {
             default: "ddd mmm dd yyyy HH:MM:ss",
             shortDate: "m/d/yy",
@@ -33,7 +23,7 @@ export class DateTime {
         else if (typeof value === "string") {
             this.rawValue = new Date(value);
         }
-        else if (value instanceof DateOnly) {
+        else if (value != null && value.Year != null && value.Month != null && value.Day != null) {
             this.rawValue = new Date(value.Year, value.Month - 1, value.Day, 0, 0, 0, 0);
         }
     }
@@ -144,6 +134,10 @@ export class DateTime {
         }
         throw new Error("Invalid dayOfWeek");
     }
+    getDayOfWeekText() {
+        const dw = this.rawValue.getDay();
+        return DateTime.dayOfWeekList[dw];
+    }
     getTimezoneOffset() {
         if (this.rawValue == null) {
             return null;
@@ -203,17 +197,23 @@ export class DateTime {
             H: this.hours,
             m: this.minute,
             s: this.second,
-            f: this.milliSecond
+            f: this.milliSecond,
+            ddd: this.getDayOfWeekText()
         };
         const v = dateFormat.replace(/(M+|d+|h+|H+|m+|s+|f+)/g, function (match) {
-            const length = match.length;
-            const f = match.slice(-1);
-            const v = z[match.slice(-1)];
-            if (f == 'f') {
-                return v;
+            if (match == "ddd") {
+                return z["ddd"];
             }
             else {
-                return ((match.length > 1 ? "0" : "") + v).slice(-2);
+                const length = match.length;
+                const f = match.slice(-1);
+                const v = z[match.slice(-1)];
+                if (f == 'f') {
+                    return v;
+                }
+                else {
+                    return ((match.length > 1 ? "0" : "") + v).slice(-2);
+                }
             }
         });
         const fullYear = this.year.toString();
@@ -222,8 +222,15 @@ export class DateTime {
         });
         return dateTimeText;
     }
+    static TryCreate(value) {
+        if (value == null || value == "") {
+            return null;
+        }
+        return new DateTime(value);
+    }
 }
 DateTime.timeZoneMinute = 9 * 60;
+DateTime.dayOfWeekList = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 export class TimeSpan {
     constructor(milliseconds) {
         this._TotalMilliSeconds = milliseconds;

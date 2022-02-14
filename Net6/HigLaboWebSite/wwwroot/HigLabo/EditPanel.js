@@ -7,9 +7,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { $ } from "../HigLabo/HtmlElementQuery.js";
-import { HttpClient } from "../HigLabo/HttpClient.js";
-import { InputPropertyPanel } from "../HigLabo/InputPropertyPanel.js";
+import { $ } from "./HtmlElementQuery.js";
+import { HttpClient } from "./HttpClient.js";
+import { InputPropertyPanel } from "./InputPropertyPanel.js";
 export class EditPanel {
     constructor() {
         this._editPanel = document.getElementById("EditPanel");

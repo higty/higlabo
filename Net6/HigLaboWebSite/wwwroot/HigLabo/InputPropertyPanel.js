@@ -1,4 +1,4 @@
-import { DateTime } from "./DateTime.js";
+import { DateOnly, DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
 import { HigLaboVue } from "./HigLaboVue.js";
 import { HttpClient } from "./HttpClient.js";
@@ -10,6 +10,10 @@ export class InputPropertyPanel {
     }
     initialize() {
         this.selectTimePopupPanel.initialize();
+        $("body").find("input").forEach((element, index) => {
+            $(element).setAttribute("previous-value", $(element).getValue());
+        });
+        $("body").on("change", "input", this.input_Change.bind(this));
         $("body").on("focusin", "input[date-picker],input[time-picker]", this.dateTimeTextBox_Focusin.bind(this));
         $("body").on("keydown", "input[date-picker]", this.dateTextBox_Keydown.bind(this));
         $("body").on("keydown", "input[time-picker]", this.timeTextBox_Keydown.bind(this));
@@ -19,6 +23,8 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel][element-type='Color'] td[color]", this.colorCell_Click.bind(this));
         $("body").on("keydown", "[input-property-panel][element-type='Color'] td[color]", this.colorCell_Keydown.bind(this));
         $("body").on("change", "[input-property-panel] [set-by-end-time]", this.dateTimeDurationList_Change.bind(this));
+        $("body").on("change", "[input-property-panel][element-type='DateDropDownList'] [year]", this.dateDrowDownList_Change.bind(this));
+        $("body").on("change", "[input-property-panel][element-type='DateDropDownList'] [month]", this.dateDrowDownList_Change.bind(this));
         $("body").on("click", "[input-property-panel]  [radio-button-label]", this.radioButtonLabel_Click.bind(this));
         $("body").on("click", "[input-property-panel]  [checkbox-label]", this.checkBoxLabel_Click.bind(this));
         $("body").on("input", "[input-property-panel] [filter-textbox]", this.filterTextBox_Keydown.bind(this));
@@ -36,11 +42,21 @@ export class InputPropertyPanel {
         $("body").on("keyup", "[input-property-panel] [select-record-list-panel] [header-text-binding-panel] input[type=text]", this.editRecordPanelTextBox_Keyup.bind(this));
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [toggle-content-panel]", this.toggleContentPanel_Click.bind(this));
-        $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Keydown.bind(this));
+        $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [header-text]", this.headerText_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
+        this.initializeSetByEndTimeProperty();
     }
     registerEventHandler(hander) {
         this._eventHandlerList.push(hander);
+    }
+    initializeSetByEndTimeProperty() {
+        var ipl = this;
+        $("[input-property-panel] [set-by-end-time]").forEach((element, index) => {
+            ipl.toggleDateTimeDurationList(element);
+        });
+    }
+    input_Change(target, e) {
+        $(target).setAttribute("previous-value", $(target).getValue());
     }
     dateTimeTextBox_Focusin(target, e) {
         $(target).select();
@@ -60,35 +76,48 @@ export class InputPropertyPanel {
         }
         var tx = $(target);
         var text = tx.getValue();
-        var today = DateTime.getToday();
-        var date = null;
-        if (text.length == 1) {
-            date = today.toString("yyyy/MM/") + text;
+        var value = parseInt(text);
+        if (isNaN(value) == true) {
+            return;
         }
-        else if (text.length == 2) {
-            date = today.toString("yyyy/MM/") + text;
+        var today = DateTime.getToday();
+        var date = new DateOnly();
+        if (text.length <= 2) {
+            date.Year = today.year;
+            date.Month = today.month;
+            date.Day = value;
         }
         else if (text.length == 3) {
-            date = today.toString("yyyy") + "/" + text.substr(0, 1) + "/" + text.substr(1, 2);
+            date.Year = today.year;
+            date.Month = parseInt(text.substr(0, 1));
+            date.Day = parseInt(text.substr(1, 2));
         }
         else if (text.length == 4) {
-            date = today.toString("yyyy") + "/" + text.substr(0, 2) + "/" + text.substr(2, 2);
+            date.Year = today.year;
+            date.Month = parseInt(text.substr(0, 2));
+            date.Day = parseInt(text.substr(2, 2));
         }
         else if (text.length == 5) {
-            date = "20" + text.substr(0, 2) + "/" + text.substr(2, 1) + "/" + text.substr(3, 2);
+            date.Year = parseInt("20" + text.substr(0, 2));
+            date.Month = parseInt(text.substr(2, 1));
+            date.Day = parseInt(text.substr(3, 2));
         }
         else if (text.length == 6) {
-            date = "20" + text.substr(0, 2) + "/" + text.substr(2, 2) + "/" + text.substr(4, 2);
+            date.Year = parseInt("20" + text.substr(0, 2));
+            date.Month = parseInt(text.substr(2, 2));
+            date.Day = parseInt(text.substr(4, 2));
         }
         else if (text.length == 8) {
-            date = text.substr(0, 4) + "/" + text.substr(4, 2) + "/" + text.substr(6, 2);
+            date.Year = parseInt(text.substr(0, 4));
+            date.Month = parseInt(text.substr(4, 2));
+            date.Day = parseInt(text.substr(6, 2));
         }
-        if (date == null) {
+        else {
             return;
         }
         let dateTime = new DateTime(date);
         if (text.length == 1 || text.length == 2) {
-            if (dateTime < today) {
+            if (dateTime.value < today.value) {
                 dateTime = today.addMonth(1);
             }
         }
@@ -228,6 +257,27 @@ export class InputPropertyPanel {
             $(durationEndPanel).setStyle("display", "none");
         }
     }
+    dateDrowDownList_Change(target, e) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const year = $(ipl).find("[year]").getSelectedValue();
+        const month = $(ipl).find("[month]").getSelectedValue();
+        const date = new DateTime(year + "/" + month + "/01");
+        const nextMonth = date.addMonth(1);
+        const lastDayOfMonth = nextMonth.addDay(-1);
+        const day = lastDayOfMonth.day;
+        const dl = $(ipl).find("[day]").getFirstElement();
+        $(dl).setInnerHtml("");
+        for (var i = 1; i <= day; i++) {
+            let option = document.createElement("option");
+            $(option).setAttribute("value", i.toString());
+            let day = i.toString();
+            if (day.length == 1) {
+                day = "0" + day;
+            }
+            $(option).setInnerText(day);
+            dl.appendChild(option);
+        }
+    }
     radioButtonLabel_Click(target, e) {
         $(target).getNearest("input[type='radio']").setChecked(true).triggerEvent("change");
     }
@@ -287,6 +337,9 @@ export class InputPropertyPanel {
         const ipl = $(target).getParent("[input-property-panel]");
         const mode = ipl.getAttribute("add-record-mode");
         switch (mode) {
+            case "None":
+                this.setDefaultRecord(ipl.getFirstElement(), {});
+                break;
             case "Search":
                 $(target).getParent("[button-list-panel]").hide();
                 this.showSearchRecordListPanel(target);
@@ -298,17 +351,23 @@ export class InputPropertyPanel {
             default:
         }
     }
-    getDefaultRecordCallback(response, inputPropertyPanel) {
+    setDefaultRecord(inputPropertyPanel, record) {
+        const r = record;
         const ipl = inputPropertyPanel;
         const templateID = ipl.getAttribute("template-id");
         const rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
-        const r = response.jsonParse();
         const element = HigLaboVue.append(rpl, templateID, r)[0];
-        $(element).setAttribute("toggle-state", "Expand");
+        if ($(element).getAttribute("header-mode") == "Label") {
+            $(element).setAttribute("toggle-state", "Expand");
+        }
         var key = $(element).getAttribute("h-key");
         InputPropertyPanel.setElementProperty(element, r, key);
         $(element).find("input[type='text']").setFocus();
         this.recordAdded(ipl);
+    }
+    getDefaultRecordCallback(response, inputPropertyPanel) {
+        const r = response.jsonParse();
+        this.setDefaultRecord(inputPropertyPanel, r);
     }
     recordAdded(inputPropertyPanel) {
         const e = new RecordAddedEvent(inputPropertyPanel);
@@ -512,8 +571,8 @@ export class InputPropertyPanel {
         }
         $(target).getParent("[h-record]").toggleAttributeValue("toggle-state", "Expand", "Collapse");
     }
-    deleteCandidateLink_Keydown(target, e) {
-        if (e.keyCode == 13) {
+    headerText_Keydown(target, e) {
+        if (e.keyCode == 46) {
             this.deleteCandidate(target);
         }
     }
@@ -522,7 +581,8 @@ export class InputPropertyPanel {
     }
     deleteCandidate(target) {
         $(target).getParent("[h-record]").toggleAttributeValue("is-delete", "true", "false");
-        $(target).getParent("[h-record]").find("input[h-name='IsDelete']").setValue("true");
+        const v = $(target).getParent("[h-record]").getAttribute("is-delete");
+        $(target).getParent("[h-record]").find("input[h-name='IsDelete']").setValue(v);
     }
     static createRecord(recordElement) {
         let record = {};
@@ -640,6 +700,9 @@ export class InputPropertyPanel {
             if ($(recordPanel).getParent("[search-record-list-panel]").getElementCount() > 0) {
                 continue;
             }
+            if ($(recordPanel).getParent("[input-property-panel][element-type='Record']").getElementCount() > 0) {
+                continue;
+            }
             let r = InputPropertyPanel.createRecord(recordPanel);
             rr.push(r);
         }
@@ -664,6 +727,7 @@ export class InputPropertyPanel {
         return elementList;
     }
     static setElementProperty(recordElement, record, key) {
+        const zeroPad2Digits = new Intl.NumberFormat('ja', { minimumIntegerDigits: 2 });
         const propertyList = Object.getOwnPropertyNames(record);
         for (var i = 0; i < propertyList.length; i++) {
             var name = propertyList[i];
@@ -696,14 +760,41 @@ export class InputPropertyPanel {
                 propertyPanel.find("input[type=radio][value='" + v + "']").setChecked(true);
             }
             else if (elementType == "Date") {
-                if (v != null && v.length > 10) {
-                    v = v.replace(/-/g, "/").substr(0, 10);
-                    $(propertyPanel).find("[date-picker]").setValue(v);
+                if (v != null) {
+                    if (v.Year != null && v.Month != null && v.Day != null) {
+                        v = new DateTime(v.Year + "/" + v.Month + "/" + v.Day).toString("yyyy/MM/dd");
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                    else if (v.length > 10) {
+                        v = v.replace(/-/g, "/").substr(0, 10);
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                }
+            }
+            else if (elementType == "DateDropDownList") {
+                if (v != null) {
+                    if (v.Year != null && v.Month != null && v.Day != null) {
+                        $(propertyPanel).find("[year]").setSelectedValue(v.Year);
+                        $(propertyPanel).find("[month]").setSelectedValue(v.Month);
+                        $(propertyPanel).find("[day]").setSelectedValue(v.Day);
+                    }
+                    else if (v.length > 10) {
+                        v = v.replace(/-/g, "/").substr(0, 10);
+                        const date = DateTime.TryCreate(v);
+                        if (date != null) {
+                            $(propertyPanel).find("[year]").setSelectedValue(date.toString("yyyy"));
+                            $(propertyPanel).find("[month]").setSelectedValue(date.toString("MM"));
+                            $(propertyPanel).find("[day]").setSelectedValue(date.toString("dd"));
+                        }
+                    }
                 }
             }
             else if (elementType == "Time") {
                 if (v != null) {
-                    if (v.length > 5) {
+                    if (v.Hour != null && v.Minute != null && v.Second != null) {
+                        v = zeroPad2Digits.format(v.Hour) + ":" + zeroPad2Digits.format(v.Minute) + ":" + zeroPad2Digits.format(v.Second);
+                    }
+                    else if (v.length > 5) {
                         v = v.replace(/-/g, "/").substr(0, 5);
                     }
                     $(propertyPanel).find("input").setValue(v);
@@ -800,11 +891,14 @@ export class InputPropertyPanel {
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
     }
     static setRecordList(propertyPanel, recordList) {
-        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]");
+        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]").getFirstElement();
+        if (recordListPanel == null) {
+            return;
+        }
         const templateID = propertyPanel.getAttribute("template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
-            var element = HigLaboVue.append(recordListPanel.getFirstElement(), templateID, recordList[i])[0];
+            var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];
             var key = $(element).getAttribute("h-key");
             InputPropertyPanel.setElementProperty(element, recordList[i], key);
         }
