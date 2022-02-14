@@ -1084,7 +1084,7 @@ namespace HigLabo.Mapper.Test
 
         }
         [TestMethod]
-        public void ObjectMapper_DateOnly_TimeOnly_Nullable()
+        public void ObjectMapper_DateOnly_TimeOnly_ToNullable()
         {
             var mapper = new ObjectMapper();
             //mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
@@ -1093,6 +1093,21 @@ namespace HigLabo.Mapper.Test
             dt0.Time = new TimeOnly(12, 0, 0);
 
             var dt1 = dt0.Map(new DateOnlyTimeOnlyNullableClass());
+            Assert.AreEqual(new DateOnly(2000, 1, 1), dt1.Date);
+            Assert.AreEqual(new TimeOnly(12, 0, 0), dt1.Time);
+
+        }
+        [TestMethod]
+        public void ObjectMapper_String_DateOnly_TimeOnly_ToNullable()
+        {
+            var mapper = new ObjectMapper();
+            //mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
+            var dt0 = new DateOnlyTimeOnlyStringClass();
+            dt0.Date = "2000-1-1";
+            dt0.Time = "12:00:00";
+
+            var dt1 = dt0.Map(new DateOnlyTimeOnlyNullableClass());
+
             Assert.AreEqual(new DateOnly(2000, 1, 1), dt1.Date);
             Assert.AreEqual(new TimeOnly(12, 0, 0), dt1.Time);
 

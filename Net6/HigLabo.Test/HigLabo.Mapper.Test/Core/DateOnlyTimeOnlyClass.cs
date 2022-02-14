@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Mapper.Test
 {
+    public class DateOnlyTimeOnlyStringClass
+    {
+        public String Date { get; set; }
+        public String Time { get; set; }
+    }
     public class DateOnlyTimeOnlyClass
     {
         public DateOnly Date { get; set; }
