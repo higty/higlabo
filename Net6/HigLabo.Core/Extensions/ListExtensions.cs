@@ -55,23 +55,27 @@ namespace HigLabo.Core
             records.AddRange(l);
         }
 
-        public static void AddIfNotExist<T>(this List<T> list, T item)
+        public static Boolean AddIfNotExist<T>(this List<T> list, T item)
         {
-            AddIfNotExist(list, item, (x, y) => Object.Equals(x, y));
+            return AddIfNotExist(list, item, (x, y) => Object.Equals(x, y));
         }
-        public static void AddIfNotExist<T, TProperty>(this List<T> list, T item, Func<T, TProperty> selectorFunc)
+        public static Boolean AddIfNotExist<T, TProperty>(this List<T> list, T item, Func<T, TProperty> selectorFunc)
         {
             if (list.Exists(el => Object.Equals(selectorFunc(item), selectorFunc(el))) == false)
             {
                 list.Add(item);
+                return true;
             }
+            return false;
         }
-        public static void AddIfNotExist<T>(this List<T> list, T item, Func<T, T, Boolean> equalityFunc)
+        public static Boolean AddIfNotExist<T>(this List<T> list, T item, Func<T, T, Boolean> equalityFunc)
         {
             if (list.Exists(el => equalityFunc(item, el)) == false)
             {
                 list.Add(item);
+                return true;
             }
+            return false;
         }
 
         public static void MoveTo<T>(this List<T> list, Func<T, Boolean> selector, Int32 index)
