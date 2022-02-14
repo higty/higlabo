@@ -107,7 +107,7 @@ export class HigLaboVue {
         if (value == null) {
             return "";
         }
-        return new DateTime(new Date(value)).toString(format);
+        return new DateTime(value).toString(format);
     }
     static encodeURI(value) {
         if (value == null) {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Html;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -20,6 +21,7 @@ namespace HigLabo.Web.UI
         Password,
         Color,
         Date,
+        DateDropDownList,
         Time,
         DateTime,
         DateDuration,
@@ -305,6 +307,45 @@ namespace HigLabo.Web.UI
                 this.ColorList.AddRange(colorList);
             }
         }
+        public class DateDropdDownListSetting
+        {
+            private static CultureInfo _JapaneseCalendarCulture = new CultureInfo("ja-JP", true);
+            private Func<Int32, String> _GetYearText = (year) => year.ToString("0000");
+            public Int32 StartYear { get; set; } = 1900;
+            public Int32 EndYear { get; set; } = DateTime.Now.Year;
+            public Int32 SelectedYear { get; set; } = 1900;
+            public Int32 SelectedMonth { get; set; } = 1;
+            public Int32 SelectedDay { get; set; } = 1;
+
+            public Func<Int32, String> GetYearText
+            {
+                get { return _GetYearText; }
+                set
+                {
+                    if (value == null) { return; }
+                    _GetYearText = value;
+                }
+            }
+
+            static DateDropdDownListSetting()
+            {
+                _JapaneseCalendarCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            }
+
+            public DateOnly GetSelectedDate()
+            {
+                return new DateOnly(this.SelectedYear, this.SelectedMonth, this.SelectedDay);
+            }
+            public void SetJapaneseCalendar()
+            {
+                this.GetYearText = this.GetJapaneseYearText;
+            }
+            private String GetJapaneseYearText(Int32 year)
+            {
+                var date = new DateTime(year, 1, 1);
+                return date.ToString("ggyy", _JapaneseCalendarCulture) + "年";
+            }
+        }
 
         public static Setting Default = new Setting();
 
@@ -321,6 +362,7 @@ namespace HigLabo.Web.UI
         public List<PropertyValueItem> DurationList { get; set; } = new List<PropertyValueItem>();
         public String SelectedDuration { get; set; } = "";
         public List<PropertyValueItem> ItemList { get; set; } = new List<PropertyValueItem>();
+        public DateDropdDownListSetting DateDropdDownList { get; private set; } = new DateDropdDownListSetting();
         public List<ColorTableRow> ColorTableRowList { get; private set; } = new List<ColorTableRow>();
 
         public Boolean CanAdd { get; set; } = true;

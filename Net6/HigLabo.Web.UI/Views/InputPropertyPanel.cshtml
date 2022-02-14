@@ -32,7 +32,37 @@
                     break;
                 }
             case InputElementType.Date:
-                <input type="text" value="@Model.Value" date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() /> break;
+                <input type="text" value="@Model.Value" date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() />
+                break;
+            case InputElementType.DateDropDownList:
+                {
+                    var lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear, Model.DateDropdDownList.SelectedMonth);
+                    <div class="flex-panel">
+                        <select class="year" year="true" @Model.InputAttributes.GetHtmlString()>
+                            @for(var i = Model.DateDropdDownList.StartYear; i <= Model.DateDropdDownList.EndYear; i++)
+                            {
+                                <option value="@i.ToString()" 
+                                @Html.OptionSelected(i == Model.DateDropdDownList.SelectedYear)>@Model.DateDropdDownList.GetYearText(i)</option>
+                            }
+                        </select>
+                        <select class="month" month="true" @Model.InputAttributes.GetHtmlString()>
+                            @for(var i = 1; i <= 12; i++)
+                            {
+                                <option value="@i.ToString()"
+                                @Html.OptionSelected(i == Model.DateDropdDownList.SelectedMonth)>@i.ToString("00")</option>
+                            }
+                        </select>
+                        <select class="day" day="true" @Model.InputAttributes.GetHtmlString()>
+                            @for(var i = 1; i <= lastDayOfMonth; i++)
+                            {
+                                <option value="@i.ToString()"
+                                @Html.OptionSelected(i == Model.DateDropdDownList.SelectedDay)>@i.ToString("00")</option>
+                            }
+
+                        </select>
+                    </div>
+                }
+                break;
             case InputElementType.Time:
                 <input type="text" value="@Model.Value" time-picker="true" class="hour-minute" @Model.InputAttributes.GetHtmlString() /> break;
             case InputElementType.DateTime:

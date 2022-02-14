@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -39,11 +38,13 @@ namespace HigLabo.Service
 
         private Thread _Thread = null;
         private AutoResetEvent _AutoResetEvent = new AutoResetEvent(true);
-        private ConcurrentQueue<ServiceCommand> _CommandList = new ConcurrentQueue<ServiceCommand>();
+        private Object _LockCommandList = new Object();
+        private Queue<ServiceCommand> _CommandList = new ();
         private ServiceCommand _CurrentCommand = null;
         private List<ServiceCommand> _PreviousCommandList = new List<ServiceCommand>();
         private DateTimeOffset _PreviousResetTime = DateTimeOffset.Now;
         private Int64 _ExecutedCommandCount = 0;
+        private Int64 _ExecutingCommandCount = 0;
         private Int64 _ExecutedSeconds = 0;
         private Boolean _IsStarted = false;
         private Int64 _IsSuspend = 0;
@@ -75,7 +76,13 @@ namespace HigLabo.Service
         }
         public Int32 CommandCount
         {
-            get { return _CommandList.Count; }
+            get
+            {
+                lock (_LockCommandList)
+                {
+                    return _CommandList.Count + (Int32)_ExecutingCommandCount;
+                }
+            }
         }
 
         public BackgroundService(String name, Int32 threadSleepSecondsPerCommand)
@@ -109,6 +116,9 @@ namespace HigLabo.Service
         }
         private void Start()
         {
+            var l = new List<ServiceCommand>();
+            var skipCommandList = new List<ServiceCommand>();
+
             while (true)
             {
                 if (_IsSuspend == 1)
@@ -116,27 +126,41 @@ namespace HigLabo.Service
                     _AutoResetEvent.WaitOne();
                     continue;
                 }
-                var l = new List<ServiceCommand>();
-                while (_CommandList.TryDequeue(out var cm))
-                {
-                    if (cm == null) { continue; }
-                    l.Add(cm);
-                }
 
                 var now = DateTimeOffset.Now;
                 DateTimeOffset? minNextStartTime = null;
-                foreach (var cm in l)
+
+                l.Clear();
+                skipCommandList.Clear();
+                lock (_LockCommandList)
                 {
-                    //Not execute command until schedule time will come.
-                    if (cm.ScheduleTime > now)
+                    while (_CommandList.TryDequeue(out var cm))
+                    {
+                        if (cm == null) { continue; }
+                        //Not execute command until schedule time will come.
+                        if (cm.ScheduleTime > now)
+                        {
+                            skipCommandList.Add(cm);
+                            if (minNextStartTime == null || minNextStartTime > cm.ScheduleTime)
+                            {
+                                minNextStartTime = cm.ScheduleTime;
+                            }
+                            continue;
+                        }
+                        else
+                        {
+                            Interlocked.Exchange(ref _ExecutingCommandCount, l.Count);
+                            l.Add(cm);
+                        }
+                    }
+                    foreach (var cm in skipCommandList)
                     {
                         _CommandList.Enqueue(cm);
-                        if (minNextStartTime == null || minNextStartTime > cm.ScheduleTime)
-                        {
-                            minNextStartTime = cm.ScheduleTime;
-                        }
-                        continue;
                     }
+                }
+
+                foreach (var cm in l)
+                {
                     try
                     {
                         var sw = Stopwatch.StartNew();
@@ -205,14 +229,20 @@ namespace HigLabo.Service
         }
         public void AddCommand(ServiceCommand command)
         {
-            _CommandList.Enqueue(command);
+            lock (_LockCommandList)
+            {
+                _CommandList.Enqueue(command);
+            }
             _AutoResetEvent.Set();
         }
         public void AddCommand(IEnumerable<ServiceCommand> commandList)
         {
-            foreach (var command in commandList)
+            lock (_LockCommandList)
             {
-                _CommandList.Enqueue(command);
+                foreach (var command in commandList)
+                {
+                    _CommandList.Enqueue(command);
+                }
             }
             _AutoResetEvent.Set();
         }
@@ -225,9 +255,12 @@ namespace HigLabo.Service
         public List<String> GetCommandNameList()
         {
             var l = new List<String>();
-            foreach (var item in _CommandList)
+            lock (_LockCommandList)
             {
-                l.Add(item.GetType().Name);
+                foreach (var item in _CommandList)
+                {
+                    l.Add(item.GetType().Name);
+                }
             }
             return l;
         }

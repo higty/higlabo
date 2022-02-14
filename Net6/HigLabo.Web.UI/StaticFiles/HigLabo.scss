@@ -226,6 +226,22 @@ input:focus-visible {
         }
     }
 
+    &[element-type='DateDropDownList'] {
+        .flex-panel {
+            .year {
+                width: 100px;
+            }
+
+            .month {
+                width: 60px;
+            }
+
+            .day {
+                width: 60px;
+            }
+        }
+    }
+
     &[element-type='DateTimeDuration'] .property-value-panel {
         > .flex-panel {
             @include display__flex();

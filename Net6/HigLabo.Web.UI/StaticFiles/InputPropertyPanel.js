@@ -23,6 +23,8 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel][element-type='Color'] td[color]", this.colorCell_Click.bind(this));
         $("body").on("keydown", "[input-property-panel][element-type='Color'] td[color]", this.colorCell_Keydown.bind(this));
         $("body").on("change", "[input-property-panel] [set-by-end-time]", this.dateTimeDurationList_Change.bind(this));
+        $("body").on("change", "[input-property-panel][element-type='DateDropDownList'] [year]", this.dateDrowDownList_Change.bind(this));
+        $("body").on("change", "[input-property-panel][element-type='DateDropDownList'] [month]", this.dateDrowDownList_Change.bind(this));
         $("body").on("click", "[input-property-panel]  [radio-button-label]", this.radioButtonLabel_Click.bind(this));
         $("body").on("click", "[input-property-panel]  [checkbox-label]", this.checkBoxLabel_Click.bind(this));
         $("body").on("input", "[input-property-panel] [filter-textbox]", this.filterTextBox_Keydown.bind(this));
@@ -254,6 +256,28 @@ export class InputPropertyPanel {
             $(durationListPanel).setStyle("display", "inline");
             $(durationEndPanel).setStyle("display", "none");
         }
+    }
+    dateDrowDownList_Change(target, e) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const year = $(ipl).find("[year]").getSelectedValue();
+        const month = $(ipl).find("[month]").getSelectedValue();
+        const date = new DateTime(year + "/" + month + "/01");
+        const nextMonth = date.addMonth(1);
+        const lastDayOfMonth = nextMonth.addDay(-1);
+        const day = lastDayOfMonth.day;
+        const dl = $(ipl).find("[day]").getFirstElement();
+        $(dl).setInnerHtml("");
+        for (var i = 1; i <= day; i++) {
+            let option = document.createElement("option");
+            $(option).setAttribute("value", i.toString());
+            let day = i.toString();
+            if (day.length == 1) {
+                day = "0" + day;
+            }
+            $(option).setInnerText(day);
+            dl.appendChild(option);
+        }
+        $(dl).setSelectedValue("1");
     }
     radioButtonLabel_Click(target, e) {
         $(target).getNearest("input[type='radio']").setChecked(true).triggerEvent("change");
@@ -608,7 +632,13 @@ export class InputPropertyPanel {
                 }
             }
         }
-        {
+        if ($(propertyPanel).getAttribute("element-type") == "DateDropDownList") {
+            const year = $(propertyPanel).find("[year]").getSelectedValue();
+            const month = $(propertyPanel).find("[month]").getSelectedValue();
+            const day = $(propertyPanel).find("[day]").getSelectedValue();
+            record[name] = year + "/" + month + "/" + day;
+        }
+        else {
             const dl = $(propertyPanel).find("select").getFirstElement();
             if (dl != null) {
                 record[name] = $(dl).getValue();
@@ -745,6 +775,24 @@ export class InputPropertyPanel {
                     else if (v.length > 10) {
                         v = v.replace(/-/g, "/").substr(0, 10);
                         $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                }
+            }
+            else if (elementType == "DateDropDownList") {
+                if (v != null) {
+                    if (v.Year != null && v.Month != null && v.Day != null) {
+                        $(propertyPanel).find("[year]").setSelectedValue(v.Year);
+                        $(propertyPanel).find("[month]").setSelectedValue(v.Month);
+                        $(propertyPanel).find("[day]").setSelectedValue(v.Day);
+                    }
+                    else if (v.length > 10) {
+                        v = v.replace(/-/g, "/").substr(0, 10);
+                        const date = DateTime.TryCreate(v);
+                        if (date != null) {
+                            $(propertyPanel).find("[year]").setSelectedValue(date.toString("yyyy"));
+                            $(propertyPanel).find("[month]").setSelectedValue(date.toString("MM"));
+                            $(propertyPanel).find("[day]").setSelectedValue(date.toString("dd"));
+                        }
                     }
                 }
             }

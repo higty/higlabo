@@ -111,7 +111,7 @@ export class HigLaboVue {
     }
     public static dateFormat(value, format: string) {
         if (value == null) { return ""; }
-        return new DateTime(new Date(value)).toString(format);
+        return new DateTime(value).toString(format);
     }
     public static encodeURI(value) {
         if (value == null) { return ""; }

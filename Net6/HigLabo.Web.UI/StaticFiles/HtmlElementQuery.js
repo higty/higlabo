@@ -151,8 +151,11 @@ export class HtmlElementQuery {
         for (var i = 0; i < this._elementList.length; i++) {
             if (this._elementList[i] instanceof HTMLSelectElement) {
                 let dl = this._elementList[i];
-                if (dl.options[dl.selectedIndex].value == value) {
-                    dl.options[dl.selectedIndex].selected = true;
+                for (var oIndex = 0; oIndex < dl.options.length; oIndex++) {
+                    if (dl.options[oIndex].value == value) {
+                        dl.options[oIndex].selected = true;
+                        break;
+                    }
                 }
             }
         }
