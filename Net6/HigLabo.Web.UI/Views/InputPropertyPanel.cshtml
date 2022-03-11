@@ -39,6 +39,7 @@
                     var lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear, Model.DateDropdDownList.SelectedMonth);
                     <div class="flex-panel">
                         <select class="year" year="true" @Model.InputAttributes.GetHtmlString()>
+                            <option value=""></option>
                             @for(var i = Model.DateDropdDownList.StartYear; i <= Model.DateDropdDownList.EndYear; i++)
                             {
                                 <option value="@i.ToString()" 
@@ -46,6 +47,7 @@
                             }
                         </select>
                         <select class="month" month="true" @Model.InputAttributes.GetHtmlString()>
+                            <option value=""></option>
                             @for(var i = 1; i <= 12; i++)
                             {
                                 <option value="@i.ToString()"
@@ -53,6 +55,7 @@
                             }
                         </select>
                         <select class="day" day="true" @Model.InputAttributes.GetHtmlString()>
+                            <option value=""></option>
                             @for(var i = 1; i <= lastDayOfMonth; i++)
                             {
                                 <option value="@i.ToString()"

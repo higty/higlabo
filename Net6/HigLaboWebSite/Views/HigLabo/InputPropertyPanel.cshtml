@@ -37,22 +37,22 @@
             case InputElementType.DateDropDownList:
                 {
                     var lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear, Model.DateDropdDownList.SelectedMonth);
-                    <div class="flex-panel" h-record="true">
-                        <select h-name="Year" class="year" year="true" @Model.InputAttributes.GetHtmlString()>
+                    <div class="flex-panel">
+                        <select class="year" year="true" @Model.InputAttributes.GetHtmlString()>
                             @for(var i = Model.DateDropdDownList.StartYear; i <= Model.DateDropdDownList.EndYear; i++)
                             {
                                 <option value="@i.ToString()" 
                                 @Html.OptionSelected(i == Model.DateDropdDownList.SelectedYear)>@Model.DateDropdDownList.GetYearText(i)</option>
                             }
                         </select>
-                        <select h-name="Month" class="month" month="true" @Model.InputAttributes.GetHtmlString()>
+                        <select class="month" month="true" @Model.InputAttributes.GetHtmlString()>
                             @for(var i = 1; i <= 12; i++)
                             {
                                 <option value="@i.ToString()"
                                 @Html.OptionSelected(i == Model.DateDropdDownList.SelectedMonth)>@i.ToString("00")</option>
                             }
                         </select>
-                        <select h-name="Day" class="day" day="true" @Model.InputAttributes.GetHtmlString()>
+                        <select class="day" day="true" @Model.InputAttributes.GetHtmlString()>
                             @for(var i = 1; i <= lastDayOfMonth; i++)
                             {
                                 <option value="@i.ToString()"

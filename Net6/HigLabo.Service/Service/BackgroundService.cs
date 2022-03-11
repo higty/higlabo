@@ -13,39 +13,61 @@ namespace HigLabo.Service
     }
     public class BackgroundService
     {
-        public class ServiceCommandExecuteResult
+        public class BackgroundServiceLog
         {
-            public String Name { get; set; }
-            public DateTimeOffset StartTime { get; set; }
-            public TimeSpan Duration { get; set; }
+            private Object _LockObject = new Object();
+            private List<ServiceCommand> _CommandList = new List<ServiceCommand>();
+            internal Int64 _CommandCount = 0;
+            internal Int64 _TotalExecutedTicks = 0;
 
-            public ServiceCommandExecuteResult(ServiceCommand command)
+            public Int64 CommandCount
             {
-                this.Name = command.GetType().Name;
-                this.StartTime = command.CommandStartTime.Value;
-                this.Duration = command.CommandEndTime.Value - command.CommandStartTime.Value;
+                get { return Interlocked.Read(ref _CommandCount); }
             }
-            public override string ToString()
+            public Int64 ExecutedTicks
             {
-                return String.Format("{0} (StartTime={1}, Duration={2}ms)"
-                    , this.Name, this.StartTime.ToString("MM/dd HH:mm:ss.fffffff")
-                    , this.Duration.TotalMilliseconds);
+                get { return Interlocked.Read(ref _TotalExecutedTicks); }
+            }
+            public Int64 MaxCommandCount { get; set; } = 1000;
+
+            internal void AddCommand(ServiceCommand command)
+            {
+                Interlocked.Increment(ref _CommandCount);
+                lock (_LockObject)
+                {
+                    _CommandList.Add(command);
+                    if (_CommandList.Count > this.MaxCommandCount)
+                    {
+                        var length = _CommandList.Count - this.MaxCommandCount;
+                        for (int i = 0; i < length; i++)
+                        {
+                            _CommandList.RemoveAt(0);
+                        }
+                    }
+                }
+            }
+            public List<ServiceCommand> GetCommandList()
+            {
+                var l = new List<ServiceCommand>();
+                lock (_LockObject)
+                {
+                    foreach (var cm in _CommandList)
+                    {
+                        l.Add(cm);
+                    }
+                }
+                return l;
             }
         }
-
         public event EventHandler<ServiceCommandEventArgs> Executed;
         public event EventHandler<ServiceCommandEventArgs> Error;
 
         private Thread _Thread = null;
         private AutoResetEvent _AutoResetEvent = new AutoResetEvent(true);
-        private Object _LockCommandList = new Object();
+        private Object _LockObject = new Object();
         private Queue<ServiceCommand> _CommandList = new ();
         private ServiceCommand _CurrentCommand = null;
-        private List<ServiceCommand> _PreviousCommandList = new List<ServiceCommand>();
-        private DateTimeOffset _PreviousResetTime = DateTimeOffset.Now;
-        private Int64 _ExecutedCommandCount = 0;
         private Int64 _ExecutingCommandCount = 0;
-        private Int64 _ExecutedSeconds = 0;
         private Boolean _IsStarted = false;
         private Int64 _IsSuspend = 0;
 
@@ -66,24 +88,17 @@ namespace HigLabo.Service
             }
         }
         public Int32 ThreadSleepSecondsPerCommand { get; set; }
-        public Int64 ExecutedCommandCount
-        {
-            get { return Interlocked.Read(ref _ExecutedCommandCount); }
-        }
-        public Int64 ExecutedSeconds
-        {
-            get { return Interlocked.Read(ref _ExecutedSeconds); }
-        }
         public Int32 CommandCount
         {
             get
             {
-                lock (_LockCommandList)
+                lock (_LockObject)
                 {
                     return _CommandList.Count + (Int32)_ExecutingCommandCount;
                 }
             }
         }
+        public BackgroundServiceLog Log { get; set; } = new BackgroundServiceLog();
 
         public BackgroundService(String name, Int32 threadSleepSecondsPerCommand)
         {
@@ -132,7 +147,7 @@ namespace HigLabo.Service
 
                 l.Clear();
                 skipCommandList.Clear();
-                lock (_LockCommandList)
+                lock (_LockObject)
                 {
                     while (_CommandList.TryDequeue(out var cm))
                     {
@@ -164,25 +179,19 @@ namespace HigLabo.Service
                     try
                     {
                         var sw = Stopwatch.StartNew();
-                        cm.CommandStartTime = DateTimeOffset.Now;
+                        cm.StartTime = DateTimeOffset.Now;
                         _CurrentCommand = cm;
                         cm.Execute();
-                        cm.CommandEndTime = DateTimeOffset.Now;
+                        cm.EndTime = DateTimeOffset.Now;
                         sw.Stop();
 
-                        Interlocked.Increment(ref _ExecutedCommandCount);
-                        Interlocked.Add(ref _ExecutedSeconds, sw.ElapsedTicks / TimeSpan.TicksPerSecond);
-                        if (_PreviousResetTime.Day != now.Day)
-                        {
-                            Interlocked.Exchange(ref _ExecutedCommandCount, 0);
-                            Interlocked.Exchange(ref _ExecutedSeconds, 0);
-                        }
-                        _PreviousResetTime = now;
+                        this.Log.AddCommand(cm);
+                        Interlocked.Add(ref this.Log._TotalExecutedTicks, sw.ElapsedTicks);
                         this.Executed?.Invoke(this, new ServiceCommandEventArgs(cm, null));
                     }
                     catch (Exception ex)
                     {
-                        cm.CommandEndTime = DateTimeOffset.Now;
+                        cm.EndTime = DateTimeOffset.Now;
                         try
                         {
                             this.Error?.Invoke(this, new ServiceCommandEventArgs(cm, ex));
@@ -198,7 +207,6 @@ namespace HigLabo.Service
                         Thread.Sleep(this.ThreadSleepSecondsPerCommand);
                     }
                 }
-                _PreviousCommandList = l;
 
                 if (minNextStartTime.HasValue)
                 {
@@ -229,7 +237,7 @@ namespace HigLabo.Service
         }
         public void AddCommand(ServiceCommand command)
         {
-            lock (_LockCommandList)
+            lock (_LockObject)
             {
                 _CommandList.Enqueue(command);
             }
@@ -237,42 +245,33 @@ namespace HigLabo.Service
         }
         public void AddCommand(IEnumerable<ServiceCommand> commandList)
         {
-            lock (_LockCommandList)
+            lock (_LockObject)
             {
                 foreach (var command in commandList)
                 {
+                    if (command == null) { continue; }
                     _CommandList.Enqueue(command);
                 }
             }
             _AutoResetEvent.Set();
         }
-        public (String Name, DateTimeOffset? StartTime) GetCurrentCommandData()
+  
+        public ServiceCommand GetCurrentCommand()
         {
-            var cm = _CurrentCommand;
-            if (cm == null) { return ("", null); }
-            return (cm.GetType().Name, cm.CommandStartTime);
+            return _CurrentCommand;
         }
-        public List<String> GetCommandNameList()
+        public List<ServiceCommand> GetCommandList()
         {
-            var l = new List<String>();
-            lock (_LockCommandList)
+            var l = new List<ServiceCommand>();
+            lock (_LockObject)
             {
                 foreach (var item in _CommandList)
                 {
-                    l.Add(item.GetType().Name);
+                    l.Add(item);
                 }
             }
             return l;
         }
-        public List<ServiceCommandExecuteResult> GetPreviousCommandList()
-        {
-            var l = new List<ServiceCommandExecuteResult>();
-            var commandList = _PreviousCommandList;
-            foreach (var cm in commandList)
-            {
-                l.Add(new ServiceCommandExecuteResult(cm));
-            }
-            return l;
-        }
+
     }
 }

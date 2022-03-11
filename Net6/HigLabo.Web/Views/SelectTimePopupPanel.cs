@@ -25,5 +25,30 @@ namespace HigLabo.Web.UI
         public TextSetting TextSettings { get; set; } = new TextSetting();
         public Int32 StartHour { get; set; } = 9;
         public Int32 EndHour { get; set; } = 18;
+
+        public List<Int32> MinuteList { get; private set; } = new List<int>();
+        public List<Int32> DurationList { get; private set; } = new List<int>();
+
+        public SelectTimePopupPanel()
+        {
+            this.MinuteList.Add(0);
+            this.MinuteList.Add(10);
+            this.MinuteList.Add(15);
+            this.MinuteList.Add(20);
+            this.MinuteList.Add(30);
+            this.MinuteList.Add(40);
+            this.MinuteList.Add(45);
+            this.MinuteList.Add(50);
+
+            this.DurationList.Add(15);
+            this.DurationList.Add(30);
+            this.DurationList.Add(45);
+            this.DurationList.Add(60);
+            this.DurationList.Add(90);
+            for (int i = 2; i < 14; i++)
+            {
+                this.DurationList.Add(i * 60);
+            }
+        }
     }
 }

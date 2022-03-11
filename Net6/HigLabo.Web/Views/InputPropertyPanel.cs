@@ -95,6 +95,45 @@ namespace HigLabo.Web.UI
                 l.Add(new ColorTableRow(new String[] { "#eceff1", "#cfd8dc", "#b0bec5", "#90a4ae", "#78909c", "#607d8b", "#546e7a", "#455a64", "#37474f", "#263238" }));
             }
         }
+        public class DateDropdDownListSetting
+        {
+            private static CultureInfo _JapaneseCalendarCulture = new CultureInfo("ja-JP", true);
+            private Func<Int32, String> _GetYearText = (year) => year.ToString("0000");
+            public Int32 StartYear { get; set; } = 1900;
+            public Int32 EndYear { get; set; } = DateTime.Now.Year;
+            public Int32 SelectedYear { get; set; } = 1900;
+            public Int32 SelectedMonth { get; set; } = 1;
+            public Int32 SelectedDay { get; set; } = 1;
+
+            public Func<Int32, String> GetYearText
+            {
+                get { return _GetYearText; }
+                set
+                {
+                    if (value == null) { return; }
+                    _GetYearText = value;
+                }
+            }
+
+            static DateDropdDownListSetting()
+            {
+                _JapaneseCalendarCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
+            }
+
+            public DateOnly GetSelectedDate()
+            {
+                return new DateOnly(this.SelectedYear, this.SelectedMonth, this.SelectedDay);
+            }
+            public void SetJapaneseCalendar()
+            {
+                this.GetYearText = this.GetJapaneseYearText;
+            }
+            private String GetJapaneseYearText(Int32 year)
+            {
+                var date = new DateTime(year, 1, 1);
+                return date.ToString("ggyy", _JapaneseCalendarCulture) + "年";
+            }
+        }
         public class TextSetting
         {
             public String SetByEndTime { get; set; } = InputPropertyPanel.Default.SetByEndTime;
@@ -265,17 +304,25 @@ namespace HigLabo.Web.UI
                 }
                 return null;
             }
-            public DateTimeOffset? GetStartTime(TimeSpan offset)
+            public DateTimeOffset? GetStartTime(TimeOnly timeZone)
+            {
+                return GetStartTime(timeZone.ToTimeSpan());
+            }
+            public DateTimeOffset? GetStartTime(TimeSpan timeZone)
             {
                 var dtime = this.GetStartTime();
                 if (dtime == null) { return null; }
-                return new DateTimeOffset(dtime.Value, offset);
+                return new DateTimeOffset(dtime.Value, timeZone);
             }
-            public DateTimeOffset? GetEndTime(TimeSpan offset)
+            public DateTimeOffset? GetEndTime(TimeOnly timeZone)
+            {
+                return GetEndTime(timeZone.ToTimeSpan());
+            }
+            public DateTimeOffset? GetEndTime(TimeSpan timeZone)
             {
                 var dtime = this.GetEndTime();
                 if (dtime == null) { return null; }
-                return new DateTimeOffset(dtime.Value, offset);
+                return new DateTimeOffset(dtime.Value, timeZone);
             }
 
             public override string ToString()
@@ -305,45 +352,6 @@ namespace HigLabo.Web.UI
             public ColorTableRow(IEnumerable<String> colorList)
             {
                 this.ColorList.AddRange(colorList);
-            }
-        }
-        public class DateDropdDownListSetting
-        {
-            private static CultureInfo _JapaneseCalendarCulture = new CultureInfo("ja-JP", true);
-            private Func<Int32, String> _GetYearText = (year) => year.ToString("0000");
-            public Int32 StartYear { get; set; } = 1900;
-            public Int32 EndYear { get; set; } = DateTime.Now.Year;
-            public Int32 SelectedYear { get; set; } = 1900;
-            public Int32 SelectedMonth { get; set; } = 1;
-            public Int32 SelectedDay { get; set; } = 1;
-
-            public Func<Int32, String> GetYearText
-            {
-                get { return _GetYearText; }
-                set
-                {
-                    if (value == null) { return; }
-                    _GetYearText = value;
-                }
-            }
-
-            static DateDropdDownListSetting()
-            {
-                _JapaneseCalendarCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            }
-
-            public DateOnly GetSelectedDate()
-            {
-                return new DateOnly(this.SelectedYear, this.SelectedMonth, this.SelectedDay);
-            }
-            public void SetJapaneseCalendar()
-            {
-                this.GetYearText = this.GetJapaneseYearText;
-            }
-            private String GetJapaneseYearText(Int32 year)
-            {
-                var date = new DateTime(year, 1, 1);
-                return date.ToString("ggyy", _JapaneseCalendarCulture) + "年";
             }
         }
 

@@ -25,5 +25,14 @@ namespace HigLabo.Core
             if (value == null) { return null; }
             return new DateTimeOffset(value.Value.ToDateTime(TimeOnly.MinValue), timeZone);
         }
+        public static DateTimeOffset ToDateTimeOffset(this DateOnly value, TimeOnly timeZone)
+        {
+            return new DateTimeOffset(value.ToDateTime(TimeOnly.MinValue), timeZone.ToTimeSpan());
+        }
+        public static DateTimeOffset? ToDateTimeOffset(this DateOnly? value, TimeOnly timeZone)
+        {
+            if (value == null) { return null; }
+            return new DateTimeOffset(value.Value.ToDateTime(TimeOnly.MinValue), timeZone.ToTimeSpan());
+        }
     }
 }

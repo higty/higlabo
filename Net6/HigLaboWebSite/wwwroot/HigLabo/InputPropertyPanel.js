@@ -25,6 +25,7 @@ export class InputPropertyPanel {
         $("body").on("change", "[input-property-panel] [set-by-end-time]", this.dateTimeDurationList_Change.bind(this));
         $("body").on("change", "[input-property-panel][element-type='DateDropDownList'] [year]", this.dateDrowDownList_Change.bind(this));
         $("body").on("change", "[input-property-panel][element-type='DateDropDownList'] [month]", this.dateDrowDownList_Change.bind(this));
+        $("body").on("keydown", "[input-property-panel][element-type='DateDropDownList'] select", this.dateDrowDownList_Keydown.bind(this));
         $("body").on("click", "[input-property-panel]  [radio-button-label]", this.radioButtonLabel_Click.bind(this));
         $("body").on("click", "[input-property-panel]  [checkbox-label]", this.checkBoxLabel_Click.bind(this));
         $("body").on("input", "[input-property-panel] [filter-textbox]", this.filterTextBox_Keydown.bind(this));
@@ -276,6 +277,48 @@ export class InputPropertyPanel {
             }
             $(option).setInnerText(day);
             dl.appendChild(option);
+        }
+        $(dl).setSelectedValue("1");
+    }
+    dateDrowDownList_Keydown(target, e) {
+        if (e.shiftKey == true || e.ctrlKey == true || e.altKey == true) {
+            return;
+        }
+        let x = -1;
+        if (e.keyCode >= 48 && e.keyCode < 58) {
+            x = e.keyCode - 48;
+        }
+        if (e.keyCode >= 96 && e.keyCode < 106) {
+            x = e.keyCode - 96;
+        }
+        if (x > -1) {
+            let v = $(target).getAttribute("key-input-value") + x.toString();
+            if ($(target).getAttribute("year") == "true") {
+                if (v.length > 4) {
+                    v = v.substr(v.length - 4, 4);
+                }
+            }
+            else if ($(target).getAttribute("month") == "true") {
+                v = v.substr(v.length - 2, 2);
+                if (v.substr(0, 1) == "0") {
+                    v = v.substr(1, 1);
+                }
+                if (parseInt(v) > 12) {
+                    v = v.substr(1, 1);
+                }
+            }
+            else if ($(target).getAttribute("day") == "true") {
+                v = v.substr(v.length - 2, 2);
+                if (v.substr(0, 1) == "0") {
+                    v = v.substr(1, 1);
+                }
+                if (parseInt(v) > 31) {
+                    v = v.substr(1, 1);
+                }
+            }
+            $(target).setSelectedValue(v);
+            $(target).setAttribute("key-input-value", v);
+            e.preventDefault();
         }
     }
     radioButtonLabel_Click(target, e) {
@@ -631,7 +674,13 @@ export class InputPropertyPanel {
                 }
             }
         }
-        {
+        if ($(propertyPanel).getAttribute("element-type") == "DateDropDownList") {
+            const year = $(propertyPanel).find("[year]").getSelectedValue();
+            const month = $(propertyPanel).find("[month]").getSelectedValue();
+            const day = $(propertyPanel).find("[day]").getSelectedValue();
+            record[name] = year + "/" + month + "/" + day;
+        }
+        else {
             const dl = $(propertyPanel).find("select").getFirstElement();
             if (dl != null) {
                 record[name] = $(dl).getValue();

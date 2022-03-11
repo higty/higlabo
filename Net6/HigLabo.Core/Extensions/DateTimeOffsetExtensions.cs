@@ -19,5 +19,15 @@ namespace HigLabo.Core
         {
             return value.ToOffset(new TimeSpan(hours, minutes, 0));
         }
+        public static DateTimeOffset ChangeTimeZone(this DateTimeOffset value, TimeOnly timeZone)
+        {
+            return ChangeTimeZone(value, timeZone.ToTimeSpan());
+        }
+        public static DateTimeOffset ChangeTimeZone(this DateTimeOffset value, TimeSpan timeZone)
+        {
+            var ts = timeZone - value.Offset;
+            var dtime = new DateTimeOffset((value + ts).Ticks, timeZone);
+            return dtime;
+        }
     }
 }
