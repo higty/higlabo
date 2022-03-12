@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace HigLabo.Page
@@ -17,6 +20,38 @@ namespace HigLabo.Page
         public IActionResult Home()
         {
             return this.View();
+        }
+        [HttpGet("/TinyMce")]
+        public IActionResult TinyMce()
+        {
+            return this.View();
+        }
+
+        [HttpPost("/Api/Image/Upload")]
+        public async Task<Object> Api_Image_Upload()
+        {
+            var bb = await this.GetBodyData();
+
+            return new { Location = "https://hignull.blob.core.windows.net/user/a6c4772fe0bc2f41f04e39dc2a1e93f4/profile_20210325_181105.png" };
+        }
+        [HttpPost("/Api/RichTextBox/Post")]
+        public async Task<Object> Api_RichTextBox_Post()
+        {
+            var bb = await this.GetBodyData();
+            var bodyText = Encoding.UTF8.GetString(bb);
+
+            return new {  };
+        }
+        private async Task<Byte[]> GetBodyData()
+        {
+            var request = this.Request;
+            request.EnableBuffering();
+            request.Body.Position = 0;
+            var mm = new MemoryStream();
+            await request.Body.CopyToAsync(mm);
+            var bb = mm.ToArray();
+            this.Request.Body.Position = 0;
+            return bb;
         }
         [HttpPost("/Api/Category/Search")]
         public Object Api_Category_Search()
