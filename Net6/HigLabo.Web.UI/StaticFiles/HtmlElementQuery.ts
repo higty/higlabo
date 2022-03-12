@@ -557,28 +557,28 @@ export class HtmlElementQuery {
             });
         }
     }
-    public click(callback: (e: MouseEvent) => {}) {
+    public click(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("click", callback);
     }
-    public mousedown(callback: (e: MouseEvent) => {}) {
+    public mousedown(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("mousedown", callback);
     }
-    public mousemove(callback: (e: MouseEvent) => {}) {
+    public mousemove(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("mousemove", callback);
     }
-    public mouseup(callback: (e: MouseEvent) => {}) {
+    public mouseup(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("mouseup", callback);
     }
-    public mouseover(callback: (e: MouseEvent) => {}) {
+    public mouseover(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("mouseover", callback);
     }
-    public mouseenter(callback: (e: MouseEvent) => {}) {
+    public mouseenter(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("mouseenter", callback);
     }
-    public mouseleave(callback: (e: MouseEvent) => {}) {
+    public mouseleave(callback: (e: MouseEvent) => void) {
         this.addEventListenerToAllElement("mouseleave", callback);
     }
-    public change(callback: (e: Event) => {}) {
+    public change(callback: (e: Event) => void) {
         this.addEventListenerToAllElement("change", callback);
     }
     public focus(callback: (e: Event) => {}) {

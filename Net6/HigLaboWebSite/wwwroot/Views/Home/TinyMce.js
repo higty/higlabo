@@ -15,11 +15,10 @@ class Page {
         this.inputPropertyPanel.initialize();
         this.selectTimePopupPanel.initialize();
         this.richTextBox.initialize(document.getElementById("RichTextBox"));
+        this.tinyMceTextBox.fileUploadUrlPath = "/Api/File/Upload";
         this.tinyMceTextBox.imageUploadUrlPath = "/Api/Image/Upload";
         this.tinyMceTextBox.initialize("Description");
         $("body").on("click", "#PostButton", this.postButton_Click.bind(this));
-    }
-    imageUploadCallback(response) {
     }
     postButton_Click(target, e) {
         const p = {

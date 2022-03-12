@@ -16,12 +16,10 @@ class Page {
         this.selectTimePopupPanel.initialize();
         this.richTextBox.initialize(document.getElementById("RichTextBox"));
 
+        this.tinyMceTextBox.fileUploadUrlPath = "/Api/File/Upload";
         this.tinyMceTextBox.imageUploadUrlPath = "/Api/Image/Upload";
         this.tinyMceTextBox.initialize("Description");
         $("body").on("click", "#PostButton", this.postButton_Click.bind(this));
-    }
-    private imageUploadCallback(response: HttpResponse) {
-
     }
     private postButton_Click(target: Element, e: Event) {
         const p = {

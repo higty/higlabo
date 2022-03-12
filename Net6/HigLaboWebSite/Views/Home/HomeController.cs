@@ -34,6 +34,13 @@ namespace HigLabo.Page
 
             return new { Location = "https://hignull.blob.core.windows.net/user/a6c4772fe0bc2f41f04e39dc2a1e93f4/profile_20210325_181105.png" };
         }
+        [HttpPost("/Api/File/Upload")]
+        public async Task<Object> Api_File_Upload()
+        {
+            var bb = await this.GetBodyData();
+
+            return new { Href = "https://sample.com/myfile.txt", Text = "MyFile.txt" };
+        }
         [HttpPost("/Api/RichTextBox/Post")]
         public async Task<Object> Api_RichTextBox_Post()
         {
