@@ -15,7 +15,7 @@ class Page {
         this.richTextBox.initialize(document.getElementById("RichTextBox"));
     }
     private recordAdded(panel: InputPropertyPanel, e: RecordAddedEvent) {
-        alert("Record added");
+        //alert("Record added");
     }
 }
 

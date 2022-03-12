@@ -26,6 +26,7 @@ namespace HigLabo.Web.UI
         public Int32 StartHour { get; set; } = 9;
         public Int32 EndHour { get; set; } = 18;
 
+        public Int32 MaxHour { get; set; } = 30;
         public List<Int32> MinuteList { get; private set; } = new List<int>();
         public List<Int32> DurationList { get; private set; } = new List<int>();
 

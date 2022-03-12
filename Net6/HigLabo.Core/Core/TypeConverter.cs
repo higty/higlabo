@@ -742,9 +742,34 @@ namespace HigLabo.Core
             var tp = value.GetType();
             if (tp == typeof(TimeSpan)) return (TimeSpan)value;
             if (tp == typeof(TimeOnly)) return ((TimeOnly)value).ToTimeSpan();
-            if (tp == typeof(String) && TimeSpan.TryParse(this.ConvertFromFullWidthToHalfWidth((String)value), out x))
+            var v = this.ConvertFromFullWidthToHalfWidth((String)value);
+            if (tp == typeof(String) && TimeSpan.TryParse(v, out x))
             {
                 return x;
+            }
+            var vv = v.Split(':');
+            if (vv.Length > 1)
+            {
+                var hh = vv[0].ToInt32();
+                if (hh.HasValue)
+                {
+                    var mm = vv[1].ToInt32();
+                    if (mm.HasValue && mm >= 0 && mm< 60)
+                    {
+                        if (vv.Length == 2)
+                        {
+                            return new TimeSpan(hh.Value, mm.Value, 0);
+                        }
+                        else if (vv.Length == 3)
+                        {
+                            var ss = vv[2].ToInt32();
+                            if (ss.HasValue && ss >= 0 && ss < 60)
+                            {
+                                return new TimeSpan(hh.Value, mm.Value, ss.Value);
+                            }
+                        }
+                    }
+                }
             }
             return null;
         }

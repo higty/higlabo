@@ -15,7 +15,6 @@ class Page {
         this.richTextBox.initialize(document.getElementById("RichTextBox"));
     }
     recordAdded(panel, e) {
-        alert("Record added");
     }
 }
 HtmlElementQuery.domContentLoaded(e => {

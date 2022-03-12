@@ -19,7 +19,7 @@ export default class SelectTimePopupPanel {
         $(this._endTimePanel).on("click", "[minute-panel]", this.endTimeMinutePanel_Click.bind(this));
     }
     textBox_Click(target, e) {
-        var tx = target;
+        const tx = target;
         if (tx != null) {
             this.textBox = tx;
             this.show(this.textBox);
@@ -29,7 +29,7 @@ export default class SelectTimePopupPanel {
         this.hide();
     }
     showAllChekBox_Change(target, e) {
-        var chx = $("#SelectTimePopupPanelShowAllChekBox");
+        const chx = $("#SelectTimePopupPanelShowAllChekBox");
         if (chx.isChecked()) {
             $(this.panel).setAttribute("display-all", "true");
             $(this._endTimePanel).setAttribute("display-all", "true");
@@ -50,9 +50,9 @@ export default class SelectTimePopupPanel {
         e.stopPropagation();
     }
     setTextBoxValue(element) {
-        var div = $(element);
-        var hour = div.getAttribute("hour");
-        var minute = div.getAttribute("minute");
+        const div = $(element);
+        const hour = div.getAttribute("hour");
+        const minute = div.getAttribute("minute");
         if (this.textBox != null) {
             $(this.textBox).setValue(hour + ":" + minute);
             this.startTime = $(this.textBox).getValue();
@@ -66,8 +66,8 @@ export default class SelectTimePopupPanel {
         }
     }
     isDisplayNextPopupPanel(element) {
-        var tr = $(element).getParent("tr").getFirstElement();
-        var rect = tr.getBoundingClientRect();
+        const tr = $(element).getParent("tr").getFirstElement();
+        const rect = tr.getBoundingClientRect();
         if (this.selectDuration == true) {
             $(this._durationPanel).setStyle("display", "block");
             $(this._durationPanel).setStyle("left", rect.left + rect.width + "px");
@@ -86,11 +86,16 @@ export default class SelectTimePopupPanel {
         }
     }
     durationMinutePanel_Click(target, e) {
-        var div = $(target);
-        var minute = parseInt(div.getAttribute("minute"));
-        var startTime = new DateTime("2000/1/1 " + $(this.textBox).getValue());
-        var endTime = startTime.addMinute(minute);
-        $(this.endTimeTextBox).setValue(endTime.toString("hh:mm"));
+        const div = $(target);
+        const minute = parseInt(div.getAttribute("minute"));
+        const startTime = new DateTime("2000/1/1 " + $(this.textBox).getValue());
+        const endTime = startTime.addMinute(minute);
+        var hh = endTime.toString("hh");
+        if (startTime.day != endTime.day) {
+            hh = (endTime.hours + 24).toString();
+        }
+        const mm = endTime.toString("mm");
+        $(this.endTimeTextBox).setValue(endTime.toString(hh + ":" + mm));
         this.endTime = $(this.endTimeTextBox).getValue();
         this.textBox = null;
         this.endTimeTextBox = null;
@@ -98,9 +103,9 @@ export default class SelectTimePopupPanel {
         e.stopPropagation();
     }
     endTimeMinutePanel_Click(target, e) {
-        var div = $(target);
-        var hour = div.getAttribute("hour");
-        var minute = div.getAttribute("minute");
+        const div = $(target);
+        const hour = div.getAttribute("hour");
+        const minute = div.getAttribute("minute");
         $(this.endTimeTextBox).setValue(hour + ":" + minute);
         this.endTime = $(this.endTimeTextBox).getValue();
         this.textBox = null;
