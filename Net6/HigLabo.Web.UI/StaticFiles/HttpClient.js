@@ -2,13 +2,13 @@ export class HttpClient {
     static get(url, loadCallback, errorCallback, context) {
         const request = new XMLHttpRequest();
         request.open("get", url, true);
-        HttpClient.setProperty(request, loadCallback, errorCallback, context);
+        HttpClient.setProperty(request, url, loadCallback, errorCallback, context);
         request.send(null);
     }
     static postJson(url, data, callback, errorCallback, context) {
         const request = new XMLHttpRequest();
         request.open("post", url, true);
-        HttpClient.setProperty(request, data, callback, errorCallback, context);
+        HttpClient.setProperty(request, url, data, callback, errorCallback, context);
         request.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         const json = JSON.stringify(data);
         request.send(json);
@@ -16,13 +16,13 @@ export class HttpClient {
     static postForm(url, formData, callback, errorCallback, progressCallback, context) {
         const request = new XMLHttpRequest();
         request.open("post", url, true);
-        HttpClient.setProperty(request, formData, callback, errorCallback, context);
+        HttpClient.setProperty(request, url, formData, callback, errorCallback, context);
         if (progressCallback != null) {
             request.upload.addEventListener("progress", progressCallback);
         }
         request.send(formData);
     }
-    static setProperty(request, requestData, callback, errorCallback, context) {
+    static setProperty(request, url, requestData, callback, errorCallback, context) {
         const csrfToken = HttpClient.getCsrfToken();
         if (csrfToken != "") {
             request.setRequestHeader("CsrfToken", csrfToken);
@@ -32,26 +32,26 @@ export class HttpClient {
                 return;
             }
             if (request.status < 400) {
-                callback(new HttpResponse(request, requestData), context);
+                callback(new HttpResponse(request, url, requestData), context);
             }
             else {
                 if (errorCallback == null) {
                     if (HttpClient.errorCallback != null) {
-                        HttpClient.errorCallback(new HttpResponse(request, requestData), context);
+                        HttpClient.errorCallback(new HttpResponse(request, url, requestData), context);
                     }
                     return;
                 }
-                errorCallback(new HttpResponse(request, requestData), context);
+                errorCallback(new HttpResponse(request, url, requestData), context);
             }
         };
         request.onerror = function (event) {
             if (errorCallback == null) {
                 if (HttpClient.errorCallback != null) {
-                    HttpClient.errorCallback(new HttpResponse(request, requestData), context);
+                    HttpClient.errorCallback(new HttpResponse(request, url, requestData), context);
                 }
                 return;
             }
-            errorCallback(new HttpResponse(request, requestData), context);
+            errorCallback(new HttpResponse(request, url, requestData), context);
         };
     }
     static getCsrfToken() {
@@ -62,8 +62,9 @@ export class HttpClient {
     }
 }
 export class HttpResponse {
-    constructor(request, requestData) {
+    constructor(request, url, requestData) {
         this.xmlHttpRequest = request;
+        this.url = url;
         this.requestData = requestData;
         this.status = request.status;
         this.responseText = request.responseText;

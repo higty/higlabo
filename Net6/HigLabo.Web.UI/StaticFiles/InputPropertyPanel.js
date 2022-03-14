@@ -2,7 +2,9 @@ import { DateOnly, DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
 import { HigLaboVue } from "./HigLaboVue.js";
 import { HttpClient } from "./HttpClient.js";
+import { CKEditorTextBox } from "./CKEditorTextBox.js";
 import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
+import { TinyMceTextBox } from "./TinyMceTextBox.js";
 export class InputPropertyPanel {
     constructor() {
         this._eventHandlerList = new Array();
@@ -662,15 +664,16 @@ export class InputPropertyPanel {
             }
         }
         {
-            let textarea = $(propertyPanel).find("textarea").getFirstElement();
+            const textarea = $(propertyPanel).find("textarea").getFirstElement();
             if (textarea != null) {
-                let richTextbox = textarea.richTextbox;
-                if (richTextbox == null) {
-                    record[name] = $(textarea).getValue();
+                if (textarea.richTextbox instanceof CKEditorTextBox) {
+                    record[name] = textarea.richTextbox.getData();
+                }
+                else if (textarea.richTextbox instanceof TinyMceTextBox) {
+                    record[name] = textarea.richTextbox.getContent();
                 }
                 else {
-                    record[name] = richTextbox.getData();
-                    return;
+                    record[name] = $(textarea).getValue();
                 }
             }
         }
@@ -922,12 +925,14 @@ export class InputPropertyPanel {
             v = "";
         }
         const textarea = element;
-        let richTextbox = textarea.richTextbox;
-        if (richTextbox == null) {
-            $(textarea).setValue(v);
+        if (textarea.richTextbox instanceof CKEditorTextBox) {
+            textarea.richTextbox.setData(v);
+        }
+        else if (textarea.richTextbox instanceof TinyMceTextBox) {
+            textarea.richTextbox.setContent(v);
         }
         else {
-            richTextbox.setData(v);
+            $(textarea).setValue(v);
         }
     }
     static setRecord(propertyPanel, record) {

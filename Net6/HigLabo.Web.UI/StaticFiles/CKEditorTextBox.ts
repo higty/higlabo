@@ -1,37 +1,40 @@
-import { $ } from "./HtmlElementQuery.js";
-export class RichTextbox {
-    constructor() {
-        this.element = null;
-        this.editor = null;
-        this.language = "ja";
-        this.mentionList = new Array();
-        this.imageUrlList = new Array();
-    }
-    initialize(element) {
-        if (element == null) {
-            return;
-        }
+﻿import { $ } from "./HtmlElementQuery.js";
+
+export class CKEditorTextBox {
+    private element = null;
+    private editor = null;
+
+    public language = "ja";
+    public floatingTextBoxPanel: HTMLElement;
+    public targetTextbox: HTMLElement;
+    public mentionList = new Array<unknown>();
+    public filterMention: (item: unknown, queryText: string) => boolean;
+    public imageUrlList = new Array<string>();
+
+    public initialize(element: HTMLElement) {
+        if (element == null) { return; }
         this.element = element;
         if (window["ClassicEditor"] != null) {
             this.initializeClassicEditor();
         }
         $(window).resize(this.window_Resize.bind(this));
     }
-    initializeClassicEditor() {
+    public initializeClassicEditor() {
         var element = this.element;
         var language = "ja";
         var editor = window["ClassicEditor"];
         editor.create(element, {
             language: this.language,
             toolbar: {
-                items: ["undo", "redo", "emoji",
-                    "link", "imageUpload", "fileUpload", "imageTextAlternative",
-                    "removeFormat", "alignment", "bold", "italic", "highlight",
-                    "blockQuote", "codeBlock",
-                    "heading", "numberedList", "bulletedList",
-                    "imageStyle:full", "imageStyle:side", "mediaEmbed",
-                    "insertTable", "tableColumn", "tableRow", "mergeTableCells"
+                items: ["undo", "redo", "emoji"
+                    , "link", "imageUpload", "fileUpload", "imageTextAlternative"
+                    , "removeFormat", "alignment", "bold", "italic", "highlight"
+                    , "blockQuote", "codeBlock"
+                    , "heading", "numberedList", "bulletedList"
+                    , "imageStyle:full", "imageStyle:side", "mediaEmbed"
+                    , "insertTable", "tableColumn", "tableRow", "mergeTableCells"
                 ]
+                //shouldNotGroupWhenFull: true
             },
             link: {
                 addTargetToExternalLinks: true
@@ -41,7 +44,7 @@ export class RichTextbox {
             },
             codeBlock: {
                 languages: [
-                    { language: 'plaintext', label: 'Plain text' },
+                    { language: 'plaintext', label: 'Plain text' }, // The default language.
                     { language: 'html', label: 'HTML' },
                     { language: 'xml', label: 'HTML/XML' },
                     { language: 'css', label: 'CSS' },
@@ -73,7 +76,8 @@ export class RichTextbox {
             },
             typing: {
                 transformations: {
-                    include: [],
+                    include: [
+                    ],
                 }
             },
             emoji: {
@@ -88,63 +92,72 @@ export class RichTextbox {
                         itemRenderer: this.renderMention.bind(this)
                     }
                 ],
+
             }
         }).then(this.editor_Initialized.bind(this));
     }
-    editor_Initialized(editor) {
+    private editor_Initialized(editor) {
         this.editor = editor;
         this.element.richTextbox = this;
         editor.model.document.on('change:data', this.documentData_Change.bind(this));
     }
-    window_Resize(e) {
+
+    private window_Resize(e: Event) {
         this.setWidth();
     }
-    regiseterReplaceTextareEventHandler(panel) {
-        this.floatingRichTextboxPanel = panel;
+    public regiseterReplaceTextareEventHandler(panel: HTMLElement) {
+        this.floatingTextBoxPanel = panel;
         $(document).on("focusin", "[rich-textbox]", this.richTextArea_Focusin.bind(this));
     }
-    richTextArea_Focusin(target, e) {
+    private richTextArea_Focusin(target: Element, e: Event) {
         this.replaceTextbox(target);
         this.setFocus();
     }
-    replaceTextbox(element) {
+    public replaceTextbox(element: Element) {
+        if (this.floatingTextBoxPanel == null) { return; }
+
         var tx = $(element);
-        var div = $(this.floatingRichTextboxPanel);
+        var div = $(this.floatingTextBoxPanel);
         var rtx = this;
-        if (rtx.targetTextbox == element) {
-            return;
-        }
+        //Protect from infinite loop...
+        if (rtx.targetTextbox == element) { return; }
+
         if (rtx.targetTextbox != null) {
             $(rtx.targetTextbox).setStyle("display", "block");
-            rtx.targetTextbox.richTextbox = null;
+            (rtx.targetTextbox as any).richTextbox = null;
         }
-        rtx.targetTextbox = element;
-        rtx.targetTextbox.richTextbox = this;
+        rtx.targetTextbox = element as HTMLElement;
+        (rtx.targetTextbox as any).richTextbox = this;
+
         tx.setStyle("display", "none");
+
         div.setStyle("display", "block");
         var ppl = tx.getParentElementList()[0];
         ppl.append(div.getFirstElement());
+
         this.setWidth();
     }
-    setWidth() {
+    private setWidth() {
         var rtx = this;
-        if (rtx.targetTextbox == null) {
-            return;
-        }
+        if (rtx.targetTextbox == null) { return; }
         var tx = rtx.targetTextbox;
-        var div = $(this.floatingRichTextboxPanel);
+        var div = $(this.floatingTextBoxPanel);
         var ppl = $(tx).getParentElementList()[0];
+
         div.setStyle("width", $(ppl).getOuterWidth() + "px");
     }
-    documentData_Change() {
+
+    private documentData_Change() {
     }
-    getFeedItem(queryText) {
+
+    private getFeedItem(queryText) {
         var tx = this;
         return new Promise(resolve => {
             setTimeout(() => {
                 const itemsToDisplay = this.mentionList
                     .filter(isItemMatching)
                     .slice(0, 10);
+
                 resolve(itemsToDisplay);
             }, 100);
         });
@@ -152,47 +165,49 @@ export class RichTextbox {
             return tx.filterMentionInvoke(item, queryText);
         }
     }
-    filterMentionInvoke(item, queryText) {
-        if (this.filterMention != null && this.filterMention(item, queryText) == false) {
-            return false;
-        }
+    private filterMentionInvoke(item, queryText) {
+        if (this.filterMention != null && this.filterMention(item, queryText) == false) { return false; }
+
         const searchText = queryText.toLowerCase();
-        return (searchText.length == 0 ||
+        return (
+            searchText.length == 0 ||
             item.DisplayName.toLowerCase().includes(searchText) ||
-            item.UserID.toLowerCase().includes(searchText));
+            item.UserID.toLowerCase().includes(searchText)
+        );
     }
-    renderMention(mention) {
-        var r = mention;
+    private renderMention(mention) {
+        var r: any = mention;
         const div = document.createElement("div");
         div.classList.add('user-record-panel');
+
         const usernameElement = document.createElement('span');
         usernameElement.classList.add('user-name-link');
         usernameElement.textContent = r.DisplayName;
+
         div.appendChild(usernameElement);
+
         return div;
     }
-    getEditor() {
+
+    public getEditor() {
         return this.editor;
     }
-    getData() {
-        if (this.editor == null) {
-            return $(this.element).getValue();
-        }
+    public getData() {
+        if (this.editor == null) { return $(this.element).getValue(); }
         return this.editor.getData();
     }
-    setData(value) {
+    public setData(value) {
+        //Initialized.
         if (this.element != null) {
             this.editor.setData(value);
         }
     }
-    setTextAreaValue(value) {
+    public setTextAreaValue(value) {
         $(this.element).setValue(value);
     }
-    setFocus() {
-        if (this.editor == null) {
-            return $(this.element).setFocus();
-        }
+    public setFocus() {
+        if (this.editor == null) { return $(this.element).setFocus(); }
         this.editor.editing.view.focus();
     }
 }
-//# sourceMappingURL=RichTextbox.js.map
+

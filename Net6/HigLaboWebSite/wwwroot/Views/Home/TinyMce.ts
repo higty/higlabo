@@ -18,8 +18,28 @@ class Page {
 
         this.tinyMceTextBox.fileUploadUrlPath = "/Api/File/Upload";
         this.tinyMceTextBox.imageUploadUrlPath = "/Api/Image/Upload";
-        this.tinyMceTextBox.initialize("Description");
+        this.tinyMceTextBox.config.mentions_selector = "span.mention-record";
+        this.tinyMceTextBox.config.mentions_fetch = this.mentionFetch.bind(this);
+        this.tinyMceTextBox.config.mentions_menu_complete = this.mentionMenuComplete.bind(this);
+        this.tinyMceTextBox.initialize(document.getElementById("Description"));
         $("body").on("click", "#PostButton", this.postButton_Click.bind(this));
+    }
+    private mentionFetch(query, success) {
+        const p = {
+            SearchText: query.term
+        };
+        HttpClient.postJson("/Api/Mention/User/Search", p, this.searchUserCallback.bind(this), null, success);
+    }
+    private searchUserCallback(response: HttpResponse, success) {
+        const result = response.jsonParse();
+        success(result.Data);
+    }
+    private mentionMenuComplete(editor, userInfo) {
+        var span = editor.getDoc().createElement('span');
+        span.className = 'mention-record';
+        span.setAttribute('user-id', userInfo.id);
+        span.appendChild(editor.getDoc().createTextNode('@' + userInfo.name));
+        return span;
     }
     private postButton_Click(target: Element, e: Event) {
         const p = {

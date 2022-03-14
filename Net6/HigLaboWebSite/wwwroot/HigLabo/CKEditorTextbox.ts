@@ -1,11 +1,11 @@
 ﻿import { $ } from "./HtmlElementQuery.js";
 
-export class RichTextbox {
+export class CKEditorTextBox {
     private element = null;
     private editor = null;
 
     public language = "ja";
-    public floatingRichTextboxPanel: HTMLElement;
+    public floatingTextBoxPanel: HTMLElement;
     public targetTextbox: HTMLElement;
     public mentionList = new Array<unknown>();
     public filterMention: (item: unknown, queryText: string) => boolean;
@@ -106,7 +106,7 @@ export class RichTextbox {
         this.setWidth();
     }
     public regiseterReplaceTextareEventHandler(panel: HTMLElement) {
-        this.floatingRichTextboxPanel = panel;
+        this.floatingTextBoxPanel = panel;
         $(document).on("focusin", "[rich-textbox]", this.richTextArea_Focusin.bind(this));
     }
     private richTextArea_Focusin(target: Element, e: Event) {
@@ -114,8 +114,10 @@ export class RichTextbox {
         this.setFocus();
     }
     public replaceTextbox(element: Element) {
+        if (this.floatingTextBoxPanel == null) { return; }
+
         var tx = $(element);
-        var div = $(this.floatingRichTextboxPanel);
+        var div = $(this.floatingTextBoxPanel);
         var rtx = this;
         //Protect from infinite loop...
         if (rtx.targetTextbox == element) { return; }
@@ -139,7 +141,7 @@ export class RichTextbox {
         var rtx = this;
         if (rtx.targetTextbox == null) { return; }
         var tx = rtx.targetTextbox;
-        var div = $(this.floatingRichTextboxPanel);
+        var div = $(this.floatingTextBoxPanel);
         var ppl = $(tx).getParentElementList()[0];
 
         div.setStyle("width", $(ppl).getOuterWidth() + "px");

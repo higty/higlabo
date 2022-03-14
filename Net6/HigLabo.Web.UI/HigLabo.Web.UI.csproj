@@ -3,12 +3,28 @@
 	<PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    <Version>6.3.0.0</Version>
+    <Version>6.4.0.0</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 	<ItemGroup>
 	  <Content Remove="compilerconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="StaticFiles\TinyMceTextBox.js" />
+	  <None Remove="StaticFiles\TinyMceTextBox.js.map" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="StaticFiles\TinyMceTextBox.js">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Include="StaticFiles\TinyMceTextBox.js.map">
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
 	</ItemGroup>
 
   <ItemGroup>

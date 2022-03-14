@@ -1,15 +1,26 @@
-import { $ } from "./HtmlElementQuery.js";
-import { HttpClient } from "./HttpClient.js";
+﻿import { $, HtmlElementQuery } from "./HtmlElementQuery.js";
+import { HttpClient, HttpRequestCallback, HttpResponse } from "./HttpClient.js";
 import { List } from "./linq/Collections.js";
+
 export class TinyMceTextBox {
+    private tinymce = window["tinymce"];
+    private textBox: Element;
+    private fileUploadElement: HTMLInputElement;
+
+    public config: any;
+    public editor;
+    public fileUploadUrlPath = "";
+    public createUploadResultHtml;
+    public imageUploadUrlPath = "";
+    public imageUploadCallback: HttpRequestCallback;
+    public imageUploading: EventListener;
+
     constructor() {
-        this.tinymce = window["tinymce"];
-        this.fileUploadUrlPath = "";
-        this.imageUploadUrlPath = "";
         this.createUploadResultHtml = this.defaultCreateUploadResultHtml;
         this.initializeConfig();
     }
-    initializeConfig() {
+
+    private initializeConfig() {
         this.config = {
             height: 600,
             plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
@@ -18,19 +29,22 @@ export class TinyMceTextBox {
             mobile: {
                 plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
                     + "image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                    + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable"
+                    + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable autoresize"
             },
-            menubar: 'file edit view insert format tools table tc help',
-            toolbar: "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | "
-                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | forecolor backcolor casechange permanentpen removeformat | pagebreak | "
-                + "charmap emoticons | fullscreen  preview print | uploadfile media template link codesample | ltr rtl | showcomments addcomment",
-            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | forecolor backcolor | quickimage quicktable',
-            contextmenu: 'link image table configurepermanentpen',
+            menubar: "file edit view insert format tools table tc help",
+            toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
+                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | uploadfile media template link codesample | "
+                + "casechange permanentpen removeformat | pagebreak fullscreen  preview print | ltr rtl | showcomments addcomment",
+            quickbars_insert_toolbar: "emoticons quickimage quicktable charmap",
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote | forecolor backcolor | emoticons quickimage quicktable',
+            contextmenu: "link image table configurepermanentpen",
+
             font_formats: "Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;"
                 + "Book Antiqua=book antiqua, palatino; Comic Sans MS=comic sans ms, sans- serif;Courier New = courier new, courier; Georgia = georgia, palatino; "
                 + "Helvetica = helvetica; Impact = impact, chicago; Symbol = symbol; Tahoma = tahoma, arial, helvetica, sans - serif; Terminal = terminal, monaco;Times "
                 + "New Roman = times new roman, times;Trebuchet MS = trebuchet ms, geneva; Verdana = verdana, geneva; Webdings = webdings; Wingdings = wingdings, zapf dingbats",
             fontsize_formats: "8px 10px 12px 14px 16px 18px 20px 24px 32px 36px 48px 64px 72px 96px",
+
             images_upload_handler: this.imageUpload.bind(this),
             image_caption: true,
             tinydrive_token_provider: "",
@@ -44,14 +58,32 @@ export class TinyMceTextBox {
                 }
             },
             autosave_ask_before_unload: false,
+            //autosave_interval: '30s',
+            //autosave_prefix: '{path}{query}-{id}-',
+            //autosave_restore_when_empty: false,
+            //autosave_retention: '2m',
             image_advtab: true,
-            link_list: [],
-            image_list: [],
-            image_class_list: [],
+            link_list: [
+                //    { title: 'My page 1', value: 'https://www.tiny.cloud' },
+                //    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+            ],
+            image_list: [
+                //    { title: 'My page 1', value: 'https://www.tiny.cloud' },
+                //    { title: 'My page 2', value: 'http://www.moxiecode.com' }
+            ],
+            image_class_list: [
+                //    { title: 'None', value: '' },
+                //    { title: 'Some class', value: 'class-name' }
+            ],
             importcss_append: true,
-            templates: [],
+            templates: [
+                //    { title: 'New Table', description: 'creates a new table', content: '<div class="mceTmpl"><table width="98%%"  border="0" cellspacing="0" cellpadding="0"><tr><th scope="col"> </th><th scope="col"> </th></tr><tr><td> </td><td> </td></tr></table></div>' },
+                //    { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
+                //    { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
+            ],
             template_cdate_format: '[Created at: %m/%d/%Y : %H:%M:%S]',
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
+
             indentation: '16px',
             indent_use_margin: true,
             noneditable_noneditable_class: 'mceNonEditable',
@@ -63,6 +95,7 @@ export class TinyMceTextBox {
             a11y_advanced_options: true,
             skin: 'oxide',
             content_css: 'default',
+
             mentions_selector: "",
             mentions_min_chars: 1,
             mentions_fetch: null,
@@ -70,9 +103,11 @@ export class TinyMceTextBox {
             mentions_menu_complete: null,
             mentions_select: null,
             mentions_item_type: "profile",
+
             setup: function (editor) {
                 this.editor = editor;
                 this.initializeFileUploadElement(editor);
+
                 editor.ui.registry.addButton("uploadfile", {
                     tooltip: "File Upload",
                     icon: "upload",
@@ -81,31 +116,29 @@ export class TinyMceTextBox {
                     }.bind(this)
                 });
             }.bind(this)
+
         };
     }
-    initialize(textBox) {
+    public initialize(textBox: Element) {
         this.remove();
-        if (textBox == null) {
-            return;
-        }
-        this.textBox = textBox;
-        this.textBox.richTextbox = this;
+        if (textBox == null) { return; }
+
+        this.textBox = textBox as Element;
+        (this.textBox as any).richTextbox = this;
         this.config.target = textBox;
         this.tinymce.init(this.config);
     }
-    initializeFileUploadElement(editor) {
-        const pl = $(editor.getElement()).getParentElementList()[0];
-        const fd = document.createElement("input");
+    private initializeFileUploadElement(editor) {
+        const pl = $(editor.getElement()).getParentElementList()[0] as HTMLElement;
+        const fd = document.createElement("input") as HTMLInputElement;
         fd.type = "file";
         $(fd).setStyle("display", "none");
         pl.appendChild(fd);
         $(fd).change(this.fileSelected.bind(this));
         this.fileUploadElement = fd;
     }
-    fileSelected(e) {
-        if (this.fileUploadUrlPath == "") {
-            return;
-        }
+    private fileSelected(e: Event) {
+        if (this.fileUploadUrlPath == "") { return; }
         const f = this.fileUploadElement;
         const formData = new FormData();
         for (var i = 0; i < f.files.length; i++) {
@@ -114,15 +147,15 @@ export class TinyMceTextBox {
         HttpClient.postForm(this.fileUploadUrlPath, formData, this.fileUploadCallback.bind(this), this.fileUploadErrorCallback.bind(this));
         $(f).setValue("");
     }
-    fileUploadCallback(response) {
+    private fileUploadCallback(response: HttpResponse) {
         if (this.createUploadResultHtml != null) {
             const html = this.createUploadResultHtml(response);
             this.editor.insertContent(html);
         }
     }
-    defaultCreateUploadResultHtml(response) {
+    private defaultCreateUploadResultHtml(response: HttpResponse) {
         const data = response.jsonParse();
-        const l = new List();
+        const l = new List<any>();
         if (data instanceof Array) {
             for (var i = 0; i < data.length; i++) {
                 l.push(data[i]);
@@ -131,6 +164,7 @@ export class TinyMceTextBox {
         else {
             l.push(data);
         }
+
         let html = "";
         for (var i = 0; i < l.count(); i++) {
             let r = l.get(i);
@@ -143,20 +177,24 @@ export class TinyMceTextBox {
         }
         return html;
     }
-    fileUploadErrorCallback(response) {
+    private fileUploadErrorCallback(response: HttpResponse) {
+
     }
-    imageUpload(blobInfo, success, failure, progress) {
-        if (this.imageUploadUrlPath == "") {
-            return;
-        }
+    private imageUpload(blobInfo, success, failure, progress) {
+        if (this.imageUploadUrlPath == "") { return; }
         var formData = new FormData();
         formData.append('file', blobInfo.blob(), blobInfo.filename());
-        HttpClient.postForm(this.imageUploadUrlPath, formData, this.invokeImageUploadCallback.bind(this), this.invokeImageUploadCallback.bind(this), this.invokeImageUploadProgress.bind(this), {
-            success: success,
-            failure: failure
-        });
+        HttpClient.postForm(this.imageUploadUrlPath, formData
+            , this.invokeImageUploadCallback.bind(this)
+            , this.invokeImageUploadCallback.bind(this)
+            , this.invokeImageUploadProgress.bind(this)
+            , {
+                success: success,
+                failure: failure
+            }
+        );
     }
-    invokeImageUploadCallback(response, context) {
+    private invokeImageUploadCallback(response: HttpResponse, context: any) {
         const result = response.jsonParse();
         const success = context.success;
         success(result.Location);
@@ -164,38 +202,38 @@ export class TinyMceTextBox {
             this.imageUploadCallback(response, context);
         }
     }
-    invokeImageUploadProgress(e) {
+    private invokeImageUploadProgress(e: Event) {
         if (this.imageUploading != null) {
             this.imageUploading(e);
         }
     }
-    setContent(value) {
+
+    public setContent(value) {
         if (this.editor != null) {
             this.tinymce.activeEditor.setContent(value);
         }
     }
-    setTextAreaValue(value) {
+    public setTextAreaValue(value) {
         if (this.textBox != null) {
             $(this.textBox).setValue(value);
         }
     }
-    setFocus() {
-        if (this.editor == null) {
-            return $(this.textBox).setFocus();
-        }
+    public setFocus() {
+        if (this.editor == null) { return $(this.textBox).setFocus(); }
         this.editor.focus();
     }
-    getContent() {
+
+    public getContent() {
         return this.tinymce.activeEditor.getContent();
     }
-    remove() {
+    public remove() {
         if (this.textBox != null) {
             this.tinymce.remove();
             $(this.textBox).getSibling("Next").remove();
             $(this.textBox).removeStyle("display");
+
             this.textBox = null;
             this.config.target = null;
         }
     }
 }
-//# sourceMappingURL=TinyMceTextBox.js.map

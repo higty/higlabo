@@ -2,8 +2,9 @@
 import { $ } from "./HtmlElementQuery.js";
 import { HigLaboVue } from "./HigLaboVue.js";
 import { HttpClient, HttpResponse } from "./HttpClient.js";
-import { RichTextbox } from "./RichTextbox.js";
+import { CKEditorTextBox } from "./CKEditorTextBox.js";
 import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
+import { TinyMceTextBox } from "./TinyMceTextBox.js";
 
 export class InputPropertyPanel {
     private _eventHandlerList = new Array<RecordAddedEventHandler>();
@@ -700,15 +701,16 @@ export class InputPropertyPanel {
             }
         }
         {
-            let textarea = $(propertyPanel).find("textarea").getFirstElement() as any;
+            const textarea = $(propertyPanel).find("textarea").getFirstElement() as any;
             if (textarea != null) {
-                let richTextbox = textarea.richTextbox as RichTextbox;
-                if (richTextbox == null) {
-                    record[name] = $(textarea).getValue();
+                if (textarea.richTextbox instanceof CKEditorTextBox) {
+                    record[name] = (textarea.richTextbox as CKEditorTextBox).getData();
+                }
+                else if (textarea.richTextbox instanceof TinyMceTextBox) {
+                    record[name] = (textarea.richTextbox as TinyMceTextBox).getContent();
                 }
                 else {
-                    record[name] = richTextbox.getData();
-                    return;
+                    record[name] = $(textarea).getValue();
                 }
             }
         }
@@ -955,14 +957,15 @@ export class InputPropertyPanel {
             v = "";
         }
         const textarea = element as any;
-        let richTextbox = textarea.richTextbox as RichTextbox;
-        if (richTextbox == null) {
-            $(textarea).setValue(v);
+        if (textarea.richTextbox instanceof CKEditorTextBox) {
+            (textarea.richTextbox as CKEditorTextBox).setData(v);
+        }
+        else if (textarea.richTextbox instanceof TinyMceTextBox) {
+            (textarea.richTextbox as TinyMceTextBox).setContent(v);
         }
         else {
-            richTextbox.setData(v);
+            $(textarea).setValue(v);
         }
-
     }
     private static setRecord(propertyPanel: Element, record: unknown) {
         if (record == null) { return; }
