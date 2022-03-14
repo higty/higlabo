@@ -39,7 +39,7 @@ namespace HigLabo.Page
             {
                 if (f.ContentType.StartsWith("image/"))
                 {
-                    var r = new { Url = "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png", FileName = "Dummy.png", IsImage = true };
+                    var r = new { Url = "https://avatars.githubusercontent.com/u/10071037?s=40&v=4", FileName = "Dummy.png", IsImage = true };
                     l.Add(r);
                 }
                 else
@@ -150,7 +150,7 @@ namespace HigLabo.Page
             [JsonProperty("name")]
             public String Name { get; set; }
             [JsonProperty("image")]
-            public String Image { get; set; } = "https://hignull.blob.core.windows.net/user/a6c4772fe0bc2f41f04e39dc2a1e93f4/profile_20210325_181105.png";
+            public String Image { get; set; } = "https://avatars.githubusercontent.com/u/10071037?s=40&v=4";
         }
 
     }

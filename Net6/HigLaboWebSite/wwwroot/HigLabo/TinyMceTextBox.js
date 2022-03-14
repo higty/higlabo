@@ -18,14 +18,15 @@ export class TinyMceTextBox {
             mobile: {
                 plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
                     + "image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                    + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable"
+                    + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable autoresize"
             },
-            menubar: 'file edit view insert format tools table tc help',
-            toolbar: "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | "
-                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | forecolor backcolor casechange permanentpen removeformat | pagebreak | "
-                + "charmap emoticons | fullscreen  preview print | uploadfile media template link codesample | ltr rtl | showcomments addcomment",
-            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 blockquote | forecolor backcolor | quickimage quicktable',
-            contextmenu: 'link image table configurepermanentpen',
+            menubar: "file edit view insert format tools table tc help",
+            toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
+                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | uploadfile media template link codesample | "
+                + "casechange permanentpen removeformat | pagebreak fullscreen  preview print | ltr rtl | showcomments addcomment",
+            quickbars_insert_toolbar: "emoticons quickimage quicktable",
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote | forecolor backcolor | emoticons quickimage quicktable',
+            contextmenu: "link image table configurepermanentpen",
             font_formats: "Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;"
                 + "Book Antiqua=book antiqua, palatino; Comic Sans MS=comic sans ms, sans- serif;Courier New = courier new, courier; Georgia = georgia, palatino; "
                 + "Helvetica = helvetica; Impact = impact, chicago; Symbol = symbol; Tahoma = tahoma, arial, helvetica, sans - serif; Terminal = terminal, monaco;Times "

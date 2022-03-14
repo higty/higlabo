@@ -35,7 +35,7 @@ export class TinyMceTextBox {
             toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
                 + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | uploadfile media template link codesample | "
                 + "casechange permanentpen removeformat | pagebreak fullscreen  preview print | ltr rtl | showcomments addcomment",
-            quickbars_insert_toolbar: "emoticons quickimage quicktable charmap",
+            quickbars_insert_toolbar: "emoticons quickimage quicktable",
             quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote | forecolor backcolor | emoticons quickimage quicktable',
             contextmenu: "link image table configurepermanentpen",
 
