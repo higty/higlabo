@@ -2,6 +2,10 @@
   outline: none;
 }
 
+textarea:focus-visible {
+  outline: none;
+}
+
 .display-none {
   display: none;
 }
@@ -178,10 +182,10 @@
   width: 100px;
 }
 .input-property-panel[element-type=DateDropDownList] .flex-panel .month {
-  width: 50px;
+  width: 60px;
 }
 .input-property-panel[element-type=DateDropDownList] .flex-panel .day {
-  width: 50px;
+  width: 60px;
 }
 .input-property-panel[element-type=DateTimeDuration] .property-value-panel > .flex-panel {
   display: -webkit-flex;
@@ -379,6 +383,17 @@
 .input-property-panel[element-type=RadioButtonList] .property-value-panel .radio-button-panel label:hover {
   text-decoration: underline;
 }
+.input-property-panel .tab-header-list-panel {
+  padding: 10px 10px 0 10px;
+}
+.input-property-panel .tab-header-list-panel .tab-header-panel {
+  display: inline-block;
+  cursor: pointer;
+  padding: 4px 10px;
+}
+.input-property-panel .tab-header-list-panel .tab-header-panel.selected {
+  background-color: var(--color-select-button-selected-color);
+}
 .input-property-panel .select-record-panel {
   display: -webkit-flex;
   display: -moz-flex;
@@ -419,6 +434,9 @@
 }
 .input-property-panel .select-record-list-panel [h-record], .input-property-panel .search-record-list-panel [h-record] {
   padding: 4px;
+}
+.input-property-panel .select-record-list-panel [h-record]:hover, .input-property-panel .search-record-list-panel [h-record]:hover {
+  background-color: var(--color-input-element-mouse-over-color);
 }
 .input-property-panel .select-record-list-panel .input-property-panel[element-type=CheckBox], .input-property-panel .search-record-list-panel .input-property-panel[element-type=CheckBox] {
   padding: 5px 10px 5px 5px;
@@ -587,6 +605,9 @@
   width: 60px;
   margin-left: auto;
 }
+.input-property-panel .search-record-list-panel .content-panel {
+  padding: 10px;
+}
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel {
   height: 0;
   margin: 0;
@@ -596,14 +617,15 @@
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel [h-record] {
   cursor: pointer;
 }
-.input-property-panel .search-record-list-panel .content-panel .record-list-panel [h-record]:hover {
-  background-color: var(--color-input-element-mouse-over-color);
-}
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel [h-record][current] {
   background-color: var(--color-selected-back-color);
 }
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel .delete-link {
   display: none;
+}
+.input-property-panel .search-record-list-panel .content-panel .search-text-list-textbox {
+  width: 100%;
+  height: 80%;
 }
 .input-property-panel .search-record-list-panel.slide-down {
   display: block;

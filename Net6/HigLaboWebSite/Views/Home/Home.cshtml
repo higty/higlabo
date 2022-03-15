@@ -17,6 +17,15 @@
 </head>
 <body>
     @{
+        {
+            var pl = new InputPropertyPanel(InputElementType.RecordList, "UserList", "ユーザー");
+            pl.ApiPathSearch = "/Api/User/Search";
+            pl.TemplateID = "UserNamePanelTemplate";
+            //pl.SelectRecordByTextEnable = true;
+            //pl.TabList.Add(new InputPropertyPanel.Tab("Organization", "Organization", "/Api/Organization/List/Get", "OrganizationReocrdTemplate"
+            //, "/Api/Organization/User/List/Get"));
+            await Html.RenderPartialAsync(pl);
+        }
         await Html.RenderPartialAsync(HigLaboView.CommonTemplate);
         await Html.RenderPartialAsync(HigLaboView.SelectTimePopupPanel, new SelectTimePopupPanel());
 
@@ -81,12 +90,6 @@
             pl.TemplateID = "CategoryNamePanelTemplate";
             await Html.RenderPartialAsync(pl);
         }
-        {
-            var pl = new InputPropertyPanel(InputElementType.RecordList, "UserList", "ユーザー");
-            pl.ApiPathSearch = "/Api/User/Search";
-            pl.TemplateID = "UserNamePanelTemplate";
-            await Html.RenderPartialAsync(pl);
-        }
         <div style="height: 400px;"></div>
     }
     <template id="CategoryNamePanelTemplate">
@@ -98,6 +101,11 @@
         <div class="user-record-panel" h-record="true" :h-key="UserCD">
             <span>{{ DisplayName }}</span>
             <span class="delete-link" delete-link="true">×</span>
+        </div>
+    </template>
+    <template id="OrganizationReocrdTemplate">
+        <div class="organization-record-panel" h-record="true" :h-key="OrganizationCD">
+            <span>{{ DisplayName }}</span>
         </div>
     </template>
 

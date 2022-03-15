@@ -56,6 +56,7 @@ namespace HigLabo.Web.UI
             public String AddRecord { get; set; } = "Add Record";
             public String SearchRecord { get; set; } = "Search Record";
             public String Search { get; set; } = "Search";
+            public String Text { get; set; } = "Text";
             public String SortBy { get; set; } = "SortBy";
             public String Close { get; set; } = "Close";
             public List<PropertyValueItem> DurationList { get; set; } = new List<PropertyValueItem>();
@@ -141,6 +142,7 @@ namespace HigLabo.Web.UI
             public String AddRecord { get; set; } = InputPropertyPanel.Default.AddRecord;
             public String SearchRecord { get; set; } = InputPropertyPanel.Default.SearchRecord;
             public String Search { get; set; } = InputPropertyPanel.Default.Search;
+            public String Text { get; set; } = InputPropertyPanel.Default.Text;
             public String SortBy { get; set; } = InputPropertyPanel.Default.SortBy;
             public String Close { get; set; } = InputPropertyPanel.Default.Close;
         }
@@ -344,6 +346,24 @@ namespace HigLabo.Web.UI
                 this.Checked = @checked;
             }
         }
+        public class Tab
+        {
+            public String Name { get; set; } = "";
+            public String Text { get; set; } = "";
+            public String ApiPath { get; set; } = "";
+            public String ApiParameter { get; set; } = "{}";
+            public String TemplateID { get; set; } = "";
+            public String ApiPathSelectRecord { get; set; } = "";
+
+            public Tab(String name, String text, String apiPath, String templateID, String apiPathSelectRecord)
+            {
+                this.Name = name;
+                this.Text = text;
+                this.ApiPath = apiPath;
+                this.TemplateID = templateID;
+                this.ApiPathSelectRecord = apiPathSelectRecord;
+            }
+        }
         public class ColorTableRow
         {
             public List<String> ColorList { get; private set; } = new List<String>();
@@ -387,6 +407,8 @@ namespace HigLabo.Web.UI
         public HtmlAttributes PanelAttributes { get; private set; } = new HtmlAttributes();
         public HtmlAttributes InputAttributes { get; private set; } = new HtmlAttributes();
         public Boolean DisplayHourMinute { get; set; } = true;
+        public Boolean SelectRecordByTextEnable { get; set; } = false;
+        public List<Tab> TabList { get; private set; } = new List<Tab>();
 
         public InputPropertyPanel() { }
         public InputPropertyPanel(String name, String text)

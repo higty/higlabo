@@ -43,6 +43,9 @@
 input:focus-visible {
     outline: none;
 }
+textarea:focus-visible {
+    outline: none;
+}
 
 .display-none {
     display: none;
@@ -454,6 +457,20 @@ input:focus-visible {
         }
     }
 
+    .tab-header-list-panel {
+        padding: 10px 10px 0 10px;
+
+        .tab-header-panel {
+            display: inline-block;
+            cursor: pointer;
+            padding: 4px 10px;
+
+            &.selected {
+                background-color: var(--color-select-button-selected-color);
+            }
+        }
+    }
+
     .select-record-panel {
         @include display__flex();
         align-items: center;
@@ -488,6 +505,10 @@ input:focus-visible {
 
         [h-record] {
             padding: 4px;
+
+            &:hover {
+                background-color: var(--color-input-element-mouse-over-color);
+            }
         }
 
         .input-property-panel[element-type='CheckBox'] {
@@ -661,6 +682,8 @@ input:focus-visible {
         }
 
         .content-panel {
+            padding: 10px;
+
             .record-list-panel {
                 height: 0;
                 margin: 0;
@@ -670,10 +693,6 @@ input:focus-visible {
                 [h-record] {
                     cursor: pointer;
 
-                    &:hover {
-                        background-color: var(--color-input-element-mouse-over-color);
-                    }
-
                     &[current] {
                         background-color: var(--color-selected-back-color);
                     }
@@ -682,6 +701,11 @@ input:focus-visible {
                 .delete-link {
                     display: none;
                 }
+            }
+
+            .search-text-list-textbox {
+                width: 100%;
+                height: 80%;
             }
         }
 

@@ -232,14 +232,48 @@
         @if (Model.ElementType == InputElementType.Record || Model.ElementType == InputElementType.RecordList)
         {
             <div class="search-record-list-panel" search-record-list-panel="true">
-                <div class="header-panel">
-                    <input type="text" search-textbox="true" />
-                    <input type="button" class="button search-button" search-button="true" value="@Model.TextSettings.Search" />
-                    <input type="button" class="button" close-button="true" value="@Model.TextSettings.Close" />
+                @if(Model.ElementType == InputElementType.RecordList && 
+                (Model.SelectRecordByTextEnable == true || Model.TabList.Count > 0))
+                {
+                <div class="tab-header-list-panel" tab-header-list-panel="true">
+                    <div class="tab-header-panel selected" tab-name="Search">@Model.TextSettings.Search</div>
+                    @if(Model.ElementType == InputElementType.RecordList && Model.SelectRecordByTextEnable == true)
+                    {
+                    <div class="tab-header-panel" tab-name="Text">@Model.TextSettings.Text</div>
+                    }
+                    @foreach(var item in Model.TabList)
+                    {
+                    <div class="tab-header-panel" tab-name="@item.Name" 
+                    api-path="@item.ApiPath" api-parameter="@item.ApiParameter">@item.Text</div>
+                    }
                 </div>
-                <div class="content-panel">
-                    <div class="record-list-panel" record-list-panel="true" data-simplebar="true"></div>
+                }
+                <div class="tab-panel" tab-panel="true" tab-name="Search">
+                    <div class="header-panel">
+                        <input type="text" search-textbox="true" />
+                        <input type="button" class="button search-button" search-button="true" value="@Model.TextSettings.Search" />
+                        <input type="button" class="button" close-button="true" value="@Model.TextSettings.Close" />
+                    </div>
+                    <div class="content-panel">
+                        <div class="record-list-panel" record-list-panel="true" data-simplebar="true"></div>
+                    </div>
                 </div>
+                @if(Model.ElementType == InputElementType.RecordList && Model.SelectRecordByTextEnable == true)
+                {
+                <div class="tab-panel" tab-panel="true" tab-name="Text">
+                    <div class="content-panel">
+                        <textarea class="textarea search-text-list-textbox" search-text-list-textbox="true"></textarea>
+                    </div>
+                </div>
+                }
+                @foreach(var item in Model.TabList)
+                {
+                <div class="tab-panel" tab-panel="true" tab-name="@item.Name" template-id="@item.TemplateID" api-path="@item.ApiPathSelectRecord">
+                    <div class="content-panel">
+                        <div class="record-list-panel" record-list-panel="true" data-simplebar="true"></div>
+                    </div>
+                </div>
+                }
             </div>
         }
 

@@ -14,17 +14,44 @@ export class HigLaboVue {
         });
         return app;
     }
+    static create(templateID, data) {
+        document.body.insertBefore(document.createElement("div"), document.body.firstChild);
+        const dummyElement = document.body.firstChild;
+        const app = HigLaboVue.createApp(templateID, data);
+        app.mount(dummyElement);
+        const elementList = $(dummyElement.parentElement).find("[data-v-app]").getElementList();
+        const createdElementList = new List();
+        for (var i = 0; i < elementList.length; i++) {
+            var element = elementList[i];
+            while (element.children.length > 0) {
+                var actualElement = element.children[0];
+                HigLaboVue.appendChild(actualElement, data);
+                createdElementList.push(actualElement);
+                actualElement.remove();
+            }
+        }
+        dummyElement.remove();
+        return createdElementList.toArray();
+    }
     static render(element, templateID, data) {
         $(element).setInnerHtml("");
-        return this.create(element, null, templateID, data);
+        const l = HigLaboVue.create(templateID, data);
+        for (var i = 0; i < l.length; i++) {
+            element.append(l[i]);
+        }
+        return l;
     }
     static append(element, templateID, data) {
-        return this.create(element, null, templateID, data);
+        const l = HigLaboVue.create(templateID, data);
+        for (var i = 0; i < l.length; i++) {
+            element.append(l[i]);
+        }
+        return l;
     }
     static insertBefore(targetElement, templateID, data) {
-        return this.create(targetElement.parentElement, targetElement, templateID, data);
+        return this.processElement(targetElement.parentElement, targetElement, templateID, data);
     }
-    static create(element, targetElement, templateID, data) {
+    static processElement(element, targetElement, templateID, data) {
         if (element == null) {
             throw new Error("element must not be null.");
         }

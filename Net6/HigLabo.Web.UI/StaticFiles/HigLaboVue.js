@@ -14,17 +14,45 @@ export class HigLaboVue {
         });
         return app;
     }
+    static create(templateID, data) {
+        let dummyElement = this.getDummyElement();
+        const app = HigLaboVue.createApp(templateID, data);
+        app.mount(dummyElement);
+        const elementList = $(dummyElement.parentElement).find("[data-v-app]").getElementList();
+        const createdElementList = new List();
+        for (var i = 0; i < elementList.length; i++) {
+            var element = elementList[i];
+            while (element.children.length > 0) {
+                var actualElement = element.children[0];
+                createdElementList.push(actualElement);
+                actualElement.remove();
+                HigLaboVue.appendChild(actualElement, data);
+            }
+        }
+        return createdElementList.toArray();
+    }
+    static getDummyElement() {
+        const dummyElementID = "HigLaboVueDummyElement";
+        let dummyElement = document.getElementById(dummyElementID);
+        if (dummyElement == null) {
+            const div = document.createElement("div");
+            div.id = dummyElementID;
+            div.style.display = "none";
+            document.body.appendChild(div);
+        }
+        return document.getElementById(dummyElementID);
+    }
     static render(element, templateID, data) {
         $(element).setInnerHtml("");
-        return this.create(element, null, templateID, data);
+        return this.processElement(element, null, templateID, data);
     }
     static append(element, templateID, data) {
-        return this.create(element, null, templateID, data);
+        return this.processElement(element, null, templateID, data);
     }
     static insertBefore(targetElement, templateID, data) {
-        return this.create(targetElement.parentElement, targetElement, templateID, data);
+        return this.processElement(targetElement.parentElement, targetElement, templateID, data);
     }
-    static create(element, targetElement, templateID, data) {
+    static processElement(element, targetElement, templateID, data) {
         if (element == null) {
             throw new Error("element must not be null.");
         }

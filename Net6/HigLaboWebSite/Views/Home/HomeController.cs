@@ -1,4 +1,5 @@
 ﻿using HigLabo.Core;
+using HigLabo.Web;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -74,25 +75,8 @@ namespace HigLabo.Page
             var bodyText = Encoding.UTF8.GetString(bb);
             return bodyText;
         }
-        [HttpPost("/Api/Category/Search")]
-        public Object Api_Category_Search()
-        {
-            var l = new List<CategoryRecord>();
-            for (int i = 0; i < 10; i++)
-            {
-                var r = new CategoryRecord();
-                r.CategoryCD = Guid.NewGuid();
-                r.DisplayName = "カテゴリ" + i;
-                l.Add(r);
-            }
-            return new { Data = l };
-        }
-        public class CategoryRecord
-        {
-            public Guid CategoryCD { get; set; }
-            public String DisplayName { get; set; }
-        }
-
+    
+        
         [HttpPost("/Api/User/Search")]
         public async Task<Object> Api_User_Search()
         {
@@ -100,7 +84,7 @@ namespace HigLabo.Page
             for (int i = 0; i < 10; i++)
             {
                 var r = new UserRecord();
-                r.UserCD = Guid.NewGuid();
+                r.UserCD = "User" + i;
                 r.DisplayName = "ユーザー" + i;
                 l.Add(r);
             }
@@ -108,7 +92,7 @@ namespace HigLabo.Page
         }
         public class UserRecord
         {
-            public Guid UserCD { get; set; }
+            public String UserCD { get; set; }
             public String DisplayName { get; set; }
         }
 
@@ -151,6 +135,55 @@ namespace HigLabo.Page
             public String Name { get; set; }
             [JsonProperty("image")]
             public String Image { get; set; } = "https://avatars.githubusercontent.com/u/10071037?s=40&v=4";
+        }
+        [HttpPost("/Api/Category/Search")]
+        public Object Api_Category_Search()
+        {
+            var l = new List<CategoryRecord>();
+            for (int i = 0; i < 10; i++)
+            {
+                var r = new CategoryRecord();
+                r.CategoryCD = Guid.NewGuid();
+                r.DisplayName = "カテゴリ" + i;
+                l.Add(r);
+            }
+            return new WebApiActionResult(l);
+        }
+        public class OrganizationRecord
+        {
+            public Guid OrganizationCD { get; set; }
+            public String DisplayName { get; set; }
+        }
+        [HttpPost("/Api/Organization/List/Get")]
+        public Object Api_Organization_List_Get()
+        {
+            var l = new List<OrganizationRecord>();
+            for (int i = 0; i < 10; i++)
+            {
+                var r = new OrganizationRecord();
+                r.OrganizationCD = Guid.NewGuid();
+                r.DisplayName = "組織" + i;
+                l.Add(r);
+            }
+            return new WebApiActionResult(l);
+        }
+        public class CategoryRecord
+        {
+            public Guid CategoryCD { get; set; }
+            public String DisplayName { get; set; }
+        }
+        [HttpPost("/Api/Organization/User/List/Get")]
+        public Object Api_Organization_User_List_Get()
+        {
+            var l = new List<UserRecord>();
+            for (int i = 0; i < 10; i++)
+            {
+                var r = new UserRecord();
+                r.UserCD = "OrganizationUser" + i;
+                r.DisplayName = "組織のユーザー" + i;
+                l.Add(r);
+            }
+            return new WebApiActionResult(l);
         }
 
     }

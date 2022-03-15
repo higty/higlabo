@@ -18,7 +18,6 @@
     "HigLaboWebSite": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "TinyMce",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },

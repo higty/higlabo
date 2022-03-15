@@ -27,17 +27,48 @@ export class HigLaboVue {
         });
         return app;
     }
+    public static create(templateID: string, data: any): Array<Element> {
+        let dummyElement = this.getDummyElement();
+
+        const app = HigLaboVue.createApp(templateID, data);
+        app.mount(dummyElement);
+
+        //Remove [data-v-app] element and replace it.
+        const elementList = $(dummyElement.parentElement).find("[data-v-app]").getElementList();
+        const createdElementList = new List<Element>();
+        for (var i = 0; i < elementList.length; i++) {
+            var element = elementList[i];
+            while (element.children.length > 0) {
+                var actualElement = element.children[0];
+                createdElementList.push(actualElement);
+                actualElement.remove();
+                HigLaboVue.appendChild(actualElement, data);
+            }
+        }
+        return createdElementList.toArray();
+    }
+    private static getDummyElement() {
+        const dummyElementID = "HigLaboVueDummyElement";
+        let dummyElement = document.getElementById(dummyElementID);
+        if (dummyElement == null) {
+            const div = document.createElement("div");
+            div.id = dummyElementID;
+            div.style.display = "none";
+            document.body.appendChild(div);
+        }
+        return document.getElementById(dummyElementID);
+    }
     public static render(element: Element, templateID: string, data: any): Array<Element> {
         $(element).setInnerHtml("");
-        return this.create(element, null, templateID, data);
+        return this.processElement(element, null, templateID, data);
     }
     public static append(element: Element, templateID: string, data: any): Array<Element> {
-        return this.create(element, null, templateID, data);
+        return this.processElement(element, null, templateID, data);
     }
     public static insertBefore(targetElement: Element, templateID: string, data: any): Array<Element> {
-        return this.create(targetElement.parentElement, targetElement, templateID, data);
+        return this.processElement(targetElement.parentElement, targetElement, templateID, data);
     }
-    private static create(element: Element, targetElement: Element, templateID: string, data: any): Array<Element> {
+    private static processElement(element: Element, targetElement: Element, templateID: string, data: any): Array<Element> {
         if (element == null) { throw new Error("element must not be null."); }
 
         const span = document.createElement("span") as HTMLElement;
