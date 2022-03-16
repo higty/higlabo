@@ -56,6 +56,7 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
 
         $("body").on("click", "[input-property-panel] [tab-header-list-panel] [tab-name]", this.tabName_Click.bind(this));
+        $("body").on("click", "[input-property-panel] [tab-panel] [search-by-text-button]", this.searchByTextButton_Click.bind(this));
         $("body").on("click", "[input-property-panel] [tab-panel][template-id] [record-list-panel] [h-record]", this.tabPanelRecord_Click.bind(this));
 
         this.initializeSetByEndTimeProperty();
@@ -457,8 +458,12 @@ export class InputPropertyPanel {
         }
     }
     private showSearchRecordListPanel(target: Element) {
-        const pl = $(target).getNearestElement("[search-record-list-panel]");
-        $(pl).addClass("slide-down");
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(target).getNearestElement("[search-record-list-panel]");
+
+        this.selectTab(ipl, "Search");
+
+        $(spl).addClass("slide-down");
         $(target).getNearest("[search-textbox]").setFocus();
         this.search(target);
     }
@@ -668,19 +673,25 @@ export class InputPropertyPanel {
     }
 
     private tabName_Click(target: Element, e: Event) {
-        const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
-        const pl = $(target).getFirstParent("[tab-header-list-panel]").getFirstElement();
-        $(pl).find("[tab-name]").removeClass("selected");
-        $(target).addClass("selected");
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
         const tabName = $(target).getAttribute("tab-name");
+        this.selectTab(ipl, tabName);
+    }
+    private selectTab(inputPropertyPanel: Element, tabName: string) {
+        const ipl = inputPropertyPanel;
+        const spl = $(ipl).find("[search-record-list-panel]").getFirstElement();
+        const pl = $(ipl).find("[tab-header-list-panel]").getFirstElement();
+        $(pl).find("[tab-name]").removeClass("selected");
+        const selectedTabHeaderPanel = $(pl).find("[tab-name='" + tabName + "']");
+        selectedTabHeaderPanel.addClass("selected");
 
         $(spl).find("[tab-panel][tab-name]").hide();
         const tabPanel = $(spl).find("[tab-panel][tab-name='" + tabName + "']").getFirstElement();
         $(tabPanel).removeStyle("display");
 
-        const apiPath = $(target).getAttribute("api-path");
+        const apiPath = $(selectedTabHeaderPanel).getAttribute("api-path");
         if (apiPath != "") {
-            const p = JSON.parse($(target).getAttribute("api-parameter"));
+            const p = JSON.parse($(selectedTabHeaderPanel).getAttribute("api-parameter"));
             HttpClient.postJson(apiPath, p, this.tabApiPathCallback.bind(this), null, tabPanel);
         }
     }
@@ -695,15 +706,30 @@ export class InputPropertyPanel {
             HigLaboVue.append(pl, templateID, r);
         }
     }
+    private searchByTextButton_Click(target: Element, e: Event) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const apiPath = $(target).getAttribute("api-path");
+        let p = JSON.parse($(ipl).getAttribute("api-parameter"));
+        p.SearchText = $(target).getNearest("[search-text-list-textbox]").getValue();
+        HttpClient.postJson(apiPath, p, this.searchByTextCallback.bind(this), null, target);
+    }
+    private searchByTextCallback(response: HttpResponse, button : Element) {
+        const ipl = $(button).getFirstParent("[input-property-panel]").getFirstElement();
+        this.setSelectedRecordList(response, ipl);
+    }
     private tabPanelRecord_Click(target: Element, e: Event) {
         const tabPanel = $(target).getFirstParent("[tab-panel]").getFirstElement();
         const apiPath = $(tabPanel).getAttribute("api-path");
         const p = InputPropertyPanel.createRecord(target);
         HttpClient.postJson(apiPath, p, this.tabPanelRecordCallback.bind(this), null, tabPanel);
     }
-    private tabPanelRecordCallback(response: HttpResponse, tabPanel : Element) {
-        const result = response.getWebApiResult();
+    private tabPanelRecordCallback(response: HttpResponse, tabPanel: Element) {
         const ipl = $(tabPanel).getFirstParent("[input-property-panel]").getFirstElement();
+        this.setSelectedRecordList(response, ipl);
+    }
+    private setSelectedRecordList(response: HttpResponse, inputPropertyPanel: Element) {
+        const result = response.getWebApiResult();
+        const ipl = inputPropertyPanel;
         const templateID = $(ipl).getAttribute("template-id");
         const spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
 

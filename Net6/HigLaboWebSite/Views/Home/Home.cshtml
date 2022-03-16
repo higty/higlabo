@@ -21,9 +21,9 @@
             var pl = new InputPropertyPanel(InputElementType.RecordList, "UserList", "ユーザー");
             pl.ApiPathSearch = "/Api/User/Search";
             pl.TemplateID = "UserNamePanelTemplate";
-            //pl.SelectRecordByTextEnable = true;
-            //pl.TabList.Add(new InputPropertyPanel.Tab("Organization", "Organization", "/Api/Organization/List/Get", "OrganizationReocrdTemplate"
-            //, "/Api/Organization/User/List/Get"));
+            pl.ApiPathSearchByText = "/Api/User/Text/Search";
+            pl.TabList.Add(new InputPropertyPanel.Tab("Organization", "Organization", "/Api/Organization/List/Get", "OrganizationReocrdTemplate"
+            , "/Api/Organization/User/List/Get"));
             await Html.RenderPartialAsync(pl);
         }
         await Html.RenderPartialAsync(HigLaboView.CommonTemplate);

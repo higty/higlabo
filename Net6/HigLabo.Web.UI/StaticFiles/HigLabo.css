@@ -625,7 +625,7 @@ textarea:focus-visible {
 }
 .input-property-panel .search-record-list-panel .content-panel .search-text-list-textbox {
   width: 100%;
-  height: 80%;
+  height: 400px;
 }
 .input-property-panel .search-record-list-panel.slide-down {
   display: block;

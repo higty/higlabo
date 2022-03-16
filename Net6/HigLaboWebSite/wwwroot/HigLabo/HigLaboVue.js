@@ -15,8 +15,9 @@ export class HigLaboVue {
         return app;
     }
     static create(templateID, data) {
-        document.body.insertBefore(document.createElement("div"), document.body.firstChild);
-        const dummyElement = document.body.firstChild;
+        const dummyContainer = this.getDummyElement();
+        const dummyElement = document.createElement("div");
+        dummyContainer.appendChild(dummyElement);
         const app = HigLaboVue.createApp(templateID, data);
         app.mount(dummyElement);
         const elementList = $(dummyElement.parentElement).find("[data-v-app]").getElementList();
@@ -25,28 +26,31 @@ export class HigLaboVue {
             var element = elementList[i];
             while (element.children.length > 0) {
                 var actualElement = element.children[0];
-                HigLaboVue.appendChild(actualElement, data);
                 createdElementList.push(actualElement);
                 actualElement.remove();
+                HigLaboVue.appendChild(actualElement, data);
             }
         }
         dummyElement.remove();
         return createdElementList.toArray();
     }
+    static getDummyElement() {
+        const dummyElementID = "HigLaboVueDummyElement";
+        let dummyElement = document.getElementById(dummyElementID);
+        if (dummyElement == null) {
+            const div = document.createElement("div");
+            div.id = dummyElementID;
+            div.style.display = "none";
+            document.body.appendChild(div);
+        }
+        return document.getElementById(dummyElementID);
+    }
     static render(element, templateID, data) {
         $(element).setInnerHtml("");
-        const l = HigLaboVue.create(templateID, data);
-        for (var i = 0; i < l.length; i++) {
-            element.append(l[i]);
-        }
-        return l;
+        return this.processElement(element, null, templateID, data);
     }
     static append(element, templateID, data) {
-        const l = HigLaboVue.create(templateID, data);
-        for (var i = 0; i < l.length; i++) {
-            element.append(l[i]);
-        }
-        return l;
+        return this.processElement(element, null, templateID, data);
     }
     static insertBefore(targetElement, templateID, data) {
         return this.processElement(targetElement.parentElement, targetElement, templateID, data);

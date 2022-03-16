@@ -15,7 +15,9 @@ export class HigLaboVue {
         return app;
     }
     static create(templateID, data) {
-        let dummyElement = this.getDummyElement();
+        const dummyContainer = this.getDummyElement();
+        const dummyElement = document.createElement("div");
+        dummyContainer.appendChild(dummyElement);
         const app = HigLaboVue.createApp(templateID, data);
         app.mount(dummyElement);
         const elementList = $(dummyElement.parentElement).find("[data-v-app]").getElementList();
@@ -29,6 +31,7 @@ export class HigLaboVue {
                 HigLaboVue.appendChild(actualElement, data);
             }
         }
+        dummyElement.remove();
         return createdElementList.toArray();
     }
     static getDummyElement() {

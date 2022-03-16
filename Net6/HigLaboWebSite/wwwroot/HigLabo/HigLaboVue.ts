@@ -28,9 +28,9 @@ export class HigLaboVue {
         return app;
     }
     public static create(templateID: string, data: any): Array<Element> {
-        //Add dummy element to body to ensure createApp works.
-        document.body.insertBefore(document.createElement("div"), document.body.firstChild);
-        const dummyElement = document.body.firstChild;
+        const dummyContainer = this.getDummyElement();
+        const dummyElement = document.createElement("div");
+        dummyContainer.appendChild(dummyElement);
 
         const app = HigLaboVue.createApp(templateID, data);
         app.mount(dummyElement);
@@ -42,28 +42,31 @@ export class HigLaboVue {
             var element = elementList[i];
             while (element.children.length > 0) {
                 var actualElement = element.children[0];
-                HigLaboVue.appendChild(actualElement, data);
                 createdElementList.push(actualElement);
                 actualElement.remove();
+                HigLaboVue.appendChild(actualElement, data);
             }
         }
         dummyElement.remove();
         return createdElementList.toArray();
     }
+    private static getDummyElement() {
+        const dummyElementID = "HigLaboVueDummyElement";
+        let dummyElement = document.getElementById(dummyElementID);
+        if (dummyElement == null) {
+            const div = document.createElement("div");
+            div.id = dummyElementID;
+            div.style.display = "none";
+            document.body.appendChild(div);
+        }
+        return document.getElementById(dummyElementID);
+    }
     public static render(element: Element, templateID: string, data: any): Array<Element> {
         $(element).setInnerHtml("");
-        const l = HigLaboVue.create(templateID, data);
-        for (var i = 0; i < l.length; i++) {
-            element.append(l[i]);
-        }
-        return l;
+        return this.processElement(element, null, templateID, data);
     }
     public static append(element: Element, templateID: string, data: any): Array<Element> {
-        const l = HigLaboVue.create(templateID, data);
-        for (var i = 0; i < l.length; i++) {
-            element.append(l[i]);
-        }
-        return l;
+        return this.processElement(element, null, templateID, data);
     }
     public static insertBefore(targetElement: Element, templateID: string, data: any): Array<Element> {
         return this.processElement(targetElement.parentElement, targetElement, templateID, data);

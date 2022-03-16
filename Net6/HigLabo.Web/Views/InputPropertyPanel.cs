@@ -407,7 +407,7 @@ namespace HigLabo.Web.UI
         public HtmlAttributes PanelAttributes { get; private set; } = new HtmlAttributes();
         public HtmlAttributes InputAttributes { get; private set; } = new HtmlAttributes();
         public Boolean DisplayHourMinute { get; set; } = true;
-        public Boolean SelectRecordByTextEnable { get; set; } = false;
+        public String ApiPathSearchByText { get; set; } = "";
         public List<Tab> TabList { get; private set; } = new List<Tab>();
 
         public InputPropertyPanel() { }

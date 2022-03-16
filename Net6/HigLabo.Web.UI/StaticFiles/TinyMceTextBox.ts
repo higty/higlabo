@@ -57,12 +57,40 @@ export class TinyMceTextBox {
                     items: 'addcomment showcomments deleteallconversations'
                 }
             },
+
             autosave_ask_before_unload: false,
             //autosave_interval: '30s',
             //autosave_prefix: '{path}{query}-{id}-',
             //autosave_restore_when_empty: false,
             //autosave_retention: '2m',
             image_advtab: true,
+            codesample_languages: [
+                { text: "plaintext", value: "Plain text" }, // The default language.
+                { text: "html", value: "HTML" },
+                { text: "xml", value: "HTML/XML" },
+                { text: "css", value: "CSS" },
+                { text: "json", value: "JSON" },
+                { text: "javascript", value: "JavaScript" },
+                { text: "typescript", value: "TypeScript" },
+                { text: "sql", value: "SQL" },
+                { text: "graphql", value: "GraphQL" },
+                { text: "c", value: "C" },
+                { text: "cpp", value: "C++" },
+                { text: "csharp", value: "C#" },
+                { text: "java", value: "Java" },
+                { text: "php", value: "PHP" },
+                { text: "python", value: "Python" },
+                { text: "ruby", value: "Ruby" },
+                { text: "php", value: "PHP" },
+                { text: "kotlin", value: "Kotlin" },
+                { text: "go", value: "GO" },
+                { text: "swift", value: "Swift" },
+                { text: "bash", value: "Bash" },
+                { text: "powershell", value: "PowerShell" },
+                { text: "docker", value: "Docker" },
+                { text: "yaml", value: "YAML" },
+                { text: "diff", value: "Diff" },
+            ],
             link_list: [
                 //    { title: 'My page 1', value: 'https://www.tiny.cloud' },
                 //    { title: 'My page 2', value: 'http://www.moxiecode.com' }

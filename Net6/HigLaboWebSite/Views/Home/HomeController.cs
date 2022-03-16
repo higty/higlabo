@@ -75,10 +75,10 @@ namespace HigLabo.Page
             var bodyText = Encoding.UTF8.GetString(bb);
             return bodyText;
         }
-    
-        
+
+
         [HttpPost("/Api/User/Search")]
-        public async Task<Object> Api_User_Search()
+        public Object Api_User_Search()
         {
             var l = new List<UserRecord>();
             for (int i = 0; i < 10; i++)
@@ -88,7 +88,31 @@ namespace HigLabo.Page
                 r.DisplayName = "ユーザー" + i;
                 l.Add(r);
             }
-            return new { Data = l };
+            return new WebApiActionResult(l);
+        }
+        public class User_Text_Search_Parameter
+        {
+            public String SearchText { get; set; } = "";
+        }
+        [HttpPost("/Api/User/Text/Search")]
+        public async Task<Object> Api_Text_User_Search()
+        {
+            var bodyText = await this.GetBodyText();
+            var p = JsonConvert.DeserializeObject<User_Text_Search_Parameter>(bodyText);
+
+            var l = new List<UserRecord>();
+
+            var sr = new StringReader(p.SearchText);
+            while (sr.Peek() > -1)
+            {
+                var line = sr.ReadLine();
+
+                var r = new UserRecord();
+                r.UserCD = "TextUser" + l.Count;
+                r.DisplayName = line;
+                l.Add(r);
+            }
+            return new WebApiActionResult(l);
         }
         public class UserRecord
         {
