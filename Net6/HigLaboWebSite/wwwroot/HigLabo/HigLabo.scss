@@ -458,16 +458,26 @@ textarea:focus-visible {
     }
 
     .tab-header-list-panel {
+        @include display__flex();
+        align-items: center;
         padding: 10px 10px 0 10px;
 
-        .tab-header-panel {
-            display: inline-block;
-            cursor: pointer;
-            padding: 4px 10px;
+        > .flex-left-panel {
+            @include display__flex();
+            align-items: center;
 
-            &.selected {
-                background-color: var(--color-select-button-selected-color);
+            .tab-header-panel {
+                cursor: pointer;
+                padding: 8px;
+
+                &.selected {
+                    background-color: var(--color-select-button-selected-color);
+                }
             }
+        }
+
+        > .flex-right-panel {
+            margin-left: auto;
         }
     }
 

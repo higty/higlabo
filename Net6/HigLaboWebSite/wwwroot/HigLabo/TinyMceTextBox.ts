@@ -6,6 +6,7 @@ export class TinyMceTextBox {
     private tinymce = window["tinymce"];
     private textBox: Element;
     private fileUploadElement: HTMLInputElement;
+    private initializeCompletedEventList = new List < (editor) => void> ();
 
     public config: any;
     public editor;
@@ -143,9 +144,18 @@ export class TinyMceTextBox {
                         this.fileUploadElement.click();
                     }.bind(this)
                 });
-            }.bind(this)
+            }.bind(this),
 
+            init_instance_callback: function (editor) {
+                for (var i = 0; i < this.initializeCompletedEventList.count(); i++) {
+                    let f = this.initializeCompletedEventList.get(i);
+                    f(editor);
+                }
+            }.bind(this)
         };
+    }
+    public addInitializeCompletedEventHandler(func: (editor) => void) {
+        this.initializeCompletedEventList.push(func);
     }
     public initialize(textBox: Element) {
         this.remove();
@@ -256,7 +266,6 @@ export class TinyMceTextBox {
     }
     public remove() {
         if (this.textBox != null) {
-            this.tinymce.remove();
             $(this.textBox).getSibling("Next").remove();
             $(this.textBox).removeStyle("display");
 
@@ -265,3 +274,5 @@ export class TinyMceTextBox {
         }
     }
 }
+
+

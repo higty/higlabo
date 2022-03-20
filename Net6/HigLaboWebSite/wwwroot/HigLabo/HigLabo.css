@@ -384,15 +384,31 @@ textarea:focus-visible {
   text-decoration: underline;
 }
 .input-property-panel .tab-header-list-panel {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
   padding: 10px 10px 0 10px;
 }
-.input-property-panel .tab-header-list-panel .tab-header-panel {
-  display: inline-block;
-  cursor: pointer;
-  padding: 4px 10px;
+.input-property-panel .tab-header-list-panel > .flex-left-panel {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
 }
-.input-property-panel .tab-header-list-panel .tab-header-panel.selected {
+.input-property-panel .tab-header-list-panel > .flex-left-panel .tab-header-panel {
+  cursor: pointer;
+  padding: 4px 8px;
+}
+.input-property-panel .tab-header-list-panel > .flex-left-panel .tab-header-panel.selected {
   background-color: var(--color-select-button-selected-color);
+}
+.input-property-panel .tab-header-list-panel > .flex-right-panel {
+  margin-left: auto;
 }
 .input-property-panel .select-record-panel {
   display: -webkit-flex;

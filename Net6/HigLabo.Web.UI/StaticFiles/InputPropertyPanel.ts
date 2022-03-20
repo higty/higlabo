@@ -589,7 +589,9 @@ export class InputPropertyPanel {
 
                     $(rpl).setInnerHtml("");
                     const r = InputPropertyPanel.createRecord(rpl);
-                    const pl = HigLaboVue.append(spl, templateID, r);
+                    const pl = HigLaboVue.append(spl, templateID, r)[0];
+                    InputPropertyPanel.setElementProperty(pl, r, "");
+
                     $(spl).setFocus();
                     this.closeSearchRecordListPanel(target);
                 }
@@ -600,6 +602,8 @@ export class InputPropertyPanel {
 
                     const r = InputPropertyPanel.createRecord(rpl);
                     const pl = HigLaboVue.append(spl, templateID, r)[0];
+                    InputPropertyPanel.setElementProperty(pl, r, "");
+
                     $(pl).setAttribute("toggle-state", "Expand");
                     InputPropertyPanel.setRadioButtonProperty(pl, name, hKey);
                     const checkBoxList = $(pl).find("input[type='checkbox']").getElementList();

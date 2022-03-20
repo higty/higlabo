@@ -4,8 +4,10 @@ import { List } from "./linq/Collections.js";
 export class TinyMceTextBox {
     constructor() {
         this.tinymce = window["tinymce"];
+        this.initializeCompletedEventList = new List();
         this.fileUploadUrlPath = "";
         this.imageUploadUrlPath = "";
+        this.CustomCssFilePath = "";
         this.createUploadResultHtml = this.defaultCreateUploadResultHtml;
         this.initializeConfig();
     }
@@ -80,12 +82,13 @@ export class TinyMceTextBox {
             templates: [],
             template_cdate_format: '[Created at: %m/%d/%Y : %H:%M:%S]',
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
-            indentation: '16px',
+            default_link_target: "_blank",
+            indentation: "16px",
             indent_use_margin: true,
             noneditable_noneditable_class: 'mceNonEditable',
             toolbar_mode: 'sliding',
             spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
-            tinycomments_mode: 'embedded',
+            tinycomments_mode: "embedded",
             tinycomments_author: "",
             content_style: '.mymention{ color: gray; }',
             a11y_advanced_options: true,
@@ -108,18 +111,14 @@ export class TinyMceTextBox {
                         this.fileUploadElement.click();
                     }.bind(this)
                 });
+            }.bind(this),
+            init_instance_callback: function (editor) {
+                for (var i = 0; i < this.initializeCompletedEventList.count(); i++) {
+                    let f = this.initializeCompletedEventList.get(i);
+                    f(editor);
+                }
             }.bind(this)
         };
-    }
-    initialize(textBox) {
-        this.remove();
-        if (textBox == null) {
-            return;
-        }
-        this.textBox = textBox;
-        this.textBox.richTextbox = this;
-        this.config.target = textBox;
-        this.tinymce.init(this.config);
     }
     initializeFileUploadElement(editor) {
         const pl = $(editor.getElement()).getParentElementList()[0];
@@ -129,6 +128,33 @@ export class TinyMceTextBox {
         pl.appendChild(fd);
         $(fd).change(this.fileSelected.bind(this));
         this.fileUploadElement = fd;
+    }
+    initialize(textBox) {
+        this.remove();
+        if (textBox == null) {
+            return;
+        }
+        this.textBox = textBox;
+        this.textBox.richTextbox = this;
+        this.config.target = textBox;
+        if (this.CustomCssFilePath != "") {
+            this.addInitializeCompletedEventHandler(this.addCustomeCssFileLinkElement.bind(this));
+        }
+        this.tinymce.init(this.config);
+    }
+    addCustomeCssFileLinkElement(editor) {
+        const iframe = $(editor.getElement().parentElement).find("iframe").getFirstElement();
+        const iframeDocument = iframe.contentWindow.document;
+        if (iframeDocument.getElementById("TinyMceCss") != null) {
+            return;
+        }
+        const head = $(iframeDocument).find("head").getFirstElement();
+        const link = iframeDocument.createElement("link");
+        link.id = "TinyMceCss";
+        $(link).setAttribute("rel", "stylesheet");
+        $(link).setAttribute("type", "text/css");
+        $(link).setAttribute("href", this.CustomCssFilePath);
+        head.appendChild(link);
     }
     fileSelected(e) {
         if (this.fileUploadUrlPath == "") {
@@ -185,9 +211,9 @@ export class TinyMceTextBox {
         });
     }
     invokeImageUploadCallback(response, context) {
-        const result = response.jsonParse();
+        const result = response.getWebApiResult();
         const success = context.success;
-        success(result.Location);
+        success(result.Data.ImageUrl);
         if (this.imageUploadCallback != null) {
             this.imageUploadCallback(response, context);
         }
@@ -196,6 +222,9 @@ export class TinyMceTextBox {
         if (this.imageUploading != null) {
             this.imageUploading(e);
         }
+    }
+    addInitializeCompletedEventHandler(func) {
+        this.initializeCompletedEventList.push(func);
     }
     setContent(value) {
         if (this.editor != null) {
@@ -218,7 +247,6 @@ export class TinyMceTextBox {
     }
     remove() {
         if (this.textBox != null) {
-            this.tinymce.remove();
             $(this.textBox).getSibling("Next").remove();
             $(this.textBox).removeStyle("display");
             this.textBox = null;

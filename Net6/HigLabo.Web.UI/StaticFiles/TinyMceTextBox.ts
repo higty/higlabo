@@ -6,6 +6,7 @@ export class TinyMceTextBox {
     private tinymce = window["tinymce"];
     private textBox: Element;
     private fileUploadElement: HTMLInputElement;
+    private initializeCompletedEventList = new List < (editor) => void> ();
 
     public config: any;
     public editor;
@@ -14,6 +15,7 @@ export class TinyMceTextBox {
     public imageUploadUrlPath = "";
     public imageUploadCallback: HttpRequestCallback;
     public imageUploading: EventListener;
+    public CustomCssFilePath = "";
 
     constructor() {
         this.createUploadResultHtml = this.defaultCreateUploadResultHtml;
@@ -112,12 +114,13 @@ export class TinyMceTextBox {
             template_cdate_format: '[Created at: %m/%d/%Y : %H:%M:%S]',
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
 
-            indentation: '16px',
+            default_link_target: "_blank",
+            indentation: "16px",
             indent_use_margin: true,
             noneditable_noneditable_class: 'mceNonEditable',
             toolbar_mode: 'sliding',
             spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
-            tinycomments_mode: 'embedded',
+            tinycomments_mode: "embedded",
             tinycomments_author: "",
             content_style: '.mymention{ color: gray; }',
             a11y_advanced_options: true,
@@ -143,18 +146,15 @@ export class TinyMceTextBox {
                         this.fileUploadElement.click();
                     }.bind(this)
                 });
+            }.bind(this),
+
+            init_instance_callback: function (editor) {
+                for (var i = 0; i < this.initializeCompletedEventList.count(); i++) {
+                    let f = this.initializeCompletedEventList.get(i);
+                    f(editor);
+                }
             }.bind(this)
-
         };
-    }
-    public initialize(textBox: Element) {
-        this.remove();
-        if (textBox == null) { return; }
-
-        this.textBox = textBox as Element;
-        (this.textBox as any).richTextbox = this;
-        this.config.target = textBox;
-        this.tinymce.init(this.config);
     }
     private initializeFileUploadElement(editor) {
         const pl = $(editor.getElement()).getParentElementList()[0] as HTMLElement;
@@ -165,6 +165,33 @@ export class TinyMceTextBox {
         $(fd).change(this.fileSelected.bind(this));
         this.fileUploadElement = fd;
     }
+
+    public initialize(textBox: Element) {
+        this.remove();
+        if (textBox == null) { return; }
+
+        this.textBox = textBox as Element;
+        (this.textBox as any).richTextbox = this;
+        this.config.target = textBox;
+        if (this.CustomCssFilePath != "") {
+            this.addInitializeCompletedEventHandler(this.addCustomeCssFileLinkElement.bind(this));
+        }
+        this.tinymce.init(this.config);
+    }
+    private addCustomeCssFileLinkElement(editor) {
+        const iframe = $(editor.getElement().parentElement).find("iframe").getFirstElement() as HTMLIFrameElement;
+        const iframeDocument = iframe.contentWindow.document;
+        if (iframeDocument.getElementById("TinyMceCss") != null) { return; }
+
+        const head = $(iframeDocument).find("head").getFirstElement();
+        const link = iframeDocument.createElement("link");
+        link.id = "TinyMceCss";
+        $(link).setAttribute("rel", "stylesheet");
+        $(link).setAttribute("type", "text/css");
+        $(link).setAttribute("href", this.CustomCssFilePath);
+        head.appendChild(link);
+    }
+
     private fileSelected(e: Event) {
         if (this.fileUploadUrlPath == "") { return; }
         const f = this.fileUploadElement;
@@ -223,9 +250,9 @@ export class TinyMceTextBox {
         );
     }
     private invokeImageUploadCallback(response: HttpResponse, context: any) {
-        const result = response.jsonParse();
+        const result = response.getWebApiResult();
         const success = context.success;
-        success(result.Location);
+        success(result.Data.ImageUrl);
         if (this.imageUploadCallback != null) {
             this.imageUploadCallback(response, context);
         }
@@ -234,6 +261,10 @@ export class TinyMceTextBox {
         if (this.imageUploading != null) {
             this.imageUploading(e);
         }
+    }
+
+    public addInitializeCompletedEventHandler(func: (editor) => void) {
+        this.initializeCompletedEventList.push(func);
     }
 
     public setContent(value) {
@@ -256,7 +287,6 @@ export class TinyMceTextBox {
     }
     public remove() {
         if (this.textBox != null) {
-            this.tinymce.remove();
             $(this.textBox).getSibling("Next").remove();
             $(this.textBox).removeStyle("display");
 
@@ -265,3 +295,5 @@ export class TinyMceTextBox {
         }
     }
 }
+
+

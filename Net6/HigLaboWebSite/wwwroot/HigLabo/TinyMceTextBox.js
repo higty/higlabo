@@ -4,6 +4,7 @@ import { List } from "./linq/Collections.js";
 export class TinyMceTextBox {
     constructor() {
         this.tinymce = window["tinymce"];
+        this.initializeCompletedEventList = new List();
         this.fileUploadUrlPath = "";
         this.imageUploadUrlPath = "";
         this.createUploadResultHtml = this.defaultCreateUploadResultHtml;
@@ -46,6 +47,33 @@ export class TinyMceTextBox {
             },
             autosave_ask_before_unload: false,
             image_advtab: true,
+            codesample_languages: [
+                { text: "plaintext", value: "Plain text" },
+                { text: "html", value: "HTML" },
+                { text: "xml", value: "HTML/XML" },
+                { text: "css", value: "CSS" },
+                { text: "json", value: "JSON" },
+                { text: "javascript", value: "JavaScript" },
+                { text: "typescript", value: "TypeScript" },
+                { text: "sql", value: "SQL" },
+                { text: "graphql", value: "GraphQL" },
+                { text: "c", value: "C" },
+                { text: "cpp", value: "C++" },
+                { text: "csharp", value: "C#" },
+                { text: "java", value: "Java" },
+                { text: "php", value: "PHP" },
+                { text: "python", value: "Python" },
+                { text: "ruby", value: "Ruby" },
+                { text: "php", value: "PHP" },
+                { text: "kotlin", value: "Kotlin" },
+                { text: "go", value: "GO" },
+                { text: "swift", value: "Swift" },
+                { text: "bash", value: "Bash" },
+                { text: "powershell", value: "PowerShell" },
+                { text: "docker", value: "Docker" },
+                { text: "yaml", value: "YAML" },
+                { text: "diff", value: "Diff" },
+            ],
             link_list: [],
             image_list: [],
             image_class_list: [],
@@ -81,8 +109,17 @@ export class TinyMceTextBox {
                         this.fileUploadElement.click();
                     }.bind(this)
                 });
+            }.bind(this),
+            init_instance_callback: function (editor) {
+                for (var i = 0; i < this.initializeCompletedEventList.count(); i++) {
+                    let f = this.initializeCompletedEventList.get(i);
+                    f(editor);
+                }
             }.bind(this)
         };
+    }
+    addInitializeCompletedEventHandler(func) {
+        this.initializeCompletedEventList.push(func);
     }
     initialize(textBox) {
         this.remove();
@@ -191,7 +228,6 @@ export class TinyMceTextBox {
     }
     remove() {
         if (this.textBox != null) {
-            this.tinymce.remove();
             $(this.textBox).getSibling("Next").remove();
             $(this.textBox).removeStyle("display");
             this.textBox = null;
