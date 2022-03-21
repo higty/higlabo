@@ -245,6 +245,14 @@ namespace HigLabo.Core
         {
             return AppEnvironment.Settings.TypeConverter.ToDecimal(value);
         }
+        public static TimeOnly? ToTimeOnly(this String value)
+        {
+            return AppEnvironment.Settings.TypeConverter.ToTimeOnly(value);
+        }
+        public static DateOnly? ToDateOnly(this String value)
+        {
+            return AppEnvironment.Settings.TypeConverter.ToDateOnly(value);
+        }
         public static TimeSpan? ToTimeSpan(this String value)
         {
             return AppEnvironment.Settings.TypeConverter.ToTimeSpan(value);
