@@ -26,11 +26,11 @@ export class TinyMceTextBox {
         this.config = {
             height: 600,
             plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
-                + "image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
+                + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                 + "noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export autoresize",
             mobile: {
                 plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
-                    + "image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
+                    + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                     + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable autoresize"
             },
             menubar: "file edit view insert format tools table tc help",
@@ -115,6 +115,7 @@ export class TinyMceTextBox {
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
 
             default_link_target: "_blank",
+            smart_paste : false,
             indentation: "16px",
             indent_use_margin: true,
             noneditable_noneditable_class: 'mceNonEditable',
@@ -134,6 +135,7 @@ export class TinyMceTextBox {
             mentions_menu_complete: null,
             mentions_select: null,
             mentions_item_type: "profile",
+
 
             setup: function (editor) {
                 this.editor = editor;
