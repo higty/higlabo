@@ -27,6 +27,14 @@ namespace HigLabo.DbSharpApplication.Core
         public static void Initialize()
         {
             WindowStateInfo.DefaultIcon = new BitmapImage(new Uri(Environment.CurrentDirectory + "\\Icon\\DbSharp.ico"));
+
+#if DEBUG
+            ConfigData.DefaultFolderPath = ConfigData.DefaultFolderPath + "\\Debug";
+#endif
+            if (Directory.Exists(ConfigData.DefaultFolderPath) == false)
+            {
+                Directory.CreateDirectory(ConfigData.DefaultFolderPath);
+            }
             AValue.ConfigData = ConfigData.LoadConfigData();
 
             var l = AValue.ConfigData.RecentSchemaFiles.Where(el => String.IsNullOrEmpty(el.FilePath)).ToList();

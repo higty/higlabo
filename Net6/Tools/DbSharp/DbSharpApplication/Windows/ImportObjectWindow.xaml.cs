@@ -211,8 +211,12 @@ namespace HigLabo.DbSharpApplication
                 MessageBox.Show(Properties.Resources.ConnectionStringInvalid);
                 return;
             }
-            var sv = new ImportObjectCommandService(AValue.SchemaData, ci.ConnectionString
-                , this.ForeignKeyCheckBox.IsChecked == true
+            var disableForeignKey = this.ForeignKeyCheckBox.IsChecked == true;
+            if (_StoredProcedures.Exists(el => el.IsChecked) == false)
+            {
+                disableForeignKey = false;
+            }
+            var sv = new ImportObjectCommandService(AValue.SchemaData, ci.ConnectionString, disableForeignKey
                 , _Tables.Where(el => el.IsChecked).Select(el => el.Item.Name)
                 , _StoredProcedures.Where(el => el.IsChecked).Select(el => el.Item.Name)
                 , _UserDefinedTableTypes.Where(el => el.IsChecked).Select(el => el.Item.Name)

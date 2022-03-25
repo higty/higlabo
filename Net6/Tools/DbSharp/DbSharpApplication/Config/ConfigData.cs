@@ -15,7 +15,11 @@ namespace HigLabo.DbSharpApplication.Core
 {
     public class ConfigData : INotifyPropertyChanged
     {
-        public static String DefaultFilePath = Environment.CurrentDirectory + "\\Config.xml";
+        public static String DefaultFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\HigLabo\\DbSharpApplication";
+        public static String DefaultFilePath
+        {
+            get { return DefaultFolderPath + "\\Config.xml"; }
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         private String _CultureName = "";

@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>6.5.1.0</Version>
+    <Version>6.6.0.0</Version>
     <Authors>Higty</Authors>
     <RootNamespace>HigLabo.DbSharpApplication</RootNamespace>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -14,10 +14,6 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
 	<UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Icon\DbSharp.ico" />
-  </ItemGroup>
 
   <ItemGroup>
     <Content Include="Icon\DbSharp.ico">
@@ -68,6 +64,7 @@
     <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
 

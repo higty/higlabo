@@ -82,12 +82,7 @@ namespace HigLabo.DbSharp.Service
 
                 using (var stm = new StreamWriter(file.FilePath, false, Encoding.UTF8))
                 {
-                    foreach (var c in String.Format("//Generated at {0} by DbSharpApplication."
-                        , DateTimeOffset.Now.ToString("yyyy/MM/dd HH:mm:ss"), Environment.NewLine))
-                    {
-                        stm.Write(c);
-                    }
-                    stm.WriteLine();
+                    stm.WriteLine("//Generated at {0} by DbSharpApplication.");
                     stm.WriteLine("//https://github.com/higty/higlabo/tree/master/Net6/Tools/DbSharp");
                     cs = new CSharpSourceCodeGenerator(stm);
                     cs.Write(file.SourceCode);

@@ -186,6 +186,9 @@
   <data name="Menu_DeleteObject" xml:space="preserve">
     <value>オブジェクトの削除(_D)</value>
   </data>
+  <data name="Menu_DeleteObjectAndAddToIgnoreList" xml:space="preserve">
+    <value>オブジェクトを削除して無視リストに追加</value>
+  </data>
   <data name="Menu_Edit" xml:space="preserve">
     <value>編集(_E)</value>
   </data>
@@ -296,9 +299,6 @@
   </data>
   <data name="StoredProcedure" xml:space="preserve">
     <value>ストアドプロシージャ</value>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>一時的に外部キーを無効にする</value>
   </data>
   <data name="Table" xml:space="preserve">
     <value>テーブル</value>
