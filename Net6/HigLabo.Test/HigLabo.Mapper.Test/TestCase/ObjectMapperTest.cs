@@ -1098,6 +1098,17 @@ namespace HigLabo.Mapper.Test
 
         }
         [TestMethod]
+        public void ObjectMapper_DateOnlyNullable_DateOnly()
+        {
+            var mapper = new ObjectMapper();
+            //mapper.Config.ClassPropertyCreateMode = ClassPropertyCreateMode.NewObject;
+            var dt0 = new DateOnlyTimeOnlyNullableClass();
+            dt0.Date = new DateOnly(2000, 1, 1);
+
+            var dt1 = dt0.Map(new DateOnlyTimeOnlyClass());
+            Assert.AreEqual(new DateOnly(2000, 1, 1), dt1.Date);
+        }
+        [TestMethod]
         public void ObjectMapper_String_DateOnly_TimeOnly_ToNullable()
         {
             var mapper = new ObjectMapper();
