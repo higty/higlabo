@@ -938,6 +938,9 @@ export class InputPropertyPanel {
                         v = v.replace(/-/g, "/").substr(0, 10);
                         $(propertyPanel).find("[date-picker]").setValue(v);
                     }
+                    else {
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
                 }
             }
             else if (elementType == "DateDropDownList") {
