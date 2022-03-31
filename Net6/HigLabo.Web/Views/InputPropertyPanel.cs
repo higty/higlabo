@@ -20,6 +20,7 @@ namespace HigLabo.Web.UI
         RichTextBox,
         Password,
         Color,
+        Calendar,
         Date,
         DateDropDownList,
         Time,

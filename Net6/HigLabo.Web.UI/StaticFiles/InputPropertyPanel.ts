@@ -61,6 +61,27 @@ export class InputPropertyPanel {
 
         this.initializeSetByEndTimeProperty();
     }
+    public initializeFlatpickr(language) {
+        const flatpickr = window["flatpickr"];
+        if (flatpickr == null) { return; }
+
+        flatpickr.l10ns.default.firstDayOfWeek = 1;
+        if (language == "ja-JP") {
+            flatpickr.localize(flatpickr.l10ns.ja);
+        }
+        flatpickr("[date-picker]", {
+            dateFormat: "Y/m/d",
+            allowInput: true,
+            disableMobile: true
+        });
+        flatpickr("[inline-date-picker]", {
+            dateFormat: "Y/m/d",
+            allowInput: true,
+            disableMobile: true,
+            inline: true
+        });
+
+}
     public registerEventHandler(hander: RecordAddedEventHandler) {
         this._eventHandlerList.push(hander);
     }
@@ -804,8 +825,7 @@ export class InputPropertyPanel {
             const day = $(propertyPanel).find("[day]").getSelectedValue();
             record[name] = year + "/" + month + "/" + day;
         }
-        else
-        {
+        if ($(propertyPanel).getAttribute("element-type") == "DropDownList") {
             const dl = $(propertyPanel).find("select").getFirstElement();
             if (dl != null) {
                 record[name] = $(dl).getValue();

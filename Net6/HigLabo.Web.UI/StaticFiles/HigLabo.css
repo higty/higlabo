@@ -89,7 +89,7 @@ textarea:focus-visible {
   background: var(--color-button-mouse-over-color);
 }
 .input-property-panel .button:focus {
-  background-color: var(--color-input-element-current-color);
+  background-color: var(--color-button-focus-color);
 }
 .input-property-panel.hidden {
   display: none;
