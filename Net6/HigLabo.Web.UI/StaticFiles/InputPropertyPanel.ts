@@ -970,13 +970,16 @@ export class InputPropertyPanel {
                         $(propertyPanel).find("[month]").setSelectedValue(v.Month);
                         $(propertyPanel).find("[day]").setSelectedValue(v.Day);
                     }
-                    else if (v.length > 10) {
-                        v = v.replace(/-/g, "/").substr(0, 10);
+                    else {
+                        v = v.replace(/-/g, "/")
+                        if (v.length > 10) {
+                            v = v.substr(0, 10);
+                        }
                         const date = DateTime.TryCreate(v);
                         if (date != null) {
-                            $(propertyPanel).find("[year]").setSelectedValue(date.toString("yyyy"));
-                            $(propertyPanel).find("[month]").setSelectedValue(date.toString("MM"));
-                            $(propertyPanel).find("[day]").setSelectedValue(date.toString("dd"));
+                            $(propertyPanel).find("[year]").setSelectedValue(date.year.toString());
+                            $(propertyPanel).find("[month]").setSelectedValue(date.month.toString());
+                            $(propertyPanel).find("[day]").setSelectedValue(date.day.toString());
                         }
                     }
                 }

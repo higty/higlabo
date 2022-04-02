@@ -31,12 +31,19 @@
                     <span class="color-panel" color-panel="true" style="background-color:@Model.Value"></span>
                     break;
                 }
+            case InputElementType.Calendar:
+                <input type="text" value="@Model.Value" inline-date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() />
+                break;
             case InputElementType.Date:
                 <input type="text" value="@Model.Value" date-picker="true" class="date" @Model.InputAttributes.GetHtmlString() />
                 break;
             case InputElementType.DateDropDownList:
                 {
-                    var lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear, Model.DateDropdDownList.SelectedMonth);
+                    var lastDayOfMonth = 28;
+                    if (Model.DateDropdDownList.SelectedYear.HasValue)
+                    {
+                    lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear.Value, Model.DateDropdDownList.SelectedMonth);
+                    }
                     <div class="flex-panel">
                         <select class="year" year="true" @Model.InputAttributes.GetHtmlString()>
                             <option value=""></option>

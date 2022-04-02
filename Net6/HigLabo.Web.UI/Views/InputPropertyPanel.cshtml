@@ -39,7 +39,11 @@
                 break;
             case InputElementType.DateDropDownList:
                 {
-                    var lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear, Model.DateDropdDownList.SelectedMonth);
+                    var lastDayOfMonth = 28;
+                    if (Model.DateDropdDownList.SelectedYear.HasValue)
+                    {
+                    lastDayOfMonth = DateTime.DaysInMonth(Model.DateDropdDownList.SelectedYear.Value, Model.DateDropdDownList.SelectedMonth);
+                    }
                     <div class="flex-panel">
                         <select class="year" year="true" @Model.InputAttributes.GetHtmlString()>
                             <option value=""></option>

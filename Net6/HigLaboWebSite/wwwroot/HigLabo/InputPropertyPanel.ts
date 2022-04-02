@@ -61,6 +61,27 @@ export class InputPropertyPanel {
 
         this.initializeSetByEndTimeProperty();
     }
+    public initializeFlatpickr(language) {
+        const flatpickr = window["flatpickr"];
+        if (flatpickr == null) { return; }
+
+        flatpickr.l10ns.default.firstDayOfWeek = 1;
+        if (language == "ja-JP") {
+            flatpickr.localize(flatpickr.l10ns.ja);
+        }
+        flatpickr("[date-picker]", {
+            dateFormat: "Y/m/d",
+            allowInput: true,
+            disableMobile: true
+        });
+        flatpickr("[inline-date-picker]", {
+            dateFormat: "Y/m/d",
+            allowInput: true,
+            disableMobile: true,
+            inline: true
+        });
+
+}
     public registerEventHandler(hander: RecordAddedEventHandler) {
         this._eventHandlerList.push(hander);
     }
@@ -589,7 +610,9 @@ export class InputPropertyPanel {
 
                     $(rpl).setInnerHtml("");
                     const r = InputPropertyPanel.createRecord(rpl);
-                    const pl = HigLaboVue.append(spl, templateID, r);
+                    const pl = HigLaboVue.append(spl, templateID, r)[0];
+                    InputPropertyPanel.setElementProperty(pl, r, "");
+
                     $(spl).setFocus();
                     this.closeSearchRecordListPanel(target);
                 }
@@ -600,6 +623,8 @@ export class InputPropertyPanel {
 
                     const r = InputPropertyPanel.createRecord(rpl);
                     const pl = HigLaboVue.append(spl, templateID, r)[0];
+                    InputPropertyPanel.setElementProperty(pl, r, "");
+
                     $(pl).setAttribute("toggle-state", "Expand");
                     InputPropertyPanel.setRadioButtonProperty(pl, name, hKey);
                     const checkBoxList = $(pl).find("input[type='checkbox']").getElementList();
@@ -800,8 +825,7 @@ export class InputPropertyPanel {
             const day = $(propertyPanel).find("[day]").getSelectedValue();
             record[name] = year + "/" + month + "/" + day;
         }
-        else
-        {
+        if ($(propertyPanel).getAttribute("element-type") == "DropDownList") {
             const dl = $(propertyPanel).find("select").getFirstElement();
             if (dl != null) {
                 record[name] = $(dl).getValue();
@@ -932,6 +956,9 @@ export class InputPropertyPanel {
                     }
                     else if (v.length > 10) {
                         v = v.replace(/-/g, "/").substr(0, 10);
+                        $(propertyPanel).find("[date-picker]").setValue(v);
+                    }
+                    else {
                         $(propertyPanel).find("[date-picker]").setValue(v);
                     }
                 }

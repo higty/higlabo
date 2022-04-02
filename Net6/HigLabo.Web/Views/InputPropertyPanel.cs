@@ -103,7 +103,7 @@ namespace HigLabo.Web.UI
             private Func<Int32, String> _GetYearText = (year) => year.ToString("0000");
             public Int32 StartYear { get; set; } = 1900;
             public Int32 EndYear { get; set; } = DateTime.Now.Year;
-            public Int32 SelectedYear { get; set; } = 1900;
+            public Int32? SelectedYear { get; set; } = null;
             public Int32 SelectedMonth { get; set; } = 1;
             public Int32 SelectedDay { get; set; } = 1;
 
@@ -122,9 +122,13 @@ namespace HigLabo.Web.UI
                 _JapaneseCalendarCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
             }
 
-            public DateOnly GetSelectedDate()
+            public DateOnly? GetSelectedDate()
             {
-                return new DateOnly(this.SelectedYear, this.SelectedMonth, this.SelectedDay);
+                if (this.SelectedYear.HasValue)
+                {
+                    return new DateOnly(this.SelectedYear.Value, this.SelectedMonth, this.SelectedDay);
+                }
+                return null;
             }
             public void SetJapaneseCalendar()
             {

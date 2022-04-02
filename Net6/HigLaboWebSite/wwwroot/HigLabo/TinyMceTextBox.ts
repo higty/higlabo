@@ -15,6 +15,7 @@ export class TinyMceTextBox {
     public imageUploadUrlPath = "";
     public imageUploadCallback: HttpRequestCallback;
     public imageUploading: EventListener;
+    public CustomCssFilePath = "";
 
     constructor() {
         this.createUploadResultHtml = this.defaultCreateUploadResultHtml;
@@ -25,11 +26,11 @@ export class TinyMceTextBox {
         this.config = {
             height: 600,
             plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
-                + "image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
+                + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                 + "noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export autoresize",
             mobile: {
                 plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
-                    + "image link media mediaembed template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
+                    + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                     + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable autoresize"
             },
             menubar: "file edit view insert format tools table tc help",
@@ -66,31 +67,31 @@ export class TinyMceTextBox {
             //autosave_retention: '2m',
             image_advtab: true,
             codesample_languages: [
-                { text: "plaintext", value: "Plain text" }, // The default language.
-                { text: "html", value: "HTML" },
-                { text: "xml", value: "HTML/XML" },
-                { text: "css", value: "CSS" },
-                { text: "json", value: "JSON" },
-                { text: "javascript", value: "JavaScript" },
-                { text: "typescript", value: "TypeScript" },
-                { text: "sql", value: "SQL" },
-                { text: "graphql", value: "GraphQL" },
-                { text: "c", value: "C" },
-                { text: "cpp", value: "C++" },
-                { text: "csharp", value: "C#" },
-                { text: "java", value: "Java" },
-                { text: "php", value: "PHP" },
-                { text: "python", value: "Python" },
-                { text: "ruby", value: "Ruby" },
-                { text: "php", value: "PHP" },
-                { text: "kotlin", value: "Kotlin" },
-                { text: "go", value: "GO" },
-                { text: "swift", value: "Swift" },
-                { text: "bash", value: "Bash" },
-                { text: "powershell", value: "PowerShell" },
-                { text: "docker", value: "Docker" },
-                { text: "yaml", value: "YAML" },
-                { text: "diff", value: "Diff" },
+                { value: "plaintext", text: "Plain text" }, // The default language.
+                { value: "html", text: "HTML" },
+                { value: "xml", text: "HTML/XML" },
+                { value: "css", text: "CSS" },
+                { value: "json", text: "JSON" },
+                { value: "javascript", text: "JavaScript" },
+                { value: "typescript", text: "TypeScript" },
+                { value: "sql", text: "SQL" },
+                { value: "graphql", text: "GraphQL" },
+                { value: "c", text: "C" },
+                { value: "cpp", text: "C++" },
+                { value: "csharp", text: "C#" },
+                { value: "java", text: "Java" },
+                { value: "php", text: "PHP" },
+                { value: "python", text: "Python" },
+                { value: "ruby", text: "Ruby" },
+                { value: "php", text: "PHP" },
+                { value: "kotlin", text: "Kotlin" },
+                { value: "go", text: "GO" },
+                { value: "swift", text: "Swift" },
+                { value: "bash", text: "Bash" },
+                { value: "powershell", text: "PowerShell" },
+                { value: "docker", text: "Docker" },
+                { value: "yaml", text: "YAML" },
+                { value: "diff", text: "Diff" },
             ],
             link_list: [
                 //    { title: 'My page 1', value: 'https://www.tiny.cloud' },
@@ -113,12 +114,16 @@ export class TinyMceTextBox {
             template_cdate_format: '[Created at: %m/%d/%Y : %H:%M:%S]',
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
 
-            indentation: '16px',
+            default_link_target: "_blank",
+            extended_valid_elements: "a[href|target=_blank]",
+
+            smart_paste : false,
+            indentation: "16px",
             indent_use_margin: true,
             noneditable_noneditable_class: 'mceNonEditable',
             toolbar_mode: 'sliding',
             spellchecker_ignore_list: ['Ephox', 'Moxiecode'],
-            tinycomments_mode: 'embedded',
+            tinycomments_mode: "embedded",
             tinycomments_author: "",
             content_style: '.mymention{ color: gray; }',
             a11y_advanced_options: true,
@@ -132,6 +137,7 @@ export class TinyMceTextBox {
             mentions_menu_complete: null,
             mentions_select: null,
             mentions_item_type: "profile",
+
 
             setup: function (editor) {
                 this.editor = editor;
@@ -154,18 +160,6 @@ export class TinyMceTextBox {
             }.bind(this)
         };
     }
-    public addInitializeCompletedEventHandler(func: (editor) => void) {
-        this.initializeCompletedEventList.push(func);
-    }
-    public initialize(textBox: Element) {
-        this.remove();
-        if (textBox == null) { return; }
-
-        this.textBox = textBox as Element;
-        (this.textBox as any).richTextbox = this;
-        this.config.target = textBox;
-        this.tinymce.init(this.config);
-    }
     private initializeFileUploadElement(editor) {
         const pl = $(editor.getElement()).getParentElementList()[0] as HTMLElement;
         const fd = document.createElement("input") as HTMLInputElement;
@@ -175,6 +169,33 @@ export class TinyMceTextBox {
         $(fd).change(this.fileSelected.bind(this));
         this.fileUploadElement = fd;
     }
+
+    public initialize(textBox: Element) {
+        this.remove();
+        if (textBox == null) { return; }
+
+        this.textBox = textBox as Element;
+        (this.textBox as any).richTextbox = this;
+        this.config.target = textBox;
+        if (this.CustomCssFilePath != "") {
+            this.addInitializeCompletedEventHandler(this.addCustomeCssFileLinkElement.bind(this));
+        }
+        this.tinymce.init(this.config);
+    }
+    private addCustomeCssFileLinkElement(editor) {
+        const iframe = $(editor.getElement().parentElement).find("iframe").getFirstElement() as HTMLIFrameElement;
+        const iframeDocument = iframe.contentWindow.document;
+        if (iframeDocument.getElementById("TinyMceCss") != null) { return; }
+
+        const head = $(iframeDocument).find("head").getFirstElement();
+        const link = iframeDocument.createElement("link");
+        link.id = "TinyMceCss";
+        $(link).setAttribute("rel", "stylesheet");
+        $(link).setAttribute("type", "text/css");
+        $(link).setAttribute("href", this.CustomCssFilePath);
+        head.appendChild(link);
+    }
+
     private fileSelected(e: Event) {
         if (this.fileUploadUrlPath == "") { return; }
         const f = this.fileUploadElement;
@@ -233,9 +254,9 @@ export class TinyMceTextBox {
         );
     }
     private invokeImageUploadCallback(response: HttpResponse, context: any) {
-        const result = response.jsonParse();
+        const result = response.getWebApiResult();
         const success = context.success;
-        success(result.Location);
+        success(result.Data.ImageUrl);
         if (this.imageUploadCallback != null) {
             this.imageUploadCallback(response, context);
         }
@@ -244,6 +265,10 @@ export class TinyMceTextBox {
         if (this.imageUploading != null) {
             this.imageUploading(e);
         }
+    }
+
+    public addInitializeCompletedEventHandler(func: (editor) => void) {
+        this.initializeCompletedEventList.push(func);
     }
 
     public setContent(value) {
