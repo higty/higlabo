@@ -16,6 +16,12 @@
     {
         <div class="property-name" property-name="true">@Model.Text</div>
     }
+    @if (Model.CanFilter)
+    {
+        <div class="filter-textbox-panel">
+            <input type="text" filter-textbox="true" />
+        </div>
+    }
     <div class="property-value-panel">
         @switch (Model.ElementType)
         {
@@ -193,12 +199,6 @@
                 }
             case InputElementType.CheckBoxList:
                 {
-                    if (Model.CanFilter)
-                    {
-                        <div class="filter-textbox-panel">
-                            <input type="text" filter-textbox="true" />
-                        </div>
-                    }
                     @foreach (var item in Model.ItemList)
                     {
                         <span class="checkbox-panel" h-record="true" filter-text="@item.FilterText"

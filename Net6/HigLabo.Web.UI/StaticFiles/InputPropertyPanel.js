@@ -982,23 +982,26 @@ export class InputPropertyPanel {
                 if (element == null) {
                     continue;
                 }
-                if (element.tagName.toLowerCase() == "input") {
-                    $(element).setValue(v);
+                var textarea = propertyPanel.find("textarea").getFirstElement();
+                if (textarea != null) {
+                    this.setTextArea(textarea, v);
                 }
                 else {
-                    let input = propertyPanel.find("input").getFirstElement();
-                    switch ($(input).getAttribute("type").toLowerCase()) {
-                        case "radio":
-                        case "checkbox":
-                            $(input).setChecked(v);
-                            $(input).triggerEvent("change");
-                            break;
-                        default:
-                            $(input).setValue(v);
-                            var textarea = propertyPanel.find("textarea").getFirstElement();
-                            if (textarea != null) {
-                                this.setTextArea(textarea, v);
-                            }
+                    if (element.tagName.toLowerCase() == "input" && element.attributes["type"] != "file") {
+                        $(element).setValue(v);
+                    }
+                    else {
+                        let input = propertyPanel.find("input").getFirstElement();
+                        switch ($(input).getAttribute("type").toLowerCase()) {
+                            case "radio":
+                            case "checkbox":
+                                $(input).setChecked(v);
+                                $(input).triggerEvent("change");
+                                break;
+                            default:
+                                $(input).setValue(v);
+                                break;
+                        }
                     }
                 }
             }
