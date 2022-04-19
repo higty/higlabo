@@ -371,6 +371,9 @@ export class InputPropertyPanel {
         if (e.keyCode == 13) {
             this.showSearchRecordListPanel(target);
         }
+        else if (e.keyCode == 46) {
+            this.deleteRecord($(target).find("[h-record]").getFirstElement());
+        }
     }
     deleteLink_Click(target, e) {
         this.deleteRecord(target);
@@ -464,6 +467,11 @@ export class InputPropertyPanel {
         const pl = $(target).getNearest("[search-record-list-panel]");
         const currentElement = pl.find("[current]").getFirstElement();
         let targetElement = null;
+        if (e.keyCode == 27) {
+            this.closeSearchRecordListPanel(target);
+            $(target).getParent("[input-property-panel]").find("[select-record-panel]").setFocus();
+            return;
+        }
         if (e.keyCode == 13) {
             if (currentElement == null) {
                 this.search(target);

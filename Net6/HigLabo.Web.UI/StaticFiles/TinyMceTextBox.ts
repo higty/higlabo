@@ -174,6 +174,7 @@ export class TinyMceTextBox {
     }
 
     public initialize(textBox: Element) {
+        if (this.tinymce == null) { return; }
         this.remove();
         if (textBox == null) { return; }
 

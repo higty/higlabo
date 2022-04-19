@@ -18,6 +18,7 @@ namespace HigLabo.Web.UI
         TextBox,
         TextArea,
         RichTextBox,
+        ReadonlyTextBox,
         Password,
         Color,
         Calendar,

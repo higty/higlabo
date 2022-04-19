@@ -134,6 +134,9 @@ export class TinyMceTextBox {
         this.fileUploadElement = fd;
     }
     initialize(textBox) {
+        if (this.tinymce == null) {
+            return;
+        }
         this.remove();
         if (textBox == null) {
             return;

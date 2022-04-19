@@ -29,6 +29,7 @@
             case InputElementType.TextBox: <input type="text" value="@Model.Value" @Model.InputAttributes.GetHtmlString() /> break;
             case InputElementType.TextArea:<textarea @Model.InputAttributes.GetHtmlString()>@Model.Value</textarea> break;
             case InputElementType.RichTextBox: <textarea class="textarea" id="RichTextBox" @Model.InputAttributes.GetHtmlString()></textarea> break;
+            case InputElementType.ReadonlyTextBox: <input type="text" value="@Model.Value" disabled="disabled" @Model.InputAttributes.GetHtmlString() /> break;
             case InputElementType.Password:<input type="password" h-name="@Model.Name" value="@Model.Value" @Model.InputAttributes.GetHtmlString() /> break;
             case InputElementType.Color:
                 {
