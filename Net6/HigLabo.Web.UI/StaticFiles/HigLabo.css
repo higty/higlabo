@@ -405,6 +405,7 @@ textarea:focus-visible {
   padding: 8px;
 }
 .input-property-panel .tab-header-list-panel > .flex-left-panel .tab-header-panel.selected {
+  color: var(--color-text-color-light-background);
   background-color: var(--color-select-button-selected-color);
 }
 .input-property-panel .tab-header-list-panel > .flex-right-panel {
