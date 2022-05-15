@@ -25,25 +25,20 @@ namespace HigLabo.Net.OAuth
         public override async Task<OAuthTokenGetRequestResult> PostCodeAsync(string code, string redirectUrl)
         {
             var cl = this;
-            var authValue = Encoding.UTF8.GetBytes(Uri.EscapeDataString(this.ClientID)
-                + ":" + Uri.EscapeDataString(this.ClientSecret));
-            var authHeader = String.Format("Basic {0}", Convert.ToBase64String(authValue));
             var mg = new HttpRequestMessage(HttpMethod.Post, this.Url);
-            mg.Headers.Add("Authorization", authHeader);
-            mg.Headers.Add("Accept-Encoding", "gzip");
 
             var d = new Dictionary<string, string>();
-            d["code"] = code;
-            d["grant_type"] = "authorization_code";
             d["client_id"] = this.ClientID;
             d["client_secret"] = this.ClientSecret;
+            d["code"] = code;
+            d["grant_type"] = "authorization_code";
             d["redirect_uri"] = redirectUrl;
-            d["code_verifier"] = "challenge";
+
             mg.Content = new FormUrlEncodedContent(d);
 
             var res = await cl.SendAsync(mg);
-            return await ParseResponse(res);
 
+            return await ParseResponse(res);
         }
     }
 }

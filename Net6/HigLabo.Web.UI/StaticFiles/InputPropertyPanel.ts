@@ -7,7 +7,7 @@ import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
 import { TinyMceTextBox } from "./TinyMceTextBox.js";
 
 export class InputPropertyPanel {
-    private _eventHandlerList = new Array<RecordAddedEventHandler>();
+    private _eventHandlerList = new Array<RecordChangedEventHandler>();
     public selectTimePopupPanel = new SelectTimePopupPanel();
 
     public initialize() {
@@ -82,7 +82,7 @@ export class InputPropertyPanel {
         });
 
 }
-    public registerEventHandler(hander: RecordAddedEventHandler) {
+    public registerEventHandler(hander: RecordChangedEventHandler) {
         this._eventHandlerList.push(hander);
     }
 
@@ -394,6 +394,21 @@ export class InputPropertyPanel {
             this.deleteRecord($(target).find("[h-record]").getFirstElement());
         }
     }
+    private showSearchRecordListPanel(target: Element) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(target).getNearestElement("[search-record-list-panel]");
+
+        if ($(spl).hasClass("slide-down") == true) {
+            this.closeSearchRecordListPanel(target);
+        }
+        else {
+            this.selectTab(ipl, "Search");
+
+            $(spl).addClass("slide-down");
+            $(target).getNearest("[search-textbox]").setFocus();
+            this.search(target);
+        }
+    }
 
     private deleteLink_Click(target: Element, e: Event) {
         this.deleteRecord(target);
@@ -427,6 +442,9 @@ export class InputPropertyPanel {
             $(rpl).setFocus();
         }
         pl.remove();
+
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        this.recordChanged(ipl);
     }
 
     private addRecordButton_Click(target: Element, e: Event) {
@@ -463,14 +481,14 @@ export class InputPropertyPanel {
         var key = $(element).getAttribute("h-key");
         InputPropertyPanel.setElementProperty(element, r, key);
         $(element).find("input[type='text']").setFocus();
-        this.recordAdded(ipl);
+        this.recordChanged(ipl);
     }
     private getDefaultRecordCallback(response: HttpResponse, inputPropertyPanel: Element) {
         const r = response.jsonParse();
         this.setDefaultRecord(inputPropertyPanel, r);
     }
-    private recordAdded(inputPropertyPanel: Element) {
-        const e = new RecordAddedEvent(inputPropertyPanel);
+    private recordChanged(inputPropertyPanel: Element) {
+        const e = new RecordChangedEvent(inputPropertyPanel);
         for (var i = 0; i < this._eventHandlerList.length; i++) {
             try {
                 var f = this._eventHandlerList[i];
@@ -480,16 +498,6 @@ export class InputPropertyPanel {
 
             }
         }
-    }
-    private showSearchRecordListPanel(target: Element) {
-        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
-        const spl = $(target).getNearestElement("[search-record-list-panel]");
-
-        this.selectTab(ipl, "Search");
-
-        $(spl).addClass("slide-down");
-        $(target).getNearest("[search-textbox]").setFocus();
-        this.search(target);
     }
 
     private searchButton_Click(target: Element, e: Event) {
@@ -644,16 +652,19 @@ export class InputPropertyPanel {
                 break;
             default:
         }
-        this.recordAdded(ipl);
+        this.recordChanged(ipl);
 
         return true;
     }
 
     private sortButton_Click(target: Element, e: Event) {
-        const rpl = $(target).getNearest("[select-record-list-panel]").getFirstElement();
+        this.sort(target);
+    }
+    public sort(button: Element) {
+        const rpl = $(button).getNearest("[select-record-list-panel]").getFirstElement();
         $(rpl).find("[h-record]").setAttribute("sort-record", "true");
 
-        HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(target).getValue() });
+        HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(button).getValue() });
         $(rpl).getNearest("[sort-button]").hide();
     }
     private sortRecord_Click(target: Element, e: Event) {
@@ -672,10 +683,18 @@ export class InputPropertyPanel {
         this.closeSearchRecordListPanel(target);
     }
     private closeSearchRecordListPanel(target: Element) {
-        const rpl = $(target).getNearestElement("[search-record-list-panel]");
-        $(rpl).removeClass("slide-down");
-        $(target).getNearest("[button-list-panel]").removeStyle("display");
-        $(target).getNearest("[add-record-button]").setFocus();
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(ipl).find("[search-record-list-panel]");
+        $(spl).removeClass("slide-down");
+
+        const bt = $(ipl).find("[add-record-button]").getFirstElement();
+        if (bt == null) {
+            $(ipl).find("[select-record-panel]").setFocus();
+        }
+        else {
+            $(ipl).find("[button-list-panel]").removeStyle("display");
+            $(bt).setFocus();
+        }
     }
 
     private editRecordPanelTextBox_Keyup(target: Element, e: Event) {
@@ -1117,6 +1136,9 @@ export class InputPropertyPanel {
                 let vr = vv[i];
                 let pl = $("[h-validation-name='" + vr.Name + "']");
                 pl.find("[text-panel]").setInnerText(vr.Message);
+                if (vr.Name == "TimeStamp") {
+                    $("[input-property-panel][h-name='TimeStamp'] input[type='hidden']").setValue(vr.Value);
+                }
                 pl.addClass("fadein");
             }
         }, 10);
@@ -1129,10 +1151,10 @@ export class ValidationResult {
     public Message: string;
     public Value: any;
 }
-export interface RecordAddedEventHandler {
-    (sender: InputPropertyPanel, e: RecordAddedEvent): any;
+export interface RecordChangedEventHandler {
+    (sender: InputPropertyPanel, e: RecordChangedEvent): any;
 }
-export class RecordAddedEvent {
+export class RecordChangedEvent {
     public InputPropertyPanel: Element;
 
     constructor(inputPropertyPanel: Element) {

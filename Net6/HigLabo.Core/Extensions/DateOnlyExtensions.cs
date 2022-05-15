@@ -34,5 +34,20 @@ namespace HigLabo.Core
             if (value == null) { return null; }
             return new DateTimeOffset(value.Value.ToDateTime(TimeOnly.MinValue), timeZone.ToTimeSpan());
         }
+
+        public static Int32 GetAge(this DateOnly birthDay, TimeOnly timeZone)
+        {
+            var birthDateTime = new DateTime(birthDay.Year, birthDay.Month, birthDay.Day);
+            var now = DateTimeOffset.UtcNow.ChangeTimeZone(timeZone);
+            var birthNow = new DateTime(birthDay.Year, now.Month, now.Day);
+            if (birthNow < birthDateTime)
+            {
+                return now.Year - birthNow.Year - 1;
+            }
+            else
+            {
+                return now.Year - birthNow.Year;
+            }
+        }
     }
 }

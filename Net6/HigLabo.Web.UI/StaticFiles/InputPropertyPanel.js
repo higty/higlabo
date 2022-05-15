@@ -375,6 +375,19 @@ export class InputPropertyPanel {
             this.deleteRecord($(target).find("[h-record]").getFirstElement());
         }
     }
+    showSearchRecordListPanel(target) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(target).getNearestElement("[search-record-list-panel]");
+        if ($(spl).hasClass("slide-down") == true) {
+            this.closeSearchRecordListPanel(target);
+        }
+        else {
+            this.selectTab(ipl, "Search");
+            $(spl).addClass("slide-down");
+            $(target).getNearest("[search-textbox]").setFocus();
+            this.search(target);
+        }
+    }
     deleteLink_Click(target, e) {
         this.deleteRecord(target);
         e.preventDefault();
@@ -404,6 +417,8 @@ export class InputPropertyPanel {
             $(rpl).setFocus();
         }
         pl.remove();
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        this.recordChanged(ipl);
     }
     addRecordButton_Click(target, e) {
         const ipl = $(target).getParent("[input-property-panel]");
@@ -435,14 +450,14 @@ export class InputPropertyPanel {
         var key = $(element).getAttribute("h-key");
         InputPropertyPanel.setElementProperty(element, r, key);
         $(element).find("input[type='text']").setFocus();
-        this.recordAdded(ipl);
+        this.recordChanged(ipl);
     }
     getDefaultRecordCallback(response, inputPropertyPanel) {
         const r = response.jsonParse();
         this.setDefaultRecord(inputPropertyPanel, r);
     }
-    recordAdded(inputPropertyPanel) {
-        const e = new RecordAddedEvent(inputPropertyPanel);
+    recordChanged(inputPropertyPanel) {
+        const e = new RecordChangedEvent(inputPropertyPanel);
         for (var i = 0; i < this._eventHandlerList.length; i++) {
             try {
                 var f = this._eventHandlerList[i];
@@ -451,14 +466,6 @@ export class InputPropertyPanel {
             catch (_a) {
             }
         }
-    }
-    showSearchRecordListPanel(target) {
-        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
-        const spl = $(target).getNearestElement("[search-record-list-panel]");
-        this.selectTab(ipl, "Search");
-        $(spl).addClass("slide-down");
-        $(target).getNearest("[search-textbox]").setFocus();
-        this.search(target);
     }
     searchButton_Click(target, e) {
         this.search(target);
@@ -608,13 +615,16 @@ export class InputPropertyPanel {
                 break;
             default:
         }
-        this.recordAdded(ipl);
+        this.recordChanged(ipl);
         return true;
     }
     sortButton_Click(target, e) {
-        const rpl = $(target).getNearest("[select-record-list-panel]").getFirstElement();
+        this.sort(target);
+    }
+    sort(button) {
+        const rpl = $(button).getNearest("[select-record-list-panel]").getFirstElement();
         $(rpl).find("[h-record]").setAttribute("sort-record", "true");
-        HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(target).getValue() });
+        HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(button).getValue() });
         $(rpl).getNearest("[sort-button]").hide();
     }
     sortRecord_Click(target, e) {
@@ -632,10 +642,17 @@ export class InputPropertyPanel {
         this.closeSearchRecordListPanel(target);
     }
     closeSearchRecordListPanel(target) {
-        const rpl = $(target).getNearestElement("[search-record-list-panel]");
-        $(rpl).removeClass("slide-down");
-        $(target).getNearest("[button-list-panel]").removeStyle("display");
-        $(target).getNearest("[add-record-button]").setFocus();
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(ipl).find("[search-record-list-panel]");
+        $(spl).removeClass("slide-down");
+        const bt = $(ipl).find("[add-record-button]").getFirstElement();
+        if (bt == null) {
+            $(ipl).find("[select-record-panel]").setFocus();
+        }
+        else {
+            $(ipl).find("[button-list-panel]").removeStyle("display");
+            $(bt).setFocus();
+        }
     }
     editRecordPanelTextBox_Keyup(target, e) {
         const text = $(target).getValue();
@@ -1079,6 +1096,9 @@ export class InputPropertyPanel {
                 let vr = vv[i];
                 let pl = $("[h-validation-name='" + vr.Name + "']");
                 pl.find("[text-panel]").setInnerText(vr.Message);
+                if (vr.Name == "TimeStamp") {
+                    $("[input-property-panel][h-name='TimeStamp'] input[type='hidden']").setValue(vr.Value);
+                }
                 pl.addClass("fadein");
             }
         }, 10);
@@ -1086,7 +1106,7 @@ export class InputPropertyPanel {
 }
 export class ValidationResult {
 }
-export class RecordAddedEvent {
+export class RecordChangedEvent {
     constructor(inputPropertyPanel) {
         this.InputPropertyPanel = inputPropertyPanel;
     }
