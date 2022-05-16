@@ -79,6 +79,11 @@
             var pl = InputPropertyPanel.Create(InputElementType.Record, "Category", "カテゴリ") as InputPropertySelectRecordPanel;
             pl.ApiPathSearch = "/Api/Category/Search";
             pl.TemplateID = "CategoryNamePanelTemplate";
+
+            pl.CanCreateRecord = true;
+            pl.ApiPathCreateRecord = "/Api/Category/Add";
+            pl.InputList.Add(InputPropertyPanel.Create("DisplayName", "表示名"));
+
             await Html.RenderPartialAsync(pl);
         }
         {

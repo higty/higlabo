@@ -56,6 +56,7 @@ export class InputPropertyPanel {
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
 
         $("body").on("click", "[input-property-panel] [tab-header-list-panel] [tab-name]", this.tabName_Click.bind(this));
+        $("body").on("click", "[input-property-panel] [tab-panel] [create-record-button]", this.createRecordButton_Click.bind(this));
         $("body").on("click", "[input-property-panel] [tab-panel] [search-by-text-button]", this.searchByTextButton_Click.bind(this));
         $("body").on("click", "[input-property-panel] [tab-panel][template-id] [record-list-panel] [h-record]", this.tabPanelRecord_Click.bind(this));
 
@@ -760,6 +761,27 @@ export class InputPropertyPanel {
             HigLaboVue.append(pl, templateID, r);
         }
     }
+    private createRecordButton_Click(target: Element, e: Event) {
+        const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
+        const apiPath = $(target).getAttribute("api-path");
+        let p = InputPropertyPanel.createRecord($(spl).find("[create-record-panel]").getFirstElement());
+        HttpClient.postJson(apiPath, p, this.createRecordCallback.bind(this), null, target);
+    }
+    private createRecordCallback(response: HttpResponse, button: Element) {
+        const result = response.getWebApiResult();
+        const ipl = $(button).getFirstParent("[input-property-panel]").getFirstElement();
+        const elementType = $(ipl).getAttribute("element-type");
+
+        if (elementType == "Record") {
+            InputPropertyPanel.setRecord(ipl, result.Data);
+        }
+        else if (elementType == "RecordList") {
+            InputPropertyPanel.setRecordList(ipl, result.Data);
+        }
+        $(ipl).find("[create-record-panel] input").setValue("");
+        this.closeSearchRecordListPanel(button);
+    }
+
     private searchByTextButton_Click(target: Element, e: Event) {
         const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
         const apiPath = $(target).getAttribute("api-path");
@@ -792,6 +814,7 @@ export class InputPropertyPanel {
             let ee = HigLaboVue.create(templateID, r);
             for (var eIndex = 0; eIndex < ee.length; eIndex++) {
                 let hKey = $(ee[eIndex]).getAttribute("h-key");
+                //既に存在する場合、追加しない
                 if ($(spl).find("[h-key='" + hKey + "']").getElementCount() > 0) { continue; }
                 spl.appendChild(ee[eIndex]);
             }
@@ -1034,7 +1057,9 @@ export class InputPropertyPanel {
                     }
                 }
             }
-            else if (elementType == "DateTimeDuration") {
+            else if (elementType == "TimeDuration" ||
+                elementType == "DateDuration" ||
+                elementType == "DateTimeDuration") {
                 InputPropertyPanel.setElementProperty(propertyPanel.getFirstElement(), v, "");
             }
             else if (elementType == "DropDownList") {
@@ -1117,11 +1142,19 @@ export class InputPropertyPanel {
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
     }
     private static setRecordList(inputPropertyPanel: Element, recordList: Array<unknown>) {
+        this.setRecordListToPanel(inputPropertyPanel, recordList, true);
+    }
+    private static appendRecordList(inputPropertyPanel: Element, recordList: Array<unknown>) {
+        this.setRecordListToPanel(inputPropertyPanel, recordList, false);
+    }
+    private static setRecordListToPanel(inputPropertyPanel: Element, recordList: Array<unknown>, isClearInnerHtml: boolean) {
         const recordListPanel = $(inputPropertyPanel).find("[select-record-list-panel]").getFirstElement();
+        if (isClearInnerHtml == true) {
+            $(recordListPanel).setInnerHtml("");
+        }
         if (recordListPanel == null) { return; }
 
         const templateID = $(inputPropertyPanel).find("[search-record-list-panel]").getAttribute("template-id");
-        $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
             var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];
             var key = $(element).getAttribute("h-key");

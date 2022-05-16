@@ -13,6 +13,8 @@ namespace HigLabo.Web.UI
         public AddRecordMode AddRecordMode { get; set; } = AddRecordMode.Search;
         public Boolean CanSort { get; set; } = false;
         public SelectRecordMode SelectRecordMode { get; set; } = SelectRecordMode.Html;
+        public Boolean CanCreateRecord { get; set; } = false;
+
         public String ApiPathSearch { get; set; } = "";
         public String ApiPathDefaultGet { get; set; } = "";
         public String ApiParameter { get; set; } = "{}";
@@ -20,7 +22,10 @@ namespace HigLabo.Web.UI
         public String SearchTemplateID { get; set; } = "";
         public Object DefaultRecord { get; set; } = new { };
         public String ApiPathSearchByText { get; set; } = "";
+        public String ApiPathCreateRecord { get; set; } = "";
+
         public List<Tab> TabList { get; private set; } = new List<Tab>();
+        public List<InputPropertyPanel> InputList { get; private set; } = new List<InputPropertyPanel>();
 
         public InputPropertySearchRecordListPanel SearchRecordListPanel { get; init; }
 

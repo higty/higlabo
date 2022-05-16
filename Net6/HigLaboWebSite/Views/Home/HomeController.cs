@@ -170,6 +170,24 @@ namespace HigLabo.Page
             public String Image { get; set; } = "https://avatars.githubusercontent.com/u/10071037?s=40&v=4";
         }
 
+
+        public class Api_Category_Add_Parameter
+        {
+            public String DisplayName { get; set; } = "";
+        }
+        [HttpPost("/Api/Category/Add")]
+        public async Task<Object> Api_Category_Add()
+        {
+            var bodyText = await this.GetBodyText();
+            var p = JsonConvert.DeserializeObject<Api_Category_Add_Parameter>(bodyText);
+
+            var r = new CategoryRecord();
+            r.CategoryCD = Guid.NewGuid();
+            r.DisplayName = p.DisplayName;
+
+            return new WebApiActionResult(r);
+        }
+
         public class Api_Category_Search_Parameter
         {
             public String SearchText { get; set; } = "";

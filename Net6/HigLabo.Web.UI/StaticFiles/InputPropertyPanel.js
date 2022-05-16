@@ -48,6 +48,7 @@ export class InputPropertyPanel {
         $("body").on("keydown", "[input-property-panel] [select-record-list-panel] [header-text]", this.headerText_Keydown.bind(this));
         $("body").on("click", "[input-property-panel] [select-record-list-panel] [delete-candidate-link]", this.deleteCandidateLink_Click.bind(this));
         $("body").on("click", "[input-property-panel] [tab-header-list-panel] [tab-name]", this.tabName_Click.bind(this));
+        $("body").on("click", "[input-property-panel] [tab-panel] [create-record-button]", this.createRecordButton_Click.bind(this));
         $("body").on("click", "[input-property-panel] [tab-panel] [search-by-text-button]", this.searchByTextButton_Click.bind(this));
         $("body").on("click", "[input-property-panel] [tab-panel][template-id] [record-list-panel] [h-record]", this.tabPanelRecord_Click.bind(this));
         this.initializeSetByEndTimeProperty();
@@ -715,6 +716,25 @@ export class InputPropertyPanel {
             HigLaboVue.append(pl, templateID, r);
         }
     }
+    createRecordButton_Click(target, e) {
+        const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
+        const apiPath = $(target).getAttribute("api-path");
+        let p = InputPropertyPanel.createRecord($(spl).find("[create-record-panel]").getFirstElement());
+        HttpClient.postJson(apiPath, p, this.createRecordCallback.bind(this), null, target);
+    }
+    createRecordCallback(response, button) {
+        const result = response.getWebApiResult();
+        const ipl = $(button).getFirstParent("[input-property-panel]").getFirstElement();
+        const elementType = $(ipl).getAttribute("element-type");
+        if (elementType == "Record") {
+            InputPropertyPanel.setRecord(ipl, result.Data);
+        }
+        else if (elementType == "RecordList") {
+            InputPropertyPanel.setRecordList(ipl, result.Data);
+        }
+        $(ipl).find("[create-record-panel] input").setValue("");
+        this.closeSearchRecordListPanel(button);
+    }
     searchByTextButton_Click(target, e) {
         const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
         const apiPath = $(target).getAttribute("api-path");
@@ -1080,12 +1100,20 @@ export class InputPropertyPanel {
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
     }
     static setRecordList(inputPropertyPanel, recordList) {
+        this.setRecordListToPanel(inputPropertyPanel, recordList, true);
+    }
+    static appendRecordList(inputPropertyPanel, recordList) {
+        this.setRecordListToPanel(inputPropertyPanel, recordList, false);
+    }
+    static setRecordListToPanel(inputPropertyPanel, recordList, isClearInnerHtml) {
         const recordListPanel = $(inputPropertyPanel).find("[select-record-list-panel]").getFirstElement();
+        if (isClearInnerHtml == true) {
+            $(recordListPanel).setInnerHtml("");
+        }
         if (recordListPanel == null) {
             return;
         }
         const templateID = $(inputPropertyPanel).find("[search-record-list-panel]").getAttribute("template-id");
-        $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
             var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];
             var key = $(element).getAttribute("h-key");
