@@ -1,0 +1,5 @@
+﻿@model HigLabo.Web.UI.InputPropertyColorPanel
+
+<input type="text" color-picker="true" value="@Model.Value" class="color" placeholder="#FFFFFF"
+        @Model.TextBox.Attributes.GetHtmlString() />
+<span class="color-panel" color-panel="true" style="background-color:@Model.Value"></span>

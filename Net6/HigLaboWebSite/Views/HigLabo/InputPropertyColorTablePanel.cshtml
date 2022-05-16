@@ -1,0 +1,15 @@
+﻿@model HigLabo.Web.UI.InputPropertyColorPanel
+
+<div class="color-talbe-panel" color-table-panel="true">
+    <table class="color-table">
+        @foreach (var item in Model.ColorTableRowList)
+        {
+            <tr>
+                @foreach (var color in item.ColorList)
+                {
+                    <td style="background-color:@color" class="color-cell" color="@color" tabindex="0"></td>
+                }
+            </tr>
+        }
+    </table>
+</div>

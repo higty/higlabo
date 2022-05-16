@@ -471,6 +471,7 @@ textarea:focus-visible {
                 padding: 8px;
 
                 &.selected {
+                    color: var(--color-text-color-light-background);
                     background-color: var(--color-select-button-selected-color);
                 }
             }

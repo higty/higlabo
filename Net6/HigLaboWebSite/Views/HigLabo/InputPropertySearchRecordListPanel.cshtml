@@ -1,0 +1,61 @@
+﻿@model HigLabo.Web.UI.InputPropertySearchRecordListPanel
+@{
+    var spl = Model.SelectRecordPanel;
+}
+
+<div class="search-record-list-panel" search-record-list-panel="true"
+     api-path-search="@spl.ApiPathSearch" 
+     api-parameter="@spl.ApiParameter"
+     template-id="@spl.TemplateID"
+     search-template-id="@spl.GetSearchTemplateID()"
+     api-path-default-get="@spl.ApiPathDefaultGet"
+     add-record-mode="@spl.AddRecordMode.ToStringFromEnum()"
+     select-record-mode="@spl.SelectRecordMode.ToStringFromEnum()"
+>
+    <div class="tab-header-list-panel" tab-header-list-panel="true">
+        <div class="flex-left-panel">
+            <div class="tab-header-panel selected" tab-name="Search">@spl.TextSettings.Search</div>
+            @if(spl.ElementType == InputElementType.RecordList && spl.ApiPathSearchByText.IsNullOrEmpty() == false)
+            {
+            <div class="tab-header-panel" tab-name="Text">@spl.TextSettings.Text</div>
+            }
+            @foreach(var item in spl.TabList)
+            {
+            <div class="tab-header-panel" tab-name="@item.Name" 
+            api-path="@item.ApiPath" api-parameter="@item.ApiParameter">@item.Text</div>
+            }
+        </div>
+        <div class="flex-right-panel">
+            <input type="button" class="button" close-button="true" value="@spl.TextSettings.Close" />
+        </div>
+    </div>
+    <div class="tab-panel" tab-panel="true" tab-name="Search">
+        <div class="header-panel">
+            <input type="text" search-textbox="true" />
+            <input type="button" class="button search-button" search-button="true" value="@spl.TextSettings.Search" />
+        </div>
+        <div class="content-panel">
+            <div class="record-list-panel" record-list-panel="true" data-simplebar="true"></div>
+        </div>
+    </div>
+    @if(spl.ElementType == InputElementType.RecordList && spl.ApiPathSearchByText.IsNullOrEmpty() == false)
+    {
+    <div class="tab-panel" tab-panel="true" tab-name="Text">
+        <div class="content-panel">
+            <textarea class="textarea search-text-list-textbox" search-text-list-textbox="true"></textarea>
+        </div>
+        <div class="button-list-panel">
+            <input type="button" class="button" search-by-text-button="true" value="@spl.TextSettings.Search"
+            api-path="@spl.ApiPathSearchByText" />
+        </div>
+    </div>
+    }
+    @foreach(var item in spl.TabList)
+    {
+    <div class="tab-panel" tab-panel="true" tab-name="@item.Name" template-id="@item.TemplateID" api-path="@item.ApiPathSelectRecord">
+        <div class="content-panel">
+            <div class="record-list-panel" record-list-panel="true" data-simplebar="true"></div>
+        </div>
+    </div>
+    }
+</div>

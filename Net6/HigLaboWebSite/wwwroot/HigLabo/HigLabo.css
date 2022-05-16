@@ -89,7 +89,7 @@ textarea:focus-visible {
   background: var(--color-button-mouse-over-color);
 }
 .input-property-panel .button:focus {
-  background-color: var(--color-input-element-current-color);
+  background-color: var(--color-button-focus-color);
 }
 .input-property-panel.hidden {
   display: none;
@@ -402,9 +402,10 @@ textarea:focus-visible {
 }
 .input-property-panel .tab-header-list-panel > .flex-left-panel .tab-header-panel {
   cursor: pointer;
-  padding: 4px 8px;
+  padding: 8px;
 }
 .input-property-panel .tab-header-list-panel > .flex-left-panel .tab-header-panel.selected {
+  color: var(--color-text-color-light-background);
   background-color: var(--color-select-button-selected-color);
 }
 .input-property-panel .tab-header-list-panel > .flex-right-panel {

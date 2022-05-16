@@ -198,4 +198,4 @@ export class CKEditorTextBox {
         this.editor.editing.view.focus();
     }
 }
-//# sourceMappingURL=CKEditorTextbox.js.map
+//# sourceMappingURL=CKEditorTextBox.js.map

@@ -1,4 +1,4 @@
-﻿@{ 
+﻿@{
 
 }
 
@@ -20,31 +20,31 @@
         await Html.RenderPartialAsync(HigLaboView.CommonTemplate);
         await Html.RenderPartialAsync(HigLaboView.SelectTimePopupPanel, new SelectTimePopupPanel());
 
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Hidden, "ScheduleCD"));
-        await Html.RenderPartialAsync(new InputPropertyPanel("Title", "タイトル"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.TextArea, "Description", "詳細"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.RichTextBox, "RichTextBox", "HTML"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Password, "Password", "パスワード"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.Hidden, "ScheduleCD"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create("Title", "タイトル"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.TextArea, "Description", "詳細"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.RichTextBox, "RichTextBox", "HTML"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.Password, "Password", "パスワード"));
 
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Color, "BackColor", "背景色"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.Color, "BackColor", "背景色"));
         {
-            var ipl = new InputPropertyPanel(InputElementType.DateDropDownList, "CreateDate", "登録日");
-            ipl.DateDropdDownList.SetJapaneseCalendar();
-            ipl.DateDropdDownList.SelectedYear = 1978;
-            ipl.DateDropdDownList.SelectedMonth = 4;
-            ipl.DateDropdDownList.SelectedDay = 8;
+            var ipl = InputPropertyPanel.Create(InputElementType.DateDropDownList, "CreateDate", "登録日") as InputPropertyDateDropDownListPanel;
+            ipl.SetJapaneseCalendar();
+            ipl.SelectedYear = 1978;
+            ipl.SelectedMonth = 4;
+            ipl.SelectedDay = 8;
             await Html.RenderPartialAsync(ipl);
         }
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Date, "StartDate", "開始日"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.Time, "StartTime", "開始時刻"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateTime, "EndTime", "終了時刻"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateDuration, "DateDuration", "日程"));
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.DateTimeDuration, "DateTimeDuration", "開始-終了"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.Date, "StartDate", "開始日"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.Time, "StartTime", "開始時刻"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.DateTime, "EndTime", "終了時刻"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.DateDuration, "DateDuration", "日程"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.DateTimeDuration, "DateTimeDuration", "開始-終了"));
 
-        await Html.RenderPartialAsync(new InputPropertyPanel(InputElementType.CheckBox, "Enable", "有効"));
+        await Html.RenderPartialAsync(InputPropertyPanel.Create(InputElementType.CheckBox, "Enable", "有効"));
 
         {
-            var pl = new InputPropertyPanel(InputElementType.CheckBoxList, "ServiceList", "サービス一覧");
+            var pl = InputPropertyPanel.Create(InputElementType.CheckBoxList, "ServiceList", "サービス一覧") as InputPropertyPropertyValueItemListPanel;
             for (int i = 0; i < 10; i++)
             {
                 pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "Item" + i));
@@ -52,7 +52,7 @@
             await Html.RenderPartialAsync(pl);
         }
         {
-            var pl = new InputPropertyPanel(InputElementType.SelectButton, "PermissionList", "権限一覧");
+            var pl = InputPropertyPanel.Create(InputElementType.SelectButton, "PermissionList", "権限一覧") as InputPropertyPropertyValueItemListPanel;
             for (int i = 0; i < 10; i++)
             {
                 pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "権限" + i));
@@ -60,7 +60,7 @@
             await Html.RenderPartialAsync(pl);
         }
         {
-            var pl = new InputPropertyPanel(InputElementType.RadioButtonList, "ShopList", "店舗一覧");
+            var pl = InputPropertyPanel.Create(InputElementType.RadioButtonList, "ShopList", "店舗一覧") as InputPropertyPropertyValueItemListPanel;
             for (int i = 0; i < 10; i++)
             {
                 pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "店舗" + i));
@@ -68,7 +68,7 @@
             await Html.RenderPartialAsync(pl);
         }
         {
-            var pl = new InputPropertyPanel(InputElementType.DropDownList, "RoomList", "部屋一覧");
+            var pl = InputPropertyPanel.Create(InputElementType.DropDownList, "RoomList", "部屋一覧") as InputPropertyPropertyValueItemListPanel;
             for (int i = 0; i < 10; i++)
             {
                 pl.ItemList.Add(new InputPropertyPanel.PropertyValueItem(i.ToString(), "部屋" + i));
@@ -76,13 +76,13 @@
             await Html.RenderPartialAsync(pl);
         }
         {
-            var pl = new InputPropertyPanel(InputElementType.Record, "Category", "カテゴリ");
+            var pl = InputPropertyPanel.Create(InputElementType.Record, "Category", "カテゴリ") as InputPropertySelectRecordPanel;
             pl.ApiPathSearch = "/Api/Category/Search";
             pl.TemplateID = "CategoryNamePanelTemplate";
             await Html.RenderPartialAsync(pl);
         }
         {
-            var pl = new InputPropertyPanel(InputElementType.RecordList, "UserList", "ユーザー");
+            var pl = InputPropertyPanel.Create(InputElementType.RecordList, "UserList", "ユーザー") as InputPropertySelectRecordPanel;
             pl.ApiPathSearch = "/Api/User/Search";
             pl.TemplateID = "UserNamePanelTemplate";
             pl.ApiPathSearchByText = "/Api/User/Text/Search";

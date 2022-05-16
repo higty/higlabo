@@ -1,0 +1,8 @@
+﻿@model HigLabo.Web.UI.InputPropertyCheckBoxPanel
+
+<div class="checkbox-panel"@Model.CheckBoxPanel.Attributes.GetHtmlString()>
+    <input type="checkbox" h-name="@Model.Name" @Model.CheckBoxPanel.CheckBox.Attributes.GetHtmlString()
+            @Html.InputChecked(String.Equals(Model.Value, "true", StringComparison.OrdinalIgnoreCase)) />
+    <label></label>
+</div>
+<label checkbox-label="true" class="checkbox-text"@Model.Label.Attributes.GetHtmlString()>@Model.Text</label>

@@ -1,0 +1,13 @@
+﻿@model HigLabo.Web.UI.InputPropertyRecordListPanel
+
+<div class="select-record-list-panel" select-record-list-panel="true"@Model.SelectRecordListPanel.Attributes.GetHtmlString()></div>
+<div class="button-list-panel" button-list-panel="true"@Model.ButtonListPanel.Attributes.GetHtmlString()>
+    @if (Model.CanAdd)
+    {
+        <input type="button" class="button" add-record-button="true" value="@Model.TextSettings.AddRecord"@Model.ButtonListPanel.AddButton.Attributes.GetHtmlString() />
+    }
+    @if (Model.CanSort)
+    {
+        <input type="button" class="button" sort-button="true" value="@Model.TextSettings.SortBy"@Model.ButtonListPanel.SortButton.Attributes.GetHtmlString() />
+    }
+</div>

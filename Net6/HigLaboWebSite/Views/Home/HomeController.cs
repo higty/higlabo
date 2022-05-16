@@ -77,16 +77,25 @@ namespace HigLabo.Page
         }
 
 
-        [HttpPost("/Api/User/Search")]
-        public Object Api_User_Search()
+        public class User_Search_Parameter
         {
+            public String SearchText { get; set; } = "";
+        }
+        [HttpPost("/Api/User/Search")]
+        public async Task<Object> Api_User_Search()
+        {
+            var bodyText = await this.GetBodyText();
+            var p = JsonConvert.DeserializeObject<User_Search_Parameter>(bodyText);
             var l = new List<UserRecord>();
             for (int i = 0; i < 10; i++)
             {
                 var r = new UserRecord();
                 r.UserCD = "User" + i;
                 r.DisplayName = "ユーザー" + i;
-                l.Add(r);
+                if (p.SearchText.IsNullOrEmpty() || r.DisplayName.Contains(p.SearchText))
+                {
+                    l.Add(r);
+                }
             }
             return new WebApiActionResult(l);
         }
@@ -160,16 +169,27 @@ namespace HigLabo.Page
             [JsonProperty("image")]
             public String Image { get; set; } = "https://avatars.githubusercontent.com/u/10071037?s=40&v=4";
         }
-        [HttpPost("/Api/Category/Search")]
-        public Object Api_Category_Search()
+
+        public class Api_Category_Search_Parameter
         {
+            public String SearchText { get; set; } = "";
+        }
+        [HttpPost("/Api/Category/Search")]
+        public async Task<Object> Api_Category_Search()
+        {
+            var bodyText = await this.GetBodyText();
+            var p = JsonConvert.DeserializeObject<Api_Category_Search_Parameter>(bodyText);
+
             var l = new List<CategoryRecord>();
             for (int i = 0; i < 10; i++)
             {
                 var r = new CategoryRecord();
                 r.CategoryCD = Guid.NewGuid();
                 r.DisplayName = "カテゴリ" + i;
-                l.Add(r);
+                if (p.SearchText.IsNullOrEmpty() || r.DisplayName.Contains(p.SearchText))
+                {
+                    l.Add(r);
+                }
             }
             return new WebApiActionResult(l);
         }

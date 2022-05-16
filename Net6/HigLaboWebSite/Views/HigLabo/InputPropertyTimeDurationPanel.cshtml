@@ -1,0 +1,10 @@
+﻿@model HigLabo.Web.UI.InputPropertyTimeDurationPanel
+
+<div class="flex-panel" @Model.FlexPanel.Attributes.GetHtmlString()>
+    <span class="duration-start-panel">
+        <input type="text" h-name="StartTime" time-picker="true" class="hour-minute"
+        select-duration="@Model.SelectDuration.ToString().ToLower()" select-end-time="@Model.SelectEndTime.ToString().ToLower()"@Model.FlexPanel.StartTime.Attributes.GetHtmlString() />
+        <span class="duration-separator">-</span>
+        <input type="text" h-name="EndTime" time-picker="true" class="hour-minute"@Model.FlexPanel.EndTime.Attributes.GetHtmlString() />
+    </span>
+</div>

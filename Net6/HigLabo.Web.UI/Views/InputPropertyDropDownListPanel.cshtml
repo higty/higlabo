@@ -1,0 +1,8 @@
+﻿@model HigLabo.Web.UI.InputPropertyDropDownListPanel
+
+<select @Model.Select.Attributes.GetHtmlString()>
+    @foreach (var item in Model.ItemList)
+    {
+        <option value="@item.Value" @Html.OptionSelected(Model.Value == item.Value)@item.Attributes.GetHtmlString()>@item.Text</option>
+    }
+</select>

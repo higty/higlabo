@@ -1,0 +1,25 @@
+﻿@model HigLabo.Web.UI.InputPropertyRadioButtonListPanel
+
+@{
+    foreach (var item in Model.ItemList)
+    {
+        <span class="radio-button-panel"@item.Attributes.GetHtmlString()>
+            <input type="radio" h-name="@Model.Name" name="@Model.GroupName"
+                    @Html.InputChecked(String.Equals(item.Value, Model.Value, StringComparison.OrdinalIgnoreCase))
+                    value="@item.Value" />
+            @if (Model.PartialViewName.IsNullOrEmpty())
+            {
+                <label radio-button-label="true">@item.Text</label>
+            }
+            else
+            {
+                <label radio-button-label="true">
+                    @{
+                        await Html.RenderPartialAsync(Model.PartialViewName, item);
+                    }
+                </label>
+            }
+        </span>
+    }
+}
+

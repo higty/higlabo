@@ -1,0 +1,33 @@
+﻿@model HigLabo.Web.UI.InputPropertyDateDropDownListPanel
+@{
+    var lastDayOfMonth = 28;
+    if (Model.SelectedYear.HasValue)
+    {
+        lastDayOfMonth = DateTime.DaysInMonth(Model.SelectedYear.Value, Model.SelectedMonth);
+    }
+    var panel = Model.FlexPanel;
+}
+<div class="flex-panel" @panel.Attributes.GetHtmlString()>
+    <select class="year" year="true" @panel.Year.Attributes.GetHtmlString()>
+        <option value=""></option>
+        @for(var i = Model.StartYear; i <= Model.EndYear; i++)
+        {
+            <option value="@i.ToString()" @Html.OptionSelected(i == Model.SelectedYear)>@Model.GetYearText(i)</option>
+        }
+    </select>
+    <select class="month" month="true" @panel.Month.Attributes.GetHtmlString()>
+        <option value=""></option>
+        @for(var i = 1; i <= 12; i++)
+        {
+            <option value="@i.ToString()" @Html.OptionSelected(i == Model.SelectedMonth)>@i.ToString("00")</option>
+        }
+    </select>
+    <select class="day" day="true" @panel.Day.Attributes.GetHtmlString()>
+        <option value=""></option>
+        @for(var i = 1; i <= lastDayOfMonth; i++)
+        {
+            <option value="@i.ToString()" @Html.OptionSelected(i == Model.SelectedDay)>@i.ToString("00")</option>
+        }
+
+    </select>
+</div>

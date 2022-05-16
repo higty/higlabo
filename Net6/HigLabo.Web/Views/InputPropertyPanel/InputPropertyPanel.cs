@@ -27,6 +27,7 @@ namespace HigLabo.Web.UI
         Time,
         DateTime,
         DateDuration,
+        TimeDuration,
         DateTimeDuration,
 
         CheckBox,
@@ -49,7 +50,7 @@ namespace HigLabo.Web.UI
         Html,
         Template,
     }
-    public class InputPropertyPanel
+    public abstract class InputPropertyPanel
     {
         public class Setting
         {
@@ -62,7 +63,7 @@ namespace HigLabo.Web.UI
             public String SortBy { get; set; } = "SortBy";
             public String Close { get; set; } = "Close";
             public List<PropertyValueItem> DurationList { get; set; } = new List<PropertyValueItem>();
-            public List<ColorTableRow> ColorTableRowList { get; private set; } = new List<ColorTableRow>();
+            public List<InputPropertyColorPanel.ColorTableRow> ColorTableRowList { get; private set; } = new ();
 
             public Setting()
             {
@@ -77,68 +78,25 @@ namespace HigLabo.Web.UI
             private void InitializeMaterialDesignColorList()
             {
                 var l = ColorTableRowList;
-                l.Add(new ColorTableRow(new String[] { "#ffebee", "#ffcdd2", "#ef9a9a", "#e57373", "#ef5350", "#f44336", "#e53935", "#d32f2f", "#c62828", "#b71c1c" }));
-                l.Add(new ColorTableRow(new String[] { "#fce4ec", "#f8bbd0", "#f48fb1", "#f06292", "#ec407a", "#e91e63", "#d81b60", "#c2185b", "#ad1457", "#880e4f" }));
-                l.Add(new ColorTableRow(new String[] { "#f3e5f5", "#e1bee7", "#ce93d8", "#ba68c8", "#ab47bc", "#9c27b0", "#8e24aa", "#7b1fa2", "#6a1b9a", "#4a148c" }));
-                l.Add(new ColorTableRow(new String[] { "#ede7f6", "#d1c4e9", "#b39ddb", "#9575cd", "#7e57c2", "#673ab7", "#5e35b1", "#512da8", "#512da8", "#311b92" }));
-                l.Add(new ColorTableRow(new String[] { "#e8eaf6", "#c5cae9", "#9fa8da", "#7986cb", "#5c6bc0", "#3f51b5", "#3949ab", "#303f9f", "#283593", "#1a237e" }));
-                l.Add(new ColorTableRow(new String[] { "#e3f2fd", "#bbdefb", "#90caf9", "#64b5f6", "#42a5f5", "#2196f3", "#1e88e5", "#1976d2", "#1565c0", "#0d47a1" }));
-                l.Add(new ColorTableRow(new String[] { "#e1f5fe", "#b3e5fc", "#81d4fa", "#4fc3f7", "#29b6f6", "#03a9f4", "#039be5", "#0288d1", "#0277bd", "#01579b" }));
-                l.Add(new ColorTableRow(new String[] { "#e0f7fa", "#b2ebf2", "#80deea", "#4dd0e1", "#26c6da", "#00bcd4", "#00acc1", "#0097a7", "#00838f", "#006064" }));
-                l.Add(new ColorTableRow(new String[] { "#e0f2f1", "#b2dfdb", "#80cbc4", "#4db6ac", "#26a69a", "#009688", "#00897b", "#00796b", "#00695c", "#004d40" }));
-                l.Add(new ColorTableRow(new String[] { "#e8f5e9", "#c8e6c9", "#a5d6a7", "#81c784", "#66bb6a", "#4caf50", "#43a047", "#388e3c", "#2e7d32", "#1b5e20" }));
-                l.Add(new ColorTableRow(new String[] { "#f1f8e9", "#dcedc8", "#c5e1a5", "#aed581", "#9ccc65", "#8bc34a", "#7cb342", "#689f38", "#558b2f", "#33691e" }));
-                l.Add(new ColorTableRow(new String[] { "#f9fbe7", "#f0f4c3", "#e6ee9c", "#dce775", "#d4e157", "#cddc39", "#c0ca33", "#afb42b", "#9e9d24", "#827717" }));
-                l.Add(new ColorTableRow(new String[] { "#fffde7", "#fff9c4", "#fff59d", "#fff176", "#fff176", "#ffeb3b", "#fdd835", "#fbc02d", "#f9a825", "#f57f17" }));
-                l.Add(new ColorTableRow(new String[] { "#fff8e1", "#ffecb3", "#ffe082", "#ffd54f", "#ffca28", "#ffc107", "#ffb300", "#ffa000", "#ff8f00", "#ff6f00" }));
-                l.Add(new ColorTableRow(new String[] { "#fff3e0", "#ffe0b2", "#ffcc80", "#ffb74d", "#ffa726", "#ff9800", "#fb8c00", "#f57c00", "#ef6c00", "#e65100" }));
-                l.Add(new ColorTableRow(new String[] { "#fbe9e7", "#ffccbc", "#ffab91", "#ff8a65", "#ff7043", "#ff5722", "#f4511e", "#e64a19", "#d84315", "#bf360c" }));
-                l.Add(new ColorTableRow(new String[] { "#efebe9", "#d7ccc8", "#bcaaa4", "#a1887f", "#8d6e63", "#795548", "#6d4c41", "#5d4037", "#4e342e", "#3e2723" }));
-                l.Add(new ColorTableRow(new String[] { "#fafafa", "#f5f5f5", "#eeeeee", "#e0e0e0", "#bdbdbd", "#9e9e9e", "#757575", "#616161", "#424242", "#212121" }));
-                l.Add(new ColorTableRow(new String[] { "#eceff1", "#cfd8dc", "#b0bec5", "#90a4ae", "#78909c", "#607d8b", "#546e7a", "#455a64", "#37474f", "#263238" }));
-            }
-        }
-        public class DateDropdDownListSetting
-        {
-            private static CultureInfo _JapaneseCalendarCulture = new CultureInfo("ja-JP", true);
-            private Func<Int32, String> _GetYearText = (year) => year.ToString("0000");
-            public Int32 StartYear { get; set; } = 1900;
-            public Int32 EndYear { get; set; } = DateTime.Now.Year;
-            public Int32? SelectedYear { get; set; } = null;
-            public Int32 SelectedMonth { get; set; } = 1;
-            public Int32 SelectedDay { get; set; } = 1;
-
-            public Func<Int32, String> GetYearText
-            {
-                get { return _GetYearText; }
-                set
-                {
-                    if (value == null) { return; }
-                    _GetYearText = value;
-                }
-            }
-
-            static DateDropdDownListSetting()
-            {
-                _JapaneseCalendarCulture.DateTimeFormat.Calendar = new JapaneseCalendar();
-            }
-
-            public DateOnly? GetSelectedDate()
-            {
-                if (this.SelectedYear.HasValue)
-                {
-                    return new DateOnly(this.SelectedYear.Value, this.SelectedMonth, this.SelectedDay);
-                }
-                return null;
-            }
-            public void SetJapaneseCalendar()
-            {
-                this.GetYearText = this.GetJapaneseYearText;
-            }
-            private String GetJapaneseYearText(Int32 year)
-            {
-                var date = new DateTime(year, 1, 1);
-                return date.ToString("ggyy", _JapaneseCalendarCulture) + "年";
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#ffebee", "#ffcdd2", "#ef9a9a", "#e57373", "#ef5350", "#f44336", "#e53935", "#d32f2f", "#c62828", "#b71c1c" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#fce4ec", "#f8bbd0", "#f48fb1", "#f06292", "#ec407a", "#e91e63", "#d81b60", "#c2185b", "#ad1457", "#880e4f" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#f3e5f5", "#e1bee7", "#ce93d8", "#ba68c8", "#ab47bc", "#9c27b0", "#8e24aa", "#7b1fa2", "#6a1b9a", "#4a148c" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#ede7f6", "#d1c4e9", "#b39ddb", "#9575cd", "#7e57c2", "#673ab7", "#5e35b1", "#512da8", "#512da8", "#311b92" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#e8eaf6", "#c5cae9", "#9fa8da", "#7986cb", "#5c6bc0", "#3f51b5", "#3949ab", "#303f9f", "#283593", "#1a237e" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#e3f2fd", "#bbdefb", "#90caf9", "#64b5f6", "#42a5f5", "#2196f3", "#1e88e5", "#1976d2", "#1565c0", "#0d47a1" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#e1f5fe", "#b3e5fc", "#81d4fa", "#4fc3f7", "#29b6f6", "#03a9f4", "#039be5", "#0288d1", "#0277bd", "#01579b" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#e0f7fa", "#b2ebf2", "#80deea", "#4dd0e1", "#26c6da", "#00bcd4", "#00acc1", "#0097a7", "#00838f", "#006064" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#e0f2f1", "#b2dfdb", "#80cbc4", "#4db6ac", "#26a69a", "#009688", "#00897b", "#00796b", "#00695c", "#004d40" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#e8f5e9", "#c8e6c9", "#a5d6a7", "#81c784", "#66bb6a", "#4caf50", "#43a047", "#388e3c", "#2e7d32", "#1b5e20" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#f1f8e9", "#dcedc8", "#c5e1a5", "#aed581", "#9ccc65", "#8bc34a", "#7cb342", "#689f38", "#558b2f", "#33691e" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#f9fbe7", "#f0f4c3", "#e6ee9c", "#dce775", "#d4e157", "#cddc39", "#c0ca33", "#afb42b", "#9e9d24", "#827717" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#fffde7", "#fff9c4", "#fff59d", "#fff176", "#fff176", "#ffeb3b", "#fdd835", "#fbc02d", "#f9a825", "#f57f17" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#fff8e1", "#ffecb3", "#ffe082", "#ffd54f", "#ffca28", "#ffc107", "#ffb300", "#ffa000", "#ff8f00", "#ff6f00" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#fff3e0", "#ffe0b2", "#ffcc80", "#ffb74d", "#ffa726", "#ff9800", "#fb8c00", "#f57c00", "#ef6c00", "#e65100" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#fbe9e7", "#ffccbc", "#ffab91", "#ff8a65", "#ff7043", "#ff5722", "#f4511e", "#e64a19", "#d84315", "#bf360c" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#efebe9", "#d7ccc8", "#bcaaa4", "#a1887f", "#8d6e63", "#795548", "#6d4c41", "#5d4037", "#4e342e", "#3e2723" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#fafafa", "#f5f5f5", "#eeeeee", "#e0e0e0", "#bdbdbd", "#9e9e9e", "#757575", "#616161", "#424242", "#212121" }));
+                l.Add(new InputPropertyColorPanel.ColorTableRow(new String[] { "#eceff1", "#cfd8dc", "#b0bec5", "#90a4ae", "#78909c", "#607d8b", "#546e7a", "#455a64", "#37474f", "#263238" }));
             }
         }
         public class TextSetting
@@ -153,6 +111,10 @@ namespace HigLabo.Web.UI
             public String Close { get; set; } = InputPropertyPanel.Default.Close;
         }
 
+        public class TextBoxElement
+        {
+            public HtmlAttributes Attributes { get; private set; } = new HtmlAttributes();
+        }
         public class PropertyValueItem
         {
             public String Value { get; set; } = "";
@@ -340,6 +302,20 @@ namespace HigLabo.Web.UI
                     , this.EndTime?.ToString("yyyy/MM/dd HH:mm"));
             }
         }
+        public class TimeDuration
+        {
+            public String StartTime { get; set; } = "";
+            public String EndTime { get; set; } = "";
+
+            public TimeOnly? GetStartTime()
+            {
+                return this.StartTime.ToTimeOnly();
+            }
+            public TimeOnly? GetEndTime()
+            {
+                return this.EndTime.ToTimeOnly();
+            }
+        }
         public class CheckeBoxItem
         {
             public String Value { get; set; } = "";
@@ -370,92 +346,21 @@ namespace HigLabo.Web.UI
                 this.ApiPathSelectRecord = apiPathSelectRecord;
             }
         }
-        public class ColorTableRow
-        {
-            public List<String> ColorList { get; private set; } = new List<String>();
-
-            public ColorTableRow() { }
-            public ColorTableRow(IEnumerable<String> colorList)
-            {
-                this.ColorList.AddRange(colorList);
-            }
-        }
 
         public static Setting Default = new Setting();
 
         public TextSetting TextSettings { get; set; } = new TextSetting();
-        public InputElementType ElementType { get; set; } = InputElementType.TextBox;
+        public abstract InputElementType ElementType { get; }
         public String Name { get; set; } = "";
         public String Text { get; set; } = "";
         public String Value { get; set; } = "";
-        public String RadioButtonGroupName { get; set; } = "";
-        public String RadioButtonPartialViewName { get; set; } = "";
         public InputPropertyPanelMessagePanel InputPropertyPanelMessagePanel { get; private set; } = new InputPropertyPanelMessagePanel("");
         public ValidationResultMessagePanel ValidationResultMessagePanel { get; private set; } = new ValidationResultMessagePanel();
 
-        public List<PropertyValueItem> DurationList { get; set; } = new List<PropertyValueItem>();
-        public String SelectedDuration { get; set; } = "";
-        public List<PropertyValueItem> ItemList { get; set; } = new List<PropertyValueItem>();
-        public DateDropdDownListSetting DateDropdDownList { get; private set; } = new DateDropdDownListSetting();
-        public List<ColorTableRow> ColorTableRowList { get; private set; } = new List<ColorTableRow>();
-
-        public Boolean CanAdd { get; set; } = true;
-        public AddRecordMode AddRecordMode { get; set; } = AddRecordMode.Search;
-        public Boolean CanSort { get; set; } = false;
+        public HtmlAttributes Attributes { get; private set; } = new HtmlAttributes();
         public Boolean CanFilter { get; set; } = false;
-        public SelectRecordMode SelectRecordMode { get; set; } = SelectRecordMode.Html;
-        public String ApiPathSearch { get; set; } = "";
-        public String ApiPathDefaultGet { get; set; } = "";
-        public String ApiParameter { get; set; } = "{}";
-        public String TemplateID { get; set; } = "";
-        public String SearchTemplateID { get; set; } = "";
-        public Object DefaultRecord { get; set; } = new { };
-        public HtmlAttributes PanelAttributes { get; private set; } = new HtmlAttributes();
-        public HtmlAttributes InputAttributes { get; private set; } = new HtmlAttributes();
-        public Boolean DisplayHourMinute { get; set; } = true;
-        public String ApiPathSearchByText { get; set; } = "";
-        public List<Tab> TabList { get; private set; } = new List<Tab>();
 
         public InputPropertyPanel() { }
-        public InputPropertyPanel(String name, String text)
-            : this(InputElementType.TextBox, name, text)
-        {
-        }
-        public InputPropertyPanel(InputElementType elementType, String name)
-            : this(elementType, name, "", "")
-        {
-        }
-        public InputPropertyPanel(InputElementType elementType, String name, String text)
-            : this(elementType, name, text, "")
-        {
-        }
-        public InputPropertyPanel(InputElementType elementType, String name, String text, Boolean value)
-            : this(elementType, name, text, value.ToString().ToLower())
-        {
-        }
-        public InputPropertyPanel(InputElementType elementType, String name, String text, Guid value)
-            : this(elementType, name, text, value.ToString())
-        {
-        }
-        public InputPropertyPanel(InputElementType elementType, String name, String text, String value)
-        {
-            this.ElementType = elementType;
-            if (this.ElementType == InputElementType.Color)
-            {
-                this.LoadDefaultColor();
-            }
-            this.Name = name;
-            this.Text = text;
-            this.RadioButtonGroupName = name;
-            this.ValidationResultMessagePanel.ValidationName.SetValue(name);
-            this.Value = value;
-            
-            foreach (var item in Default.DurationList)
-            {
-                this.DurationList.Add(new PropertyValueItem(item.Value));
-            }
-            this.SelectedDuration = "1:00";
-        }
         public void LoadItem<T>(Func<T, String> textFunc) where T : Enum
         {
             foreach (var item in Enum<T>.GetValues())
@@ -469,6 +374,7 @@ namespace HigLabo.Web.UI
             var s = "";
             if (this.ElementType == InputElementType.DateTime ||
                 this.ElementType == InputElementType.DateDuration ||
+                this.ElementType == InputElementType.TimeDuration ||
                 this.ElementType == InputElementType.DateTimeDuration)
             {
                 s =  String.Format("h-record=\"{0}\"", this.Name);
@@ -484,31 +390,89 @@ namespace HigLabo.Web.UI
             }
             return new HtmlString(s);
         }
-        public String GetSearchTemplateID()
+
+        public static InputPropertyPanel Create(String name)
         {
-            if (String.IsNullOrEmpty(this.SearchTemplateID))
-            {
-                return this.TemplateID;
-            }
-            return SearchTemplateID;
+            return Create(InputElementType.TextBox, name, "", "");
         }
-        public String GetDefaultRecordJson()
+        public static InputPropertyPanel Create(String name, String text)
         {
-            try
-            {
-                return JsonConvert.SerializeObject(this.DefaultRecord);
-            }
-            catch { }
-            return "";
+            return Create(InputElementType.TextBox, name, text, "");
         }
-        public void LoadDefaultColor()
+        public static InputPropertyPanel Create(String name, String text, Boolean value)
         {
-            foreach (var item in Default.ColorTableRowList)
+            return Create(InputElementType.TextBox, name, text, value.ToString().ToLower());
+        }
+        public static InputPropertyPanel Create(String name, String text, Guid value)
+        {
+            return Create(InputElementType.TextBox, name, text, value.ToString().ToLower());
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name)
+        {
+            return Create(elementType, name, "", "");
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name, String text)
+        {
+            return Create(elementType, name, text, "");
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name, String text, Boolean value)
+        {
+            return Create(elementType, name, text, value.ToString().ToLower());
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name, String text, Guid value)
+        {
+            return Create(elementType, name, text, value.ToString().ToLower());
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name, String text, Int32 value)
+        {
+            return Create(elementType, name, text, value.ToString());
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name, String text, Decimal value)
+        {
+            return Create(elementType, name, text, value.ToString());
+        }
+        public static InputPropertyPanel Create(InputElementType elementType, String name, String text, String value)
+        {
+            InputPropertyPanel pl;
+            switch (elementType)
             {
-                var row = new ColorTableRow();
-                row.ColorList.AddRange(item.ColorList);
-                this.ColorTableRowList.Add(row);
+                case InputElementType.Hidden: pl = new InputPropertyHiddenPanel(); break;
+                case InputElementType.TextBox: pl = new InputPropertyTextBoxPanel(); break;
+                case InputElementType.TextArea: pl = new InputPropertyTextAreaPanel(); break;
+                case InputElementType.RichTextBox: pl = new InputPropertyRichTextBoxPanel(); break;
+                case InputElementType.ReadonlyTextBox: pl = new InputPropertyReadonlyTextBoxPanel(); break;
+                case InputElementType.Password: pl = new InputPropertyPasswordPanel(); break;
+                case InputElementType.Color: pl = new InputPropertyColorPanel(); break;
+                case InputElementType.Calendar: pl = new InputPropertyCalendarPanel(); break;
+                case InputElementType.Date: pl = new InputPropertyDatePanel(); break;
+                case InputElementType.DateDropDownList: pl = new InputPropertyDateDropDownListPanel(); break;
+                case InputElementType.Time: pl = new InputPropertyTimePanel(); break;
+                case InputElementType.DateTime: pl = new InputPropertyDateTimePanel(); break;
+                case InputElementType.DateDuration: pl = new InputPropertyDateDurationPanel(); break;
+                case InputElementType.TimeDuration: pl = new InputPropertyTimeDurationPanel(); break;
+                case InputElementType.DateTimeDuration: pl = new InputPropertyDateTimeDurationPanel(); break;
+                case InputElementType.CheckBox: pl = new InputPropertyCheckBoxPanel(); break;
+                case InputElementType.SelectButton: pl = new InputPropertySelectButtonPanel() { GroupName = name }; break;
+                case InputElementType.RadioButtonList: pl = new InputPropertyRadioButtonListPanel() { GroupName = name }; break;
+                case InputElementType.DropDownList: pl = new InputPropertyDropDownListPanel(); break;
+                case InputElementType.CheckBoxList: pl = new InputPropertyCheckBoxListPanel(); break;
+                case InputElementType.Record: pl = new InputPropertyRecordPanel(); break;
+                case InputElementType.RecordList: pl = new InputPropertyRecordListPanel(); break;
+                default: throw new SwitchStatementNotImplementException<InputElementType>(elementType);
             }
+            pl.Name = name;
+            pl.Text = text;
+            pl.ValidationResultMessagePanel.ValidationName.SetValue(name);
+            pl.Value = value;
+
+            return pl;
+        }
+
+        public static InputPropertyPanel Create(String name, InputPropertyTimeDurationPanel.EndTimeSelectMode selectMode)
+        {
+            var pl = Create(InputElementType.TimeDuration, name, "", "") as InputPropertyTimeDurationPanel;
+            pl.SelectMode = selectMode;
+            return pl;
         }
     }
 }

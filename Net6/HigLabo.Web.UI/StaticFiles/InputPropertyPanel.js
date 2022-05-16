@@ -422,7 +422,7 @@ export class InputPropertyPanel {
     }
     addRecordButton_Click(target, e) {
         const ipl = $(target).getParent("[input-property-panel]");
-        const mode = ipl.getAttribute("add-record-mode");
+        const mode = $(ipl).find("[search-record-list-panel]").getAttribute("add-record-mode");
         switch (mode) {
             case "None":
                 this.setDefaultRecord(ipl.getFirstElement(), {});
@@ -432,7 +432,7 @@ export class InputPropertyPanel {
                 this.showSearchRecordListPanel(target);
                 break;
             case "Api":
-                const apiPath = ipl.getAttribute("api-path-default-get");
+                const apiPath = ipl.find("[search-record-list-panel]").getAttribute("api-path-default-get");
                 HttpClient.postJson(apiPath, {}, this.getDefaultRecordCallback.bind(this), null, ipl.getFirstElement());
                 break;
             default:
@@ -441,8 +441,8 @@ export class InputPropertyPanel {
     setDefaultRecord(inputPropertyPanel, record) {
         const r = record;
         const ipl = inputPropertyPanel;
-        const templateID = ipl.getAttribute("template-id");
         const rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
+        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
         const element = HigLaboVue.append(rpl, templateID, r)[0];
         if ($(element).getAttribute("header-mode") == "Label") {
             $(element).setAttribute("toggle-state", "Expand");
@@ -534,7 +534,8 @@ export class InputPropertyPanel {
         $(targetElement).setAttribute("current", "true");
     }
     search(target) {
-        const pl = $(target).getParent("[api-path-search]");
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const pl = $(ipl).find("[search-record-list-panel]").getFirstElement();
         const url = $(pl).getAttribute("api-path-search");
         let p = null;
         try {
@@ -545,13 +546,14 @@ export class InputPropertyPanel {
             p = {};
         }
         p.SearchText = $(pl).find("[search-textbox]").getValue();
-        HttpClient.postJson(url, p, this.search_Callback.bind(this), null, pl);
+        HttpClient.postJson(url, p, this.searchCallback.bind(this), null, pl);
     }
-    search_Callback(response, context) {
+    searchCallback(response, panel) {
         const data = response.jsonParse();
-        const pl = context;
+        const pl = panel;
+        const ipl = $(panel).getParent("[input-property-panel]").getFirstElement();
         const recordListPanel = $(pl).find("[tab-name='Search'] [record-list-panel]").getFirstElement();
-        const templateID = $(pl).getAttribute("search-template-id");
+        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("search-template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < data.Data.length; i++) {
             HigLaboVue.append(recordListPanel, templateID, data.Data[i]);
@@ -564,7 +566,7 @@ export class InputPropertyPanel {
         const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
         const name = $(ipl).getAttribute("h-record-list");
         const elementType = $(ipl).getAttribute("element-type");
-        const mode = $(ipl).getAttribute("select-record-mode");
+        const mode = $(ipl).find("[search-record-list-panel]").getAttribute("select-record-mode");
         const rpl = $(target).getFirstElement();
         switch (mode) {
             case "Html":
@@ -586,7 +588,7 @@ export class InputPropertyPanel {
                 }
                 break;
             case "Template":
-                const templateID = $(ipl).getAttribute("template-id");
+                const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
                 if (elementType == "Record") {
                     const spl = $(ipl).find("[select-record-panel]").getFirstElement();
                     $(rpl).setInnerHtml("");
@@ -714,9 +716,9 @@ export class InputPropertyPanel {
         }
     }
     searchByTextButton_Click(target, e) {
-        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
         const apiPath = $(target).getAttribute("api-path");
-        let p = JSON.parse($(ipl).getAttribute("api-parameter"));
+        let p = JSON.parse($(spl).getAttribute("api-parameter"));
         p.SearchText = $(target).getNearest("[search-text-list-textbox]").getValue();
         HttpClient.postJson(apiPath, p, this.searchByTextCallback.bind(this), null, target);
     }
@@ -737,7 +739,7 @@ export class InputPropertyPanel {
     setSelectedRecordList(response, inputPropertyPanel) {
         const result = response.getWebApiResult();
         const ipl = inputPropertyPanel;
-        const templateID = $(ipl).getAttribute("template-id");
+        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
         const spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
         for (var i = 0; i < result.Data.length; i++) {
             let r = result.Data[i];
@@ -990,7 +992,9 @@ export class InputPropertyPanel {
                     }
                 }
             }
-            else if (elementType == "DateTimeDuration") {
+            else if (elementType == "TimeDuration" ||
+                elementType == "DateDuration" ||
+                elementType == "DateTimeDuration") {
                 InputPropertyPanel.setElementProperty(propertyPanel.getFirstElement(), v, "");
             }
             else if (elementType == "DropDownList") {
@@ -1066,21 +1070,21 @@ export class InputPropertyPanel {
             $(textarea).setValue(v);
         }
     }
-    static setRecord(propertyPanel, record) {
+    static setRecord(inputPropertyPanel, record) {
         if (record == null) {
             return;
         }
-        const selectRecordPanel = $(propertyPanel).find("[select-record-panel]");
-        const templateID = propertyPanel.getAttribute("template-id");
+        const selectRecordPanel = $(inputPropertyPanel).find("[select-record-panel]");
+        const templateID = $(inputPropertyPanel).find("[search-record-list-panel]").getAttribute("template-id");
         $(selectRecordPanel).setInnerHtml("");
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
     }
-    static setRecordList(propertyPanel, recordList) {
-        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]").getFirstElement();
+    static setRecordList(inputPropertyPanel, recordList) {
+        const recordListPanel = $(inputPropertyPanel).find("[select-record-list-panel]").getFirstElement();
         if (recordListPanel == null) {
             return;
         }
-        const templateID = propertyPanel.getAttribute("template-id");
+        const templateID = $(inputPropertyPanel).find("[search-record-list-panel]").getAttribute("template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
             var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];

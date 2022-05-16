@@ -7,7 +7,7 @@ import SelectTimePopupPanel from "./SelectTimePopupPanel.js";
 import { TinyMceTextBox } from "./TinyMceTextBox.js";
 
 export class InputPropertyPanel {
-    private _eventHandlerList = new Array<RecordAddedEventHandler>();
+    private _eventHandlerList = new Array<RecordChangedEventHandler>();
     public selectTimePopupPanel = new SelectTimePopupPanel();
 
     public initialize() {
@@ -82,7 +82,7 @@ export class InputPropertyPanel {
         });
 
 }
-    public registerEventHandler(hander: RecordAddedEventHandler) {
+    public registerEventHandler(hander: RecordChangedEventHandler) {
         this._eventHandlerList.push(hander);
     }
 
@@ -390,6 +390,24 @@ export class InputPropertyPanel {
         if (e.keyCode == 13) {
             this.showSearchRecordListPanel(target);
         }
+        else if (e.keyCode == 46) {
+            this.deleteRecord($(target).find("[h-record]").getFirstElement());
+        }
+    }
+    private showSearchRecordListPanel(target: Element) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(target).getNearestElement("[search-record-list-panel]");
+
+        if ($(spl).hasClass("slide-down") == true) {
+            this.closeSearchRecordListPanel(target);
+        }
+        else {
+            this.selectTab(ipl, "Search");
+
+            $(spl).addClass("slide-down");
+            $(target).getNearest("[search-textbox]").setFocus();
+            this.search(target);
+        }
     }
 
     private deleteLink_Click(target: Element, e: Event) {
@@ -424,11 +442,14 @@ export class InputPropertyPanel {
             $(rpl).setFocus();
         }
         pl.remove();
+
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        this.recordChanged(ipl);
     }
 
     private addRecordButton_Click(target: Element, e: Event) {
         const ipl = $(target).getParent("[input-property-panel]");
-        const mode = ipl.getAttribute("add-record-mode");
+        const mode = $(ipl).find("[search-record-list-panel]").getAttribute("add-record-mode");
 
         switch (mode) {
             case "None":
@@ -439,7 +460,7 @@ export class InputPropertyPanel {
                 this.showSearchRecordListPanel(target);
                 break;
             case "Api":
-                const apiPath = ipl.getAttribute("api-path-default-get");
+                const apiPath = ipl.find("[search-record-list-panel]").getAttribute("api-path-default-get");
 
                 HttpClient.postJson(apiPath, {}, this.getDefaultRecordCallback.bind(this), null
                     , ipl.getFirstElement());
@@ -451,8 +472,8 @@ export class InputPropertyPanel {
         const r = record;
 
         const ipl = inputPropertyPanel;
-        const templateID = ipl.getAttribute("template-id");
         const rpl = $(ipl).find("[select-record-list-panel]").getFirstElement();
+        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
         const element = HigLaboVue.append(rpl, templateID, r)[0];
         if ($(element).getAttribute("header-mode") == "Label") {
             $(element).setAttribute("toggle-state", "Expand");
@@ -460,14 +481,14 @@ export class InputPropertyPanel {
         var key = $(element).getAttribute("h-key");
         InputPropertyPanel.setElementProperty(element, r, key);
         $(element).find("input[type='text']").setFocus();
-        this.recordAdded(ipl);
+        this.recordChanged(ipl);
     }
     private getDefaultRecordCallback(response: HttpResponse, inputPropertyPanel: Element) {
         const r = response.jsonParse();
         this.setDefaultRecord(inputPropertyPanel, r);
     }
-    private recordAdded(inputPropertyPanel: Element) {
-        const e = new RecordAddedEvent(inputPropertyPanel);
+    private recordChanged(inputPropertyPanel: Element) {
+        const e = new RecordChangedEvent(inputPropertyPanel);
         for (var i = 0; i < this._eventHandlerList.length; i++) {
             try {
                 var f = this._eventHandlerList[i];
@@ -478,16 +499,6 @@ export class InputPropertyPanel {
             }
         }
     }
-    private showSearchRecordListPanel(target: Element) {
-        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
-        const spl = $(target).getNearestElement("[search-record-list-panel]");
-
-        this.selectTab(ipl, "Search");
-
-        $(spl).addClass("slide-down");
-        $(target).getNearest("[search-textbox]").setFocus();
-        this.search(target);
-    }
 
     private searchButton_Click(target: Element, e: Event) {
         this.search(target);
@@ -497,6 +508,11 @@ export class InputPropertyPanel {
         const currentElement = pl.find("[current]").getFirstElement();
         let targetElement = null;
 
+        if (e.keyCode == 27) {
+            this.closeSearchRecordListPanel(target);
+            $(target).getParent("[input-property-panel]").find("[select-record-panel]").setFocus();
+            return;
+        }
         if (e.keyCode == 13) {
             if (currentElement == null) {
                 this.search(target);
@@ -552,7 +568,8 @@ export class InputPropertyPanel {
         $(targetElement).setAttribute("current", "true");
     }
     private search(target: Element) {
-        const pl = $(target).getParent("[api-path-search]");
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const pl = $(ipl).find("[search-record-list-panel]").getFirstElement();
         const url = $(pl).getAttribute("api-path-search");
         let p = null;
         try {
@@ -561,13 +578,14 @@ export class InputPropertyPanel {
         catch { }
         if (p == null) { p = {}; }
         p.SearchText = $(pl).find("[search-textbox]").getValue();
-        HttpClient.postJson(url, p, this.search_Callback.bind(this), null, pl);
+        HttpClient.postJson(url, p, this.searchCallback.bind(this), null, pl);
     }
-    private search_Callback(response: HttpResponse, context: any) {
+    private searchCallback(response: HttpResponse, panel: any) {
         const data = response.jsonParse();
-        const pl = context;
+        const pl = panel;
+        const ipl = $(panel).getParent("[input-property-panel]").getFirstElement();
         const recordListPanel = $(pl).find("[tab-name='Search'] [record-list-panel]").getFirstElement();
-        const templateID = $(pl).getAttribute("search-template-id");
+        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("search-template-id");
 
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < data.Data.length; i++) {
@@ -581,7 +599,7 @@ export class InputPropertyPanel {
         const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
         const name = $(ipl).getAttribute("h-record-list");
         const elementType = $(ipl).getAttribute("element-type");
-        const mode = $(ipl).getAttribute("select-record-mode");
+        const mode = $(ipl).find("[search-record-list-panel]").getAttribute("select-record-mode");
         const rpl = $(target).getFirstElement();
 
         switch (mode) {
@@ -603,7 +621,7 @@ export class InputPropertyPanel {
                 }
                 break;
             case "Template":
-                const templateID = $(ipl).getAttribute("template-id");
+                const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
 
                 if (elementType == "Record") {
                     const spl = $(ipl).find("[select-record-panel]").getFirstElement();
@@ -636,16 +654,19 @@ export class InputPropertyPanel {
                 break;
             default:
         }
-        this.recordAdded(ipl);
+        this.recordChanged(ipl);
 
         return true;
     }
 
     private sortButton_Click(target: Element, e: Event) {
-        const rpl = $(target).getNearest("[select-record-list-panel]").getFirstElement();
+        this.sort(target);
+    }
+    public sort(button: Element) {
+        const rpl = $(button).getNearest("[select-record-list-panel]").getFirstElement();
         $(rpl).find("[h-record]").setAttribute("sort-record", "true");
 
-        HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(target).getValue() });
+        HigLaboVue.insertBefore(rpl.children[0], "SortLinePanelTemplate", { Text: $(button).getValue() });
         $(rpl).getNearest("[sort-button]").hide();
     }
     private sortRecord_Click(target: Element, e: Event) {
@@ -664,10 +685,18 @@ export class InputPropertyPanel {
         this.closeSearchRecordListPanel(target);
     }
     private closeSearchRecordListPanel(target: Element) {
-        const rpl = $(target).getNearestElement("[search-record-list-panel]");
-        $(rpl).removeClass("slide-down");
-        $(target).getNearest("[button-list-panel]").removeStyle("display");
-        $(target).getNearest("[add-record-button]").setFocus();
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(ipl).find("[search-record-list-panel]");
+        $(spl).removeClass("slide-down");
+
+        const bt = $(ipl).find("[add-record-button]").getFirstElement();
+        if (bt == null) {
+            $(ipl).find("[select-record-panel]").setFocus();
+        }
+        else {
+            $(ipl).find("[button-list-panel]").removeStyle("display");
+            $(bt).setFocus();
+        }
     }
 
     private editRecordPanelTextBox_Keyup(target: Element, e: Event) {
@@ -732,9 +761,9 @@ export class InputPropertyPanel {
         }
     }
     private searchByTextButton_Click(target: Element, e: Event) {
-        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
+        const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
         const apiPath = $(target).getAttribute("api-path");
-        let p = JSON.parse($(ipl).getAttribute("api-parameter"));
+        let p = JSON.parse($(spl).getAttribute("api-parameter"));
         p.SearchText = $(target).getNearest("[search-text-list-textbox]").getValue();
         HttpClient.postJson(apiPath, p, this.searchByTextCallback.bind(this), null, target);
     }
@@ -755,7 +784,7 @@ export class InputPropertyPanel {
     private setSelectedRecordList(response: HttpResponse, inputPropertyPanel: Element) {
         const result = response.getWebApiResult();
         const ipl = inputPropertyPanel;
-        const templateID = $(ipl).getAttribute("template-id");
+        const templateID = $(ipl).find("[search-record-list-panel]").getAttribute("template-id");
         const spl = $(ipl).find("[select-record-list-panel]").getFirstElement();
 
         for (var i = 0; i < result.Data.length; i++) {
@@ -970,13 +999,16 @@ export class InputPropertyPanel {
                         $(propertyPanel).find("[month]").setSelectedValue(v.Month);
                         $(propertyPanel).find("[day]").setSelectedValue(v.Day);
                     }
-                    else if (v.length > 10) {
-                        v = v.replace(/-/g, "/").substr(0, 10);
+                    else {
+                        v = v.replace(/-/g, "/")
+                        if (v.length > 10) {
+                            v = v.substr(0, 10);
+                        }
                         const date = DateTime.TryCreate(v);
                         if (date != null) {
-                            $(propertyPanel).find("[year]").setSelectedValue(date.toString("yyyy"));
-                            $(propertyPanel).find("[month]").setSelectedValue(date.toString("MM"));
-                            $(propertyPanel).find("[day]").setSelectedValue(date.toString("dd"));
+                            $(propertyPanel).find("[year]").setSelectedValue(date.year.toString());
+                            $(propertyPanel).find("[month]").setSelectedValue(date.month.toString());
+                            $(propertyPanel).find("[day]").setSelectedValue(date.day.toString());
                         }
                     }
                 }
@@ -1018,23 +1050,26 @@ export class InputPropertyPanel {
                 let element = propertyPanel.getFirstElement();
                 if (element == null) { continue; }
 
-                if (element.tagName.toLowerCase() == "input") {
-                    $(element).setValue(v);
+                var textarea = propertyPanel.find("textarea").getFirstElement();
+                if (textarea != null) {
+                    this.setTextArea(textarea, v);
                 }
                 else {
-                    let input = propertyPanel.find("input").getFirstElement();
-                    switch ($(input).getAttribute("type").toLowerCase()) {
-                        case "radio":
-                        case "checkbox":
-                            $(input).setChecked(v);
-                            $(input).triggerEvent("change");
-                            break;
-                        default:
-                            $(input).setValue(v);
-                            var textarea = propertyPanel.find("textarea").getFirstElement();
-                            if (textarea != null) {
-                                this.setTextArea(textarea, v);
-                            }
+                    if (element.tagName.toLowerCase() == "input" && element.attributes["type"] != "file") {
+                        $(element).setValue(v);
+                    }
+                    else {
+                        let input = propertyPanel.find("input").getFirstElement();
+                        switch ($(input).getAttribute("type").toLowerCase()) {
+                            case "radio":
+                            case "checkbox":
+                                $(input).setChecked(v);
+                                $(input).triggerEvent("change");
+                                break;
+                            default:
+                                $(input).setValue(v);
+                                break;
+                        }
                     }
                 }
             }
@@ -1074,18 +1109,18 @@ export class InputPropertyPanel {
             $(textarea).setValue(v);
         }
     }
-    private static setRecord(propertyPanel: Element, record: unknown) {
+    private static setRecord(inputPropertyPanel: Element, record: unknown) {
         if (record == null) { return; }
-        const selectRecordPanel = $(propertyPanel).find("[select-record-panel]");
-        const templateID = propertyPanel.getAttribute("template-id");
+        const selectRecordPanel = $(inputPropertyPanel).find("[select-record-panel]");
+        const templateID = $(inputPropertyPanel).find("[search-record-list-panel]").getAttribute("template-id");
         $(selectRecordPanel).setInnerHtml("");
         HigLaboVue.append(selectRecordPanel.getFirstElement(), templateID, record);
     }
-    private static setRecordList(propertyPanel: Element, recordList: Array<unknown>) {
-        const recordListPanel = $(propertyPanel).find("[select-record-list-panel]").getFirstElement();
+    private static setRecordList(inputPropertyPanel: Element, recordList: Array<unknown>) {
+        const recordListPanel = $(inputPropertyPanel).find("[select-record-list-panel]").getFirstElement();
         if (recordListPanel == null) { return; }
 
-        const templateID = propertyPanel.getAttribute("template-id");
+        const templateID = $(inputPropertyPanel).find("[search-record-list-panel]").getAttribute("template-id");
         $(recordListPanel).setInnerHtml("");
         for (var i = 0; i < recordList.length; i++) {
             var element = HigLaboVue.append(recordListPanel, templateID, recordList[i])[0];
@@ -1103,6 +1138,9 @@ export class InputPropertyPanel {
                 let vr = vv[i];
                 let pl = $("[h-validation-name='" + vr.Name + "']");
                 pl.find("[text-panel]").setInnerText(vr.Message);
+                if (vr.Name == "TimeStamp") {
+                    $("[input-property-panel][h-name='TimeStamp'] input[type='hidden']").setValue(vr.Value);
+                }
                 pl.addClass("fadein");
             }
         }, 10);
@@ -1115,10 +1153,10 @@ export class ValidationResult {
     public Message: string;
     public Value: any;
 }
-export interface RecordAddedEventHandler {
-    (sender: InputPropertyPanel, e: RecordAddedEvent): any;
+export interface RecordChangedEventHandler {
+    (sender: InputPropertyPanel, e: RecordChangedEvent): any;
 }
-export class RecordAddedEvent {
+export class RecordChangedEvent {
     public InputPropertyPanel: Element;
 
     constructor(inputPropertyPanel: Element) {

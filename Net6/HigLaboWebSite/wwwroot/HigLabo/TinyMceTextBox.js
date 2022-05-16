@@ -1,3 +1,4 @@
+import { DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
 import { HttpClient } from "./HttpClient.js";
 import { List } from "./linq/Collections.js";
@@ -5,6 +6,7 @@ export class TinyMceTextBox {
     constructor() {
         this.tinymce = window["tinymce"];
         this.initializeCompletedEventList = new List();
+        this.createTime = new DateTime(new Date());
         this.fileUploadUrlPath = "";
         this.imageUploadUrlPath = "";
         this.CustomCssFilePath = "";
@@ -16,16 +18,16 @@ export class TinyMceTextBox {
             height: 600,
             plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
                 + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                + "noneditable help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export autoresize",
+                + "noneditable help formatpainter permanentpen pageembed charmap quickbars linkchecker emoticons advtable export autoresize",
             mobile: {
                 plugins: "print preview powerpaste casechange importcss tinydrive searchreplace autolink save directionality advcode visualblocks visualchars fullscreen "
                     + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                    + "noneditable help formatpainter pageembed charmap mentions quickbars linkchecker emoticons advtable autoresize"
+                    + "noneditable help formatpainter pageembed charmap quickbars linkchecker emoticons advtable autoresize"
             },
             menubar: "file edit view insert format tools table tc help",
             toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
                 + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | uploadfile media template link codesample | "
-                + "casechange permanentpen removeformat | pagebreak fullscreen  preview print | ltr rtl | showcomments addcomment",
+                + "casechange permanentpen removeformat | pagebreak fullscreen  preview print | showcomments addcomment",
             quickbars_insert_toolbar: "emoticons quickimage quicktable",
             quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote | forecolor backcolor | emoticons quickimage quicktable',
             contextmenu: "link image table configurepermanentpen",
@@ -132,6 +134,9 @@ export class TinyMceTextBox {
         this.fileUploadElement = fd;
     }
     initialize(textBox) {
+        if (this.tinymce == null) {
+            return;
+        }
         this.remove();
         if (textBox == null) {
             return;
@@ -230,7 +235,7 @@ export class TinyMceTextBox {
     }
     setContent(value) {
         if (this.editor != null) {
-            this.tinymce.activeEditor.setContent(value);
+            this.tinymce.activeEditor.setContent(value.replace("\r", ""));
         }
     }
     setTextAreaValue(value) {

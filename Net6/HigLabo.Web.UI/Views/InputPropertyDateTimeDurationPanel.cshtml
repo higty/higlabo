@@ -1,0 +1,39 @@
+﻿@model HigLabo.Web.UI.InputPropertyDateTimeDurationPanel
+@{
+    var endTimeID = @String.Format("{0}_SetByEndTime", Model.Name);
+}
+
+<div h-name="SetByEndTime"@Model.SetByEndPanel.Attributes.GetHtmlString()>
+    <span class="checkbox-panel">
+        <input type="checkbox" id="@endTimeID" set-by-end-time="true" />
+        <label for="@endTimeID"></label>
+    </span>
+    <label for="@endTimeID" class="checkbox-text">@Model.TextSettings.SetByEndTime</label>
+</div>
+<div class="flex-panel"@Model.FlexPanel.Attributes.GetHtmlString()>
+    <span class="duration-start-panel" @Model.FlexPanel.DurationStartPanel.Attributes.GetHtmlString()>
+        <input type="text" h-name="StartDate" date-picker="true" class="date"@Model.FlexPanel.DurationStartPanel.StartDate.Attributes.GetHtmlString() />
+        <input type="text" h-name="StartHourMinute" time-picker="true" class="hour-minute"@Model.FlexPanel.DurationStartPanel.StartHourMinute.Attributes.GetHtmlString() />
+    </span>
+    <span class="radio-button-list-panel duration-list-panel" duration-list-panel="true"@Model.FlexPanel.DurationListPanel.Attributes.GetHtmlString()>
+        @for (int i = 0; i < Model.DurationList.Count; i++)
+        {
+            var id = @String.Format("{0}_Duration_{1}", Model.Name, i);
+            var item = Model.DurationList[i];
+            <span class="radio-button-panel">
+                <input type="radio" h-name="@Model.Name"
+                        id="@id" name="@String.Format("{0}_Duration", Model.Name)" value="@item.Value"
+                        @Html.InputChecked(String.Equals(item.Value, Model.SelectedDuration, StringComparison.OrdinalIgnoreCase)) />
+                <label for="@id">@item.Text</label>
+            </span>
+        }
+    </span>
+    <span class="duration-end-panel" duration-end-panel="true"@Model.FlexPanel.DurationEndPanel.Attributes.GetHtmlString()>
+        <span class="flex-panel"@Model.FlexPanel.DurationEndPanel.FlexPanel.Attributes.GetHtmlString()>
+            <span class="duration-separator">-</span>
+            <input type="text" h-name="EndDate" date-picker="true" class="date"@Model.FlexPanel.DurationEndPanel.FlexPanel.EndDate.Attributes.GetHtmlString() />
+            <input type="text" h-name="EndHourMinute" time-picker="true" class="hour-minute"@Model.FlexPanel.DurationEndPanel.FlexPanel.EndHourMinute.Attributes.GetHtmlString() />
+        </span>
+    </span>
+</div>
+

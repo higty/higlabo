@@ -1,6 +1,6 @@
-﻿import { List } from "./linq/Linq.js";
-import { DateTime } from "./DateTime.js";
+﻿import { DateTime } from "./DateTime.js";
 import { $ } from "./HtmlElementQuery.js";
+import { List } from "./linq/Linq.js";
 
 export class HigLaboVue {
     public static formatMethods = {

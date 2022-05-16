@@ -1,0 +1,12 @@
+﻿@model HigLabo.Web.UI.InputPropertyCheckBoxListPanel
+
+@{
+    @foreach (var item in Model.ItemList)
+    {
+        <span class="checkbox-panel" h-record="true" filter-text="@item.FilterText"@item.Attributes.GetHtmlString()>
+            <input type="hidden" h-name="Value" value="@item.Value" />
+            <input type="checkbox" h-name="Checked" name="@Model.GroupName" @Html.InputChecked(item.Checked) />
+            <label checkbox-label="true" class="checkbox-text">@item.Text</label>
+        </span>
+    }
+}

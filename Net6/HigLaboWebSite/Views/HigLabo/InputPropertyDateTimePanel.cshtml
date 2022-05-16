@@ -1,0 +1,6 @@
+﻿@model HigLabo.Web.UI.InputPropertyDateTimePanel
+
+<div class="flex-panel" @Model.FlexPanel.Attributes.GetHtmlString()>
+    <input type="text" h-name="Date" value="@Model.Value" date-picker="true" class="date"@Model.FlexPanel.Date.Attributes.GetHtmlString() />
+    <input type="text" h-name="HourMinute" value="@Model.Value" time-picker="true" class="hour-minute"@Model.FlexPanel.HourMinute.Attributes.GetHtmlString() />
+</div>

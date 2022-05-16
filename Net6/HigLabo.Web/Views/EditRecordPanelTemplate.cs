@@ -46,7 +46,7 @@ namespace HigLabo.Web.UI
         }
         public static InputPropertyPanel CreateInputPropertyPanel(String name, String text, String validationValue)
         {
-            var pl = new InputPropertyPanel(name, text);
+            var pl = InputPropertyPanel.Create(name, text);
             pl.ValidationResultMessagePanel.ValidationName.SetVueValue(validationValue);
             return pl;
         }

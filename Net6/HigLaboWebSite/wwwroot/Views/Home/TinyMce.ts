@@ -1,6 +1,6 @@
 ﻿import { $, HtmlElementQuery } from "../../HigLabo/HtmlElementQuery.js";
 import { HttpClient, HttpResponse } from "../../HigLabo/HttpClient.js";
-import { InputPropertyPanel, RecordAddedEvent } from "../../HigLabo/InputPropertyPanel.js";
+import { InputPropertyPanel, RecordChangedEvent } from "../../HigLabo/InputPropertyPanel.js";
 import { RichTextbox } from "../../HigLabo/RichTextbox.js";
 import SelectTimePopupPanel from "../../HigLabo/SelectTimePopupPanel.js";
 import { TinyMceTextBox } from "../../HigLabo/TinyMceTextBox.js";
