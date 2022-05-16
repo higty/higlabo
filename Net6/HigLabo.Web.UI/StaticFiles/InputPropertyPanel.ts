@@ -776,7 +776,7 @@ export class InputPropertyPanel {
             InputPropertyPanel.setRecord(ipl, result.Data);
         }
         else if (elementType == "RecordList") {
-            InputPropertyPanel.setRecordList(ipl, result.Data);
+            InputPropertyPanel.appendRecordList(ipl, [result.Data]);
         }
         $(ipl).find("[create-record-panel] input").setValue("");
         this.closeSearchRecordListPanel(button);

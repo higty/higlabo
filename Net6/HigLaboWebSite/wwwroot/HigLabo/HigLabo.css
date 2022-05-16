@@ -651,6 +651,9 @@ textarea:focus-visible {
 .input-property-panel .search-record-list-panel.slide-down .record-list-panel {
   height: 50vh;
 }
+.input-property-panel .search-record-list-panel.slide-down .create-record-panel {
+  height: 50vh;
+}
 
 .input-property-panel-message-panel,
 .validation-result-message-panel {

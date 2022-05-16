@@ -640,6 +640,12 @@ textarea:focus-visible {
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel .delete-link {
   display: none;
 }
+.input-property-panel .search-record-list-panel .content-panel .create-record-panel {
+  height: 0;
+  margin: 0;
+  overflow-y: auto;
+  border: solid 1px var(--color-border-color);
+}
 .input-property-panel .search-record-list-panel .content-panel .search-text-list-textbox {
   width: 100%;
   height: 400px;
@@ -649,6 +655,9 @@ textarea:focus-visible {
   height: auto;
 }
 .input-property-panel .search-record-list-panel.slide-down .record-list-panel {
+  height: 50vh;
+}
+.input-property-panel .search-record-list-panel.slide-down .create-record-panel {
   height: 50vh;
 }
 
