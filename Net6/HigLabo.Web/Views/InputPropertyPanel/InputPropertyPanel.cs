@@ -59,6 +59,8 @@ namespace HigLabo.Web.UI
             public String AddRecord { get; set; } = "Add Record";
             public String SearchRecord { get; set; } = "Search Record";
             public String Search { get; set; } = "Search";
+            public String SearchCandidate { get; set; } = "Search Candidate";
+            public String New { get; set; } = "New";
             public String Create { get; set; } = "Create";
             public String Text { get; set; } = "Text";
             public String SortBy { get; set; } = "SortBy";
@@ -107,15 +109,21 @@ namespace HigLabo.Web.UI
             public String AddRecord { get; set; } = InputPropertyPanel.Default.AddRecord;
             public String SearchRecord { get; set; } = InputPropertyPanel.Default.SearchRecord;
             public String Search { get; set; } = InputPropertyPanel.Default.Search;
+            public String SearchCandidate { get; set; } = InputPropertyPanel.Default.SearchCandidate;
+            public String New { get; set; } = InputPropertyPanel.Default.New;
             public String Create { get; set; } = InputPropertyPanel.Default.Create;
             public String Text { get; set; } = InputPropertyPanel.Default.Text;
             public String SortBy { get; set; } = InputPropertyPanel.Default.SortBy;
             public String Close { get; set; } = InputPropertyPanel.Default.Close;
         }
 
-        public class TextBoxElement
+        public class HtmlElement
         {
             public HtmlAttributes Attributes { get; private set; } = new HtmlAttributes();
+        }
+        public class TextBoxElement :HtmlElement
+        {
+            public String Value { get; set; } = "";
         }
         public class PropertyValueItem
         {

@@ -12,9 +12,9 @@ namespace HigLabo.Web.UI
         public class RootFlexPanel
         {
             public HtmlAttributes Attributes { get; private set; } = new HtmlAttributes();
-            public TextBoxElement Year { get; init; } = new TextBoxElement();
-            public TextBoxElement Month { get; init; } = new TextBoxElement();
-            public TextBoxElement Day { get; init; } = new TextBoxElement();
+            public HtmlElement Year { get; init; } = new HtmlElement();
+            public HtmlElement Month { get; init; } = new HtmlElement();
+            public HtmlElement Day { get; init; } = new HtmlElement();
         }
         private static CultureInfo _JapaneseCalendarCulture = new CultureInfo("ja-JP", true);
         private Func<Int32, String> _GetYearText = (year) => year.ToString("0000");

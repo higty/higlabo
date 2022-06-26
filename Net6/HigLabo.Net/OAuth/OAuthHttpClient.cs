@@ -31,10 +31,10 @@ namespace HigLabo.Net.OAuth
             this.ClientSecret = clientSecret;
         }
 
-        public abstract String CreateAuthorizeUrl(OAuthServiceProvider provider, String redirectUrl, String[] scopes);
-        public abstract Task<OAuthTokenGetRequestResult> PostCodeAsync(String code, String redirectUrl);
-       
-        protected async Task<OAuthTokenGetRequestResult> PostCodeAsync_Common(String code, String redirectUrl)
+        public abstract String CreateAuthorizeUrl(String redirectUrl, String[] scopes);
+        public abstract Task<OAuthTokenGetRequestResult> RequestCodeAsync(String code, String redirectUrl);
+
+        protected async Task<OAuthTokenGetRequestResult> RequestCodeAsync_Common(String code, String redirectUrl)
         {
             var cl = this;
             var d = new Dictionary<String, String>();
@@ -50,6 +50,11 @@ namespace HigLabo.Net.OAuth
         }
         protected async Task<OAuthTokenGetRequestResult> ParseResponse(HttpResponseMessage responseMessage)
         {
+            return await ParseResponse<OAuthTokenGetRequestResult>(responseMessage);
+        }
+        protected virtual async Task<T> ParseResponse<T>(HttpResponseMessage responseMessage)
+            where T: class
+        {
             var res = responseMessage;
             var bodyText = await res.Content.ReadAsStringAsync();
             if (res.StatusCode != HttpStatusCode.OK)
@@ -57,7 +62,7 @@ namespace HigLabo.Net.OAuth
                 throw new HttpRequestException("Request failesd. Response body is" + Environment.NewLine + bodyText
                     , null, res.StatusCode);
             }
-            var token = JsonConvert.DeserializeObject<OAuthTokenGetRequestResult>(bodyText);
+            var token = JsonConvert.DeserializeObject<T>(bodyText);
             return token;
         }
 

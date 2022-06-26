@@ -1,4 +1,13 @@
-﻿<template id="SortLinePanelTemplate">
+﻿<div id="MentionListPopupPanel" class="popup-panel mention-list-popup-panel box-shadow" popup-panel="true"></div>
+<template id="MentionRecordPanel">
+    <div class="mention-record-panel" mention-record-panel="true" h-record="true">
+        <input type="hidden" h-name="DisplayName" :value="DisplayName" />
+        <img :src="ImageUrl" />
+        <span class="user-name-panel">{{ DisplayName }}</span>
+    </div>
+</template>
+
+<template id="SortLinePanelTemplate">
     <div class="sort-line-panel" sort-line-panel="true">
         <div class="line"></div>
         <div class="text-panel">

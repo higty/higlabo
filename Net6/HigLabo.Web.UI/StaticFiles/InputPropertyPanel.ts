@@ -762,24 +762,35 @@ export class InputPropertyPanel {
         }
     }
     private createRecordButton_Click(target: Element, e: Event) {
+        const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
         const spl = $(target).getFirstParent("[search-record-list-panel]").getFirstElement();
+        let r = InputPropertyPanel.createRecord($(spl).find("[create-record-panel]").getFirstElement());
+
         const apiPath = $(target).getAttribute("api-path");
-        let p = InputPropertyPanel.createRecord($(spl).find("[create-record-panel]").getFirstElement());
-        HttpClient.postJson(apiPath, p, this.createRecordCallback.bind(this), null, target);
+        if (apiPath == "") {
+            this.setCreatedRecord(ipl, r);
+        }
+        else {
+            HttpClient.postJson(apiPath, r, this.createRecordCallback.bind(this), null, target);
+        }
     }
     private createRecordCallback(response: HttpResponse, button: Element) {
         const result = response.getWebApiResult();
         const ipl = $(button).getFirstParent("[input-property-panel]").getFirstElement();
+        this.setCreatedRecord(ipl, result.Data);
+        this.closeSearchRecordListPanel(button);
+    }
+    private setCreatedRecord(inputPropertyPanel: Element, data) {
+        const ipl = inputPropertyPanel;
         const elementType = $(ipl).getAttribute("element-type");
 
         if (elementType == "Record") {
-            InputPropertyPanel.setRecord(ipl, result.Data);
+            InputPropertyPanel.setRecord(ipl, data);
         }
         else if (elementType == "RecordList") {
-            InputPropertyPanel.appendRecordList(ipl, [result.Data]);
+            InputPropertyPanel.appendRecordList(ipl, [data]);
         }
         $(ipl).find("[create-record-panel] input").setValue("");
-        this.closeSearchRecordListPanel(button);
     }
 
     private searchByTextButton_Click(target: Element, e: Event) {
@@ -875,7 +886,9 @@ export class InputPropertyPanel {
             const year = $(propertyPanel).find("[year]").getSelectedValue();
             const month = $(propertyPanel).find("[month]").getSelectedValue();
             const day = $(propertyPanel).find("[day]").getSelectedValue();
-            record[name] = year + "/" + month + "/" + day;
+            if (year != "" && month != "" && day != "") {
+                record[name] = year + "/" + month + "/" + day;
+            }
         }
         if ($(propertyPanel).getAttribute("element-type") == "DropDownList") {
             const dl = $(propertyPanel).find("select").getFirstElement();

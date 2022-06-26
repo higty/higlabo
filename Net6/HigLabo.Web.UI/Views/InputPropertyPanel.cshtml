@@ -10,7 +10,7 @@
     @if (Model.CanFilter)
     {
         <div class="filter-textbox-panel">
-            <input type="text" filter-textbox="true" />
+            <input type="text" filter-textbox="true" placeholder="@Model.TextSettings.SearchCandidate" />
         </div>
     }
     <div class="property-value-panel">

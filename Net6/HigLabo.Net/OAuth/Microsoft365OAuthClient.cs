@@ -14,23 +14,23 @@ namespace HigLabo.Net.OAuth
 
         }
 
-        public override String CreateAuthorizeUrl(OAuthServiceProvider provider, String redirectUrl, String[] scopes)
+        public override String CreateAuthorizeUrl(String redirectUrl, String[] scopes)
         {
             return String.Format("https://login.microsoftonline.com/common/oauth2/v2.0/authorize?response_type=code"
                 + "&client_id={0}&redirect_uri={1}&scope={2}&state={3}"
                 , this.ClientID, redirectUrl, WebUtility.UrlEncode(String.Join(" ", scopes))
                 , new Random().Next(0, 100000));
         }
-        public override async Task<OAuthTokenGetRequestResult> PostCodeAsync(string code, string redirectUrl)
+        public override async Task<OAuthTokenGetRequestResult> RequestCodeAsync(string code, string redirectUrl)
         {
-            return await PostCodeAsync_Common(code, redirectUrl);
+            return await RequestCodeAsync_Common(code, redirectUrl);
         }
         public async Task<OAuthTokenGetRequestResult> RefreshTokenAsync(String refreshToken, String redirectUrl, String[] scopes)
         {
-            var cl = new HttpClient();
+            var cl = this;
             var d = new Dictionary<String, String>();
-            d["client_id"] = this.ClientID;
-            d["client_secret"] = this.ClientSecret;
+            d["client_id"] = cl.ClientID;
+            d["client_secret"] = cl.ClientSecret;
             d["grant_type"] = "refresh_token";
             d["refresh_token"] = refreshToken;
             d["scope"] = String.Join(" ", scopes);
