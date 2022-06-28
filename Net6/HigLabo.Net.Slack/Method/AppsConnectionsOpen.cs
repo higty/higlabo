@@ -1,0 +1,33 @@
+﻿
+namespace HigLabo.Net.Slack
+{
+    public class AppsConnectionsOpenParameter : IRestApiParameter
+    {
+        public string ApiPath { get; private set; } = "apps.connections.open";
+        public string HttpMethod { get; private set; } = "POST";
+    }
+    public partial class AppsConnectionsOpenResponse : RestApiResponse
+    {
+    }
+    public partial class SlackClient
+    {
+        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync()
+        {
+            var p = new AppsConnectionsOpenParameter();
+            return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(p, CancellationToken.None);
+        }
+        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(CancellationToken cancellationToken)
+        {
+            var p = new AppsConnectionsOpenParameter();
+            return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(p, cancellationToken);
+        }
+        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(AppsConnectionsOpenParameter parameter)
+        {
+            return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(parameter, CancellationToken.None);
+        }
+        public async Task<AppsConnectionsOpenResponse> AppsConnectionsOpenAsync(AppsConnectionsOpenParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendAsync<AppsConnectionsOpenParameter, AppsConnectionsOpenResponse>(parameter, cancellationToken);
+        }
+    }
+}

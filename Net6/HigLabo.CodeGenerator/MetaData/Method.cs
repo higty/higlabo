@@ -29,6 +29,29 @@ namespace HigLabo.CodeGenerator
             this.Parameters.Add(p);
             return p;
         }
+
+        public Method Copy()
+        {
+            var md = new Method(this.Modifier.AccessModifier, this.Name);
+            md.Modifier.Static = this.Modifier.Static;
+            md.Modifier.Polymophism = this.Modifier.Polymophism;
+            foreach (var item in this.GenericParameters)
+            {
+                md.GenericParameters.Add(item);
+            }
+            foreach (var item in this.Parameters)
+            {
+                var p = new MethodParameter(item.TypeName, item.Name);
+                md.Parameters.Add(p);
+            }
+            md.ReturnTypeName = this.ReturnTypeName;
+
+            foreach (var item in this.Body)
+            {
+                md.Body.Add(item);
+            }
+            return md;
+        }
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
