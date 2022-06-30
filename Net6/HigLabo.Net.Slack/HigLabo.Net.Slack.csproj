@@ -5,6 +5,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Version>6.0.0.0</Version>
+    <Authors>Higty</Authors>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
+    <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>

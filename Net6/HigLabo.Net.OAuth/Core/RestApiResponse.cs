@@ -45,19 +45,6 @@ namespace HigLabo.Net.OAuth
             get { return _ResponseBodyText; }
         }
 
-        public void SetProperty(RestApiResponse response)
-        {
-            var res = response;
-
-            _Parameter = res._Parameter;
-            _Request = (res as IRestApiResponse).Request;
-            _StatusCode = res._StatusCode;
-            foreach (var header in res._Headers)
-            {
-                _Headers[header.Key] = header.Value.ToString() ?? "";
-            }
-            _ResponseBodyText = res._ResponseBodyText;
-        }
         public void SetProperty(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
         {
             var res = response;

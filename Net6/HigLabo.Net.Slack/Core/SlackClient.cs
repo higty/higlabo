@@ -34,6 +34,17 @@ namespace HigLabo.Net.Slack
             mg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
             return mg;
         }
+        private RequestCodeResponse ParseObject(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+        {
+            var req = request;
+            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
+            o.SetProperty(parameter, req, response, bodyText);
+            if (this.IsThrowException == true && o.Ok == false)
+            {
+                throw new RestApiException(o);
+            }
+            return o;
+        }
         private T ParseObject<T>(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
             where T: RestApiResponse
         {
@@ -163,13 +174,7 @@ namespace HigLabo.Net.Slack
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
-            o.SetProperty(d, req, res, bodyText);
-            if (this.IsThrowException == true && o.Ok == false)
-            {
-                throw new RestApiException(o);
-            }
-            return o;
+            return this.ParseObject(d, req, res, bodyText);
         }
         public async Task<RequestCodeResponse> RequestRefreshTokenAsync(string token)
         {
@@ -188,13 +193,7 @@ namespace HigLabo.Net.Slack
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
-            o.SetProperty(d, req, res, bodyText);
-            if (this.IsThrowException == true && o.Ok == false)
-            {
-                throw new RestApiException(o);
-            }
-            return o;
+            return this.ParseObject(d, req, res, bodyText);
         }
         public async Task<RequestCodeResponse> UpdateAccessTokenAsync()
         {
@@ -214,13 +213,7 @@ namespace HigLabo.Net.Slack
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
-            o.SetProperty(d, req, res, bodyText);
-            if (this.IsThrowException == true && o.Ok == false)
-            {
-                throw new RestApiException(o);
-            }
-            return o;
+            return this.ParseObject(d, req, res, bodyText);
         }
 
     }
