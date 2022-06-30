@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Net.OAuth
 {
-    public abstract class OAuthSetting
+    public abstract class OAuthSetting : IAuthorizationUrlBuilder
     {
         public string ClientId { get; set; } = "";
         public string ClientSecret { get; set; } = "";

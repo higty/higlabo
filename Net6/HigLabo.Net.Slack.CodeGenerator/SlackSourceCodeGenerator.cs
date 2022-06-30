@@ -13,7 +13,7 @@ namespace HigLabo.Net.Slack.CodeGenerator
     {
         private static List<String> DeprecatedScopeList = new List<string>();
 
-        public string FolderPath = "C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Slack\\";
+        public string FolderPath = "";
         public IBrowsingContext Context { get; init; }
 
         static SlackSourceCodeGenerator()
