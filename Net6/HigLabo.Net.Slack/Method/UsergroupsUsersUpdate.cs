@@ -15,6 +15,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.users.update
+        /// </summary>
         public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(string usergroup, string users)
         {
             var p = new UsergroupsUsersUpdateParameter();
@@ -22,6 +25,9 @@ namespace HigLabo.Net.Slack
             p.Users = users;
             return await this.SendAsync<UsergroupsUsersUpdateParameter, UsergroupsUsersUpdateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.users.update
+        /// </summary>
         public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(string usergroup, string users, CancellationToken cancellationToken)
         {
             var p = new UsergroupsUsersUpdateParameter();
@@ -29,10 +35,16 @@ namespace HigLabo.Net.Slack
             p.Users = users;
             return await this.SendAsync<UsergroupsUsersUpdateParameter, UsergroupsUsersUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.users.update
+        /// </summary>
         public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(UsergroupsUsersUpdateParameter parameter)
         {
             return await this.SendAsync<UsergroupsUsersUpdateParameter, UsergroupsUsersUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.users.update
+        /// </summary>
         public async Task<UsergroupsUsersUpdateResponse> UsergroupsUsersUpdateAsync(UsergroupsUsersUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsergroupsUsersUpdateParameter, UsergroupsUsersUpdateResponse>(parameter, cancellationToken);

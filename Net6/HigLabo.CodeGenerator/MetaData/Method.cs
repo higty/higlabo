@@ -8,6 +8,7 @@ namespace HigLabo.CodeGenerator
 {
     public class Method
     {
+        public string Comment { get; set; }
         public MethodModifier Modifier { get; private set; }
         public TypeName ReturnTypeName { get; set; }
         public String Name { get; set; }

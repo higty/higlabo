@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.rename
+        /// </summary>
         public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string channel, string name)
         {
             var p = new ConversationsRenameParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<ConversationsRenameParameter, ConversationsRenameResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.rename
+        /// </summary>
         public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string channel, string name, CancellationToken cancellationToken)
         {
             var p = new ConversationsRenameParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<ConversationsRenameParameter, ConversationsRenameResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.rename
+        /// </summary>
         public async Task<ConversationsRenameResponse> ConversationsRenameAsync(ConversationsRenameParameter parameter)
         {
             return await this.SendAsync<ConversationsRenameParameter, ConversationsRenameResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.rename
+        /// </summary>
         public async Task<ConversationsRenameResponse> ConversationsRenameAsync(ConversationsRenameParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsRenameParameter, ConversationsRenameResponse>(parameter, cancellationToken);

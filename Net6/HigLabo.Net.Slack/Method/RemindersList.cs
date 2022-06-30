@@ -12,20 +12,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/reminders.list
+        /// </summary>
         public async Task<RemindersListResponse> RemindersListAsync()
         {
             var p = new RemindersListParameter();
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reminders.list
+        /// </summary>
         public async Task<RemindersListResponse> RemindersListAsync(CancellationToken cancellationToken)
         {
             var p = new RemindersListParameter();
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reminders.list
+        /// </summary>
         public async Task<RemindersListResponse> RemindersListAsync(RemindersListParameter parameter)
         {
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reminders.list
+        /// </summary>
         public async Task<RemindersListResponse> RemindersListAsync(RemindersListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RemindersListParameter, RemindersListResponse>(parameter, cancellationToken);

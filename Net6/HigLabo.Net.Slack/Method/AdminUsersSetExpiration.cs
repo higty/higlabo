@@ -14,6 +14,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setExpiration
+        /// </summary>
         public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int expiration_Ts, string user_Id)
         {
             var p = new AdminUsersSetExpirationParameter();
@@ -21,6 +24,9 @@ namespace HigLabo.Net.Slack
             p.User_Id = user_Id;
             return await this.SendAsync<AdminUsersSetExpirationParameter, AdminUsersSetExpirationResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setExpiration
+        /// </summary>
         public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int expiration_Ts, string user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetExpirationParameter();
@@ -28,10 +34,16 @@ namespace HigLabo.Net.Slack
             p.User_Id = user_Id;
             return await this.SendAsync<AdminUsersSetExpirationParameter, AdminUsersSetExpirationResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setExpiration
+        /// </summary>
         public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(AdminUsersSetExpirationParameter parameter)
         {
             return await this.SendAsync<AdminUsersSetExpirationParameter, AdminUsersSetExpirationResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setExpiration
+        /// </summary>
         public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(AdminUsersSetExpirationParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSetExpirationParameter, AdminUsersSetExpirationResponse>(parameter, cancellationToken);

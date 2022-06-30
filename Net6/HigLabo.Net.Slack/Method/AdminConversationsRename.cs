@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.rename
+        /// </summary>
         public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(string channel_Id, string name)
         {
             var p = new AdminConversationsRenameParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<AdminConversationsRenameParameter, AdminConversationsRenameResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.rename
+        /// </summary>
         public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(string channel_Id, string name, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsRenameParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<AdminConversationsRenameParameter, AdminConversationsRenameResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.rename
+        /// </summary>
         public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(AdminConversationsRenameParameter parameter)
         {
             return await this.SendAsync<AdminConversationsRenameParameter, AdminConversationsRenameResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.rename
+        /// </summary>
         public async Task<AdminConversationsRenameResponse> AdminConversationsRenameAsync(AdminConversationsRenameParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsRenameParameter, AdminConversationsRenameResponse>(parameter, cancellationToken);

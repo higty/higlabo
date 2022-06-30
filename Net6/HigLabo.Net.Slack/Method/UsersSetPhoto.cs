@@ -15,20 +15,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/users.setPhoto
+        /// </summary>
         public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync()
         {
             var p = new UsersSetPhotoParameter();
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.setPhoto
+        /// </summary>
         public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync(CancellationToken cancellationToken)
         {
             var p = new UsersSetPhotoParameter();
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.setPhoto
+        /// </summary>
         public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync(UsersSetPhotoParameter parameter)
         {
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.setPhoto
+        /// </summary>
         public async Task<UsersSetPhotoResponse> UsersSetPhotoAsync(UsersSetPhotoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersSetPhotoParameter, UsersSetPhotoResponse>(parameter, cancellationToken);

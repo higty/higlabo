@@ -22,6 +22,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/chat.update
+        /// </summary>
         public async Task<ChatUpdateResponse> ChatUpdateAsync(string channel, string ts)
         {
             var p = new ChatUpdateParameter();
@@ -29,6 +32,9 @@ namespace HigLabo.Net.Slack
             p.Ts = ts;
             return await this.SendAsync<ChatUpdateParameter, ChatUpdateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.update
+        /// </summary>
         public async Task<ChatUpdateResponse> ChatUpdateAsync(string channel, string ts, CancellationToken cancellationToken)
         {
             var p = new ChatUpdateParameter();
@@ -36,10 +42,16 @@ namespace HigLabo.Net.Slack
             p.Ts = ts;
             return await this.SendAsync<ChatUpdateParameter, ChatUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.update
+        /// </summary>
         public async Task<ChatUpdateResponse> ChatUpdateAsync(ChatUpdateParameter parameter)
         {
             return await this.SendAsync<ChatUpdateParameter, ChatUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.update
+        /// </summary>
         public async Task<ChatUpdateResponse> ChatUpdateAsync(ChatUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatUpdateParameter, ChatUpdateResponse>(parameter, cancellationToken);

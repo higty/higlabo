@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.remove
+        /// </summary>
         public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string bookmark_Id, string channel_Id)
         {
             var p = new BookmarksRemoveParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Channel_Id = channel_Id;
             return await this.SendAsync<BookmarksRemoveParameter, BookmarksRemoveResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.remove
+        /// </summary>
         public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string bookmark_Id, string channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksRemoveParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Channel_Id = channel_Id;
             return await this.SendAsync<BookmarksRemoveParameter, BookmarksRemoveResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.remove
+        /// </summary>
         public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(BookmarksRemoveParameter parameter)
         {
             return await this.SendAsync<BookmarksRemoveParameter, BookmarksRemoveResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.remove
+        /// </summary>
         public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(BookmarksRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksRemoveParameter, BookmarksRemoveResponse>(parameter, cancellationToken);

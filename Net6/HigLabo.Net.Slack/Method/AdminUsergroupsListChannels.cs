@@ -14,22 +14,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.listChannels
+        /// </summary>
         public async Task<AdminUsergroupsListChannelsResponse> AdminUsergroupsListChannelsAsync(string usergroup_Id)
         {
             var p = new AdminUsergroupsListChannelsParameter();
             p.Usergroup_Id = usergroup_Id;
             return await this.SendAsync<AdminUsergroupsListChannelsParameter, AdminUsergroupsListChannelsResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.listChannels
+        /// </summary>
         public async Task<AdminUsergroupsListChannelsResponse> AdminUsergroupsListChannelsAsync(string usergroup_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsergroupsListChannelsParameter();
             p.Usergroup_Id = usergroup_Id;
             return await this.SendAsync<AdminUsergroupsListChannelsParameter, AdminUsergroupsListChannelsResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.listChannels
+        /// </summary>
         public async Task<AdminUsergroupsListChannelsResponse> AdminUsergroupsListChannelsAsync(AdminUsergroupsListChannelsParameter parameter)
         {
             return await this.SendAsync<AdminUsergroupsListChannelsParameter, AdminUsergroupsListChannelsResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.listChannels
+        /// </summary>
         public async Task<AdminUsergroupsListChannelsResponse> AdminUsergroupsListChannelsAsync(AdminUsergroupsListChannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsergroupsListChannelsParameter, AdminUsergroupsListChannelsResponse>(parameter, cancellationToken);

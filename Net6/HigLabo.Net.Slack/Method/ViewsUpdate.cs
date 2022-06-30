@@ -15,22 +15,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/views.update
+        /// </summary>
         public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string view)
         {
             var p = new ViewsUpdateParameter();
             p.View = view;
             return await this.SendAsync<ViewsUpdateParameter, ViewsUpdateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/views.update
+        /// </summary>
         public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string view, CancellationToken cancellationToken)
         {
             var p = new ViewsUpdateParameter();
             p.View = view;
             return await this.SendAsync<ViewsUpdateParameter, ViewsUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/views.update
+        /// </summary>
         public async Task<ViewsUpdateResponse> ViewsUpdateAsync(ViewsUpdateParameter parameter)
         {
             return await this.SendAsync<ViewsUpdateParameter, ViewsUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/views.update
+        /// </summary>
         public async Task<ViewsUpdateResponse> ViewsUpdateAsync(ViewsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ViewsUpdateParameter, ViewsUpdateResponse>(parameter, cancellationToken);

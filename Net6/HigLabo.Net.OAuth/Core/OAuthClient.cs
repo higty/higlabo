@@ -32,5 +32,6 @@ namespace HigLabo.Net.OAuth
             if (JsonConverter == null) { throw new InvalidOperationException("OAuthClient.JsonConverter must be set before call method."); }
             return JsonConverter.DeserializeObject<T>(json);
         }
+
     }
 }

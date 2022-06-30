@@ -12,20 +12,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/auth.revoke
+        /// </summary>
         public async Task<AuthRevokeResponse> AuthRevokeAsync()
         {
             var p = new AuthRevokeParameter();
             return await this.SendAsync<AuthRevokeParameter, AuthRevokeResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/auth.revoke
+        /// </summary>
         public async Task<AuthRevokeResponse> AuthRevokeAsync(CancellationToken cancellationToken)
         {
             var p = new AuthRevokeParameter();
             return await this.SendAsync<AuthRevokeParameter, AuthRevokeResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/auth.revoke
+        /// </summary>
         public async Task<AuthRevokeResponse> AuthRevokeAsync(AuthRevokeParameter parameter)
         {
             return await this.SendAsync<AuthRevokeParameter, AuthRevokeResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/auth.revoke
+        /// </summary>
         public async Task<AuthRevokeResponse> AuthRevokeAsync(AuthRevokeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AuthRevokeParameter, AuthRevokeResponse>(parameter, cancellationToken);

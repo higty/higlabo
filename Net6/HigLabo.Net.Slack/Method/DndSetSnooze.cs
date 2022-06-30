@@ -12,20 +12,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.setSnooze
+        /// </summary>
         public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync()
         {
             var p = new DndSetSnoozeParameter();
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.setSnooze
+        /// </summary>
         public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync(CancellationToken cancellationToken)
         {
             var p = new DndSetSnoozeParameter();
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.setSnooze
+        /// </summary>
         public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync(DndSetSnoozeParameter parameter)
         {
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.setSnooze
+        /// </summary>
         public async Task<DndSetSnoozeResponse> DndSetSnoozeAsync(DndSetSnoozeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DndSetSnoozeParameter, DndSetSnoozeResponse>(parameter, cancellationToken);

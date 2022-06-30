@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/apps.manifest.update
+        /// </summary>
         public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string app_Id, string manifest)
         {
             var p = new AppsManifestUpdateParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Manifest = manifest;
             return await this.SendAsync<AppsManifestUpdateParameter, AppsManifestUpdateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/apps.manifest.update
+        /// </summary>
         public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string app_Id, string manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestUpdateParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Manifest = manifest;
             return await this.SendAsync<AppsManifestUpdateParameter, AppsManifestUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/apps.manifest.update
+        /// </summary>
         public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(AppsManifestUpdateParameter parameter)
         {
             return await this.SendAsync<AppsManifestUpdateParameter, AppsManifestUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/apps.manifest.update
+        /// </summary>
         public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(AppsManifestUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AppsManifestUpdateParameter, AppsManifestUpdateResponse>(parameter, cancellationToken);

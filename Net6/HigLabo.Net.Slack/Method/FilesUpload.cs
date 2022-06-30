@@ -19,20 +19,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/files.upload
+        /// </summary>
         public async Task<FilesUploadResponse> FilesUploadAsync()
         {
             var p = new FilesUploadParameter();
             return await this.SendAsync<FilesUploadParameter, FilesUploadResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.upload
+        /// </summary>
         public async Task<FilesUploadResponse> FilesUploadAsync(CancellationToken cancellationToken)
         {
             var p = new FilesUploadParameter();
             return await this.SendAsync<FilesUploadParameter, FilesUploadResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.upload
+        /// </summary>
         public async Task<FilesUploadResponse> FilesUploadAsync(FilesUploadParameter parameter)
         {
             return await this.SendAsync<FilesUploadParameter, FilesUploadResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.upload
+        /// </summary>
         public async Task<FilesUploadResponse> FilesUploadAsync(FilesUploadParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesUploadParameter, FilesUploadResponse>(parameter, cancellationToken);

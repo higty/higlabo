@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/workflows.stepFailed
+        /// </summary>
         public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(object error, string workflow_Step_Execute_Id)
         {
             var p = new WorkflowsStepFailedParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Workflow_Step_Execute_Id = workflow_Step_Execute_Id;
             return await this.SendAsync<WorkflowsStepFailedParameter, WorkflowsStepFailedResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/workflows.stepFailed
+        /// </summary>
         public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(object error, string workflow_Step_Execute_Id, CancellationToken cancellationToken)
         {
             var p = new WorkflowsStepFailedParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Workflow_Step_Execute_Id = workflow_Step_Execute_Id;
             return await this.SendAsync<WorkflowsStepFailedParameter, WorkflowsStepFailedResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/workflows.stepFailed
+        /// </summary>
         public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(WorkflowsStepFailedParameter parameter)
         {
             return await this.SendAsync<WorkflowsStepFailedParameter, WorkflowsStepFailedResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/workflows.stepFailed
+        /// </summary>
         public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(WorkflowsStepFailedParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<WorkflowsStepFailedParameter, WorkflowsStepFailedResponse>(parameter, cancellationToken);

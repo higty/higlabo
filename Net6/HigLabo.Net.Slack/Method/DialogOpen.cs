@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/dialog.open
+        /// </summary>
         public async Task<DialogOpenResponse> DialogOpenAsync(string dialog, string trigger_Id)
         {
             var p = new DialogOpenParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Trigger_Id = trigger_Id;
             return await this.SendAsync<DialogOpenParameter, DialogOpenResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dialog.open
+        /// </summary>
         public async Task<DialogOpenResponse> DialogOpenAsync(string dialog, string trigger_Id, CancellationToken cancellationToken)
         {
             var p = new DialogOpenParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Trigger_Id = trigger_Id;
             return await this.SendAsync<DialogOpenParameter, DialogOpenResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dialog.open
+        /// </summary>
         public async Task<DialogOpenResponse> DialogOpenAsync(DialogOpenParameter parameter)
         {
             return await this.SendAsync<DialogOpenParameter, DialogOpenResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dialog.open
+        /// </summary>
         public async Task<DialogOpenResponse> DialogOpenAsync(DialogOpenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DialogOpenParameter, DialogOpenResponse>(parameter, cancellationToken);

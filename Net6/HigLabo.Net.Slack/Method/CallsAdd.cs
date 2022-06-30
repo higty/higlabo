@@ -19,6 +19,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/calls.add
+        /// </summary>
         public async Task<CallsAddResponse> CallsAddAsync(string external_Unique_Id, string join_Url)
         {
             var p = new CallsAddParameter();
@@ -26,6 +29,9 @@ namespace HigLabo.Net.Slack
             p.Join_Url = join_Url;
             return await this.SendAsync<CallsAddParameter, CallsAddResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/calls.add
+        /// </summary>
         public async Task<CallsAddResponse> CallsAddAsync(string external_Unique_Id, string join_Url, CancellationToken cancellationToken)
         {
             var p = new CallsAddParameter();
@@ -33,10 +39,16 @@ namespace HigLabo.Net.Slack
             p.Join_Url = join_Url;
             return await this.SendAsync<CallsAddParameter, CallsAddResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/calls.add
+        /// </summary>
         public async Task<CallsAddResponse> CallsAddAsync(CallsAddParameter parameter)
         {
             return await this.SendAsync<CallsAddParameter, CallsAddResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/calls.add
+        /// </summary>
         public async Task<CallsAddResponse> CallsAddAsync(CallsAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallsAddParameter, CallsAddResponse>(parameter, cancellationToken);

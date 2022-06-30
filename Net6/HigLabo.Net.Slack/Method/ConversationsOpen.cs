@@ -15,20 +15,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.open
+        /// </summary>
         public async Task<ConversationsOpenResponse> ConversationsOpenAsync()
         {
             var p = new ConversationsOpenParameter();
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.open
+        /// </summary>
         public async Task<ConversationsOpenResponse> ConversationsOpenAsync(CancellationToken cancellationToken)
         {
             var p = new ConversationsOpenParameter();
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.open
+        /// </summary>
         public async Task<ConversationsOpenResponse> ConversationsOpenAsync(ConversationsOpenParameter parameter)
         {
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.open
+        /// </summary>
         public async Task<ConversationsOpenResponse> ConversationsOpenAsync(ConversationsOpenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsOpenParameter, ConversationsOpenResponse>(parameter, cancellationToken);

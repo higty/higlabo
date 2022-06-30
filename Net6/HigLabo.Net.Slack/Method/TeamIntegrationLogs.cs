@@ -18,20 +18,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/team.integrationLogs
+        /// </summary>
         public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync()
         {
             var p = new TeamIntegrationLogsParameter();
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/team.integrationLogs
+        /// </summary>
         public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamIntegrationLogsParameter();
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/team.integrationLogs
+        /// </summary>
         public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(TeamIntegrationLogsParameter parameter)
         {
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/team.integrationLogs
+        /// </summary>
         public async Task<TeamIntegrationLogsResponse> TeamIntegrationLogsAsync(TeamIntegrationLogsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamIntegrationLogsParameter, TeamIntegrationLogsResponse>(parameter, cancellationToken);

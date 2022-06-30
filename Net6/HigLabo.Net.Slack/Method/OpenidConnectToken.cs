@@ -17,20 +17,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.token
+        /// </summary>
         public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync()
         {
             var p = new OpenidConnectTokenParameter();
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.token
+        /// </summary>
         public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync(CancellationToken cancellationToken)
         {
             var p = new OpenidConnectTokenParameter();
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.token
+        /// </summary>
         public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync(OpenidConnectTokenParameter parameter)
         {
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.token
+        /// </summary>
         public async Task<OpenidConnectTokenResponse> OpenidConnectTokenAsync(OpenidConnectTokenParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenidConnectTokenParameter, OpenidConnectTokenResponse>(parameter, cancellationToken);

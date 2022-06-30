@@ -11,4 +11,8 @@ namespace HigLabo.Net.Slack
         string ApiPath { get; }
         string HttpMethod { get; } 
     }
+    public interface IRestApiPagingParameter
+    {
+        string NextPageToken { get; set; }
+    }
 }

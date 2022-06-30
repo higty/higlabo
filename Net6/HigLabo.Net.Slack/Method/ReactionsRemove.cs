@@ -16,22 +16,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.remove
+        /// </summary>
         public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(string name)
         {
             var p = new ReactionsRemoveParameter();
             p.Name = name;
             return await this.SendAsync<ReactionsRemoveParameter, ReactionsRemoveResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.remove
+        /// </summary>
         public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(string name, CancellationToken cancellationToken)
         {
             var p = new ReactionsRemoveParameter();
             p.Name = name;
             return await this.SendAsync<ReactionsRemoveParameter, ReactionsRemoveResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.remove
+        /// </summary>
         public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(ReactionsRemoveParameter parameter)
         {
             return await this.SendAsync<ReactionsRemoveParameter, ReactionsRemoveResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.remove
+        /// </summary>
         public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(ReactionsRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReactionsRemoveParameter, ReactionsRemoveResponse>(parameter, cancellationToken);

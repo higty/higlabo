@@ -14,6 +14,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.create
+        /// </summary>
         public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects)
         {
             var p = new AdminBarriersCreateParameter();
@@ -22,6 +25,9 @@ namespace HigLabo.Net.Slack
             p.Restricted_Subjects = restricted_Subjects;
             return await this.SendAsync<AdminBarriersCreateParameter, AdminBarriersCreateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.create
+        /// </summary>
         public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersCreateParameter();
@@ -30,10 +36,16 @@ namespace HigLabo.Net.Slack
             p.Restricted_Subjects = restricted_Subjects;
             return await this.SendAsync<AdminBarriersCreateParameter, AdminBarriersCreateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.create
+        /// </summary>
         public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(AdminBarriersCreateParameter parameter)
         {
             return await this.SendAsync<AdminBarriersCreateParameter, AdminBarriersCreateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.create
+        /// </summary>
         public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(AdminBarriersCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminBarriersCreateParameter, AdminBarriersCreateResponse>(parameter, cancellationToken);

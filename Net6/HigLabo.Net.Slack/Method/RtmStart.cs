@@ -18,20 +18,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/rtm.start
+        /// </summary>
         public async Task<RtmStartResponse> RtmStartAsync()
         {
             var p = new RtmStartParameter();
             return await this.SendAsync<RtmStartParameter, RtmStartResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/rtm.start
+        /// </summary>
         public async Task<RtmStartResponse> RtmStartAsync(CancellationToken cancellationToken)
         {
             var p = new RtmStartParameter();
             return await this.SendAsync<RtmStartParameter, RtmStartResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/rtm.start
+        /// </summary>
         public async Task<RtmStartResponse> RtmStartAsync(RtmStartParameter parameter)
         {
             return await this.SendAsync<RtmStartParameter, RtmStartResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/rtm.start
+        /// </summary>
         public async Task<RtmStartResponse> RtmStartAsync(RtmStartParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<RtmStartParameter, RtmStartResponse>(parameter, cancellationToken);

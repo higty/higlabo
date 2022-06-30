@@ -15,20 +15,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/team.accessLogs
+        /// </summary>
         public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync()
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/team.accessLogs
+        /// </summary>
         public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync(CancellationToken cancellationToken)
         {
             var p = new TeamAccessLogsParameter();
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/team.accessLogs
+        /// </summary>
         public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync(TeamAccessLogsParameter parameter)
         {
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/team.accessLogs
+        /// </summary>
         public async Task<TeamAccessLogsResponse> TeamAccessLogsAsync(TeamAccessLogsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<TeamAccessLogsParameter, TeamAccessLogsResponse>(parameter, cancellationToken);

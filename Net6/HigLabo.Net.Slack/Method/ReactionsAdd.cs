@@ -14,6 +14,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.add
+        /// </summary>
         public async Task<ReactionsAddResponse> ReactionsAddAsync(string channel, string name, string timestamp)
         {
             var p = new ReactionsAddParameter();
@@ -22,6 +25,9 @@ namespace HigLabo.Net.Slack
             p.Timestamp = timestamp;
             return await this.SendAsync<ReactionsAddParameter, ReactionsAddResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.add
+        /// </summary>
         public async Task<ReactionsAddResponse> ReactionsAddAsync(string channel, string name, string timestamp, CancellationToken cancellationToken)
         {
             var p = new ReactionsAddParameter();
@@ -30,10 +36,16 @@ namespace HigLabo.Net.Slack
             p.Timestamp = timestamp;
             return await this.SendAsync<ReactionsAddParameter, ReactionsAddResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.add
+        /// </summary>
         public async Task<ReactionsAddResponse> ReactionsAddAsync(ReactionsAddParameter parameter)
         {
             return await this.SendAsync<ReactionsAddParameter, ReactionsAddResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/reactions.add
+        /// </summary>
         public async Task<ReactionsAddResponse> ReactionsAddAsync(ReactionsAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ReactionsAddParameter, ReactionsAddResponse>(parameter, cancellationToken);

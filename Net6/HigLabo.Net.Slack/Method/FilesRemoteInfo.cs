@@ -13,20 +13,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.info
+        /// </summary>
         public async Task<FilesRemoteInfoResponse> FilesRemoteInfoAsync()
         {
             var p = new FilesRemoteInfoParameter();
             return await this.SendAsync<FilesRemoteInfoParameter, FilesRemoteInfoResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.info
+        /// </summary>
         public async Task<FilesRemoteInfoResponse> FilesRemoteInfoAsync(CancellationToken cancellationToken)
         {
             var p = new FilesRemoteInfoParameter();
             return await this.SendAsync<FilesRemoteInfoParameter, FilesRemoteInfoResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.info
+        /// </summary>
         public async Task<FilesRemoteInfoResponse> FilesRemoteInfoAsync(FilesRemoteInfoParameter parameter)
         {
             return await this.SendAsync<FilesRemoteInfoParameter, FilesRemoteInfoResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.info
+        /// </summary>
         public async Task<FilesRemoteInfoResponse> FilesRemoteInfoAsync(FilesRemoteInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteInfoParameter, FilesRemoteInfoResponse>(parameter, cancellationToken);

@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
+        /// </summary>
         public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string discoverability, string team_Id)
         {
             var p = new AdminTeamsSettingsSetDiscoverabilityParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Team_Id = team_Id;
             return await this.SendAsync<AdminTeamsSettingsSetDiscoverabilityParameter, AdminTeamsSettingsSetDiscoverabilityResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
+        /// </summary>
         public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string discoverability, string team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetDiscoverabilityParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Team_Id = team_Id;
             return await this.SendAsync<AdminTeamsSettingsSetDiscoverabilityParameter, AdminTeamsSettingsSetDiscoverabilityResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
+        /// </summary>
         public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(AdminTeamsSettingsSetDiscoverabilityParameter parameter)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDiscoverabilityParameter, AdminTeamsSettingsSetDiscoverabilityResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
+        /// </summary>
         public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(AdminTeamsSettingsSetDiscoverabilityParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminTeamsSettingsSetDiscoverabilityParameter, AdminTeamsSettingsSetDiscoverabilityResponse>(parameter, cancellationToken);

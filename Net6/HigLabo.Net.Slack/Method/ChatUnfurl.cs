@@ -20,6 +20,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/chat.unfurl
+        /// </summary>
         public async Task<ChatUnfurlResponse> ChatUnfurlAsync(string channel, string ts, string unfurls)
         {
             var p = new ChatUnfurlParameter();
@@ -28,6 +31,9 @@ namespace HigLabo.Net.Slack
             p.Unfurls = unfurls;
             return await this.SendAsync<ChatUnfurlParameter, ChatUnfurlResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.unfurl
+        /// </summary>
         public async Task<ChatUnfurlResponse> ChatUnfurlAsync(string channel, string ts, string unfurls, CancellationToken cancellationToken)
         {
             var p = new ChatUnfurlParameter();
@@ -36,10 +42,16 @@ namespace HigLabo.Net.Slack
             p.Unfurls = unfurls;
             return await this.SendAsync<ChatUnfurlParameter, ChatUnfurlResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.unfurl
+        /// </summary>
         public async Task<ChatUnfurlResponse> ChatUnfurlAsync(ChatUnfurlParameter parameter)
         {
             return await this.SendAsync<ChatUnfurlParameter, ChatUnfurlResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.unfurl
+        /// </summary>
         public async Task<ChatUnfurlResponse> ChatUnfurlAsync(ChatUnfurlParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatUnfurlParameter, ChatUnfurlResponse>(parameter, cancellationToken);

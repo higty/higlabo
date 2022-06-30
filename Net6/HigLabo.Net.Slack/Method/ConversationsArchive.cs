@@ -12,22 +12,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.archive
+        /// </summary>
         public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string channel)
         {
             var p = new ConversationsArchiveParameter();
             p.Channel = channel;
             return await this.SendAsync<ConversationsArchiveParameter, ConversationsArchiveResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.archive
+        /// </summary>
         public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsArchiveParameter();
             p.Channel = channel;
             return await this.SendAsync<ConversationsArchiveParameter, ConversationsArchiveResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.archive
+        /// </summary>
         public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(ConversationsArchiveParameter parameter)
         {
             return await this.SendAsync<ConversationsArchiveParameter, ConversationsArchiveResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.archive
+        /// </summary>
         public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(ConversationsArchiveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsArchiveParameter, ConversationsArchiveResponse>(parameter, cancellationToken);

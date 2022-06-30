@@ -17,20 +17,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.access
+        /// </summary>
         public async Task<OauthV2AccessResponse> OauthV2AccessAsync()
         {
             var p = new OauthV2AccessParameter();
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.access
+        /// </summary>
         public async Task<OauthV2AccessResponse> OauthV2AccessAsync(CancellationToken cancellationToken)
         {
             var p = new OauthV2AccessParameter();
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.access
+        /// </summary>
         public async Task<OauthV2AccessResponse> OauthV2AccessAsync(OauthV2AccessParameter parameter)
         {
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.access
+        /// </summary>
         public async Task<OauthV2AccessResponse> OauthV2AccessAsync(OauthV2AccessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OauthV2AccessParameter, OauthV2AccessResponse>(parameter, cancellationToken);

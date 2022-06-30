@@ -15,6 +15,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
         public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string barrier_Id, string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects)
         {
             var p = new AdminBarriersUpdateParameter();
@@ -24,6 +27,9 @@ namespace HigLabo.Net.Slack
             p.Restricted_Subjects = restricted_Subjects;
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
         public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string barrier_Id, string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersUpdateParameter();
@@ -33,10 +39,16 @@ namespace HigLabo.Net.Slack
             p.Restricted_Subjects = restricted_Subjects;
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
         public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter)
         {
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
         public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(parameter, cancellationToken);

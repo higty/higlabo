@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.kick
+        /// </summary>
         public async Task<ConversationsKickResponse> ConversationsKickAsync(string channel, string user)
         {
             var p = new ConversationsKickParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.User = user;
             return await this.SendAsync<ConversationsKickParameter, ConversationsKickResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.kick
+        /// </summary>
         public async Task<ConversationsKickResponse> ConversationsKickAsync(string channel, string user, CancellationToken cancellationToken)
         {
             var p = new ConversationsKickParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.User = user;
             return await this.SendAsync<ConversationsKickParameter, ConversationsKickResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.kick
+        /// </summary>
         public async Task<ConversationsKickResponse> ConversationsKickAsync(ConversationsKickParameter parameter)
         {
             return await this.SendAsync<ConversationsKickParameter, ConversationsKickResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.kick
+        /// </summary>
         public async Task<ConversationsKickResponse> ConversationsKickAsync(ConversationsKickParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsKickParameter, ConversationsKickResponse>(parameter, cancellationToken);

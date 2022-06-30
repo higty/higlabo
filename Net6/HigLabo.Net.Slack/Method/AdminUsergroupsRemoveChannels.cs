@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.removeChannels
+        /// </summary>
         public async Task<AdminUsergroupsRemoveChannelsResponse> AdminUsergroupsRemoveChannelsAsync(string channel_Ids, string usergroup_Id)
         {
             var p = new AdminUsergroupsRemoveChannelsParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Usergroup_Id = usergroup_Id;
             return await this.SendAsync<AdminUsergroupsRemoveChannelsParameter, AdminUsergroupsRemoveChannelsResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.removeChannels
+        /// </summary>
         public async Task<AdminUsergroupsRemoveChannelsResponse> AdminUsergroupsRemoveChannelsAsync(string channel_Ids, string usergroup_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsergroupsRemoveChannelsParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Usergroup_Id = usergroup_Id;
             return await this.SendAsync<AdminUsergroupsRemoveChannelsParameter, AdminUsergroupsRemoveChannelsResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.removeChannels
+        /// </summary>
         public async Task<AdminUsergroupsRemoveChannelsResponse> AdminUsergroupsRemoveChannelsAsync(AdminUsergroupsRemoveChannelsParameter parameter)
         {
             return await this.SendAsync<AdminUsergroupsRemoveChannelsParameter, AdminUsergroupsRemoveChannelsResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.usergroups.removeChannels
+        /// </summary>
         public async Task<AdminUsergroupsRemoveChannelsResponse> AdminUsergroupsRemoveChannelsAsync(AdminUsergroupsRemoveChannelsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsergroupsRemoveChannelsParameter, AdminUsergroupsRemoveChannelsResponse>(parameter, cancellationToken);

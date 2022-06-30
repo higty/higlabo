@@ -24,6 +24,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/chat.scheduleMessage
+        /// </summary>
         public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string channel, int post_At, string text)
         {
             var p = new ChatScheduleMessageParameter();
@@ -32,6 +35,9 @@ namespace HigLabo.Net.Slack
             p.Text = text;
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.scheduleMessage
+        /// </summary>
         public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(string channel, int post_At, string text, CancellationToken cancellationToken)
         {
             var p = new ChatScheduleMessageParameter();
@@ -40,10 +46,16 @@ namespace HigLabo.Net.Slack
             p.Text = text;
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.scheduleMessage
+        /// </summary>
         public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(ChatScheduleMessageParameter parameter)
         {
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.scheduleMessage
+        /// </summary>
         public async Task<ChatScheduleMessageResponse> ChatScheduleMessageAsync(ChatScheduleMessageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatScheduleMessageParameter, ChatScheduleMessageResponse>(parameter, cancellationToken);

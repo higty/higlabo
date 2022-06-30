@@ -16,20 +16,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.access
+        /// </summary>
         public async Task<OauthAccessResponse> OauthAccessAsync()
         {
             var p = new OauthAccessParameter();
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.access
+        /// </summary>
         public async Task<OauthAccessResponse> OauthAccessAsync(CancellationToken cancellationToken)
         {
             var p = new OauthAccessParameter();
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.access
+        /// </summary>
         public async Task<OauthAccessResponse> OauthAccessAsync(OauthAccessParameter parameter)
         {
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.access
+        /// </summary>
         public async Task<OauthAccessResponse> OauthAccessAsync(OauthAccessParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OauthAccessParameter, OauthAccessResponse>(parameter, cancellationToken);

@@ -13,10 +13,11 @@ namespace HigLabo.Net.OAuth
         HttpRequestMessage Request { get; }
         HttpStatusCode StatusCode { get; }
         Dictionary<String, String> Headers { get; } 
-        string ResponseBodyText { get; } 
+        string ResponseBodyText { get; }
+        bool IsThrowException();
     }
 
-    public class RestApiResponse : IRestApiResponse
+    public abstract class RestApiResponse : IRestApiResponse
     {
         private Object _Parameter = null; 
         private HttpRequestMessage _Request = null;
@@ -57,5 +58,10 @@ namespace HigLabo.Net.OAuth
             }
             _ResponseBodyText = bodyText;
         }
+        public virtual string GetNextPageToken()
+        {
+            return "";
+        }
+        public abstract bool IsThrowException();
     }
 }

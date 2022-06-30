@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.emoji.addAlias
+        /// </summary>
         public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(string alias_For, string name)
         {
             var p = new AdminEmojiAddAliasParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<AdminEmojiAddAliasParameter, AdminEmojiAddAliasResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.emoji.addAlias
+        /// </summary>
         public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(string alias_For, string name, CancellationToken cancellationToken)
         {
             var p = new AdminEmojiAddAliasParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<AdminEmojiAddAliasParameter, AdminEmojiAddAliasResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.emoji.addAlias
+        /// </summary>
         public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(AdminEmojiAddAliasParameter parameter)
         {
             return await this.SendAsync<AdminEmojiAddAliasParameter, AdminEmojiAddAliasResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.emoji.addAlias
+        /// </summary>
         public async Task<AdminEmojiAddAliasResponse> AdminEmojiAddAliasAsync(AdminEmojiAddAliasParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminEmojiAddAliasParameter, AdminEmojiAddAliasResponse>(parameter, cancellationToken);

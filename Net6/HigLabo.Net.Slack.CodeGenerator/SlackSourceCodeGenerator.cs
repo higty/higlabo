@@ -194,7 +194,11 @@ namespace HigLabo.Net.Slack.CodeGenerator
 
                 if (p.Name == "Cursor")
                 {
-                    c.ImplementInterfaces.Add(new TypeName("ICursor"));
+                    c.ImplementInterfaces.Add(new TypeName("IRestApiPagingParameter"));
+
+                    var pPaging = new Property("string", "IRestApiPagingParameter.NextPageToken", true);
+                    pPaging.Modifier.AccessModifier = MethodAccessModifier.None;
+                    c.Properties.Add(pPaging);
                 }
 
                 if (aRequired == "Required")
@@ -214,7 +218,7 @@ namespace HigLabo.Net.Slack.CodeGenerator
             mdAsync1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.SendAsync<{cName}Parameter, {cName}Response>(p, CancellationToken.None);");
             cClient.Methods.Add(mdAsync1);
 
-            if (c.ImplementInterfaces.Exists(el => el.Name == "ICursor"))
+            if (c.ImplementInterfaces.Exists(el => el.Name == "IRestApiPagingParameter"))
             {
                 var mdBatch = cClient.Methods[0].Copy();
                 mdBatch.Parameters.Insert(1, new MethodParameter($"PagingContext<{cName}Response>", "context"));
@@ -246,6 +250,10 @@ namespace HigLabo.Net.Slack.CodeGenerator
             }
 
             cClient.Methods.Reverse();
+            foreach (var md in cClient.Methods)
+            {
+                md.Comment = url;
+            }
 
             var filePath = Path.Combine(FolderPath, "Method", cName + ".cs");
             using (var stream = new StreamWriter(filePath, false, Encoding.UTF8))

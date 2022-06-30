@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.invite
+        /// </summary>
         public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string channel, string users)
         {
             var p = new ConversationsInviteParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Users = users;
             return await this.SendAsync<ConversationsInviteParameter, ConversationsInviteResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.invite
+        /// </summary>
         public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string channel, string users, CancellationToken cancellationToken)
         {
             var p = new ConversationsInviteParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Users = users;
             return await this.SendAsync<ConversationsInviteParameter, ConversationsInviteResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.invite
+        /// </summary>
         public async Task<ConversationsInviteResponse> ConversationsInviteAsync(ConversationsInviteParameter parameter)
         {
             return await this.SendAsync<ConversationsInviteParameter, ConversationsInviteResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.invite
+        /// </summary>
         public async Task<ConversationsInviteResponse> ConversationsInviteAsync(ConversationsInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsInviteParameter, ConversationsInviteResponse>(parameter, cancellationToken);

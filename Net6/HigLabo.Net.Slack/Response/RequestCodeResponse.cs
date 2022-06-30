@@ -29,5 +29,10 @@ namespace HigLabo.Net.Slack
         public IdName Team { get; set; }
         public IdName Enterprise { get; set; }
         public User Authed_User { get; set; }
+
+        public override bool IsThrowException()
+        {
+            return this.Ok != true;
+        }
     }
 }

@@ -49,13 +49,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLaboWebSite", "HigLaboWe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Nuget", "HigLabo.Nuget\HigLabo.Nuget.csproj", "{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Slack", "HigLabo.Net.Slack\HigLabo.Net.Slack.csproj", "{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.Slack", "HigLabo.Net.Slack\HigLabo.Net.Slack.csproj", "{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Slack.CodeGenerator", "HigLabo.Net.Slack.CodeGenerator\HigLabo.Net.Slack.CodeGenerator.csproj", "{2575DCE4-6665-4A73-A607-06AA3687FCF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.Slack.CodeGenerator", "HigLabo.Net.Slack.CodeGenerator\HigLabo.Net.Slack.CodeGenerator.csproj", "{2575DCE4-6665-4A73-A607-06AA3687FCF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.OAuth", "HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj", "{2068590B-8FFD-41E2-A569-9CCA5733888F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.OAuth", "HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj", "{2068590B-8FFD-41E2-A569-9CCA5733888F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.OAuth.NewtonsoftJson", "HigLabo.Net.OAuth.NewtonsoftJson\HigLabo.Net.OAuth.NewtonsoftJson.csproj", "{142C8D2F-5B4F-4CD9-A769-939B9B61C084}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.OAuth.NewtonsoftJson", "HigLabo.Net.OAuth.NewtonsoftJson\HigLabo.Net.OAuth.NewtonsoftJson.csproj", "{142C8D2F-5B4F-4CD9-A769-939B9B61C084}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Microsoft", "HigLabo.Net.Microsoft\HigLabo.Net.Microsoft.csproj", "{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -171,6 +173,10 @@ Global
 		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

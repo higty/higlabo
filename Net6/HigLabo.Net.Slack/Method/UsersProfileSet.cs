@@ -15,20 +15,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/users.profile.set
+        /// </summary>
         public async Task<UsersProfileSetResponse> UsersProfileSetAsync()
         {
             var p = new UsersProfileSetParameter();
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.profile.set
+        /// </summary>
         public async Task<UsersProfileSetResponse> UsersProfileSetAsync(CancellationToken cancellationToken)
         {
             var p = new UsersProfileSetParameter();
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.profile.set
+        /// </summary>
         public async Task<UsersProfileSetResponse> UsersProfileSetAsync(UsersProfileSetParameter parameter)
         {
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.profile.set
+        /// </summary>
         public async Task<UsersProfileSetResponse> UsersProfileSetAsync(UsersProfileSetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersProfileSetParameter, UsersProfileSetResponse>(parameter, cancellationToken);

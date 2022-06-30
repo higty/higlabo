@@ -13,20 +13,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.remove
+        /// </summary>
         public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync()
         {
             var p = new FilesRemoteRemoveParameter();
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.remove
+        /// </summary>
         public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(CancellationToken cancellationToken)
         {
             var p = new FilesRemoteRemoveParameter();
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.remove
+        /// </summary>
         public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(FilesRemoteRemoveParameter parameter)
         {
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.remove
+        /// </summary>
         public async Task<FilesRemoteRemoveResponse> FilesRemoteRemoveAsync(FilesRemoteRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteRemoveParameter, FilesRemoteRemoveResponse>(parameter, cancellationToken);

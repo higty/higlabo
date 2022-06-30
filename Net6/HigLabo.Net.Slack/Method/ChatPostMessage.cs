@@ -27,22 +27,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postMessage
+        /// </summary>
         public async Task<ChatPostMessageResponse> ChatPostMessageAsync(string channel)
         {
             var p = new ChatPostMessageParameter();
             p.Channel = channel;
             return await this.SendAsync<ChatPostMessageParameter, ChatPostMessageResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postMessage
+        /// </summary>
         public async Task<ChatPostMessageResponse> ChatPostMessageAsync(string channel, CancellationToken cancellationToken)
         {
             var p = new ChatPostMessageParameter();
             p.Channel = channel;
             return await this.SendAsync<ChatPostMessageParameter, ChatPostMessageResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postMessage
+        /// </summary>
         public async Task<ChatPostMessageResponse> ChatPostMessageAsync(ChatPostMessageParameter parameter)
         {
             return await this.SendAsync<ChatPostMessageParameter, ChatPostMessageResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postMessage
+        /// </summary>
         public async Task<ChatPostMessageResponse> ChatPostMessageAsync(ChatPostMessageParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPostMessageParameter, ChatPostMessageResponse>(parameter, cancellationToken);

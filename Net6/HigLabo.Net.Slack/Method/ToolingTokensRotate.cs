@@ -12,22 +12,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/tooling.tokens.rotate
+        /// </summary>
         public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string refresh_Token)
         {
             var p = new ToolingTokensRotateParameter();
             p.Refresh_Token = refresh_Token;
             return await this.SendAsync<ToolingTokensRotateParameter, ToolingTokensRotateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/tooling.tokens.rotate
+        /// </summary>
         public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string refresh_Token, CancellationToken cancellationToken)
         {
             var p = new ToolingTokensRotateParameter();
             p.Refresh_Token = refresh_Token;
             return await this.SendAsync<ToolingTokensRotateParameter, ToolingTokensRotateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/tooling.tokens.rotate
+        /// </summary>
         public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(ToolingTokensRotateParameter parameter)
         {
             return await this.SendAsync<ToolingTokensRotateParameter, ToolingTokensRotateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/tooling.tokens.rotate
+        /// </summary>
         public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(ToolingTokensRotateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ToolingTokensRotateParameter, ToolingTokensRotateResponse>(parameter, cancellationToken);

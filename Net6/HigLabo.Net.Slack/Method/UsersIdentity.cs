@@ -11,20 +11,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/users.identity
+        /// </summary>
         public async Task<UsersIdentityResponse> UsersIdentityAsync()
         {
             var p = new UsersIdentityParameter();
             return await this.SendAsync<UsersIdentityParameter, UsersIdentityResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.identity
+        /// </summary>
         public async Task<UsersIdentityResponse> UsersIdentityAsync(CancellationToken cancellationToken)
         {
             var p = new UsersIdentityParameter();
             return await this.SendAsync<UsersIdentityParameter, UsersIdentityResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.identity
+        /// </summary>
         public async Task<UsersIdentityResponse> UsersIdentityAsync(UsersIdentityParameter parameter)
         {
             return await this.SendAsync<UsersIdentityParameter, UsersIdentityResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/users.identity
+        /// </summary>
         public async Task<UsersIdentityResponse> UsersIdentityAsync(UsersIdentityParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsersIdentityParameter, UsersIdentityResponse>(parameter, cancellationToken);

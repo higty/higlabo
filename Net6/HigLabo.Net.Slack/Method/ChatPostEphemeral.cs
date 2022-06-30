@@ -23,6 +23,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postEphemeral
+        /// </summary>
         public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string channel, string text, string user)
         {
             var p = new ChatPostEphemeralParameter();
@@ -31,6 +34,9 @@ namespace HigLabo.Net.Slack
             p.User = user;
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postEphemeral
+        /// </summary>
         public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string channel, string text, string user, CancellationToken cancellationToken)
         {
             var p = new ChatPostEphemeralParameter();
@@ -39,10 +45,16 @@ namespace HigLabo.Net.Slack
             p.User = user;
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postEphemeral
+        /// </summary>
         public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(ChatPostEphemeralParameter parameter)
         {
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/chat.postEphemeral
+        /// </summary>
         public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(ChatPostEphemeralParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ChatPostEphemeralParameter, ChatPostEphemeralResponse>(parameter, cancellationToken);

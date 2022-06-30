@@ -17,6 +17,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.add
+        /// </summary>
         public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string external_Id, string external_Url, string title)
         {
             var p = new FilesRemoteAddParameter();
@@ -25,6 +28,9 @@ namespace HigLabo.Net.Slack
             p.Title = title;
             return await this.SendAsync<FilesRemoteAddParameter, FilesRemoteAddResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.add
+        /// </summary>
         public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string external_Id, string external_Url, string title, CancellationToken cancellationToken)
         {
             var p = new FilesRemoteAddParameter();
@@ -33,10 +39,16 @@ namespace HigLabo.Net.Slack
             p.Title = title;
             return await this.SendAsync<FilesRemoteAddParameter, FilesRemoteAddResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.add
+        /// </summary>
         public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(FilesRemoteAddParameter parameter)
         {
             return await this.SendAsync<FilesRemoteAddParameter, FilesRemoteAddResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/files.remote.add
+        /// </summary>
         public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(FilesRemoteAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<FilesRemoteAddParameter, FilesRemoteAddResponse>(parameter, cancellationToken);

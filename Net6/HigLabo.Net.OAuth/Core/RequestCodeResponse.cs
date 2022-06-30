@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Net.OAuth
 {
-    public class RequestCodeResponse : RestApiResponse
+    public abstract class RequestCodeResponse : RestApiResponse
     {
         public string Access_Token { get; set; } = "";
         public string Refresh_Token { get; set; } = "";

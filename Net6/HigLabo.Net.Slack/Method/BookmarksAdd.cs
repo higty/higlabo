@@ -18,6 +18,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.add
+        /// </summary>
         public async Task<BookmarksAddResponse> BookmarksAddAsync(string channel_Id, string title, string type)
         {
             var p = new BookmarksAddParameter();
@@ -26,6 +29,9 @@ namespace HigLabo.Net.Slack
             p.Type = type;
             return await this.SendAsync<BookmarksAddParameter, BookmarksAddResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.add
+        /// </summary>
         public async Task<BookmarksAddResponse> BookmarksAddAsync(string channel_Id, string title, string type, CancellationToken cancellationToken)
         {
             var p = new BookmarksAddParameter();
@@ -34,10 +40,16 @@ namespace HigLabo.Net.Slack
             p.Type = type;
             return await this.SendAsync<BookmarksAddParameter, BookmarksAddResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.add
+        /// </summary>
         public async Task<BookmarksAddResponse> BookmarksAddAsync(BookmarksAddParameter parameter)
         {
             return await this.SendAsync<BookmarksAddParameter, BookmarksAddResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.add
+        /// </summary>
         public async Task<BookmarksAddResponse> BookmarksAddAsync(BookmarksAddParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksAddParameter, BookmarksAddResponse>(parameter, cancellationToken);

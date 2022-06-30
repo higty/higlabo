@@ -45,13 +45,13 @@ namespace HigLabo.Net.Slack
             }
             return o;
         }
-        private T ParseObject<T>(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
-            where T: RestApiResponse
+        protected T ParseObject<T>(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+            where T : RestApiResponse
         {
             var req = request;
             var o = this.DeserializeObject<T>(bodyText);
             o.SetProperty(parameter, req, response, bodyText);
-            if (this.IsThrowException == true && o.Ok == false)
+            if (this.IsThrowException == true && o.IsThrowException())
             {
                 throw new RestApiException(o);
             }
@@ -80,7 +80,7 @@ namespace HigLabo.Net.Slack
             }
         }
         private async Task<TResponse> GetResponseAsync<TResponse>(String apiPath, HttpMethod httpMethod, Dictionary<String, String> parameter, CancellationToken cancellationToken)
-               where TResponse : RestApiResponse, new()
+               where TResponse : RestApiResponse
         {
             var req = this.CreateHttpRequestMessage(ApiUrl + apiPath, httpMethod);
             var d = new Dictionary<String, String>();
@@ -95,7 +95,7 @@ namespace HigLabo.Net.Slack
             return this.ParseObject<TResponse>(parameter, req, res, bodyText);
         }
         private async Task<TResponse> GetResponseAsync<TResponse>(String apiPath, HttpMethod httpMethod, object parameter, CancellationToken cancellationToken)
-                where TResponse : RestApiResponse, new()
+                where TResponse : RestApiResponse
         {
             var req = this.CreateHttpRequestMessage(ApiUrl + apiPath, httpMethod);
             var json = this.SerializeObject(parameter);
@@ -113,7 +113,7 @@ namespace HigLabo.Net.Slack
         }
         public async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
             where TParameter : IRestApiParameter
-            where TResponse: RestApiResponse, new()
+            where TResponse: RestApiResponse
         {
             var apiPath = parameter.ApiPath;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
@@ -132,14 +132,14 @@ namespace HigLabo.Net.Slack
             }
         }
         public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context)
-            where TParameter : IRestApiParameter, ICursor
-            where TResponse : RestApiResponse, new()
+            where TParameter : IRestApiParameter, IRestApiPagingParameter
+            where TResponse : RestApiResponse
         {
             return await this.SendBatchAsync(parameter, context, CancellationToken.None);
         }
         public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context, CancellationToken cancellationToken)
-            where TParameter : IRestApiParameter, ICursor
-            where TResponse : RestApiResponse, new()
+            where TParameter : IRestApiParameter, IRestApiPagingParameter
+            where TResponse : RestApiResponse
         {
             var p = parameter;
             var l = new List<TResponse>();
@@ -150,8 +150,8 @@ namespace HigLabo.Net.Slack
 
                 context.InvokeResponseReceived(new ResponseReceivedEventArgs<TResponse>(this, l));
                 if (context.Break) { break; }
-                if (res.Response_MetaData == null || res.Response_MetaData.Next_Cursor.IsNullOrEmpty()) { break; }
-                p.Cursor = res.Response_MetaData.Next_Cursor;
+                if (res.GetNextPageToken().IsNullOrEmpty()) { break; }
+                p.NextPageToken = res.GetNextPageToken();
             }
             return l;
         }
@@ -176,25 +176,6 @@ namespace HigLabo.Net.Slack
             var bodyText = await res.Content.ReadAsStringAsync();
             return this.ParseObject(d, req, res, bodyText);
         }
-        public async Task<RequestCodeResponse> RequestRefreshTokenAsync(string token)
-        {
-            if (this.OAuthSetting == null)
-            { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
-
-            var cl = this;
-            var b = this.OAuthSetting;
-            var req = new HttpRequestMessage(HttpMethod.Post, "https://slack.com/api/oauth.v2.exchange");
-
-            var d = new Dictionary<string, string>();
-            d["client_id"] = b.ClientId;
-            d["client_secret"] = b.ClientSecret;
-            d["token"] = token;
-            req.Content = new FormUrlEncodedContent(d);
-
-            var res = await cl.SendAsync(req);
-            var bodyText = await res.Content.ReadAsStringAsync();
-            return this.ParseObject(d, req, res, bodyText);
-        }
         public async Task<RequestCodeResponse> UpdateAccessTokenAsync()
         {
             if (this.OAuthSetting == null)
@@ -208,6 +189,7 @@ namespace HigLabo.Net.Slack
             d["client_id"] = b.ClientId;
             d["client_secret"] = b.ClientSecret;
             d["grant_type"] = "refresh_token";
+            d["refresh_token"] = this.RefreshToken;
             d["redirect_uri"] = b.RedirectUrl;
             req.Content = new FormUrlEncodedContent(d);
 

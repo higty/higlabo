@@ -18,22 +18,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.update
+        /// </summary>
         public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(string usergroup)
         {
             var p = new UsergroupsUpdateParameter();
             p.Usergroup = usergroup;
             return await this.SendAsync<UsergroupsUpdateParameter, UsergroupsUpdateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.update
+        /// </summary>
         public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(string usergroup, CancellationToken cancellationToken)
         {
             var p = new UsergroupsUpdateParameter();
             p.Usergroup = usergroup;
             return await this.SendAsync<UsergroupsUpdateParameter, UsergroupsUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.update
+        /// </summary>
         public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(UsergroupsUpdateParameter parameter)
         {
             return await this.SendAsync<UsergroupsUpdateParameter, UsergroupsUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/usergroups.update
+        /// </summary>
         public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(UsergroupsUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UsergroupsUpdateParameter, UsergroupsUpdateResponse>(parameter, cancellationToken);

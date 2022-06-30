@@ -16,6 +16,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.create
+        /// </summary>
         public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool is_Private, string name)
         {
             var p = new AdminConversationsCreateParameter();
@@ -23,6 +26,9 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<AdminConversationsCreateParameter, AdminConversationsCreateResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.create
+        /// </summary>
         public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool is_Private, string name, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsCreateParameter();
@@ -30,10 +36,16 @@ namespace HigLabo.Net.Slack
             p.Name = name;
             return await this.SendAsync<AdminConversationsCreateParameter, AdminConversationsCreateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.create
+        /// </summary>
         public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(AdminConversationsCreateParameter parameter)
         {
             return await this.SendAsync<AdminConversationsCreateParameter, AdminConversationsCreateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.create
+        /// </summary>
         public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(AdminConversationsCreateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsCreateParameter, AdminConversationsCreateResponse>(parameter, cancellationToken);

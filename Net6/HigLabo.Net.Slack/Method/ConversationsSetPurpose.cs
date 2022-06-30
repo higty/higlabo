@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.setPurpose
+        /// </summary>
         public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string channel, string purpose)
         {
             var p = new ConversationsSetPurposeParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Purpose = purpose;
             return await this.SendAsync<ConversationsSetPurposeParameter, ConversationsSetPurposeResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.setPurpose
+        /// </summary>
         public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string channel, string purpose, CancellationToken cancellationToken)
         {
             var p = new ConversationsSetPurposeParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Purpose = purpose;
             return await this.SendAsync<ConversationsSetPurposeParameter, ConversationsSetPurposeResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.setPurpose
+        /// </summary>
         public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(ConversationsSetPurposeParameter parameter)
         {
             return await this.SendAsync<ConversationsSetPurposeParameter, ConversationsSetPurposeResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.setPurpose
+        /// </summary>
         public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(ConversationsSetPurposeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsSetPurposeParameter, ConversationsSetPurposeResponse>(parameter, cancellationToken);

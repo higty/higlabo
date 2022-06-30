@@ -263,6 +263,16 @@ namespace HigLabo.CodeGenerator
         {
             var writer = this.TextWriter;
 
+            if (string.IsNullOrEmpty(method.Comment) == false)
+            {
+                this.WriteIndent();
+                writer.WriteLine("/// <summary>");
+                this.WriteIndent();
+                writer.Write("/// ");
+                writer.WriteLine(method.Comment);
+                this.WriteIndent();
+                writer.WriteLine("/// </summary>");
+            }
             this.WriteIndent();
             this.Write(method.Modifier);
             this.Write(method.ReturnTypeName);

@@ -13,20 +13,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/bots.info
+        /// </summary>
         public async Task<BotsInfoResponse> BotsInfoAsync()
         {
             var p = new BotsInfoParameter();
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bots.info
+        /// </summary>
         public async Task<BotsInfoResponse> BotsInfoAsync(CancellationToken cancellationToken)
         {
             var p = new BotsInfoParameter();
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bots.info
+        /// </summary>
         public async Task<BotsInfoResponse> BotsInfoAsync(BotsInfoParameter parameter)
         {
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bots.info
+        /// </summary>
         public async Task<BotsInfoResponse> BotsInfoAsync(BotsInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BotsInfoParameter, BotsInfoResponse>(parameter, cancellationToken);

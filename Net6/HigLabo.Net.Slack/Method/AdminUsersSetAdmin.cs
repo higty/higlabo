@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setAdmin
+        /// </summary>
         public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string team_Id, string user_Id)
         {
             var p = new AdminUsersSetAdminParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.User_Id = user_Id;
             return await this.SendAsync<AdminUsersSetAdminParameter, AdminUsersSetAdminResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setAdmin
+        /// </summary>
         public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string team_Id, string user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetAdminParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.User_Id = user_Id;
             return await this.SendAsync<AdminUsersSetAdminParameter, AdminUsersSetAdminResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setAdmin
+        /// </summary>
         public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(AdminUsersSetAdminParameter parameter)
         {
             return await this.SendAsync<AdminUsersSetAdminParameter, AdminUsersSetAdminResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.setAdmin
+        /// </summary>
         public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(AdminUsersSetAdminParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSetAdminParameter, AdminUsersSetAdminResponse>(parameter, cancellationToken);

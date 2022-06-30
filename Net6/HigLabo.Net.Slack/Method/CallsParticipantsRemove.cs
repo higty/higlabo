@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/calls.participants.remove
+        /// </summary>
         public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string id, string users)
         {
             var p = new CallsParticipantsRemoveParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Users = users;
             return await this.SendAsync<CallsParticipantsRemoveParameter, CallsParticipantsRemoveResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/calls.participants.remove
+        /// </summary>
         public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string id, string users, CancellationToken cancellationToken)
         {
             var p = new CallsParticipantsRemoveParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Users = users;
             return await this.SendAsync<CallsParticipantsRemoveParameter, CallsParticipantsRemoveResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/calls.participants.remove
+        /// </summary>
         public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(CallsParticipantsRemoveParameter parameter)
         {
             return await this.SendAsync<CallsParticipantsRemoveParameter, CallsParticipantsRemoveResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/calls.participants.remove
+        /// </summary>
         public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(CallsParticipantsRemoveParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<CallsParticipantsRemoveParameter, CallsParticipantsRemoveResponse>(parameter, cancellationToken);

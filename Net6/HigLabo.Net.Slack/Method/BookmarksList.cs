@@ -12,22 +12,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.list
+        /// </summary>
         public async Task<BookmarksListResponse> BookmarksListAsync(string channel_Id)
         {
             var p = new BookmarksListParameter();
             p.Channel_Id = channel_Id;
             return await this.SendAsync<BookmarksListParameter, BookmarksListResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.list
+        /// </summary>
         public async Task<BookmarksListResponse> BookmarksListAsync(string channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksListParameter();
             p.Channel_Id = channel_Id;
             return await this.SendAsync<BookmarksListParameter, BookmarksListResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.list
+        /// </summary>
         public async Task<BookmarksListResponse> BookmarksListAsync(BookmarksListParameter parameter)
         {
             return await this.SendAsync<BookmarksListParameter, BookmarksListResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/bookmarks.list
+        /// </summary>
         public async Task<BookmarksListResponse> BookmarksListAsync(BookmarksListParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<BookmarksListParameter, BookmarksListResponse>(parameter, cancellationToken);

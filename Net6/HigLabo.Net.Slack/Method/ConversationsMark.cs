@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.mark
+        /// </summary>
         public async Task<ConversationsMarkResponse> ConversationsMarkAsync(string channel, string ts)
         {
             var p = new ConversationsMarkParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Ts = ts;
             return await this.SendAsync<ConversationsMarkParameter, ConversationsMarkResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.mark
+        /// </summary>
         public async Task<ConversationsMarkResponse> ConversationsMarkAsync(string channel, string ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsMarkParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Ts = ts;
             return await this.SendAsync<ConversationsMarkParameter, ConversationsMarkResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.mark
+        /// </summary>
         public async Task<ConversationsMarkResponse> ConversationsMarkAsync(ConversationsMarkParameter parameter)
         {
             return await this.SendAsync<ConversationsMarkParameter, ConversationsMarkResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/conversations.mark
+        /// </summary>
         public async Task<ConversationsMarkResponse> ConversationsMarkAsync(ConversationsMarkParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<ConversationsMarkParameter, ConversationsMarkResponse>(parameter, cancellationToken);

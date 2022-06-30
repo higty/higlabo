@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.invite
+        /// </summary>
         public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string channel_Id, string user_Ids)
         {
             var p = new AdminConversationsInviteParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.User_Ids = user_Ids;
             return await this.SendAsync<AdminConversationsInviteParameter, AdminConversationsInviteResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.invite
+        /// </summary>
         public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string channel_Id, string user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsInviteParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.User_Ids = user_Ids;
             return await this.SendAsync<AdminConversationsInviteParameter, AdminConversationsInviteResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.invite
+        /// </summary>
         public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(AdminConversationsInviteParameter parameter)
         {
             return await this.SendAsync<AdminConversationsInviteParameter, AdminConversationsInviteResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.invite
+        /// </summary>
         public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(AdminConversationsInviteParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsInviteParameter, AdminConversationsInviteResponse>(parameter, cancellationToken);

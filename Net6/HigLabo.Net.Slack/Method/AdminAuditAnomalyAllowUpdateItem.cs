@@ -13,20 +13,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
+        /// </summary>
         public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync()
         {
             var p = new AdminAuditAnomalyAllowUpdateItemParameter();
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
+        /// </summary>
         public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(CancellationToken cancellationToken)
         {
             var p = new AdminAuditAnomalyAllowUpdateItemParameter();
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
+        /// </summary>
         public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(AdminAuditAnomalyAllowUpdateItemParameter parameter)
         {
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.audit.anomaly.allow.updateItem
+        /// </summary>
         public async Task<AdminAuditAnomalyAllowUpdateItemResponse> AdminAuditAnomalyAllowUpdateItemAsync(AdminAuditAnomalyAllowUpdateItemParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminAuditAnomalyAllowUpdateItemParameter, AdminAuditAnomalyAllowUpdateItemResponse>(parameter, cancellationToken);

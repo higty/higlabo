@@ -14,22 +14,34 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.session.reset
+        /// </summary>
         public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string user_Id)
         {
             var p = new AdminUsersSessionResetParameter();
             p.User_Id = user_Id;
             return await this.SendAsync<AdminUsersSessionResetParameter, AdminUsersSessionResetResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.session.reset
+        /// </summary>
         public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionResetParameter();
             p.User_Id = user_Id;
             return await this.SendAsync<AdminUsersSessionResetParameter, AdminUsersSessionResetResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.session.reset
+        /// </summary>
         public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(AdminUsersSessionResetParameter parameter)
         {
             return await this.SendAsync<AdminUsersSessionResetParameter, AdminUsersSessionResetResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.users.session.reset
+        /// </summary>
         public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(AdminUsersSessionResetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminUsersSessionResetParameter, AdminUsersSessionResetResponse>(parameter, cancellationToken);

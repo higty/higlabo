@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.exchange
+        /// </summary>
         public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string client_Id, string client_Secret)
         {
             var p = new OauthV2ExchangeParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Client_Secret = client_Secret;
             return await this.SendAsync<OauthV2ExchangeParameter, OauthV2ExchangeResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.exchange
+        /// </summary>
         public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string client_Id, string client_Secret, CancellationToken cancellationToken)
         {
             var p = new OauthV2ExchangeParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Client_Secret = client_Secret;
             return await this.SendAsync<OauthV2ExchangeParameter, OauthV2ExchangeResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.exchange
+        /// </summary>
         public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(OauthV2ExchangeParameter parameter)
         {
             return await this.SendAsync<OauthV2ExchangeParameter, OauthV2ExchangeResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/oauth.v2.exchange
+        /// </summary>
         public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(OauthV2ExchangeParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OauthV2ExchangeParameter, OauthV2ExchangeResponse>(parameter, cancellationToken);

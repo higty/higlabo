@@ -13,6 +13,9 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
+        /// </summary>
         public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string channel_Id, string prefs)
         {
             var p = new AdminConversationsSetConversationPrefsParameter();
@@ -20,6 +23,9 @@ namespace HigLabo.Net.Slack
             p.Prefs = prefs;
             return await this.SendAsync<AdminConversationsSetConversationPrefsParameter, AdminConversationsSetConversationPrefsResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
+        /// </summary>
         public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string channel_Id, string prefs, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSetConversationPrefsParameter();
@@ -27,10 +33,16 @@ namespace HigLabo.Net.Slack
             p.Prefs = prefs;
             return await this.SendAsync<AdminConversationsSetConversationPrefsParameter, AdminConversationsSetConversationPrefsResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
+        /// </summary>
         public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(AdminConversationsSetConversationPrefsParameter parameter)
         {
             return await this.SendAsync<AdminConversationsSetConversationPrefsParameter, AdminConversationsSetConversationPrefsResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
+        /// </summary>
         public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(AdminConversationsSetConversationPrefsParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminConversationsSetConversationPrefsParameter, AdminConversationsSetConversationPrefsResponse>(parameter, cancellationToken);

@@ -13,20 +13,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.info
+        /// </summary>
         public async Task<DndInfoResponse> DndInfoAsync()
         {
             var p = new DndInfoParameter();
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.info
+        /// </summary>
         public async Task<DndInfoResponse> DndInfoAsync(CancellationToken cancellationToken)
         {
             var p = new DndInfoParameter();
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.info
+        /// </summary>
         public async Task<DndInfoResponse> DndInfoAsync(DndInfoParameter parameter)
         {
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/dnd.info
+        /// </summary>
         public async Task<DndInfoResponse> DndInfoAsync(DndInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<DndInfoParameter, DndInfoResponse>(parameter, cancellationToken);
