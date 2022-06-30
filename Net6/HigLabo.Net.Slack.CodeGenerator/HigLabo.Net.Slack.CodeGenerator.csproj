@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="0.17.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
+    <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj" />
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+    <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
+  </ItemGroup>
+
+</Project>

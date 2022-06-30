@@ -47,7 +47,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Service", "HigLabo.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLaboWebSite", "HigLaboWebSite\HigLaboWebSite.csproj", "{DA55BB4D-0ABB-4FE8-9F2F-520CDEFC90DD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Nuget", "HigLabo.Nuget\HigLabo.Nuget.csproj", "{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Nuget", "HigLabo.Nuget\HigLabo.Nuget.csproj", "{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Slack", "HigLabo.Net.Slack\HigLabo.Net.Slack.csproj", "{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Slack.CodeGenerator", "HigLabo.Net.Slack.CodeGenerator\HigLabo.Net.Slack.CodeGenerator.csproj", "{2575DCE4-6665-4A73-A607-06AA3687FCF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.OAuth", "HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj", "{2068590B-8FFD-41E2-A569-9CCA5733888F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.OAuth.NewtonsoftJson", "HigLabo.Net.OAuth.NewtonsoftJson\HigLabo.Net.OAuth.NewtonsoftJson.csproj", "{142C8D2F-5B4F-4CD9-A769-939B9B61C084}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +155,22 @@ Global
 		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{861E9F96-BBF5-4BC4-86BE-E9D1B13D3806}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0B6BA5-1822-4A13-A53E-6180D8675AD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2575DCE4-6665-4A73-A607-06AA3687FCF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2575DCE4-6665-4A73-A607-06AA3687FCF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2575DCE4-6665-4A73-A607-06AA3687FCF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2575DCE4-6665-4A73-A607-06AA3687FCF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2068590B-8FFD-41E2-A569-9CCA5733888F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2068590B-8FFD-41E2-A569-9CCA5733888F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2068590B-8FFD-41E2-A569-9CCA5733888F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2068590B-8FFD-41E2-A569-9CCA5733888F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142C8D2F-5B4F-4CD9-A769-939B9B61C084}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
