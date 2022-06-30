@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class RtmStartParameter : IRestApiParameter
+    public partial class RtmStartParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "rtm.start";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "rtm.start";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
         public bool? Batch_Presence_Aware { get; set; }
         public bool? Include_Locale { get; set; }
         public bool? Mpim_Aware { get; set; }

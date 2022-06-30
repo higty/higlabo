@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsRenameParameter : IRestApiParameter
+    public partial class AdminConversationsRenameParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.rename";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
-        public string Name { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.rename";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
+        public string Name { get; set; }
     }
     public partial class AdminConversationsRenameResponse : RestApiResponse
     {

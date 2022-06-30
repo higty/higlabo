@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminEmojiListParameter : IRestApiParameter, ICursor
+    public partial class AdminEmojiListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.emoji.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.emoji.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
     }
     public partial class AdminEmojiListResponse : RestApiResponse

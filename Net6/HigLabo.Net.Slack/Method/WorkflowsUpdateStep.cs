@@ -1,15 +1,15 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class WorkflowsUpdateStepParameter : IRestApiParameter
+    public partial class WorkflowsUpdateStepParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "workflows.updateStep";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Workflow_Step_Edit_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "workflows.updateStep";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Workflow_Step_Edit_Id { get; set; }
         public object? Inputs { get; set; }
-        public string Outputs { get; set; } = "";
-        public string Step_Image_Url { get; set; } = "";
-        public string Step_Name { get; set; } = "";
+        public string Outputs { get; set; }
+        public string Step_Image_Url { get; set; }
+        public string Step_Name { get; set; }
     }
     public partial class WorkflowsUpdateStepResponse : RestApiResponse
     {

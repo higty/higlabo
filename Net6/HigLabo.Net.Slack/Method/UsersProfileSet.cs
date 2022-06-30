@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersProfileSetParameter : IRestApiParameter
+    public partial class UsersProfileSetParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.profile.set";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Name { get; set; } = "";
-        public string Profile { get; set; } = "";
-        public string User { get; set; } = "";
-        public string Value { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "users.profile.set";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Name { get; set; }
+        public string Profile { get; set; }
+        public string User { get; set; }
+        public string Value { get; set; }
     }
     public partial class UsersProfileSetResponse : RestApiResponse
     {

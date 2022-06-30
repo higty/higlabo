@@ -110,6 +110,7 @@ namespace HigLabo.Net.Slack.CodeGenerator
             var apiPath = path.Replace("/methods/", "");
             var cName = CreateClassName(apiPath);
             var c = new Class(AccessModifier.Public, cName + "Parameter");
+            c.Modifier.Partial = true;
             c.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
             sc.Namespaces[0].Classes.Add(c);
 
@@ -138,15 +139,17 @@ namespace HigLabo.Net.Slack.CodeGenerator
             }
 
             {
-                var p = new Property("string", "ApiPath", true);
-                p.Set.Modifier = AccessModifier.Private;
+                var p = new Property("string", "IRestApiParameter.ApiPath", true);
+                p.Modifier.AccessModifier = MethodAccessModifier.None;
+                p.Set = null;
                 p.Initializer = $"\"{apiPath}\"";
                 c.Properties.Add(p);
             }
             {
                 var httpMethod = doc.QuerySelector(".apiMethodPage__method").TextContent;
-                var p = new Property("string", "HttpMethod", true);
-                p.Set.Modifier = AccessModifier.Private;
+                var p = new Property("string", "IRestApiParameter.HttpMethod", true);
+                p.Modifier.AccessModifier = MethodAccessModifier.None;
+                p.Set = null;
                 p.Initializer = $"\"{httpMethod}\"";
                 c.Properties.Add(p);
             }
@@ -186,10 +189,6 @@ namespace HigLabo.Net.Slack.CodeGenerator
                     {
                         p.TypeName.Name = eName;
                     }
-                }
-                if (p.TypeName.Name == "string")
-                {
-                    p.Initializer = "\"\"";
                 }
                 c.Properties.Add(p);
 

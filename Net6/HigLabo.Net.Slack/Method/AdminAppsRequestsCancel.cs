@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAppsRequestsCancelParameter : IRestApiParameter
+    public partial class AdminAppsRequestsCancelParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.apps.requests.cancel";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Request_Id { get; set; } = "";
-        public string Enterprise_Id { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.apps.requests.cancel";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Request_Id { get; set; }
+        public string Enterprise_Id { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminAppsRequestsCancelResponse : RestApiResponse
     {

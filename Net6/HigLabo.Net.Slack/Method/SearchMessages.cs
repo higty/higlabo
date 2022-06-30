@@ -1,18 +1,18 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class SearchMessagesParameter : IRestApiParameter, ICursor
+    public partial class SearchMessagesParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "search.messages";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Query { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "search.messages";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Query { get; set; }
         public int? Count { get; set; }
-        public string Cursor { get; set; } = "";
+        public string Cursor { get; set; }
         public bool? Highlight { get; set; }
         public int? Page { get; set; }
         public Sort Sort { get; set; }
         public SortDirection Sort_Dir { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class SearchMessagesResponse : RestApiResponse
     {

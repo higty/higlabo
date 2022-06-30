@@ -1,21 +1,21 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatScheduleMessageParameter : IRestApiParameter
+    public partial class ChatScheduleMessageParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.scheduleMessage";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.scheduleMessage";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
         public int Post_At { get; set; }
-        public string Text { get; set; } = "";
+        public string Text { get; set; }
         public bool? As_User { get; set; }
-        public string Attachments { get; set; } = "";
-        public string Blocks { get; set; } = "";
+        public string Attachments { get; set; }
+        public string Blocks { get; set; }
         public bool? Link_Names { get; set; }
-        public string Metadata { get; set; } = "";
-        public string Parse { get; set; } = "";
+        public string Metadata { get; set; }
+        public string Parse { get; set; }
         public bool? Reply_Broadcast { get; set; }
-        public string Thread_Ts { get; set; } = "";
+        public string Thread_Ts { get; set; }
         public bool? Unfurl_Links { get; set; }
         public bool? Unfurl_Media { get; set; }
     }

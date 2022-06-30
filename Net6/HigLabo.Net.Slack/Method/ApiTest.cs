@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ApiTestParameter : IRestApiParameter
+    public partial class ApiTestParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "api.test";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Error { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "api.test";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Error { get; set; }
     }
     public partial class ApiTestResponse : RestApiResponse
     {

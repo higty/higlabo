@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsEkmListOriginalConnectedChannelInfoParameter : IRestApiParameter, ICursor
+    public partial class AdminConversationsEkmListOriginalConnectedChannelInfoParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.conversations.ekm.listOriginalConnectedChannelInfo";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel_Ids { get; set; } = "";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.ekm.listOriginalConnectedChannelInfo";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel_Ids { get; set; }
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
-        public string Team_Ids { get; set; } = "";
+        public string Team_Ids { get; set; }
     }
     public partial class AdminConversationsEkmListOriginalConnectedChannelInfoResponse : RestApiResponse
     {

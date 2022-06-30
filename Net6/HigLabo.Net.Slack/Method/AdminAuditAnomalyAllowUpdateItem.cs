@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAuditAnomalyAllowUpdateItemParameter : IRestApiParameter
+    public partial class AdminAuditAnomalyAllowUpdateItemParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.audit.anomaly.allow.updateItem";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Trusted_Asns { get; set; } = "";
-        public string Trusted_Cidr { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.audit.anomaly.allow.updateItem";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Trusted_Asns { get; set; }
+        public string Trusted_Cidr { get; set; }
     }
     public partial class AdminAuditAnomalyAllowUpdateItemResponse : RestApiResponse
     {

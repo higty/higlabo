@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsSetConversationPrefsParameter : IRestApiParameter
+    public partial class AdminConversationsSetConversationPrefsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.setConversationPrefs";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
-        public string Prefs { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.setConversationPrefs";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
+        public string Prefs { get; set; }
     }
     public partial class AdminConversationsSetConversationPrefsResponse : RestApiResponse
     {

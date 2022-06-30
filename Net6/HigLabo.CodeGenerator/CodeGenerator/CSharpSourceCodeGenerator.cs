@@ -382,7 +382,8 @@ namespace HigLabo.CodeGenerator
             writer.Write(" ");
             this.WriteElementName(property.Name);
 
-            if (property.Get.IsAutomaticProperty && property.Set.IsAutomaticProperty)
+            if ((property.Get?.IsAutomaticProperty == true && property.Set?.IsAutomaticProperty == true) ||
+                (property.Get?.IsAutomaticProperty == true && property.Set == null))
             {
                 writer.Write(" { ");
                 if (property.Get != null)

@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class DialogOpenParameter : IRestApiParameter
+    public partial class DialogOpenParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "dialog.open";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Dialog { get; set; } = "";
-        public string Trigger_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "dialog.open";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Dialog { get; set; }
+        public string Trigger_Id { get; set; }
     }
     public partial class DialogOpenResponse : RestApiResponse
     {

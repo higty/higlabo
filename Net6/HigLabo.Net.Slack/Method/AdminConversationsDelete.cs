@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsDeleteParameter : IRestApiParameter
+    public partial class AdminConversationsDeleteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.delete";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.delete";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
     }
     public partial class AdminConversationsDeleteResponse : RestApiResponse
     {

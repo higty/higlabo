@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersRemoveParameter : IRestApiParameter
+    public partial class AdminUsersRemoveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.remove";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Team_Id { get; set; } = "";
-        public string User_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.remove";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Team_Id { get; set; }
+        public string User_Id { get; set; }
     }
     public partial class AdminUsersRemoveResponse : RestApiResponse
     {

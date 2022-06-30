@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ToolingTokensRotateParameter : IRestApiParameter
+    public partial class ToolingTokensRotateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "tooling.tokens.rotate";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Refresh_Token { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "tooling.tokens.rotate";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Refresh_Token { get; set; }
     }
     public partial class ToolingTokensRotateResponse : RestApiResponse
     {

@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class PinsAddParameter : IRestApiParameter
+    public partial class PinsAddParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "pins.add";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Timestamp { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "pins.add";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Timestamp { get; set; }
     }
     public partial class PinsAddResponse : RestApiResponse
     {

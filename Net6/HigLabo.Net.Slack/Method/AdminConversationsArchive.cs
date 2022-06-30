@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsArchiveParameter : IRestApiParameter
+    public partial class AdminConversationsArchiveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.archive";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.archive";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
     }
     public partial class AdminConversationsArchiveResponse : RestApiResponse
     {

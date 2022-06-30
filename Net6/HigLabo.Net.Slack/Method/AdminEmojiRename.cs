@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminEmojiRenameParameter : IRestApiParameter
+    public partial class AdminEmojiRenameParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.emoji.rename";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Name { get; set; } = "";
-        public string New_Name { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.emoji.rename";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Name { get; set; }
+        public string New_Name { get; set; }
     }
     public partial class AdminEmojiRenameResponse : RestApiResponse
     {

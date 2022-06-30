@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersAssignParameter : IRestApiParameter
+    public partial class AdminUsersAssignParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.assign";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Team_Id { get; set; } = "";
-        public string User_Id { get; set; } = "";
-        public string Channel_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.assign";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Team_Id { get; set; }
+        public string User_Id { get; set; }
+        public string Channel_Ids { get; set; }
         public bool? Is_Restricted { get; set; }
         public bool? Is_Ultra_Restricted { get; set; }
     }

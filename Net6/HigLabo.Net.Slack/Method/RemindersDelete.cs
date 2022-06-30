@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class RemindersDeleteParameter : IRestApiParameter
+    public partial class RemindersDeleteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "reminders.delete";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Reminder { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "reminders.delete";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Reminder { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class RemindersDeleteResponse : RestApiResponse
     {

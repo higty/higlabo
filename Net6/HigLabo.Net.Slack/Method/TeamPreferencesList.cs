@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class TeamPreferencesListParameter : IRestApiParameter
+    public partial class TeamPreferencesListParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "team.preferences.list";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "team.preferences.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
     }
     public partial class TeamPreferencesListResponse : RestApiResponse
     {

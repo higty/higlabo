@@ -1,16 +1,16 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class OpenidConnectTokenParameter : IRestApiParameter
+    public partial class OpenidConnectTokenParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "openid.connect.token";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Client_Id { get; set; } = "";
-        public string Client_Secret { get; set; } = "";
-        public string Code { get; set; } = "";
-        public string Grant_Type { get; set; } = "";
-        public string Redirect_Uri { get; set; } = "";
-        public string Refresh_Token { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "openid.connect.token";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Client_Id { get; set; }
+        public string Client_Secret { get; set; }
+        public string Code { get; set; }
+        public string Grant_Type { get; set; }
+        public string Redirect_Uri { get; set; }
+        public string Refresh_Token { get; set; }
     }
     public partial class OpenidConnectTokenResponse : RestApiResponse
     {

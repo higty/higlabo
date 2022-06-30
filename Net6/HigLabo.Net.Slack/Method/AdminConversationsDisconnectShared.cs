@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsDisconnectSharedParameter : IRestApiParameter
+    public partial class AdminConversationsDisconnectSharedParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.disconnectShared";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
-        public string Leaving_Team_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.disconnectShared";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
+        public string Leaving_Team_Ids { get; set; }
     }
     public partial class AdminConversationsDisconnectSharedResponse : RestApiResponse
     {

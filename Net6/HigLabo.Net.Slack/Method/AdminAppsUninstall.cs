@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAppsUninstallParameter : IRestApiParameter
+    public partial class AdminAppsUninstallParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.apps.uninstall";
-        public string HttpMethod { get; private set; } = "POST";
-        public string App_Id { get; set; } = "";
-        public string Enterprise_Id { get; set; } = "";
-        public string Team_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.apps.uninstall";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string App_Id { get; set; }
+        public string Enterprise_Id { get; set; }
+        public string Team_Ids { get; set; }
     }
     public partial class AdminAppsUninstallResponse : RestApiResponse
     {

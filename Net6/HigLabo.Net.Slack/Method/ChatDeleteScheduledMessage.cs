@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatDeleteScheduledMessageParameter : IRestApiParameter
+    public partial class ChatDeleteScheduledMessageParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.deleteScheduledMessage";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Scheduled_Message_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.deleteScheduledMessage";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Scheduled_Message_Id { get; set; }
         public bool? As_User { get; set; }
     }
     public partial class ChatDeleteScheduledMessageResponse : RestApiResponse

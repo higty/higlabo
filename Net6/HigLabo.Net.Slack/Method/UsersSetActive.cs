@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersSetActiveParameter : IRestApiParameter
+    public partial class UsersSetActiveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.setActive";
-        public string HttpMethod { get; private set; } = "POST";
+        string IRestApiParameter.ApiPath { get; } = "users.setActive";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
     }
     public partial class UsersSetActiveResponse : RestApiResponse
     {

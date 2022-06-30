@@ -1,15 +1,15 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ReactionsRemoveParameter : IRestApiParameter
+    public partial class ReactionsRemoveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "reactions.remove";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Name { get; set; } = "";
-        public string Channel { get; set; } = "";
-        public string File { get; set; } = "";
-        public string File_Comment { get; set; } = "";
-        public string Timestamp { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "reactions.remove";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Name { get; set; }
+        public string Channel { get; set; }
+        public string File { get; set; }
+        public string File_Comment { get; set; }
+        public string Timestamp { get; set; }
     }
     public partial class ReactionsRemoveResponse : RestApiResponse
     {

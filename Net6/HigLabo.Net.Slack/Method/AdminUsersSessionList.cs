@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSessionListParameter : IRestApiParameter, ICursor
+    public partial class AdminUsersSessionListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.users.session.list";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.session.list";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
-        public string Team_Id { get; set; } = "";
-        public string User_Id { get; set; } = "";
+        public string Team_Id { get; set; }
+        public string User_Id { get; set; }
     }
     public partial class AdminUsersSessionListResponse : RestApiResponse
     {

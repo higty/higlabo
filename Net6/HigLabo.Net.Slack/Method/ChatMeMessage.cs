@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatMeMessageParameter : IRestApiParameter
+    public partial class ChatMeMessageParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.meMessage";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Text { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.meMessage";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Text { get; set; }
     }
     public partial class ChatMeMessageResponse : RestApiResponse
     {

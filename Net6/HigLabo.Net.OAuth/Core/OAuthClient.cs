@@ -12,9 +12,10 @@ namespace HigLabo.Net.OAuth
 
         public event EventHandler<AccessTokenUpdatedEventArgs>? AccessTokenUpdated;
 
-        public string AccessToken { get; init; } = "";
-        public string RefreshToken { get; init; } = "";
-        public OAuthSetting? OAuthSetting { get; init; }
+        public string AccessToken { get; set; } = "";
+        public string RefreshToken { get; set; } = "";
+        public OAuthSetting? OAuthSetting { get; set; }
+        public Boolean IsThrowException { get; set; } = true;
 
         protected void OnAccessTokenUpdated(AccessTokenUpdatedEventArgs e)
         {

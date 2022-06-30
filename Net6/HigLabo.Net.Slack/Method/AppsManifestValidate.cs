@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AppsManifestValidateParameter : IRestApiParameter
+    public partial class AppsManifestValidateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "apps.manifest.validate";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Manifest { get; set; } = "";
-        public string App_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "apps.manifest.validate";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Manifest { get; set; }
+        public string App_Id { get; set; }
     }
     public partial class AppsManifestValidateResponse : RestApiResponse
     {

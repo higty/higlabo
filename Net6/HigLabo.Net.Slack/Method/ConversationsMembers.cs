@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsMembersParameter : IRestApiParameter, ICursor
+    public partial class ConversationsMembersParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "conversations.members";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel { get; set; } = "";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.members";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel { get; set; }
+        public string Cursor { get; set; }
         public double? Limit { get; set; }
     }
     public partial class ConversationsMembersResponse : RestApiResponse

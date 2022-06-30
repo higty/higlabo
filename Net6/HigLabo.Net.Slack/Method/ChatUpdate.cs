@@ -1,21 +1,21 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatUpdateParameter : IRestApiParameter
+    public partial class ChatUpdateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.update";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Ts { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.update";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Ts { get; set; }
         public bool? As_User { get; set; }
-        public string Attachments { get; set; } = "";
-        public string Blocks { get; set; } = "";
-        public string File_Ids { get; set; } = "";
+        public string Attachments { get; set; }
+        public string Blocks { get; set; }
+        public string File_Ids { get; set; }
         public bool? Link_Names { get; set; }
-        public string Metadata { get; set; } = "";
-        public string Parse { get; set; } = "";
+        public string Metadata { get; set; }
+        public string Parse { get; set; }
         public bool? Reply_Broadcast { get; set; }
-        public string Text { get; set; } = "";
+        public string Text { get; set; }
     }
     public partial class ChatUpdateResponse : RestApiResponse
     {

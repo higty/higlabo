@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class BookmarksRemoveParameter : IRestApiParameter
+    public partial class BookmarksRemoveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "bookmarks.remove";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Bookmark_Id { get; set; } = "";
-        public string Channel_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "bookmarks.remove";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Bookmark_Id { get; set; }
+        public string Channel_Id { get; set; }
     }
     public partial class BookmarksRemoveResponse : RestApiResponse
     {

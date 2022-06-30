@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AuthRevokeParameter : IRestApiParameter
+    public partial class AuthRevokeParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "auth.revoke";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "auth.revoke";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
         public bool? Test { get; set; }
     }
     public partial class AuthRevokeResponse : RestApiResponse

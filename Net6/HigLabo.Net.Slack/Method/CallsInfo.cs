@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class CallsInfoParameter : IRestApiParameter
+    public partial class CallsInfoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "calls.info";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "calls.info";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Id { get; set; }
     }
     public partial class CallsInfoResponse : RestApiResponse
     {

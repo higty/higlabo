@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class OpenidConnectUserInfoParameter : IRestApiParameter
+    public partial class OpenidConnectUserInfoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "openid.connect.userInfo";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "openid.connect.userInfo";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
     }
     public partial class OpenidConnectUserInfoResponse : RestApiResponse
     {

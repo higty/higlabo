@@ -1,18 +1,18 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class CallsAddParameter : IRestApiParameter
+    public partial class CallsAddParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "calls.add";
-        public string HttpMethod { get; private set; } = "POST";
-        public string External_Unique_Id { get; set; } = "";
-        public string Join_Url { get; set; } = "";
-        public string Created_By { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "calls.add";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string External_Unique_Id { get; set; }
+        public string Join_Url { get; set; }
+        public string Created_By { get; set; }
         public int? Date_Start { get; set; }
-        public string Desktop_App_Join_Url { get; set; } = "";
-        public string External_Display_Id { get; set; } = "";
-        public string Title { get; set; } = "";
-        public string Users { get; set; } = "";
+        public string Desktop_App_Join_Url { get; set; }
+        public string External_Display_Id { get; set; }
+        public string Title { get; set; }
+        public string Users { get; set; }
     }
     public partial class CallsAddResponse : RestApiResponse
     {

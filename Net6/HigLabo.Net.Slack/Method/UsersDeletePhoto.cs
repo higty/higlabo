@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersDeletePhotoParameter : IRestApiParameter
+    public partial class UsersDeletePhotoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.deletePhoto";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "users.deletePhoto";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
     }
     public partial class UsersDeletePhotoResponse : RestApiResponse
     {

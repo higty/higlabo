@@ -8,6 +8,6 @@ namespace HigLabo.Net.Slack
 {
     public partial class ConversationsInfoResponse : RestApiResponse
     {
-        public Channel Channel { get; set; }
+        public Conversation Channel { get; set; }
     }
 }

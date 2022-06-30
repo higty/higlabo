@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsInfoParameter : IRestApiParameter
+    public partial class ConversationsInfoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "conversations.info";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.info";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel { get; set; }
         public bool? Include_Locale { get; set; }
         public bool? Include_Num_Members { get; set; }
     }

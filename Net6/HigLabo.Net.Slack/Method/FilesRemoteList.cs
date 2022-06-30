@@ -1,15 +1,15 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class FilesRemoteListParameter : IRestApiParameter, ICursor
+    public partial class FilesRemoteListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "files.remote.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel { get; set; } = "";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "files.remote.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel { get; set; }
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
-        public string Ts_From { get; set; } = "";
-        public string Ts_To { get; set; } = "";
+        public string Ts_From { get; set; }
+        public string Ts_To { get; set; }
     }
     public partial class FilesRemoteListResponse : RestApiResponse
     {

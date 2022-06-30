@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminTeamsCreateParameter : IRestApiParameter
+    public partial class AdminTeamsCreateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.teams.create";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Team_Domain { get; set; } = "";
-        public string Team_Name { get; set; } = "";
-        public string Team_Description { get; set; } = "";
-        public string Team_Discoverability { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.teams.create";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Team_Domain { get; set; }
+        public string Team_Name { get; set; }
+        public string Team_Description { get; set; }
+        public string Team_Discoverability { get; set; }
     }
     public partial class AdminTeamsCreateResponse : RestApiResponse
     {

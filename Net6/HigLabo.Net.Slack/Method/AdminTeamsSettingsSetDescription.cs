@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminTeamsSettingsSetDescriptionParameter : IRestApiParameter
+    public partial class AdminTeamsSettingsSetDescriptionParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.teams.settings.setDescription";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Description { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setDescription";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Description { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsSetDescriptionResponse : RestApiResponse
     {

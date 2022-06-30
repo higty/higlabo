@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class FilesRemoteRemoveParameter : IRestApiParameter
+    public partial class FilesRemoteRemoveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "files.remote.remove";
-        public string HttpMethod { get; private set; } = "GET";
-        public string External_Id { get; set; } = "";
-        public string File { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "files.remote.remove";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string External_Id { get; set; }
+        public string File { get; set; }
     }
     public partial class FilesRemoteRemoveResponse : RestApiResponse
     {

@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class DndSetSnoozeParameter : IRestApiParameter
+    public partial class DndSetSnoozeParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "dnd.setSnooze";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Num_Minutes { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "dnd.setSnooze";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Num_Minutes { get; set; }
     }
     public partial class DndSetSnoozeResponse : RestApiResponse
     {

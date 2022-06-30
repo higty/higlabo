@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAppsClearResolutionParameter : IRestApiParameter
+    public partial class AdminAppsClearResolutionParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.apps.clearResolution";
-        public string HttpMethod { get; private set; } = "POST";
-        public string App_Id { get; set; } = "";
-        public string Enterprise_Id { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.apps.clearResolution";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string App_Id { get; set; }
+        public string Enterprise_Id { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminAppsClearResolutionResponse : RestApiResponse
     {

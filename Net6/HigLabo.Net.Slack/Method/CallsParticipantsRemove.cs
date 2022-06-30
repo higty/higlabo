@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class CallsParticipantsRemoveParameter : IRestApiParameter
+    public partial class CallsParticipantsRemoveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "calls.participants.remove";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Id { get; set; } = "";
-        public string Users { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "calls.participants.remove";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Id { get; set; }
+        public string Users { get; set; }
     }
     public partial class CallsParticipantsRemoveResponse : RestApiResponse
     {

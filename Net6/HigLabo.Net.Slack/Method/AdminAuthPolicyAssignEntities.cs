@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAuthPolicyAssignEntitiesParameter : IRestApiParameter
+    public partial class AdminAuthPolicyAssignEntitiesParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.auth.policy.assignEntities";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Entity_Ids { get; set; } = "";
-        public string Entity_Type { get; set; } = "";
-        public string Policy_Name { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.auth.policy.assignEntities";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Entity_Ids { get; set; }
+        public string Entity_Type { get; set; }
+        public string Policy_Name { get; set; }
     }
     public partial class AdminAuthPolicyAssignEntitiesResponse : RestApiResponse
     {

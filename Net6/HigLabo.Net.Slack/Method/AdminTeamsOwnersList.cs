@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminTeamsOwnersListParameter : IRestApiParameter, ICursor
+    public partial class AdminTeamsOwnersListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.teams.owners.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Team_Id { get; set; } = "";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.teams.owners.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Team_Id { get; set; }
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
     }
     public partial class AdminTeamsOwnersListResponse : RestApiResponse

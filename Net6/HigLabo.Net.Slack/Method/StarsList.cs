@@ -1,15 +1,15 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class StarsListParameter : IRestApiParameter, ICursor
+    public partial class StarsListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "stars.list";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "stars.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
         public int? Count { get; set; }
-        public string Cursor { get; set; } = "";
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
         public int? Page { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class StarsListResponse : RestApiResponse
     {

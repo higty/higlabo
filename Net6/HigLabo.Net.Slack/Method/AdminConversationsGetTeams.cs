@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsGetTeamsParameter : IRestApiParameter, ICursor
+    public partial class AdminConversationsGetTeamsParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.conversations.getTeams";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.getTeams";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
     }
     public partial class AdminConversationsGetTeamsResponse : RestApiResponse

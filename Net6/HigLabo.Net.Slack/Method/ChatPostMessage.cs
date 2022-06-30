@@ -1,26 +1,26 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatPostMessageParameter : IRestApiParameter
+    public partial class ChatPostMessageParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.postMessage";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Attachments { get; set; } = "";
-        public string Blocks { get; set; } = "";
-        public string Text { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.postMessage";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Attachments { get; set; }
+        public string Blocks { get; set; }
+        public string Text { get; set; }
         public bool? As_User { get; set; }
-        public string Icon_Emoji { get; set; } = "";
-        public string Icon_Url { get; set; } = "";
+        public string Icon_Emoji { get; set; }
+        public string Icon_Url { get; set; }
         public bool? Link_Names { get; set; }
-        public string Metadata { get; set; } = "";
+        public string Metadata { get; set; }
         public bool? Mrkdwn { get; set; }
-        public string Parse { get; set; } = "";
+        public string Parse { get; set; }
         public bool? Reply_Broadcast { get; set; }
-        public string Thread_Ts { get; set; } = "";
+        public string Thread_Ts { get; set; }
         public bool? Unfurl_Links { get; set; }
         public bool? Unfurl_Media { get; set; }
-        public string Username { get; set; } = "";
+        public string Username { get; set; }
     }
     public partial class ChatPostMessageResponse : RestApiResponse
     {

@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatGetPermalinkParameter : IRestApiParameter
+    public partial class ChatGetPermalinkParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.getPermalink";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel { get; set; } = "";
-        public string Message_Ts { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.getPermalink";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel { get; set; }
+        public string Message_Ts { get; set; }
     }
     public partial class ChatGetPermalinkResponse : RestApiResponse
     {

@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsJoinParameter : IRestApiParameter
+    public partial class ConversationsJoinParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "conversations.join";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.join";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
     }
     public partial class ConversationsJoinResponse : RestApiResponse
     {

@@ -1,17 +1,17 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class TeamIntegrationLogsParameter : IRestApiParameter
+    public partial class TeamIntegrationLogsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "team.integrationLogs";
-        public string HttpMethod { get; private set; } = "GET";
-        public string App_Id { get; set; } = "";
-        public string Change_Type { get; set; } = "";
-        public string Count { get; set; } = "";
-        public string Page { get; set; } = "";
-        public string Service_Id { get; set; } = "";
-        public string Team_Id { get; set; } = "";
-        public string User { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "team.integrationLogs";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string App_Id { get; set; }
+        public string Change_Type { get; set; }
+        public string Count { get; set; }
+        public string Page { get; set; }
+        public string Service_Id { get; set; }
+        public string Team_Id { get; set; }
+        public string User { get; set; }
     }
     public partial class TeamIntegrationLogsResponse : RestApiResponse
     {

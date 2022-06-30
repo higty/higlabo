@@ -1,17 +1,17 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class BookmarksAddParameter : IRestApiParameter
+    public partial class BookmarksAddParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "bookmarks.add";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
-        public string Title { get; set; } = "";
-        public string Type { get; set; } = "";
-        public string Emoji { get; set; } = "";
-        public string Entity_Id { get; set; } = "";
-        public string Link { get; set; } = "";
-        public string Parent_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "bookmarks.add";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
+        public string Title { get; set; }
+        public string Type { get; set; }
+        public string Emoji { get; set; }
+        public string Entity_Id { get; set; }
+        public string Link { get; set; }
+        public string Parent_Id { get; set; }
     }
     public partial class BookmarksAddResponse : RestApiResponse
     {

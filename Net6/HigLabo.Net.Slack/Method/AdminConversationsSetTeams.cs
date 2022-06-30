@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsSetTeamsParameter : IRestApiParameter
+    public partial class AdminConversationsSetTeamsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.setTeams";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.setTeams";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
         public bool? Org_Channel { get; set; }
-        public string Target_Team_Ids { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        public string Target_Team_Ids { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminConversationsSetTeamsResponse : RestApiResponse
     {

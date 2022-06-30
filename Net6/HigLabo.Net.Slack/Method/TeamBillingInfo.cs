@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class TeamBillingInfoParameter : IRestApiParameter
+    public partial class TeamBillingInfoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "team.billing.info";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "team.billing.info";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
     }
     public partial class TeamBillingInfoResponse : RestApiResponse
     {

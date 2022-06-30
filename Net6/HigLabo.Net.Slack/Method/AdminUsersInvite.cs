@@ -1,19 +1,19 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersInviteParameter : IRestApiParameter
+    public partial class AdminUsersInviteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.invite";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Ids { get; set; } = "";
-        public string Email { get; set; } = "";
-        public string Team_Id { get; set; } = "";
-        public string Custom_Message { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.invite";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Ids { get; set; }
+        public string Email { get; set; }
+        public string Team_Id { get; set; }
+        public string Custom_Message { get; set; }
         public bool? Email_Password_Policy_Enabled { get; set; }
-        public string Guest_Expiration_Ts { get; set; } = "";
+        public string Guest_Expiration_Ts { get; set; }
         public bool? Is_Restricted { get; set; }
         public bool? Is_Ultra_Restricted { get; set; }
-        public string Real_Name { get; set; } = "";
+        public string Real_Name { get; set; }
         public bool? Resend { get; set; }
     }
     public partial class AdminUsersInviteResponse : RestApiResponse

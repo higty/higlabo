@@ -1,16 +1,16 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsergroupsCreateParameter : IRestApiParameter
+    public partial class UsergroupsCreateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "usergroups.create";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Name { get; set; } = "";
-        public string Channels { get; set; } = "";
-        public string Description { get; set; } = "";
-        public string Handle { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "usergroups.create";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Name { get; set; }
+        public string Channels { get; set; }
+        public string Description { get; set; }
+        public string Handle { get; set; }
         public bool? Include_Count { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class UsergroupsCreateResponse : RestApiResponse
     {

@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAppsRestrictParameter : IRestApiParameter
+    public partial class AdminAppsRestrictParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.apps.restrict";
-        public string HttpMethod { get; private set; } = "POST";
-        public string App_Id { get; set; } = "";
-        public string Enterprise_Id { get; set; } = "";
-        public string Request_Id { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.apps.restrict";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string App_Id { get; set; }
+        public string Enterprise_Id { get; set; }
+        public string Request_Id { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminAppsRestrictResponse : RestApiResponse
     {

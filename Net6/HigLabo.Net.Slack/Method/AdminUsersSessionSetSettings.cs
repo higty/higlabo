@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSessionSetSettingsParameter : IRestApiParameter
+    public partial class AdminUsersSessionSetSettingsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.session.setSettings";
-        public string HttpMethod { get; private set; } = "POST";
-        public string User_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.session.setSettings";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string User_Ids { get; set; }
         public bool? Desktop_App_Browser_Quit { get; set; }
         public int? Duration { get; set; }
     }

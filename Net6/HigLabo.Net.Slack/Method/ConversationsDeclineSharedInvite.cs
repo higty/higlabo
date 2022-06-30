@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsDeclineSharedInviteParameter : IRestApiParameter
+    public partial class ConversationsDeclineSharedInviteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "conversations.declineSharedInvite";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Invite_Id { get; set; } = "";
-        public string Target_Team { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.declineSharedInvite";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Invite_Id { get; set; }
+        public string Target_Team { get; set; }
     }
     public partial class ConversationsDeclineSharedInviteResponse : RestApiResponse
     {

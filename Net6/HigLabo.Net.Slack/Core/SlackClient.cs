@@ -34,6 +34,116 @@ namespace HigLabo.Net.Slack
             mg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
             return mg;
         }
+        private T ParseObject<T>(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+            where T: RestApiResponse
+        {
+            var req = request;
+            var o = this.DeserializeObject<T>(bodyText);
+            o.SetProperty(parameter, req, response, bodyText);
+            if (this.IsThrowException == true && o.Ok == false)
+            {
+                throw new RestApiException(o);
+            }
+            return o;
+        }
+
+        private async Task<TResponse> GetResponseAsync<TResponse>(Func<Task<TResponse>> func)
+        {
+            var isFirst = true;
+
+            while (true)
+            {
+                try
+                {
+                    return await func();
+                }
+                catch
+                {
+                    if (isFirst == false) { throw; }
+                    isFirst = false;
+                }
+                var result = await this.UpdateAccessTokenAsync();
+                this.AccessToken = result.Authed_User.Access_Token;
+                this.RefreshToken = result.Authed_User.Refresh_Token;
+                this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs(result));
+            }
+        }
+        private async Task<TResponse> GetResponseAsync<TResponse>(String apiPath, HttpMethod httpMethod, Dictionary<String, String> parameter, CancellationToken cancellationToken)
+               where TResponse : RestApiResponse, new()
+        {
+            var req = this.CreateHttpRequestMessage(ApiUrl + apiPath, httpMethod);
+            var d = new Dictionary<String, String>();
+            foreach (var key in parameter.Keys)
+            {
+                d[key.ToLower()] = parameter[key];
+            }
+            req.Content = new FormUrlEncodedContent(d);
+            var res = await this.SendAsync(req);
+            var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+
+            return this.ParseObject<TResponse>(parameter, req, res, bodyText);
+        }
+        private async Task<TResponse> GetResponseAsync<TResponse>(String apiPath, HttpMethod httpMethod, object parameter, CancellationToken cancellationToken)
+                where TResponse : RestApiResponse, new()
+        {
+            var req = this.CreateHttpRequestMessage(ApiUrl + apiPath, httpMethod);
+            var json = this.SerializeObject(parameter);
+            req.Content = new StringContent(json, Encoding.UTF8, "application/json");
+            var res = await this.SendAsync(req);
+            var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+            return this.ParseObject<TResponse>(parameter, req, res, bodyText);
+        }
+
+        public async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter)
+            where TParameter : IRestApiParameter
+            where TResponse : RestApiResponse, new()
+        {
+            return await this.SendAsync<TParameter, TResponse>(parameter, CancellationToken.None);
+        }
+        public async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
+            where TParameter : IRestApiParameter
+            where TResponse: RestApiResponse, new()
+        {
+            var apiPath = parameter.ApiPath;
+            if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
+            {
+                //Use POST method with FormUrlEncodedContent for GET endpoint.
+                var d = parameter.Map(new Dictionary<string, string>());
+                if (parameter is RemindersAddParameter p)
+                {
+                    d["Recurrence"] = p.Recurrence.ToString();
+                }
+                return await this.GetResponseAsync(() => this.GetResponseAsync<TResponse>(apiPath, new HttpMethod("POST"), d, cancellationToken));
+            }
+            else
+            {
+                return await this.GetResponseAsync(() => this.GetResponseAsync<TResponse>(apiPath, new HttpMethod("POST"), parameter, cancellationToken));
+            }
+        }
+        public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context)
+            where TParameter : IRestApiParameter, ICursor
+            where TResponse : RestApiResponse, new()
+        {
+            return await this.SendBatchAsync(parameter, context, CancellationToken.None);
+        }
+        public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context, CancellationToken cancellationToken)
+            where TParameter : IRestApiParameter, ICursor
+            where TResponse : RestApiResponse, new()
+        {
+            var p = parameter;
+            var l = new List<TResponse>();
+            while (true)
+            {
+                var res = await this.SendAsync<TParameter, TResponse>(p, cancellationToken);
+                l.Add(res);
+
+                context.InvokeResponseReceived(new ResponseReceivedEventArgs<TResponse>(this, l));
+                if (context.Break) { break; }
+                if (res.Response_MetaData == null || res.Response_MetaData.Next_Cursor.IsNullOrEmpty()) { break; }
+                p.Cursor = res.Response_MetaData.Next_Cursor;
+            }
+            return l;
+        }
 
         public async Task<RequestCodeResponse> RequestCodeAsync(string code)
         {
@@ -53,13 +163,42 @@ namespace HigLabo.Net.Slack
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            var response = OAuthClient.JsonConverter.DeserializeObject<RequestCodeResponse>(bodyText);
-            await response.SetProperty(req, res, CancellationToken.None);
-            return response;
+            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
+            o.SetProperty(d, req, res, bodyText);
+            if (this.IsThrowException == true && o.Ok == false)
+            {
+                throw new RestApiException(o);
+            }
+            return o;
+        }
+        public async Task<RequestCodeResponse> RequestRefreshTokenAsync(string token)
+        {
+            if (this.OAuthSetting == null)
+            { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
+
+            var cl = this;
+            var b = this.OAuthSetting;
+            var req = new HttpRequestMessage(HttpMethod.Post, "https://slack.com/api/oauth.v2.exchange");
+
+            var d = new Dictionary<string, string>();
+            d["client_id"] = b.ClientId;
+            d["client_secret"] = b.ClientSecret;
+            d["token"] = token;
+            req.Content = new FormUrlEncodedContent(d);
+
+            var res = await cl.SendAsync(req);
+            var bodyText = await res.Content.ReadAsStringAsync();
+            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
+            o.SetProperty(d, req, res, bodyText);
+            if (this.IsThrowException == true && o.Ok == false)
+            {
+                throw new RestApiException(o);
+            }
+            return o;
         }
         public async Task<RequestCodeResponse> UpdateAccessTokenAsync()
         {
-            if (this.OAuthSetting == null) 
+            if (this.OAuthSetting == null)
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
 
             var cl = this;
@@ -75,111 +214,14 @@ namespace HigLabo.Net.Slack
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            var response = this.DeserializeObject<RequestCodeResponse>(bodyText);
-            await response.SetProperty(req, res, CancellationToken.None);
-            return response;
-        }
-
-        private async Task<RestApiResponse> GetResponseAsync(String apiPath, HttpMethod httpMethod, Dictionary<String, String> parameter, CancellationToken cancellationToken)
-        {
-            var cl = this;
-            var req = cl.CreateHttpRequestMessage(ApiUrl + apiPath, httpMethod);
-            var d = new Dictionary<String, String>();
-            foreach (var key in parameter.Keys)
+            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
+            o.SetProperty(d, req, res, bodyText);
+            if (this.IsThrowException == true && o.Ok == false)
             {
-                d[key.ToLower()] = parameter[key];
+                throw new RestApiException(o);
             }
-            req.Content = new FormUrlEncodedContent(d);
-            var res = await cl.SendAsync(req);
-
-            var response = new RestApiResponse();
-            await response.SetProperty(req, res, cancellationToken);
-            return response;
-        }
-        private async Task<RestApiResponse> GetResponseAsync(String apiPath, HttpMethod httpMethod, object parameter, CancellationToken cancellationToken)
-        {
-            var cl = this;
-            var req = cl.CreateHttpRequestMessage(ApiUrl + apiPath, httpMethod);
-            var json = this.SerializeObject(parameter);
-            req.Content = new StringContent(json, Encoding.UTF8, "application/json");
-            var res = await cl.SendAsync(req);
-
-            var response = new RestApiResponse();
-            await response.SetProperty(req, res, cancellationToken);
-            return response;
-        }
-
-        public async Task<RestApiResponse> SendAsync(IRestApiParameter parameter)
-        {
-            return await SendAsync(parameter, CancellationToken.None);
-        }
-        public async Task<RestApiResponse> SendAsync(IRestApiParameter parameter, CancellationToken cancellationToken)
-        {
-            var d = parameter.Map(new Dictionary<string, string>());
-            if (parameter is RemindersAddParameter p)
-            {
-                d["Recurrence"] = p.Recurrence.ToString();
-            }
-            Func<Task<RestApiResponse>> func = () => this.GetResponseAsync(parameter.ApiPath, new HttpMethod("POST"), d, cancellationToken);
-
-            var isFirst = true;
-
-            while (true)
-            {
-                try
-                {
-                    return await func();
-                }
-                catch (Exception ex)
-                {
-                    if (isFirst == false) { throw; }
-                    isFirst = false;
-                }
-                try
-                {
-                    var result = await this.UpdateAccessTokenAsync();
-                    this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs(result));
-                }
-                catch
-                {
-                }
-            }
-        }
-
-        public async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
-            where TParameter : IRestApiParameter
-            where TResponse: RestApiResponse
-        {
-            var res = await this.SendAsync(parameter, cancellationToken);
-            var o = this.DeserializeObject<TResponse>((res as IRestApiResponse).ResponseBodyText);
-            o.SetProperty(res);
             return o;
         }
-        public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context)
-            where TParameter : IRestApiParameter, ICursor
-            where TResponse : RestApiResponse
-        {
-            return await this.SendBatchAsync(parameter, context, CancellationToken.None);
-        }
-        public async Task<List<TResponse>> SendBatchAsync<TParameter, TResponse>(TParameter parameter, PagingContext<TResponse> context, CancellationToken cancellationToken)
-            where TParameter : IRestApiParameter, ICursor
-            where TResponse : RestApiResponse
-        {
-            var p = parameter;
-            var l = new List<TResponse>();
-            while (true)
-            {
-                var res = await this.SendAsync(p, cancellationToken);
-                var o = this.DeserializeObject<TResponse>((res as IRestApiResponse).ResponseBodyText);
-                res.Map(o);
-                l.Add(o);
 
-                context.InvokeResponseReceived(new ResponseReceivedEventArgs<TResponse>(this, l));
-                if (context.Break) { break; }
-                if (res.Response_MetaData == null || res.Response_MetaData.Next_Cursor.IsNullOrEmpty()) { break; }
-                p.Cursor = res.Response_MetaData.Next_Cursor;
-            }
-            return l;
-        }
     }
 }

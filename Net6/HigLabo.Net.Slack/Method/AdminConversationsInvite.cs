@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsInviteParameter : IRestApiParameter
+    public partial class AdminConversationsInviteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.invite";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
-        public string User_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.invite";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
+        public string User_Ids { get; set; }
     }
     public partial class AdminConversationsInviteResponse : RestApiResponse
     {

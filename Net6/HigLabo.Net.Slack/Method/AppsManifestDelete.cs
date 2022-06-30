@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AppsManifestDeleteParameter : IRestApiParameter
+    public partial class AppsManifestDeleteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "apps.manifest.delete";
-        public string HttpMethod { get; private set; } = "POST";
-        public string App_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "apps.manifest.delete";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string App_Id { get; set; }
     }
     public partial class AppsManifestDeleteResponse : RestApiResponse
     {

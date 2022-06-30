@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersGetPresenceParameter : IRestApiParameter
+    public partial class UsersGetPresenceParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.getPresence";
-        public string HttpMethod { get; private set; } = "GET";
-        public string User { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "users.getPresence";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string User { get; set; }
     }
     public partial class UsersGetPresenceResponse : RestApiResponse
     {

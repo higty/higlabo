@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class RtmConnectParameter : IRestApiParameter
+    public partial class RtmConnectParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "rtm.connect";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "rtm.connect";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
         public bool? Batch_Presence_Aware { get; set; }
         public bool? Presence_Sub { get; set; }
     }

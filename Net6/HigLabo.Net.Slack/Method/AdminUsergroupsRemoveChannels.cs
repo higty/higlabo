@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsergroupsRemoveChannelsParameter : IRestApiParameter
+    public partial class AdminUsergroupsRemoveChannelsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.usergroups.removeChannels";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Ids { get; set; } = "";
-        public string Usergroup_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.usergroups.removeChannels";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Ids { get; set; }
+        public string Usergroup_Id { get; set; }
     }
     public partial class AdminUsergroupsRemoveChannelsResponse : RestApiResponse
     {

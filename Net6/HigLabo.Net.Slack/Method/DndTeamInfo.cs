@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class DndTeamInfoParameter : IRestApiParameter
+    public partial class DndTeamInfoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "dnd.teamInfo";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Users { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "dnd.teamInfo";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Users { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class DndTeamInfoResponse : RestApiResponse
     {

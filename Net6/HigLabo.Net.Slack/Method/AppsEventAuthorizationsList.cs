@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AppsEventAuthorizationsListParameter : IRestApiParameter, ICursor
+    public partial class AppsEventAuthorizationsListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "apps.event.authorizations.list";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Event_Context { get; set; } = "";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "apps.event.authorizations.list";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Event_Context { get; set; }
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
     }
     public partial class AppsEventAuthorizationsListResponse : RestApiResponse

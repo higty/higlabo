@@ -9,6 +9,7 @@ namespace HigLabo.Net.OAuth
 {
     public interface IRestApiResponse
     {
+        object Parameter { get; }
         HttpRequestMessage Request { get; }
         HttpStatusCode StatusCode { get; }
         Dictionary<String, String> Headers { get; } 
@@ -17,11 +18,16 @@ namespace HigLabo.Net.OAuth
 
     public class RestApiResponse : IRestApiResponse
     {
+        private Object _Parameter = null; 
         private HttpRequestMessage _Request = null;
         private HttpStatusCode _StatusCode = HttpStatusCode.OK;
         private Dictionary<String, String> _Headers = new Dictionary<string, string>();
         private string _ResponseBodyText = "";
 
+        object IRestApiResponse.Parameter
+        {
+            get { return _Parameter; }
+        }
         HttpRequestMessage IRestApiResponse.Request
         {
             get { return _Request; }
@@ -43,6 +49,7 @@ namespace HigLabo.Net.OAuth
         {
             var res = response;
 
+            _Parameter = res._Parameter;
             _Request = (res as IRestApiResponse).Request;
             _StatusCode = res._StatusCode;
             foreach (var header in res._Headers)
@@ -51,17 +58,17 @@ namespace HigLabo.Net.OAuth
             }
             _ResponseBodyText = res._ResponseBodyText;
         }
-        public async Task SetProperty(HttpRequestMessage request, HttpResponseMessage response, CancellationToken cancellationToken)
+        public void SetProperty(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
         {
             var res = response;
-
+            _Parameter = parameter;
             _Request = request;
             _StatusCode = res.StatusCode;
             foreach (var header in res.Headers)
             {
                 _Headers[header.Key] = header.Value.ToString() ?? "";
             }
-            _ResponseBodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+            _ResponseBodyText = bodyText;
         }
     }
 }

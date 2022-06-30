@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminEmojiRemoveParameter : IRestApiParameter
+    public partial class AdminEmojiRemoveParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.emoji.remove";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Name { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.emoji.remove";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Name { get; set; }
     }
     public partial class AdminEmojiRemoveResponse : RestApiResponse
     {

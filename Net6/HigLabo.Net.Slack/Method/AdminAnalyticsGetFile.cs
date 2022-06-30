@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAnalyticsGetFileParameter : IRestApiParameter
+    public partial class AdminAnalyticsGetFileParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.analytics.getFile";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Type { get; set; } = "";
-        public string Date { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.analytics.getFile";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Type { get; set; }
+        public string Date { get; set; }
         public bool? Metadata_Only { get; set; }
     }
     public partial class AdminAnalyticsGetFileResponse : RestApiResponse

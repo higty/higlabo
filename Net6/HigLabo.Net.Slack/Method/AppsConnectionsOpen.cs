@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AppsConnectionsOpenParameter : IRestApiParameter
+    public partial class AppsConnectionsOpenParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "apps.connections.open";
-        public string HttpMethod { get; private set; } = "POST";
+        string IRestApiParameter.ApiPath { get; } = "apps.connections.open";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
     }
     public partial class AppsConnectionsOpenResponse : RestApiResponse
     {

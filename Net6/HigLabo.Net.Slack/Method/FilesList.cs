@@ -1,20 +1,20 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class FilesListParameter : IRestApiParameter
+    public partial class FilesListParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "files.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "files.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel { get; set; }
         public int? Count { get; set; }
-        public string Files { get; set; } = "";
+        public string Files { get; set; }
         public int? Page { get; set; }
         public bool? Show_Files_Hidden_By_Limit { get; set; }
-        public string Team_Id { get; set; } = "";
-        public string Ts_From { get; set; } = "";
-        public string Ts_To { get; set; } = "";
+        public string Team_Id { get; set; }
+        public string Ts_From { get; set; }
+        public string Ts_To { get; set; }
         public FileType Types { get; set; }
-        public string User { get; set; } = "";
+        public string User { get; set; }
     }
     public partial class FilesListResponse : RestApiResponse
     {

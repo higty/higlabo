@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersSetPhotoParameter : IRestApiParameter
+    public partial class UsersSetPhotoParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.setPhoto";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Crop_W { get; set; } = "";
-        public string Crop_X { get; set; } = "";
-        public string Crop_Y { get; set; } = "";
-        public string Image { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "users.setPhoto";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Crop_W { get; set; }
+        public string Crop_X { get; set; }
+        public string Crop_Y { get; set; }
+        public string Image { get; set; }
     }
     public partial class UsersSetPhotoResponse : RestApiResponse
     {

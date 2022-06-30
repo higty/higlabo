@@ -1,19 +1,19 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatUnfurlParameter : IRestApiParameter
+    public partial class ChatUnfurlParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.unfurl";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Ts { get; set; } = "";
-        public string Unfurls { get; set; } = "";
-        public string Source { get; set; } = "";
-        public string Unfurl_Id { get; set; } = "";
-        public string User_Auth_Blocks { get; set; } = "";
-        public string User_Auth_Message { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.unfurl";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Ts { get; set; }
+        public string Unfurls { get; set; }
+        public string Source { get; set; }
+        public string Unfurl_Id { get; set; }
+        public string User_Auth_Blocks { get; set; }
+        public string User_Auth_Message { get; set; }
         public bool? User_Auth_Required { get; set; }
-        public string User_Auth_Url { get; set; } = "";
+        public string User_Auth_Url { get; set; }
     }
     public partial class ChatUnfurlResponse : RestApiResponse
     {

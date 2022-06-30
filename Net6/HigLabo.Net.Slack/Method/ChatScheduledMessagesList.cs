@@ -1,16 +1,16 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatScheduledMessagesListParameter : IRestApiParameter, ICursor
+    public partial class ChatScheduledMessagesListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "chat.scheduledMessages.list";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Cursor { get; set; } = "";
-        public string Latest { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.scheduledMessages.list";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Cursor { get; set; }
+        public string Latest { get; set; }
         public int? Limit { get; set; }
-        public string Oldest { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        public string Oldest { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class ChatScheduledMessagesListResponse : RestApiResponse
     {

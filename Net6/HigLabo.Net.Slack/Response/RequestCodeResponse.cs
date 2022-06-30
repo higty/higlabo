@@ -10,21 +10,22 @@ namespace HigLabo.Net.Slack
     {
         public class IdName
         {
-            public String Name { get; set; } = "";
-            public String Id { get; set; } = "";
+            public string Name { get; set; } = "";
+            public string Id { get; set; } = "";
         }
         public class User
         {
-            public String Id { get; set; } = "";
-            public String Scope { get; set; } = "";
-            public String Access_Token { get; set; } = "";
-            public String Token_Type { get; set; } = "";
+            public string Id { get; set; } = "";
+            public string Scope { get; set; } = "";
+            public string Access_Token { get; set; } = "";
+            public string Refresh_Token { get; set; } = "";
+            public string Token_Type { get; set; } = "";
         }
 
         public Boolean Ok { get; set; }
-        public String Scope { get; set; } = "";
-        public String Bot_User_Id { get; set; } = "";
-        public String App_Id { get; set; } = "";
+        public string Scope { get; set; } = "";
+        public string Bot_User_Id { get; set; } = "";
+        public string App_Id { get; set; } = "";
         public IdName Team { get; set; }
         public IdName Enterprise { get; set; }
         public User Authed_User { get; set; }

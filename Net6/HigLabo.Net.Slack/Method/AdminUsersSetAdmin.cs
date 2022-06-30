@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSetAdminParameter : IRestApiParameter
+    public partial class AdminUsersSetAdminParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.setAdmin";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Team_Id { get; set; } = "";
-        public string User_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.setAdmin";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Team_Id { get; set; }
+        public string User_Id { get; set; }
     }
     public partial class AdminUsersSetAdminResponse : RestApiResponse
     {

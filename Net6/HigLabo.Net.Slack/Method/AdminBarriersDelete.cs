@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminBarriersDeleteParameter : IRestApiParameter
+    public partial class AdminBarriersDeleteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.barriers.delete";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Barrier_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.barriers.delete";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Barrier_Id { get; set; }
     }
     public partial class AdminBarriersDeleteResponse : RestApiResponse
     {

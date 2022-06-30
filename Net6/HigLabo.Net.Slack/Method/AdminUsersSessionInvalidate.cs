@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSessionInvalidateParameter : IRestApiParameter
+    public partial class AdminUsersSessionInvalidateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.session.invalidate";
-        public string HttpMethod { get; private set; } = "POST";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.session.invalidate";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         public int Session_Id { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class AdminUsersSessionInvalidateResponse : RestApiResponse
     {

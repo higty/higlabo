@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsListConnectInvitesParameter : IRestApiParameter, ICursor
+    public partial class ConversationsListConnectInvitesParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "conversations.listConnectInvites";
-        public string HttpMethod { get; private set; } = "POST";
+        string IRestApiParameter.ApiPath { get; } = "conversations.listConnectInvites";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         public int? Count { get; set; }
-        public string Cursor { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        public string Cursor { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class ConversationsListConnectInvitesResponse : RestApiResponse
     {

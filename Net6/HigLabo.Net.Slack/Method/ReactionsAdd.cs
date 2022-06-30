@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ReactionsAddParameter : IRestApiParameter
+    public partial class ReactionsAddParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "reactions.add";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Name { get; set; } = "";
-        public string Timestamp { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "reactions.add";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Name { get; set; }
+        public string Timestamp { get; set; }
     }
     public partial class ReactionsAddResponse : RestApiResponse
     {

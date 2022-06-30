@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsergroupsUsersListParameter : IRestApiParameter
+    public partial class UsergroupsUsersListParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "usergroups.users.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Usergroup { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "usergroups.users.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Usergroup { get; set; }
         public bool? Include_Disabled { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class UsergroupsUsersListResponse : RestApiResponse
     {

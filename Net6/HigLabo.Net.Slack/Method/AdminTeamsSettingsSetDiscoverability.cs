@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminTeamsSettingsSetDiscoverabilityParameter : IRestApiParameter
+    public partial class AdminTeamsSettingsSetDiscoverabilityParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.teams.settings.setDiscoverability";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Discoverability { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setDiscoverability";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Discoverability { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsSetDiscoverabilityResponse : RestApiResponse
     {

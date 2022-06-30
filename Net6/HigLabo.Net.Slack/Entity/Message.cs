@@ -37,6 +37,16 @@ namespace HigLabo.Net.Slack
         {
             get { return this.Event_Ts.GetDateTimeOffsetFromTs(); }
         }
+
+        public String Parent_User_Id { get; set; }
+        public String Thread_Ts { get; set; }
+        public DateTimeOffset? Thread_Ts_DateTimeOffset
+        {
+            get { return this.Thread_Ts.GetDateTimeOffsetFromTs(); }
+        }
+        public int Reply_Count { get; set; }
+        public String Last_Read { get; set; }
+        public Int32 Unread_Count { get; set; }
         public EditedUser Edited { get; set; }
 
         public File[] Files { get; set; }

@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class FilesDeleteParameter : IRestApiParameter
+    public partial class FilesDeleteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "files.delete";
-        public string HttpMethod { get; private set; } = "POST";
-        public string File { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "files.delete";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string File { get; set; }
     }
     public partial class FilesDeleteResponse : RestApiResponse
     {

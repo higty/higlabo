@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersLookupByEmailParameter : IRestApiParameter
+    public partial class UsersLookupByEmailParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.lookupByEmail";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Email { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "users.lookupByEmail";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Email { get; set; }
     }
     public partial class UsersLookupByEmailResponse : RestApiResponse
     {

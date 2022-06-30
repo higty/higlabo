@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsRestrictAccessListGroupsParameter : IRestApiParameter
+    public partial class AdminConversationsRestrictAccessListGroupsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.restrictAccess.listGroups";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel_Id { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.restrictAccess.listGroups";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel_Id { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminConversationsRestrictAccessListGroupsResponse : RestApiResponse
     {

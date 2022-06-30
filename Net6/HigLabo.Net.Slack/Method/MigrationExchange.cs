@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class MigrationExchangeParameter : IRestApiParameter
+    public partial class MigrationExchangeParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "migration.exchange";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Users { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "migration.exchange";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Users { get; set; }
+        public string Team_Id { get; set; }
         public bool? To_Old { get; set; }
     }
     public partial class MigrationExchangeResponse : RestApiResponse

@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatDeleteParameter : IRestApiParameter
+    public partial class ChatDeleteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.delete";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Ts { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.delete";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Ts { get; set; }
         public bool? As_User { get; set; }
     }
     public partial class ChatDeleteResponse : RestApiResponse

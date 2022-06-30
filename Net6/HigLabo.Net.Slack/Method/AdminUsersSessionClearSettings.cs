@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSessionClearSettingsParameter : IRestApiParameter
+    public partial class AdminUsersSessionClearSettingsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.session.clearSettings";
-        public string HttpMethod { get; private set; } = "POST";
-        public string User_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.session.clearSettings";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string User_Ids { get; set; }
     }
     public partial class AdminUsersSessionClearSettingsResponse : RestApiResponse
     {

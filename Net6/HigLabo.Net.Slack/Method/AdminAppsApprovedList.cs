@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminAppsApprovedListParameter : IRestApiParameter, ICursor
+    public partial class AdminAppsApprovedListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.apps.approved.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Cursor { get; set; } = "";
-        public string Enterprise_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.apps.approved.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Cursor { get; set; }
+        public string Enterprise_Id { get; set; }
         public int? Limit { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class AdminAppsApprovedListResponse : RestApiResponse
     {

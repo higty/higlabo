@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminConversationsRemoveCustomRetentionParameter : IRestApiParameter
+    public partial class AdminConversationsRemoveCustomRetentionParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.conversations.removeCustomRetention";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.conversations.removeCustomRetention";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Id { get; set; }
     }
     public partial class AdminConversationsRemoveCustomRetentionResponse : RestApiResponse
     {

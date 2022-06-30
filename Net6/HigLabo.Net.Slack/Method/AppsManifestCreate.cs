@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AppsManifestCreateParameter : IRestApiParameter
+    public partial class AppsManifestCreateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "apps.manifest.create";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Manifest { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "apps.manifest.create";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Manifest { get; set; }
     }
     public partial class AppsManifestCreateResponse : RestApiResponse
     {

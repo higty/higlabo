@@ -1,16 +1,16 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsAcceptSharedInviteParameter : IRestApiParameter
+    public partial class ConversationsAcceptSharedInviteParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "conversations.acceptSharedInvite";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel_Name { get; set; } = "";
-        public string Channel_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.acceptSharedInvite";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel_Name { get; set; }
+        public string Channel_Id { get; set; }
         public bool? Free_Trial_Accepted { get; set; }
-        public string Invite_Id { get; set; } = "";
+        public string Invite_Id { get; set; }
         public bool? Is_Private { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class ConversationsAcceptSharedInviteResponse : RestApiResponse
     {

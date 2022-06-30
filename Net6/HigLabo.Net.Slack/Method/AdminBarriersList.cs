@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminBarriersListParameter : IRestApiParameter, ICursor
+    public partial class AdminBarriersListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.barriers.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.barriers.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
     }
     public partial class AdminBarriersListResponse : RestApiResponse

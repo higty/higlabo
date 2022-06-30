@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminTeamsSettingsSetDefaultChannelsParameter : IRestApiParameter
+    public partial class AdminTeamsSettingsSetDefaultChannelsParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.teams.settings.setDefaultChannels";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Channel_Ids { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setDefaultChannels";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Channel_Ids { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsSetDefaultChannelsResponse : RestApiResponse
     {

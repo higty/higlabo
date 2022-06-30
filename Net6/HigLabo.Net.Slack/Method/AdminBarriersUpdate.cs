@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminBarriersUpdateParameter : IRestApiParameter
+    public partial class AdminBarriersUpdateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.barriers.update";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Barrier_Id { get; set; } = "";
-        public string Barriered_From_Usergroup_Ids { get; set; } = "";
-        public string Primary_Usergroup_Id { get; set; } = "";
-        public string Restricted_Subjects { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.barriers.update";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Barrier_Id { get; set; }
+        public string Barriered_From_Usergroup_Ids { get; set; }
+        public string Primary_Usergroup_Id { get; set; }
+        public string Restricted_Subjects { get; set; }
     }
     public partial class AdminBarriersUpdateResponse : RestApiResponse
     {

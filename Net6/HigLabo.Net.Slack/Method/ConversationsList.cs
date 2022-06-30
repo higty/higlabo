@@ -1,15 +1,15 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsListParameter : IRestApiParameter, ICursor
+    public partial class ConversationsListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "conversations.list";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.list";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Cursor { get; set; }
         public bool? Exclude_Archived { get; set; }
         public double? Limit { get; set; }
-        public string Team_Id { get; set; } = "";
-        public string Types { get; set; } = "";
+        public string Team_Id { get; set; }
+        public string Types { get; set; }
     }
     public partial class ConversationsListResponse : RestApiResponse
     {

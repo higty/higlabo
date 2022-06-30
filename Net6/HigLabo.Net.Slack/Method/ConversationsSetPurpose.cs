@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsSetPurposeParameter : IRestApiParameter
+    public partial class ConversationsSetPurposeParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "conversations.setPurpose";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Purpose { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.setPurpose";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Purpose { get; set; }
     }
     public partial class ConversationsSetPurposeResponse : RestApiResponse
     {

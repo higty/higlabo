@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class FilesRevokePublicURLParameter : IRestApiParameter
+    public partial class FilesRevokePublicURLParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "files.revokePublicURL";
-        public string HttpMethod { get; private set; } = "POST";
-        public string File { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "files.revokePublicURL";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string File { get; set; }
     }
     public partial class FilesRevokePublicURLResponse : RestApiResponse
     {

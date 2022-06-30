@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminInviteRequestsApprovedListParameter : IRestApiParameter, ICursor
+    public partial class AdminInviteRequestsApprovedListParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "admin.inviteRequests.approved.list";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Cursor { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.approved.list";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
-        public string Team_Id { get; set; } = "";
+        public string Team_Id { get; set; }
     }
     public partial class AdminInviteRequestsApprovedListResponse : RestApiResponse
     {

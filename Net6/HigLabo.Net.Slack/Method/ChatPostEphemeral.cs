@@ -1,22 +1,22 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ChatPostEphemeralParameter : IRestApiParameter
+    public partial class ChatPostEphemeralParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "chat.postEphemeral";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
-        public string Text { get; set; } = "";
-        public string User { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "chat.postEphemeral";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
+        public string Text { get; set; }
+        public string User { get; set; }
         public bool? As_User { get; set; }
-        public string Attachments { get; set; } = "";
-        public string Blocks { get; set; } = "";
-        public string Icon_Emoji { get; set; } = "";
-        public string Icon_Url { get; set; } = "";
+        public string Attachments { get; set; }
+        public string Blocks { get; set; }
+        public string Icon_Emoji { get; set; }
+        public string Icon_Url { get; set; }
         public bool? Link_Names { get; set; }
-        public string Parse { get; set; } = "";
-        public string Thread_Ts { get; set; } = "";
-        public string Username { get; set; } = "";
+        public string Parse { get; set; }
+        public string Thread_Ts { get; set; }
+        public string Username { get; set; }
     }
     public partial class ChatPostEphemeralResponse : RestApiResponse
     {

@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class FilesInfoParameter : IRestApiParameter, ICursor
+    public partial class FilesInfoParameter : IRestApiParameter, ICursor
     {
-        public string ApiPath { get; private set; } = "files.info";
-        public string HttpMethod { get; private set; } = "GET";
-        public string File { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "files.info";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string File { get; set; }
         public int? Count { get; set; }
-        public string Cursor { get; set; } = "";
+        public string Cursor { get; set; }
         public int? Limit { get; set; }
         public int? Page { get; set; }
     }

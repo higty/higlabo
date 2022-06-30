@@ -1,11 +1,11 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSessionResetBulkParameter : IRestApiParameter
+    public partial class AdminUsersSessionResetBulkParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.session.resetBulk";
-        public string HttpMethod { get; private set; } = "POST";
-        public string User_Ids { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.session.resetBulk";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string User_Ids { get; set; }
         public bool? Mobile_Only { get; set; }
         public bool? Web_Only { get; set; }
     }

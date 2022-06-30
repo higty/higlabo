@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ConversationsOpenParameter : IRestApiParameter
+    public partial class ConversationsOpenParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "conversations.open";
-        public string HttpMethod { get; private set; } = "POST";
-        public string Channel { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "conversations.open";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string Channel { get; set; }
         public bool? Prevent_Creation { get; set; }
         public bool? Return_Im { get; set; }
-        public string Users { get; set; } = "";
+        public string Users { get; set; }
     }
     public partial class ConversationsOpenResponse : RestApiResponse
     {

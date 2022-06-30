@@ -1,14 +1,14 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class ViewsUpdateParameter : IRestApiParameter
+    public partial class ViewsUpdateParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "views.update";
-        public string HttpMethod { get; private set; } = "POST";
-        public string View { get; set; } = "";
-        public string External_Id { get; set; } = "";
-        public string View_Id { get; set; } = "";
-        public string Hash { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "views.update";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string View { get; set; }
+        public string External_Id { get; set; }
+        public string View_Id { get; set; }
+        public string Hash { get; set; }
     }
     public partial class ViewsUpdateResponse : RestApiResponse
     {

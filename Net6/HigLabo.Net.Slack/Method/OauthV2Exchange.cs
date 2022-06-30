@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class OauthV2ExchangeParameter : IRestApiParameter
+    public partial class OauthV2ExchangeParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "oauth.v2.exchange";
-        public string HttpMethod { get; private set; } = "GET";
-        public string Client_Id { get; set; } = "";
-        public string Client_Secret { get; set; } = "";
+        string IRestApiParameter.ApiPath { get; } = "oauth.v2.exchange";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public string Client_Id { get; set; }
+        public string Client_Secret { get; set; }
     }
     public partial class OauthV2ExchangeResponse : RestApiResponse
     {

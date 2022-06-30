@@ -1,10 +1,10 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class UsersIdentityParameter : IRestApiParameter
+    public partial class UsersIdentityParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "users.identity";
-        public string HttpMethod { get; private set; } = "GET";
+        string IRestApiParameter.ApiPath { get; } = "users.identity";
+        string IRestApiParameter.HttpMethod { get; } = "GET";
     }
     public partial class UsersIdentityResponse : RestApiResponse
     {

@@ -1,13 +1,13 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class AdminUsersSetExpirationParameter : IRestApiParameter
+    public partial class AdminUsersSetExpirationParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "admin.users.setExpiration";
-        public string HttpMethod { get; private set; } = "POST";
+        string IRestApiParameter.ApiPath { get; } = "admin.users.setExpiration";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         public int Expiration_Ts { get; set; }
-        public string User_Id { get; set; } = "";
-        public string Team_Id { get; set; } = "";
+        public string User_Id { get; set; }
+        public string Team_Id { get; set; }
     }
     public partial class AdminUsersSetExpirationResponse : RestApiResponse
     {

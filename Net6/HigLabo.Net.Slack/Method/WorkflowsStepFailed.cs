@@ -1,12 +1,12 @@
 ﻿
 namespace HigLabo.Net.Slack
 {
-    public class WorkflowsStepFailedParameter : IRestApiParameter
+    public partial class WorkflowsStepFailedParameter : IRestApiParameter
     {
-        public string ApiPath { get; private set; } = "workflows.stepFailed";
-        public string HttpMethod { get; private set; } = "POST";
+        string IRestApiParameter.ApiPath { get; } = "workflows.stepFailed";
+        string IRestApiParameter.HttpMethod { get; } = "POST";
         public object Error { get; set; }
-        public string Workflow_Step_Execute_Id { get; set; } = "";
+        public string Workflow_Step_Execute_Id { get; set; }
     }
     public partial class WorkflowsStepFailedResponse : RestApiResponse
     {
