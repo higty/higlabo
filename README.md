@@ -75,6 +75,7 @@ Converter library for Base64,QueryString,QuotedPrintable,Rfc2047,ModifiedUtf7,IS
 
 ## HigLabo.Net.Slack
 Slack client library to call Slack API.
+https://www.codeproject.com/Articles/5336184/Creating-best-Csharp-Slack-client-library-in-the-w
 
 ## HigLabo.Bot.Facebook
 A library to call Facebook Messenger API.
