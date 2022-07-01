@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class AdminAuthPolicyGetEntitiesParameter : IRestApiParameter, IRestApiPagingParameter
@@ -7,7 +8,17 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Policy_Name { get; set; }
         public string Cursor { get; set; }
-        string IRestApiPagingParameter.NextPageToken { get; set; }
+        string IRestApiPagingParameter.NextPageToken
+        {
+            get
+            {
+                return this.Cursor;
+            }
+            set
+            {
+                this.Cursor = value;
+            }
+        }
         public string Entity_Type { get; set; }
         public int? Limit { get; set; }
     }

@@ -11,6 +11,7 @@ namespace HigLabo.Net.OAuth
     {
         object Parameter { get; }
         HttpRequestMessage Request { get; }
+        string RequestBodyText { get; }
         HttpStatusCode StatusCode { get; }
         Dictionary<String, String> Headers { get; } 
         string ResponseBodyText { get; }
@@ -21,6 +22,7 @@ namespace HigLabo.Net.OAuth
     {
         private Object _Parameter = null; 
         private HttpRequestMessage _Request = null;
+        private string _RequestBodyText = "";
         private HttpStatusCode _StatusCode = HttpStatusCode.OK;
         private Dictionary<String, String> _Headers = new Dictionary<string, string>();
         private string _ResponseBodyText = "";
@@ -32,6 +34,10 @@ namespace HigLabo.Net.OAuth
         HttpRequestMessage IRestApiResponse.Request
         {
             get { return _Request; }
+        }
+        string IRestApiResponse.RequestBodyText
+        {
+            get { return _RequestBodyText; }
         }
         HttpStatusCode IRestApiResponse.StatusCode
         {
@@ -46,17 +52,31 @@ namespace HigLabo.Net.OAuth
             get { return _ResponseBodyText; }
         }
 
-        public void SetProperty(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+        public void SetProperty(object parameter, string requestBodyText, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
         {
             var res = response;
             _Parameter = parameter;
             _Request = request;
+            _RequestBodyText = requestBodyText;
             _StatusCode = res.StatusCode;
             foreach (var header in res.Headers)
             {
-                _Headers[header.Key] = header.Value.ToString() ?? "";
+                _Headers[header.Key] = String.Join(' ', header.Value);
             }
             _ResponseBodyText = bodyText;
+        }
+        public string GetHeaderText()
+        {
+            var sb = new StringBuilder();
+            foreach (var key in this._Headers.Keys)
+            {
+                sb.Append(key).Append(": ").AppendLine(_Headers[key]);
+            }
+            return sb.ToString();
+        }
+        public string GetResponseBodyText()
+        {
+            return _ResponseBodyText;
         }
         public virtual string GetNextPageToken()
         {

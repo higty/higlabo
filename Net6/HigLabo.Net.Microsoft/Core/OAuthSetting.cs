@@ -34,7 +34,7 @@ namespace HigLabo.Net.Microsoft
             d["client_id"] = this.ClientId;
             d["client_secret"] = this.ClientSecret;
             d["redirect_uri"] = this.RedirectUrl;
-            d["scope"] = WebUtility.UrlEncode(String.Join(" ", this.ScopeList));
+            d["scope"] = WebUtility.UrlEncode(String.Join(" ", this.ScopeList.Select(el => el.GetScopeName())));
             if (this.Tenant.HasValue)
             {
                 d["tenant"] = this.Tenant.ToStringFromEnum().ToLower();

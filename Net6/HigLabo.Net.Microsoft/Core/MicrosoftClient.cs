@@ -1,14 +1,19 @@
-﻿using HigLabo.Net.OAuth;
+﻿using HigLabo.Core;
+using HigLabo.Net.OAuth;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class MicrosoftClient : HigLabo.Net.OAuth.OAuthClient
+    public partial class MicrosoftClient : OAuthClient
     {
+        public static String ApiUrl = "https://graph.microsoft.com/v1.0/";
+
         public MicrosoftClient(string accessToken)
         {
             this.AccessToken = accessToken;
@@ -24,31 +29,37 @@ namespace HigLabo.Net.Microsoft
             this.OAuthSetting = setting;
         }
 
-        private RequestCodeResponse ParseObject(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+        private HttpRequestMessage CreateHttpRequestMessage(String url, HttpMethod httpMethod)
         {
-            var req = request;
-            var o = this.DeserializeObject<RequestCodeResponse>(bodyText);
-            var iRes = o as IRestApiResponse;
-            if (this.IsThrowException == true && iRes.StatusCode != System.Net.HttpStatusCode.OK)
-            {
-                throw new RestApiException(o);
-            }
-            return o;
+            var mg = new HttpRequestMessage(httpMethod, url);
+            mg.Headers.Authorization = new AuthenticationHeaderValue("Bearer", this.AccessToken);
+            return mg;
         }
-        protected T ParseObject<T>(object parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
-            where T : RestApiResponse
+        public override async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            var req = request;
-            var o = this.DeserializeObject<T>(bodyText);
-            o.SetProperty(parameter, req, response, bodyText);
-            var iRes = o as IRestApiResponse;
-            if (this.IsThrowException == true && iRes.StatusCode != System.Net.HttpStatusCode.OK)
+            var req = this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod(parameter.HttpMethod));
+            Func<Task<TResponse>> f = null;
+            if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
-                throw new RestApiException(o);
+                var d = new Dictionary<string, string>();
+                var q = new QueryStringConverter();
+                f = () => this.SendAsync<TResponse>(req, q.Write(d), cancellationToken);
             }
-            return o;
+            else
+            {
+                f = () => this.SendAsync<TResponse>(req, parameter, cancellationToken);
+            }
+            return await this.ProcessRequest(f);
         }
-
+        protected override async Task ProcessAccessTokenAsync()
+        {
+            var result = await this.UpdateAccessTokenAsync();
+            if (((IRestApiResponse)result).StatusCode == HttpStatusCode.OK)
+            {
+                this.AccessToken = result.Access_Token;
+                this.RefreshToken = result.Refresh_Token;
+            }
+        }
         public async Task<RequestCodeResponse> RequestCodeAsync(string code)
         {
             if (this.OAuthSetting == null)
@@ -69,7 +80,7 @@ namespace HigLabo.Net.Microsoft
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            return this.ParseObject(d, req, res, bodyText);
+            return this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
         }
         public async Task<RequestCodeResponse> UpdateAccessTokenAsync()
         {
@@ -91,7 +102,12 @@ namespace HigLabo.Net.Microsoft
 
             var res = await cl.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync();
-            return this.ParseObject(d, req, res, bodyText);
+            var o = this.ParseObject<RequestCodeResponse>(d, req, res, bodyText);
+            if (o is IRestApiResponse iRes && iRes.StatusCode == HttpStatusCode.OK)
+            {
+                this.OnAccessTokenUpdated(new AccessTokenUpdatedEventArgs(o));
+            }
+            return o;
         }
 
     }

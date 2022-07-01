@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class CallsParticipantsAddParameter : IRestApiParameter

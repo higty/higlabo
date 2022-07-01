@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class AdminUsersListParameter : IRestApiParameter, IRestApiPagingParameter
@@ -6,7 +7,17 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "admin.users.list";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Cursor { get; set; }
-        string IRestApiPagingParameter.NextPageToken { get; set; }
+        string IRestApiPagingParameter.NextPageToken
+        {
+            get
+            {
+                return this.Cursor;
+            }
+            set
+            {
+                this.Cursor = value;
+            }
+        }
         public int? Limit { get; set; }
         public string Team_Id { get; set; }
     }

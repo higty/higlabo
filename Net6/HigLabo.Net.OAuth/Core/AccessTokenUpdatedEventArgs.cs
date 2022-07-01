@@ -8,9 +8,9 @@ namespace HigLabo.Net.OAuth
 {
     public class AccessTokenUpdatedEventArgs
     {
-        public RequestCodeResponse Response { get; init; }
+        public RestApiResponse Response { get; init; }
 
-        public AccessTokenUpdatedEventArgs(RequestCodeResponse response)
+        public AccessTokenUpdatedEventArgs(RestApiResponse response)
         {
             this.Response = response;
         }

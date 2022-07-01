@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class ConversationsRepliesParameter : IRestApiParameter, IRestApiPagingParameter
@@ -8,7 +9,17 @@ namespace HigLabo.Net.Slack
         public string Channel { get; set; }
         public string Ts { get; set; }
         public string Cursor { get; set; }
-        string IRestApiPagingParameter.NextPageToken { get; set; }
+        string IRestApiPagingParameter.NextPageToken
+        {
+            get
+            {
+                return this.Cursor;
+            }
+            set
+            {
+                this.Cursor = value;
+            }
+        }
         public bool? Inclusive { get; set; }
         public string Latest { get; set; }
         public double? Limit { get; set; }

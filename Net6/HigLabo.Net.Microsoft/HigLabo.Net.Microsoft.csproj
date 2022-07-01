@@ -13,8 +13,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Entity\" />
     <Folder Include="Enum\" />
     <Folder Include="Method\" />
+    <Folder Include="Response\" />
   </ItemGroup>
 
   <ItemGroup>

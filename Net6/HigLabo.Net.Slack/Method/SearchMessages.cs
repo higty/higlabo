@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class SearchMessagesParameter : IRestApiParameter, IRestApiPagingParameter
@@ -8,7 +9,17 @@ namespace HigLabo.Net.Slack
         public string Query { get; set; }
         public int? Count { get; set; }
         public string Cursor { get; set; }
-        string IRestApiPagingParameter.NextPageToken { get; set; }
+        string IRestApiPagingParameter.NextPageToken
+        {
+            get
+            {
+                return this.Cursor;
+            }
+            set
+            {
+                this.Cursor = value;
+            }
+        }
         public bool? Highlight { get; set; }
         public int? Page { get; set; }
         public Sort Sort { get; set; }

@@ -14,5 +14,18 @@ namespace HigLabo.Net.OAuth
         {
             this.Response = response;
         }
+        public override string ToString()
+        {
+            var res = this.Response;
+            var iRes = res as IRestApiResponse;
+            var req = iRes.Request;
+            var url = req.RequestUri?.AbsoluteUri ?? "";
+
+            return url + Environment.NewLine
+                + iRes.RequestBodyText + Environment.NewLine 
+                + res.GetHeaderText() + Environment.NewLine 
+                + res.GetResponseBodyText() + Environment.NewLine 
+                + base.ToString();
+        }
     }
 }

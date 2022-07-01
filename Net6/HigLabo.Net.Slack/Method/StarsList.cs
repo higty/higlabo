@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class StarsListParameter : IRestApiParameter, IRestApiPagingParameter
@@ -7,7 +8,17 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public int? Count { get; set; }
         public string Cursor { get; set; }
-        string IRestApiPagingParameter.NextPageToken { get; set; }
+        string IRestApiPagingParameter.NextPageToken
+        {
+            get
+            {
+                return this.Cursor;
+            }
+            set
+            {
+                this.Cursor = value;
+            }
+        }
         public int? Limit { get; set; }
         public int? Page { get; set; }
         public string Team_Id { get; set; }

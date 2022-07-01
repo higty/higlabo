@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class FilesRemoteListParameter : IRestApiParameter, IRestApiPagingParameter
@@ -7,7 +8,17 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Channel { get; set; }
         public string Cursor { get; set; }
-        string IRestApiPagingParameter.NextPageToken { get; set; }
+        string IRestApiPagingParameter.NextPageToken
+        {
+            get
+            {
+                return this.Cursor;
+            }
+            set
+            {
+                this.Cursor = value;
+            }
+        }
         public int? Limit { get; set; }
         public string Ts_From { get; set; }
         public string Ts_To { get; set; }

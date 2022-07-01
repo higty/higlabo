@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class AdminAnalyticsGetFileParameter : IRestApiParameter
@@ -7,7 +8,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Type { get; set; }
         public string Date { get; set; }
-        public bool? Metadata_Only { get; set; }
+        public bool Metadata_Only { get; set; }
     }
     public partial class AdminAnalyticsGetFileResponse : RestApiResponse
     {
