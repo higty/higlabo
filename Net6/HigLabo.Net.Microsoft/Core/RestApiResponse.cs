@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using HigLabo.Net.OAuth;
@@ -13,7 +14,7 @@ namespace HigLabo.Net.Microsoft
 
         public override bool IsThrowException()
         {
-            if (((IRestApiResponse)this).StatusCode != System.Net.HttpStatusCode.OK)
+            if (((IRestApiResponse)this).StatusCode != HttpStatusCode.OK)
             {
                 return true;
             }

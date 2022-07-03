@@ -15,6 +15,8 @@
             }
             {
                 var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\");
+                //await g.CreateEntitySourceCode("https://docs.microsoft.com/en-us/graph/api/resources/teamfunsettings?view=graph-rest-1.0");
+                //await g.CreateEntitySourceCode("https://docs.microsoft.com/en-us/graph/api/resources/messageruleactions?view=graph-rest-1.0");
                 await g.Execute();
             }
         }

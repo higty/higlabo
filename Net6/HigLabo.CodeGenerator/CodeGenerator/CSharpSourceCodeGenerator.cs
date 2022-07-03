@@ -465,6 +465,16 @@ namespace HigLabo.CodeGenerator
             var c = @class;
             Boolean hasElement = false;
 
+            if (string.IsNullOrEmpty(c.Comment) == false)
+            {
+                this.WriteIndent();
+                writer.WriteLine("/// <summary>");
+                this.WriteIndent();
+                writer.Write("/// ");
+                writer.WriteLine(c.Comment);
+                this.WriteIndent();
+                writer.WriteLine("/// </summary>");
+            }
             this.WriteIndent();
             this.Write(c.Modifier);
             writer.Write("class ");
@@ -529,6 +539,16 @@ namespace HigLabo.CodeGenerator
             var writer = this.TextWriter;
             var em = @enum;
 
+            if (string.IsNullOrEmpty(em.Comment) == false)
+            {
+                this.WriteIndent();
+                writer.WriteLine("/// <summary>");
+                this.WriteIndent();
+                writer.Write("/// ");
+                writer.WriteLine(em.Comment);
+                this.WriteIndent();
+                writer.WriteLine("/// </summary>");
+            }
             this.WriteIndent();
             this.Write(em.Modifier);
             writer.Write("enum ");

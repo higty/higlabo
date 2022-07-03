@@ -17,7 +17,7 @@ namespace HigLabo.Net.CodeGenerator
     public abstract class OAuthClientCodeGenerator
     {
         private protected WebDriver _Driver;
-        private List<HigLabo.CodeGenerator.Enum> EnumList { get; init; } = new ();
+        private List<string> _CreatedFilePathList = new();
 
         public virtual Boolean UseSelenium { get; } = false;
         public string FolderPath { get; init; } = "";
@@ -80,19 +80,24 @@ namespace HigLabo.Net.CodeGenerator
         public async Task Execute()
         {
             //await CreateScopeSourceCode();
+
+            var urlList = new List<string>();
+            
+            _CreatedFilePathList.Clear();
             foreach (var url in await GetEntiryUrlList())
             {
                 await CreateEntitySourceCode(url);
             }
+
             foreach (var url in await GetMethodUrlList())
             {
                 await CreateMethodSourceCode(url);
             }
         }
-        protected abstract Task CreateScopeSourceCode();
+        public abstract Task CreateScopeSourceCode();
 
         protected abstract Task<List<String>> GetEntiryUrlList();
-        protected async Task CreateEntitySourceCode(string url)
+        public async Task CreateEntitySourceCode(string url)
         {
             var doc = await this.GetDocumentAsync(url);
             var enumList = new List<HigLabo.CodeGenerator.Enum>();
@@ -102,7 +107,11 @@ namespace HigLabo.Net.CodeGenerator
             sc.Namespaces.Add(new Namespace($"HigLabo.Net.{this.ServiceName}"));
 
             var cName = this.GetClassName(url, doc);
+            var filePath = Path.Combine(FolderPath, "Entity", "Generated", cName + ".cs");
+            if (_CreatedFilePathList.Contains(filePath)) { return; }
+
             var c = new Class(AccessModifier.Public, cName);
+            c.Comment = url;
             c.Modifier.Partial = true;
             sc.Namespaces[0].Classes.Add(c);
 
@@ -110,11 +119,11 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var property = CreateParameterProperty(parameter);
                 //https://api.slack.com/methods/reminders.add
-                var className = GetClassName(cName, property.Name);
-                if (className.IsNullOrEmpty() == false)
+                var tName = GetClassName(cName, property.Name);
+                if (tName.IsNullOrEmpty() == false)
                 {
-                    property.TypeName.Name = className;
-                    property.Initializer = $"new {className}()";
+                    property.TypeName.Name = tName;
+                    property.Initializer = $"new {tName}()";
                 }
                 var eName = GetEnumName(cName, parameter.Name);
                 if (eName.IsNullOrEmpty() == false)
@@ -123,20 +132,40 @@ namespace HigLabo.Net.CodeGenerator
                 }
                 c.Properties.Add(property);
 
-                if (parameter.IsEnum && this.EnumList.Exists(el => el.Name == property.TypeName.Name) == false)
+                if (parameter.IsEnum && enumList.Exists(el => el.Name == property.TypeName.Name) == false)
                 {
-                    var em = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, property.TypeName.Name.Replace("?", ""));
+                    var eTypeName = c.Name + property.TypeName.Name.Replace("?", "").Replace("[]", "");
+                    var em = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, eTypeName);
+                    em.Comment = url;
+                    if (property.TypeName.Name == "String[]")
+                    {
+                        property.TypeName.Name = em.Name + "[]";
+                    }
+                    else
+                    {
+                        property.TypeName.Name = em.Name;
+                    }
                     foreach (var item in parameter.EnumValues)
                     {
                         em.Values.Add(new EnumValue(item));
                     }
                     enumList.Add(em);
                 }
+                if (parameter.EntityUrl.IsNullOrEmpty() == false)
+                {
+                    if (_CreatedFilePathList.Contains(parameter.EntityUrl) == false)
+                    {
+                        _CreatedFilePathList.AddIfNotExist(parameter.EntityUrl);
+                        await CreateEntitySourceCode(parameter.EntityUrl);
+                    }
+                }
             }
-            if (c.Properties.Count == 0) { return; }
 
-            this.WriteFile(Path.Combine(FolderPath, "Entity", cName + ".cs"), sc);
-            Console.WriteLine(c.Name);
+            {
+                this.WriteFile(filePath, sc);
+                _CreatedFilePathList.Add(filePath);
+                Console.WriteLine(c.Name);
+            }
 
             foreach (var em in enumList)
             {
@@ -144,14 +173,17 @@ namespace HigLabo.Net.CodeGenerator
                 enumSourceCode.Namespaces.Add(new Namespace($"HigLabo.Net.{this.ServiceName}"));
                 enumSourceCode.Namespaces[0].Enums.Add(em);
 
-                this.WriteFile(Path.Combine(FolderPath, "Entity", em.Name + ".cs"), enumSourceCode);
+                var enumFilePath = Path.Combine(FolderPath, "Entity", "Generated", em.Name + ".cs");
+                if (_CreatedFilePathList.Contains(enumFilePath)) { continue; }
+                this.WriteFile(enumFilePath, enumSourceCode);
+                _CreatedFilePathList.Add(enumFilePath);
                 Console.WriteLine(c.Name);
             }
         }
         protected abstract Task<List<ApiParameter>> GetEntityParameterList(IDocument document);
 
         protected abstract Task<List<String>> GetMethodUrlList();
-        protected async Task CreateMethodSourceCode(string url)
+        public async Task CreateMethodSourceCode(string url)
         {
             var doc = await this.GetDocumentAsync(url);
 

@@ -1,0 +1,22 @@
+﻿using HigLabo.Net.OAuth;
+
+namespace HigLabo.Net.Microsoft
+{
+    /// <summary>
+    /// https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0
+    /// </summary>
+    public partial class AccessPackageAssignmentPolicy
+    {
+        public AccessPackageAssignmentPolicyAllowedTargetScope AllowedTargetScope { get; set; }
+        public DateTimeOffset CreatedDateTime { get; set; }
+        public string Description { get; set; }
+        public string DisplayName { get; set; }
+        public ExpirationPattern? Expiration { get; set; }
+        public string Id { get; set; }
+        public DateTimeOffset ModifiedDateTime { get; set; }
+        public AccessPackageAssignmentApprovalSettings? RequestApprovalSettings { get; set; }
+        public AccessPackageAssignmentRequestorSettings? RequestorSettings { get; set; }
+        public AccessPackageAssignmentReviewSettings? ReviewSettings { get; set; }
+        public SubjectSet[] SpecificAllowedTargets { get; set; }
+    }
+}

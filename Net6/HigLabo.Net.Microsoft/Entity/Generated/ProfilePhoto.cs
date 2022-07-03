@@ -1,0 +1,14 @@
+﻿using HigLabo.Net.OAuth;
+
+namespace HigLabo.Net.Microsoft
+{
+    /// <summary>
+    /// https://docs.microsoft.com/en-us/graph/api/resources/profilephoto?view=graph-rest-1.0
+    /// </summary>
+    public partial class ProfilePhoto
+    {
+        public String? Id { get; set; }
+        public Int32? Height { get; set; }
+        public Int32? Width { get; set; }
+    }
+}

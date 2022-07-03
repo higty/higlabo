@@ -1,0 +1,23 @@
+﻿using HigLabo.Net.OAuth;
+
+namespace HigLabo.Net.Microsoft
+{
+    /// <summary>
+    /// https://docs.microsoft.com/en-us/graph/api/resources/educationsubmission?view=graph-rest-1.0
+    /// </summary>
+    public partial class EducationSubmission
+    {
+        public string Id { get; set; }
+        public EducationSubmissionRecipient? Recipient { get; set; }
+        public IdentitySet? ReturnedBy { get; set; }
+        public DateTimeOffset ReturnedDateTime { get; set; }
+        public string ResourcesFolderUrl { get; set; }
+        public EducationSubmissionString Status { get; set; }
+        public IdentitySet? SubmittedBy { get; set; }
+        public DateTimeOffset SubmittedDateTime { get; set; }
+        public IdentitySet? UnsubmittedBy { get; set; }
+        public DateTimeOffset UnsubmittedDateTime { get; set; }
+        public IdentitySet? ReassignedBy { get; set; }
+        public DateTimeOffset ReassignedDateTime { get; set; }
+    }
+}

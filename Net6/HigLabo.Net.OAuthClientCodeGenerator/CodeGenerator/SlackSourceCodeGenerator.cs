@@ -36,7 +36,7 @@ namespace HigLabo.Net.CodeGenerator
         {
         }
 
-        protected override async Task CreateScopeSourceCode()
+        public override async Task CreateScopeSourceCode()
         {
             var doc = await Context.OpenAsync("https://api.slack.com/scopes");
 
