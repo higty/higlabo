@@ -188,7 +188,11 @@ namespace HigLabo.Net.CodeGenerator
                     }
                     if (tbl != null)
                     {
-                        l.AddRange(await this.GetParameterList(document, tbl));
+                        foreach (var parameter in await this.GetParameterList(document, tbl))
+                        {
+                            if (l.Exists(el => el.Name == parameter.Name)) { continue; }
+                            l.Add(parameter);
+                        }
                         break;
                     }
                 }
@@ -302,11 +306,11 @@ namespace HigLabo.Net.CodeGenerator
                     var responseListUrl = this._UrlClassNameMappingList.Find(el => el.ClassName == responseListClassName)?.Url;
                     if (responseListUrl.IsNullOrEmpty() == false)
                     {
-                        //var cValue = await this.CreateEntityClass(responseListUrl);
-                        //foreach (var item in cValue.Properties)
-                        //{
-                        //    cField.Values.AddIfNotExist(new EnumValue(item.Name), el => el.Text == item.Name);
-                        //}
+                        var cValue = await this.CreateEntityClass(responseListUrl);
+                        foreach (var item in cValue.Properties)
+                        {
+                            cField.Values.AddIfNotExist(new EnumValue(item.Name), el => el.Text == item.Name);
+                        }
                     }
                 }
                 else
@@ -539,6 +543,11 @@ namespace HigLabo.Net.CodeGenerator
                 if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizedname", StringComparison.OrdinalIgnoreCase)) { return "TermStoreLocalizedName"; }
                 if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizedlabel", StringComparison.OrdinalIgnoreCase)) { return "TermStoreLocalizedLabel"; }
                 if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizeddescription", StringComparison.OrdinalIgnoreCase)) { return "TermStoreLocalizedDescription"; }
+                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/intune-"))
+                {
+                    var apiPath = url.Replace("https://docs.microsoft.com/en-us/graph/api/", "").ExtractString(null, '?');
+                    return CreateClassName(apiPath);
+                }
                 if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-"))
                 {
                     var path = url.Replace("https://docs.microsoft.com/en-us/graph/api/resources/", "").ExtractString(null, '?');

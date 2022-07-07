@@ -158,22 +158,24 @@ namespace HigLabo.Net.CodeGenerator
             c.Comment = url;
             c.Modifier.Partial = true;
 
-            foreach (var parameter in await this.GetEntityParameterList(doc))
+            var entityUrlList = new List<String>();
+            var pp = await this.GetEntityParameterList(doc);
+            foreach (var parameter in pp)
             {
                 var property = await this.AddProperty(c, cName, parameter);
 
                 if (url != parameter.EntityUrl && parameter.EntityUrl.IsNullOrEmpty() == false)
                 {
-                    var eName = this.GetClassName(url, doc);
-                    var eClass = await CreateEntityClass(parameter.EntityUrl);
-                    this.CreateEntitySourceCodeFile(parameter.EntityUrl, eClass);
+                    entityUrlList.Add(parameter.EntityUrl);
+                    var eDoc = await this.GetDocumentAsync(parameter.EntityUrl);
+                    var eName = this.GetClassName(parameter.EntityUrl, eDoc);
                     if (property.TypeName.Name.Contains("[]"))
                     {
-                        property.TypeName.Name = eClass.Name + "[]?";
+                        property.TypeName.Name = eName + "[]?";
                     }
                     else
                     {
-                        property.TypeName.Name = eClass.Name + "?";
+                        property.TypeName.Name = eName + "?";
                     }
                 }
             }
@@ -321,14 +323,16 @@ namespace HigLabo.Net.CodeGenerator
             var typeName = GetClassName(cName, property.Name);
             if (parameter.IsEnum == false && parameter.EntityUrl.IsNullOrEmpty() == false)
             {
-                var eClass = await CreateEntityClass(parameter.EntityUrl);
+                var url = parameter.EntityUrl;
+                var doc = await this.GetDocumentAsync(url);
+                var entityClassName = this.GetClassName(url, doc);
                 if (property.TypeName.Name.Contains("[]"))
                 {
-                    property.TypeName.Name = eClass.Name + "[]?";
+                    property.TypeName.Name = entityClassName + "[]?";
                 }
                 else
                 {
-                    property.TypeName.Name = eClass.Name + "?";
+                    property.TypeName.Name = entityClassName + "?";
                 }
             }
             if (typeName.IsNullOrEmpty() == false)

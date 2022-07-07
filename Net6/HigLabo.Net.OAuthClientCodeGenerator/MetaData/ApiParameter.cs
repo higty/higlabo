@@ -15,5 +15,10 @@ namespace HigLabo.Net.CodeGenerator
         public string EntityUrl { get; set; } = "";
         public bool IsEnum { get; set; } = false;
         public List<string> EnumValues { get; init; } = new List<string>();
+
+        public override string ToString()
+        {
+            return $"{this.TypeName} {this.Name}";
+        }
     }
 }
