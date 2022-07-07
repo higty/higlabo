@@ -29,7 +29,7 @@
                 //await g.CreateResourceUrlMappingFile();
                 //await g.CreateEntitySourceCode("https://docs.microsoft.com/en-us/graph/api/resources/workinghours?view=graph-rest-1.0");
                 await g.CreateMethodSourceCodeFile("https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0");
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0");
+                await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0");
                 //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0");
                 //await g.Execute();
             }

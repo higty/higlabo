@@ -202,9 +202,10 @@ namespace HigLabo.Net.CodeGenerator
         public async Task CreateResourceUrlMappingFile()
         {
             var l = new List<UrlClassNameMapping>();
+            var context = new CreateEntityClassContext();
             foreach (var url in this.GetEntiryUrlList())
             {
-                var c = await CreateEntityClass(url);
+                var c = await CreateEntityClass(url, context);
                 l.Add(new UrlClassNameMapping(url, c.Name));
                 Console.WriteLine(c.Name + " " + url);
             }
@@ -264,6 +265,7 @@ namespace HigLabo.Net.CodeGenerator
         public override async Task<SourceCode> CreateMethodSourceCode(string url, IDocument document, string className)
         {
             var sc = await base.CreateMethodSourceCode(url, document, className);
+            var context = new CreateEntityClassContext();
 
             var c = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Parameter");
             var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response");
@@ -290,7 +292,7 @@ namespace HigLabo.Net.CodeGenerator
                     try
                     {
                         var doc = this.GetDocumentAsync(entityUrl).GetAwaiter().GetResult();
-                        var cEntity = this.CreateEntityClass(entityUrl).GetAwaiter().GetResult();
+                        var cEntity = this.CreateEntityClass(entityUrl, context).GetAwaiter().GetResult();
                         this.CreateEntitySourceCodeFile(entityUrl, cEntity);
                         foreach (var item in cEntity.Properties)
                         {
@@ -306,7 +308,7 @@ namespace HigLabo.Net.CodeGenerator
                     var responseListUrl = this._UrlClassNameMappingList.Find(el => el.ClassName == responseListClassName)?.Url;
                     if (responseListUrl.IsNullOrEmpty() == false)
                     {
-                        var cValue = await this.CreateEntityClass(responseListUrl);
+                        var cValue = await this.CreateEntityClass(responseListUrl, context);
                         foreach (var item in cValue.Properties)
                         {
                             cField.Values.AddIfNotExist(new EnumValue(item.Name), el => el.Text == item.Name);
@@ -749,6 +751,7 @@ namespace HigLabo.Net.CodeGenerator
         {
             var c = base.CreateResponseClass(document, className);
 
+            var context = new CreateEntityClassContext();
             var entityUrl = "";
 
             var node = document.QuerySelector("[id='response']");
@@ -800,7 +803,7 @@ namespace HigLabo.Net.CodeGenerator
                 try
                 {
                     var doc = this.GetDocumentAsync(entityUrl).GetAwaiter().GetResult();
-                    var cEntity = this.CreateEntityClass(entityUrl).GetAwaiter().GetResult();
+                    var cEntity = this.CreateEntityClass(entityUrl, context).GetAwaiter().GetResult();
                     this.CreateEntitySourceCodeFile(entityUrl, cEntity);
                     foreach (var item in cEntity.Classes)
                     {

@@ -130,7 +130,7 @@ namespace HigLabo.Net.CodeGenerator
         {
             var doc = await this.GetDocumentAsync(url);
             var cName = this.GetClassName(url, doc);
-            var c = await this.CreateEntityClass(url);
+            var c = await this.CreateEntityClass(url, new CreateEntityClassContext());
             this.CreateEntitySourceCodeFile(url, c);
         }
         public void CreateEntitySourceCodeFile(string url, Class @class)
@@ -150,8 +150,10 @@ namespace HigLabo.Net.CodeGenerator
                 Console.WriteLine(filePath);
             }
         }
-        public async Task<Class> CreateEntityClass(string url)
+        public async Task<Class> CreateEntityClass(string url, CreateEntityClassContext context)
         {
+            context.UrlList.Add(url);
+
             var doc = await this.GetDocumentAsync(url);
             var cName = this.GetClassName(url, doc);
             var c = new Class(AccessModifier.Public, cName);
@@ -164,6 +166,7 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var property = await this.AddProperty(c, cName, parameter);
 
+                if (context.UrlList.Contains(parameter.EntityUrl)) { continue; }
                 if (url != parameter.EntityUrl && parameter.EntityUrl.IsNullOrEmpty() == false)
                 {
                     entityUrlList.Add(parameter.EntityUrl);
