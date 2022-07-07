@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OpenTypeExtension
     {
-        public string ExtensionName { get; set; }
-        public string Id { get; set; }
+        public string? ExtensionName { get; set; }
+        public string? Id { get; set; }
     }
 }

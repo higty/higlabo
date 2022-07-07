@@ -7,11 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TargetResource
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Type { get; set; }
-        public string UserPrincipalName { get; set; }
+        public enum TargetResourceGroupType
+        {
+            Group,
+            UnifiedGroups,
+            AzureAD,
+            UnknownFutureValue,
+        }
+
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Type { get; set; }
+        public string? UserPrincipalName { get; set; }
         public TargetResourceGroupType GroupType { get; set; }
-        public ModifiedProperty[] ModifiedProperties { get; set; }
+        public ModifiedProperty[]? ModifiedProperties { get; set; }
     }
 }

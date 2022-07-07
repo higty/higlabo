@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EntitlementManagementSettings
     {
-        public string DurationUntilExternalUserDeletedAfterBlocked { get; set; }
+        public enum EntitlementManagementSettingsAccessPackageExternalUserLifecycleAction
+        {
+            None,
+            BlockSignIn,
+            BlockSignInAndDelete,
+            UnknownFutureValue,
+        }
+
+        public string? DurationUntilExternalUserDeletedAfterBlocked { get; set; }
         public EntitlementManagementSettingsAccessPackageExternalUserLifecycleAction ExternalUserLifecycleAction { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
     }
 }

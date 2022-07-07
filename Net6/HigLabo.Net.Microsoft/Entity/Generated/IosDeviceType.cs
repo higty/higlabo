@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IosDeviceType
     {
-        public bool IPad { get; set; }
-        public bool IPhoneAndIPod { get; set; }
+        public bool? IPad { get; set; }
+        public bool? IPhoneAndIPod { get; set; }
     }
 }

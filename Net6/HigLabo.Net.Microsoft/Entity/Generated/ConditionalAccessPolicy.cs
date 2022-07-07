@@ -7,12 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessPolicy
     {
+        public enum ConditionalAccessPolicyConditionalAccessPolicyState
+        {
+            Enabled,
+            Disabled,
+            EnabledForReportingButNotEnforced,
+        }
+
         public ConditionalAccessConditionSet? Conditions { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DisplayName { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public ConditionalAccessGrantControls? GrantControls { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset ModifiedDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? ModifiedDateTime { get; set; }
         public ConditionalAccessSessionControls? SessionControls { get; set; }
         public ConditionalAccessPolicyConditionalAccessPolicyState State { get; set; }
     }

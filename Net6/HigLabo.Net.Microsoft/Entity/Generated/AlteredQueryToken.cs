@@ -9,6 +9,6 @@ namespace HigLabo.Net.Microsoft
     {
         public Int32? Length { get; set; }
         public Int32? Offset { get; set; }
-        public string Suggestion { get; set; }
+        public string? Suggestion { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChannelIdentity
     {
-        public String? ChannelId { get; set; }
-        public String? TeamId { get; set; }
+        public string? ChannelId { get; set; }
+        public string? TeamId { get; set; }
     }
 }

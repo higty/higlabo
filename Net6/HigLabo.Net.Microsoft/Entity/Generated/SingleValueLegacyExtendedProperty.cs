@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SingleValueLegacyExtendedProperty
     {
-        public String? Id { get; set; }
-        public String? Value { get; set; }
+        public string? Id { get; set; }
+        public string? Value { get; set; }
     }
 }

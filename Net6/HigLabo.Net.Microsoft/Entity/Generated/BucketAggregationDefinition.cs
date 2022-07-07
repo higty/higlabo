@@ -7,10 +7,17 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BucketAggregationDefinition
     {
-        public bool IsDescending { get; set; }
+        public enum BucketAggregationDefinitionBucketAggregationSortProperty
+        {
+            Count,
+            KeyAsString,
+            KeyAsNumber,
+        }
+
+        public bool? IsDescending { get; set; }
         public Int32? MinimumCount { get; set; }
-        public string PrefixFilter { get; set; }
-        public BucketAggregationRange[] Ranges { get; set; }
+        public string? PrefixFilter { get; set; }
+        public BucketAggregationRange[]? Ranges { get; set; }
         public BucketAggregationDefinitionBucketAggregationSortProperty SortBy { get; set; }
     }
 }

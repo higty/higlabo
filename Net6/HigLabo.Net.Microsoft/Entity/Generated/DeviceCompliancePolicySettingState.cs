@@ -7,17 +7,29 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceCompliancePolicySettingState
     {
+        public enum DeviceCompliancePolicySettingStateComplianceStatus
+        {
+            Unknown,
+            NotApplicable,
+            Compliant,
+            Remediated,
+            NonCompliant,
+            Error,
+            Conflict,
+            NotAssigned,
+        }
+
         public string Setting { get; set; }
         public string SettingName { get; set; }
         public string InstanceDisplayName { get; set; }
-        public DeviceCompliancePolicySettingStateComplianceStatus State { get; set; }
+        public ComplianceStatus State { get; set; }
         public Int64? ErrorCode { get; set; }
         public string ErrorDescription { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }
         public string UserEmail { get; set; }
         public string UserPrincipalName { get; set; }
-        public SettingSource[] Sources { get; set; }
+        public SettingSource Sources { get; set; }
         public string CurrentValue { get; set; }
     }
 }

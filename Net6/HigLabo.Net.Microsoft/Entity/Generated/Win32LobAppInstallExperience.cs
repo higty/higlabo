@@ -7,7 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppInstallExperience
     {
-        public Win32LobAppInstallExperienceRunAsAccountType RunAsAccount { get; set; }
-        public Win32LobAppInstallExperienceWin32LobAppRestartBehavior DeviceRestartBehavior { get; set; }
+        public enum Win32LobAppInstallExperienceRunAsAccountType
+        {
+            System,
+            User,
+        }
+        public enum Win32LobAppInstallExperienceWin32LobAppRestartBehavior
+        {
+            BasedOnReturnCode,
+            Allow,
+            Suppress,
+            Force,
+        }
+
+        public RunAsAccountType? RunAsAccount { get; set; }
+        public Win32LobAppRestartBehavior? DeviceRestartBehavior { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ImportedWindowsAutopilotDeviceIdentity
     {
-        public string Id { get; set; }
-        public string GroupTag { get; set; }
-        public string SerialNumber { get; set; }
-        public string ProductKey { get; set; }
-        public string ImportId { get; set; }
-        public string HardwareIdentifier { get; set; }
+        public string? Id { get; set; }
+        public string? GroupTag { get; set; }
+        public string? SerialNumber { get; set; }
+        public string? ProductKey { get; set; }
+        public string? ImportId { get; set; }
+        public string? HardwareIdentifier { get; set; }
         public ImportedWindowsAutopilotDeviceIdentityState? State { get; set; }
-        public string AssignedUserPrincipalName { get; set; }
+        public string? AssignedUserPrincipalName { get; set; }
     }
 }

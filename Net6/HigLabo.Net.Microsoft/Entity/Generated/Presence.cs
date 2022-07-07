@@ -7,7 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Presence
     {
-        public String? Id { get; set; }
+        public enum Presencestring
+        {
+            Available,
+            AvailableIdle,
+            Away,
+            BeRightBack,
+            Busy,
+            BusyIdle,
+            DoNotDisturb,
+            Offline,
+            PresenceUnknown,
+        }
+
+        public string Id { get; set; }
         public Presencestring Availability { get; set; }
         public Presencestring Activity { get; set; }
     }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ColumnValidation
     {
-        public String? Formula { get; set; }
-        public string[] Descriptions { get; set; }
-        public String? DefaultLanguage { get; set; }
+        public string? Formula { get; set; }
+        public string[]? Descriptions { get; set; }
+        public string? DefaultLanguage { get; set; }
     }
 }

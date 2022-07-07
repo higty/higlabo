@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MediaStream
     {
-        public string Direction { get; set; }
-        public string Label { get; set; }
-        public string MediaType { get; set; }
-        public bool ServerMuted { get; set; }
-        public string SourceId { get; set; }
+        public string? Direction { get; set; }
+        public string? Label { get; set; }
+        public string? MediaType { get; set; }
+        public bool? ServerMuted { get; set; }
+        public string? SourceId { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Text { get; set; }
         public string Time { get; set; }
-        public Recurrence Recurrence { get; set; } = new Recurrence();
+        public Recurrence Recurrence { get; set; }
         public string Team_Id { get; set; }
         public string User { get; set; }
     }

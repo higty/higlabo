@@ -7,7 +7,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "usergroups.users.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Usergroup { get; set; }
-        public bool? Include_Disabled { get; set; }
+        public bool Include_Disabled { get; set; }
         public string Team_Id { get; set; }
     }
     public partial class UsergroupsUsersListResponse : RestApiResponse

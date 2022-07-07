@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TermStoreSet
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Description { get; set; }
-        public string Id { get; set; }
-        public TermStoreLocalizedName[] LocalizedNames { get; set; }
-        public KeyValue[] Properties { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? Id { get; set; }
+        public TermStoreLocalizedName[]? LocalizedNames { get; set; }
+        public KeyValue[]? Properties { get; set; }
     }
 }

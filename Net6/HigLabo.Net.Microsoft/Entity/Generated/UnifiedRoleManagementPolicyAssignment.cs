@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UnifiedRoleManagementPolicyAssignment
     {
-        public string Id { get; set; }
-        public string PolicyId { get; set; }
-        public string RoleDefinitionId { get; set; }
-        public string ScopeId { get; set; }
-        public string ScopeType { get; set; }
+        public string? Id { get; set; }
+        public string? PolicyId { get; set; }
+        public string? RoleDefinitionId { get; set; }
+        public string? ScopeId { get; set; }
+        public string? ScopeType { get; set; }
     }
 }

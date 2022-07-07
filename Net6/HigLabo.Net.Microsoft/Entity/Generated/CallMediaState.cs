@@ -7,6 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CallMediaState
     {
+        public enum CallMediaStateMediaState
+        {
+            Active,
+            Inactive,
+            UnknownFutureValue,
+        }
+
         public CallMediaStateMediaState Audio { get; set; }
     }
 }

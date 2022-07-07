@@ -8,7 +8,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Channel { get; set; }
         public string Emails { get; set; }
-        public bool? External_Limited { get; set; }
+        public bool External_Limited { get; set; }
         public string User_Ids { get; set; }
     }
     public partial class ConversationsInviteSharedResponse : RestApiResponse

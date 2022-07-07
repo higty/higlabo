@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RubricQualityFeedbackModel
     {
-        public ItemBody? Feedback { get; set; }
+        public ItemBody Feedback { get; set; }
         public string QualityId { get; set; }
     }
 }

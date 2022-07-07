@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationOutcome
     {
         public string Id { get; set; }
-        public IdentitySet? LastModifiedBy { get; set; }
+        public IdentitySet LastModifiedBy { get; set; }
         public DateTimeOffset LastModifiedDateTime { get; set; }
     }
 }

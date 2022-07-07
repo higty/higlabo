@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingCustomer
     {
-        public string DisplayName { get; set; }
-        public string EmailAddress { get; set; }
-        public string Id { get; set; }
-        public PhysicalAddress[] Addresses { get; set; }
-        public Phone[] Phones { get; set; }
+        public string? DisplayName { get; set; }
+        public string? EmailAddress { get; set; }
+        public string? Id { get; set; }
+        public PhysicalAddress[]? Addresses { get; set; }
+        public Phone[]? Phones { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PlannerBucketTaskBoardTaskFormat
     {
-        public string Id { get; set; }
-        public string OrderHint { get; set; }
+        public string? Id { get; set; }
+        public string? OrderHint { get; set; }
     }
 }

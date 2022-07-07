@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class RecordingInfo
     {
         public IdentitySet? Initiator { get; set; }
-        public string RecordingStatus { get; set; }
+        public string? RecordingStatus { get; set; }
     }
 }

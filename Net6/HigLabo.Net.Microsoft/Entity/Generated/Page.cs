@@ -8,15 +8,15 @@ namespace HigLabo.Net.Microsoft
     public partial class Page
     {
         public Stream? Content { get; set; }
-        public string ContentUrl { get; set; }
-        public string CreatedByAppId { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public string? ContentUrl { get; set; }
+        public string? CreatedByAppId { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public Int32? Level { get; set; }
         public PageLinks? Links { get; set; }
         public Int32? Order { get; set; }
-        public string Self { get; set; }
-        public string Title { get; set; }
+        public string? Self { get; set; }
+        public string? Title { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResourceOperation
     {
-        public string Id { get; set; }
-        public string ResourceName { get; set; }
-        public string ActionName { get; set; }
-        public string Description { get; set; }
+        public string? Id { get; set; }
+        public string? ResourceName { get; set; }
+        public string? ActionName { get; set; }
+        public string? Description { get; set; }
     }
 }

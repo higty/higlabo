@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SchedulingGroup
     {
-        public String? Id { get; set; }
-        public String? DisplayName { get; set; }
-        public bool IsActive { get; set; }
-        public string[] UserIds { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public bool? IsActive { get; set; }
+        public string[]? UserIds { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
     }
 }

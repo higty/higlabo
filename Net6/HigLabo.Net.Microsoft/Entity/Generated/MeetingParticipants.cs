@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MeetingParticipants
     {
-        public MeetingParticipantInfo[] Attendees { get; set; }
+        public MeetingParticipantInfo[]? Attendees { get; set; }
         public MeetingParticipantInfo? Organizer { get; set; }
     }
 }

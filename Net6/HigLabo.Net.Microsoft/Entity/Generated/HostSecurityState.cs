@@ -7,14 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class HostSecurityState
     {
-        public string Fqdn { get; set; }
-        public bool IsAzureAadJoined { get; set; }
-        public bool IsAzureAadRegistered { get; set; }
-        public bool IsHybridAzureDomainJoined { get; set; }
-        public string NetBiosName { get; set; }
-        public string Os { get; set; }
-        public string PrivateIpAddress { get; set; }
-        public string PublicIpAddress { get; set; }
-        public string RiskScore { get; set; }
+        public string? Fqdn { get; set; }
+        public bool? IsAzureAadJoined { get; set; }
+        public bool? IsAzureAadRegistered { get; set; }
+        public bool? IsHybridAzureDomainJoined { get; set; }
+        public string? NetBiosName { get; set; }
+        public string? Os { get; set; }
+        public string? PrivateIpAddress { get; set; }
+        public string? PublicIpAddress { get; set; }
+        public string? RiskScore { get; set; }
     }
 }

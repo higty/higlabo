@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AgreementFileLocalization
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DisplayName { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public AgreementFileData? FileData { get; set; }
-        public string FileName { get; set; }
-        public string Id { get; set; }
-        public bool IsDefault { get; set; }
-        public bool IsMajorVersion { get; set; }
-        public string Language { get; set; }
+        public string? FileName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsDefault { get; set; }
+        public bool? IsMajorVersion { get; set; }
+        public string? Language { get; set; }
     }
 }

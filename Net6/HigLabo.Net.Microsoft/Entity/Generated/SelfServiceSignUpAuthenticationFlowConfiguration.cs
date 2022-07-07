@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SelfServiceSignUpAuthenticationFlowConfiguration
     {
-        public bool IsEnabled { get; set; }
+        public bool? IsEnabled { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace HigLabo.Net.Microsoft
     {
         public IdentitySet? Final { get; set; }
         public IdentitySet? Original { get; set; }
-        public string RoutingType { get; set; }
+        public string? RoutingType { get; set; }
     }
 }

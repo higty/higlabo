@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/intune-deviceconfig-report?view=graph-rest-1.0
+    /// https://docs.microsoft.com/en-us/graph/api/resources/intune-troubleshooting-report?view=graph-rest-1.0
     /// </summary>
     public partial class Report
     {

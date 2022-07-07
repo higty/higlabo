@@ -7,11 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class FeatureRolloutPolicy
     {
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
-        public FeatureRolloutPolicyStagedFeatureName Feature { get; set; }
-        public string Id { get; set; }
-        public bool IsAppliedToOrganization { get; set; }
-        public bool IsEnabled { get; set; }
+        public enum FeatureRolloutPolicystring
+        {
+            PassthroughAuthentication,
+            SeamlessSso,
+            PasswordHashSync,
+            EmailAsAlternateId,
+            UnknownFutureValue,
+        }
+
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public FeatureRolloutPolicystring Feature { get; set; }
+        public string? Id { get; set; }
+        public bool? IsAppliedToOrganization { get; set; }
+        public bool? IsEnabled { get; set; }
     }
 }

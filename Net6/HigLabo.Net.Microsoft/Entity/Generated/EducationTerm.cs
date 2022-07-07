@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationTerm
     {
-        public string DisplayName { get; set; }
-        public string ExternalId { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        public string? DisplayName { get; set; }
+        public string? ExternalId { get; set; }
+        public DateOnly? StartDate { get; set; }
+        public DateOnly? EndDate { get; set; }
     }
 }

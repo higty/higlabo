@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RequiredResourceAccess
     {
-        public ResourceAccess[] ResourceAccess { get; set; }
-        public string ResourceAppId { get; set; }
+        public ResourceAccess[]? ResourceAccess { get; set; }
+        public string? ResourceAppId { get; set; }
     }
 }

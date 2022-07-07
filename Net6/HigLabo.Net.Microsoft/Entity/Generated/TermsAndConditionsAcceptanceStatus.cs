@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TermsAndConditionsAcceptanceStatus
     {
-        public string Id { get; set; }
-        public string UserDisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? UserDisplayName { get; set; }
         public Int32? AcceptedVersion { get; set; }
-        public DateTimeOffset AcceptedDateTime { get; set; }
-        public string UserPrincipalName { get; set; }
+        public DateTimeOffset? AcceptedDateTime { get; set; }
+        public string? UserPrincipalName { get; set; }
     }
 }

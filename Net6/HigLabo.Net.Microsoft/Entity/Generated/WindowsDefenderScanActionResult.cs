@@ -7,8 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsDefenderScanActionResult
     {
+        public enum WindowsDefenderScanActionResultActionState
+        {
+            None,
+            Pending,
+            Canceled,
+            Active,
+            Done,
+            Failed,
+            NotSupported,
+        }
+
         public string ActionName { get; set; }
-        public WindowsDefenderScanActionResultActionState ActionState { get; set; }
+        public ActionState ActionState { get; set; }
         public DateTimeOffset StartDateTime { get; set; }
         public DateTimeOffset LastUpdatedDateTime { get; set; }
         public string ScanType { get; set; }

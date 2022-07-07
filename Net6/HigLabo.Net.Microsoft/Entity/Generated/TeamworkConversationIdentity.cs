@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamworkConversationIdentity
     {
+        public enum TeamworkConversationIdentityTeamworkConversationIdentityType
+        {
+            Team,
+            Channel,
+            Chat,
+            UnknownFutureValue,
+        }
+
         public TeamworkConversationIdentityTeamworkConversationIdentityType ConversationIdentityType { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
     }
 }

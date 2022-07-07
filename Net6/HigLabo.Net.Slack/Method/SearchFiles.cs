@@ -7,9 +7,9 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "search.files";
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Query { get; set; }
-        public int? Count { get; set; }
-        public bool? Highlight { get; set; }
-        public int? Page { get; set; }
+        public int Count { get; set; }
+        public bool Highlight { get; set; }
+        public int Page { get; set; }
         public Sort Sort { get; set; }
         public SortDirection Sort_Dir { get; set; }
         public string Team_Id { get; set; }

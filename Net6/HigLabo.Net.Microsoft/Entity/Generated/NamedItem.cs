@@ -7,11 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class NamedItem
     {
-        public String? Name { get; set; }
-        public String? Comment { get; set; }
-        public String? Scope { get; set; }
-        public NamedItemString Type { get; set; }
+        public enum NamedItemstring
+        {
+            String,
+            Integer,
+            Double,
+            Boolean,
+            Range,
+        }
+
+        public string? Name { get; set; }
+        public string? Comment { get; set; }
+        public string? Scope { get; set; }
+        public NamedItemstring Type { get; set; }
         public Json? Value { get; set; }
-        public Boolean? Visible { get; set; }
+        public bool? Visible { get; set; }
     }
 }

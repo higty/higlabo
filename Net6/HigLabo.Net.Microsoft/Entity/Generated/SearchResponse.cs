@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchResponse
     {
-        public SearchHitsContainer[] HitsContainers { get; set; }
-        public ResultTemplate[] ResultTemplates { get; set; }
-        public String[] SearchTerms { get; set; }
+        public SearchHitsContainer[]? HitsContainers { get; set; }
+        public ResultTemplate[]? ResultTemplates { get; set; }
+        public String[]? SearchTerms { get; set; }
         public AlterationResponse? QueryAlterationResponse { get; set; }
     }
 }

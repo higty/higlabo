@@ -506,13 +506,14 @@ namespace HigLabo.CodeGenerator
             this.WriteLineAndIndent();
             writer.WriteLine("{");
 
+            hasElement = this.Write(c.Classes, hasElement, this.Write);
+            hasElement = this.Write(c.Enums, hasElement, this.Write);
+
             hasElement = this.Write(c.Fields, hasElement, this.Write);
             hasElement = this.Write(c.Properties, hasElement, this.Write);
             hasElement = this.Write(c.Constructors, hasElement, this.Write);
             hasElement = this.Write(c.Methods, hasElement, this.Write);
             hasElement = this.Write(c.Interfaces, hasElement, this.Write);
-            hasElement = this.Write(c.Classes, hasElement, this.Write);
-            hasElement = this.Write(c.Enums, hasElement, this.Write);
 
             this.WriteIndent();
             writer.WriteLine("}");

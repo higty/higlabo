@@ -7,10 +7,21 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceComplianceActionItem
     {
-        public string Id { get; set; }
+        public enum DeviceComplianceActionItemDeviceComplianceActionType
+        {
+            NoAction,
+            Notification,
+            Block,
+            Retire,
+            Wipe,
+            RemoveResourceAccessProfiles,
+            PushNotification,
+        }
+
+        public string? Id { get; set; }
         public Int32? GracePeriodHours { get; set; }
-        public DeviceComplianceActionItemDeviceComplianceActionType ActionType { get; set; }
-        public string NotificationTemplateId { get; set; }
-        public String[] NotificationMessageCCList { get; set; }
+        public DeviceComplianceActionType? ActionType { get; set; }
+        public string? NotificationTemplateId { get; set; }
+        public String[]? NotificationMessageCCList { get; set; }
     }
 }

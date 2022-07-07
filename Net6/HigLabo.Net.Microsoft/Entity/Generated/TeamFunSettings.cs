@@ -7,9 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamFunSettings
     {
-        public bool AllowGiphy { get; set; }
+        public enum TeamFunSettingsGiphyContentRating
+        {
+            Moderate,
+            Strict,
+        }
+
+        public bool? AllowGiphy { get; set; }
         public TeamFunSettingsGiphyContentRating GiphyContentRating { get; set; }
-        public bool AllowStickersAndMemes { get; set; }
-        public bool AllowCustomMemes { get; set; }
+        public bool? AllowStickersAndMemes { get; set; }
+        public bool? AllowCustomMemes { get; set; }
     }
 }

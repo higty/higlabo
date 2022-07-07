@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PlannerBucket
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
-        public string OrderHint { get; set; }
-        public string PlanId { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public string? OrderHint { get; set; }
+        public string? PlanId { get; set; }
     }
 }

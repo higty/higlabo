@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessPackage
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsHidden { get; set; }
-        public DateTimeOffset ModifiedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsHidden { get; set; }
+        public DateTimeOffset? ModifiedDateTime { get; set; }
     }
 }

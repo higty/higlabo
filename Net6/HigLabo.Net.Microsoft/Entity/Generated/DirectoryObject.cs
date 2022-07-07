@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DirectoryObject
     {
-        public DateTimeOffset DeletedDateTime { get; set; }
-        public string Id { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public string? Id { get; set; }
     }
 }

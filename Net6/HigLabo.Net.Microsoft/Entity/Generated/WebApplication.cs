@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WebApplication
     {
-        public string HomePageUrl { get; set; }
+        public string? HomePageUrl { get; set; }
         public ImplicitGrantSettings? ImplicitGrantSettings { get; set; }
-        public string LogoutUrl { get; set; }
-        public String[] RedirectUris { get; set; }
+        public string? LogoutUrl { get; set; }
+        public String[]? RedirectUris { get; set; }
     }
 }

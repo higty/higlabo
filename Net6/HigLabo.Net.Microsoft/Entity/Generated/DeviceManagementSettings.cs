@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class DeviceManagementSettings
     {
         public Int32? DeviceComplianceCheckinThresholdDays { get; set; }
-        public bool IsScheduledActionEnabled { get; set; }
-        public bool SecureByDefault { get; set; }
+        public bool? IsScheduledActionEnabled { get; set; }
+        public bool? SecureByDefault { get; set; }
     }
 }

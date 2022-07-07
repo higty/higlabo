@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TimeOffReason
     {
-        public String? Id { get; set; }
-        public String? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
         public TimeOffReasonIconType? IconType { get; set; }
-        public bool IsActive { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public bool? IsActive { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
     }
 }

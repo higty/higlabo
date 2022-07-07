@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TimeOffItem
     {
-        public String? TimeOffReasonId { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public DateTimeOffset EndDateTime { get; set; }
+        public string? TimeOffReasonId { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
         public ScheduleEntityTheme? Theme { get; set; }
     }
 }

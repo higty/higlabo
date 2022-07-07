@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionApp
     {
-        public string DisplayName { get; set; }
-        public string Description { get; set; }
-        public string PublisherName { get; set; }
-        public string ProductName { get; set; }
-        public bool Denied { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
+        public string? PublisherName { get; set; }
+        public string? ProductName { get; set; }
+        public bool? Denied { get; set; }
     }
 }

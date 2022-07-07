@@ -8,7 +8,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Users { get; set; }
         public string Team_Id { get; set; }
-        public bool? To_Old { get; set; }
+        public bool To_Old { get; set; }
     }
     public partial class MigrationExchangeResponse : RestApiResponse
     {

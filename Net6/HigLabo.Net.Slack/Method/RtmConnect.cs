@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "rtm.connect";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public bool? Batch_Presence_Aware { get; set; }
-        public bool? Presence_Sub { get; set; }
+        public bool Batch_Presence_Aware { get; set; }
+        public bool Presence_Sub { get; set; }
     }
     public partial class RtmConnectResponse : RestApiResponse
     {

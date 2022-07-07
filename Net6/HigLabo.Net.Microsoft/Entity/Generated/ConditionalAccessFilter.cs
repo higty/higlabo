@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessFilter
     {
+        public enum ConditionalAccessFilterFilterMode
+        {
+            Include,
+            Exclude,
+        }
+
         public ConditionalAccessFilterFilterMode Mode { get; set; }
-        public string Rule { get; set; }
+        public string? Rule { get; set; }
     }
 }

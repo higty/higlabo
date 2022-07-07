@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DateTimeColumn
     {
-        public String? DisplayAs { get; set; }
-        public String? Format { get; set; }
+        public string? DisplayAs { get; set; }
+        public string? Format { get; set; }
     }
 }

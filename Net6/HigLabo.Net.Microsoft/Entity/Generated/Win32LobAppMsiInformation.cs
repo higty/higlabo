@@ -7,12 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppMsiInformation
     {
-        public string ProductCode { get; set; }
-        public string ProductVersion { get; set; }
-        public string UpgradeCode { get; set; }
-        public bool RequiresReboot { get; set; }
-        public Win32LobAppMsiInformationWin32LobAppMsiPackageType PackageType { get; set; }
-        public string ProductName { get; set; }
-        public string Publisher { get; set; }
+        public enum Win32LobAppMsiInformationWin32LobAppMsiPackageType
+        {
+            PerMachine,
+            PerUser,
+            DualPurpose,
+        }
+
+        public string? ProductCode { get; set; }
+        public string? ProductVersion { get; set; }
+        public string? UpgradeCode { get; set; }
+        public bool? RequiresReboot { get; set; }
+        public Win32LobAppMsiPackageType? PackageType { get; set; }
+        public string? ProductName { get; set; }
+        public string? Publisher { get; set; }
     }
 }

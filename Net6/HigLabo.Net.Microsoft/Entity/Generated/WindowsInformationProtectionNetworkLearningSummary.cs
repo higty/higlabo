@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionNetworkLearningSummary
     {
-        public string Id { get; set; }
-        public string Url { get; set; }
+        public string? Id { get; set; }
+        public string? Url { get; set; }
         public Int32? DeviceCount { get; set; }
     }
 }

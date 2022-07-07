@@ -7,27 +7,42 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChatMessage
     {
-        public string Id { get; set; }
-        public String? ReplyToId { get; set; }
+        public enum ChatMessageChatMessageType
+        {
+            Message,
+            ChatEvent,
+            Typing,
+            UnknownFutureValue,
+            SystemEventMessage,
+        }
+        public enum ChatMessagestring
+        {
+            Normal,
+            High,
+            Urgent,
+        }
+
+        public string? Id { get; set; }
+        public string? ReplyToId { get; set; }
         public ChatMessageFromIdentitySet? From { get; set; }
-        public String? Etag { get; set; }
+        public string? Etag { get; set; }
         public ChatMessageChatMessageType MessageType { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public DateTimeOffset LastEditedDateTime { get; set; }
-        public DateTimeOffset DeletedDateTime { get; set; }
-        public String? Subject { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastEditedDateTime { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public string? Subject { get; set; }
         public ItemBody? Body { get; set; }
-        public String? Summary { get; set; }
-        public ChatMessageAttachment[] Attachments { get; set; }
-        public ChatMessageMention[] Mentions { get; set; }
-        public ChatMessageString Importance { get; set; }
-        public ChatMessageReaction[] Reactions { get; set; }
-        public String? Locale { get; set; }
+        public string? Summary { get; set; }
+        public ChatMessageAttachment[]? Attachments { get; set; }
+        public ChatMessageMention[]? Mentions { get; set; }
+        public ChatMessagestring Importance { get; set; }
+        public ChatMessageReaction[]? Reactions { get; set; }
+        public string? Locale { get; set; }
         public ChatMessagePolicyViolation? PolicyViolation { get; set; }
-        public String? ChatId { get; set; }
+        public string? ChatId { get; set; }
         public ChannelIdentity? ChannelIdentity { get; set; }
-        public String? WebUrl { get; set; }
+        public string? WebUrl { get; set; }
         public EventMessageDetail? EventDetail { get; set; }
     }
 }

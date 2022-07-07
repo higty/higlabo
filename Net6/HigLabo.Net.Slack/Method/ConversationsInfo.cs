@@ -7,8 +7,8 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "conversations.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string Channel { get; set; }
-        public bool? Include_Locale { get; set; }
-        public bool? Include_Num_Members { get; set; }
+        public bool Include_Locale { get; set; }
+        public bool Include_Num_Members { get; set; }
     }
     public partial class ConversationsInfoResponse : RestApiResponse
     {

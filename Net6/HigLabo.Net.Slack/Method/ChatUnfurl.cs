@@ -13,7 +13,7 @@ namespace HigLabo.Net.Slack
         public string Unfurl_Id { get; set; }
         public string User_Auth_Blocks { get; set; }
         public string User_Auth_Message { get; set; }
-        public bool? User_Auth_Required { get; set; }
+        public bool User_Auth_Required { get; set; }
         public string User_Auth_Url { get; set; }
     }
     public partial class ChatUnfurlResponse : RestApiResponse

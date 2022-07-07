@@ -9,7 +9,7 @@ namespace HigLabo.Net.Microsoft
     {
         public DateTimeOffset CreatedDateTime { get; set; }
         public string DisplayName { get; set; }
-        public AgreementFileData? FileData { get; set; }
+        public AgreementFileData FileData { get; set; }
         public string FileName { get; set; }
         public string Id { get; set; }
         public bool IsDefault { get; set; }

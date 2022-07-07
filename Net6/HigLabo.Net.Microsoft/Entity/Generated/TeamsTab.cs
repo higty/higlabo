@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamsTab
     {
-        public String? Id { get; set; }
-        public String? DisplayName { get; set; }
-        public String? WebUrl { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? WebUrl { get; set; }
         public TeamsTabConfiguration? Configuration { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResourceAction
     {
-        public String[] AllowedResourceActions { get; set; }
-        public String[] NotAllowedResourceActions { get; set; }
+        public String[]? AllowedResourceActions { get; set; }
+        public String[]? NotAllowedResourceActions { get; set; }
     }
 }

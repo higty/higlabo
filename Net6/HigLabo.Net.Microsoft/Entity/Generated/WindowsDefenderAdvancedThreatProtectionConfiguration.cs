@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsDefenderAdvancedThreatProtectionConfiguration
     {
-        public string Id { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
         public Int32? Version { get; set; }
-        public bool AllowSampleSharing { get; set; }
-        public bool EnableExpeditedTelemetryReporting { get; set; }
+        public bool? AllowSampleSharing { get; set; }
+        public bool? EnableExpeditedTelemetryReporting { get; set; }
     }
 }

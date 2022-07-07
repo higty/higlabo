@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TermStoreLocalizedName
     {
-        public string LanguageTag { get; set; }
-        public string Name { get; set; }
+        public string? LanguageTag { get; set; }
+        public string? Name { get; set; }
     }
 }

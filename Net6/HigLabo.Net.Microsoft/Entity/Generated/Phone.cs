@@ -7,7 +7,21 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Phone
     {
-        public String? Number { get; set; }
+        public enum PhonePhoneType
+        {
+            Home,
+            Business,
+            Mobile,
+            Other,
+            Assistant,
+            HomeFax,
+            BusinessFax,
+            OtherFax,
+            Pager,
+            Radio,
+        }
+
+        public string? Number { get; set; }
         public PhonePhoneType Type { get; set; }
     }
 }

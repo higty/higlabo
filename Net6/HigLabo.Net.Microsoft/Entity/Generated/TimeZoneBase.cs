@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TimeZoneBase
     {
-        public String? Name { get; set; }
+        public string? Name { get; set; }
     }
 }

@@ -7,8 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PlannerPlanContainer
     {
-        public string ContainerId { get; set; }
+        public enum PlannerPlanContainerPlannerContainerType
+        {
+            Group,
+            UnknownFutureValue,
+            Roster,
+        }
+
+        public string? ContainerId { get; set; }
         public PlannerPlanContainerPlannerContainerType Type { get; set; }
-        public string Url { get; set; }
+        public string? Url { get; set; }
     }
 }

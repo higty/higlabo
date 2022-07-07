@@ -7,7 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CallRecordsFailureInfo
     {
-        public string Reason { get; set; }
+        public enum CallRecordsFailureInfoCallRecordsFailureStage
+        {
+            Unknown,
+            CallSetup,
+            Midcall,
+            UnknownFutureValue,
+        }
+
+        public string? Reason { get; set; }
         public CallRecordsFailureInfoCallRecordsFailureStage Stage { get; set; }
     }
 }

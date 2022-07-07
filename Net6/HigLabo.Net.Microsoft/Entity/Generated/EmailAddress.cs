@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EmailAddress
     {
-        public string Address { get; set; }
-        public string Name { get; set; }
+        public string? Address { get; set; }
+        public string? Name { get; set; }
     }
 }

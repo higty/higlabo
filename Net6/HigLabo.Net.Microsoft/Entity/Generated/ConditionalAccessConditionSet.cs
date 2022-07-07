@@ -7,6 +7,25 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessConditionSet
     {
+        public enum ConditionalAccessConditionSetConditionalAccessClientApp
+        {
+            All,
+            Browser,
+            MobileAppsAndDesktopClients,
+            ExchangeActiveSync,
+            EasSupported,
+            Other,
+        }
+        public enum ConditionalAccessConditionSetRiskLevel
+        {
+            Low,
+            Medium,
+            High,
+            Hidden,
+            None,
+            UnknownFutureValue,
+        }
+
         public ConditionalAccessApplications? Applications { get; set; }
         public ConditionalAccessUsers? Users { get; set; }
         public ConditionalAccessClientApplications? ClientApplications { get; set; }

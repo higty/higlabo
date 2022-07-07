@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class PlannerPlanDetails
     {
         public PlannerCategoryDescriptions? CategoryDescriptions { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public PlannerUserIds? SharedWith { get; set; }
     }
 }

@@ -7,7 +7,29 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MediaContentRatingCanada
     {
-        public MediaContentRatingCanadaRatingCanadaMoviesType MovieRating { get; set; }
-        public MediaContentRatingCanadaRatingCanadaTelevisionType TvRating { get; set; }
+        public enum MediaContentRatingCanadaRatingCanadaMoviesType
+        {
+            AllAllowed,
+            AllBlocked,
+            General,
+            ParentalGuidance,
+            AgesAbove14,
+            AgesAbove18,
+            Restricted,
+        }
+        public enum MediaContentRatingCanadaRatingCanadaTelevisionType
+        {
+            AllAllowed,
+            AllBlocked,
+            Children,
+            ChildrenAbove8,
+            General,
+            ParentalGuidance,
+            AgesAbove14,
+            AgesAbove18,
+        }
+
+        public RatingCanadaMoviesType? MovieRating { get; set; }
+        public RatingCanadaTelevisionType? TvRating { get; set; }
     }
 }

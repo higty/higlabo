@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Relation
     {
-        public string Id { get; set; }
+        public enum RelationTermStoreRelationType
+        {
+            Pin,
+            Reuse,
+        }
+
+        public string? Id { get; set; }
         public RelationTermStoreRelationType Relationship { get; set; }
     }
 }

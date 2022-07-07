@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SiteList
     {
-        public String? DisplayName { get; set; }
+        public string? DisplayName { get; set; }
         public ListInfo? List { get; set; }
-        public SystemFacet? System { get; set; }
+        public System? System { get; set; }
     }
 }

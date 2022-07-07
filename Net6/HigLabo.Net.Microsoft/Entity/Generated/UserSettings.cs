@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UserSettings
     {
-        public bool ContributionToContentDiscoveryDisabled { get; set; }
-        public bool ContributionToContentDiscoveryAsOrganizationDisabled { get; set; }
-        public string Id { get; set; }
+        public bool? ContributionToContentDiscoveryDisabled { get; set; }
+        public bool? ContributionToContentDiscoveryAsOrganizationDisabled { get; set; }
+        public string? Id { get; set; }
     }
 }

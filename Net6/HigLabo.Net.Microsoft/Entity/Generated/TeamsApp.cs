@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamsApp
     {
-        public String? Id { get; set; }
-        public String? ExternalId { get; set; }
-        public String? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? ExternalId { get; set; }
+        public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WorkingHours
     {
-        public DayOfWeek[] DaysOfWeek { get; set; }
-        public TimeOnly StartTime { get; set; }
-        public TimeOnly EndTime { get; set; }
+        public DayOfWeek[]? DaysOfWeek { get; set; }
+        public TimeOnly? StartTime { get; set; }
+        public TimeOnly? EndTime { get; set; }
         public TimeZoneBase? TimeZone { get; set; }
     }
 }

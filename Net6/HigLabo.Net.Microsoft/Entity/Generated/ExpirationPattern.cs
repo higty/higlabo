@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExpirationPattern
     {
-        public string Duration { get; set; }
-        public DateTimeOffset EndDateTime { get; set; }
+        public enum ExpirationPatternExpirationPatternType
+        {
+            NotSpecified,
+            NoExpiration,
+            AfterDateTime,
+            AfterDuration,
+        }
+
+        public string? Duration { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
         public ExpirationPatternExpirationPatternType Type { get; set; }
     }
 }

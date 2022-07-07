@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResultTemplateOption
     {
-        public bool EnableResultTemplate { get; set; }
+        public bool? EnableResultTemplate { get; set; }
     }
 }

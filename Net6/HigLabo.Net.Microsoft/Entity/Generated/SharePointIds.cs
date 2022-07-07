@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SharePointIds
     {
-        public String? ListId { get; set; }
-        public String? ListItemId { get; set; }
-        public String? ListItemUniqueId { get; set; }
-        public String? SiteId { get; set; }
-        public string SiteUrl { get; set; }
-        public String? TenantId { get; set; }
-        public String? WebId { get; set; }
+        public string? ListId { get; set; }
+        public string? ListItemId { get; set; }
+        public string? ListItemUniqueId { get; set; }
+        public string? SiteId { get; set; }
+        public string? SiteUrl { get; set; }
+        public string? TenantId { get; set; }
+        public string? WebId { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace HigLabo.Net.Microsoft
         public EmailAddress? EmailAddress { get; set; }
         public TimeSlot? ProposedNewTime { get; set; }
         public ResponseStatus? Status { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
     }
 }

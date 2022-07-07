@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class OpenShift
     {
         public OpenShiftItem? DraftOpenShift { get; set; }
-        public string SchedulingGroupId { get; set; }
+        public string? SchedulingGroupId { get; set; }
         public OpenShiftItem? SharedOpenShift { get; set; }
     }
 }

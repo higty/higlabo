@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExternalItem
     {
-        public Acl[] Acl { get; set; }
-        public ExternalItemContent Content { get; set; }
-        public string Id { get; set; }
-        public string Properties { get; set; }
+        public Acl[]? Acl { get; set; }
+        public ExternalItemContent? Content { get; set; }
+        public string? Id { get; set; }
+        public Properties? Properties { get; set; }
     }
 }

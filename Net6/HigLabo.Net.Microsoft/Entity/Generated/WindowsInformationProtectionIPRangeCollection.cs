@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionIPRangeCollection
     {
-        public string DisplayName { get; set; }
-        public IpRange[] Ranges { get; set; }
+        public string? DisplayName { get; set; }
+        public IpRange[]? Ranges { get; set; }
     }
 }

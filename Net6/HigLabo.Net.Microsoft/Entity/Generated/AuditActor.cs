@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AuditActor
     {
-        public string Type { get; set; }
-        public String[] UserPermissions { get; set; }
-        public string ApplicationId { get; set; }
-        public string ApplicationDisplayName { get; set; }
-        public string UserPrincipalName { get; set; }
-        public string ServicePrincipalName { get; set; }
-        public string IpAddress { get; set; }
-        public string UserId { get; set; }
+        public string? Type { get; set; }
+        public String[]? UserPermissions { get; set; }
+        public string? ApplicationId { get; set; }
+        public string? ApplicationDisplayName { get; set; }
+        public string? UserPrincipalName { get; set; }
+        public string? ServicePrincipalName { get; set; }
+        public string? IpAddress { get; set; }
+        public string? UserId { get; set; }
     }
 }

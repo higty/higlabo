@@ -9,8 +9,8 @@ namespace HigLabo.Net.Slack
         public string Team_Id { get; set; }
         public string User_Id { get; set; }
         public string Channel_Ids { get; set; }
-        public bool? Is_Restricted { get; set; }
-        public bool? Is_Ultra_Restricted { get; set; }
+        public bool Is_Restricted { get; set; }
+        public bool Is_Ultra_Restricted { get; set; }
     }
     public partial class AdminUsersAssignResponse : RestApiResponse
     {

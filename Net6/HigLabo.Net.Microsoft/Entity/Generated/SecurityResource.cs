@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SecurityResource
     {
-        public string Resource { get; set; }
+        public enum SecurityResourceSecurityResourceType
+        {
+            Attacked,
+            Related,
+        }
+
+        public string? Resource { get; set; }
         public SecurityResourceSecurityResourceType ResourceType { get; set; }
     }
 }

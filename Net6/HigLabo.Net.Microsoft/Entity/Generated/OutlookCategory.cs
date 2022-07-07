@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OutlookCategory
     {
-        public string DisplayName { get; set; }
-        public string Color { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Color { get; set; }
     }
 }

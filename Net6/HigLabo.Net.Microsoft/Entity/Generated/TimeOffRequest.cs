@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TimeOffRequest
     {
-        public DateTimeOffset EndDateTime { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public string TimeOffReasonId { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public string? TimeOffReasonId { get; set; }
     }
 }

@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IpNamedLocation
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public IpRange[] IpRanges { get; set; }
-        public bool IsTrusted { get; set; }
-        public DateTimeOffset ModifiedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public IpRange[]? IpRanges { get; set; }
+        public bool? IsTrusted { get; set; }
+        public DateTimeOffset? ModifiedDateTime { get; set; }
     }
 }

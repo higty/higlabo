@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OpenShiftChangeRequest
     {
-        public string OpenShiftId { get; set; }
+        public string? OpenShiftId { get; set; }
     }
 }

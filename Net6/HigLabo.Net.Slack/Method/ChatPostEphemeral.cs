@@ -9,12 +9,12 @@ namespace HigLabo.Net.Slack
         public string Channel { get; set; }
         public string Text { get; set; }
         public string User { get; set; }
-        public bool? As_User { get; set; }
+        public bool As_User { get; set; }
         public string Attachments { get; set; }
         public string Blocks { get; set; }
         public string Icon_Emoji { get; set; }
         public string Icon_Url { get; set; }
-        public bool? Link_Names { get; set; }
+        public bool Link_Names { get; set; }
         public string Parse { get; set; }
         public string Thread_Ts { get; set; }
         public string Username { get; set; }

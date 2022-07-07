@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Schema
     {
-        public string BaseType { get; set; }
-        public Property[] Properties { get; set; }
+        public string? BaseType { get; set; }
+        public Property[]? Properties { get; set; }
     }
 }

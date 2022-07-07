@@ -7,10 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExternalConnection
     {
-        public Configuration Configuration { get; set; }
-        public string Description { get; set; }
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public enum ExternalConnectionExternalConnectorsConnectionState
+        {
+            Draft,
+            Ready,
+            Obsolete,
+            LimitExceeded,
+            UnknownFutureValue,
+        }
+
+        public Configuration? Configuration { get; set; }
+        public string? Description { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
         public ExternalConnectionExternalConnectorsConnectionState State { get; set; }
     }
 }

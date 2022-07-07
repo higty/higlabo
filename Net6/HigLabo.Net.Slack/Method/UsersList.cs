@@ -18,8 +18,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool? Include_Locale { get; set; }
-        public double? Limit { get; set; }
+        public bool Include_Locale { get; set; }
+        public double Limit { get; set; }
         public string Team_Id { get; set; }
     }
     public partial class UsersListResponse : RestApiResponse

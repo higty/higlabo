@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchHit
     {
-        public string ContentSource { get; set; }
-        public string HitId { get; set; }
+        public string? ContentSource { get; set; }
+        public string? HitId { get; set; }
         public Int32? Rank { get; set; }
-        public string ResultTemplateId { get; set; }
+        public string? ResultTemplateId { get; set; }
         public Entity? Resource { get; set; }
-        public string Summary { get; set; }
+        public string? Summary { get; set; }
     }
 }

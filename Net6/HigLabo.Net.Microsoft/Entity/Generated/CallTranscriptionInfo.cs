@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CallTranscriptionInfo
     {
-        public string State { get; set; }
+        public string? State { get; set; }
         public DateTime? LastModifiedDateTime { get; set; }
     }
 }

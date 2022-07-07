@@ -7,6 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessPlatforms
     {
+        public enum ConditionalAccessPlatformsConditionalAccessDevicePlatform
+        {
+            Android,
+            IOS,
+            Windows,
+            WindowsPhone,
+            MacOS,
+            Linux,
+            All,
+            UnknownFutureValue,
+        }
+
         public ConditionalAccessPlatformsConditionalAccessDevicePlatform IncludePlatforms { get; set; }
         public ConditionalAccessPlatformsConditionalAccessDevicePlatform ExcludePlatforms { get; set; }
     }

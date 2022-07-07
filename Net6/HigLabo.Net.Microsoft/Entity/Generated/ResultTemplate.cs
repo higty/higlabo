@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class ResultTemplate
     {
         public Json? Body { get; set; }
-        public string DisplayName { get; set; }
-        public string Key { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Key { get; set; }
     }
 }

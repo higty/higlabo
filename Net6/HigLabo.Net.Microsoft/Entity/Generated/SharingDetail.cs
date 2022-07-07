@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SharingDetail
     {
-        public DateTimeOffset SharedDateTime { get; set; }
-        public string SharingSubject { get; set; }
-        public string SharingType { get; set; }
+        public DateTimeOffset? SharedDateTime { get; set; }
+        public string? SharingSubject { get; set; }
+        public string? SharingType { get; set; }
         public InsightIdentity? SharedBy { get; set; }
         public ResourceReference? SharingReference { get; set; }
     }

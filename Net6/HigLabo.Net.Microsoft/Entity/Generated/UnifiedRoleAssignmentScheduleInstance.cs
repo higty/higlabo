@@ -7,16 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UnifiedRoleAssignmentScheduleInstance
     {
-        public string AppScopeId { get; set; }
-        public string AssignmentType { get; set; }
-        public string DirectoryScopeId { get; set; }
-        public DateTimeOffset EndDateTime { get; set; }
-        public string Id { get; set; }
-        public string MemberType { get; set; }
-        public string PrincipalId { get; set; }
-        public string RoleAssignmentOriginId { get; set; }
-        public string RoleAssignmentScheduleId { get; set; }
-        public string RoleDefinitionId { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
+        public string? AppScopeId { get; set; }
+        public string? AssignmentType { get; set; }
+        public string? DirectoryScopeId { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? MemberType { get; set; }
+        public string? PrincipalId { get; set; }
+        public string? RoleAssignmentOriginId { get; set; }
+        public string? RoleAssignmentScheduleId { get; set; }
+        public string? RoleDefinitionId { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
     }
 }

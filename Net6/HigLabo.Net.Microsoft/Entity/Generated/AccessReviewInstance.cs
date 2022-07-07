@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessReviewInstance
     {
-        public DateTimeOffset EndDateTime { get; set; }
-        public AccessReviewReviewerScope[] FallbackReviewers { get; set; }
-        public string Id { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
+        public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
+        public string? Id { get; set; }
         public AccessReviewScope? Scope { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public string Status { get; set; }
-        public AccessReviewReviewerScope[] Reviewers { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public string? Status { get; set; }
+        public AccessReviewReviewerScope[]? Reviewers { get; set; }
     }
 }

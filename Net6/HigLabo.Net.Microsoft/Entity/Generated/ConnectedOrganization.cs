@@ -7,12 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConnectedOrganization
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public IdentitySource[] IdentitySources { get; set; }
-        public DateTimeOffset ModifiedDateTime { get; set; }
+        public enum ConnectedOrganizationConnectedOrganizationState
+        {
+            AllConfiguredConnectedOrganizationSubjects,
+            Configured,
+            Proposed,
+            UnknownFutureValue,
+        }
+
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public IdentitySource[]? IdentitySources { get; set; }
+        public DateTimeOffset? ModifiedDateTime { get; set; }
         public ConnectedOrganizationConnectedOrganizationState State { get; set; }
     }
 }

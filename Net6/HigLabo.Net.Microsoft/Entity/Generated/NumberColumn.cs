@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class NumberColumn
     {
-        public String? DecimalPlaces { get; set; }
-        public String? DisplayAs { get; set; }
+        public string? DecimalPlaces { get; set; }
+        public string? DisplayAs { get; set; }
         public Double? Maximum { get; set; }
         public Double? Minimum { get; set; }
     }

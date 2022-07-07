@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Configuration
     {
-        public String[] AuthorizedAppIds { get; set; }
+        public String[]? AuthorizedAppIds { get; set; }
     }
 }

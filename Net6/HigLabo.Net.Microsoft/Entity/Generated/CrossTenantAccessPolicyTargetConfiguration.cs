@@ -7,7 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CrossTenantAccessPolicyTargetConfiguration
     {
+        public enum CrossTenantAccessPolicyTargetConfigurationCrossTenantAccessPolicyTargetConfigurationAccessType
+        {
+            Allowed,
+            Blocked,
+            UnknownFutureValue,
+        }
+
         public CrossTenantAccessPolicyTargetConfigurationCrossTenantAccessPolicyTargetConfigurationAccessType AccessType { get; set; }
-        public CrossTenantAccessPolicyTarget[] Targets { get; set; }
+        public CrossTenantAccessPolicyTarget[]? Targets { get; set; }
     }
 }

@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Trending
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public Double? Weight { get; set; }
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
 }

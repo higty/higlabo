@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
             }
         }
         public string Latest { get; set; }
-        public int? Limit { get; set; }
+        public int Limit { get; set; }
         public string Oldest { get; set; }
         public string Team_Id { get; set; }
     }

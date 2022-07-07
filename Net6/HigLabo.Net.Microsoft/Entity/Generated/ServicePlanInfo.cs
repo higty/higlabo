@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class ServicePlanInfo
     {
         public Guid? ServicePlanId { get; set; }
-        public string ServicePlanName { get; set; }
-        public string ProvisioningStatus { get; set; }
-        public string AppliesTo { get; set; }
+        public string? ServicePlanName { get; set; }
+        public string? ProvisioningStatus { get; set; }
+        public string? AppliesTo { get; set; }
     }
 }

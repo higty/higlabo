@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class HyperlinkOrPictureColumn
     {
-        public bool IsPicture { get; set; }
+        public bool? IsPicture { get; set; }
     }
 }

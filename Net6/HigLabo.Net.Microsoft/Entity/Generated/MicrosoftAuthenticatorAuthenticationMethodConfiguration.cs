@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MicrosoftAuthenticatorAuthenticationMethodConfiguration
     {
-        public string Id { get; set; }
+        public enum MicrosoftAuthenticatorAuthenticationMethodConfigurationAuthenticationMethodState
+        {
+            Enabled,
+            Disabled,
+        }
+
+        public string? Id { get; set; }
         public MicrosoftAuthenticatorAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
     }
 }

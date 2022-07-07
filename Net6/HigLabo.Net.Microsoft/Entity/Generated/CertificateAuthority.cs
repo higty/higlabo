@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CertificateAuthority
     {
-        public string Certificate { get; set; }
-        public string CertificateRevocationListUrl { get; set; }
-        public string DeltaCertificateRevocationListUrl { get; set; }
-        public bool IsRootAuthority { get; set; }
-        public string Issuer { get; set; }
-        public string IssuerSki { get; set; }
+        public string? Certificate { get; set; }
+        public string? CertificateRevocationListUrl { get; set; }
+        public string? DeltaCertificateRevocationListUrl { get; set; }
+        public bool? IsRootAuthority { get; set; }
+        public string? Issuer { get; set; }
+        public string? IssuerSki { get; set; }
     }
 }

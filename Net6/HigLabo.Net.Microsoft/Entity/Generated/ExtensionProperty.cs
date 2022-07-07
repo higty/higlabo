@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExtensionProperty
     {
-        public string AppDisplayName { get; set; }
-        public string DataType { get; set; }
-        public DateTimeOffset DeletedDateTime { get; set; }
-        public bool IsSyncedFromOnPremises { get; set; }
-        public string Name { get; set; }
-        public String[] TargetObjects { get; set; }
+        public string? AppDisplayName { get; set; }
+        public string? DataType { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public bool? IsSyncedFromOnPremises { get; set; }
+        public string? Name { get; set; }
+        public String[]? TargetObjects { get; set; }
     }
 }

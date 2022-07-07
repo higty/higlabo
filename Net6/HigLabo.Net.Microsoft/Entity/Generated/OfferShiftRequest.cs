@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OfferShiftRequest
     {
-        public DateTimeOffset RecipientActionDateTime { get; set; }
-        public string RecipientActionMessage { get; set; }
-        public string RecipientUserId { get; set; }
-        public string SenderShiftId { get; set; }
+        public DateTimeOffset? RecipientActionDateTime { get; set; }
+        public string? RecipientActionMessage { get; set; }
+        public string? RecipientUserId { get; set; }
+        public string? SenderShiftId { get; set; }
     }
 }

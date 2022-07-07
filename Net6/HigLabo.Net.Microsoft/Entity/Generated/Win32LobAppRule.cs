@@ -7,6 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppRule
     {
-        public Win32LobAppRuleWin32LobAppRuleType RuleType { get; set; }
+        public enum Win32LobAppRuleWin32LobAppRuleType
+        {
+            Detection,
+            Requirement,
+        }
+
+        public Win32LobAppRuleType? RuleType { get; set; }
     }
 }

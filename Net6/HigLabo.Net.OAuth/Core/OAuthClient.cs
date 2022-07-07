@@ -34,6 +34,11 @@ namespace HigLabo.Net.OAuth
             return JsonConverter.DeserializeObject<T>(json);
         }
 
+        protected T ParseObject<T>(HttpRequestMessage request, HttpResponseMessage response, string bodyText)
+            where T : RestApiResponse
+        {
+            return this.ParseObject<T>(null, "", request, response, bodyText);
+        }
         protected T ParseObject<T>(Dictionary<string, string> parameter, HttpRequestMessage request, HttpResponseMessage response, string bodyText)
             where T : RestApiResponse
         {
@@ -77,7 +82,16 @@ namespace HigLabo.Net.OAuth
             }
         }
         protected abstract Task ProcessAccessTokenAsync();
-        protected async Task<TResponse> SendAsync<TResponse>(HttpRequestMessage request, Dictionary<String, String> parameter, CancellationToken cancellationToken)
+
+        protected async Task<TResponse> SendAsync<TResponse>(HttpRequestMessage request, CancellationToken cancellationToken)
+            where TResponse : RestApiResponse
+        {
+            var req = request;
+            var res = await this.SendAsync(req);
+            var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
+            return this.ParseObject<TResponse>(req, res, bodyText);
+        }
+        protected async Task<TResponse> SendFormAsync<TResponse>(HttpRequestMessage request, Dictionary<String, String> parameter, CancellationToken cancellationToken)
             where TResponse : RestApiResponse
         {
             var req = request;
@@ -91,7 +105,7 @@ namespace HigLabo.Net.OAuth
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(d, req, res, bodyText);
         }
-        protected async Task<TResponse> SendAsync<TResponse>(HttpRequestMessage request, object parameter, CancellationToken cancellationToken)
+        protected async Task<TResponse> SendJsonAsync<TResponse>(HttpRequestMessage request, object parameter, CancellationToken cancellationToken)
             where TResponse : RestApiResponse
         {
             var req = request;
@@ -100,6 +114,12 @@ namespace HigLabo.Net.OAuth
             var res = await this.SendAsync(req);
             var bodyText = await res.Content.ReadAsStringAsync(cancellationToken);
             return this.ParseObject<TResponse>(parameter, json, req, res, bodyText);
+        }
+        protected async Task<Stream> DownloadStreamAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            var req = request;
+            var res = await this.SendAsync(req, cancellationToken);
+            return await res.Content.ReadAsStreamAsync(cancellationToken);
         }
 
         public async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter)

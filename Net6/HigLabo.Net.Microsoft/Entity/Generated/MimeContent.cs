@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MimeContent
     {
-        public string Type { get; set; }
-        public string Value { get; set; }
+        public string? Type { get; set; }
+        public string? Value { get; set; }
     }
 }

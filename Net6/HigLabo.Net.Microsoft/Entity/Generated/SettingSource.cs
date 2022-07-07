@@ -7,8 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SettingSource
     {
+        public enum SettingSourceSettingSourceType
+        {
+            DeviceConfiguration,
+            DeviceIntent,
+        }
+
         public string Id { get; set; }
         public string DisplayName { get; set; }
-        public SettingSourceSettingSourceType SourceType { get; set; }
+        public SettingSourceType SourceType { get; set; }
     }
 }

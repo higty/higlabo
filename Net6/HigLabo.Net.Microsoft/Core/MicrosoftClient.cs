@@ -37,20 +37,34 @@ namespace HigLabo.Net.Microsoft
         }
         public override async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            var req = this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod(parameter.HttpMethod));
             Func<Task<TResponse>> f = null;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
-                var d = new Dictionary<string, string>();
-                var q = new QueryStringConverter();
-                f = () => this.SendAsync<TResponse>(req, q.Write(d), cancellationToken);
+                var queryString = "";
+                if (parameter is IQueryParameterProperty q)
+                {
+                    queryString = q.Query.GetQueryString();
+                }
+                f = () => this.SendAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath + "?" + queryString, new HttpMethod(parameter.HttpMethod)), cancellationToken);
             }
             else
             {
-                f = () => this.SendAsync<TResponse>(req, parameter, cancellationToken);
+                f = () => this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod(parameter.HttpMethod)), parameter, cancellationToken);
             }
             return await this.ProcessRequest(f);
         }
+        public async Task<Stream> DownloadStreamAsync(IRestApiParameter parameter, CancellationToken cancellationToken)
+        {
+            var p = parameter;
+            var queryString = "";
+            if (parameter is IQueryParameterProperty q)
+            {
+                queryString = q.Query.GetQueryString();
+            }
+            var f = () => this.DownloadStreamAsync(this.CreateHttpRequestMessage(ApiUrl + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
+            return await this.ProcessRequest(f);
+        }
+
         protected override async Task ProcessAccessTokenAsync()
         {
             var result = await this.UpdateAccessTokenAsync();
@@ -96,7 +110,7 @@ namespace HigLabo.Net.Microsoft
             d["client_secret"] = b.ClientSecret;
             d["grant_type"] = "refresh_token";
             d["refresh_token"] = this.RefreshToken;
-            d["scope"] = String.Join(" ", b.ScopeList);
+            d["scope"] = String.Join(" ", b.ScopeList.Select(el => el.GetScopeName()));
             d["redirect_uri"] = b.RedirectUrl;
             req.Content = new FormUrlEncodedContent(d);
 

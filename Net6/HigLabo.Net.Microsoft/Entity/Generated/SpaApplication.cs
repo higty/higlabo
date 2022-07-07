@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SpaApplication
     {
-        public String[] RedirectUris { get; set; }
+        public String[]? RedirectUris { get; set; }
     }
 }

@@ -7,6 +7,39 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RecurrencePattern
     {
+        public enum RecurrencePatternDayOfWeek
+        {
+            Sunday,
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+            RelativeMonthly,
+            RelativeYearly,
+            Weekly,
+        }
+        public enum RecurrencePatternWeekIndex
+        {
+            First,
+            Second,
+            Third,
+            Fourth,
+            Last,
+            RelativeMonthly,
+            RelativeYearly,
+        }
+        public enum RecurrencePatternRecurrencePatternType
+        {
+            Daily,
+            Weekly,
+            AbsoluteMonthly,
+            RelativeMonthly,
+            AbsoluteYearly,
+            RelativeYearly,
+        }
+
         public Int32? DayOfMonth { get; set; }
         public RecurrencePatternDayOfWeek DaysOfWeek { get; set; }
         public RecurrencePatternDayOfWeek FirstDayOfWeek { get; set; }

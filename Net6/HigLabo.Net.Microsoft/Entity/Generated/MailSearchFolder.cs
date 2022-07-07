@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MailSearchFolder
     {
-        public bool IsSupported { get; set; }
-        public bool IncludeNestedFolders { get; set; }
-        public String[] SourceFolderIds { get; set; }
-        public string FilterQuery { get; set; }
+        public bool? IsSupported { get; set; }
+        public bool? IncludeNestedFolders { get; set; }
+        public String[]? SourceFolderIds { get; set; }
+        public string? FilterQuery { get; set; }
     }
 }

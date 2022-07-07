@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PhysicalAddress
     {
-        public string City { get; set; }
-        public string CountryOrRegion { get; set; }
-        public string PostalCode { get; set; }
-        public string State { get; set; }
-        public string Street { get; set; }
+        public string? City { get; set; }
+        public string? CountryOrRegion { get; set; }
+        public string? PostalCode { get; set; }
+        public string? State { get; set; }
+        public string? Street { get; set; }
     }
 }

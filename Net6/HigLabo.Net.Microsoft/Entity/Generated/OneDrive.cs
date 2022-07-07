@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/onedrive-activity-reports?view=graph-rest-1.0
+    /// https://docs.microsoft.com/en-us/graph/api/resources/onedrive-usage-reports?view=graph-rest-1.0
     /// </summary>
     public partial class OneDrive
     {

@@ -7,9 +7,28 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ProvisioningStep
     {
-        public string Description { get; set; }
+        public enum ProvisioningStepProvisioningStepType
+        {
+            Import,
+            Scoping,
+            Matching,
+            Processing,
+            ReferenceResolution,
+            Export,
+            UnknownFutureValue,
+        }
+        public enum ProvisioningStepProvisioningResult
+        {
+            Success,
+            Warning,
+            Failure,
+            Skipped,
+            UnknownFutureValue,
+        }
+
+        public string? Description { get; set; }
         public DetailsInfo? Details { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public ProvisioningStepProvisioningStepType ProvisioningStepType { get; set; }
         public ProvisioningStepProvisioningResult Status { get; set; }
     }

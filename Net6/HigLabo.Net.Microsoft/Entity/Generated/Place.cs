@@ -8,9 +8,9 @@ namespace HigLabo.Net.Microsoft
     public partial class Place
     {
         public PhysicalAddress? Address { get; set; }
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
         public OutlookGeoCoordinates? GeoCoordinates { get; set; }
-        public string Id { get; set; }
-        public string Phone { get; set; }
+        public string? Id { get; set; }
+        public string? Phone { get; set; }
     }
 }

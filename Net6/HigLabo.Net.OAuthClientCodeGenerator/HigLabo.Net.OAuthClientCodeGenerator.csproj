@@ -18,6 +18,7 @@
     <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj" />
     <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
     <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
+    <ProjectReference Include="..\HigLabo.Net\HigLabo.Net.csproj" />
   </ItemGroup>
 
 </Project>

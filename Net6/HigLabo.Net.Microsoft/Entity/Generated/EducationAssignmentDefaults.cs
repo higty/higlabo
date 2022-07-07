@@ -7,10 +7,24 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationAssignmentDefaults
     {
-        public string Id { get; set; }
+        public enum EducationAssignmentDefaultsEducationAddedStudentAction
+        {
+            None,
+            AssignIfOpen,
+        }
+        public enum EducationAssignmentDefaultsEducationAddToCalendarOptions
+        {
+            None,
+            StudentsAndPublisher,
+            StudentsAndTeamOwners,
+            UnknownFutureValue,
+            StudentsOnly,
+        }
+
+        public string? Id { get; set; }
         public EducationAssignmentDefaultsEducationAddedStudentAction AddedStudentAction { get; set; }
         public EducationAssignmentDefaultsEducationAddToCalendarOptions AddToCalendarAction { get; set; }
-        public TimeOnly DueTime { get; set; }
-        public string NotificationChannelUrl { get; set; }
+        public TimeOnly? DueTime { get; set; }
+        public string? NotificationChannelUrl { get; set; }
     }
 }

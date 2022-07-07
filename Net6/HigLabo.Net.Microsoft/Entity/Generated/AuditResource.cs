@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AuditResource
     {
-        public string DisplayName { get; set; }
-        public AuditProperty[] ModifiedProperties { get; set; }
-        public string Type { get; set; }
-        public string ResourceId { get; set; }
+        public string? DisplayName { get; set; }
+        public AuditProperty[]? ModifiedProperties { get; set; }
+        public string? Type { get; set; }
+        public string? ResourceId { get; set; }
     }
 }

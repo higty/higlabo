@@ -7,8 +7,17 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AppConfigurationSettingItem
     {
-        public string AppConfigKey { get; set; }
-        public AppConfigurationSettingItemMdmAppConfigKeyType AppConfigKeyType { get; set; }
-        public string AppConfigKeyValue { get; set; }
+        public enum AppConfigurationSettingItemMdmAppConfigKeyType
+        {
+            StringType,
+            IntegerType,
+            RealType,
+            BooleanType,
+            TokenType,
+        }
+
+        public string? AppConfigKey { get; set; }
+        public MdmAppConfigKeyType? AppConfigKeyType { get; set; }
+        public string? AppConfigKeyValue { get; set; }
     }
 }

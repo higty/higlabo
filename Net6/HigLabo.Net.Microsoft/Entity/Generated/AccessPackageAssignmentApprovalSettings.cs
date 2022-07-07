@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessPackageAssignmentApprovalSettings
     {
-        public bool IsApprovalRequiredForAdd { get; set; }
-        public bool IsApprovalRequiredForUpdate { get; set; }
-        public AccessPackageApprovalStage[] Stages { get; set; }
+        public bool? IsApprovalRequiredForAdd { get; set; }
+        public bool? IsApprovalRequiredForUpdate { get; set; }
+        public AccessPackageApprovalStage[]? Stages { get; set; }
     }
 }

@@ -11,7 +11,7 @@ namespace HigLabo.Net.Microsoft
         public string CompanyName { get; set; }
         public string Department { get; set; }
         public string DisplayName { get; set; }
-        public ScoredEmailAddress[] ScoredEmailAddresses { get; set; }
+        public ScoredEmailAddress ScoredEmailAddresses { get; set; }
         public string GivenName { get; set; }
         public string Id { get; set; }
         public string ImAddress { get; set; }
@@ -19,13 +19,13 @@ namespace HigLabo.Net.Microsoft
         public string JobTitle { get; set; }
         public string OfficeLocation { get; set; }
         public string PersonNotes { get; set; }
-        public PersonType? PersonType { get; set; }
-        public Phone[] Phones { get; set; }
-        public Location[] PostalAddresses { get; set; }
+        public PersonType PersonType { get; set; }
+        public Phone Phones { get; set; }
+        public Location PostalAddresses { get; set; }
         public string Profession { get; set; }
         public string Surname { get; set; }
         public string UserPrincipalName { get; set; }
-        public Website[] Websites { get; set; }
+        public Website Websites { get; set; }
         public string YomiCompany { get; set; }
     }
 }

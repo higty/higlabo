@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ProxiedDomain
     {
-        public string IpAddressOrFQDN { get; set; }
-        public string Proxy { get; set; }
+        public string? IpAddressOrFQDN { get; set; }
+        public string? Proxy { get; set; }
     }
 }

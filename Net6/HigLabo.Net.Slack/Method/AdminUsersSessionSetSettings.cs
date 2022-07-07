@@ -7,8 +7,8 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.setSettings";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string User_Ids { get; set; }
-        public bool? Desktop_App_Browser_Quit { get; set; }
-        public int? Duration { get; set; }
+        public bool Desktop_App_Browser_Quit { get; set; }
+        public int Duration { get; set; }
     }
     public partial class AdminUsersSessionSetSettingsResponse : RestApiResponse
     {

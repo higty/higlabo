@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConfigurationManagerClientEnabledFeatures
     {
-        public bool Inventory { get; set; }
-        public bool ModernApps { get; set; }
-        public bool ResourceAccess { get; set; }
-        public bool DeviceConfiguration { get; set; }
-        public bool CompliancePolicy { get; set; }
-        public bool WindowsUpdateForBusiness { get; set; }
+        public bool? Inventory { get; set; }
+        public bool? ModernApps { get; set; }
+        public bool? ResourceAccess { get; set; }
+        public bool? DeviceConfiguration { get; set; }
+        public bool? CompliancePolicy { get; set; }
+        public bool? WindowsUpdateForBusiness { get; set; }
     }
 }

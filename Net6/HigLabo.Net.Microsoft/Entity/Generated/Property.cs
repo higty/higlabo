@@ -7,13 +7,40 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Property
     {
-        public String[] Aliases { get; set; }
-        public bool IsQueryable { get; set; }
-        public bool IsRefinable { get; set; }
-        public bool IsRetrievable { get; set; }
-        public bool IsSearchable { get; set; }
+        public enum PropertyExternalConnectorsLabel
+        {
+            Title,
+            Url,
+            CreatedBy,
+            LastModifiedBy,
+            Authors,
+            CreatedDateTime,
+            LastModifiedDateTime,
+            FileName,
+            FileExtension,
+            UnknownFutureValue,
+        }
+        public enum PropertyExternalConnectorsPropertyType
+        {
+            String,
+            Int64,
+            Double,
+            DateTime,
+            Boolean,
+            StringCollection,
+            Int64Collection,
+            DoubleCollection,
+            DateTimeCollection,
+            UnknownFutureValue,
+        }
+
+        public String[]? Aliases { get; set; }
+        public bool? IsQueryable { get; set; }
+        public bool? IsRefinable { get; set; }
+        public bool? IsRetrievable { get; set; }
+        public bool? IsSearchable { get; set; }
         public PropertyExternalConnectorsLabel Labels { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public PropertyExternalConnectorsPropertyType Type { get; set; }
     }
 }

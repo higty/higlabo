@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SiteCollection
     {
-        public String? Hostname { get; set; }
-        public String? DataLocationCode { get; set; }
+        public string? Hostname { get; set; }
+        public string? DataLocationCode { get; set; }
         public Root? Root { get; set; }
     }
 }

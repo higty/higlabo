@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class ManagedMobileApp
     {
         public MobileAppIdentifier? MobileAppIdentifier { get; set; }
-        public string Id { get; set; }
-        public string Version { get; set; }
+        public string? Id { get; set; }
+        public string? Version { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DetectedApp
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Version { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Version { get; set; }
         public Int64? SizeInByte { get; set; }
         public Int32? DeviceCount { get; set; }
     }

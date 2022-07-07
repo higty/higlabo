@@ -7,10 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BitlockerRecoveryKey
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DeviceId { get; set; }
-        public string Id { get; set; }
-        public string Key { get; set; }
+        public enum BitlockerRecoveryKeyVolumeType
+        {
+            OperatingSystemVolume,
+            FixedDataVolume,
+            RemovableDataVolume,
+            UnknownFutureValue,
+        }
+
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DeviceId { get; set; }
+        public string? Id { get; set; }
+        public string? Key { get; set; }
         public BitlockerRecoveryKeyVolumeType VolumeType { get; set; }
     }
 }

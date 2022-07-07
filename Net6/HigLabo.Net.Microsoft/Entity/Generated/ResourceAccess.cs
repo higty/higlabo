@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class ResourceAccess
     {
         public Guid? Id { get; set; }
-        public string Type { get; set; }
+        public string? Type { get; set; }
     }
 }

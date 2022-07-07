@@ -7,10 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ProvisioningErrorInfo
     {
-        public string AdditionalDetails { get; set; }
+        public enum ProvisioningErrorInfoProvisioningStatusErrorCategory
+        {
+            Failure,
+            NonServiceFailure,
+            Success,
+            UnknownFutureValue,
+        }
+
+        public string? AdditionalDetails { get; set; }
         public ProvisioningErrorInfoProvisioningStatusErrorCategory ErrorCategory { get; set; }
-        public string ErrorCode { get; set; }
-        public string Reason { get; set; }
-        public string RecommendedAction { get; set; }
+        public string? ErrorCode { get; set; }
+        public string? Reason { get; set; }
+        public string? RecommendedAction { get; set; }
     }
 }

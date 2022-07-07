@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UnifiedRoleAssignment
     {
-        public string Id { get; set; }
-        public string RoleDefinitionId { get; set; }
-        public string PrincipalId { get; set; }
-        public string DirectoryScopeId { get; set; }
-        public string AppScopeId { get; set; }
+        public string? Id { get; set; }
+        public string? RoleDefinitionId { get; set; }
+        public string? PrincipalId { get; set; }
+        public string? DirectoryScopeId { get; set; }
+        public string? AppScopeId { get; set; }
     }
 }

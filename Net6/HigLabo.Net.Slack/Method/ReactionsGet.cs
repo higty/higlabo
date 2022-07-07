@@ -9,7 +9,7 @@ namespace HigLabo.Net.Slack
         public string Channel { get; set; }
         public string File { get; set; }
         public string File_Comment { get; set; }
-        public bool? Full { get; set; }
+        public bool Full { get; set; }
         public string Timestamp { get; set; }
     }
     public partial class ReactionsGetResponse : RestApiResponse

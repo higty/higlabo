@@ -7,13 +7,22 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingStaffMember
     {
-        public bool AvailabilityIsAffectedByPersonalCalendar { get; set; }
-        public string DisplayName { get; set; }
-        public string EmailAddress { get; set; }
-        public string Id { get; set; }
+        public enum BookingStaffMemberBookingStaffRole
+        {
+            Guest,
+            Administrator,
+            Viewer,
+            ExternalGuest,
+            UnknownFutureValue,
+        }
+
+        public bool? AvailabilityIsAffectedByPersonalCalendar { get; set; }
+        public string? DisplayName { get; set; }
+        public string? EmailAddress { get; set; }
+        public string? Id { get; set; }
         public BookingStaffMemberBookingStaffRole Role { get; set; }
-        public string TimeZone { get; set; }
-        public bool UseBusinessHours { get; set; }
-        public BookingWorkHours[] WorkingHours { get; set; }
+        public string? TimeZone { get; set; }
+        public bool? UseBusinessHours { get; set; }
+        public BookingWorkHours[]? WorkingHours { get; set; }
     }
 }

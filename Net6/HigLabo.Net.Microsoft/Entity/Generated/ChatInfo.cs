@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChatInfo
     {
-        public string MessageId { get; set; }
-        public string ReplyChainMessageId { get; set; }
-        public string ThreadId { get; set; }
+        public string? MessageId { get; set; }
+        public string? ReplyChainMessageId { get; set; }
+        public string? ThreadId { get; set; }
     }
 }

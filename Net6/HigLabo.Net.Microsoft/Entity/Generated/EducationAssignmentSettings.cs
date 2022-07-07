@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationAssignmentSettings
     {
-        public string Id { get; set; }
-        public bool SubmissionAnimationDisabled { get; set; }
+        public string? Id { get; set; }
+        public bool? SubmissionAnimationDisabled { get; set; }
     }
 }

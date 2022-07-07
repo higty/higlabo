@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PendingContentUpdate
     {
-        public DateTimeOffset QueuedDateTime { get; set; }
+        public DateTimeOffset? QueuedDateTime { get; set; }
     }
 }

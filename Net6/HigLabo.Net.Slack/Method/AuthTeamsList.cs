@@ -18,8 +18,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool? Include_Icon { get; set; }
-        public int? Limit { get; set; }
+        public bool Include_Icon { get; set; }
+        public int Limit { get; set; }
     }
     public partial class AuthTeamsListResponse : RestApiResponse
     {

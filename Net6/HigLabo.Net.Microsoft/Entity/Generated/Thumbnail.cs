@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class Thumbnail
     {
         public Int32? Height { get; set; }
-        public string SourceItemId { get; set; }
-        public string Url { get; set; }
+        public string? SourceItemId { get; set; }
+        public string? Url { get; set; }
         public Int32? Width { get; set; }
         public Stream? Content { get; set; }
     }

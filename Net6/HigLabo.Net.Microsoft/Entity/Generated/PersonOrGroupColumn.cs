@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PersonOrGroupColumn
     {
-        public Boolean? AllowMultipleSelection { get; set; }
-        public String? DisplayAs { get; set; }
-        public String? ChooseFromType { get; set; }
+        public bool? AllowMultipleSelection { get; set; }
+        public string? DisplayAs { get; set; }
+        public string? ChooseFromType { get; set; }
     }
 }

@@ -7,16 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Site
     {
-        public String? Id { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public String? Description { get; set; }
-        public String? DisplayName { get; set; }
-        public String? ETag { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public String? Name { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? ETag { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? Name { get; set; }
         public Root? Root { get; set; }
-        public SharePointIds SharepointIds { get; set; }
+        public SharePointIds? SharepointIds { get; set; }
         public SiteCollection? SiteCollection { get; set; }
-        public string WebUrl { get; set; }
+        public string? WebUrl { get; set; }
     }
 }

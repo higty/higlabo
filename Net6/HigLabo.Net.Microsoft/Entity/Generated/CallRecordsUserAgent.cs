@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CallRecordsUserAgent
     {
-        public string ApplicationVersion { get; set; }
-        public string HeaderValue { get; set; }
+        public string? ApplicationVersion { get; set; }
+        public string? HeaderValue { get; set; }
     }
 }

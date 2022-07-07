@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatMessageMention
     {
         public Int32? Id { get; set; }
-        public String? MentionText { get; set; }
+        public string? MentionText { get; set; }
         public ChatMessageMentionedIdentitySet? Mentioned { get; set; }
     }
 }

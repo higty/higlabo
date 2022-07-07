@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Conversation
     {
-        public bool HasAttachments { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset LastDeliveredDateTime { get; set; }
-        public string Preview { get; set; }
-        public string Topic { get; set; }
-        public String[] UniqueSenders { get; set; }
+        public bool? HasAttachments { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastDeliveredDateTime { get; set; }
+        public string? Preview { get; set; }
+        public string? Topic { get; set; }
+        public String[]? UniqueSenders { get; set; }
     }
 }

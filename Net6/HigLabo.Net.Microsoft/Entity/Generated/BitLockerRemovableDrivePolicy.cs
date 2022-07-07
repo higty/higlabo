@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BitLockerRemovableDrivePolicy
     {
-        public BitLockerRemovableDrivePolicyBitLockerEncryptionMethod EncryptionMethod { get; set; }
-        public bool RequireEncryptionForWriteAccess { get; set; }
-        public bool BlockCrossOrganizationWriteAccess { get; set; }
+        public enum BitLockerRemovableDrivePolicyBitLockerEncryptionMethod
+        {
+            AesCbc128,
+            AesCbc256,
+            XtsAes128,
+            XtsAes256,
+        }
+
+        public BitLockerEncryptionMethod? EncryptionMethod { get; set; }
+        public bool? RequireEncryptionForWriteAccess { get; set; }
+        public bool? BlockCrossOrganizationWriteAccess { get; set; }
     }
 }

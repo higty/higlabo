@@ -7,7 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExcludeTarget
     {
-        public string Id { get; set; }
+        public enum ExcludeTargetAuthenticationMethodTargetType
+        {
+            User,
+            Group,
+            UnknownFutureValue,
+        }
+
+        public string? Id { get; set; }
         public ExcludeTargetAuthenticationMethodTargetType TargetType { get; set; }
     }
 }

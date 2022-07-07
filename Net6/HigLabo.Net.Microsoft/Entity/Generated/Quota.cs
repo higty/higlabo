@@ -11,7 +11,7 @@ namespace HigLabo.Net.Microsoft
         public Int64? Used { get; set; }
         public Int64? Remaining { get; set; }
         public Int64? Deleted { get; set; }
-        public String? State { get; set; }
+        public string? State { get; set; }
         public StoragePlanInformation? StoragePlanInformation { get; set; }
     }
 }

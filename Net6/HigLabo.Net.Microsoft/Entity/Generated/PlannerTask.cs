@@ -9,25 +9,25 @@ namespace HigLabo.Net.Microsoft
     {
         public Int32? ActiveChecklistItemCount { get; set; }
         public PlannerAppliedCategories? AppliedCategories { get; set; }
-        public string AssigneePriority { get; set; }
+        public string? AssigneePriority { get; set; }
         public PlannerAssignments? Assignments { get; set; }
-        public string BucketId { get; set; }
+        public string? BucketId { get; set; }
         public Int32? ChecklistItemCount { get; set; }
         public IdentitySet? CompletedBy { get; set; }
-        public DateTimeOffset CompletedDateTime { get; set; }
-        public string ConversationThreadId { get; set; }
+        public DateTimeOffset? CompletedDateTime { get; set; }
+        public string? ConversationThreadId { get; set; }
         public IdentitySet? CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset DueDateTime { get; set; }
-        public bool HasDescription { get; set; }
-        public string Id { get; set; }
-        public string OrderHint { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? DueDateTime { get; set; }
+        public bool? HasDescription { get; set; }
+        public string? Id { get; set; }
+        public string? OrderHint { get; set; }
         public Int32? PercentComplete { get; set; }
         public Int32? Priority { get; set; }
-        public string PlanId { get; set; }
-        public string PreviewType { get; set; }
+        public string? PlanId { get; set; }
+        public string? PreviewType { get; set; }
         public Int32? ReferenceCount { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public string Title { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public string? Title { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UsageDetails
     {
-        public DateTimeOffset LastAccessedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastAccessedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
 }

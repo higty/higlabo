@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceManagementTroubleshootingEvent
     {
-        public string Id { get; set; }
-        public DateTimeOffset EventDateTime { get; set; }
-        public string CorrelationId { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? EventDateTime { get; set; }
+        public string? CorrelationId { get; set; }
     }
 }

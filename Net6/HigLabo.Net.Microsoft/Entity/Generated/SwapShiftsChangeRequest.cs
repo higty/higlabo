@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SwapShiftsChangeRequest
     {
-        public string RecipientShiftId { get; set; }
+        public string? RecipientShiftId { get; set; }
     }
 }

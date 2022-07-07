@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class AddIn
     {
         public Guid? Id { get; set; }
-        public KeyValue[] Properties { get; set; }
-        public String? Type { get; set; }
+        public KeyValue[]? Properties { get; set; }
+        public string? Type { get; set; }
     }
 }

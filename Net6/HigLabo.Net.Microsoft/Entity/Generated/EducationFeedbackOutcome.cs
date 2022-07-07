@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationFeedbackOutcome
     {
         public string Id { get; set; }
-        public EducationFeedback? Feedback { get; set; }
-        public EducationFeedback? PublishedFeedback { get; set; }
+        public EducationFeedback Feedback { get; set; }
+        public EducationFeedback PublishedFeedback { get; set; }
     }
 }

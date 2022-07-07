@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CurrencyColumn
     {
-        public String? Locale { get; set; }
+        public string? Locale { get; set; }
     }
 }

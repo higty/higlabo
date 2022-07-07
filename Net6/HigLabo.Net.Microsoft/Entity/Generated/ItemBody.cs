@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ItemBody
     {
-        public string Content { get; set; }
+        public enum ItemBodyBodyType
+        {
+            Text,
+            Html,
+        }
+
+        public string? Content { get; set; }
         public ItemBodyBodyType ContentType { get; set; }
     }
 }

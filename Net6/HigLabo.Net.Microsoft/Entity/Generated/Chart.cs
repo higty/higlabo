@@ -8,9 +8,9 @@ namespace HigLabo.Net.Microsoft
     public partial class Chart
     {
         public Double? Height { get; set; }
-        public String? Id { get; set; }
+        public string? Id { get; set; }
         public Double? Left { get; set; }
-        public String? Name { get; set; }
+        public string? Name { get; set; }
         public Double? Top { get; set; }
         public Double? Width { get; set; }
     }

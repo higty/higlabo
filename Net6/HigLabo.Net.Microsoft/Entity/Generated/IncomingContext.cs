@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IncomingContext
     {
-        public string SourceParticipantId { get; set; }
-        public string ObservedParticipantId { get; set; }
+        public string? SourceParticipantId { get; set; }
+        public string? ObservedParticipantId { get; set; }
         public IdentitySet? OnBehalfOf { get; set; }
         public IdentitySet? Transferor { get; set; }
     }

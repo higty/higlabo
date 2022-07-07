@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ObjectIdentity
     {
-        public string SignInType { get; set; }
-        public String? Issuer { get; set; }
-        public String? IssuerAssignedId { get; set; }
+        public string? SignInType { get; set; }
+        public string? Issuer { get; set; }
+        public string? IssuerAssignedId { get; set; }
     }
 }

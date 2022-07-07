@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingCurrency
     {
-        public string Id { get; set; }
-        public string Symbol { get; set; }
+        public string? Id { get; set; }
+        public string? Symbol { get; set; }
     }
 }

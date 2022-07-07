@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChoiceColumn
     {
-        public Boolean? AllowTextEntry { get; set; }
-        public string[] Choices { get; set; }
-        public String? DisplayAs { get; set; }
+        public bool? AllowTextEntry { get; set; }
+        public string[]? Choices { get; set; }
+        public string? DisplayAs { get; set; }
     }
 }

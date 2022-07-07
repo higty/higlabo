@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class LocaleInfo
     {
-        public String? Locale { get; set; }
-        public String? DisplayName { get; set; }
+        public string? Locale { get; set; }
+        public string? DisplayName { get; set; }
     }
 }

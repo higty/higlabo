@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UserAttributeValuesItem
     {
-        public bool IsDefault { get; set; }
-        public string Name { get; set; }
-        public string Value { get; set; }
+        public bool? IsDefault { get; set; }
+        public string? Name { get; set; }
+        public string? Value { get; set; }
     }
 }

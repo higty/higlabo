@@ -7,14 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UnifiedRoleDefinition
     {
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsBuiltIn { get; set; }
-        public bool IsEnabled { get; set; }
-        public String[] ResourceScopes { get; set; }
-        public UnifiedRolePermission[] RolePermissions { get; set; }
-        public string TemplateId { get; set; }
-        public string Version { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsBuiltIn { get; set; }
+        public bool? IsEnabled { get; set; }
+        public String[]? ResourceScopes { get; set; }
+        public UnifiedRolePermission[]? RolePermissions { get; set; }
+        public string? TemplateId { get; set; }
+        public string? Version { get; set; }
     }
 }

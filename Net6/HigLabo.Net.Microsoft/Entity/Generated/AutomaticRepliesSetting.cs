@@ -7,9 +7,24 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AutomaticRepliesSetting
     {
+        public enum AutomaticRepliesSettingExternalAudienceScope
+        {
+            AlwaysEnabled,
+            Scheduled,
+            None,
+            ContactsOnly,
+            All,
+        }
+        public enum AutomaticRepliesSettingAutomaticRepliesStatus
+        {
+            Disabled,
+            AlwaysEnabled,
+            Scheduled,
+        }
+
         public AutomaticRepliesSettingExternalAudienceScope ExternalAudience { get; set; }
-        public String? ExternalReplyMessage { get; set; }
-        public String? InternalReplyMessage { get; set; }
+        public string? ExternalReplyMessage { get; set; }
+        public string? InternalReplyMessage { get; set; }
         public DateTimeTimeZone? ScheduledEndDateTime { get; set; }
         public DateTimeTimeZone? ScheduledStartDateTime { get; set; }
         public AutomaticRepliesSettingAutomaticRepliesStatus Status { get; set; }

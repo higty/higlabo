@@ -7,7 +7,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.setTeams";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Channel_Id { get; set; }
-        public bool? Org_Channel { get; set; }
+        public bool Org_Channel { get; set; }
         public string Target_Team_Ids { get; set; }
         public string Team_Id { get; set; }
     }

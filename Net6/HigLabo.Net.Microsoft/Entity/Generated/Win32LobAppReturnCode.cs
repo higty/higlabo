@@ -7,7 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppReturnCode
     {
+        public enum Win32LobAppReturnCodeWin32LobAppReturnCodeType
+        {
+            Failed,
+            Success,
+            SoftReboot,
+            HardReboot,
+            Retry,
+        }
+
         public Int32? ReturnCode { get; set; }
-        public Win32LobAppReturnCodeWin32LobAppReturnCodeType Type { get; set; }
+        public Win32LobAppReturnCodeType? Type { get; set; }
     }
 }

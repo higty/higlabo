@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public double? Limit { get; set; }
+        public double Limit { get; set; }
     }
     public partial class ConversationsMembersResponse : RestApiResponse
     {

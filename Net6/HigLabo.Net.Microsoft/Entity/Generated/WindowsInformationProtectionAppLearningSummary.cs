@@ -7,9 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionAppLearningSummary
     {
-        public string Id { get; set; }
-        public string ApplicationName { get; set; }
-        public WindowsInformationProtectionAppLearningSummaryApplicationType ApplicationType { get; set; }
+        public enum WindowsInformationProtectionAppLearningSummaryApplicationType
+        {
+            Universal,
+            Desktop,
+        }
+
+        public string? Id { get; set; }
+        public string? ApplicationName { get; set; }
+        public ApplicationType? ApplicationType { get; set; }
         public Int32? DeviceCount { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EmployeeOrgData
     {
-        public string Division { get; set; }
-        public string CostCenter { get; set; }
+        public string? Division { get; set; }
+        public string? CostCenter { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Windows10NetworkProxyServer
     {
-        public string Address { get; set; }
-        public String[] Exceptions { get; set; }
-        public bool UseForLocalAddresses { get; set; }
+        public string? Address { get; set; }
+        public String[]? Exceptions { get; set; }
+        public bool? UseForLocalAddresses { get; set; }
     }
 }

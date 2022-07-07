@@ -7,14 +7,24 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceInstallState
     {
-        public string Id { get; set; }
-        public string DeviceName { get; set; }
-        public string DeviceId { get; set; }
-        public DateTimeOffset LastSyncDateTime { get; set; }
-        public DeviceInstallStateInstallState InstallState { get; set; }
-        public string ErrorCode { get; set; }
-        public string OsVersion { get; set; }
-        public string OsDescription { get; set; }
-        public string UserName { get; set; }
+        public enum DeviceInstallStateInstallState
+        {
+            NotApplicable,
+            Installed,
+            Failed,
+            NotInstalled,
+            UninstallFailed,
+            Unknown,
+        }
+
+        public string? Id { get; set; }
+        public string? DeviceName { get; set; }
+        public string? DeviceId { get; set; }
+        public DateTimeOffset? LastSyncDateTime { get; set; }
+        public InstallState? InstallState { get; set; }
+        public string? ErrorCode { get; set; }
+        public string? OsVersion { get; set; }
+        public string? OsDescription { get; set; }
+        public string? UserName { get; set; }
     }
 }

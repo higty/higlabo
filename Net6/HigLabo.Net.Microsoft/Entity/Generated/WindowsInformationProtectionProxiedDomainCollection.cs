@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionProxiedDomainCollection
     {
-        public string DisplayName { get; set; }
-        public ProxiedDomain[] ProxiedDomains { get; set; }
+        public string? DisplayName { get; set; }
+        public ProxiedDomain[]? ProxiedDomains { get; set; }
     }
 }

@@ -7,12 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SamlOrWsFedExternalDomainFederation
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public string IssuerUri { get; set; }
-        public string MetadataExchangeUri { get; set; }
-        public string PassiveSignInUri { get; set; }
+        public enum SamlOrWsFedExternalDomainFederationAuthenticationProtocol
+        {
+            WsFed,
+            Saml,
+            UnknownFutureValue,
+        }
+
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? IssuerUri { get; set; }
+        public string? MetadataExchangeUri { get; set; }
+        public string? PassiveSignInUri { get; set; }
         public SamlOrWsFedExternalDomainFederationAuthenticationProtocol PreferredAuthenticationProtocol { get; set; }
-        public string SigningCertificate { get; set; }
+        public string? SigningCertificate { get; set; }
     }
 }

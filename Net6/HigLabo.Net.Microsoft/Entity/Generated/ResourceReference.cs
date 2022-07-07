@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResourceReference
     {
-        public string WebUrl { get; set; }
-        public string Id { get; set; }
-        public string Type { get; set; }
+        public string? WebUrl { get; set; }
+        public string? Id { get; set; }
+        public string? Type { get; set; }
     }
 }

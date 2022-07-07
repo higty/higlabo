@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionResourceCollection
     {
-        public string DisplayName { get; set; }
-        public String[] Resources { get; set; }
+        public string? DisplayName { get; set; }
+        public String[]? Resources { get; set; }
     }
 }

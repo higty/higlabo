@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchQuery
     {
-        public string QueryString { get; set; }
+        public string? QueryString { get; set; }
     }
 }

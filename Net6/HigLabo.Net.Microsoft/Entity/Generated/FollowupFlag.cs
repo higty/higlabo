@@ -7,6 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class FollowupFlag
     {
+        public enum FollowupFlagFollowupFlagStatus
+        {
+            NotFlagged,
+            Complete,
+            Flagged,
+        }
+
         public DateTimeTimeZone? CompletedDateTime { get; set; }
         public DateTimeTimeZone? DueDateTime { get; set; }
         public FollowupFlagFollowupFlagStatus FlagStatus { get; set; }

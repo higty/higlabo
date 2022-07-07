@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class ShiftAvailability
     {
         public PatternedRecurrence? Recurrence { get; set; }
-        public TimeRange[] TimeSlots { get; set; }
-        public string TimeZone { get; set; }
+        public TimeRange[]? TimeSlots { get; set; }
+        public string? TimeZone { get; set; }
     }
 }

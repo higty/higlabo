@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TermColumn
     {
-        public bool AllowMultipleValues { get; set; }
-        public bool ShowFullyQualifiedName { get; set; }
+        public bool? AllowMultipleValues { get; set; }
+        public bool? ShowFullyQualifiedName { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IdentityApiConnector
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string TargetUrl { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? TargetUrl { get; set; }
         public ApiAuthenticationConfigurationBase? AuthenticationConfiguration { get; set; }
     }
 }

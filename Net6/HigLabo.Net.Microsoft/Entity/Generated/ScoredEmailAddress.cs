@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ScoredEmailAddress
     {
-        public String? Address { get; set; }
+        public string? Address { get; set; }
         public Double? RelevanceScore { get; set; }
     }
 }

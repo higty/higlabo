@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Configuring
     {
-        public Recipient[] CcRecipients { get; set; }
-        public string CustomizedMessageBody { get; set; }
-        public string MessageLanguage { get; set; }
+        public Recipient[]? CcRecipients { get; set; }
+        public string? CustomizedMessageBody { get; set; }
+        public string? MessageLanguage { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsDeviceAccount
     {
-        public string Password { get; set; }
+        public string? Password { get; set; }
     }
 }

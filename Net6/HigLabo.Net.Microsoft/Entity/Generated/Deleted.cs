@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Deleted
     {
-        public string State { get; set; }
+        public string? State { get; set; }
     }
 }

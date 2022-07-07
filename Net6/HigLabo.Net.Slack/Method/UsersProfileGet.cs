@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.profile.get";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public bool? Include_Labels { get; set; }
+        public bool Include_Labels { get; set; }
         public string User { get; set; }
     }
     public partial class UsersProfileGetResponse : RestApiResponse

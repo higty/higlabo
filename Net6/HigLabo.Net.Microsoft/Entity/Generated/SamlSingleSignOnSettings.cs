@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SamlSingleSignOnSettings
     {
-        public string RelayState { get; set; }
+        public string? RelayState { get; set; }
     }
 }

@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SignInFrequencySessionControl
     {
-        public bool IsEnabled { get; set; }
+        public enum SignInFrequencySessionControlSigninFrequencyType
+        {
+            Days,
+            Hours,
+        }
+
+        public bool? IsEnabled { get; set; }
         public SignInFrequencySessionControlSigninFrequencyType Type { get; set; }
         public Int32? Value { get; set; }
     }

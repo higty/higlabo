@@ -9,7 +9,7 @@ namespace HigLabo.Net.Microsoft
     {
         public Int32? InGracePeriodCount { get; set; }
         public Int32? ConfigManagerCount { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public Int32? UnknownDeviceCount { get; set; }
         public Int32? NotApplicableDeviceCount { get; set; }
         public Int32? CompliantDeviceCount { get; set; }

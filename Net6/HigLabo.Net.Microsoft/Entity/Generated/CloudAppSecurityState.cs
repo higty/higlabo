@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CloudAppSecurityState
     {
-        public string DestinationServiceIp { get; set; }
-        public string DestinationServiceName { get; set; }
-        public string RiskScore { get; set; }
+        public string? DestinationServiceIp { get; set; }
+        public string? DestinationServiceName { get; set; }
+        public string? RiskScore { get; set; }
     }
 }

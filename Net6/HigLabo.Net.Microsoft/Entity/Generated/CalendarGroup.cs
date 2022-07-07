@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CalendarGroup
     {
-        public string Name { get; set; }
-        public string ChangeKey { get; set; }
+        public string? Name { get; set; }
+        public string? ChangeKey { get; set; }
         public Guid? ClassId { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
     }
 }

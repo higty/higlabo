@@ -7,19 +7,40 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class InternalDomainFederation
     {
-        public string ActiveSignInUri { get; set; }
-        public string DisplayName { get; set; }
+        public enum InternalDomainFederationFederatedIdpMfaBehavior
+        {
+            AcceptIfMfaDoneByFederatedIdp,
+            EnforceMfaByFederatedIdp,
+            RejectMfaByFederatedIdp,
+            UnknownFutureValue,
+        }
+        public enum InternalDomainFederationAuthenticationProtocol
+        {
+            WsFed,
+            Saml,
+            UnknownFutureValue,
+        }
+        public enum InternalDomainFederationPromptLoginBehavior
+        {
+            TranslateToFreshPasswordAuthentication,
+            NativeSupport,
+            Disabled,
+            UnknownFutureValue,
+        }
+
+        public string? ActiveSignInUri { get; set; }
+        public string? DisplayName { get; set; }
         public InternalDomainFederationFederatedIdpMfaBehavior FederatedIdpMfaBehavior { get; set; }
-        public string Id { get; set; }
-        public bool IsSignedAuthenticationRequestRequired { get; set; }
-        public string IssuerUri { get; set; }
-        public string MetadataExchangeUri { get; set; }
-        public string NextSigningCertificate { get; set; }
-        public string PassiveSignInUri { get; set; }
+        public string? Id { get; set; }
+        public bool? IsSignedAuthenticationRequestRequired { get; set; }
+        public string? IssuerUri { get; set; }
+        public string? MetadataExchangeUri { get; set; }
+        public string? NextSigningCertificate { get; set; }
+        public string? PassiveSignInUri { get; set; }
         public InternalDomainFederationAuthenticationProtocol PreferredAuthenticationProtocol { get; set; }
         public InternalDomainFederationPromptLoginBehavior PromptLoginBehavior { get; set; }
-        public string SigningCertificate { get; set; }
+        public string? SigningCertificate { get; set; }
         public SigningCertificateUpdateStatus? SigningCertificateUpdateStatus { get; set; }
-        public string SignOutUri { get; set; }
+        public string? SignOutUri { get; set; }
     }
 }

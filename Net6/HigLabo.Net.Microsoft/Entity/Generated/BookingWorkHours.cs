@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingWorkHours
     {
-        public string Day { get; set; }
-        public BookingWorkTimeSlot[] TimeSlots { get; set; }
+        public string? Day { get; set; }
+        public BookingWorkTimeSlot[]? TimeSlots { get; set; }
     }
 }

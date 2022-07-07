@@ -7,7 +7,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "calls.end";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Id { get; set; }
-        public int? Duration { get; set; }
+        public int Duration { get; set; }
     }
     public partial class CallsEndResponse : RestApiResponse
     {

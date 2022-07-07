@@ -46,11 +46,11 @@ namespace HigLabo.Net.Slack
                 {
                     d["Recurrence"] = p.Recurrence.ToString();
                 }
-                f = () => this.SendAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), d, cancellationToken);
+                f = () => this.SendFormAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), d, cancellationToken);
             }
             else
             {
-                f = () => this.SendAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), parameter, cancellationToken);
+                f = () => this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod("POST")), parameter, cancellationToken);
             }
             return await this.ProcessRequest(f);
         }

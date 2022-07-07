@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SharingInvitation
     {
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public IdentitySet? InvitedBy { get; set; }
-        public bool SignInRequired { get; set; }
+        public bool? SignInRequired { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ImplicitGrantSettings
     {
-        public bool EnableIdTokenIssuance { get; set; }
-        public bool EnableAccessTokenIssuance { get; set; }
+        public bool? EnableIdTokenIssuance { get; set; }
+        public bool? EnableAccessTokenIssuance { get; set; }
     }
 }

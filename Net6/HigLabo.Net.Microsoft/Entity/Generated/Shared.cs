@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class Shared
     {
         public IdentitySet? Owner { get; set; }
-        public string Scope { get; set; }
+        public string? Scope { get; set; }
         public IdentitySet? SharedBy { get; set; }
-        public DateTimeOffset SharedDateTime { get; set; }
+        public DateTimeOffset? SharedDateTime { get; set; }
     }
 }

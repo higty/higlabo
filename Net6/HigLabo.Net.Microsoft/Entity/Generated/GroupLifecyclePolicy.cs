@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class GroupLifecyclePolicy
     {
-        public string AlternateNotificationEmails { get; set; }
+        public string? AlternateNotificationEmails { get; set; }
         public Int32? GroupLifetimeInDays { get; set; }
-        public string Id { get; set; }
-        public string ManagedGroupTypes { get; set; }
+        public string? Id { get; set; }
+        public string? ManagedGroupTypes { get; set; }
     }
 }

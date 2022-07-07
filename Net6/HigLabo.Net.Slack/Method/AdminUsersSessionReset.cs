@@ -7,8 +7,8 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.reset";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string User_Id { get; set; }
-        public bool? Mobile_Only { get; set; }
-        public bool? Web_Only { get; set; }
+        public bool Mobile_Only { get; set; }
+        public bool Web_Only { get; set; }
     }
     public partial class AdminUsersSessionResetResponse : RestApiResponse
     {

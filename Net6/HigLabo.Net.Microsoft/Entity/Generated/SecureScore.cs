@@ -15,8 +15,8 @@ namespace HigLabo.Net.Microsoft
         public String[] EnabledServices { get; set; }
         public Int32? LicensedUserCount { get; set; }
         public Double? MaxScore { get; set; }
-        public AverageComparativeScore[] AverageComparativeScores { get; set; }
-        public ControlScore[] ControlScores { get; set; }
-        public SecurityVendorInformation? VendorInformation { get; set; }
+        public AverageComparativeScore AverageComparativeScores { get; set; }
+        public ControlScore ControlScores { get; set; }
+        public SecurityVendorInformation VendorInformation { get; set; }
     }
 }

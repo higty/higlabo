@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AgreementFileData
     {
-        public string Data { get; set; }
+        public string? Data { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UserFlowLanguageConfiguration
     {
-        public string Id { get; set; }
-        public bool IsEnabled { get; set; }
-        public string DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsEnabled { get; set; }
+        public string? DisplayName { get; set; }
     }
 }

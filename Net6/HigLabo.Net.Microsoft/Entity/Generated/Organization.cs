@@ -7,7 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Organization
     {
-        public string Id { get; set; }
-        public OrganizationMdmAuthority MobileDeviceManagementAuthority { get; set; }
+        public enum OrganizationMdmAuthority
+        {
+            Unknown,
+            Intune,
+            Sccm,
+            Office365,
+        }
+
+        public string? Id { get; set; }
+        public MdmAuthority? MobileDeviceManagementAuthority { get; set; }
     }
 }

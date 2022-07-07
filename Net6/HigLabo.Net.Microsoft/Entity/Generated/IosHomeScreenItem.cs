@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IosHomeScreenItem
     {
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
     }
 }

@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AlterationResponse
     {
-        public string OriginalQueryString { get; set; }
+        public enum AlterationResponseSearchAlterationType
+        {
+            Suggestion,
+            Modification,
+        }
+
+        public string? OriginalQueryString { get; set; }
         public SearchAlteration? QueryAlteration { get; set; }
         public AlterationResponseSearchAlterationType QueryAlterationType { get; set; }
     }

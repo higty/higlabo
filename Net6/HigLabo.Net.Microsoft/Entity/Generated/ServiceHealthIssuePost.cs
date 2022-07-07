@@ -7,7 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ServiceHealthIssuePost
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
+        public enum ServiceHealthIssuePostPostType
+        {
+            Regular,
+            Quick,
+            Strategic,
+            UnknownFutureValue,
+        }
+
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public ItemBody? Description { get; set; }
         public ServiceHealthIssuePostPostType PostType { get; set; }
     }

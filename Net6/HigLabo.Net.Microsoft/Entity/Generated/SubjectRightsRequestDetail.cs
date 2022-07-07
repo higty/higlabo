@@ -8,10 +8,10 @@ namespace HigLabo.Net.Microsoft
     public partial class SubjectRightsRequestDetail
     {
         public Int64? ExcludedItemCount { get; set; }
-        public KeyValuePair[] InsightCounts { get; set; }
+        public KeyValuePair[]? InsightCounts { get; set; }
         public Int64? ItemCount { get; set; }
         public Int64? ItemNeedReview { get; set; }
-        public KeyValuePair[] ProductItemCounts { get; set; }
+        public KeyValuePair[]? ProductItemCounts { get; set; }
         public Int64? SignedOffItemCount { get; set; }
         public Int64? TotalItemSize { get; set; }
     }

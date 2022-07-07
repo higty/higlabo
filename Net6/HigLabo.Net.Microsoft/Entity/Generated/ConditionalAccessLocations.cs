@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessLocations
     {
-        public String[] IncludeLocations { get; set; }
-        public String[] ExcludeLocations { get; set; }
+        public String[]? IncludeLocations { get; set; }
+        public String[]? ExcludeLocations { get; set; }
     }
 }

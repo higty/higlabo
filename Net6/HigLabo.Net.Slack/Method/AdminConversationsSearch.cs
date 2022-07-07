@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int? Limit { get; set; }
+        public int Limit { get; set; }
         public string Query { get; set; }
         public string Search_Channel_Types { get; set; }
         public Sort Sort { get; set; }

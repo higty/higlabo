@@ -7,9 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingCustomQuestion
     {
+        public enum BookingCustomQuestionAnswerInputType
+        {
+            Text,
+            RadioButton,
+            UnknownFutureValue,
+        }
+
         public BookingCustomQuestionAnswerInputType AnswerInputType { get; set; }
-        public String[] AnswerOptions { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
+        public String[]? AnswerOptions { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
     }
 }

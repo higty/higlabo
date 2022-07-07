@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EBookInstallSummary
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public Int32? InstalledDeviceCount { get; set; }
         public Int32? FailedDeviceCount { get; set; }
         public Int32? NotInstalledDeviceCount { get; set; }

@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionAppLockerFile
     {
-        public string DisplayName { get; set; }
-        public string FileHash { get; set; }
-        public string File { get; set; }
-        public string Id { get; set; }
-        public string Version { get; set; }
+        public string? DisplayName { get; set; }
+        public string? FileHash { get; set; }
+        public string? File { get; set; }
+        public string? Id { get; set; }
+        public string? Version { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WorkbookComment
     {
-        public string Content { get; set; }
-        public string ContentType { get; set; }
-        public string Id { get; set; }
+        public string? Content { get; set; }
+        public string? ContentType { get; set; }
+        public string? Id { get; set; }
     }
 }

@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PersistentBrowserSessionControl
     {
-        public bool IsEnabled { get; set; }
+        public enum PersistentBrowserSessionControlPersistentBrowserSessionMode
+        {
+            Always,
+            Never,
+        }
+
+        public bool? IsEnabled { get; set; }
         public PersistentBrowserSessionControlPersistentBrowserSessionMode Mode { get; set; }
     }
 }

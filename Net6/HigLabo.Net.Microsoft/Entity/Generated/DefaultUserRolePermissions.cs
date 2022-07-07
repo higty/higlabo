@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DefaultUserRolePermissions
     {
-        public bool AllowedToCreateApps { get; set; }
-        public bool AllowedToCreateSecurityGroups { get; set; }
-        public bool AllowedToReadOtherUsers { get; set; }
-        public String[] PermissionGrantPoliciesAssigned { get; set; }
+        public bool? AllowedToCreateApps { get; set; }
+        public bool? AllowedToCreateSecurityGroups { get; set; }
+        public bool? AllowedToReadOtherUsers { get; set; }
+        public String[]? PermissionGrantPoliciesAssigned { get; set; }
     }
 }

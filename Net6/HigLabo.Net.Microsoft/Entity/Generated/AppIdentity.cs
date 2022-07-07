@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AppIdentity
     {
-        public string AppId { get; set; }
-        public string DisplayName { get; set; }
-        public string ServicePrincipalId { get; set; }
-        public string ServicePrincipalName { get; set; }
+        public string? AppId { get; set; }
+        public string? DisplayName { get; set; }
+        public string? ServicePrincipalId { get; set; }
+        public string? ServicePrincipalName { get; set; }
     }
 }

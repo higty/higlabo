@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class LobbyBypassSettings
     {
         public LobbyBypassScope? Scope { get; set; }
-        public bool IsDialInBypassEnabled { get; set; }
+        public bool? IsDialInBypassEnabled { get; set; }
     }
 }

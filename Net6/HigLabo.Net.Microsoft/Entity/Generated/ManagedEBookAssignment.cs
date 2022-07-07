@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ManagedEBookAssignment
     {
-        public string Id { get; set; }
+        public enum ManagedEBookAssignmentInstallIntent
+        {
+            Available,
+            Required,
+            Uninstall,
+            AvailableWithoutEnrollment,
+        }
+
+        public string? Id { get; set; }
         public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
-        public ManagedEBookAssignmentInstallIntent InstallIntent { get; set; }
+        public InstallIntent? InstallIntent { get; set; }
     }
 }

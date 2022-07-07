@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChatMessagePolicyTip
     {
-        public String? ComplianceUrl { get; set; }
-        public String? GeneralText { get; set; }
-        public string[] MatchedConditionDescriptions { get; set; }
+        public string? ComplianceUrl { get; set; }
+        public string? GeneralText { get; set; }
+        public string[]? MatchedConditionDescriptions { get; set; }
     }
 }

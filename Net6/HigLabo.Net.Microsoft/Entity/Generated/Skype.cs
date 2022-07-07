@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-activity-reports?view=graph-rest-1.0
+    /// https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-peer-to-peer-activity?view=graph-rest-1.0
     /// </summary>
     public partial class Skype
     {

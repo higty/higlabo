@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationFeedback
     {
-        public IdentitySet? FeedbackBy { get; set; }
+        public IdentitySet FeedbackBy { get; set; }
         public DateTimeOffset FeedbackDateTime { get; set; }
-        public ItemBody? Text { get; set; }
+        public ItemBody Text { get; set; }
     }
 }

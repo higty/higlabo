@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PublicInnerError
     {
-        public string Code { get; set; }
-        public PublicErrorDetail[] Details { get; set; }
-        public string Message { get; set; }
-        public string Target { get; set; }
+        public string? Code { get; set; }
+        public PublicErrorDetail[]? Details { get; set; }
+        public string? Message { get; set; }
+        public string? Target { get; set; }
     }
 }

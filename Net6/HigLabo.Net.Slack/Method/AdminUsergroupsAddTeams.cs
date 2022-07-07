@@ -8,7 +8,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Team_Ids { get; set; }
         public string Usergroup_Id { get; set; }
-        public bool? Auto_Provision { get; set; }
+        public bool Auto_Provision { get; set; }
     }
     public partial class AdminUsergroupsAddTeamsResponse : RestApiResponse
     {

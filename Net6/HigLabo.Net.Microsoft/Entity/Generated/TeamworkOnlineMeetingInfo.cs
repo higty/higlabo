@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamworkOnlineMeetingInfo
     {
-        public string CalendarEventId { get; set; }
-        public string JoinWebUrl { get; set; }
+        public string? CalendarEventId { get; set; }
+        public string? JoinWebUrl { get; set; }
         public TeamworkUserIdentity? Organizer { get; set; }
     }
 }

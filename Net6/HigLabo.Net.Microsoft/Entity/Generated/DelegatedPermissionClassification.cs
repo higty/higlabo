@@ -7,9 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DelegatedPermissionClassification
     {
-        public string Id { get; set; }
+        public enum DelegatedPermissionClassificationPermissionClassificationType
+        {
+            Low,
+        }
+
+        public string? Id { get; set; }
         public DelegatedPermissionClassificationPermissionClassificationType Classification { get; set; }
-        public string PermissionId { get; set; }
-        public string PermissionName { get; set; }
+        public string? PermissionId { get; set; }
+        public string? PermissionName { get; set; }
     }
 }

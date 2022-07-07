@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceEnrollmentConfiguration
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Description { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
         public Int32? Priority { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public Int32? Version { get; set; }
     }
 }

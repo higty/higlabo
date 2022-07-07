@@ -7,7 +7,30 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MediaContentRatingAustralia
     {
-        public MediaContentRatingAustraliaRatingAustraliaMoviesType MovieRating { get; set; }
-        public MediaContentRatingAustraliaRatingAustraliaTelevisionType TvRating { get; set; }
+        public enum MediaContentRatingAustraliaRatingAustraliaMoviesType
+        {
+            AllAllowed,
+            AllBlocked,
+            General,
+            ParentalGuidance,
+            Mature,
+            AgesAbove15,
+            AgesAbove18,
+        }
+        public enum MediaContentRatingAustraliaRatingAustraliaTelevisionType
+        {
+            AllAllowed,
+            AllBlocked,
+            Preschoolers,
+            Children,
+            General,
+            ParentalGuidance,
+            Mature,
+            AgesAbove15,
+            AgesAbove15AdultViolence,
+        }
+
+        public RatingAustraliaMoviesType? MovieRating { get; set; }
+        public RatingAustraliaTelevisionType? TvRating { get; set; }
     }
 }

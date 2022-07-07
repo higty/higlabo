@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamGuestSettings
     {
-        public bool AllowCreateUpdateChannels { get; set; }
-        public bool AllowDeleteChannels { get; set; }
+        public bool? AllowCreateUpdateChannels { get; set; }
+        public bool? AllowDeleteChannels { get; set; }
     }
 }

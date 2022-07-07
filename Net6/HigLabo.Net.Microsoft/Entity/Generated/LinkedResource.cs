@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class LinkedResource
     {
-        public string ApplicationName { get; set; }
-        public string DisplayName { get; set; }
-        public string ExternalId { get; set; }
-        public string Id { get; set; }
-        public string WebUrl { get; set; }
+        public string? ApplicationName { get; set; }
+        public string? DisplayName { get; set; }
+        public string? ExternalId { get; set; }
+        public string? Id { get; set; }
+        public string? WebUrl { get; set; }
     }
 }

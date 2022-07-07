@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class B2xIdentityUserFlow
     {
-        public string Id { get; set; }
-        public string UserFlowType { get; set; }
+        public string? Id { get; set; }
+        public string? UserFlowType { get; set; }
         public Single? UserFlowTypeVersion { get; set; }
         public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
     }

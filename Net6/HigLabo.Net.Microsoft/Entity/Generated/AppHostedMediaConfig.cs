@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AppHostedMediaConfig
     {
-        public string Blob { get; set; }
+        public string? Blob { get; set; }
     }
 }

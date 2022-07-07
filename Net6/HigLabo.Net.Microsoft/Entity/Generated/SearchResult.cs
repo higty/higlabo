@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchResult
     {
-        public string OnClickTelemetryUrl { get; set; }
+        public string? OnClickTelemetryUrl { get; set; }
     }
 }

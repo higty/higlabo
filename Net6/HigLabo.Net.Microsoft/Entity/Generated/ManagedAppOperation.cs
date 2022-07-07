@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ManagedAppOperation
     {
-        public string DisplayName { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public string State { get; set; }
-        public string Id { get; set; }
-        public string Version { get; set; }
+        public string? DisplayName { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? State { get; set; }
+        public string? Id { get; set; }
+        public string? Version { get; set; }
     }
 }

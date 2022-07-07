@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChecklistItem
     {
-        public DateTimeOffset CheckedDateTime { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsChecked { get; set; }
+        public DateTimeOffset? CheckedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsChecked { get; set; }
     }
 }

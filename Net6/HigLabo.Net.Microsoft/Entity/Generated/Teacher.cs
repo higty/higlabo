@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Teacher
     {
-        public string ExternalId { get; set; }
-        public string TeacherNumber { get; set; }
+        public string? ExternalId { get; set; }
+        public string? TeacherNumber { get; set; }
     }
 }

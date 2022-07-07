@@ -7,14 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TargetedManagedAppConfiguration
     {
-        public string DisplayName { get; set; }
-        public string Description { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public string Id { get; set; }
-        public string Version { get; set; }
-        public KeyValuePair[] CustomSettings { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? Version { get; set; }
+        public KeyValuePair[]? CustomSettings { get; set; }
         public Int32? DeployedAppCount { get; set; }
-        public bool IsAssigned { get; set; }
+        public bool? IsAssigned { get; set; }
     }
 }

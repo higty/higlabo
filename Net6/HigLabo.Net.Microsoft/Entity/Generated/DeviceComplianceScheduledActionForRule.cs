@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceComplianceScheduledActionForRule
     {
-        public string Id { get; set; }
-        public string RuleName { get; set; }
+        public string? Id { get; set; }
+        public string? RuleName { get; set; }
     }
 }

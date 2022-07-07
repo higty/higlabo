@@ -7,8 +7,30 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ServiceHealth
     {
-        public string Id { get; set; }
-        public string Service { get; set; }
+        public enum ServiceHealthServiceHealthStatus
+        {
+            ServiceOperational,
+            Investigating,
+            RestoringService,
+            VerifyingService,
+            ServiceRestored,
+            PostIncidentReviewPublished,
+            ServiceDegradation,
+            ServiceInterruption,
+            ExtendedRecovery,
+            FalsePositive,
+            InvestigationSuspended,
+            Resolved,
+            MitigatedExternal,
+            Mitigated,
+            ResolvedExternal,
+            Confirmed,
+            Reported,
+            UnknownFutureValue,
+        }
+
+        public string? Id { get; set; }
+        public string? Service { get; set; }
         public ServiceHealthServiceHealthStatus Status { get; set; }
     }
 }

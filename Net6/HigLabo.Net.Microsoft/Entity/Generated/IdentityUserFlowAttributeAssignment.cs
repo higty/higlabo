@@ -7,11 +7,21 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IdentityUserFlowAttributeAssignment
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public bool IsOptional { get; set; }
-        public bool RequiresVerification { get; set; }
-        public UserAttributeValuesItem[] UserAttributeValues { get; set; }
+        public enum IdentityUserFlowAttributeAssignmentIdentityUserFlowAttributeInputType
+        {
+            TextBox,
+            DateTimeDropdown,
+            RadioSingleSelect,
+            DropdownSingleSelect,
+            EmailBox,
+            CheckboxMultiSelect,
+        }
+
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public bool? IsOptional { get; set; }
+        public bool? RequiresVerification { get; set; }
+        public UserAttributeValuesItem[]? UserAttributeValues { get; set; }
         public IdentityUserFlowAttributeAssignmentIdentityUserFlowAttributeInputType UserInputType { get; set; }
     }
 }

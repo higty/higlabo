@@ -7,8 +7,21 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamworkUserIdentity
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
+        public enum TeamworkUserIdentityTeamworkUserIdentityType
+        {
+            AadUser,
+            OnPremiseAadUser,
+            AnonymousGuest,
+            FederatedUser,
+            PersonalMicrosoftAccountUser,
+            SkypeUser,
+            PhoneUser,
+            UnknownFutureValue,
+            EmailUser,
+        }
+
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public TeamworkUserIdentityTeamworkUserIdentityType UserIdentityType { get; set; }
     }
 }

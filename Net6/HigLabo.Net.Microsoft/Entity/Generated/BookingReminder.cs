@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingReminder
     {
-        public string Message { get; set; }
-        public string Offset { get; set; }
+        public enum BookingReminderBookingReminderRecipients
+        {
+            AllAttendees,
+            Staff,
+            Customer,
+            UnknownFutureValue,
+        }
+
+        public string? Message { get; set; }
+        public string? Offset { get; set; }
         public BookingReminderBookingReminderRecipients Recipients { get; set; }
     }
 }

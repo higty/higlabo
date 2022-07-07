@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WorkforceIntegrationEncryption
     {
-        public string Protocol { get; set; }
-        public string Secret { get; set; }
+        public string? Protocol { get; set; }
+        public string? Secret { get; set; }
     }
 }

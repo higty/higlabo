@@ -7,6 +7,24 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SubjectRightsRequestStageDetail
     {
+        public enum SubjectRightsRequestStageDetailSubjectRightsRequestStage
+        {
+            ContentRetrieval,
+            ContentReview,
+            GenerateReport,
+            ContentDeletion,
+            CaseResolved,
+            UnknownFutureValue,
+        }
+        public enum SubjectRightsRequestStageDetailSubjectRightsRequestStageStatus
+        {
+            NotStarted,
+            Current,
+            Completed,
+            Failed,
+            UnknownFutureValue,
+        }
+
         public PublicError? Error { get; set; }
         public SubjectRightsRequestStageDetailSubjectRightsRequestStage Stage { get; set; }
         public SubjectRightsRequestStageDetailSubjectRightsRequestStageStatus Status { get; set; }

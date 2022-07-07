@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class PrinterStatus
     {
         public PrinterProcessingState? State { get; set; }
-        public PrinterProcessingStateDetail[] Details { get; set; }
-        public string Description { get; set; }
+        public PrinterProcessingStateDetail[]? Details { get; set; }
+        public string? Description { get; set; }
     }
 }

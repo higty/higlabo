@@ -7,14 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConversationThread
     {
-        public string Id { get; set; }
-        public Recipient[] ToRecipients { get; set; }
-        public Recipient[] CcRecipients { get; set; }
-        public string Topic { get; set; }
-        public bool HasAttachments { get; set; }
-        public DateTimeOffset LastDeliveredDateTime { get; set; }
-        public String[] UniqueSenders { get; set; }
-        public string Preview { get; set; }
-        public bool IsLocked { get; set; }
+        public string? Id { get; set; }
+        public Recipient[]? ToRecipients { get; set; }
+        public Recipient[]? CcRecipients { get; set; }
+        public string? Topic { get; set; }
+        public bool? HasAttachments { get; set; }
+        public DateTimeOffset? LastDeliveredDateTime { get; set; }
+        public String[]? UniqueSenders { get; set; }
+        public string? Preview { get; set; }
+        public bool? IsLocked { get; set; }
     }
 }

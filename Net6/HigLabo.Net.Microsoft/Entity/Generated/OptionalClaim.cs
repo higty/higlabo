@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OptionalClaim
     {
-        public String[] AdditionalProperties { get; set; }
-        public bool Essential { get; set; }
-        public string Name { get; set; }
-        public string Source { get; set; }
+        public String[]? AdditionalProperties { get; set; }
+        public bool? Essential { get; set; }
+        public string? Name { get; set; }
+        public string? Source { get; set; }
     }
 }

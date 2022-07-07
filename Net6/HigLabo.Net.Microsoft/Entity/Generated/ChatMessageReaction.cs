@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChatMessageReaction
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string ReactionType { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? ReactionType { get; set; }
         public ChatMessageReactionIdentitySet? User { get; set; }
     }
 }

@@ -7,14 +7,30 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceManagementPartner
     {
-        public string Id { get; set; }
-        public DateTimeOffset LastHeartbeatDateTime { get; set; }
-        public DeviceManagementPartnerDeviceManagementPartnerTenantState PartnerState { get; set; }
-        public DeviceManagementPartnerDeviceManagementPartnerAppType PartnerAppType { get; set; }
-        public string SingleTenantAppId { get; set; }
-        public string DisplayName { get; set; }
-        public bool IsConfigured { get; set; }
-        public DateTimeOffset WhenPartnerDevicesWillBeRemovedDateTime { get; set; }
-        public DateTimeOffset WhenPartnerDevicesWillBeMarkedAsNonCompliantDateTime { get; set; }
+        public enum DeviceManagementPartnerDeviceManagementPartnerTenantState
+        {
+            Unknown,
+            Unavailable,
+            Enabled,
+            Terminated,
+            Rejected,
+            Unresponsive,
+        }
+        public enum DeviceManagementPartnerDeviceManagementPartnerAppType
+        {
+            Unknown,
+            SingleTenantApp,
+            MultiTenantApp,
+        }
+
+        public string? Id { get; set; }
+        public DateTimeOffset? LastHeartbeatDateTime { get; set; }
+        public DeviceManagementPartnerTenantState? PartnerState { get; set; }
+        public DeviceManagementPartnerAppType? PartnerAppType { get; set; }
+        public string? SingleTenantAppId { get; set; }
+        public string? DisplayName { get; set; }
+        public bool? IsConfigured { get; set; }
+        public DateTimeOffset? WhenPartnerDevicesWillBeRemovedDateTime { get; set; }
+        public DateTimeOffset? WhenPartnerDevicesWillBeMarkedAsNonCompliantDateTime { get; set; }
     }
 }

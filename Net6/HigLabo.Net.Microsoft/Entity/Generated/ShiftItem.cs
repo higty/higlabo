@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ShiftItem
     {
-        public String? Notes { get; set; }
-        public String? DisplayName { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public DateTimeOffset EndDateTime { get; set; }
+        public string? Notes { get; set; }
+        public string? DisplayName { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
         public ScheduleEntityTheme? Theme { get; set; }
-        public ShiftActivity[] Activities { get; set; }
+        public ShiftActivity[]? Activities { get; set; }
     }
 }

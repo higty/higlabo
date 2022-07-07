@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UserIdentity
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public string IpAddress { get; set; }
-        public string UserPrincipalName { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? IpAddress { get; set; }
+        public string? UserPrincipalName { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CertificateBasedAuthConfiguration
     {
-        public CertificateAuthority[] CertificateAuthorities { get; set; }
-        public string Id { get; set; }
+        public CertificateAuthority[]? CertificateAuthorities { get; set; }
+        public string? Id { get; set; }
     }
 }

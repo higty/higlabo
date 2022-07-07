@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DefaultColumnValue
     {
-        public String? Formula { get; set; }
-        public String? Value { get; set; }
+        public string? Formula { get; set; }
+        public string? Value { get; set; }
     }
 }

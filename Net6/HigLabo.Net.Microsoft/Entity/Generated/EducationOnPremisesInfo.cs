@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationOnPremisesInfo
     {
-        public string ImmutableId { get; set; }
+        public string? ImmutableId { get; set; }
     }
 }

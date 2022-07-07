@@ -7,7 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExternalItemContent
     {
+        public enum ExternalItemContentExternalConnectorsExternalItemContentType
+        {
+            Text,
+            Html,
+            UnknownFutureValue,
+        }
+
         public ExternalItemContentExternalConnectorsExternalItemContentType Type { get; set; }
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }

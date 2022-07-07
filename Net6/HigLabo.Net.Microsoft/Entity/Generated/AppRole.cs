@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AppRole
     {
-        public String[] AllowedMemberTypes { get; set; }
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
+        public String[]? AllowedMemberTypes { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
         public Guid? Id { get; set; }
-        public bool IsEnabled { get; set; }
-        public string Origin { get; set; }
-        public string Value { get; set; }
+        public bool? IsEnabled { get; set; }
+        public string? Origin { get; set; }
+        public string? Value { get; set; }
     }
 }

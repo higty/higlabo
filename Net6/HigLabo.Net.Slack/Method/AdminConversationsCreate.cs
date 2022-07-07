@@ -9,7 +9,7 @@ namespace HigLabo.Net.Slack
         public bool Is_Private { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public bool? Org_Wide { get; set; }
+        public bool Org_Wide { get; set; }
         public string Team_Id { get; set; }
     }
     public partial class AdminConversationsCreateResponse : RestApiResponse

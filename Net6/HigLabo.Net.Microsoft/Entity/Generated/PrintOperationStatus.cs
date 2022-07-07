@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintOperationStatus
     {
         public PrintOperationProcessingState? State { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
     }
 }

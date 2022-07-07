@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SharedInsight
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public SharingDetail? LastShared { get; set; }
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }

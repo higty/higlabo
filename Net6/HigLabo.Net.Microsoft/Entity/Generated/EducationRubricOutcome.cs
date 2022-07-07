@@ -8,11 +8,11 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationRubricOutcome
     {
         public string Id { get; set; }
-        public IdentitySet? LastModifiedBy { get; set; }
+        public IdentitySet LastModifiedBy { get; set; }
         public DateTimeOffset LastModifiedDateTime { get; set; }
-        public RubricQualityFeedbackModel[] PublishedRubricQualityFeedback { get; set; }
-        public RubricQualitySelectedColumnModel[] PublishedRubricQualitySelectedLevels { get; set; }
-        public RubricQualityFeedbackModel[] RubricQualityFeedback { get; set; }
-        public RubricQualitySelectedColumnModel[] RubricQualitySelectedLevels { get; set; }
+        public RubricQualityFeedbackModel PublishedRubricQualityFeedback { get; set; }
+        public RubricQualitySelectedColumnModel PublishedRubricQualitySelectedLevels { get; set; }
+        public RubricQualityFeedbackModel RubricQualityFeedback { get; set; }
+        public RubricQualitySelectedColumnModel RubricQualitySelectedLevels { get; set; }
     }
 }

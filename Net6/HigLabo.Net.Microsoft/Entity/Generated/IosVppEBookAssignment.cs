@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IosVppEBookAssignment
     {
-        public string Id { get; set; }
+        public enum IosVppEBookAssignmentInstallIntent
+        {
+            Available,
+            Required,
+            Uninstall,
+            AvailableWithoutEnrollment,
+        }
+
+        public string? Id { get; set; }
         public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
-        public IosVppEBookAssignmentInstallIntent InstallIntent { get; set; }
+        public InstallIntent? InstallIntent { get; set; }
     }
 }

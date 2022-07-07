@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OnPremisesConditionalAccessSettings
     {
-        public string Id { get; set; }
-        public bool Enabled { get; set; }
-        public Guid[] IncludedGroups { get; set; }
-        public Guid[] ExcludedGroups { get; set; }
-        public bool OverrideDefaultRule { get; set; }
+        public string? Id { get; set; }
+        public bool? Enabled { get; set; }
+        public Guid[]? IncludedGroups { get; set; }
+        public Guid[]? ExcludedGroups { get; set; }
+        public bool? OverrideDefaultRule { get; set; }
     }
 }

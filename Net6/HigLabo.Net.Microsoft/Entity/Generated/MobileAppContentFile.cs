@@ -7,15 +7,35 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MobileAppContentFile
     {
-        public string AzureStorageUri { get; set; }
-        public bool IsCommitted { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Name { get; set; }
+        public enum MobileAppContentFileMobileAppContentFileUploadState
+        {
+            Success,
+            TransientError,
+            Error,
+            Unknown,
+            AzureStorageUriRequestSuccess,
+            AzureStorageUriRequestPending,
+            AzureStorageUriRequestFailed,
+            AzureStorageUriRequestTimedOut,
+            AzureStorageUriRenewalSuccess,
+            AzureStorageUriRenewalPending,
+            AzureStorageUriRenewalFailed,
+            AzureStorageUriRenewalTimedOut,
+            CommitFileSuccess,
+            CommitFilePending,
+            CommitFileFailed,
+            CommitFileTimedOut,
+        }
+
+        public string? AzureStorageUri { get; set; }
+        public bool? IsCommitted { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Name { get; set; }
         public Int64? Size { get; set; }
         public Int64? SizeEncrypted { get; set; }
-        public DateTimeOffset AzureStorageUriExpirationDateTime { get; set; }
-        public string Manifest { get; set; }
-        public MobileAppContentFileMobileAppContentFileUploadState UploadState { get; set; }
+        public DateTimeOffset? AzureStorageUriExpirationDateTime { get; set; }
+        public string? Manifest { get; set; }
+        public MobileAppContentFileUploadState? UploadState { get; set; }
     }
 }

@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessPackageAssignmentRequestorSettings
     {
-        public bool AllowCustomAssignmentSchedule { get; set; }
-        public bool EnableOnBehalfRequestorsToAddAccess { get; set; }
-        public bool EnableOnBehalfRequestorsToRemoveAccess { get; set; }
-        public bool EnableOnBehalfRequestorsToUpdateAccess { get; set; }
-        public bool EnableTargetsToSelfAddAccess { get; set; }
-        public bool EnableTargetsToSelfRemoveAccess { get; set; }
-        public bool EnableTargetsToSelfUpdateAccess { get; set; }
-        public SubjectSet[] OnBehalfRequestors { get; set; }
+        public bool? AllowCustomAssignmentSchedule { get; set; }
+        public bool? EnableOnBehalfRequestorsToAddAccess { get; set; }
+        public bool? EnableOnBehalfRequestorsToRemoveAccess { get; set; }
+        public bool? EnableOnBehalfRequestorsToUpdateAccess { get; set; }
+        public bool? EnableTargetsToSelfAddAccess { get; set; }
+        public bool? EnableTargetsToSelfRemoveAccess { get; set; }
+        public bool? EnableTargetsToSelfUpdateAccess { get; set; }
+        public SubjectSet[]? OnBehalfRequestors { get; set; }
     }
 }

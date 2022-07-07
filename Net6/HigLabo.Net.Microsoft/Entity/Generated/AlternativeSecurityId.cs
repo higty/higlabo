@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class AlternativeSecurityId
     {
         public Int32? Type { get; set; }
-        public String? IdentityProvider { get; set; }
-        public string Key { get; set; }
+        public string? IdentityProvider { get; set; }
+        public string? Key { get; set; }
     }
 }

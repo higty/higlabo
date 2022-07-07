@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Agreement
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsPerDeviceAcceptanceRequired { get; set; }
-        public bool IsViewingBeforeAcceptanceRequired { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsPerDeviceAcceptanceRequired { get; set; }
+        public bool? IsViewingBeforeAcceptanceRequired { get; set; }
         public TermsExpiration? TermsExpiration { get; set; }
-        public string UserReacceptRequiredFrequency { get; set; }
+        public string? UserReacceptRequiredFrequency { get; set; }
     }
 }

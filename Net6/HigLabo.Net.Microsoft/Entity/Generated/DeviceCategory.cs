@@ -3,10 +3,12 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/intune-devices-devicecategory?view=graph-rest-1.0
+    /// https://docs.microsoft.com/en-us/graph/api/resources/intune-onboarding-devicecategory?view=graph-rest-1.0
     /// </summary>
     public partial class DeviceCategory
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
     }
 }

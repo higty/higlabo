@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class FileSystemInfo
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastAccessedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastAccessedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
 }

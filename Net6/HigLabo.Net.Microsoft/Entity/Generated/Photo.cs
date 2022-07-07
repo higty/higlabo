@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Photo
     {
-        public DateTimeOffset TakenDateTime { get; set; }
-        public string CameraMake { get; set; }
-        public string CameraModel { get; set; }
+        public DateTimeOffset? TakenDateTime { get; set; }
+        public string? CameraMake { get; set; }
+        public string? CameraModel { get; set; }
         public Double? FNumber { get; set; }
         public Double? ExposureDenominator { get; set; }
         public Double? ExposureNumerator { get; set; }

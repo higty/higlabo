@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MeetingParticipantInfo
     {
+        public enum MeetingParticipantInfoOnlineMeetingRole
+        {
+            Attendee,
+            Presenter,
+            Producer,
+            UnknownFutureValue,
+        }
+
         public IdentitySet? Identity { get; set; }
-        public string Upn { get; set; }
+        public string? Upn { get; set; }
         public MeetingParticipantInfoOnlineMeetingRole Role { get; set; }
     }
 }

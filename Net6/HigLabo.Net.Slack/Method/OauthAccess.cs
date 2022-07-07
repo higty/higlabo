@@ -10,7 +10,7 @@ namespace HigLabo.Net.Slack
         public string Client_Secret { get; set; }
         public string Code { get; set; }
         public string Redirect_Uri { get; set; }
-        public bool? Single_Channel { get; set; }
+        public bool Single_Channel { get; set; }
     }
     public partial class OauthAccessResponse : RestApiResponse
     {

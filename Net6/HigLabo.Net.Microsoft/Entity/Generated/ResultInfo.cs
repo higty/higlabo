@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class ResultInfo
     {
         public Int32? Code { get; set; }
-        public string Message { get; set; }
+        public string? Message { get; set; }
         public Int32? Subcode { get; set; }
     }
 }

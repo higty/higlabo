@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class GroupSetting
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public string TemplateId { get; set; }
-        public SettingValue[] Values { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? TemplateId { get; set; }
+        public SettingValue[]? Values { get; set; }
     }
 }

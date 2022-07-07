@@ -24,8 +24,8 @@ namespace HigLabo.Net.Microsoft
         public String[] Threats { get; set; }
         public string Tier { get; set; }
         public string UserImpact { get; set; }
-        public ComplianceInformation[] ComplianceInformation { get; set; }
-        public SecureScoreControlStateUpdate[] ControlStateUpdates { get; set; }
-        public SecurityVendorInformation? VendorInformation { get; set; }
+        public ComplianceInformation ComplianceInformation { get; set; }
+        public SecureScoreControlStateUpdate ControlStateUpdates { get; set; }
+        public SecurityVendorInformation VendorInformation { get; set; }
     }
 }

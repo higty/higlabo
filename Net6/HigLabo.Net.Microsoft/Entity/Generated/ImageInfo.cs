@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ImageInfo
     {
-        public string IconUrl { get; set; }
-        public string AlternateText { get; set; }
-        public bool AddImageQuery { get; set; }
+        public string? IconUrl { get; set; }
+        public string? AlternateText { get; set; }
+        public bool? AddImageQuery { get; set; }
     }
 }

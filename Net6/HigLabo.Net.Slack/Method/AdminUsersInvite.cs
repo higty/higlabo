@@ -10,12 +10,12 @@ namespace HigLabo.Net.Slack
         public string Email { get; set; }
         public string Team_Id { get; set; }
         public string Custom_Message { get; set; }
-        public bool? Email_Password_Policy_Enabled { get; set; }
+        public bool Email_Password_Policy_Enabled { get; set; }
         public string Guest_Expiration_Ts { get; set; }
-        public bool? Is_Restricted { get; set; }
-        public bool? Is_Ultra_Restricted { get; set; }
+        public bool Is_Restricted { get; set; }
+        public bool Is_Ultra_Restricted { get; set; }
         public string Real_Name { get; set; }
-        public bool? Resend { get; set; }
+        public bool Resend { get; set; }
     }
     public partial class AdminUsersInviteResponse : RestApiResponse
     {

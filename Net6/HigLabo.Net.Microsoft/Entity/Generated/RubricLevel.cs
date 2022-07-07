@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class RubricLevel
     {
         public ItemBody? Description { get; set; }
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
         public EducationAssignmentGradeType? Grading { get; set; }
-        public string LevelId { get; set; }
+        public string? LevelId { get; set; }
     }
 }

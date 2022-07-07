@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintJobStatus
     {
         public PrintJobProcessingState? State { get; set; }
-        public PrintJobProcessingDetail[] Details { get; set; }
-        public string Description { get; set; }
-        public bool IsAcquiredByPrinter { get; set; }
+        public PrintJobProcessingDetail[]? Details { get; set; }
+        public string? Description { get; set; }
+        public bool? IsAcquiredByPrinter { get; set; }
     }
 }

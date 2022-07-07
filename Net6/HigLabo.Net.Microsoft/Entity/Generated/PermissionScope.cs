@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PermissionScope
     {
-        public string AdminConsentDescription { get; set; }
-        public string AdminConsentDisplayName { get; set; }
+        public string? AdminConsentDescription { get; set; }
+        public string? AdminConsentDisplayName { get; set; }
         public Guid? Id { get; set; }
-        public bool IsEnabled { get; set; }
-        public string Type { get; set; }
-        public string UserConsentDescription { get; set; }
-        public string UserConsentDisplayName { get; set; }
-        public string Value { get; set; }
+        public bool? IsEnabled { get; set; }
+        public string? Type { get; set; }
+        public string? UserConsentDescription { get; set; }
+        public string? UserConsentDisplayName { get; set; }
+        public string? Value { get; set; }
     }
 }

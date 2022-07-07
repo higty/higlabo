@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SchemaExtension
     {
-        public string Description { get; set; }
-        public string Id { get; set; }
-        public string Owner { get; set; }
-        public ExtensionSchemaProperty[] Properties { get; set; }
-        public string Status { get; set; }
-        public String[] TargetTypes { get; set; }
+        public string? Description { get; set; }
+        public string? Id { get; set; }
+        public string? Owner { get; set; }
+        public ExtensionSchemaProperty[]? Properties { get; set; }
+        public string? Status { get; set; }
+        public String[]? TargetTypes { get; set; }
     }
 }

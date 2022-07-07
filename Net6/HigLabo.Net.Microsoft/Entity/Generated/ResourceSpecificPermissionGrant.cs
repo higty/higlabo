@@ -7,12 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResourceSpecificPermissionGrant
     {
-        public String? Id { get; set; }
-        public DateTimeOffset DeletedDateTime { get; set; }
-        public String? ClientId { get; set; }
-        public String? ClientAppId { get; set; }
-        public String? ResourceAppId { get; set; }
-        public ResourceSpecificPermissionGrantString PermissionType { get; set; }
-        public String? Permission { get; set; }
+        public enum ResourceSpecificPermissionGrantstring
+        {
+            Application,
+            Delegated,
+        }
+
+        public string? Id { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public string? ClientId { get; set; }
+        public string? ClientAppId { get; set; }
+        public string? ResourceAppId { get; set; }
+        public ResourceSpecificPermissionGrantstring PermissionType { get; set; }
+        public string? Permission { get; set; }
     }
 }

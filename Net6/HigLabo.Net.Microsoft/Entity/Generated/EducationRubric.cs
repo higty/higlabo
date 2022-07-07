@@ -7,15 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationRubric
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public IdentitySet? CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public ItemBody? Description { get; set; }
-        public string DisplayName { get; set; }
+        public string? DisplayName { get; set; }
         public EducationAssignmentGradeType? Grading { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public RubricLevel[] Levels { get; set; }
-        public RubricQuality[] Qualities { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public RubricLevel[]? Levels { get; set; }
+        public RubricQuality[]? Qualities { get; set; }
     }
 }

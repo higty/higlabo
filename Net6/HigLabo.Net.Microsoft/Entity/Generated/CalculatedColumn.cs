@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CalculatedColumn
     {
-        public String? Format { get; set; }
-        public String? Formula { get; set; }
-        public String? OutputType { get; set; }
+        public string? Format { get; set; }
+        public string? Formula { get; set; }
+        public string? OutputType { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
             }
         }
         public string Enterprise_Id { get; set; }
-        public int? Limit { get; set; }
+        public int Limit { get; set; }
         public string Team_Id { get; set; }
     }
     public partial class AdminAppsRequestsListResponse : RestApiResponse

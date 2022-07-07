@@ -7,7 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CloudAppSecuritySessionControl
     {
-        public bool IsEnabled { get; set; }
+        public enum CloudAppSecuritySessionControlCloudAppSecuritySessionControlType
+        {
+            McasConfigured,
+            MonitorOnly,
+            BlockDownloads,
+            UnknownFutureValue,
+        }
+
+        public bool? IsEnabled { get; set; }
         public CloudAppSecuritySessionControlCloudAppSecuritySessionControlType CloudAppSecurityType { get; set; }
     }
 }

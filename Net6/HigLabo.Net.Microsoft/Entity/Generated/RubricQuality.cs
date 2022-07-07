@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RubricQuality
     {
-        public RubricCriterion[] Criteria { get; set; }
+        public RubricCriterion[]? Criteria { get; set; }
         public ItemBody? Description { get; set; }
-        public string DisplayName { get; set; }
-        public string QualityId { get; set; }
+        public string? DisplayName { get; set; }
+        public string? QualityId { get; set; }
         public Single? Weight { get; set; }
     }
 }

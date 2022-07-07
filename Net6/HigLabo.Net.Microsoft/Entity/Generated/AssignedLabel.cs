@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AssignedLabel
     {
-        public string LabelId { get; set; }
-        public string DisplayName { get; set; }
+        public string? LabelId { get; set; }
+        public string? DisplayName { get; set; }
     }
 }

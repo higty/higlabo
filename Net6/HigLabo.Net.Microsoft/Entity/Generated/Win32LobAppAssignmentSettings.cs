@@ -7,9 +7,21 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppAssignmentSettings
     {
-        public Win32LobAppAssignmentSettingsWin32LobAppNotification Notifications { get; set; }
-        public Win32LobAppRestartSettings? RestartSettings { get; set; }
-        public MobileAppInstallTimeSettings? InstallTimeSettings { get; set; }
-        public Win32LobAppAssignmentSettingsWin32LobAppDeliveryOptimizationPriority DeliveryOptimizationPriority { get; set; }
+        public enum Win32LobAppAssignmentSettingsWin32LobAppNotification
+        {
+            ShowAll,
+            ShowReboot,
+            HideAll,
+        }
+        public enum Win32LobAppAssignmentSettingsWin32LobAppDeliveryOptimizationPriority
+        {
+            NotConfigured,
+            Foreground,
+        }
+
+        public Win32LobAppNotification Notifications { get; set; }
+        public Win32LobAppRestartSettings RestartSettings { get; set; }
+        public MobileAppInstallTimeSettings InstallTimeSettings { get; set; }
+        public Win32LobAppDeliveryOptimizationPriority DeliveryOptimizationPriority { get; set; }
     }
 }

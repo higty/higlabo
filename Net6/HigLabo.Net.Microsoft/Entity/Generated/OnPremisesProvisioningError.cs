@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OnPremisesProvisioningError
     {
-        public string Category { get; set; }
-        public DateTimeOffset OccurredDateTime { get; set; }
-        public string PropertyCausingError { get; set; }
-        public string Value { get; set; }
+        public string? Category { get; set; }
+        public DateTimeOffset? OccurredDateTime { get; set; }
+        public string? PropertyCausingError { get; set; }
+        public string? Value { get; set; }
     }
 }

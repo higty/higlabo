@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OAuth2PermissionGrant
     {
-        public string Id { get; set; }
-        public string ClientId { get; set; }
-        public string ConsentType { get; set; }
-        public string PrincipalId { get; set; }
-        public string ResourceId { get; set; }
-        public string Scope { get; set; }
+        public string? Id { get; set; }
+        public string? ClientId { get; set; }
+        public string? ConsentType { get; set; }
+        public string? PrincipalId { get; set; }
+        public string? ResourceId { get; set; }
+        public string? Scope { get; set; }
     }
 }

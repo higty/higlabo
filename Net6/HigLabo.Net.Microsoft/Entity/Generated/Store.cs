@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Store
     {
-        public string DefaultLanguageTag { get; set; }
-        public string Id { get; set; }
-        public String[] LanguageTags { get; set; }
+        public string? DefaultLanguageTag { get; set; }
+        public string? Id { get; set; }
+        public String[]? LanguageTags { get; set; }
     }
 }

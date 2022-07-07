@@ -7,9 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Fido2AuthenticationMethodConfiguration
     {
-        public string Id { get; set; }
-        public bool IsAttestationEnforced { get; set; }
-        public bool IsSelfServiceRegistrationAllowed { get; set; }
+        public enum Fido2AuthenticationMethodConfigurationAuthenticationMethodState
+        {
+            Enabled,
+            Disabled,
+        }
+
+        public string? Id { get; set; }
+        public bool? IsAttestationEnforced { get; set; }
+        public bool? IsSelfServiceRegistrationAllowed { get; set; }
         public Fido2KeyRestrictions? KeyRestrictions { get; set; }
         public Fido2AuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
     }

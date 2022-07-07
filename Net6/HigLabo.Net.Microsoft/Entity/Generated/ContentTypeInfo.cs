@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ContentTypeInfo
     {
-        public String? Id { get; set; }
-        public String? Name { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsInformationProtectionDataRecoveryCertificate
     {
-        public string SubjectName { get; set; }
-        public string Description { get; set; }
-        public DateTimeOffset ExpirationDateTime { get; set; }
-        public string Certificate { get; set; }
+        public string? SubjectName { get; set; }
+        public string? Description { get; set; }
+        public DateTimeOffset? ExpirationDateTime { get; set; }
+        public string? Certificate { get; set; }
     }
 }

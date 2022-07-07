@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class VerifiedPublisher
     {
-        public DateTimeOffset AddedDateTime { get; set; }
-        public string DisplayName { get; set; }
-        public string VerifiedPublisherId { get; set; }
+        public DateTimeOffset? AddedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public string? VerifiedPublisherId { get; set; }
     }
 }

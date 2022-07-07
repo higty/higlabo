@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceEnrollmentPlatformRestriction
     {
-        public bool PlatformBlocked { get; set; }
-        public bool PersonalDeviceEnrollmentBlocked { get; set; }
-        public string OsMinimumVersion { get; set; }
-        public string OsMaximumVersion { get; set; }
+        public bool? PlatformBlocked { get; set; }
+        public bool? PersonalDeviceEnrollmentBlocked { get; set; }
+        public string? OsMinimumVersion { get; set; }
+        public string? OsMaximumVersion { get; set; }
     }
 }

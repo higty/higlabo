@@ -17,7 +17,7 @@ namespace HigLabo.Net.Microsoft
         public string ActivationUrl { get; set; }
         public string FallbackUrl { get; set; }
         public string ContentUrl { get; set; }
-        public VisualInfo? VisualElements { get; set; }
+        public VisualInfo VisualElements { get; set; }
         public object ContentInfo { get; set; }
         public DateTimeOffset ExpirationDateTime { get; set; }
         public Status? Status { get; set; }

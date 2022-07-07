@@ -9,16 +9,16 @@ namespace HigLabo.Net.Slack
         public string Channel { get; set; }
         public int Post_At { get; set; }
         public string Text { get; set; }
-        public bool? As_User { get; set; }
+        public bool As_User { get; set; }
         public string Attachments { get; set; }
         public string Blocks { get; set; }
-        public bool? Link_Names { get; set; }
+        public bool Link_Names { get; set; }
         public string Metadata { get; set; }
         public string Parse { get; set; }
-        public bool? Reply_Broadcast { get; set; }
+        public bool Reply_Broadcast { get; set; }
         public string Thread_Ts { get; set; }
-        public bool? Unfurl_Links { get; set; }
-        public bool? Unfurl_Media { get; set; }
+        public bool Unfurl_Links { get; set; }
+        public bool Unfurl_Media { get; set; }
     }
     public partial class ChatScheduleMessageResponse : RestApiResponse
     {

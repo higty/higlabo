@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TicketInfo
     {
-        public string TicketNumber { get; set; }
-        public string TicketSystem { get; set; }
+        public string? TicketNumber { get; set; }
+        public string? TicketSystem { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OmaSetting
     {
-        public string DisplayName { get; set; }
-        public string Description { get; set; }
-        public string OmaUri { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
+        public string? OmaUri { get; set; }
     }
 }

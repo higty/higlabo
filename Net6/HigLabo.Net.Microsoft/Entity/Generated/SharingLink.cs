@@ -8,10 +8,10 @@ namespace HigLabo.Net.Microsoft
     public partial class SharingLink
     {
         public Identity? Application { get; set; }
-        public string Type { get; set; }
-        public string Scope { get; set; }
-        public bool PreventsDownload { get; set; }
-        public string WebHtml { get; set; }
-        public string WebUrl { get; set; }
+        public string? Type { get; set; }
+        public string? Scope { get; set; }
+        public bool? PreventsDownload { get; set; }
+        public string? WebHtml { get; set; }
+        public string? WebUrl { get; set; }
     }
 }

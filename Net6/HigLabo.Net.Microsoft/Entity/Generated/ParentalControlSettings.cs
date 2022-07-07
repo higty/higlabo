@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ParentalControlSettings
     {
-        public String[] CountriesBlockedForMinors { get; set; }
-        public string LegalAgeGroupRule { get; set; }
+        public String[]? CountriesBlockedForMinors { get; set; }
+        public string? LegalAgeGroupRule { get; set; }
     }
 }

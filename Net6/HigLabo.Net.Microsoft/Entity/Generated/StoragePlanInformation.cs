@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class StoragePlanInformation
     {
-        public bool UpgradeAvailable { get; set; }
+        public bool? UpgradeAvailable { get; set; }
     }
 }

@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RoomList
     {
-        public PhysicalAddress? Address { get; set; }
+        public PhysicalAddress Address { get; set; }
         public string DisplayName { get; set; }
         public string EmailAddress { get; set; }
-        public OutlookGeoCoordinates? GeoCoordinates { get; set; }
+        public OutlookGeoCoordinates GeoCoordinates { get; set; }
         public string Id { get; set; }
         public string Phone { get; set; }
     }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchAlteration
     {
-        public string AlteredHighlightedQueryString { get; set; }
-        public string AlteredQueryString { get; set; }
-        public AlteredQueryToken[] AlteredQueryTokens { get; set; }
+        public string? AlteredHighlightedQueryString { get; set; }
+        public string? AlteredQueryString { get; set; }
+        public AlteredQueryToken[]? AlteredQueryTokens { get; set; }
     }
 }

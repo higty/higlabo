@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class ProvisioningSystem
     {
         public DetailsInfo? Details { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
     }
 }

@@ -7,6 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EdgeSearchEngine
     {
-        public EdgeSearchEngineEdgeSearchEngineType EdgeSearchEngineType { get; set; }
+        public enum EdgeSearchEngineEdgeSearchEngineType
+        {
+            Default,
+            Bing,
+        }
+
+        public EdgeSearchEngineType EdgeSearchEngineType { get; set; }
     }
 }

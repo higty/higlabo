@@ -7,8 +7,24 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Acl
     {
+        public enum AclExternalConnectorsAccessType
+        {
+            Grant,
+            Deny,
+            UnknownFutureValue,
+        }
+        public enum AclExternalConnectorsAclType
+        {
+            User,
+            Group,
+            Everyone,
+            EveryoneExceptGuests,
+            ExternalGroup,
+            UnknownFutureValue,
+        }
+
         public AclExternalConnectorsAccessType AccessType { get; set; }
         public AclExternalConnectorsAclType Type { get; set; }
-        public string Value { get; set; }
+        public string? Value { get; set; }
     }
 }

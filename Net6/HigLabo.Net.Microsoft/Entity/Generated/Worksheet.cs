@@ -7,9 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Worksheet
     {
-        public String? Id { get; set; }
-        public String? Name { get; set; }
-        public int Position { get; set; }
-        public WorksheetString Visibility { get; set; }
+        public enum Worksheetstring
+        {
+            Visible,
+            Hidden,
+            VeryHidden,
+        }
+
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public int? Position { get; set; }
+        public Worksheetstring Visibility { get; set; }
     }
 }

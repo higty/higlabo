@@ -7,13 +7,25 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceConfigurationDeviceStatus
     {
-        public string Id { get; set; }
-        public string DeviceDisplayName { get; set; }
-        public string UserName { get; set; }
-        public string DeviceModel { get; set; }
-        public DateTimeOffset ComplianceGracePeriodExpirationDateTime { get; set; }
-        public DeviceConfigurationDeviceStatusComplianceStatus Status { get; set; }
-        public DateTimeOffset LastReportedDateTime { get; set; }
-        public string UserPrincipalName { get; set; }
+        public enum DeviceConfigurationDeviceStatusComplianceStatus
+        {
+            Unknown,
+            NotApplicable,
+            Compliant,
+            Remediated,
+            NonCompliant,
+            Error,
+            Conflict,
+            NotAssigned,
+        }
+
+        public string? Id { get; set; }
+        public string? DeviceDisplayName { get; set; }
+        public string? UserName { get; set; }
+        public string? DeviceModel { get; set; }
+        public DateTimeOffset? ComplianceGracePeriodExpirationDateTime { get; set; }
+        public ComplianceStatus? Status { get; set; }
+        public DateTimeOffset? LastReportedDateTime { get; set; }
+        public string? UserPrincipalName { get; set; }
     }
 }

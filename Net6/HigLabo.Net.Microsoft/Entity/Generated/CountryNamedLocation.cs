@@ -7,12 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CountryNamedLocation
     {
-        public String[] CountriesAndRegions { get; set; }
+        public enum CountryNamedLocationCountryLookupMethodType
+        {
+            ClientIpAddress,
+            AuthenticatorAppGps,
+        }
+
+        public String[]? CountriesAndRegions { get; set; }
         public CountryNamedLocationCountryLookupMethodType CountryLookupMethod { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IncludeUnknownCountriesAndRegions { get; set; }
-        public DateTimeOffset ModifiedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IncludeUnknownCountriesAndRegions { get; set; }
+        public DateTimeOffset? ModifiedDateTime { get; set; }
     }
 }

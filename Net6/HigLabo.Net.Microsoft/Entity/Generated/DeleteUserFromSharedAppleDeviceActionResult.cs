@@ -7,8 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeleteUserFromSharedAppleDeviceActionResult
     {
+        public enum DeleteUserFromSharedAppleDeviceActionResultActionState
+        {
+            None,
+            Pending,
+            Canceled,
+            Active,
+            Done,
+            Failed,
+            NotSupported,
+        }
+
         public string ActionName { get; set; }
-        public DeleteUserFromSharedAppleDeviceActionResultActionState ActionState { get; set; }
+        public ActionState ActionState { get; set; }
         public DateTimeOffset StartDateTime { get; set; }
         public DateTimeOffset LastUpdatedDateTime { get; set; }
         public string UserPrincipalName { get; set; }

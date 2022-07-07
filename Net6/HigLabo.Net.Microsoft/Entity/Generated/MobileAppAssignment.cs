@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MobileAppAssignment
     {
-        public string Id { get; set; }
-        public MobileAppAssignmentInstallIntent Intent { get; set; }
+        public enum MobileAppAssignmentInstallIntent
+        {
+            Available,
+            Required,
+            Uninstall,
+            AvailableWithoutEnrollment,
+        }
+
+        public string? Id { get; set; }
+        public InstallIntent? Intent { get; set; }
         public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
         public MobileAppAssignmentSettings? Settings { get; set; }
     }

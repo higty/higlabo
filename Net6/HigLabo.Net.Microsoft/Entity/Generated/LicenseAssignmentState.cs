@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class LicenseAssignmentState
     {
-        public String? AssignedByGroup { get; set; }
-        public String[] DisabledPlans { get; set; }
-        public string Error { get; set; }
-        public DateTimeOffset LastUpdatedDateTime { get; set; }
-        public string SkuId { get; set; }
-        public string State { get; set; }
+        public string? AssignedByGroup { get; set; }
+        public String[]? DisabledPlans { get; set; }
+        public string? Error { get; set; }
+        public DateTimeOffset? LastUpdatedDateTime { get; set; }
+        public string? SkuId { get; set; }
+        public string? State { get; set; }
     }
 }

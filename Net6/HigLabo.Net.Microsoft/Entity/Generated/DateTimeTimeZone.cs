@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DateTimeTimeZone
     {
-        public string DateTime { get; set; }
-        public string TimeZone { get; set; }
+        public string? DateTime { get; set; }
+        public string? TimeZone { get; set; }
     }
 }

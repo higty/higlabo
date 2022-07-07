@@ -7,12 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Fido2AuthenticationMethod
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string AaGuid { get; set; }
-        public string Model { get; set; }
-        public String[] AttestationCertificates { get; set; }
+        public enum Fido2AuthenticationMethodAttestationLevel
+        {
+            Attested,
+            NotAttested,
+        }
+
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? AaGuid { get; set; }
+        public string? Model { get; set; }
+        public String[]? AttestationCertificates { get; set; }
         public Fido2AuthenticationMethodAttestationLevel AttestationLevel { get; set; }
     }
 }

@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class IosMinimumOperatingSystem
     {
-        public bool V8_0 { get; set; }
-        public bool V9_0 { get; set; }
-        public bool V10_0 { get; set; }
-        public bool V11_0 { get; set; }
-        public bool V12_0 { get; set; }
-        public bool V13_0 { get; set; }
-        public bool V14_0 { get; set; }
+        public bool? V8_0 { get; set; }
+        public bool? V9_0 { get; set; }
+        public bool? V10_0 { get; set; }
+        public bool? V11_0 { get; set; }
+        public bool? V12_0 { get; set; }
+        public bool? V13_0 { get; set; }
+        public bool? V14_0 { get; set; }
     }
 }

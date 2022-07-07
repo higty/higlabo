@@ -18,8 +18,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool? Exclude_Archived { get; set; }
-        public double? Limit { get; set; }
+        public bool Exclude_Archived { get; set; }
+        public double Limit { get; set; }
         public string Team_Id { get; set; }
         public string Types { get; set; }
     }

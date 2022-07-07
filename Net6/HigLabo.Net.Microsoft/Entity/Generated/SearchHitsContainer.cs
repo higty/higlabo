@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchHitsContainer
     {
-        public SearchHit[] Hits { get; set; }
-        public bool MoreResultsAvailable { get; set; }
+        public SearchHit[]? Hits { get; set; }
+        public bool? MoreResultsAvailable { get; set; }
         public Int32? Total { get; set; }
     }
 }

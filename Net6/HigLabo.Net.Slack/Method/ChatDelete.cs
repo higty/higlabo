@@ -8,7 +8,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Channel { get; set; }
         public string Ts { get; set; }
-        public bool? As_User { get; set; }
+        public bool As_User { get; set; }
     }
     public partial class ChatDeleteResponse : RestApiResponse
     {

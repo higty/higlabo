@@ -7,8 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AuthenticationMethodsRegistrationCampaignIncludeTarget
     {
-        public string Id { get; set; }
-        public string TargetedAuthenticationMethod { get; set; }
+        public enum AuthenticationMethodsRegistrationCampaignIncludeTargetAuthenticationMethodTargetType
+        {
+            User,
+            Group,
+            UnknownFutureValue,
+        }
+
+        public string? Id { get; set; }
+        public string? TargetedAuthenticationMethod { get; set; }
         public AuthenticationMethodsRegistrationCampaignIncludeTargetAuthenticationMethodTargetType TargetType { get; set; }
     }
 }

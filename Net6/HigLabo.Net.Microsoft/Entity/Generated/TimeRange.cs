@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TimeRange
     {
-        public TimeOnly EndTime { get; set; }
-        public TimeOnly StartTime { get; set; }
+        public TimeOnly? EndTime { get; set; }
+        public TimeOnly? StartTime { get; set; }
     }
 }

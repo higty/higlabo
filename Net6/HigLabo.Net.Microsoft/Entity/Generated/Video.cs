@@ -9,11 +9,11 @@ namespace HigLabo.Net.Microsoft
     {
         public Int32? AudioBitsPerSample { get; set; }
         public Int32? AudioChannels { get; set; }
-        public String? AudioFormat { get; set; }
+        public string? AudioFormat { get; set; }
         public Int32? AudioSamplesPerSecond { get; set; }
         public Int32? Bitrate { get; set; }
         public Int64? Duration { get; set; }
-        public String? FourCC { get; set; }
+        public string? FourCC { get; set; }
         public Double? FrameRate { get; set; }
         public Int32? Height { get; set; }
         public Int32? Width { get; set; }

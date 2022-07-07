@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
             }
         }
         public string Entity_Type { get; set; }
-        public int? Limit { get; set; }
+        public int Limit { get; set; }
     }
     public partial class AdminAuthPolicyGetEntitiesResponse : RestApiResponse
     {

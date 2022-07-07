@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ExternalLink
     {
-        public string Href { get; set; }
+        public string? Href { get; set; }
     }
 }

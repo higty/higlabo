@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DomainState
     {
-        public DateTimeOffset LastActionDateTime { get; set; }
-        public string Operation { get; set; }
-        public string Status { get; set; }
+        public DateTimeOffset? LastActionDateTime { get; set; }
+        public string? Operation { get; set; }
+        public string? Status { get; set; }
     }
 }

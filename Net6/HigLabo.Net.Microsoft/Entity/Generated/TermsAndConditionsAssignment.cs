@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TermsAndConditionsAssignment
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public DeviceAndAppManagementAssignmentTarget? Target { get; set; }
     }
 }

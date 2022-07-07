@@ -7,9 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceActionResult
     {
-        public string ActionName { get; set; }
-        public DeviceActionResultActionState ActionState { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public DateTimeOffset LastUpdatedDateTime { get; set; }
+        public enum DeviceActionResultActionState
+        {
+            None,
+            Pending,
+            Canceled,
+            Active,
+            Done,
+            Failed,
+            NotSupported,
+        }
+
+        public string? ActionName { get; set; }
+        public ActionState? ActionState { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public DateTimeOffset? LastUpdatedDateTime { get; set; }
     }
 }

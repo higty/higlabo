@@ -7,11 +7,19 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationStudent
     {
-        public DateOnly BirthDate { get; set; }
-        public string ExternalId { get; set; }
+        public enum EducationStudentEducationGender
+        {
+            Female,
+            Male,
+            Other,
+            UnknownFutureValue,
+        }
+
+        public DateOnly? BirthDate { get; set; }
+        public string? ExternalId { get; set; }
         public EducationStudentEducationGender Gender { get; set; }
-        public string Grade { get; set; }
-        public string GraduationYear { get; set; }
-        public string StudentNumber { get; set; }
+        public string? Grade { get; set; }
+        public string? GraduationYear { get; set; }
+        public string? StudentNumber { get; set; }
     }
 }

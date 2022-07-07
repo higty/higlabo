@@ -1,0 +1,86 @@
+﻿using HigLabo.Net.OAuth;
+
+namespace HigLabo.Net.Microsoft
+{
+    public partial class UserListDirectreportsParameter : IRestApiParameter, IQueryParameterProperty
+    {
+        public enum Field
+        {
+        }
+        public enum ApiPath
+        {
+            Me_DirectReports,
+            Users_IdOrUserPrincipalName_DirectReports,
+        }
+
+        public ApiPath Path { get; set; }
+        string IRestApiParameter.ApiPath
+        {
+            get
+            {
+                switch (this.Path)
+                {
+                    case ApiPath.Me_DirectReports: return $"/me/directReports";
+                    case ApiPath.Users_IdOrUserPrincipalName_DirectReports: return $"/users/{IdOrUserPrincipalName}/directReports";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
+                }
+            }
+        }
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public QueryParameter<Field> Query { get; set; } = new QueryParameter<Field>();
+        IQueryParameter IQueryParameterProperty.Query
+        {
+            get
+            {
+                return this.Query;
+            }
+        }
+        public string IdOrUserPrincipalName { get; set; }
+    }
+    public partial class UserListDirectreportsResponse : RestApiResponse
+    {
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
+        /// </summary>
+        public partial class DirectoryObject
+        {
+            public DateTimeOffset? DeletedDateTime { get; set; }
+            public string? Id { get; set; }
+        }
+
+        public DirectoryObject[] Value { get; set; }
+    }
+    public partial class MicrosoftClient
+    {
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
+        /// </summary>
+        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync()
+        {
+            var p = new UserListDirectreportsParameter();
+            return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(p, CancellationToken.None);
+        }
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
+        /// </summary>
+        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync(CancellationToken cancellationToken)
+        {
+            var p = new UserListDirectreportsParameter();
+            return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(p, cancellationToken);
+        }
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
+        /// </summary>
+        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync(UserListDirectreportsParameter parameter)
+        {
+            return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(parameter, CancellationToken.None);
+        }
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/user-list-directreports?view=graph-rest-1.0
+        /// </summary>
+        public async Task<UserListDirectreportsResponse> UserListDirectreportsAsync(UserListDirectreportsParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendAsync<UserListDirectreportsParameter, UserListDirectreportsResponse>(parameter, cancellationToken);
+        }
+    }
+}

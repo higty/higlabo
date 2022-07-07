@@ -7,15 +7,32 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessReviewHistoryDefinition
     {
+        public enum AccessReviewHistoryDefinitionString
+        {
+            Approve,
+            Deny,
+            DontKnow,
+            NotReviewed,
+            NotNotified,
+        }
+        public enum AccessReviewHistoryDefinitionAccessReviewHistoryStatus
+        {
+            Done,
+            InProgress,
+            Error,
+            Requested,
+            UnknownFutureValue,
+        }
+
         public UserIdentity? CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public AccessReviewHistoryDefinitionString[] Decisions { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset ReviewHistoryPeriodEndDateTime { get; set; }
-        public DateTimeOffset ReviewHistoryPeriodStartDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public AccessReviewHistoryDefinitionString Decisions { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? ReviewHistoryPeriodEndDateTime { get; set; }
+        public DateTimeOffset? ReviewHistoryPeriodStartDateTime { get; set; }
         public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
-        public AccessReviewScope[] Scopes { get; set; }
+        public AccessReviewScope[]? Scopes { get; set; }
         public AccessReviewHistoryDefinitionAccessReviewHistoryStatus Status { get; set; }
     }
 }

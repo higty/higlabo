@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PersonType
     {
-        public string Class { get; set; }
-        public string Subclass { get; set; }
+        public string? Class { get; set; }
+        public string? Subclass { get; set; }
     }
 }

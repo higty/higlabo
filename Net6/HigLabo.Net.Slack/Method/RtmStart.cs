@@ -6,13 +6,13 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "rtm.start";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public bool? Batch_Presence_Aware { get; set; }
-        public bool? Include_Locale { get; set; }
-        public bool? Mpim_Aware { get; set; }
-        public bool? No_Latest { get; set; }
-        public bool? No_Unreads { get; set; }
-        public bool? Presence_Sub { get; set; }
-        public bool? Simple_Latest { get; set; }
+        public bool Batch_Presence_Aware { get; set; }
+        public bool Include_Locale { get; set; }
+        public bool Mpim_Aware { get; set; }
+        public bool No_Latest { get; set; }
+        public bool No_Unreads { get; set; }
+        public bool Presence_Sub { get; set; }
+        public bool Simple_Latest { get; set; }
     }
     public partial class RtmStartResponse : RestApiResponse
     {

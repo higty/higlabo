@@ -8,9 +8,9 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Channel_Name { get; set; }
         public string Channel_Id { get; set; }
-        public bool? Free_Trial_Accepted { get; set; }
+        public bool Free_Trial_Accepted { get; set; }
         public string Invite_Id { get; set; }
-        public bool? Is_Private { get; set; }
+        public bool Is_Private { get; set; }
         public string Team_Id { get; set; }
     }
     public partial class ConversationsAcceptSharedInviteResponse : RestApiResponse

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TermsExpiration
     {
-        public DateTimeOffset StartDateTime { get; set; }
-        public string Frequency { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public string? Frequency { get; set; }
     }
 }

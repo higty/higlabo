@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class LookupColumn
     {
-        public Boolean? AllowMultipleValues { get; set; }
-        public Boolean? AllowUnlimitedLength { get; set; }
-        public String? ColumnName { get; set; }
-        public String? ListId { get; set; }
-        public String? PrimaryLookupColumnId { get; set; }
+        public bool? AllowMultipleValues { get; set; }
+        public bool? AllowUnlimitedLength { get; set; }
+        public string? ColumnName { get; set; }
+        public string? ListId { get; set; }
+        public string? PrimaryLookupColumnId { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace HigLabo.Net.Slack
         public string Channels { get; set; }
         public string Description { get; set; }
         public string Handle { get; set; }
-        public bool? Include_Count { get; set; }
+        public bool Include_Count { get; set; }
         public string Name { get; set; }
         public string Team_Id { get; set; }
     }

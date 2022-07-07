@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ListInfo
     {
-        public bool ContentTypesEnabled { get; set; }
-        public bool Hidden { get; set; }
-        public string Template { get; set; }
+        public bool? ContentTypesEnabled { get; set; }
+        public bool? Hidden { get; set; }
+        public string? Template { get; set; }
     }
 }

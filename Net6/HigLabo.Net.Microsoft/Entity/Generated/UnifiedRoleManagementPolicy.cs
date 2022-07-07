@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UnifiedRoleManagementPolicy
     {
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsOrganizationDefault { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsOrganizationDefault { get; set; }
         public Identity? LastModifiedBy { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public string ScopeId { get; set; }
-        public string ScopeType { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? ScopeId { get; set; }
+        public string? ScopeType { get; set; }
     }
 }

@@ -7,14 +7,22 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ApplicationTemplate
     {
-        public String[] Categories { get; set; }
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
-        public string HomePageUrl { get; set; }
-        public string Id { get; set; }
-        public string LogoUrl { get; set; }
-        public string Publisher { get; set; }
-        public String[] SupportedProvisioningTypes { get; set; }
-        public ApplicationTemplateString[] SupportedSingleSignOnModes { get; set; }
+        public enum ApplicationTemplateString
+        {
+            Oidc,
+            Password,
+            Saml,
+            NotSupported,
+        }
+
+        public String[]? Categories { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? HomePageUrl { get; set; }
+        public string? Id { get; set; }
+        public string? LogoUrl { get; set; }
+        public string? Publisher { get; set; }
+        public String[]? SupportedProvisioningTypes { get; set; }
+        public ApplicationTemplateString SupportedSingleSignOnModes { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PublicationFacet
     {
-        public string Level { get; set; }
-        public string VersionId { get; set; }
+        public string? Level { get; set; }
+        public string? VersionId { get; set; }
     }
 }

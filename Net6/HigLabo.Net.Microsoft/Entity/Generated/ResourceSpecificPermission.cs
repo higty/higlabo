@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResourceSpecificPermission
     {
-        public string Description { get; set; }
-        public string DisplayName { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
         public Guid? Id { get; set; }
-        public bool IsEnabled { get; set; }
-        public string Value { get; set; }
+        public bool? IsEnabled { get; set; }
+        public string? Value { get; set; }
     }
 }

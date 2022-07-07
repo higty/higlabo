@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SigningCertificateUpdateStatus
     {
-        public string CertificateUpdateResult { get; set; }
-        public DateTimeOffset LastRunDateTime { get; set; }
+        public string? CertificateUpdateResult { get; set; }
+        public DateTimeOffset? LastRunDateTime { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceConfigurationDeviceStateSummary
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public Int32? UnknownDeviceCount { get; set; }
         public Int32? NotApplicableDeviceCount { get; set; }
         public Int32? CompliantDeviceCount { get; set; }

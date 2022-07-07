@@ -7,16 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OrganizationalBranding
     {
-        public string BackgroundColor { get; set; }
+        public string? BackgroundColor { get; set; }
         public Stream? BackgroundImage { get; set; }
-        public string BackgroundImageRelativeUrl { get; set; }
+        public string? BackgroundImageRelativeUrl { get; set; }
         public Stream? BannerLogo { get; set; }
-        public string BannerLogoRelativeUrl { get; set; }
-        public String[] CdnList { get; set; }
-        public string Id { get; set; }
-        public string SignInPageText { get; set; }
+        public string? BannerLogoRelativeUrl { get; set; }
+        public String[]? CdnList { get; set; }
+        public string? Id { get; set; }
+        public string? SignInPageText { get; set; }
         public Stream? SquareLogo { get; set; }
-        public string SquareLogoRelativeUrl { get; set; }
-        public string UsernameHintText { get; set; }
+        public string? SquareLogoRelativeUrl { get; set; }
+        public string? UsernameHintText { get; set; }
     }
 }

@@ -7,10 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TodoTaskList
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsOwner { get; set; }
-        public bool IsShared { get; set; }
+        public enum TodoTaskListWellknownListName
+        {
+            None,
+            DefaultList,
+            FlaggedEmails,
+            UnknownFutureValue,
+        }
+
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsOwner { get; set; }
+        public bool? IsShared { get; set; }
         public TodoTaskListWellknownListName WellknownListName { get; set; }
     }
 }

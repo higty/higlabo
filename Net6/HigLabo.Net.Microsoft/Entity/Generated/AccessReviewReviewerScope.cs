@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessReviewReviewerScope
     {
-        public string Query { get; set; }
-        public string QueryType { get; set; }
-        public string QueryRoot { get; set; }
+        public string? Query { get; set; }
+        public string? QueryType { get; set; }
+        public string? QueryRoot { get; set; }
     }
 }

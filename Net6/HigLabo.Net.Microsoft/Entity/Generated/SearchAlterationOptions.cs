@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SearchAlterationOptions
     {
-        public bool EnableModification { get; set; }
-        public bool EnableSuggestion { get; set; }
+        public bool? EnableModification { get; set; }
+        public bool? EnableSuggestion { get; set; }
     }
 }

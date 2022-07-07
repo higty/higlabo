@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AuditProperty
     {
-        public string DisplayName { get; set; }
-        public string OldValue { get; set; }
-        public string NewValue { get; set; }
+        public string? DisplayName { get; set; }
+        public string? OldValue { get; set; }
+        public string? NewValue { get; set; }
     }
 }

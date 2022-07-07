@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingSchedulingPolicy
     {
-        public bool AllowStaffSelection { get; set; }
-        public string MaximumAdvance { get; set; }
-        public string MinimumLeadTime { get; set; }
-        public bool SendConfirmationsToOwner { get; set; }
-        public string TimeSlotInterval { get; set; }
+        public bool? AllowStaffSelection { get; set; }
+        public string? MaximumAdvance { get; set; }
+        public string? MinimumLeadTime { get; set; }
+        public bool? SendConfirmationsToOwner { get; set; }
+        public string? TimeSlotInterval { get; set; }
     }
 }

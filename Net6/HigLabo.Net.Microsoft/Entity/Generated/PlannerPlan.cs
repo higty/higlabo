@@ -9,8 +9,8 @@ namespace HigLabo.Net.Microsoft
     {
         public PlannerPlanContainer? Container { get; set; }
         public IdentitySet? CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Id { get; set; }
-        public string Title { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? Title { get; set; }
     }
 }

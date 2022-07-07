@@ -12,6 +12,6 @@ namespace HigLabo.Net.Microsoft
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectOutbound { get; set; }
         public CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
-        public bool IsServiceDefault { get; set; }
+        public bool? IsServiceDefault { get; set; }
     }
 }

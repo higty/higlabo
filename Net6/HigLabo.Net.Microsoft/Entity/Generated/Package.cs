@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Package
     {
-        public String? Type { get; set; }
+        public string? Type { get; set; }
     }
 }

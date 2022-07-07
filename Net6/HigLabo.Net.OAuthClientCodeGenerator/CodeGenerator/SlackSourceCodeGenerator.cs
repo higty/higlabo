@@ -99,29 +99,26 @@ namespace HigLabo.Net.CodeGenerator
             return sb.ToString().Replace(".", "").Replace(":", "").Replace("-", "");
         }
 
-        protected override Task<List<string>> GetEntiryUrlList()
+        protected override IEnumerable<string> GetEntiryUrlList()
         {
-            var l = new List<string>();
-
-            return Task.FromResult(l);
+            yield break;
         }
         protected override Task<List<ApiParameter>> GetEntityParameterList(IDocument document)
         {
             throw new NotImplementedException();
         }
 
-        protected override async Task<List<String>> GetMethodUrlList()
+        protected override IEnumerable<String> GetMethodUrlList()
         {
-            var doc = await this.Context.OpenAsync("https://api.slack.com/methods");
-            var l = new List<string>();
+            var doc = this.Context.OpenAsync("https://api.slack.com/methods").GetAwaiter().GetResult();
+
             foreach (var item in doc.QuerySelectorAll(".apiReferenceFilterableList__list > div > a"))
             {
                 var path = item.GetAttribute("href");
                 if (path == "/methods/channels.create") { break; }
                 var url = "https://api.slack.com" + path;
-                l.Add(url);
+                yield return url;
             }
-            return l;
         }
 
         protected override string GetClassName(string url, IDocument document)
@@ -146,32 +143,18 @@ namespace HigLabo.Net.CodeGenerator
             return sb.ToString().Replace(".", "");
         }
 
-        protected override string GetHttpMethod(IDocument document)
-        {
-            var doc = document;
-            return doc.QuerySelector(".apiMethodPage__method").TextContent;
-        }
-        protected override string GetApiPath(IDocument document)
-        {
-            var doc = document;
-            return doc.Url.Replace("https://api.slack.com/methods/", "");
-        }
-
         protected override Task<List<ApiParameter>> GetMethodParameterList(IDocument document)
         {
             var doc = document;
             var l = new List<ApiParameter>();
-            var httpMethod = this.GetHttpMethod(doc);
+
             foreach (var row in doc.QuerySelectorAll(".apiMethodPage__argumentRow"))
             {
                 var p = new ApiParameter();
                 p.Name = row.QuerySelector(".apiMethodPage__argument code").TextContent;
                 if (p.Name == "token") { continue; }
                 p.TypeName = row.QuerySelector(".apiMethodPage__argumentType").TextContent;
-                if (string.Equals(httpMethod, "GET", StringComparison.OrdinalIgnoreCase))
-                {
-                    p.IsNextPageToken = true;
-                }
+                p.Required = row.QuerySelector(".apiMethodPage__argumentOptionality")?.TextContent.Contains("required", StringComparison.OrdinalIgnoreCase) == true;
                 l.Add(p);
             }
             return Task.FromResult(l);
@@ -203,15 +186,15 @@ namespace HigLabo.Net.CodeGenerator
         {
             var type = parameter.TypeName;
 
-            if (type == "integer") { return "int"; }
-            if (type == "number") { return "double"; }
-            if (type == "boolean") { return "bool"; }
             if (type == "") { return "string"; }
-            if (type == "array") { return "string"; }
-            if (type == "null") { return "string"; }
-            if (type == "blocks[] as string") { return "string"; }
-            if (type == "manifest object as string") { return "string"; }
-            if (type == "view as string") { return "string"; }
+            if (type.Equals("integer", StringComparison.OrdinalIgnoreCase)) { return "int"; }
+            if (type.Equals("number", StringComparison.OrdinalIgnoreCase)) { return "double"; }
+            if (type.Equals("boolean", StringComparison.OrdinalIgnoreCase)) { return "bool"; }
+            if (type.Equals("array", StringComparison.OrdinalIgnoreCase)) { return "string"; }
+            if (type.Equals("null", StringComparison.OrdinalIgnoreCase)) { return "string"; }
+            if (type.Equals("blocks[] as string", StringComparison.OrdinalIgnoreCase)) { return "string"; }
+            if (type.Equals("manifest object as string", StringComparison.OrdinalIgnoreCase)) { return "string"; }
+            if (type.Equals("view as string", StringComparison.OrdinalIgnoreCase)) { return "string"; }
 
             if (parameter.Required == false && type != "string")
             {
@@ -234,6 +217,35 @@ namespace HigLabo.Net.CodeGenerator
                 if (propertyName == "types") { return "FileType"; }
             }
             return "";
+        }
+
+        protected override bool IsNextPageTokenProperty(Property property)
+        {
+            return property.Name == "Cursor";
+        }
+        protected override Property CreateApiPathProperty(string url, IDocument document)
+        {
+            var doc = document;
+            var apiPath = doc.Url.Replace("https://api.slack.com/methods/", "");
+
+            var p = new Property("string", "IRestApiParameter.ApiPath", true);
+            p.Modifier.AccessModifier = MethodAccessModifier.None;
+            p.Set = null;
+            p.Initializer = $"\"{apiPath}\"";
+
+            return p;
+        }
+        protected override Property CreateHttpMethodProperty(string url, IDocument document)
+        {
+            var doc = document;
+            var httpMethod = doc.QuerySelector(".apiMethodPage__method").TextContent;
+
+            var p = new Property("string", "IRestApiParameter.HttpMethod", true);
+            p.Modifier.AccessModifier = MethodAccessModifier.None;
+            p.Set = null;
+            p.Initializer = $"\"{httpMethod}\"";
+
+            return p;
         }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PasswordProfile
     {
-        public bool ForceChangePasswordNextSignIn { get; set; }
-        public bool ForceChangePasswordNextSignInWithMfa { get; set; }
-        public string Password { get; set; }
+        public bool? ForceChangePasswordNextSignIn { get; set; }
+        public bool? ForceChangePasswordNextSignInWithMfa { get; set; }
+        public string? Password { get; set; }
     }
 }

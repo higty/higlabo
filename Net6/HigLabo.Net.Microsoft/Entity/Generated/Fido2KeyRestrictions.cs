@@ -7,8 +7,14 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Fido2KeyRestrictions
     {
-        public String[] AaGuids { get; set; }
+        public enum Fido2KeyRestrictionsFido2RestrictionEnforcementType
+        {
+            Allow,
+            Block,
+        }
+
+        public String[]? AaGuids { get; set; }
         public Fido2KeyRestrictionsFido2RestrictionEnforcementType EnforcementType { get; set; }
-        public bool IsEnforced { get; set; }
+        public bool? IsEnforced { get; set; }
     }
 }

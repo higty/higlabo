@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OptionalClaims
     {
-        public OptionalClaim[] IdToken { get; set; }
-        public OptionalClaim[] AccessToken { get; set; }
-        public OptionalClaim[] Saml2Token { get; set; }
+        public OptionalClaim[]? IdToken { get; set; }
+        public OptionalClaim[]? AccessToken { get; set; }
+        public OptionalClaim[]? Saml2Token { get; set; }
     }
 }

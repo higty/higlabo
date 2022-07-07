@@ -7,9 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ImportedWindowsAutopilotDeviceIdentityState
     {
-        public ImportedWindowsAutopilotDeviceIdentityStateImportedWindowsAutopilotDeviceIdentityImportStatus DeviceImportStatus { get; set; }
-        public string DeviceRegistrationId { get; set; }
+        public enum ImportedWindowsAutopilotDeviceIdentityStateImportedWindowsAutopilotDeviceIdentityImportStatus
+        {
+            Unknown,
+            Pending,
+            Partial,
+            Complete,
+            Error,
+        }
+
+        public ImportedWindowsAutopilotDeviceIdentityImportStatus? DeviceImportStatus { get; set; }
+        public string? DeviceRegistrationId { get; set; }
         public Int32? DeviceErrorCode { get; set; }
-        public string DeviceErrorName { get; set; }
+        public string? DeviceErrorName { get; set; }
     }
 }

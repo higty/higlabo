@@ -7,12 +7,23 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CallrecordsSession
     {
-        public String? Id { get; set; }
+        public enum CallrecordsSessionCallRecordsModality
+        {
+            Unknown,
+            Audio,
+            Video,
+            VideoBasedScreenSharing,
+            Data,
+            ScreenSharing,
+            UnknownFutureValue,
+        }
+
+        public string? Id { get; set; }
         public CallRecordsEndpoint? Caller { get; set; }
         public CallRecordsEndpoint? Callee { get; set; }
         public CallRecordsFailureInfo? FailureInfo { get; set; }
         public CallrecordsSessionCallRecordsModality Modalities { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
-        public DateTimeOffset EndDateTime { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
     }
 }

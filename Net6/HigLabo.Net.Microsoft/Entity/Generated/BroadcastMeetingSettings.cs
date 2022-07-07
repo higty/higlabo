@@ -8,9 +8,9 @@ namespace HigLabo.Net.Microsoft
     public partial class BroadcastMeetingSettings
     {
         public BroadcastMeetingAudience? AllowedAudience { get; set; }
-        public bool IsRecordingEnabled { get; set; }
-        public bool IsAttendeeReportEnabled { get; set; }
-        public bool IsQuestionAndAnswerEnabled { get; set; }
-        public bool IsVideoOnDemandEnabled { get; set; }
+        public bool? IsRecordingEnabled { get; set; }
+        public bool? IsAttendeeReportEnabled { get; set; }
+        public bool? IsQuestionAndAnswerEnabled { get; set; }
+        public bool? IsVideoOnDemandEnabled { get; set; }
     }
 }

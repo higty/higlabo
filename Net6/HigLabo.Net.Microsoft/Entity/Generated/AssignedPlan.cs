@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AssignedPlan
     {
-        public DateTimeOffset AssignedDateTime { get; set; }
-        public string CapabilityStatus { get; set; }
-        public string Service { get; set; }
+        public DateTimeOffset? AssignedDateTime { get; set; }
+        public string? CapabilityStatus { get; set; }
+        public string? Service { get; set; }
         public Guid? ServicePlanId { get; set; }
     }
 }

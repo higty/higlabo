@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Album
     {
-        public string CoverImageItemId { get; set; }
+        public string? CoverImageItemId { get; set; }
     }
 }

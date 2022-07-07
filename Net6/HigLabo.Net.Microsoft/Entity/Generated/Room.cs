@@ -7,7 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Room
     {
-        public PhysicalAddress? Address { get; set; }
+        public enum RoomBookingType
+        {
+            Standard,
+            Reserved,
+        }
+
+        public PhysicalAddress Address { get; set; }
         public string AudioDeviceName { get; set; }
         public RoomBookingType BookingType { get; set; }
         public string Building { get; set; }
@@ -17,7 +23,7 @@ namespace HigLabo.Net.Microsoft
         public string EmailAddress { get; set; }
         public string FloorLabel { get; set; }
         public Int32? FloorNumber { get; set; }
-        public OutlookGeoCoordinates? GeoCoordinates { get; set; }
+        public OutlookGeoCoordinates GeoCoordinates { get; set; }
         public string Id { get; set; }
         public bool IsWheelChairAccessible { get; set; }
         public string Label { get; set; }

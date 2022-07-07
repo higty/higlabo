@@ -7,9 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsHelloForBusinessAuthenticationMethod
     {
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
+        public enum WindowsHelloForBusinessAuthenticationMethodAuthenticationMethodKeyStrength
+        {
+            Normal,
+            Weak,
+            Unknown,
+        }
+
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public WindowsHelloForBusinessAuthenticationMethodAuthenticationMethodKeyStrength KeyStrength { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class AggregationOption
     {
         public BucketAggregationDefinition? BucketDefinition { get; set; }
-        public string Field { get; set; }
+        public string? Field { get; set; }
         public Int32? Size { get; set; }
     }
 }

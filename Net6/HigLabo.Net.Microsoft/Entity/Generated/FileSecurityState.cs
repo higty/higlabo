@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class FileSecurityState
     {
         public FileHash? FileHash { get; set; }
-        public string Name { get; set; }
-        public string Path { get; set; }
-        public string RiskScore { get; set; }
+        public string? Name { get; set; }
+        public string? Path { get; set; }
+        public string? RiskScore { get; set; }
     }
 }

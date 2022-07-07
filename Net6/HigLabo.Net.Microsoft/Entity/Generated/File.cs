@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class File
     {
         public Hashes? Hashes { get; set; }
-        public String? MimeType { get; set; }
+        public string? MimeType { get; set; }
     }
 }

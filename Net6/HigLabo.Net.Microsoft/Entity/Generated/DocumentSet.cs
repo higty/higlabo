@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DocumentSet
     {
-        public ContentTypeInfo[] AllowedContentTypes { get; set; }
-        public DocumentSetContent[] DefaultContents { get; set; }
-        public bool PropagateWelcomePageChanges { get; set; }
-        public bool ShouldPrefixNameToFile { get; set; }
-        public String? WelcomePageUrl { get; set; }
+        public ContentTypeInfo[]? AllowedContentTypes { get; set; }
+        public DocumentSetContent[]? DefaultContents { get; set; }
+        public bool? PropagateWelcomePageChanges { get; set; }
+        public bool? ShouldPrefixNameToFile { get; set; }
+        public string? WelcomePageUrl { get; set; }
     }
 }

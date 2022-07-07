@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OnlineMeetingInfo
     {
-        public string ConferenceId { get; set; }
-        public string JoinUrl { get; set; }
-        public Phone[] Phones { get; set; }
-        public string QuickDial { get; set; }
-        public String[] TollFreeNumbers { get; set; }
-        public string TollNumber { get; set; }
+        public string? ConferenceId { get; set; }
+        public string? JoinUrl { get; set; }
+        public Phone[]? Phones { get; set; }
+        public string? QuickDial { get; set; }
+        public String[]? TollFreeNumbers { get; set; }
+        public string? TollNumber { get; set; }
     }
 }

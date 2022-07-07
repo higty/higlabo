@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AppListItem
     {
-        public string Name { get; set; }
-        public string Publisher { get; set; }
-        public string AppStoreUrl { get; set; }
-        public string AppId { get; set; }
+        public string? Name { get; set; }
+        public string? Publisher { get; set; }
+        public string? AppStoreUrl { get; set; }
+        public string? AppId { get; set; }
     }
 }

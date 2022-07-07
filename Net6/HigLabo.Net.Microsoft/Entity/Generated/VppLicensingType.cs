@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class VppLicensingType
     {
-        public bool SupportsUserLicensing { get; set; }
-        public bool SupportsDeviceLicensing { get; set; }
+        public bool? SupportsUserLicensing { get; set; }
+        public bool? SupportsDeviceLicensing { get; set; }
     }
 }

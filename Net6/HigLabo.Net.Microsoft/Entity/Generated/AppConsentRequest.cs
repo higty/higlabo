@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AppConsentRequest
     {
-        public string AppDisplayName { get; set; }
-        public string AppId { get; set; }
-        public string Id { get; set; }
-        public AppConsentRequestScope[] PendingScopes { get; set; }
+        public string? AppDisplayName { get; set; }
+        public string? AppId { get; set; }
+        public string? Id { get; set; }
+        public AppConsentRequestScope[]? PendingScopes { get; set; }
     }
 }

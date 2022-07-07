@@ -8,10 +8,10 @@ namespace HigLabo.Net.Microsoft
     public partial class MailFolder
     {
         public Int32? ChildFolderCount { get; set; }
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public bool IsHidden { get; set; }
-        public string ParentFolderId { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsHidden { get; set; }
+        public string? ParentFolderId { get; set; }
         public Int32? TotalItemCount { get; set; }
         public Int32? UnreadItemCount { get; set; }
     }

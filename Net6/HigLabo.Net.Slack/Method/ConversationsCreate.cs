@@ -7,7 +7,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "conversations.create";
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string Name { get; set; }
-        public bool? Is_Private { get; set; }
+        public bool Is_Private { get; set; }
         public string Team_Id { get; set; }
     }
     public partial class ConversationsCreateResponse : RestApiResponse

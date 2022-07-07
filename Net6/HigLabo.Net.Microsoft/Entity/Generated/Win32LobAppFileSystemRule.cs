@@ -7,12 +7,37 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppFileSystemRule
     {
-        public Win32LobAppFileSystemRuleWin32LobAppRuleType RuleType { get; set; }
+        public enum Win32LobAppFileSystemRuleWin32LobAppRuleType
+        {
+            Detection,
+            Requirement,
+        }
+        public enum Win32LobAppFileSystemRuleWin32LobAppFileSystemOperationType
+        {
+            NotConfigured,
+            Exists,
+            ModifiedDate,
+            CreatedDate,
+            Version,
+            SizeInMB,
+        }
+        public enum Win32LobAppFileSystemRuleWin32LobAppRuleOperator
+        {
+            NotConfigured,
+            Equal,
+            NotEqual,
+            GreaterThan,
+            GreaterThanOrEqual,
+            LessThan,
+            LessThanOrEqual,
+        }
+
+        public Win32LobAppRuleType RuleType { get; set; }
         public string Path { get; set; }
         public string FileOrFolderName { get; set; }
         public bool Check32BitOn64System { get; set; }
-        public Win32LobAppFileSystemRuleWin32LobAppFileSystemOperationType OperationType { get; set; }
-        public Win32LobAppFileSystemRuleWin32LobAppRuleOperator Operator { get; set; }
+        public Win32LobAppFileSystemOperationType OperationType { get; set; }
+        public Win32LobAppRuleOperator Operator { get; set; }
         public string ComparisonValue { get; set; }
     }
 }

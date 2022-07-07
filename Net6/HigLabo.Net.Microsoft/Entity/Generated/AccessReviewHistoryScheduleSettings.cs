@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class AccessReviewHistoryScheduleSettings
     {
         public PatternedRecurrence? Recurrence { get; set; }
-        public string ReportRange { get; set; }
+        public string? ReportRange { get; set; }
     }
 }

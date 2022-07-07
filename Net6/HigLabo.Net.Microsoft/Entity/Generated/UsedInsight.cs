@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UsedInsight
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public UsageDetails? LastUsed { get; set; }
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }

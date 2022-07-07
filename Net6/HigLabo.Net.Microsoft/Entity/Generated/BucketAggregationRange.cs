@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BucketAggregationRange
     {
-        public string From { get; set; }
-        public string To { get; set; }
+        public string? From { get; set; }
+        public string? To { get; set; }
     }
 }

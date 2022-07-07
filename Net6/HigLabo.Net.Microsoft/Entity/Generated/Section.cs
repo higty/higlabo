@@ -8,14 +8,14 @@ namespace HigLabo.Net.Microsoft
     public partial class Section
     {
         public IdentitySet? CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Id { get; set; }
-        public bool IsDefault { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public bool? IsDefault { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public SectionLinks? Links { get; set; }
-        public string DisplayName { get; set; }
-        public string PagesUrl { get; set; }
-        public string Self { get; set; }
+        public string? DisplayName { get; set; }
+        public string? PagesUrl { get; set; }
+        public string? Self { get; set; }
     }
 }

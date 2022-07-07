@@ -7,7 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WindowsUpdateScheduledInstall
     {
-        public WindowsUpdateScheduledInstallWeeklySchedule ScheduledInstallDay { get; set; }
+        public enum WindowsUpdateScheduledInstallWeeklySchedule
+        {
+            UserDefined,
+            Everyday,
+            Sunday,
+            Monday,
+            Tuesday,
+            Wednesday,
+            Thursday,
+            Friday,
+            Saturday,
+        }
+
+        public WeeklySchedule ScheduledInstallDay { get; set; }
         public TimeOnly ScheduledInstallTime { get; set; }
     }
 }

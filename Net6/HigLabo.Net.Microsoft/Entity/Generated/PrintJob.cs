@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PrintJob
     {
-        public string Id { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public PrintJobStatus? Status { get; set; }
         public PrintJobConfiguration? Configuration { get; set; }
-        public bool IsFetchable { get; set; }
-        public string RedirectedFrom { get; set; }
-        public string RedirectedTo { get; set; }
+        public Boolean? IsFetchable { get; set; }
+        public String? RedirectedFrom { get; set; }
+        public String? RedirectedTo { get; set; }
         public UserIdentity? CreatedBy { get; set; }
     }
 }

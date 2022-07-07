@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceConfigurationUserOverview
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public Int32? PendingCount { get; set; }
         public Int32? NotApplicableCount { get; set; }
         public Int32? SuccessCount { get; set; }
         public Int32? ErrorCount { get; set; }
         public Int32? FailedCount { get; set; }
-        public DateTimeOffset LastUpdateDateTime { get; set; }
+        public DateTimeOffset? LastUpdateDateTime { get; set; }
         public Int32? ConfigurationVersion { get; set; }
     }
 }

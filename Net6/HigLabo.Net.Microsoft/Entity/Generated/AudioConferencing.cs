@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AudioConferencing
     {
-        public string DialinUrl { get; set; }
-        public string ConferenceId { get; set; }
-        public String[] TollFreeNumbers { get; set; }
-        public String[] TollNumbers { get; set; }
+        public string? DialinUrl { get; set; }
+        public string? ConferenceId { get; set; }
+        public String[]? TollFreeNumbers { get; set; }
+        public String[]? TollNumbers { get; set; }
     }
 }

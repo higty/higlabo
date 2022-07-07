@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Participant
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public ParticipantInfo? Info { get; set; }
-        public bool IsInLobby { get; set; }
-        public bool IsMuted { get; set; }
-        public MediaStream[] MediaStreams { get; set; }
-        public string Metadata { get; set; }
+        public bool? IsInLobby { get; set; }
+        public bool? IsMuted { get; set; }
+        public MediaStream[]? MediaStreams { get; set; }
+        public string? Metadata { get; set; }
         public RecordingInfo? RecordingInfo { get; set; }
     }
 }

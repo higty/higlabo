@@ -8,8 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatMessagePolicyViolation
     {
         public ChatMessagePolicyViolationDlpActionType? DlpAction { get; set; }
-        public String? JustificationText { get; set; }
-        public ChatMessagePolicyTip PolicyTip { get; set; }
+        public string? JustificationText { get; set; }
+        public ChatMessagePolicyTip? PolicyTip { get; set; }
         public ChatMessagePolicyViolationUserActionType? UserAction { get; set; }
         public ChatMessagePolicyViolationVerdictDetailsType? VerdictDetails { get; set; }
     }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SignInStatus
     {
-        public string AdditionalDetails { get; set; }
+        public string? AdditionalDetails { get; set; }
         public Int32? ErrorCode { get; set; }
-        public string FailureReason { get; set; }
+        public string? FailureReason { get; set; }
     }
 }

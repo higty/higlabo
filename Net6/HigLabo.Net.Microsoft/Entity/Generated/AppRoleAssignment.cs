@@ -8,12 +8,12 @@ namespace HigLabo.Net.Microsoft
     public partial class AppRoleAssignment
     {
         public Guid? AppRoleId { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public string Id { get; set; }
-        public string PrincipalDisplayName { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? PrincipalDisplayName { get; set; }
         public Guid? PrincipalId { get; set; }
-        public string PrincipalType { get; set; }
-        public string ResourceDisplayName { get; set; }
+        public string? PrincipalType { get; set; }
+        public string? ResourceDisplayName { get; set; }
         public Guid? ResourceId { get; set; }
     }
 }

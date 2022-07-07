@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TextColumn
     {
-        public Boolean? AllowMultipleLines { get; set; }
-        public Boolean? AppendChangesToExistingText { get; set; }
+        public bool? AllowMultipleLines { get; set; }
+        public bool? AppendChangesToExistingText { get; set; }
         public Int32? LinesForEditing { get; set; }
         public Int32? MaxLength { get; set; }
-        public String? TextType { get; set; }
+        public string? TextType { get; set; }
     }
 }

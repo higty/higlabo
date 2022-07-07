@@ -7,9 +7,21 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessGrantControls
     {
-        public string Operator { get; set; }
+        public enum ConditionalAccessGrantControlsConditionalAccessGrantControl
+        {
+            Block,
+            Mfa,
+            CompliantDevice,
+            DomainJoinedDevice,
+            ApprovedApplication,
+            CompliantApplication,
+            PasswordChange,
+            UnknownFutureValue,
+        }
+
+        public string? Operator { get; set; }
         public ConditionalAccessGrantControlsConditionalAccessGrantControl BuiltInControls { get; set; }
-        public String[] CustomAuthenticationFactors { get; set; }
-        public String[] TermsOfUse { get; set; }
+        public String[]? CustomAuthenticationFactors { get; set; }
+        public String[]? TermsOfUse { get; set; }
     }
 }

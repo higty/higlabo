@@ -7,18 +7,18 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Team
     {
-        public String? DisplayName { get; set; }
-        public String? Description { get; set; }
-        public String? Classification { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
+        public string? Classification { get; set; }
         public TeamSpecialization? Specialization { get; set; }
         public TeamVisibilityType? Visibility { get; set; }
         public TeamFunSettings? FunSettings { get; set; }
         public TeamGuestSettings? GuestSettings { get; set; }
-        public String? InternalId { get; set; }
-        public bool IsArchived { get; set; }
+        public string? InternalId { get; set; }
+        public bool? IsArchived { get; set; }
         public TeamMemberSettings? MemberSettings { get; set; }
         public TeamMessagingSettings? MessagingSettings { get; set; }
-        public string WebUrl { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
+        public string? WebUrl { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class DocumentSetContent
     {
         public ContentTypeInfo? ContentType { get; set; }
-        public String? FileName { get; set; }
-        public String? FolderName { get; set; }
+        public string? FileName { get; set; }
+        public string? FolderName { get; set; }
     }
 }

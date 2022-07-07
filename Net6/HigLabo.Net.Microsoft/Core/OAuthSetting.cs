@@ -27,6 +27,13 @@ namespace HigLabo.Net.Microsoft
         public List<Scope> ScopeList { get; init; } = new();
         public string State { get; set; } = "";
 
+        public OAuthSetting(string clientId, string clientSecret, string redirectUrl, IEnumerable<Scope> scopeList)
+        {
+            this.ClientId = clientId;
+            this.ClientSecret = clientSecret;
+            this.RedirectUrl = redirectUrl;
+            this.ScopeList.AddRange(scopeList);
+        }
         public override string CreateUrl()
         {
             var d = new Dictionary<string, string>();

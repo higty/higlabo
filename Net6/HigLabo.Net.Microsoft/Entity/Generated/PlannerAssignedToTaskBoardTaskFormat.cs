@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PlannerAssignedToTaskBoardTaskFormat
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public PlannerOrderHintsByAssignee? OrderHintsByAssignee { get; set; }
-        public string UnassignedOrderHint { get; set; }
+        public string? UnassignedOrderHint { get; set; }
     }
 }

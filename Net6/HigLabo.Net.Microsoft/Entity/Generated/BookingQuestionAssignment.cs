@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class BookingQuestionAssignment
     {
-        public bool IsRequired { get; set; }
-        public string QuestionId { get; set; }
+        public bool? IsRequired { get; set; }
+        public string? QuestionId { get; set; }
     }
 }

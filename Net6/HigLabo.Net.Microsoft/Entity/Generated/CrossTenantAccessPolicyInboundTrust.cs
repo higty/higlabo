@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class CrossTenantAccessPolicyInboundTrust
     {
-        public bool IsCompliantDeviceAccepted { get; set; }
-        public bool IsHybridAzureADJoinedDeviceAccepted { get; set; }
-        public bool IsMfaAccepted { get; set; }
+        public bool? IsCompliantDeviceAccepted { get; set; }
+        public bool? IsHybridAzureADJoinedDeviceAccepted { get; set; }
+        public bool? IsMfaAccepted { get; set; }
     }
 }

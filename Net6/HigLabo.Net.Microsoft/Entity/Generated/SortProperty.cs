@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SortProperty
     {
-        public string Name { get; set; }
-        public bool IsDescending { get; set; }
+        public string? Name { get; set; }
+        public bool? IsDescending { get; set; }
     }
 }

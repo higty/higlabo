@@ -7,7 +7,7 @@ namespace HigLabo.Net.Slack
         string IRestApiParameter.ApiPath { get; } = "files.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
         public string File { get; set; }
-        public int? Count { get; set; }
+        public int Count { get; set; }
         public string Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
@@ -20,8 +20,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int? Limit { get; set; }
-        public int? Page { get; set; }
+        public int Limit { get; set; }
+        public int Page { get; set; }
     }
     public partial class FilesInfoResponse : RestApiResponse
     {

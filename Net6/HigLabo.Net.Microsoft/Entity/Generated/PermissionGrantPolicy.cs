@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PermissionGrantPolicy
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Description { get; set; }
-        public PermissionGrantConditionSet[] Includes { get; set; }
-        public PermissionGrantConditionSet[] Excludes { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
+        public PermissionGrantConditionSet[]? Includes { get; set; }
+        public PermissionGrantConditionSet[]? Excludes { get; set; }
     }
 }

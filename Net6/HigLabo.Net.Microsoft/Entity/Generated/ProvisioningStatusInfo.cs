@@ -7,6 +7,15 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ProvisioningStatusInfo
     {
+        public enum ProvisioningStatusInfoProvisioningResult
+        {
+            Success,
+            Warning,
+            Failure,
+            Skipped,
+            UnknownFutureValue,
+        }
+
         public ProvisioningStatusInfoProvisioningResult Status { get; set; }
         public ProvisioningErrorInfo? ErrorInfo { get; set; }
     }

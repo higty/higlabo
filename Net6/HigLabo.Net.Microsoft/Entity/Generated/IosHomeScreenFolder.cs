@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class IosHomeScreenFolder
     {
         public string DisplayName { get; set; }
-        public IosHomeScreenFolderPage[] Pages { get; set; }
+        public IosHomeScreenFolderPage Pages { get; set; }
     }
 }

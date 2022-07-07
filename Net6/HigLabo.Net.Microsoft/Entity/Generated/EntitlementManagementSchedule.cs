@@ -9,6 +9,6 @@ namespace HigLabo.Net.Microsoft
     {
         public ExpirationPattern? Expiration { get; set; }
         public PatternedRecurrence? Recurrence { get; set; }
-        public DateTimeOffset StartDateTime { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SoftwareUpdateStatusSummary
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
         public Int32? CompliantDeviceCount { get; set; }
         public Int32? NonCompliantDeviceCount { get; set; }
         public Int32? RemediatedDeviceCount { get; set; }

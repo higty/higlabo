@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.listConnectInvites";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public int? Count { get; set; }
+        public int Count { get; set; }
         public string Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {

@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TeamsAppInstallation
     {
-        public String? Id { get; set; }
+        public string? Id { get; set; }
     }
 }

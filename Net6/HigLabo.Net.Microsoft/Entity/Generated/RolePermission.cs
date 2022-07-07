@@ -7,6 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RolePermission
     {
-        public ResourceAction[] ResourceActions { get; set; }
+        public ResourceAction[]? ResourceActions { get; set; }
     }
 }

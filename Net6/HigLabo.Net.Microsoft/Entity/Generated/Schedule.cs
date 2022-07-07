@@ -7,15 +7,23 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Schedule
     {
-        public String? Id { get; set; }
-        public bool Enabled { get; set; }
-        public String? TimeZone { get; set; }
+        public enum ScheduleOperationStatus
+        {
+            NotStarted,
+            Running,
+            Completed,
+            Failed,
+        }
+
+        public string? Id { get; set; }
+        public bool? Enabled { get; set; }
+        public string? TimeZone { get; set; }
         public ScheduleOperationStatus ProvisionStatus { get; set; }
-        public String? ProvisionStatusCode { get; set; }
-        public bool TimeClockEnabled { get; set; }
-        public bool OpenShiftsEnabled { get; set; }
-        public bool SwapShiftsRequestsEnabled { get; set; }
-        public bool OfferShiftRequestsEnabled { get; set; }
-        public bool TimeOffRequestsEnabled { get; set; }
+        public string? ProvisionStatusCode { get; set; }
+        public bool? TimeClockEnabled { get; set; }
+        public bool? OpenShiftsEnabled { get; set; }
+        public bool? SwapShiftsRequestsEnabled { get; set; }
+        public bool? OfferShiftRequestsEnabled { get; set; }
+        public bool? TimeOffRequestsEnabled { get; set; }
     }
 }

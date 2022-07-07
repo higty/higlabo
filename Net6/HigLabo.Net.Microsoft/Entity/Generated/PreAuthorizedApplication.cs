@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PreAuthorizedApplication
     {
-        public string AppId { get; set; }
-        public String[] DelegatedPermissionIds { get; set; }
+        public string? AppId { get; set; }
+        public String[]? DelegatedPermissionIds { get; set; }
     }
 }

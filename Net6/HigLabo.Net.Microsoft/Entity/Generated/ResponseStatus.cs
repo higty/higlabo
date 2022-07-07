@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ResponseStatus
     {
-        public string Response { get; set; }
-        public DateTimeOffset Time { get; set; }
+        public string? Response { get; set; }
+        public DateTimeOffset? Time { get; set; }
     }
 }

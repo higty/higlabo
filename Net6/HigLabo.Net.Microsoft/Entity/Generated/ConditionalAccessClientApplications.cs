@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ConditionalAccessClientApplications
     {
-        public String[] ExcludeServicePrincipals { get; set; }
-        public String[] IncludeServicePrincipals { get; set; }
+        public String[]? ExcludeServicePrincipals { get; set; }
+        public String[]? IncludeServicePrincipals { get; set; }
     }
 }

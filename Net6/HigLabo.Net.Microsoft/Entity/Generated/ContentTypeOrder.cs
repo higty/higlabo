@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ContentTypeOrder
     {
-        public Boolean? Default { get; set; }
+        public bool? Default { get; set; }
         public Int32? Position { get; set; }
     }
 }

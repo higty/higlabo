@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class MeetingAttendanceReport
     {
-        public string Id { get; set; }
-        public DateTimeOffset MeetingEndDateTime { get; set; }
-        public DateTimeOffset MeetingStartDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? MeetingEndDateTime { get; set; }
+        public DateTimeOffset? MeetingStartDateTime { get; set; }
         public Int32? TotalParticipantCount { get; set; }
     }
 }

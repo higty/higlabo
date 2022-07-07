@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Certification
     {
-        public string CertificationDetailsUrl { get; set; }
-        public DateTimeOffset CertificationExpirationDateTime { get; set; }
-        public bool IsCertifiedByMicrosoft { get; set; }
-        public bool IsPublisherAttested { get; set; }
-        public DateTimeOffset LastCertificationDateTime { get; set; }
+        public string? CertificationDetailsUrl { get; set; }
+        public DateTimeOffset? CertificationExpirationDateTime { get; set; }
+        public bool? IsCertifiedByMicrosoft { get; set; }
+        public bool? IsPublisherAttested { get; set; }
+        public DateTimeOffset? LastCertificationDateTime { get; set; }
     }
 }

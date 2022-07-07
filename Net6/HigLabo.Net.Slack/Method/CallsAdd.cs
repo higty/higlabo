@@ -9,7 +9,7 @@ namespace HigLabo.Net.Slack
         public string External_Unique_Id { get; set; }
         public string Join_Url { get; set; }
         public string Created_By { get; set; }
-        public int? Date_Start { get; set; }
+        public int Date_Start { get; set; }
         public string Desktop_App_Join_Url { get; set; }
         public string External_Display_Id { get; set; }
         public string Title { get; set; }

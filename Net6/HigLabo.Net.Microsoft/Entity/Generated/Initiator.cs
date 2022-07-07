@@ -7,8 +7,16 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Initiator
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
+        public enum InitiatorInitiatorType
+        {
+            User,
+            Application,
+            System,
+            UnknownFutureValue,
+        }
+
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public InitiatorInitiatorType InitiatorType { get; set; }
     }
 }

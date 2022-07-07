@@ -7,6 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class WorkbookApplication
     {
-        public WorkbookApplicationString CalculationMode { get; set; }
+        public enum WorkbookApplicationstring
+        {
+            Automatic,
+            AutomaticExceptTables,
+            Manual,
+        }
+
+        public WorkbookApplicationstring CalculationMode { get; set; }
     }
 }

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SecurityVendorInformation
     {
-        public string Provider { get; set; }
-        public string ProviderVersion { get; set; }
-        public string SubProvider { get; set; }
-        public string Vendor { get; set; }
+        public string? Provider { get; set; }
+        public string? ProviderVersion { get; set; }
+        public string? SubProvider { get; set; }
+        public string? Vendor { get; set; }
     }
 }

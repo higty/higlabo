@@ -7,10 +7,22 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class DeviceCompliancePolicySettingStateSummary
     {
-        public string Id { get; set; }
-        public string Setting { get; set; }
-        public string SettingName { get; set; }
-        public DeviceCompliancePolicySettingStateSummaryPolicyPlatformType PlatformType { get; set; }
+        public enum DeviceCompliancePolicySettingStateSummaryPolicyPlatformType
+        {
+            Android,
+            IOS,
+            MacOS,
+            WindowsPhone81,
+            Windows81AndLater,
+            Windows10AndLater,
+            AndroidWorkProfile,
+            All,
+        }
+
+        public string? Id { get; set; }
+        public string? Setting { get; set; }
+        public string? SettingName { get; set; }
+        public PolicyPlatformType? PlatformType { get; set; }
         public Int32? UnknownDeviceCount { get; set; }
         public Int32? NotApplicableDeviceCount { get; set; }
         public Int32? CompliantDeviceCount { get; set; }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class InsightIdentity
     {
-        public string DisplayName { get; set; }
-        public string Id { get; set; }
-        public string Address { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? Address { get; set; }
     }
 }

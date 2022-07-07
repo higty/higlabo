@@ -7,12 +7,37 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Win32LobAppRegistryRule
     {
-        public Win32LobAppRegistryRuleWin32LobAppRuleType RuleType { get; set; }
+        public enum Win32LobAppRegistryRuleWin32LobAppRuleType
+        {
+            Detection,
+            Requirement,
+        }
+        public enum Win32LobAppRegistryRuleWin32LobAppRegistryRuleOperationType
+        {
+            NotConfigured,
+            Exists,
+            DoesNotExist,
+            String,
+            Integer,
+            Version,
+        }
+        public enum Win32LobAppRegistryRuleWin32LobAppRuleOperator
+        {
+            NotConfigured,
+            Equal,
+            NotEqual,
+            GreaterThan,
+            GreaterThanOrEqual,
+            LessThan,
+            LessThanOrEqual,
+        }
+
+        public Win32LobAppRuleType RuleType { get; set; }
         public bool Check32BitOn64System { get; set; }
         public string KeyPath { get; set; }
         public string ValueName { get; set; }
-        public Win32LobAppRegistryRuleWin32LobAppRegistryRuleOperationType OperationType { get; set; }
-        public Win32LobAppRegistryRuleWin32LobAppRuleOperator Operator { get; set; }
+        public Win32LobAppRegistryRuleOperationType OperationType { get; set; }
+        public Win32LobAppRuleOperator Operator { get; set; }
         public string ComparisonValue { get; set; }
     }
 }

@@ -7,19 +7,25 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AgreementAcceptance
     {
-        public string AgreementFileId { get; set; }
-        public string AgreementId { get; set; }
-        public string DeviceDisplayName { get; set; }
-        public string DeviceId { get; set; }
-        public string DeviceOSType { get; set; }
-        public string DeviceOSVersion { get; set; }
-        public DateTimeOffset ExpirationDateTime { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset RecordedDateTime { get; set; }
-        public AgreementAcceptanceString State { get; set; }
-        public string UserDisplayName { get; set; }
-        public string UserEmail { get; set; }
-        public string UserId { get; set; }
-        public string UserPrincipalName { get; set; }
+        public enum AgreementAcceptancestring
+        {
+            Accepted,
+            Declined,
+        }
+
+        public string? AgreementFileId { get; set; }
+        public string? AgreementId { get; set; }
+        public string? DeviceDisplayName { get; set; }
+        public string? DeviceId { get; set; }
+        public string? DeviceOSType { get; set; }
+        public string? DeviceOSVersion { get; set; }
+        public DateTimeOffset? ExpirationDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? RecordedDateTime { get; set; }
+        public AgreementAcceptancestring State { get; set; }
+        public string? UserDisplayName { get; set; }
+        public string? UserEmail { get; set; }
+        public string? UserId { get; set; }
+        public string? UserPrincipalName { get; set; }
     }
 }

@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class TelecomExpenseManagementPartner
     {
-        public string Id { get; set; }
-        public string DisplayName { get; set; }
-        public string Url { get; set; }
-        public bool AppAuthorized { get; set; }
-        public bool Enabled { get; set; }
-        public DateTimeOffset LastConnectionDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Url { get; set; }
+        public bool? AppAuthorized { get; set; }
+        public bool? Enabled { get; set; }
+        public DateTimeOffset? LastConnectionDateTime { get; set; }
     }
 }

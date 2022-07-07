@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class FolderView
     {
-        public String? SortBy { get; set; }
-        public String? SortOrder { get; set; }
-        public String? ViewType { get; set; }
+        public string? SortBy { get; set; }
+        public string? SortOrder { get; set; }
+        public string? ViewType { get; set; }
     }
 }

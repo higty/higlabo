@@ -7,10 +7,20 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AccessPackageAssignment
     {
-        public DateTimeOffset ExpiredDateTime { get; set; }
-        public string Id { get; set; }
+        public enum AccessPackageAssignmentAccessPackageAssignmentState
+        {
+            Delivering,
+            PartiallyDelivered,
+            Delivered,
+            Expired,
+            DeliveryFailed,
+            UnknownFutureValue,
+        }
+
+        public DateTimeOffset? ExpiredDateTime { get; set; }
+        public string? Id { get; set; }
         public EntitlementManagementSchedule? Schedule { get; set; }
         public AccessPackageAssignmentAccessPackageAssignmentState State { get; set; }
-        public string Status { get; set; }
+        public string? Status { get; set; }
     }
 }

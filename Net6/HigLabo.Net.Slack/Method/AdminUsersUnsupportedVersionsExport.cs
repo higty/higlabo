@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.unsupportedVersions.export";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public int? Date_End_Of_Support { get; set; }
-        public int? Date_Sessions_Started { get; set; }
+        public int Date_End_Of_Support { get; set; }
+        public int Date_Sessions_Started { get; set; }
     }
     public partial class AdminUsersUnsupportedVersionsExportResponse : RestApiResponse
     {

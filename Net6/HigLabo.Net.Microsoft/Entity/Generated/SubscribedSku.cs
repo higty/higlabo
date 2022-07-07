@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class SubscribedSku
     {
-        public string AppliesTo { get; set; }
-        public string CapabilityStatus { get; set; }
+        public string? AppliesTo { get; set; }
+        public string? CapabilityStatus { get; set; }
         public Int32? ConsumedUnits { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public LicenseUnitsDetail? PrepaidUnits { get; set; }
-        public ServicePlanInfo[] ServicePlans { get; set; }
+        public ServicePlanInfo[]? ServicePlans { get; set; }
         public Guid? SkuId { get; set; }
-        public string SkuPartNumber { get; set; }
+        public string? SkuPartNumber { get; set; }
     }
 }

@@ -20,9 +20,9 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool? Inclusive { get; set; }
+        public bool Inclusive { get; set; }
         public string Latest { get; set; }
-        public double? Limit { get; set; }
+        public double Limit { get; set; }
         public string Oldest { get; set; }
     }
     public partial class ConversationsRepliesResponse : RestApiResponse

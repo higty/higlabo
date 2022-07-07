@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AssignedLicense
     {
-        public Guid[] DisabledPlans { get; set; }
+        public Guid[]? DisabledPlans { get; set; }
         public Guid? SkuId { get; set; }
     }
 }

@@ -1,0 +1,84 @@
+﻿using HigLabo.Net.OAuth;
+
+namespace HigLabo.Net.Microsoft
+{
+    public partial class ConnectedorganizationListExternalsponsorsParameter : IRestApiParameter, IQueryParameterProperty
+    {
+        public enum Field
+        {
+        }
+        public enum ApiPath
+        {
+            IdentityGovernance_EntitlementManagement_ConnectedOrganizations_Id_ExternalSponsors,
+        }
+
+        public ApiPath Path { get; set; }
+        string IRestApiParameter.ApiPath
+        {
+            get
+            {
+                switch (this.Path)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_ConnectedOrganizations_Id_ExternalSponsors: return $"/identityGovernance/entitlementManagement/connectedOrganizations/{Id}/externalSponsors";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
+                }
+            }
+        }
+        string IRestApiParameter.HttpMethod { get; } = "GET";
+        public QueryParameter<Field> Query { get; set; } = new QueryParameter<Field>();
+        IQueryParameter IQueryParameterProperty.Query
+        {
+            get
+            {
+                return this.Query;
+            }
+        }
+        public string Id { get; set; }
+    }
+    public partial class ConnectedorganizationListExternalsponsorsResponse : RestApiResponse
+    {
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
+        /// </summary>
+        public partial class DirectoryObject
+        {
+            public DateTimeOffset? DeletedDateTime { get; set; }
+            public string? Id { get; set; }
+        }
+
+        public DirectoryObject[] Value { get; set; }
+    }
+    public partial class MicrosoftClient
+    {
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
+        /// </summary>
+        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync()
+        {
+            var p = new ConnectedorganizationListExternalsponsorsParameter();
+            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(p, CancellationToken.None);
+        }
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
+        /// </summary>
+        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(CancellationToken cancellationToken)
+        {
+            var p = new ConnectedorganizationListExternalsponsorsParameter();
+            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(p, cancellationToken);
+        }
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
+        /// </summary>
+        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter)
+        {
+            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(parameter, CancellationToken.None);
+        }
+        /// <summary>
+        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-list-externalsponsors?view=graph-rest-1.0
+        /// </summary>
+        public async Task<ConnectedorganizationListExternalsponsorsResponse> ConnectedorganizationListExternalsponsorsAsync(ConnectedorganizationListExternalsponsorsParameter parameter, CancellationToken cancellationToken)
+        {
+            return await this.SendAsync<ConnectedorganizationListExternalsponsorsParameter, ConnectedorganizationListExternalsponsorsResponse>(parameter, cancellationToken);
+        }
+    }
+}

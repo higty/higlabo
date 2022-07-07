@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ChatMessageAttachment
     {
-        public String? Id { get; set; }
-        public String? ContentType { get; set; }
-        public String? ContentUrl { get; set; }
-        public String? Content { get; set; }
-        public String? Name { get; set; }
-        public String? ThumbnailUrl { get; set; }
+        public string? Id { get; set; }
+        public string? ContentType { get; set; }
+        public string? ContentUrl { get; set; }
+        public string? Content { get; set; }
+        public string? Name { get; set; }
+        public string? ThumbnailUrl { get; set; }
     }
 }

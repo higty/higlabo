@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class PrintOperation
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public PrintOperationStatus? Status { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
     }
 }
