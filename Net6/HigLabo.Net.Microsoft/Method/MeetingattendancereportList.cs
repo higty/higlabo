@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MeetingattendancereportListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string MeetingId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_OnlineMeetings_MeetingId_AttendanceReports: return $"/me/onlineMeetings/{MeetingId}/attendanceReports";
+                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId_AttendanceReports: return $"/users/{UserId}/onlineMeetings/{MeetingId}/attendanceReports";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +30,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_OnlineMeetings_MeetingId_AttendanceReports,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_OnlineMeetings_MeetingId_AttendanceReports: return $"/me/onlineMeetings/{MeetingId}/attendanceReports";
-                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId_AttendanceReports: return $"/users/{UserId}/onlineMeetings/{MeetingId}/attendanceReports";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,8 +47,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string MeetingId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class MeetingattendancereportListResponse : RestApiResponse
     {
@@ -44,6 +54,7 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? MeetingEndDateTime { get; set; }
         public DateTimeOffset? MeetingStartDateTime { get; set; }
         public Int32? TotalParticipantCount { get; set; }
+        public AttendanceRecord[]? AttendanceRecords { get; set; }
     }
     public partial class MicrosoftClient
     {

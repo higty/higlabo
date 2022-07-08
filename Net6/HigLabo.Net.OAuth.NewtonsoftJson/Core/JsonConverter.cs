@@ -11,19 +11,16 @@ namespace HigLabo.Net.OAuth
 {
     public class JsonConverter : IJsonConverter
     {
-        private class LowercaseContractResolver : DefaultContractResolver
-        {
-            protected override string ResolvePropertyName(string propertyName)
-            {
-                return propertyName.ToLower();
-            }
-        }
-
+        private static string[] _EmptyPropertyNameList = new string[0];
         public Newtonsoft.Json.JsonSerializerSettings Settings { get; private set; } = new Newtonsoft.Json.JsonSerializerSettings();
 
         public JsonConverter()
+            : this(_EmptyPropertyNameList)
         {
-            this.Settings.ContractResolver = new LowercaseContractResolver();
+        }
+        public JsonConverter(IEnumerable<string> propertyNameList)
+        {
+            this.Settings.ContractResolver = new IgnorePropertyResolver(propertyNameList);
             this.Settings.NullValueHandling = NullValueHandling.Ignore;
             this.Settings.Converters.Add(new StringEnumConverter());
         }
@@ -37,3 +34,14 @@ namespace HigLabo.Net.OAuth
         }
     }
 }
+namespace HigLabo.Net.Microsoft
+{
+    public class JsonConverter : OAuth.JsonConverter
+    {
+        public JsonConverter()
+            : base(new[] { "ApiPathSetting" })
+        {
+        }
+    }
+}
+

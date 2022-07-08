@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallrecordsCallrecordGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_CallRecords_Id: return $"/communications/callRecords/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             EndDateTime,
@@ -16,22 +31,19 @@ namespace HigLabo.Net.Microsoft
             StartDateTime,
             Type,
             Version,
+            Sessions,
         }
         public enum ApiPath
         {
             Communications_CallRecords_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_CallRecords_Id: return $"/communications/callRecords/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -43,7 +55,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class CallrecordsCallrecordGetResponse : RestApiResponse
     {
@@ -75,6 +86,7 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? StartDateTime { get; set; }
         public CallrecordsCallrecordCallType Type { get; set; }
         public Int64? Version { get; set; }
+        public CallrecordsSession[]? Sessions { get; set; }
     }
     public partial class MicrosoftClient
     {

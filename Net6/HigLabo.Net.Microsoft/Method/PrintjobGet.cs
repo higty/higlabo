@@ -4,6 +4,24 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintjobGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrintersId { get; set; }
+            public string JobsId { get; set; }
+            public string SharesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_Id_Jobs_Id: return $"/print/printers/{PrintersId}/jobs/{JobsId}";
+                    case ApiPath.Print_Shares_Id_Jobs_Id: return $"/print/shares/{SharesId}/jobs/{JobsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +31,12 @@ namespace HigLabo.Net.Microsoft
             Print_Shares_Id_Jobs_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_Id_Jobs_Id: return $"/print/printers/{PrintersId}/jobs/{JobsId}";
-                    case ApiPath.Print_Shares_Id_Jobs_Id: return $"/print/shares/{SharesId}/jobs/{JobsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,9 +48,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrintersId { get; set; }
-        public string JobsId { get; set; }
-        public string SharesId { get; set; }
     }
     public partial class PrintjobGetResponse : RestApiResponse
     {
@@ -49,6 +59,8 @@ namespace HigLabo.Net.Microsoft
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
         public UserIdentity? CreatedBy { get; set; }
+        public PrintDocument[]? Documents { get; set; }
+        public PrintTask[]? Tasks { get; set; }
     }
     public partial class MicrosoftClient
     {

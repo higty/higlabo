@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PermissiongrantpolicyDeleteExcludesParameter : IRestApiParameter
+    public partial class PermissiongrantPolicyDeleteExcludesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PermissiongrantpolicyId { get; set; }
+            public string ExcludeId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_PermissionGrantPolicies_PermissiongrantpolicyId_Excludes_ExcludeId: return $"/policies/permissionGrantPolicies/{PermissiongrantpolicyId}/excludes/{ExcludeId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_PermissionGrantPolicies_PermissiongrantpolicyId_Excludes_ExcludeId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_PermissionGrantPolicies_PermissiongrantpolicyId_Excludes_ExcludeId: return $"/policies/permissionGrantPolicies/{PermissiongrantpolicyId}/excludes/{ExcludeId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string PermissiongrantpolicyId { get; set; }
-        public string ExcludeId { get; set; }
     }
-    public partial class PermissiongrantpolicyDeleteExcludesResponse : RestApiResponse
+    public partial class PermissiongrantPolicyDeleteExcludesResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantpolicyDeleteExcludesResponse> PermissiongrantpolicyDeleteExcludesAsync()
+        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync()
         {
-            var p = new PermissiongrantpolicyDeleteExcludesParameter();
-            return await this.SendAsync<PermissiongrantpolicyDeleteExcludesParameter, PermissiongrantpolicyDeleteExcludesResponse>(p, CancellationToken.None);
+            var p = new PermissiongrantPolicyDeleteExcludesParameter();
+            return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantpolicyDeleteExcludesResponse> PermissiongrantpolicyDeleteExcludesAsync(CancellationToken cancellationToken)
+        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(CancellationToken cancellationToken)
         {
-            var p = new PermissiongrantpolicyDeleteExcludesParameter();
-            return await this.SendAsync<PermissiongrantpolicyDeleteExcludesParameter, PermissiongrantpolicyDeleteExcludesResponse>(p, cancellationToken);
+            var p = new PermissiongrantPolicyDeleteExcludesParameter();
+            return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantpolicyDeleteExcludesResponse> PermissiongrantpolicyDeleteExcludesAsync(PermissiongrantpolicyDeleteExcludesParameter parameter)
+        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(PermissiongrantPolicyDeleteExcludesParameter parameter)
         {
-            return await this.SendAsync<PermissiongrantpolicyDeleteExcludesParameter, PermissiongrantpolicyDeleteExcludesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-delete-excludes?view=graph-rest-1.0
         /// </summary>
-        public async Task<PermissiongrantpolicyDeleteExcludesResponse> PermissiongrantpolicyDeleteExcludesAsync(PermissiongrantpolicyDeleteExcludesParameter parameter, CancellationToken cancellationToken)
+        public async Task<PermissiongrantPolicyDeleteExcludesResponse> PermissiongrantPolicyDeleteExcludesAsync(PermissiongrantPolicyDeleteExcludesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PermissiongrantpolicyDeleteExcludesParameter, PermissiongrantpolicyDeleteExcludesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PermissiongrantPolicyDeleteExcludesParameter, PermissiongrantPolicyDeleteExcludesResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EducationcategoryGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentCategoriesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_AssignmentCategories_Id: return $"/education/classes/{ClassesId}/assignmentCategories/{AssignmentCategoriesId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_Id_AssignmentCategories_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_AssignmentCategories_Id: return $"/education/classes/{ClassesId}/assignmentCategories/{AssignmentCategoriesId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,8 +45,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassesId { get; set; }
-        public string AssignmentCategoriesId { get; set; }
     }
     public partial class EducationcategoryGetResponse : RestApiResponse
     {

@@ -4,6 +4,28 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MessageReplyallParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string MailFoldersId { get; set; }
+            public string MessagesId { get; set; }
+            public string UsersIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_Me_Messages_Id_ReplyAll: return $"/users/me/messages/{Id}/replyAll";
+                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_ReplyAll: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/replyAll";
+                    case ApiPath.Me_MailFolders_Id_Messages_Id_ReplyAll: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/replyAll";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_ReplyAll: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}/replyAll";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Users_Me_Messages_Id_ReplyAll,
@@ -12,28 +34,16 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_ReplyAll,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_Me_Messages_Id_ReplyAll: return $"/users/me/messages/{Id}/replyAll";
-                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_ReplyAll: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/replyAll";
-                    case ApiPath.Me_MailFolders_Id_Messages_Id_ReplyAll: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/replyAll";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_ReplyAll: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}/replyAll";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Comment { get; set; }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string MailFoldersId { get; set; }
-        public string MessagesId { get; set; }
-        public string UsersIdOrUserPrincipalName { get; set; }
     }
     public partial class MessageReplyallResponse : RestApiResponse
     {

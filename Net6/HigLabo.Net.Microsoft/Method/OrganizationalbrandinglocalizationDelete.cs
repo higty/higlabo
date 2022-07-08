@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class OrganizationalbrandinglocalizationDeleteParameter : IRestApiParameter
+    public partial class OrganizationalBrandinglocalizationDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string OrganizationId { get; set; }
+            public string OrganizationalBrandingLocalizationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Organization_OrganizationId_Branding_Localizations_OrganizationalBrandingLocalizationId: return $"/organization/{OrganizationId}/branding/localizations/{OrganizationalBrandingLocalizationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Organization_OrganizationId_Branding_Localizations_OrganizationalBrandingLocalizationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Organization_OrganizationId_Branding_Localizations_OrganizationalBrandingLocalizationId: return $"/organization/{OrganizationId}/branding/localizations/{OrganizationalBrandingLocalizationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string OrganizationId { get; set; }
-        public string OrganizationalBrandingLocalizationId { get; set; }
     }
-    public partial class OrganizationalbrandinglocalizationDeleteResponse : RestApiResponse
+    public partial class OrganizationalBrandinglocalizationDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationDeleteResponse> OrganizationalbrandinglocalizationDeleteAsync()
+        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync()
         {
-            var p = new OrganizationalbrandinglocalizationDeleteParameter();
-            return await this.SendAsync<OrganizationalbrandinglocalizationDeleteParameter, OrganizationalbrandinglocalizationDeleteResponse>(p, CancellationToken.None);
+            var p = new OrganizationalBrandinglocalizationDeleteParameter();
+            return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationDeleteResponse> OrganizationalbrandinglocalizationDeleteAsync(CancellationToken cancellationToken)
+        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new OrganizationalbrandinglocalizationDeleteParameter();
-            return await this.SendAsync<OrganizationalbrandinglocalizationDeleteParameter, OrganizationalbrandinglocalizationDeleteResponse>(p, cancellationToken);
+            var p = new OrganizationalBrandinglocalizationDeleteParameter();
+            return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationDeleteResponse> OrganizationalbrandinglocalizationDeleteAsync(OrganizationalbrandinglocalizationDeleteParameter parameter)
+        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(OrganizationalBrandinglocalizationDeleteParameter parameter)
         {
-            return await this.SendAsync<OrganizationalbrandinglocalizationDeleteParameter, OrganizationalbrandinglocalizationDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationDeleteResponse> OrganizationalbrandinglocalizationDeleteAsync(OrganizationalbrandinglocalizationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<OrganizationalBrandinglocalizationDeleteResponse> OrganizationalBrandinglocalizationDeleteAsync(OrganizationalBrandinglocalizationDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OrganizationalbrandinglocalizationDeleteParameter, OrganizationalbrandinglocalizationDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OrganizationalBrandinglocalizationDeleteParameter, OrganizationalBrandinglocalizationDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

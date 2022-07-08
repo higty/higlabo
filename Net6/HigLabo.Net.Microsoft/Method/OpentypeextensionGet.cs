@@ -2,8 +2,58 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class OpentypeextensionGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OpenTypeextensionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string ExtensionId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupsId { get; set; }
+            public string EventsId { get; set; }
+            public string ExtensionsExtensionId { get; set; }
+            public string ThreadsId { get; set; }
+            public string PostsId { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string TaskId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Devices_Id_Extensions_ExtensionId: return $"/devices/{Id}/extensions/{ExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Events_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/events/{Id}/extensions/{ExtensionId}";
+                    case ApiPath.Groups_Id_Extensions_ExtensionId: return $"/groups/{Id}/extensions/{ExtensionId}";
+                    case ApiPath.Groups_Id_Events_Id_Extensions_ExtensionId: return $"/groups/{GroupsId}/events/{EventsId}/extensions/{ExtensionsExtensionId}";
+                    case ApiPath.Groups_Id_Threads_Id_Posts_Id_Extensions_ExtensionId: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}/extensions/{ExtensionsExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Messages_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/extensions/{ExtensionId}";
+                    case ApiPath.Organization_Id_Extensions_ExtensionId: return $"/organization/{Id}/extensions/{ExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Contacts_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/extensions/{ExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/extensions/{ExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TaskId}/extensions/{ExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/extensions/{ExtensionId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Events_Id: return $"/users/{IdOrUserPrincipalName}/events/{Id}";
+                    case ApiPath.Groups_Id_Events_Id: return $"/groups/{GroupsId}/events/{EventsId}";
+                    case ApiPath.Groups_Id_Threads_Id_Posts_Id: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Messages_Id: return $"/users/{IdOrUserPrincipalName}/messages/{Id}";
+                    case ApiPath.Users_IdOruserPrincipalName_Contacts_Id: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_Id: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{Id}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_Id: return $"/users/{IdOrUserPrincipalName}/todo/lists/{Id}";
+                    case ApiPath.Devices_Id: return $"/devices/{Id}";
+                    case ApiPath.Groups_Id: return $"/groups/{Id}";
+                    case ApiPath.Organization_Id: return $"/organization/{Id}";
+                    case ApiPath.Users_IdOruserPrincipalName: return $"/users/{IdOrUserPrincipalName}";
+                    case ApiPath.Users_IdOruserPrincipalName_Events: return $"/users/{IdOrUserPrincipalName}/events";
+                    case ApiPath.Groups_Id_Events: return $"/groups/{Id}/events";
+                    case ApiPath.Groups_Id_Threads_Id_Posts: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts";
+                    case ApiPath.Users_IdOruserPrincipalName_Messages: return $"/users/{IdOrUserPrincipalName}/messages";
+                    case ApiPath.Users_IdOruserPrincipalName_Contacts: return $"/users/{IdOrUserPrincipalName}/contacts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -38,42 +88,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Contacts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Devices_Id_Extensions_ExtensionId: return $"/devices/{Id}/extensions/{ExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Events_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/events/{Id}/extensions/{ExtensionId}";
-                    case ApiPath.Groups_Id_Extensions_ExtensionId: return $"/groups/{Id}/extensions/{ExtensionId}";
-                    case ApiPath.Groups_Id_Events_Id_Extensions_ExtensionId: return $"/groups/{GroupsId}/events/{EventsId}/extensions/{ExtensionsExtensionId}";
-                    case ApiPath.Groups_Id_Threads_Id_Posts_Id_Extensions_ExtensionId: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}/extensions/{ExtensionsExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Messages_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/extensions/{ExtensionId}";
-                    case ApiPath.Organization_Id_Extensions_ExtensionId: return $"/organization/{Id}/extensions/{ExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Contacts_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/extensions/{ExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/extensions/{ExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TaskId}/extensions/{ExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/extensions/{ExtensionId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Events_Id: return $"/users/{IdOrUserPrincipalName}/events/{Id}";
-                    case ApiPath.Groups_Id_Events_Id: return $"/groups/{GroupsId}/events/{EventsId}";
-                    case ApiPath.Groups_Id_Threads_Id_Posts_Id: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Messages_Id: return $"/users/{IdOrUserPrincipalName}/messages/{Id}";
-                    case ApiPath.Users_IdOruserPrincipalName_Contacts_Id: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_Id: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{Id}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_Id: return $"/users/{IdOrUserPrincipalName}/todo/lists/{Id}";
-                    case ApiPath.Devices_Id: return $"/devices/{Id}";
-                    case ApiPath.Groups_Id: return $"/groups/{Id}";
-                    case ApiPath.Organization_Id: return $"/organization/{Id}";
-                    case ApiPath.Users_IdOruserPrincipalName: return $"/users/{IdOrUserPrincipalName}";
-                    case ApiPath.Users_IdOruserPrincipalName_Events: return $"/users/{IdOrUserPrincipalName}/events";
-                    case ApiPath.Groups_Id_Events: return $"/groups/{Id}/events";
-                    case ApiPath.Groups_Id_Threads_Id_Posts: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts";
-                    case ApiPath.Users_IdOruserPrincipalName_Messages: return $"/users/{IdOrUserPrincipalName}/messages";
-                    case ApiPath.Users_IdOruserPrincipalName_Contacts: return $"/users/{IdOrUserPrincipalName}/contacts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -85,18 +105,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string ExtensionId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupsId { get; set; }
-        public string EventsId { get; set; }
-        public string ExtensionsExtensionId { get; set; }
-        public string ThreadsId { get; set; }
-        public string PostsId { get; set; }
-        public string TodoTaskListId { get; set; }
-        public string TaskId { get; set; }
     }
-    public partial class OpentypeextensionGetResponse : RestApiResponse
+    public partial class OpenTypeextensionGetResponse : RestApiResponse
     {
         public string? ExtensionName { get; set; }
         public string? Id { get; set; }
@@ -106,32 +116,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpentypeextensionGetResponse> OpentypeextensionGetAsync()
+        public async Task<OpenTypeextensionGetResponse> OpenTypeextensionGetAsync()
         {
-            var p = new OpentypeextensionGetParameter();
-            return await this.SendAsync<OpentypeextensionGetParameter, OpentypeextensionGetResponse>(p, CancellationToken.None);
+            var p = new OpenTypeextensionGetParameter();
+            return await this.SendAsync<OpenTypeextensionGetParameter, OpenTypeextensionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpentypeextensionGetResponse> OpentypeextensionGetAsync(CancellationToken cancellationToken)
+        public async Task<OpenTypeextensionGetResponse> OpenTypeextensionGetAsync(CancellationToken cancellationToken)
         {
-            var p = new OpentypeextensionGetParameter();
-            return await this.SendAsync<OpentypeextensionGetParameter, OpentypeextensionGetResponse>(p, cancellationToken);
+            var p = new OpenTypeextensionGetParameter();
+            return await this.SendAsync<OpenTypeextensionGetParameter, OpenTypeextensionGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpentypeextensionGetResponse> OpentypeextensionGetAsync(OpentypeextensionGetParameter parameter)
+        public async Task<OpenTypeextensionGetResponse> OpenTypeextensionGetAsync(OpenTypeextensionGetParameter parameter)
         {
-            return await this.SendAsync<OpentypeextensionGetParameter, OpentypeextensionGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OpenTypeextensionGetParameter, OpenTypeextensionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OpentypeextensionGetResponse> OpentypeextensionGetAsync(OpentypeextensionGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<OpenTypeextensionGetResponse> OpenTypeextensionGetAsync(OpenTypeextensionGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OpentypeextensionGetParameter, OpentypeextensionGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OpenTypeextensionGetParameter, OpenTypeextensionGetResponse>(parameter, cancellationToken);
         }
     }
 }

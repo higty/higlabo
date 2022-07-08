@@ -4,6 +4,29 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemCopyParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DriveId { get; set; }
+            public string ItemId { get; set; }
+            public string GroupId { get; set; }
+            public string SiteId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drives_DriveId_Items_ItemId_Copy: return $"/drives/{DriveId}/items/{ItemId}/copy";
+                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_Copy: return $"/groups/{GroupId}/drive/items/{ItemId}/copy";
+                    case ApiPath.Me_Drive_Items_ItemId_Copy: return $"/me/drive/items/{ItemId}/copy";
+                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_Copy: return $"/sites/{SiteId}/drive/items/{ItemId}/copy";
+                    case ApiPath.Users_UserId_Drive_Items_ItemId_Copy: return $"/users/{UserId}/drive/items/{ItemId}/copy";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Drives_DriveId_Items_ItemId_Copy,
@@ -13,30 +36,17 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_Drive_Items_ItemId_Copy,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drives_DriveId_Items_ItemId_Copy: return $"/drives/{DriveId}/items/{ItemId}/copy";
-                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_Copy: return $"/groups/{GroupId}/drive/items/{ItemId}/copy";
-                    case ApiPath.Me_Drive_Items_ItemId_Copy: return $"/me/drive/items/{ItemId}/copy";
-                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_Copy: return $"/sites/{SiteId}/drive/items/{ItemId}/copy";
-                    case ApiPath.Users_UserId_Drive_Items_ItemId_Copy: return $"/users/{UserId}/drive/items/{ItemId}/copy";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public ItemReference? ParentReference { get; set; }
         public string? Name { get; set; }
-        public string DriveId { get; set; }
-        public string ItemId { get; set; }
-        public string GroupId { get; set; }
-        public string SiteId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class DriveitemCopyResponse : RestApiResponse
     {

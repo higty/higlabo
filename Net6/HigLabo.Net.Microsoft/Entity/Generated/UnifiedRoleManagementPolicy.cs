@@ -15,5 +15,7 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public string? ScopeId { get; set; }
         public string? ScopeType { get; set; }
+        public UnifiedRoleManagementPolicyRule[]? EffectiveRules { get; set; }
+        public UnifiedRoleManagementPolicyRule[]? Rules { get; set; }
     }
 }

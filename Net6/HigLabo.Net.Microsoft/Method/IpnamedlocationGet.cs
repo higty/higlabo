@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IpnamedlocationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IpnamedLocationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_ConditionalAccess_NamedLocations_Id: return $"/identity/conditionalAccess/namedLocations/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Identity_ConditionalAccess_NamedLocations_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_ConditionalAccess_NamedLocations_Id: return $"/identity/conditionalAccess/namedLocations/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +44,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class IpnamedlocationGetResponse : RestApiResponse
+    public partial class IpnamedLocationGetResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
@@ -49,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedlocationGetResponse> IpnamedlocationGetAsync()
+        public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync()
         {
-            var p = new IpnamedlocationGetParameter();
-            return await this.SendAsync<IpnamedlocationGetParameter, IpnamedlocationGetResponse>(p, CancellationToken.None);
+            var p = new IpnamedLocationGetParameter();
+            return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedlocationGetResponse> IpnamedlocationGetAsync(CancellationToken cancellationToken)
+        public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new IpnamedlocationGetParameter();
-            return await this.SendAsync<IpnamedlocationGetParameter, IpnamedlocationGetResponse>(p, cancellationToken);
+            var p = new IpnamedLocationGetParameter();
+            return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedlocationGetResponse> IpnamedlocationGetAsync(IpnamedlocationGetParameter parameter)
+        public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync(IpnamedLocationGetParameter parameter)
         {
-            return await this.SendAsync<IpnamedlocationGetParameter, IpnamedlocationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IpnamedlocationGetResponse> IpnamedlocationGetAsync(IpnamedlocationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync(IpnamedLocationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IpnamedlocationGetParameter, IpnamedlocationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(parameter, cancellationToken);
         }
     }
 }

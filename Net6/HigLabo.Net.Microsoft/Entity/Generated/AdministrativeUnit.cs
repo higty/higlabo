@@ -11,5 +11,8 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public string? Visibility { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? Members { get; set; }
+        public ScopedRoleMembership[]? ScopedRoleMembers { get; set; }
     }
 }

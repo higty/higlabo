@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootListMonthlyprintusagebyprinterParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootListMonthlyprintusagebyprinterParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_MonthlyPrintUsageByPrinter: return $"/reports/monthlyPrintUsageByPrinter";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_MonthlyPrintUsageByPrinter,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_MonthlyPrintUsageByPrinter: return $"/reports/monthlyPrintUsageByPrinter";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,21 +44,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootListMonthlyprintusagebyprinterResponse : RestApiResponse
+    public partial class ReportRootListMonthlyprintusagebyprinterResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printusagebyprinter?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintUsageByPrinter
-        {
-            public string? Id { get; set; }
-            public string? PrinterID { get; set; }
-            public DateOnly? UsageDate { get; set; }
-            public Int64? CompletedBlackAndWhiteJobCount { get; set; }
-            public Int64? CompletedColorJobCount { get; set; }
-            public Int64? IncompleteJobCount { get; set; }
-        }
-
         public PrintUsageByPrinter[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -56,32 +53,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListMonthlyprintusagebyprinterResponse> ReportrootListMonthlyprintusagebyprinterAsync()
+        public async Task<ReportRootListMonthlyprintusagebyprinterResponse> ReportRootListMonthlyprintusagebyprinterAsync()
         {
-            var p = new ReportrootListMonthlyprintusagebyprinterParameter();
-            return await this.SendAsync<ReportrootListMonthlyprintusagebyprinterParameter, ReportrootListMonthlyprintusagebyprinterResponse>(p, CancellationToken.None);
+            var p = new ReportRootListMonthlyprintusagebyprinterParameter();
+            return await this.SendAsync<ReportRootListMonthlyprintusagebyprinterParameter, ReportRootListMonthlyprintusagebyprinterResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListMonthlyprintusagebyprinterResponse> ReportrootListMonthlyprintusagebyprinterAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootListMonthlyprintusagebyprinterResponse> ReportRootListMonthlyprintusagebyprinterAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootListMonthlyprintusagebyprinterParameter();
-            return await this.SendAsync<ReportrootListMonthlyprintusagebyprinterParameter, ReportrootListMonthlyprintusagebyprinterResponse>(p, cancellationToken);
+            var p = new ReportRootListMonthlyprintusagebyprinterParameter();
+            return await this.SendAsync<ReportRootListMonthlyprintusagebyprinterParameter, ReportRootListMonthlyprintusagebyprinterResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListMonthlyprintusagebyprinterResponse> ReportrootListMonthlyprintusagebyprinterAsync(ReportrootListMonthlyprintusagebyprinterParameter parameter)
+        public async Task<ReportRootListMonthlyprintusagebyprinterResponse> ReportRootListMonthlyprintusagebyprinterAsync(ReportRootListMonthlyprintusagebyprinterParameter parameter)
         {
-            return await this.SendAsync<ReportrootListMonthlyprintusagebyprinterParameter, ReportrootListMonthlyprintusagebyprinterResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootListMonthlyprintusagebyprinterParameter, ReportRootListMonthlyprintusagebyprinterResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-monthlyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListMonthlyprintusagebyprinterResponse> ReportrootListMonthlyprintusagebyprinterAsync(ReportrootListMonthlyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootListMonthlyprintusagebyprinterResponse> ReportRootListMonthlyprintusagebyprinterAsync(ReportRootListMonthlyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootListMonthlyprintusagebyprinterParameter, ReportrootListMonthlyprintusagebyprinterResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootListMonthlyprintusagebyprinterParameter, ReportRootListMonthlyprintusagebyprinterResponse>(parameter, cancellationToken);
         }
     }
 }

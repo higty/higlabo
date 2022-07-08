@@ -4,24 +4,49 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewsetListDefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_Definitions: return $"/identityGovernance/accessReviews/definitions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AdditionalNotificationRecipients,
+            CreatedBy,
+            CreatedDateTime,
+            DescriptionForAdmins,
+            DescriptionForReviewers,
+            DisplayName,
+            FallbackReviewers,
+            Id,
+            InstanceEnumerationScope,
+            LastModifiedDateTime,
+            Reviewers,
+            Scope,
+            Settings,
+            Status,
+            Instances,
         }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_Definitions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_Definitions: return $"/identityGovernance/accessReviews/definitions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,27 +61,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccessreviewsetListDefinitionsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewscheduledefinition?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessReviewScheduleDefinition
-        {
-            public AccessReviewNotificationRecipientItem[]? AdditionalNotificationRecipients { get; set; }
-            public UserIdentity? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? DescriptionForAdmins { get; set; }
-            public string? DescriptionForReviewers { get; set; }
-            public string? DisplayName { get; set; }
-            public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
-            public string? Id { get; set; }
-            public AccessReviewScope? InstanceEnumerationScope { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public AccessReviewReviewerScope[]? Reviewers { get; set; }
-            public AccessReviewScope? Scope { get; set; }
-            public AccessReviewScheduleSettings? Settings { get; set; }
-            public string? Status { get; set; }
-        }
-
         public AccessReviewScheduleDefinition[] Value { get; set; }
     }
     public partial class MicrosoftClient

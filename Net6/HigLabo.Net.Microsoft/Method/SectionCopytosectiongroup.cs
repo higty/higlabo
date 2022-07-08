@@ -2,8 +2,28 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class SectionCopytosectiongroupParameter : IRestApiParameter
+    public partial class SectionCopytosectionGroupParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupsId { get; set; }
+            public string SectionsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_Sections_Id_CopyToSectionGroup: return $"/me/onenote/sections/{Id}/copyToSectionGroup";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Sections_Id_CopyToSectionGroup: return $"/users/{IdOrUserPrincipalName}/onenote/sections/{Id}/copyToSectionGroup";
+                    case ApiPath.Groups_Id_Onenote_Sections_Id_CopyToSectionGroup: return $"/groups/{GroupsId}/onenote/sections/{SectionsId}/copyToSectionGroup";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Onenote_Sections_Id_CopyToSectionGroup,
@@ -11,29 +31,20 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Onenote_Sections_Id_CopyToSectionGroup,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_Sections_Id_CopyToSectionGroup: return $"/me/onenote/sections/{Id}/copyToSectionGroup";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Sections_Id_CopyToSectionGroup: return $"/users/{IdOrUserPrincipalName}/onenote/sections/{Id}/copyToSectionGroup";
-                    case ApiPath.Groups_Id_Onenote_Sections_Id_CopyToSectionGroup: return $"/groups/{GroupsId}/onenote/sections/{SectionsId}/copyToSectionGroup";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? GroupId { get; set; }
         public string? Id { get; set; }
         public string? RenameAs { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupsId { get; set; }
-        public string SectionsId { get; set; }
     }
-    public partial class SectionCopytosectiongroupResponse : RestApiResponse
+    public partial class SectionCopytosectionGroupResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -41,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectiongroupResponse> SectionCopytosectiongroupAsync()
+        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync()
         {
-            var p = new SectionCopytosectiongroupParameter();
-            return await this.SendAsync<SectionCopytosectiongroupParameter, SectionCopytosectiongroupResponse>(p, CancellationToken.None);
+            var p = new SectionCopytosectionGroupParameter();
+            return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectiongroupResponse> SectionCopytosectiongroupAsync(CancellationToken cancellationToken)
+        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(CancellationToken cancellationToken)
         {
-            var p = new SectionCopytosectiongroupParameter();
-            return await this.SendAsync<SectionCopytosectiongroupParameter, SectionCopytosectiongroupResponse>(p, cancellationToken);
+            var p = new SectionCopytosectionGroupParameter();
+            return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectiongroupResponse> SectionCopytosectiongroupAsync(SectionCopytosectiongroupParameter parameter)
+        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(SectionCopytosectionGroupParameter parameter)
         {
-            return await this.SendAsync<SectionCopytosectiongroupParameter, SectionCopytosectiongroupResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/section-copytosectiongroup?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectionCopytosectiongroupResponse> SectionCopytosectiongroupAsync(SectionCopytosectiongroupParameter parameter, CancellationToken cancellationToken)
+        public async Task<SectionCopytosectionGroupResponse> SectionCopytosectionGroupAsync(SectionCopytosectionGroupParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SectionCopytosectiongroupParameter, SectionCopytosectiongroupResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SectionCopytosectionGroupParameter, SectionCopytosectionGroupResponse>(parameter, cancellationToken);
         }
     }
 }

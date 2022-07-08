@@ -9,7 +9,7 @@ namespace HigLabo.Net.OAuth
 {
     public abstract class OAuthClient : HttpClient
     {
-        public static IJsonConverter? JsonConverter { get; set; }
+        public IJsonConverter? JsonConverter { get; init; }
 
         public event EventHandler<AccessTokenUpdatedEventArgs>? AccessTokenUpdated;
 
@@ -18,6 +18,11 @@ namespace HigLabo.Net.OAuth
         public OAuthSetting? OAuthSetting { get; set; }
         public Boolean IsThrowException { get; set; } = true;
 
+        protected OAuthClient(IJsonConverter jsonConverter)
+        {
+            this.JsonConverter = jsonConverter;
+        }
+
         protected void OnAccessTokenUpdated(AccessTokenUpdatedEventArgs e)
         {
             this.AccessTokenUpdated?.Invoke(this, e);
@@ -25,13 +30,11 @@ namespace HigLabo.Net.OAuth
 
         protected string SerializeObject(object obj)
         {
-            if (JsonConverter == null) { throw new InvalidOperationException("OAuthClient.JsonConverter must be set before call method."); }
-            return JsonConverter.SerializeObject(obj);
+            return this.JsonConverter.SerializeObject(obj);
         }
         protected T DeserializeObject<T>(String json)
         {
-            if (JsonConverter == null) { throw new InvalidOperationException("OAuthClient.JsonConverter must be set before call method."); }
-            return JsonConverter.DeserializeObject<T>(json);
+            return this.JsonConverter.DeserializeObject<T>(json);
         }
 
         protected T ParseObject<T>(HttpRequestMessage request, HttpResponseMessage response, string bodyText)

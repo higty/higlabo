@@ -12,5 +12,9 @@ namespace HigLabo.Net.Microsoft
         public string? PrincipalId { get; set; }
         public string? DirectoryScopeId { get; set; }
         public string? AppScopeId { get; set; }
+        public DirectoryObject? Principal { get; set; }
+        public UnifiedRoleDefinition? RoleDefinition { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
+        public AppScope? AppScope { get; set; }
     }
 }

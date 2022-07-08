@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinterListTasktriggersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_PrinterId_TaskTriggers: return $"/print/printers/{PrinterId}/taskTriggers";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Print_Printers_PrinterId_TaskTriggers,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_PrinterId_TaskTriggers: return $"/print/printers/{PrinterId}/taskTriggers";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,19 +44,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrinterId { get; set; }
     }
     public partial class PrinterListTasktriggersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printtasktrigger?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintTaskTrigger
-        {
-            public string? Id { get; set; }
-            public PrintEvent? Event { get; set; }
-        }
-
         public PrintTaskTrigger[] Value { get; set; }
     }
     public partial class MicrosoftClient

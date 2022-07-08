@@ -2,26 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class GroupListApproleassignmentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class GroupListApproleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_AppRoleAssignments: return $"/groups/{Id}/appRoleAssignments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppRoleId,
+            CreatedDateTime,
+            Id,
+            PrincipalDisplayName,
+            PrincipalId,
+            PrincipalType,
+            ResourceDisplayName,
+            ResourceId,
         }
         public enum ApiPath
         {
             Groups_Id_AppRoleAssignments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_AppRoleAssignments: return $"/groups/{Id}/appRoleAssignments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class GroupListApproleassignmentsResponse : RestApiResponse
+    public partial class GroupListApproleAssignmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/approleassignment?view=graph-rest-1.0
-        /// </summary>
-        public partial class AppRoleAssignment
-        {
-            public Guid? AppRoleId { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Id { get; set; }
-            public string? PrincipalDisplayName { get; set; }
-            public Guid? PrincipalId { get; set; }
-            public string? PrincipalType { get; set; }
-            public string? ResourceDisplayName { get; set; }
-            public Guid? ResourceId { get; set; }
-        }
-
         public AppRoleAssignment[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -59,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleassignmentsResponse> GroupListApproleassignmentsAsync()
+        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync()
         {
-            var p = new GroupListApproleassignmentsParameter();
-            return await this.SendAsync<GroupListApproleassignmentsParameter, GroupListApproleassignmentsResponse>(p, CancellationToken.None);
+            var p = new GroupListApproleAssignmentsParameter();
+            return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleassignmentsResponse> GroupListApproleassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new GroupListApproleassignmentsParameter();
-            return await this.SendAsync<GroupListApproleassignmentsParameter, GroupListApproleassignmentsResponse>(p, cancellationToken);
+            var p = new GroupListApproleAssignmentsParameter();
+            return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleassignmentsResponse> GroupListApproleassignmentsAsync(GroupListApproleassignmentsParameter parameter)
+        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(GroupListApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<GroupListApproleassignmentsParameter, GroupListApproleassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupListApproleassignmentsResponse> GroupListApproleassignmentsAsync(GroupListApproleassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<GroupListApproleAssignmentsResponse> GroupListApproleAssignmentsAsync(GroupListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GroupListApproleassignmentsParameter, GroupListApproleassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GroupListApproleAssignmentsParameter, GroupListApproleAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

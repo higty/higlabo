@@ -4,28 +4,46 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalAddkeyParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_AddKey: return $"/servicePrincipals/{Id}/addKey";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_Id_AddKey,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_AddKey: return $"/servicePrincipals/{Id}/addKey";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public KeyCredential? KeyCredential { get; set; }
         public PasswordCredential? PasswordCredential { get; set; }
         public string? Proof { get; set; }
-        public string Id { get; set; }
+        public string? CustomKeyIdentifier { get; set; }
+        public string? DisplayName { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
+        public string? Key { get; set; }
+        public Guid? KeyId { get; set; }
+        public DateTimeOffset? StartDateTime { get; set; }
+        public string? Type { get; set; }
+        public string? Usage { get; set; }
     }
     public partial class ServiceprincipalAddkeyResponse : RestApiResponse
     {

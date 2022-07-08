@@ -4,6 +4,29 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ProfilephotoUpdateParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+            public string ContactFolderId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Photo_value: return $"/me/photo/$value";
+                    case ApiPath.Users_IdOrUserPrincipalName_Photo_value: return $"/users/{IdOrUserPrincipalName}/photo/$value";
+                    case ApiPath.Groups_Id_Photo_value: return $"/groups/{Id}/photo/$value";
+                    case ApiPath.Me_Contacts_Id_Photo_value: return $"/me/contacts/{Id}/photo/$value";
+                    case ApiPath.Users_IdOrUserPrincipalName_Contacts_Id_Photo_value: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/photo/$value";
+                    case ApiPath.Me_Contactfolders_ContactFolderId_Contacts_Id_Photo_value: return $"/me/contactfolders/{ContactFolderId}/contacts/{Id}/photo/$value";
+                    case ApiPath.Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo_value: return $"/users/{IdOrUserPrincipalName}/contactfolders/{ContactFolderId}/contacts/{Id}/photo/$value";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Photo_value,
@@ -15,28 +38,15 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo_value,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Photo_value: return $"/me/photo/$value";
-                    case ApiPath.Users_IdOrUserPrincipalName_Photo_value: return $"/users/{IdOrUserPrincipalName}/photo/$value";
-                    case ApiPath.Groups_Id_Photo_value: return $"/groups/{Id}/photo/$value";
-                    case ApiPath.Me_Contacts_Id_Photo_value: return $"/me/contacts/{Id}/photo/$value";
-                    case ApiPath.Users_IdOrUserPrincipalName_Contacts_Id_Photo_value: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/photo/$value";
-                    case ApiPath.Me_Contactfolders_ContactFolderId_Contacts_Id_Photo_value: return $"/me/contactfolders/{ContactFolderId}/contacts/{Id}/photo/$value";
-                    case ApiPath.Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo_value: return $"/users/{IdOrUserPrincipalName}/contactfolders/{ContactFolderId}/contacts/{Id}/photo/$value";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
-        string IRestApiParameter.HttpMethod { get; } = "PUT";
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
-        public string ContactFolderId { get; set; }
+        string IRestApiParameter.HttpMethod { get; } = "PATCH";
     }
     public partial class ProfilephotoUpdateResponse : RestApiResponse
     {

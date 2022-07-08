@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceupdatemessageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ServiceUpdateMessageId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Admin_ServiceAnnouncement_Messages_ServiceUpdateMessageId: return $"/admin/serviceAnnouncement/messages/{ServiceUpdateMessageId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Admin_ServiceAnnouncement_Messages_ServiceUpdateMessageId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Admin_ServiceAnnouncement_Messages_ServiceUpdateMessageId: return $"/admin/serviceAnnouncement/messages/{ServiceUpdateMessageId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ServiceUpdateMessageId { get; set; }
     }
     public partial class ServiceupdatemessageGetResponse : RestApiResponse
     {
@@ -68,6 +78,7 @@ namespace HigLabo.Net.Microsoft
         public String[]? Tags { get; set; }
         public string? Title { get; set; }
         public ServiceUpdateMessageViewpoint? ViewPoint { get; set; }
+        public ServiceAnnouncementAttachment[]? Attachments { get; set; }
     }
     public partial class MicrosoftClient
     {

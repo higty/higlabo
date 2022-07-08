@@ -38,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         public string? MobilePhone { get; set; }
         public EducationOnPremisesInfo? OnPremisesInfo { get; set; }
         public string? PasswordPolicies { get; set; }
-        public PasswordProfile? PasswordProfile { get; set; }
+        public PasswordProfile PasswordProfile { get; set; }
         public string? PreferredLanguage { get; set; }
         public EducationUserEducationUserRole PrimaryRole { get; set; }
         public ProvisionedPlan[]? ProvisionedPlans { get; set; }
@@ -51,5 +51,11 @@ namespace HigLabo.Net.Microsoft
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationClass[]? TaughtClasses { get; set; }
+        public User? User { get; set; }
+        public EducationRubric[]? Rubrics { get; set; }
     }
 }

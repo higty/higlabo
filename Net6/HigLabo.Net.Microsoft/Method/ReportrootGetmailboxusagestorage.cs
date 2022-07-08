@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetmailboxusagestorageParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetmailboxusagestorageParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetMailboxUsageStorage: return $"/reports/getMailboxUsageStorage";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetMailboxUsageStorage,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetMailboxUsageStorage: return $"/reports/getMailboxUsageStorage";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetmailboxusagestorageResponse : RestApiResponse
+    public partial class ReportRootGetmailboxusagestorageResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getmailboxusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetmailboxusagestorageResponse> ReportrootGetmailboxusagestorageAsync()
+        public async Task<ReportRootGetmailboxusagestorageResponse> ReportRootGetmailboxusagestorageAsync()
         {
-            var p = new ReportrootGetmailboxusagestorageParameter();
-            return await this.SendAsync<ReportrootGetmailboxusagestorageParameter, ReportrootGetmailboxusagestorageResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetmailboxusagestorageParameter();
+            return await this.SendAsync<ReportRootGetmailboxusagestorageParameter, ReportRootGetmailboxusagestorageResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getmailboxusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetmailboxusagestorageResponse> ReportrootGetmailboxusagestorageAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetmailboxusagestorageResponse> ReportRootGetmailboxusagestorageAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetmailboxusagestorageParameter();
-            return await this.SendAsync<ReportrootGetmailboxusagestorageParameter, ReportrootGetmailboxusagestorageResponse>(p, cancellationToken);
+            var p = new ReportRootGetmailboxusagestorageParameter();
+            return await this.SendAsync<ReportRootGetmailboxusagestorageParameter, ReportRootGetmailboxusagestorageResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getmailboxusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetmailboxusagestorageResponse> ReportrootGetmailboxusagestorageAsync(ReportrootGetmailboxusagestorageParameter parameter)
+        public async Task<ReportRootGetmailboxusagestorageResponse> ReportRootGetmailboxusagestorageAsync(ReportRootGetmailboxusagestorageParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetmailboxusagestorageParameter, ReportrootGetmailboxusagestorageResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetmailboxusagestorageParameter, ReportRootGetmailboxusagestorageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getmailboxusagestorage?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetmailboxusagestorageResponse> ReportrootGetmailboxusagestorageAsync(ReportrootGetmailboxusagestorageParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetmailboxusagestorageResponse> ReportRootGetmailboxusagestorageAsync(ReportRootGetmailboxusagestorageParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetmailboxusagestorageParameter, ReportrootGetmailboxusagestorageResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetmailboxusagestorageParameter, ReportRootGetmailboxusagestorageResponse>(parameter, cancellationToken);
         }
     }
 }

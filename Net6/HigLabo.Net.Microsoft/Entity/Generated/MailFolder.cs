@@ -14,5 +14,10 @@ namespace HigLabo.Net.Microsoft
         public string? ParentFolderId { get; set; }
         public Int32? TotalItemCount { get; set; }
         public Int32? UnreadItemCount { get; set; }
+        public MailFolder[]? ChildFolders { get; set; }
+        public MessageRule[]? MessageRules { get; set; }
+        public Message[]? Messages { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
 }

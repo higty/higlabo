@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class DevicePostRegisteredusersParameter : IRestApiParameter
+    public partial class DevicePostRegisteredUsersParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Devices_Id_RegisteredUsers_ref: return $"/devices/{Id}/registeredUsers/$ref";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Devices_Id_RegisteredUsers_ref,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Devices_Id_RegisteredUsers_ref: return $"/devices/{Id}/registeredUsers/$ref";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
     }
-    public partial class DevicePostRegisteredusersResponse : RestApiResponse
+    public partial class DevicePostRegisteredUsersResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredusersResponse> DevicePostRegisteredusersAsync()
+        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync()
         {
-            var p = new DevicePostRegisteredusersParameter();
-            return await this.SendAsync<DevicePostRegisteredusersParameter, DevicePostRegisteredusersResponse>(p, CancellationToken.None);
+            var p = new DevicePostRegisteredUsersParameter();
+            return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredusersResponse> DevicePostRegisteredusersAsync(CancellationToken cancellationToken)
+        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(CancellationToken cancellationToken)
         {
-            var p = new DevicePostRegisteredusersParameter();
-            return await this.SendAsync<DevicePostRegisteredusersParameter, DevicePostRegisteredusersResponse>(p, cancellationToken);
+            var p = new DevicePostRegisteredUsersParameter();
+            return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredusersResponse> DevicePostRegisteredusersAsync(DevicePostRegisteredusersParameter parameter)
+        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(DevicePostRegisteredUsersParameter parameter)
         {
-            return await this.SendAsync<DevicePostRegisteredusersParameter, DevicePostRegisteredusersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DevicePostRegisteredusersResponse> DevicePostRegisteredusersAsync(DevicePostRegisteredusersParameter parameter, CancellationToken cancellationToken)
+        public async Task<DevicePostRegisteredUsersResponse> DevicePostRegisteredUsersAsync(DevicePostRegisteredUsersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DevicePostRegisteredusersParameter, DevicePostRegisteredusersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DevicePostRegisteredUsersParameter, DevicePostRegisteredUsersResponse>(parameter, cancellationToken);
         }
     }
 }

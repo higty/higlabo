@@ -4,8 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ChartListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrName { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Charts: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}/charts";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Charts: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}/charts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Height,
+            Id,
+            Left,
+            Name,
+            Top,
+            Width,
+            Axes,
+            DataLabels,
+            Format,
+            Legend,
+            Series,
+            Title,
+            Worksheet,
         }
         public enum ApiPath
         {
@@ -13,17 +44,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Charts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Charts: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}/charts";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Charts: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}/charts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,25 +61,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrName { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class ChartListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/chart?view=graph-rest-1.0
-        /// </summary>
-        public partial class Chart
-        {
-            public Double? Height { get; set; }
-            public string? Id { get; set; }
-            public Double? Left { get; set; }
-            public string? Name { get; set; }
-            public Double? Top { get; set; }
-            public Double? Width { get; set; }
-        }
-
         public Chart[] Value { get; set; }
     }
     public partial class MicrosoftClient

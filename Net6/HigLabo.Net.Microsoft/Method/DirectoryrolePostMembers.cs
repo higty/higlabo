@@ -4,27 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DirectoryrolePostMembersParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string RoleId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.DirectoryRoles_RoleId_Members_ref: return $"/directoryRoles/{RoleId}/members/$ref";
+                    case ApiPath.DirectoryRoles_RoleTemplateId: return $"/directoryRoles/roleTemplateId";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             DirectoryRoles_RoleId_Members_ref,
             DirectoryRoles_RoleTemplateId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.DirectoryRoles_RoleId_Members_ref: return $"/directoryRoles/{RoleId}/members/$ref";
-                    case ApiPath.DirectoryRoles_RoleTemplateId: return $"/directoryRoles/roleTemplateId";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string RoleId { get; set; }
     }
     public partial class DirectoryrolePostMembersResponse : RestApiResponse
     {

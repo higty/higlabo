@@ -10,7 +10,11 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? Id { get; set; }
-        public TermStoreLocalizedName[]? LocalizedNames { get; set; }
+        public TermStoreLocalizedname[]? LocalizedNames { get; set; }
         public KeyValue[]? Properties { get; set; }
+        public TermStoreTerm[]? Children { get; set; }
+        public TermStoreGroup? ParentGroup { get; set; }
+        public TermStoreRelation[]? Relations { get; set; }
+        public TermStoreTerm[]? Terms { get; set; }
     }
 }

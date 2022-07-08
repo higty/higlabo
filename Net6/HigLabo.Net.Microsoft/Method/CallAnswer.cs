@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallAnswerParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_Answer: return $"/communications/calls/{Id}/answer";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum CallAnswerParameterString
         {
             Audio,
@@ -15,16 +30,12 @@ namespace HigLabo.Net.Microsoft
             Communications_Calls_Id_Answer,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_Answer: return $"/communications/calls/{Id}/answer";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -32,7 +43,6 @@ namespace HigLabo.Net.Microsoft
         public CallAnswerParameterString AcceptedModalities { get; set; }
         public AppHostedMediaConfig? MediaConfig { get; set; }
         public int? ParticipantCapacity { get; set; }
-        public string Id { get; set; }
     }
     public partial class CallAnswerResponse : RestApiResponse
     {

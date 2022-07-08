@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class FeaturerolloutpolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class FeaturerolloutPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_FeatureRolloutPolicies_Id: return $"/policies/featureRolloutPolicies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Policies_FeatureRolloutPolicies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_FeatureRolloutPolicies_Id: return $"/policies/featureRolloutPolicies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +44,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class FeaturerolloutpolicyGetResponse : RestApiResponse
+    public partial class FeaturerolloutPolicyGetResponse : RestApiResponse
     {
         public enum FeatureRolloutPolicystring
         {
@@ -52,38 +62,39 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsAppliedToOrganization { get; set; }
         public bool? IsEnabled { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpolicyGetResponse> FeaturerolloutpolicyGetAsync()
+        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync()
         {
-            var p = new FeaturerolloutpolicyGetParameter();
-            return await this.SendAsync<FeaturerolloutpolicyGetParameter, FeaturerolloutpolicyGetResponse>(p, CancellationToken.None);
+            var p = new FeaturerolloutPolicyGetParameter();
+            return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpolicyGetResponse> FeaturerolloutpolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new FeaturerolloutpolicyGetParameter();
-            return await this.SendAsync<FeaturerolloutpolicyGetParameter, FeaturerolloutpolicyGetResponse>(p, cancellationToken);
+            var p = new FeaturerolloutPolicyGetParameter();
+            return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpolicyGetResponse> FeaturerolloutpolicyGetAsync(FeaturerolloutpolicyGetParameter parameter)
+        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(FeaturerolloutPolicyGetParameter parameter)
         {
-            return await this.SendAsync<FeaturerolloutpolicyGetParameter, FeaturerolloutpolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<FeaturerolloutpolicyGetResponse> FeaturerolloutpolicyGetAsync(FeaturerolloutpolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<FeaturerolloutPolicyGetResponse> FeaturerolloutPolicyGetAsync(FeaturerolloutPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<FeaturerolloutpolicyGetParameter, FeaturerolloutpolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<FeaturerolloutPolicyGetParameter, FeaturerolloutPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

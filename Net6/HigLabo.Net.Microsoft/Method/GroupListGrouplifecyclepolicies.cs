@@ -4,24 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupListGrouplifecyclepoliciesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_GroupLifecyclePolicies: return $"/groups/{Id}/groupLifecyclePolicies";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AlternateNotificationEmails,
+            GroupLifetimeInDays,
+            Id,
+            ManagedGroupTypes,
         }
         public enum ApiPath
         {
             Groups_Id_GroupLifecyclePolicies,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_GroupLifecyclePolicies: return $"/groups/{Id}/groupLifecyclePolicies";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,21 +48,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class GroupListGrouplifecyclepoliciesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/grouplifecyclepolicy?view=graph-rest-1.0
-        /// </summary>
-        public partial class GroupLifecyclePolicy
-        {
-            public string? AlternateNotificationEmails { get; set; }
-            public Int32? GroupLifetimeInDays { get; set; }
-            public string? Id { get; set; }
-            public string? ManagedGroupTypes { get; set; }
-        }
-
         public GroupLifecyclePolicy[] Value { get; set; }
     }
     public partial class MicrosoftClient

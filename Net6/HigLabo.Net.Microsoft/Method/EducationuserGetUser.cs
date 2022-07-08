@@ -2,10 +2,63 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationuserGetUserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationUserGetUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Me_User: return $"/education/me/user";
+                    case ApiPath.Education_Users_Id_User: return $"/education/users/{Id}/user";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AccountEnabled,
+            AssignedLicenses,
+            AssignedPlans,
+            BusinessPhones,
+            CreatedBy,
+            Department,
+            DisplayName,
+            ExternalSource,
+            ExternalSourceDetail,
+            GivenName,
+            Id,
+            Mail,
+            MailingAddress,
+            MailNickname,
+            MiddleName,
+            MobilePhone,
+            OnPremisesInfo,
+            PasswordPolicies,
+            PasswordProfile,
+            PreferredLanguage,
+            PrimaryRole,
+            ProvisionedPlans,
+            RelatedContacts,
+            ResidenceAddress,
+            ShowInAddressList,
+            Student,
+            Surname,
+            Teacher,
+            UsageLocation,
+            UserPrincipalName,
+            UserType,
+            Assignments,
+            Classes,
+            Schools,
+            TaughtClasses,
+            User,
+            Rubrics,
         }
         public enum ApiPath
         {
@@ -13,17 +66,12 @@ namespace HigLabo.Net.Microsoft
             Education_Users_Id_User,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Me_User: return $"/education/me/user";
-                    case ApiPath.Education_Users_Id_User: return $"/education/users/{Id}/user";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,9 +83,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class EducationuserGetUserResponse : RestApiResponse
+    public partial class EducationUserGetUserResponse : RestApiResponse
     {
         public enum UserAgeGroup
         {
@@ -135,38 +182,70 @@ namespace HigLabo.Net.Microsoft
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
+        public AgreementAcceptance[]? AgreementAcceptances { get; set; }
+        public Activity[]? Activities { get; set; }
+        public AppRoleAssignment[]? AppRoleAssignments { get; set; }
+        public Authentication? Authentication { get; set; }
+        public Calendar? Calendar { get; set; }
+        public CalendarGroup[]? CalendarGroups { get; set; }
+        public Event[]? CalendarView { get; set; }
+        public Calendar[]? Calendars { get; set; }
+        public ContactFolder[]? ContactFolders { get; set; }
+        public Contact[]? Contacts { get; set; }
+        public DirectoryObject[]? CreatedObjects { get; set; }
+        public DirectoryObject[]? DirectReports { get; set; }
+        public Drive? Drive { get; set; }
+        public Drive[]? Drives { get; set; }
+        public Event[]? Events { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public InferenceClassification? InferenceClassification { get; set; }
+        public OfficeGraphInsights? Insights { get; set; }
+        public LicenseDetails[]? LicenseDetails { get; set; }
+        public MailFolder[]? MailFolders { get; set; }
+        public DirectoryObject? Manager { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public Message[]? Messages { get; set; }
+        public Onenote? Onenote { get; set; }
+        public OutlookUser? Outlook { get; set; }
+        public DirectoryObject[]? OwnedDevices { get; set; }
+        public DirectoryObject[]? OwnedObjects { get; set; }
+        public Person[]? People { get; set; }
+        public ProfilePhoto? Photo { get; set; }
+        public PlannerUser? Planner { get; set; }
+        public DirectoryObject[]? RegisteredDevices { get; set; }
+        public Todo? Todo { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetUserResponse> EducationuserGetUserAsync()
+        public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync()
         {
-            var p = new EducationuserGetUserParameter();
-            return await this.SendAsync<EducationuserGetUserParameter, EducationuserGetUserResponse>(p, CancellationToken.None);
+            var p = new EducationUserGetUserParameter();
+            return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetUserResponse> EducationuserGetUserAsync(CancellationToken cancellationToken)
+        public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationuserGetUserParameter();
-            return await this.SendAsync<EducationuserGetUserParameter, EducationuserGetUserResponse>(p, cancellationToken);
+            var p = new EducationUserGetUserParameter();
+            return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetUserResponse> EducationuserGetUserAsync(EducationuserGetUserParameter parameter)
+        public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync(EducationUserGetUserParameter parameter)
         {
-            return await this.SendAsync<EducationuserGetUserParameter, EducationuserGetUserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetUserResponse> EducationuserGetUserAsync(EducationuserGetUserParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync(EducationUserGetUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationuserGetUserParameter, EducationuserGetUserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(parameter, cancellationToken);
         }
     }
 }

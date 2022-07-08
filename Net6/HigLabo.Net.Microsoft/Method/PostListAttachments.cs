@@ -4,8 +4,34 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PostListAttachmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string GroupsId { get; set; }
+            public string ThreadsId { get; set; }
+            public string PostsId { get; set; }
+            public string ConversationsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Threads_Id_Posts_Id_Attachments: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}/attachments";
+                    case ApiPath.Groups_Id_Conversations_Id_Threads_Id_Posts_Id_Attachments: return $"/groups/{GroupsId}/conversations/{ConversationsId}/threads/{ThreadsId}/posts/{PostsId}/attachments";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups_Id_Threads_Id_Posts_Id: return $"/ttps://graph.microsoft.com/v1.0/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ContentType,
+            Id,
+            IsInline,
+            LastModifiedDateTime,
+            Name,
+            Size,
         }
         public enum ApiPath
         {
@@ -14,18 +40,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Groups_Id_Threads_Id_Posts_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Threads_Id_Posts_Id_Attachments: return $"/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}/attachments";
-                    case ApiPath.Groups_Id_Conversations_Id_Threads_Id_Posts_Id_Attachments: return $"/groups/{GroupsId}/conversations/{ConversationsId}/threads/{ThreadsId}/posts/{PostsId}/attachments";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups_Id_Threads_Id_Posts_Id: return $"/ttps://graph.microsoft.com/v1.0/groups/{GroupsId}/threads/{ThreadsId}/posts/{PostsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,26 +57,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string GroupsId { get; set; }
-        public string ThreadsId { get; set; }
-        public string PostsId { get; set; }
-        public string ConversationsId { get; set; }
     }
     public partial class PostListAttachmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/attachment?view=graph-rest-1.0
-        /// </summary>
-        public partial class Attachment
-        {
-            public string? ContentType { get; set; }
-            public string? Id { get; set; }
-            public bool? IsInline { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public string? Name { get; set; }
-            public Int32? Size { get; set; }
-        }
-
         public Attachment[] Value { get; set; }
     }
     public partial class MicrosoftClient

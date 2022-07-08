@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TokenissuancepolicyDeleteParameter : IRestApiParameter
+    public partial class TokenissuancePolicyDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_TokenIssuancePolicies_Id: return $"/policies/tokenIssuancePolicies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_TokenIssuancePolicies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_TokenIssuancePolicies_Id: return $"/policies/tokenIssuancePolicies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string Id { get; set; }
     }
-    public partial class TokenissuancepolicyDeleteResponse : RestApiResponse
+    public partial class TokenissuancePolicyDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyDeleteResponse> TokenissuancepolicyDeleteAsync()
+        public async Task<TokenissuancePolicyDeleteResponse> TokenissuancePolicyDeleteAsync()
         {
-            var p = new TokenissuancepolicyDeleteParameter();
-            return await this.SendAsync<TokenissuancepolicyDeleteParameter, TokenissuancepolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new TokenissuancePolicyDeleteParameter();
+            return await this.SendAsync<TokenissuancePolicyDeleteParameter, TokenissuancePolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyDeleteResponse> TokenissuancepolicyDeleteAsync(CancellationToken cancellationToken)
+        public async Task<TokenissuancePolicyDeleteResponse> TokenissuancePolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new TokenissuancepolicyDeleteParameter();
-            return await this.SendAsync<TokenissuancepolicyDeleteParameter, TokenissuancepolicyDeleteResponse>(p, cancellationToken);
+            var p = new TokenissuancePolicyDeleteParameter();
+            return await this.SendAsync<TokenissuancePolicyDeleteParameter, TokenissuancePolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyDeleteResponse> TokenissuancepolicyDeleteAsync(TokenissuancepolicyDeleteParameter parameter)
+        public async Task<TokenissuancePolicyDeleteResponse> TokenissuancePolicyDeleteAsync(TokenissuancePolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<TokenissuancepolicyDeleteParameter, TokenissuancepolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TokenissuancePolicyDeleteParameter, TokenissuancePolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyDeleteResponse> TokenissuancepolicyDeleteAsync(TokenissuancepolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<TokenissuancePolicyDeleteResponse> TokenissuancePolicyDeleteAsync(TokenissuancePolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TokenissuancepolicyDeleteParameter, TokenissuancepolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TokenissuancePolicyDeleteParameter, TokenissuancePolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

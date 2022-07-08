@@ -2,32 +2,54 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TermstoreGroupPostParameter : IRestApiParameter
+    public partial class TermStoreGroupPostParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Ites_SiteId_TermStore_Groups: return $"/ites/{SiteId}/termStore/groups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum TermStoreGroupstring
+        {
+            Global,
+            System,
+            SiteCollection,
+        }
         public enum ApiPath
         {
             Ites_SiteId_TermStore_Groups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Ites_SiteId_TermStore_Groups: return $"/ites/{SiteId}/termStore/groups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DisplayName { get; set; }
-        public string SiteId { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? Id { get; set; }
+        public TermStoreGroupstring Scope { get; set; }
+        public string? ParentSiteId { get; set; }
+        public TermStoreSet[]? Sets { get; set; }
     }
-    public partial class TermstoreGroupPostResponse : RestApiResponse
+    public partial class TermStoreGroupPostResponse : RestApiResponse
     {
-        public enum Groupstring
+        public enum TermStoreGroupstring
         {
             Global,
             System,
@@ -38,40 +60,41 @@ namespace HigLabo.Net.Microsoft
         public string? Description { get; set; }
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
-        public Groupstring Scope { get; set; }
+        public TermStoreGroupstring Scope { get; set; }
         public string? ParentSiteId { get; set; }
+        public TermStoreSet[]? Sets { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-group-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreGroupPostResponse> TermstoreGroupPostAsync()
+        public async Task<TermStoreGroupPostResponse> TermStoreGroupPostAsync()
         {
-            var p = new TermstoreGroupPostParameter();
-            return await this.SendAsync<TermstoreGroupPostParameter, TermstoreGroupPostResponse>(p, CancellationToken.None);
+            var p = new TermStoreGroupPostParameter();
+            return await this.SendAsync<TermStoreGroupPostParameter, TermStoreGroupPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-group-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreGroupPostResponse> TermstoreGroupPostAsync(CancellationToken cancellationToken)
+        public async Task<TermStoreGroupPostResponse> TermStoreGroupPostAsync(CancellationToken cancellationToken)
         {
-            var p = new TermstoreGroupPostParameter();
-            return await this.SendAsync<TermstoreGroupPostParameter, TermstoreGroupPostResponse>(p, cancellationToken);
+            var p = new TermStoreGroupPostParameter();
+            return await this.SendAsync<TermStoreGroupPostParameter, TermStoreGroupPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-group-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreGroupPostResponse> TermstoreGroupPostAsync(TermstoreGroupPostParameter parameter)
+        public async Task<TermStoreGroupPostResponse> TermStoreGroupPostAsync(TermStoreGroupPostParameter parameter)
         {
-            return await this.SendAsync<TermstoreGroupPostParameter, TermstoreGroupPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TermStoreGroupPostParameter, TermStoreGroupPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-group-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreGroupPostResponse> TermstoreGroupPostAsync(TermstoreGroupPostParameter parameter, CancellationToken cancellationToken)
+        public async Task<TermStoreGroupPostResponse> TermStoreGroupPostAsync(TermStoreGroupPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TermstoreGroupPostParameter, TermstoreGroupPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TermStoreGroupPostParameter, TermStoreGroupPostResponse>(parameter, cancellationToken);
         }
     }
 }

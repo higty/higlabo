@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TermstoreSetDeleteParameter : IRestApiParameter
+    public partial class TermStoreSetDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string SetId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId: return $"/ites/{SiteId}/termStore/sets/{SetId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Ites_SiteId_TermStore_Sets_SetId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId: return $"/ites/{SiteId}/termStore/sets/{SetId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string SiteId { get; set; }
-        public string SetId { get; set; }
     }
-    public partial class TermstoreSetDeleteResponse : RestApiResponse
+    public partial class TermStoreSetDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreSetDeleteResponse> TermstoreSetDeleteAsync()
+        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync()
         {
-            var p = new TermstoreSetDeleteParameter();
-            return await this.SendAsync<TermstoreSetDeleteParameter, TermstoreSetDeleteResponse>(p, CancellationToken.None);
+            var p = new TermStoreSetDeleteParameter();
+            return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreSetDeleteResponse> TermstoreSetDeleteAsync(CancellationToken cancellationToken)
+        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new TermstoreSetDeleteParameter();
-            return await this.SendAsync<TermstoreSetDeleteParameter, TermstoreSetDeleteResponse>(p, cancellationToken);
+            var p = new TermStoreSetDeleteParameter();
+            return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreSetDeleteResponse> TermstoreSetDeleteAsync(TermstoreSetDeleteParameter parameter)
+        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(TermStoreSetDeleteParameter parameter)
         {
-            return await this.SendAsync<TermstoreSetDeleteParameter, TermstoreSetDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-set-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreSetDeleteResponse> TermstoreSetDeleteAsync(TermstoreSetDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<TermStoreSetDeleteResponse> TermStoreSetDeleteAsync(TermStoreSetDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TermstoreSetDeleteParameter, TermstoreSetDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TermStoreSetDeleteParameter, TermStoreSetDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

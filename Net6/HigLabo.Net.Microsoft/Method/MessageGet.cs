@@ -4,6 +4,32 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MessageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string MailFoldersId { get; set; }
+            public string MessagesId { get; set; }
+            public string UsersIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Messages_Id: return $"/me/messages/{Id}";
+                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id: return $"/users/{IdOrUserPrincipalName}/messages/{Id}";
+                    case ApiPath.Me_MailFolders_Id_Messages_Id: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}";
+                    case ApiPath.Me_Messages_Id_value: return $"/me/messages/{Id}/$value";
+                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_value: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/$value";
+                    case ApiPath.Me_MailFolders_Id_Messages_Id_value: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/$value";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_value: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}/$value";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             BccRecipients,
@@ -37,6 +63,10 @@ namespace HigLabo.Net.Microsoft
             ToRecipients,
             UniqueBody,
             WebLink,
+            Attachments,
+            Extensions,
+            MultiValueExtendedProperties,
+            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -50,23 +80,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_value,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Messages_Id: return $"/me/messages/{Id}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id: return $"/users/{IdOrUserPrincipalName}/messages/{Id}";
-                    case ApiPath.Me_MailFolders_Id_Messages_Id: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}";
-                    case ApiPath.Me_Messages_Id_value: return $"/me/messages/{Id}/$value";
-                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_value: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/$value";
-                    case ApiPath.Me_MailFolders_Id_Messages_Id_value: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/$value";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_value: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}/$value";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -78,11 +97,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string MailFoldersId { get; set; }
-        public string MessagesId { get; set; }
-        public string UsersIdOrUserPrincipalName { get; set; }
     }
     public partial class MessageGetResponse : RestApiResponse
     {
@@ -129,6 +143,10 @@ namespace HigLabo.Net.Microsoft
         public Recipient[]? ToRecipients { get; set; }
         public ItemBody? UniqueBody { get; set; }
         public string? WebLink { get; set; }
+        public Attachment[]? Attachments { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserReminderviewParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_IdOrUserPrincipalName_ReminderView: return $"/users/{IdOrUserPrincipalName}/reminderView";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_ReminderView,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_IdOrUserPrincipalName_ReminderView: return $"/users/{IdOrUserPrincipalName}/reminderView";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +44,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserReminderviewResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/reminder?view=graph-rest-1.0
-        /// </summary>
-        public partial class Reminder
-        {
-            public string? ChangeKey { get; set; }
-            public DateTimeTimeZone? EventEndTime { get; set; }
-            public string? EventId { get; set; }
-            public Location? EventLocation { get; set; }
-            public DateTimeTimeZone? EventStartTime { get; set; }
-            public string? EventSubject { get; set; }
-            public string? EventWebLink { get; set; }
-            public DateTimeTimeZone? ReminderFireTime { get; set; }
-        }
-
         public Reminder[] Value { get; set; }
     }
     public partial class MicrosoftClient

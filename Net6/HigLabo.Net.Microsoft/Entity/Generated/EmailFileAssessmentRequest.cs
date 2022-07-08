@@ -52,16 +52,17 @@ namespace HigLabo.Net.Microsoft
             Completed,
         }
 
-        public string ContentData { get; set; }
-        public Enum DestinationRoutingReason { get; set; }
-        public string RecipientEmail { get; set; }
-        public Enum Category { get; set; }
-        public Enum ContentType { get; set; }
-        public IdentitySet CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public Enum ExpectedAssessment { get; set; }
-        public string Id { get; set; }
-        public Enum RequestSource { get; set; }
-        public Enum Status { get; set; }
+        public string? ContentData { get; set; }
+        public EmailFileAssessmentRequestMailDestinationRoutingReason DestinationRoutingReason { get; set; }
+        public string? RecipientEmail { get; set; }
+        public EmailFileAssessmentRequestThreatCategory Category { get; set; }
+        public EmailFileAssessmentRequestThreatAssessmentContentType ContentType { get; set; }
+        public IdentitySet? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public EmailFileAssessmentRequestThreatExpectedAssessment ExpectedAssessment { get; set; }
+        public string? Id { get; set; }
+        public EmailFileAssessmentRequestThreatAssessmentRequestSource RequestSource { get; set; }
+        public EmailFileAssessmentRequestThreatAssessmentStatus Status { get; set; }
+        public ThreatAssessmentResult[]? Results { get; set; }
     }
 }

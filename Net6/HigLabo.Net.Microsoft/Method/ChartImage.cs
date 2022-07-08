@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ChartImageParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrName { get; set; }
+            public string Name { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Charts_Name_Image: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}/charts/{Name}/image";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Charts_Name_Image: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}/charts/{Name}/image";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +32,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Charts_Name_Image,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Charts_Name_Image: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}/charts/{Name}/image";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Charts_Name_Image: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}/charts/{Name}/image";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,10 +49,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrName { get; set; }
-        public string Name { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class ChartImageResponse : RestApiResponse
     {

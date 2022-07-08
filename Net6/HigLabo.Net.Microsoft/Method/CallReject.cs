@@ -4,27 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallRejectParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_Reject: return $"/communications/calls/{Id}/reject";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_Calls_Id_Reject,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_Reject: return $"/communications/calls/{Id}/reject";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Reason { get; set; }
         public string? CallbackUri { get; set; }
-        public string Id { get; set; }
     }
     public partial class CallRejectResponse : RestApiResponse
     {

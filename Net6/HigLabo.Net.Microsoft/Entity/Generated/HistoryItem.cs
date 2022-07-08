@@ -8,13 +8,14 @@ namespace HigLabo.Net.Microsoft
     public partial class HistoryItem
     {
         public Status? Status { get; set; }
-        public string UserTimezone { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public string Id { get; set; }
-        public DateTimeOffset StartedDateTime { get; set; }
-        public DateTimeOffset LastActiveDateTime { get; set; }
-        public DateTimeOffset ExpirationDateTime { get; set; }
-        public int ActiveDurationSeconds { get; set; }
+        public string? UserTimezone { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? StartedDateTime { get; set; }
+        public DateTimeOffset? LastActiveDateTime { get; set; }
+        public DateTimeOffset? ExpirationDateTime { get; set; }
+        public int? ActiveDurationSeconds { get; set; }
+        public Activity? Activity { get; set; }
     }
 }

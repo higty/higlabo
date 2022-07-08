@@ -10,5 +10,6 @@ namespace HigLabo.Net.Microsoft
         public string? Content { get; set; }
         public string? ContentType { get; set; }
         public string? Id { get; set; }
+        public WorkbookCommentReply[]? Replies { get; set; }
     }
 }

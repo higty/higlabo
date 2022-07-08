@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserteamworkGetInstalledappsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserIdOrUserPrincipalName { get; set; }
+            public string AppInstallationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps_AppInstallationId: return $"/users/{UserIdOrUserPrincipalName}/teamwork/installedApps/{AppInstallationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps_AppInstallationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps_AppInstallationId: return $"/users/{UserIdOrUserPrincipalName}/teamwork/installedApps/{AppInstallationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,12 +45,12 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UserIdOrUserPrincipalName { get; set; }
-        public string AppInstallationId { get; set; }
     }
     public partial class UserteamworkGetInstalledappsResponse : RestApiResponse
     {
         public string? Id { get; set; }
+        public TeamsApp? TeamsApp { get; set; }
+        public TeamsAppDefinition? TeamsAppDefinition { get; set; }
     }
     public partial class MicrosoftClient
     {

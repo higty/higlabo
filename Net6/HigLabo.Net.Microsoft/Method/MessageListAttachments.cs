@@ -4,8 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MessageListAttachmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string MailFoldersId { get; set; }
+            public string MessagesId { get; set; }
+            public string UsersIdOrUserPrincipalName { get; set; }
+            public string ChildFoldersId { get; set; }
+            public string AttachmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Messages_Id_Attachments: return $"/me/messages/{Id}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/attachments";
+                    case ApiPath.Me_MailFolders_Id_Messages_Id_Attachments: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}/attachments";
+                    case ApiPath.Me_MailFolders_Id_ChildFolders_Id__Messages_Id_Attachments_Id: return $"/me/mailFolders/{MailFoldersId}/childFolders/{ChildFoldersId}/.../messages/{MessagesId}/attachments/{AttachmentsId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_ChildFolders_Id_Messages_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/childFolders/{ChildFoldersId}/messages/{MessagesId}/attachments/{AttachmentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ContentType,
+            Id,
+            IsInline,
+            LastModifiedDateTime,
+            Name,
+            Size,
         }
         public enum ApiPath
         {
@@ -17,21 +49,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_MailFolders_Id_ChildFolders_Id_Messages_Id_Attachments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Messages_Id_Attachments: return $"/me/messages/{Id}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/attachments";
-                    case ApiPath.Me_MailFolders_Id_Messages_Id_Attachments: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_Messages_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/messages/{MessagesId}/attachments";
-                    case ApiPath.Me_MailFolders_Id_ChildFolders_Id__Messages_Id_Attachments_Id: return $"/me/mailFolders/{MailFoldersId}/childFolders/{ChildFoldersId}/.../messages/{MessagesId}/attachments/{AttachmentsId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Id_ChildFolders_Id_Messages_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/mailFolders/{MailFoldersId}/childFolders/{ChildFoldersId}/messages/{MessagesId}/attachments/{AttachmentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -43,29 +66,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string MailFoldersId { get; set; }
-        public string MessagesId { get; set; }
-        public string UsersIdOrUserPrincipalName { get; set; }
-        public string ChildFoldersId { get; set; }
-        public string AttachmentsId { get; set; }
     }
     public partial class MessageListAttachmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/attachment?view=graph-rest-1.0
-        /// </summary>
-        public partial class Attachment
-        {
-            public string? ContentType { get; set; }
-            public string? Id { get; set; }
-            public bool? IsInline { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public string? Name { get; set; }
-            public Int32? Size { get; set; }
-        }
-
         public Attachment[] Value { get; set; }
     }
     public partial class MicrosoftClient

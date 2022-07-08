@@ -4,8 +4,88 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups: return $"/groups";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AllowExternalSenders,
+            AssignedLabels,
+            AssignedLicenses,
+            AutoSubscribeNewMembers,
+            Classification,
+            CreatedDateTime,
+            DeletedDateTime,
+            Description,
+            DisplayName,
+            ExpirationDateTime,
+            GroupTypes,
+            HasMembersWithLicenseErrors,
+            HideFromAddressLists,
+            HideFromOutlookClients,
+            Id,
+            IsArchived,
+            IsAssignableToRole,
+            IsSubscribedByMail,
+            LicenseProcessingState,
+            Mail,
+            MailEnabled,
+            MailNickname,
+            MembershipRule,
+            MembershipRuleProcessingState,
+            OnPremisesLastSyncDateTime,
+            OnPremisesProvisioningErrors,
+            OnPremisesSamAccountName,
+            OnPremisesSecurityIdentifier,
+            OnPremisesSyncEnabled,
+            PreferredDataLocation,
+            PreferredLanguage,
+            ProxyAddresses,
+            RenewedDateTime,
+            ResourceBehaviorOptions,
+            ResourceProvisioningOptions,
+            SecurityEnabled,
+            SecurityIdentifier,
+            Theme,
+            UnseenCount,
+            Visibility,
+            AcceptedSenders,
+            AppRoleAssignments,
+            Calendar,
+            CalendarView,
+            Conversations,
+            CreatedOnBehalfOf,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            GroupLifecyclePolicies,
+            MemberOf,
+            Members,
+            MembersWithLicenseErrors,
+            Onenote,
+            Owners,
+            PermissionGrants,
+            Photo,
+            Photos,
+            Planner,
+            RejectedSenders,
+            Settings,
+            Sites,
+            Team,
+            Threads,
         }
         public enum ApiPath
         {
@@ -13,17 +93,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Groups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups: return $"/groups";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -38,71 +113,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class GroupListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0
-        /// </summary>
-        public partial class Group
-        {
-            public enum GroupString
-            {
-                AllowOnlyMembersToPost,
-                HideGroupInOutlook,
-                SubscribeNewGroupMembers,
-                WelcomeEmailDisabled,
-            }
-            public enum Groupstring
-            {
-                Teal,
-                Purple,
-                Green,
-                Blue,
-                Pink,
-                Orange,
-                Red,
-            }
-
-            public bool? AllowExternalSenders { get; set; }
-            public AssignedLabel[]? AssignedLabels { get; set; }
-            public AssignedLicense[]? AssignedLicenses { get; set; }
-            public bool? AutoSubscribeNewMembers { get; set; }
-            public string? Classification { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public DateTimeOffset? ExpirationDateTime { get; set; }
-            public String[]? GroupTypes { get; set; }
-            public bool? HasMembersWithLicenseErrors { get; set; }
-            public bool? HideFromAddressLists { get; set; }
-            public bool? HideFromOutlookClients { get; set; }
-            public string? Id { get; set; }
-            public bool? IsArchived { get; set; }
-            public bool? IsAssignableToRole { get; set; }
-            public bool? IsSubscribedByMail { get; set; }
-            public string? LicenseProcessingState { get; set; }
-            public string? Mail { get; set; }
-            public bool? MailEnabled { get; set; }
-            public string? MailNickname { get; set; }
-            public string? MembershipRule { get; set; }
-            public string? MembershipRuleProcessingState { get; set; }
-            public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
-            public OnPremisesProvisioningError[]? OnPremisesProvisioningErrors { get; set; }
-            public string? OnPremisesSamAccountName { get; set; }
-            public string? OnPremisesSecurityIdentifier { get; set; }
-            public bool? OnPremisesSyncEnabled { get; set; }
-            public string? PreferredDataLocation { get; set; }
-            public string? PreferredLanguage { get; set; }
-            public String[]? ProxyAddresses { get; set; }
-            public DateTimeOffset? RenewedDateTime { get; set; }
-            public GroupString ResourceBehaviorOptions { get; set; }
-            public String[]? ResourceProvisioningOptions { get; set; }
-            public bool? SecurityEnabled { get; set; }
-            public string? SecurityIdentifier { get; set; }
-            public Groupstring Theme { get; set; }
-            public Int32? UnseenCount { get; set; }
-            public string? Visibility { get; set; }
-        }
-
         public Group[] Value { get; set; }
     }
     public partial class MicrosoftClient

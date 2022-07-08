@@ -4,24 +4,46 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ListListOperationsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_Lists_ListId_Operations: return $"/sites/{SiteId}/lists/{ListId}/operations";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedDateTime,
+            Error,
+            Id,
+            LastActionDateTime,
+            PercentageComplete,
+            ResourceId,
+            ResourceLocation,
+            Status,
+            StatusDetail,
+            Type,
         }
         public enum ApiPath
         {
             Sites_SiteId_Lists_ListId_Operations,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_Lists_ListId_Operations: return $"/sites/{SiteId}/lists/{ListId}/operations";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,37 +55,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ListId { get; set; }
     }
     public partial class ListListOperationsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/richlongrunningoperation?view=graph-rest-1.0
-        /// </summary>
-        public partial class RichLongRunningOperation
-        {
-            public enum RichLongRunningOperationLongRunningOperationStatus
-            {
-                NotStarted,
-                Running,
-                Succeeded,
-                Failed,
-                UnknownFutureValue,
-            }
-
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public PublicError? Error { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? LastActionDateTime { get; set; }
-            public Int32? PercentageComplete { get; set; }
-            public string? ResourceId { get; set; }
-            public string? ResourceLocation { get; set; }
-            public RichLongRunningOperationLongRunningOperationStatus Status { get; set; }
-            public string? StatusDetail { get; set; }
-            public string? Type { get; set; }
-        }
-
         public RichLongRunningOperation[] Value { get; set; }
     }
     public partial class MicrosoftClient

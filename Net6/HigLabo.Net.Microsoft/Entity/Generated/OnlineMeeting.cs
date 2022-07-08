@@ -29,5 +29,6 @@ namespace HigLabo.Net.Microsoft
         public DateTime? StartDateTime { get; set; }
         public string? Subject { get; set; }
         public string? VideoTeleconferenceId { get; set; }
+        public MeetingAttendanceReport[]? AttendanceReports { get; set; }
     }
 }

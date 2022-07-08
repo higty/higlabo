@@ -23,5 +23,9 @@ namespace HigLabo.Net.Microsoft
         public string? TenantId { get; set; }
         public string? Topic { get; set; }
         public string? WebUrl { get; set; }
+        public TeamsAppInstallation[]? InstalledApps { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public ChatMessage[]? Messages { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
     }
 }

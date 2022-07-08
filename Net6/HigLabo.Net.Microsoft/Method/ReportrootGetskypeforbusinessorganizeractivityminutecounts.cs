@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetSkypeForBusinessOrganizerActivityMinuteCounts: return $"/reports/getSkypeForBusinessOrganizerActivityMinuteCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetSkypeForBusinessOrganizerActivityMinuteCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetSkypeForBusinessOrganizerActivityMinuteCounts: return $"/reports/getSkypeForBusinessOrganizerActivityMinuteCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse : RestApiResponse
+    public partial class ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessorganizeractivityminutecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportrootGetskypeforbusinessorganizeractivityminutecountsAsync()
+        public async Task<ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportRootGetskypeforbusinessorganizeractivityminutecountsAsync()
         {
-            var p = new ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter();
-            return await this.SendAsync<ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter();
+            return await this.SendAsync<ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessorganizeractivityminutecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportrootGetskypeforbusinessorganizeractivityminutecountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportRootGetskypeforbusinessorganizeractivityminutecountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter();
-            return await this.SendAsync<ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter();
+            return await this.SendAsync<ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessorganizeractivityminutecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportrootGetskypeforbusinessorganizeractivityminutecountsAsync(ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter parameter)
+        public async Task<ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportRootGetskypeforbusinessorganizeractivityminutecountsAsync(ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessorganizeractivityminutecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportrootGetskypeforbusinessorganizeractivityminutecountsAsync(ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse> ReportRootGetskypeforbusinessorganizeractivityminutecountsAsync(ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportrootGetskypeforbusinessorganizeractivityminutecountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetskypeforbusinessorganizeractivityminutecountsParameter, ReportRootGetskypeforbusinessorganizeractivityminutecountsResponse>(parameter, cancellationToken);
         }
     }
 }

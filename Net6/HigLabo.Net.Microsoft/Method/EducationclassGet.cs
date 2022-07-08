@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EducationclassGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id: return $"/education/classes/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id: return $"/education/classes/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class EducationclassGetResponse : RestApiResponse
     {
@@ -55,6 +65,14 @@ namespace HigLabo.Net.Microsoft
         public string? ExternalSourceDetail { get; set; }
         public string? Grade { get; set; }
         public EducationTerm? Term { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public Group? Group { get; set; }
+        public EducationUser[]? Members { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationUser[]? Teachers { get; set; }
+        public EducationCategory[]? AssignmentCategories { get; set; }
+        public EducationAssignmentDefaults[]? AssignmentDefaults { get; set; }
+        public EducationAssignmentSettings[]? AssignmentSettings { get; set; }
     }
     public partial class MicrosoftClient
     {

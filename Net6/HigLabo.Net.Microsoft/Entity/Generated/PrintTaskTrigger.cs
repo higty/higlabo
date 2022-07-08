@@ -9,5 +9,6 @@ namespace HigLabo.Net.Microsoft
     {
         public string? Id { get; set; }
         public PrintEvent? Event { get; set; }
+        public PrintTaskDefinition? Definition { get; set; }
     }
 }

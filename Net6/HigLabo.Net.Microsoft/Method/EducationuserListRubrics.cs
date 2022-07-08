@@ -2,26 +2,46 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationuserListRubricsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationUserListRubricsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Me_Rubrics: return $"/education/me/rubrics";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            CreatedBy,
+            CreatedDateTime,
+            Description,
+            DisplayName,
+            Grading,
+            LastModifiedBy,
+            LastModifiedDateTime,
+            Levels,
+            Qualities,
         }
         public enum ApiPath
         {
             Education_Me_Rubrics,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Me_Rubrics: return $"/education/me/rubrics";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,25 +54,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationuserListRubricsResponse : RestApiResponse
+    public partial class EducationUserListRubricsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationrubric?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationRubric
-        {
-            public string? Id { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public ItemBody? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public EducationAssignmentGradeType? Grading { get; set; }
-            public IdentitySet? LastModifiedBy { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public RubricLevel[]? Levels { get; set; }
-            public RubricQuality[]? Qualities { get; set; }
-        }
-
         public EducationRubric[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -60,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListRubricsResponse> EducationuserListRubricsAsync()
+        public async Task<EducationUserListRubricsResponse> EducationUserListRubricsAsync()
         {
-            var p = new EducationuserListRubricsParameter();
-            return await this.SendAsync<EducationuserListRubricsParameter, EducationuserListRubricsResponse>(p, CancellationToken.None);
+            var p = new EducationUserListRubricsParameter();
+            return await this.SendAsync<EducationUserListRubricsParameter, EducationUserListRubricsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListRubricsResponse> EducationuserListRubricsAsync(CancellationToken cancellationToken)
+        public async Task<EducationUserListRubricsResponse> EducationUserListRubricsAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationuserListRubricsParameter();
-            return await this.SendAsync<EducationuserListRubricsParameter, EducationuserListRubricsResponse>(p, cancellationToken);
+            var p = new EducationUserListRubricsParameter();
+            return await this.SendAsync<EducationUserListRubricsParameter, EducationUserListRubricsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListRubricsResponse> EducationuserListRubricsAsync(EducationuserListRubricsParameter parameter)
+        public async Task<EducationUserListRubricsResponse> EducationUserListRubricsAsync(EducationUserListRubricsParameter parameter)
         {
-            return await this.SendAsync<EducationuserListRubricsParameter, EducationuserListRubricsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationUserListRubricsParameter, EducationUserListRubricsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-rubrics?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListRubricsResponse> EducationuserListRubricsAsync(EducationuserListRubricsParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationUserListRubricsResponse> EducationUserListRubricsAsync(EducationUserListRubricsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationuserListRubricsParameter, EducationuserListRubricsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationUserListRubricsParameter, EducationUserListRubricsResponse>(parameter, cancellationToken);
         }
     }
 }

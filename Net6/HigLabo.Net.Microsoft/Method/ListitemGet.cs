@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ListitemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ListId { get; set; }
+            public string ItemId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId_Items_ItemId: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListId}/items/{ItemId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +29,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId_Items_ItemId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId_Items_ItemId: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListId}/items/{ItemId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,13 +46,15 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ListId { get; set; }
-        public string ItemId { get; set; }
     }
     public partial class ListitemGetResponse : RestApiResponse
     {
         public ContentTypeInfo? ContentType { get; set; }
+        public ItemActivity[]? Activities { get; set; }
+        public ItemAnalytics? Analytics { get; set; }
+        public DriveItem? DriveItem { get; set; }
+        public FieldValueSet? Fields { get; set; }
+        public ListItemVersion[]? Versions { get; set; }
     }
     public partial class MicrosoftClient
     {

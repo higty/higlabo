@@ -4,8 +4,41 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EventListAttachmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string CalendarsId { get; set; }
+            public string EventsId { get; set; }
+            public string UsersIdOrUserPrincipalName { get; set; }
+            public string CalendargroupsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Events_Id_Attachments: return $"/me/events/{Id}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_Events_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/events/{Id}/attachments";
+                    case ApiPath.Me_Calendar_Events_Id_Attachments: return $"/me/calendar/events/{Id}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/calendar/events/{Id}/attachments";
+                    case ApiPath.Me_Calendars_Id_Events_Id_Attachments: return $"/me/calendars/{CalendarsId}/events/{EventsId}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/attachments";
+                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ContentType,
+            Id,
+            IsInline,
+            LastModifiedDateTime,
+            Name,
+            Size,
         }
         public enum ApiPath
         {
@@ -19,23 +52,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Events_Id_Attachments: return $"/me/events/{Id}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Events_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/events/{Id}/attachments";
-                    case ApiPath.Me_Calendar_Events_Id_Attachments: return $"/me/calendar/events/{Id}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/calendar/events/{Id}/attachments";
-                    case ApiPath.Me_Calendars_Id_Events_Id_Attachments: return $"/me/calendars/{CalendarsId}/events/{EventsId}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/attachments";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -47,28 +69,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string CalendarsId { get; set; }
-        public string EventsId { get; set; }
-        public string UsersIdOrUserPrincipalName { get; set; }
-        public string CalendargroupsId { get; set; }
     }
     public partial class EventListAttachmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/attachment?view=graph-rest-1.0
-        /// </summary>
-        public partial class Attachment
-        {
-            public string? ContentType { get; set; }
-            public string? Id { get; set; }
-            public bool? IsInline { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public string? Name { get; set; }
-            public Int32? Size { get; set; }
-        }
-
         public Attachment[] Value { get; set; }
     }
     public partial class MicrosoftClient

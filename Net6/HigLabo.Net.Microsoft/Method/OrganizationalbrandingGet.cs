@@ -2,26 +2,49 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class OrganizationalbrandingGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OrganizationalBrandingGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string OrganizationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Organization_OrganizationId_Branding: return $"/organization/{OrganizationId}/branding";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            BackgroundColor,
+            BackgroundImage,
+            BackgroundImageRelativeUrl,
+            BannerLogo,
+            BannerLogoRelativeUrl,
+            CdnList,
+            Id,
+            SignInPageText,
+            SquareLogo,
+            SquareLogoRelativeUrl,
+            UsernameHintText,
+            Localizations,
         }
         public enum ApiPath
         {
             Organization_OrganizationId_Branding,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Organization_OrganizationId_Branding: return $"/organization/{OrganizationId}/branding";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +56,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string OrganizationId { get; set; }
     }
-    public partial class OrganizationalbrandingGetResponse : RestApiResponse
+    public partial class OrganizationalBrandingGetResponse : RestApiResponse
     {
         public string? BackgroundColor { get; set; }
         public Stream? BackgroundImage { get; set; }
@@ -48,38 +70,39 @@ namespace HigLabo.Net.Microsoft
         public Stream? SquareLogo { get; set; }
         public string? SquareLogoRelativeUrl { get; set; }
         public string? UsernameHintText { get; set; }
+        public OrganizationalBrandingLocalization[]? Localizations { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandingGetResponse> OrganizationalbrandingGetAsync()
+        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync()
         {
-            var p = new OrganizationalbrandingGetParameter();
-            return await this.SendAsync<OrganizationalbrandingGetParameter, OrganizationalbrandingGetResponse>(p, CancellationToken.None);
+            var p = new OrganizationalBrandingGetParameter();
+            return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandingGetResponse> OrganizationalbrandingGetAsync(CancellationToken cancellationToken)
+        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(CancellationToken cancellationToken)
         {
-            var p = new OrganizationalbrandingGetParameter();
-            return await this.SendAsync<OrganizationalbrandingGetParameter, OrganizationalbrandingGetResponse>(p, cancellationToken);
+            var p = new OrganizationalBrandingGetParameter();
+            return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandingGetResponse> OrganizationalbrandingGetAsync(OrganizationalbrandingGetParameter parameter)
+        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(OrganizationalBrandingGetParameter parameter)
         {
-            return await this.SendAsync<OrganizationalbrandingGetParameter, OrganizationalbrandingGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandingGetResponse> OrganizationalbrandingGetAsync(OrganizationalbrandingGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<OrganizationalBrandingGetResponse> OrganizationalBrandingGetAsync(OrganizationalBrandingGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OrganizationalbrandingGetParameter, OrganizationalbrandingGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OrganizationalBrandingGetParameter, OrganizationalBrandingGetResponse>(parameter, cancellationToken);
         }
     }
 }

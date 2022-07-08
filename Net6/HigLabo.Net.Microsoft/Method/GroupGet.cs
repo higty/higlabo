@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id: return $"/groups/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AllowExternalSenders,
@@ -46,22 +61,43 @@ namespace HigLabo.Net.Microsoft
             Theme,
             UnseenCount,
             Visibility,
+            AcceptedSenders,
+            AppRoleAssignments,
+            Calendar,
+            CalendarView,
+            Conversations,
+            CreatedOnBehalfOf,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            GroupLifecyclePolicies,
+            MemberOf,
+            Members,
+            MembersWithLicenseErrors,
+            Onenote,
+            Owners,
+            PermissionGrants,
+            Photo,
+            Photos,
+            Planner,
+            RejectedSenders,
+            Settings,
+            Sites,
+            Team,
+            Threads,
         }
         public enum ApiPath
         {
             Groups_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id: return $"/groups/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -73,7 +109,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class GroupGetResponse : RestApiResponse
     {
@@ -135,6 +170,31 @@ namespace HigLabo.Net.Microsoft
         public Groupstring Theme { get; set; }
         public Int32? UnseenCount { get; set; }
         public string? Visibility { get; set; }
+        public DirectoryObject[]? AcceptedSenders { get; set; }
+        public AppRoleAssignment[]? AppRoleAssignments { get; set; }
+        public Calendar? Calendar { get; set; }
+        public Event[]? CalendarView { get; set; }
+        public Conversation[]? Conversations { get; set; }
+        public DirectoryObject? CreatedOnBehalfOf { get; set; }
+        public Drive? Drive { get; set; }
+        public Drive[]? Drives { get; set; }
+        public Event[]? Events { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public GroupLifecyclePolicy[]? GroupLifecyclePolicies { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? Members { get; set; }
+        public User[]? MembersWithLicenseErrors { get; set; }
+        public Onenote? Onenote { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
+        public ResourceSpecificPermissionGrant? PermissionGrants { get; set; }
+        public ProfilePhoto? Photo { get; set; }
+        public ProfilePhoto[]? Photos { get; set; }
+        public PlannerGroup? Planner { get; set; }
+        public DirectoryObject[]? RejectedSenders { get; set; }
+        public GroupSetting[]? Settings { get; set; }
+        public Site[]? Sites { get; set; }
+        public Channel[]? Team { get; set; }
+        public ConversationThread[]? Threads { get; set; }
     }
     public partial class MicrosoftClient
     {

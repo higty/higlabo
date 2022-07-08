@@ -2,26 +2,52 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleInstances_FilterByCurrentUser: return $"/roleManagement/directory/roleAssignmentScheduleInstances/filterByCurrentUser";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppScopeId,
+            AssignmentType,
+            DirectoryScopeId,
+            EndDateTime,
+            Id,
+            MemberType,
+            PrincipalId,
+            RoleAssignmentOriginId,
+            RoleAssignmentScheduleId,
+            RoleDefinitionId,
+            StartDateTime,
+            ActivatedUsing,
+            AppScope,
+            DirectoryScope,
+            Principal,
+            RoleDefinition,
         }
         public enum ApiPath
         {
             RoleManagement_Directory_RoleAssignmentScheduleInstances_FilterByCurrentUser,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleInstances_FilterByCurrentUser: return $"/roleManagement/directory/roleAssignmentScheduleInstances/filterByCurrentUser";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,26 +60,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse : RestApiResponse
+    public partial class UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignmentscheduleinstance?view=graph-rest-1.0
-        /// </summary>
-        public partial class UnifiedRoleAssignmentScheduleInstance
-        {
-            public string? AppScopeId { get; set; }
-            public string? AssignmentType { get; set; }
-            public string? DirectoryScopeId { get; set; }
-            public DateTimeOffset? EndDateTime { get; set; }
-            public string? Id { get; set; }
-            public string? MemberType { get; set; }
-            public string? PrincipalId { get; set; }
-            public string? RoleAssignmentOriginId { get; set; }
-            public string? RoleAssignmentScheduleId { get; set; }
-            public string? RoleDefinitionId { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-        }
-
         public UnifiedRoleAssignmentScheduleInstance[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -61,32 +69,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse> UnifiedroleassignmentscheduleinstanceFilterbycurrentuserAsync()
+        public async Task<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserAsync()
         {
-            var p = new UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter();
-            return await this.SendAsync<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter, UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse>(p, CancellationToken.None);
+            var p = new UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter();
+            return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse> UnifiedroleassignmentscheduleinstanceFilterbycurrentuserAsync(CancellationToken cancellationToken)
+        public async Task<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter();
-            return await this.SendAsync<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter, UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse>(p, cancellationToken);
+            var p = new UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter();
+            return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse> UnifiedroleassignmentscheduleinstanceFilterbycurrentuserAsync(UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter parameter)
+        public async Task<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserAsync(UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter, UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentscheduleinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse> UnifiedroleassignmentscheduleinstanceFilterbycurrentuserAsync(UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter parameter, CancellationToken cancellationToken)
+        public async Task<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserAsync(UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UnifiedroleassignmentscheduleinstanceFilterbycurrentuserParameter, UnifiedroleassignmentscheduleinstanceFilterbycurrentuserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleinstanceFilterbycurrentUserResponse>(parameter, cancellationToken);
         }
     }
 }

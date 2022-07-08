@@ -21,5 +21,6 @@ namespace HigLabo.Net.Microsoft
         public string? PassiveSignInUri { get; set; }
         public SamlOrWsFedExternalDomainFederationAuthenticationProtocol PreferredAuthenticationProtocol { get; set; }
         public string? SigningCertificate { get; set; }
+        public ExternalDomainName[]? Domains { get; set; }
     }
 }

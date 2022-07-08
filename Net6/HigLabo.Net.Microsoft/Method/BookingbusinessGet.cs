@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class BookingbusinessGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Solutions_BookingBusinesses_Id: return $"/solutions/bookingBusinesses/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Solutions_BookingBusinesses_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Solutions_BookingBusinesses_Id: return $"/solutions/bookingBusinesses/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class BookingbusinessGetResponse : RestApiResponse
     {
@@ -49,6 +59,12 @@ namespace HigLabo.Net.Microsoft
         public string? PublicUrl { get; set; }
         public BookingSchedulingPolicy? SchedulingPolicy { get; set; }
         public string? WebSiteUrl { get; set; }
+        public BookingAppointment[]? Appointments { get; set; }
+        public BookingAppointment[]? CalendarView { get; set; }
+        public BookingCustomer[]? Customers { get; set; }
+        public BookingCustomQuestion[]? CustomQuestions { get; set; }
+        public BookingService[]? Services { get; set; }
+        public BookingStaffMember[]? StaffMembers { get; set; }
     }
     public partial class MicrosoftClient
     {

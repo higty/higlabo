@@ -4,8 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class Fido2authenticationmethodListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Authentication_Fido2Methods: return $"/me/authentication/fido2Methods";
+                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_Fido2Methods: return $"/users/{IdOrUserPrincipalName}/authentication/fido2Methods";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            CreatedDateTime,
+            AaGuid,
+            Model,
+            AttestationCertificates,
+            AttestationLevel,
         }
         public enum ApiPath
         {
@@ -13,17 +36,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Authentication_Fido2Methods,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Authentication_Fido2Methods: return $"/me/authentication/fido2Methods";
-                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_Fido2Methods: return $"/users/{IdOrUserPrincipalName}/authentication/fido2Methods";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,30 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class Fido2authenticationmethodListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/fido2authenticationmethod?view=graph-rest-1.0
-        /// </summary>
-        public partial class Fido2AuthenticationMethod
-        {
-            public enum Fido2AuthenticationMethodAttestationLevel
-            {
-                Attested,
-                NotAttested,
-            }
-
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? AaGuid { get; set; }
-            public string? Model { get; set; }
-            public String[]? AttestationCertificates { get; set; }
-            public Fido2AuthenticationMethodAttestationLevel AttestationLevel { get; set; }
-        }
-
         public Fido2AuthenticationMethod[] Value { get; set; }
     }
     public partial class MicrosoftClient

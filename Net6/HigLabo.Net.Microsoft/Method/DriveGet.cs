@@ -4,6 +4,28 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupId { get; set; }
+            public string SiteId { get; set; }
+            public string DriveId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive: return $"/me/drive";
+                    case ApiPath.Users_IdOrUserPrincipalName_Drive: return $"/users/{IdOrUserPrincipalName}/drive";
+                    case ApiPath.Groups_GroupId_Drive: return $"/groups/{GroupId}/drive";
+                    case ApiPath.Sites_SiteId_Drive: return $"/sites/{SiteId}/drive";
+                    case ApiPath.Drives_DriveId: return $"/drives/{DriveId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             CreatedBy,
@@ -19,6 +41,12 @@ namespace HigLabo.Net.Microsoft
             SharepointIds,
             System,
             WebUrl,
+            Bundles,
+            Following,
+            Items,
+            Root,
+            Special,
+            List,
         }
         public enum ApiPath
         {
@@ -29,20 +57,12 @@ namespace HigLabo.Net.Microsoft
             Drives_DriveId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive: return $"/me/drive";
-                    case ApiPath.Users_IdOrUserPrincipalName_Drive: return $"/users/{IdOrUserPrincipalName}/drive";
-                    case ApiPath.Groups_GroupId_Drive: return $"/groups/{GroupId}/drive";
-                    case ApiPath.Sites_SiteId_Drive: return $"/sites/{SiteId}/drive";
-                    case ApiPath.Drives_DriveId: return $"/drives/{DriveId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -54,10 +74,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupId { get; set; }
-        public string SiteId { get; set; }
-        public string DriveId { get; set; }
     }
     public partial class DriveGetResponse : RestApiResponse
     {
@@ -74,6 +90,12 @@ namespace HigLabo.Net.Microsoft
         public SharePointIds? SharepointIds { get; set; }
         public System? System { get; set; }
         public string? WebUrl { get; set; }
+        public DriveItem[]? Bundles { get; set; }
+        public DriveItem[]? Following { get; set; }
+        public DriveItem[]? Items { get; set; }
+        public DriveItem? Root { get; set; }
+        public DriveItem[]? Special { get; set; }
+        public SiteList? List { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -18,5 +18,10 @@ namespace HigLabo.Net.Microsoft
         public string? RoleAssignmentScheduleId { get; set; }
         public string? RoleDefinitionId { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
+        public UnifiedRoleEligibilityScheduleInstance? ActivatedUsing { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
+        public DirectoryObject? Principal { get; set; }
+        public UnifiedRoleDefinition? RoleDefinition { get; set; }
     }
 }

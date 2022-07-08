@@ -53,5 +53,7 @@ namespace HigLabo.Net.Microsoft
         public ParticipantInfo[]? Targets { get; set; }
         public ToneInfo? ToneInfo { get; set; }
         public IncomingContext? IncomingContext { get; set; }
+        public CommsOperation[]? Operations { get; set; }
+        public Participant[]? Participants { get; set; }
     }
 }

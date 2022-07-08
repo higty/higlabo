@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class DomainListServiceconfigurationrecordsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DomainListServiceConfigurationrecordsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Domains_Id_ServiceConfigurationRecords: return $"/domains/{Id}/serviceConfigurationRecords";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Domains_Id_ServiceConfigurationRecords,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Domains_Id_ServiceConfigurationRecords: return $"/domains/{Id}/serviceConfigurationRecords";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,23 +44,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class DomainListServiceconfigurationrecordsResponse : RestApiResponse
+    public partial class DomainListServiceConfigurationrecordsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/domaindnsrecord?view=graph-rest-1.0
-        /// </summary>
-        public partial class DomainDnsRecord
-        {
-            public string? Id { get; set; }
-            public bool? IsOptional { get; set; }
-            public string? Label { get; set; }
-            public string? RecordType { get; set; }
-            public string? SupportedService { get; set; }
-            public Int32? Ttl { get; set; }
-        }
-
         public DomainDnsRecord[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -57,32 +54,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceconfigurationrecordsResponse> DomainListServiceconfigurationrecordsAsync()
+        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync()
         {
-            var p = new DomainListServiceconfigurationrecordsParameter();
-            return await this.SendAsync<DomainListServiceconfigurationrecordsParameter, DomainListServiceconfigurationrecordsResponse>(p, CancellationToken.None);
+            var p = new DomainListServiceConfigurationrecordsParameter();
+            return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceconfigurationrecordsResponse> DomainListServiceconfigurationrecordsAsync(CancellationToken cancellationToken)
+        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(CancellationToken cancellationToken)
         {
-            var p = new DomainListServiceconfigurationrecordsParameter();
-            return await this.SendAsync<DomainListServiceconfigurationrecordsParameter, DomainListServiceconfigurationrecordsResponse>(p, cancellationToken);
+            var p = new DomainListServiceConfigurationrecordsParameter();
+            return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceconfigurationrecordsResponse> DomainListServiceconfigurationrecordsAsync(DomainListServiceconfigurationrecordsParameter parameter)
+        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter)
         {
-            return await this.SendAsync<DomainListServiceconfigurationrecordsParameter, DomainListServiceconfigurationrecordsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/domain-list-serviceconfigurationrecords?view=graph-rest-1.0
         /// </summary>
-        public async Task<DomainListServiceconfigurationrecordsResponse> DomainListServiceconfigurationrecordsAsync(DomainListServiceconfigurationrecordsParameter parameter, CancellationToken cancellationToken)
+        public async Task<DomainListServiceConfigurationrecordsResponse> DomainListServiceConfigurationrecordsAsync(DomainListServiceConfigurationrecordsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DomainListServiceconfigurationrecordsParameter, DomainListServiceconfigurationrecordsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DomainListServiceConfigurationrecordsParameter, DomainListServiceConfigurationrecordsResponse>(parameter, cancellationToken);
         }
     }
 }

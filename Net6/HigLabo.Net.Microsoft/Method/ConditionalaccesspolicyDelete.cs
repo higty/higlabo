@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ConditionalaccesspolicyDeleteParameter : IRestApiParameter
+    public partial class ConditionalAccessPolicyDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_ConditionalAccess_Policies_Id: return $"/identity/conditionalAccess/policies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Identity_ConditionalAccess_Policies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_ConditionalAccess_Policies_Id: return $"/identity/conditionalAccess/policies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string Id { get; set; }
     }
-    public partial class ConditionalaccesspolicyDeleteResponse : RestApiResponse
+    public partial class ConditionalAccessPolicyDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyDeleteResponse> ConditionalaccesspolicyDeleteAsync()
+        public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync()
         {
-            var p = new ConditionalaccesspolicyDeleteParameter();
-            return await this.SendAsync<ConditionalaccesspolicyDeleteParameter, ConditionalaccesspolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new ConditionalAccessPolicyDeleteParameter();
+            return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyDeleteResponse> ConditionalaccesspolicyDeleteAsync(CancellationToken cancellationToken)
+        public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new ConditionalaccesspolicyDeleteParameter();
-            return await this.SendAsync<ConditionalaccesspolicyDeleteParameter, ConditionalaccesspolicyDeleteResponse>(p, cancellationToken);
+            var p = new ConditionalAccessPolicyDeleteParameter();
+            return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyDeleteResponse> ConditionalaccesspolicyDeleteAsync(ConditionalaccesspolicyDeleteParameter parameter)
+        public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync(ConditionalAccessPolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<ConditionalaccesspolicyDeleteParameter, ConditionalaccesspolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyDeleteResponse> ConditionalaccesspolicyDeleteAsync(ConditionalaccesspolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync(ConditionalAccessPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConditionalaccesspolicyDeleteParameter, ConditionalaccesspolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

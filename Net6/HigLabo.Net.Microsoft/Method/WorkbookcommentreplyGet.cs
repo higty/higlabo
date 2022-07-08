@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorkbookcommentreplyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ItemsId { get; set; }
+            public string CommentsId { get; set; }
+            public string RepliesId { get; set; }
+            public string RootItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Comments_Id_Replies_Id: return $"/me/drive/items/{ItemsId}/workbook/comments/{CommentsId}/replies/{RepliesId}";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Comments_Id_Replies_Id: return $"/me/drive/root:/{RootItemPath}/workbook/comments/{CommentsId}/replies/{RepliesId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +32,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Comments_Id_Replies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Comments_Id_Replies_Id: return $"/me/drive/items/{ItemsId}/workbook/comments/{CommentsId}/replies/{RepliesId}";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Comments_Id_Replies_Id: return $"/me/drive/root:/{RootItemPath}/workbook/comments/{CommentsId}/replies/{RepliesId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,10 +49,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ItemsId { get; set; }
-        public string CommentsId { get; set; }
-        public string RepliesId { get; set; }
-        public string RootItemPath { get; set; }
     }
     public partial class WorkbookcommentreplyGetResponse : RestApiResponse
     {

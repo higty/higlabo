@@ -4,24 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class Oauth2permissiongrantPostParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Oauth2PermissionGrants: return $"/oauth2PermissionGrants";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Oauth2PermissionGrants,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Oauth2PermissionGrants: return $"/oauth2PermissionGrants";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? Id { get; set; }
+        public string? ClientId { get; set; }
+        public string? ConsentType { get; set; }
+        public string? PrincipalId { get; set; }
+        public string? ResourceId { get; set; }
+        public string? Scope { get; set; }
     }
     public partial class Oauth2permissiongrantPostResponse : RestApiResponse
     {

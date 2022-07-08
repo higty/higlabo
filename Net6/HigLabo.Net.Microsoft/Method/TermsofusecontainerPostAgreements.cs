@@ -4,21 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TermsofusecontainerPostAgreementsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements: return $"/identityGovernance/termsOfUse/agreements";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             IdentityGovernance_TermsOfUse_Agreements,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements: return $"/identityGovernance/termsOfUse/agreements";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -28,6 +38,13 @@ namespace HigLabo.Net.Microsoft
         public bool? IsDefault { get; set; }
         public string? Language { get; set; }
         public string? Data { get; set; }
+        public string? Id { get; set; }
+        public bool? IsPerDeviceAcceptanceRequired { get; set; }
+        public TermsExpiration? TermsExpiration { get; set; }
+        public string? UserReacceptRequiredFrequency { get; set; }
+        public AgreementAcceptance[]? Acceptances { get; set; }
+        public AgreementFile? File { get; set; }
+        public AgreementFileLocalization[]? Files { get; set; }
     }
     public partial class TermsofusecontainerPostAgreementsResponse : RestApiResponse
     {
@@ -37,6 +54,9 @@ namespace HigLabo.Net.Microsoft
         public bool? IsViewingBeforeAcceptanceRequired { get; set; }
         public TermsExpiration? TermsExpiration { get; set; }
         public string? UserReacceptRequiredFrequency { get; set; }
+        public AgreementAcceptance[]? Acceptances { get; set; }
+        public AgreementFile? File { get; set; }
+        public AgreementFileLocalization[]? Files { get; set; }
     }
     public partial class MicrosoftClient
     {

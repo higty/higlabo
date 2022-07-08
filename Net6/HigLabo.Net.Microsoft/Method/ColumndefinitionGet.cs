@@ -4,6 +4,27 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ColumndefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ColumnId { get; set; }
+            public string ListId { get; set; }
+            public string ContentTypeId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_Columns_ColumnId: return $"/sites/{SiteId}/columns/{ColumnId}";
+                    case ApiPath.Sites_SiteId_Lists_ListId_Columns_ColumnId: return $"/sites/{SiteId}/lists/{ListId}/columns/{ColumnId}";
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Columns_ColumnId: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/columns/{ColumnId}";
+                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId_Columns_ColumnId: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}/columns/{ColumnId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -15,19 +36,12 @@ namespace HigLabo.Net.Microsoft
             Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId_Columns_ColumnId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_Columns_ColumnId: return $"/sites/{SiteId}/columns/{ColumnId}";
-                    case ApiPath.Sites_SiteId_Lists_ListId_Columns_ColumnId: return $"/sites/{SiteId}/lists/{ListId}/columns/{ColumnId}";
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Columns_ColumnId: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/columns/{ColumnId}";
-                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId_Columns_ColumnId: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}/columns/{ColumnId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,10 +53,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ColumnId { get; set; }
-        public string ListId { get; set; }
-        public string ContentTypeId { get; set; }
     }
     public partial class ColumndefinitionGetResponse : RestApiResponse
     {
@@ -62,7 +72,7 @@ namespace HigLabo.Net.Microsoft
         public CurrencyColumn? Currency { get; set; }
         public DateTimeColumn? DateTime { get; set; }
         public DefaultColumnValue? DefaultValue { get; set; }
-        public GeolocationColumn? Geolocation { get; set; }
+        public GeoLocationColumn? Geolocation { get; set; }
         public LookupColumn? Lookup { get; set; }
         public NumberColumn? Number { get; set; }
         public PersonOrGroupColumn? PersonOrGroup { get; set; }
@@ -78,6 +88,7 @@ namespace HigLabo.Net.Microsoft
         public ThumbnailColumn? Thumbnail { get; set; }
         public string? Type { get; set; }
         public ContentApprovalStatusColumn? ContentApprovalStatus { get; set; }
+        public ColumnDefinition? SourceColumn { get; set; }
     }
     public partial class MicrosoftClient
     {

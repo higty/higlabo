@@ -15,5 +15,6 @@ namespace HigLabo.Net.Microsoft
         public string? InviteRedeemUrl { get; set; }
         public string? InvitedUserType { get; set; }
         public string? Status { get; set; }
+        public User? InvitedUser { get; set; }
     }
 }

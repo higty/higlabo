@@ -4,27 +4,45 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class InferenceclassificationPostOverridesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_InferenceClassification_Overrides: return $"/me/inferenceClassification/overrides";
+                    case ApiPath.Users_Id_InferenceClassification_Overrides: return $"/users/{Id}/inferenceClassification/overrides";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum InferenceClassificationOverrideInferenceClassificationType
+        {
+            Focused,
+            Other,
+        }
         public enum ApiPath
         {
             Me_InferenceClassification_Overrides,
             Users_Id_InferenceClassification_Overrides,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_InferenceClassification_Overrides: return $"/me/inferenceClassification/overrides";
-                    case ApiPath.Users_Id_InferenceClassification_Overrides: return $"/users/{Id}/inferenceClassification/overrides";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
+        public InferenceClassificationOverrideInferenceClassificationType ClassifyAs { get; set; }
+        public string? Id { get; set; }
+        public EmailAddress? SenderEmailAddress { get; set; }
     }
     public partial class InferenceclassificationPostOverridesResponse : RestApiResponse
     {

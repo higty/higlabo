@@ -4,24 +4,38 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserteamworkListInstalledappsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps: return $"/users/{UserIdOrUserPrincipalName}/teamwork/installedApps";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            TeamsApp,
+            TeamsAppDefinition,
         }
         public enum ApiPath
         {
             Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps: return $"/users/{UserIdOrUserPrincipalName}/teamwork/installedApps";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,18 +47,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UserIdOrUserPrincipalName { get; set; }
     }
     public partial class UserteamworkListInstalledappsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/teamsappinstallation?view=graph-rest-1.0
-        /// </summary>
-        public partial class TeamsAppInstallation
-        {
-            public string? Id { get; set; }
-        }
-
         public TeamsAppInstallation[] Value { get; set; }
     }
     public partial class MicrosoftClient

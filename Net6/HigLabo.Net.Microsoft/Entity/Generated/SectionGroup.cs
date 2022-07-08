@@ -16,5 +16,9 @@ namespace HigLabo.Net.Microsoft
         public string? SectionGroupsUrl { get; set; }
         public string? SectionsUrl { get; set; }
         public string? Self { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public SectionGroup? ParentSectionGroup { get; set; }
+        public SectionGroup[]? SectionGroups { get; set; }
+        public Section[]? Sections { get; set; }
     }
 }

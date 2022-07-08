@@ -20,5 +20,9 @@ namespace HigLabo.Net.Microsoft
         public PrinterDefaults? Defaults { get; set; }
         public PrinterCapabilities? Capabilities { get; set; }
         public DateTimeOffset? LastSeenDateTime { get; set; }
+        public PrintJob[]? Jobs { get; set; }
+        public PrinterShare[]? Shares { get; set; }
+        public PrintConnector? Connectors { get; set; }
+        public PrintTaskTrigger[]? TaskTriggers { get; set; }
     }
 }

@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id: return $"/servicePrincipals/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             ServicePrincipals_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id: return $"/servicePrincipals/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ServiceprincipalGetResponse : RestApiResponse
     {
@@ -79,6 +89,17 @@ namespace HigLabo.Net.Microsoft
         public String[]? Tags { get; set; }
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
+        public AppRoleAssignment? AppRoleAssignedTo { get; set; }
+        public AppRoleAssignment[]? AppRoleAssignments { get; set; }
+        public ClaimsMappingPolicy[]? ClaimsMappingPolicies { get; set; }
+        public DirectoryObject[]? CreatedObjects { get; set; }
+        public HomeRealmDiscoveryPolicy[]? HomeRealmDiscoveryPolicies { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public OAuth2PermissionGrant[]? Oauth2PermissionGrants { get; set; }
+        public DirectoryObject[]? OwnedObjects { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
+        public TokenIssuancePolicy[]? TokenIssuancePolicies { get; set; }
+        public TokenLifetimePolicy[]? TokenLifetimePolicies { get; set; }
     }
     public partial class MicrosoftClient
     {

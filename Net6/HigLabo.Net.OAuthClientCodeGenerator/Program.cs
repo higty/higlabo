@@ -25,13 +25,17 @@
             {
                 var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";
-                await g.LoadUrlClassNameMappingList();
                 //await g.CreateResourceUrlMappingFile();
-                //await g.CreateEntitySourceCode("https://docs.microsoft.com/en-us/graph/api/resources/workinghours?view=graph-rest-1.0");
-                await g.CreateMethodSourceCodeFile("https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0");
-                await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0");
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0");
-                //await g.Execute();
+                await g.LoadUrlClassNameMappingList();
+
+                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-session?view=graph-rest-1.0");
+                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/driveitem?view=graph-rest-1.0", new CreateEntityClassContext());
+                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0");
+                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/columnvalidation?view=graph-rest-1.0", new CreateEntityClassContext());
+                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-identity?view=graph-rest-1.0", new CreateEntityClassContext());
+                //await g.CreateMethodSourceCodeFile("https://docs.microsoft.com/en-us/graph/api/educationschool-update?view=graph-rest-1.0");
+                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0", new CreateEntityClassContext());
+                await g.Execute();
             }
         }
     }

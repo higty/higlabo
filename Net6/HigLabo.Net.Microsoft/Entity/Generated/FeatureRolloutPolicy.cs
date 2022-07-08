@@ -22,5 +22,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsAppliedToOrganization { get; set; }
         public bool? IsEnabled { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
 }

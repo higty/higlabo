@@ -4,6 +4,26 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PageCopytosectionParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupsId { get; set; }
+            public string PagesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_Pages_Id_CopyToSection: return $"/me/onenote/pages/{Id}/copyToSection";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Pages_Id_CopyToSection: return $"/users/{IdOrUserPrincipalName}/onenote/pages/{Id}/copyToSection";
+                    case ApiPath.Groups_Id_Onenote_Pages_Id_CopyToSection: return $"/groups/{GroupsId}/onenote/pages/{PagesId}/copyToSection";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Onenote_Pages_Id_CopyToSection,
@@ -11,26 +31,17 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Onenote_Pages_Id_CopyToSection,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_Pages_Id_CopyToSection: return $"/me/onenote/pages/{Id}/copyToSection";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Pages_Id_CopyToSection: return $"/users/{IdOrUserPrincipalName}/onenote/pages/{Id}/copyToSection";
-                    case ApiPath.Groups_Id_Onenote_Pages_Id_CopyToSection: return $"/groups/{GroupsId}/onenote/pages/{PagesId}/copyToSection";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? GroupId { get; set; }
         public string? Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupsId { get; set; }
-        public string PagesId { get; set; }
     }
     public partial class PageCopytosectionResponse : RestApiResponse
     {

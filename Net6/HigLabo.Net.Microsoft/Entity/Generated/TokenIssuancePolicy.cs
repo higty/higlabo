@@ -12,5 +12,6 @@ namespace HigLabo.Net.Microsoft
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public bool? IsOrganizationDefault { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
 }

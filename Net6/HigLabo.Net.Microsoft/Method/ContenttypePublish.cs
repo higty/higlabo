@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypePublishParameter : IRestApiParameter
+    public partial class ContentTypePublishParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ContentTypeId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Publish: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/publish";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Sites_SiteId_ContentTypes_ContentTypeId_Publish,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Publish: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/publish";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string SiteId { get; set; }
-        public string ContentTypeId { get; set; }
     }
-    public partial class ContenttypePublishResponse : RestApiResponse
+    public partial class ContentTypePublishResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypePublishResponse> ContenttypePublishAsync()
+        public async Task<ContentTypePublishResponse> ContentTypePublishAsync()
         {
-            var p = new ContenttypePublishParameter();
-            return await this.SendAsync<ContenttypePublishParameter, ContenttypePublishResponse>(p, CancellationToken.None);
+            var p = new ContentTypePublishParameter();
+            return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypePublishResponse> ContenttypePublishAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypePublishResponse> ContentTypePublishAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypePublishParameter();
-            return await this.SendAsync<ContenttypePublishParameter, ContenttypePublishResponse>(p, cancellationToken);
+            var p = new ContentTypePublishParameter();
+            return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypePublishResponse> ContenttypePublishAsync(ContenttypePublishParameter parameter)
+        public async Task<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter)
         {
-            return await this.SendAsync<ContenttypePublishParameter, ContenttypePublishResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypePublishResponse> ContenttypePublishAsync(ContenttypePublishParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypePublishParameter, ContenttypePublishResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(parameter, cancellationToken);
         }
     }
 }

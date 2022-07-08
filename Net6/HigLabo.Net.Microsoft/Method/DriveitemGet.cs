@@ -4,6 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DriveId { get; set; }
+            public string ItemId { get; set; }
+            public string ItemPath { get; set; }
+            public string GroupId { get; set; }
+            public string SiteId { get; set; }
+            public string ListId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drives_DriveId_Items_ItemId: return $"/drives/{DriveId}/items/{ItemId}";
+                    case ApiPath.Drives_DriveId_Root_ItemPath: return $"/drives/{DriveId}/root:/{ItemPath}";
+                    case ApiPath.Groups_GroupId_Drive_Items_ItemId: return $"/groups/{GroupId}/drive/items/{ItemId}";
+                    case ApiPath.Groups_GroupId_Drive_Root_ItemPath: return $"/groups/{GroupId}/drive/root:/{ItemPath}";
+                    case ApiPath.Me_Drive_Items_ItemId: return $"/me/drive/items/{ItemId}";
+                    case ApiPath.Me_Drive_Root_ItemPath: return $"/me/drive/root:/{ItemPath}";
+                    case ApiPath.Sites_SiteId_Drive_Items_ItemId: return $"/sites/{SiteId}/drive/items/{ItemId}";
+                    case ApiPath.Sites_SiteId_Drive_Root_ItemPath: return $"/sites/{SiteId}/drive/root:/{ItemPath}";
+                    case ApiPath.Sites_SiteId_Lists_ListId_Items_ItemId_DriveItem: return $"/sites/{SiteId}/lists/{ListId}/items/{ItemId}/driveItem";
+                    case ApiPath.Users_UserId_Drive_Items_ItemId: return $"/users/{UserId}/drive/items/{ItemId}";
+                    case ApiPath.Users_UserId_Drive_Root_ItemPath: return $"/users/{UserId}/drive/root:/{ItemPath}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -22,26 +53,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_Drive_Root_ItemPath,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drives_DriveId_Items_ItemId: return $"/drives/{DriveId}/items/{ItemId}";
-                    case ApiPath.Drives_DriveId_Root_ItemPath: return $"/drives/{DriveId}/root:/{ItemPath}";
-                    case ApiPath.Groups_GroupId_Drive_Items_ItemId: return $"/groups/{GroupId}/drive/items/{ItemId}";
-                    case ApiPath.Groups_GroupId_Drive_Root_ItemPath: return $"/groups/{GroupId}/drive/root:/{ItemPath}";
-                    case ApiPath.Me_Drive_Items_ItemId: return $"/me/drive/items/{ItemId}";
-                    case ApiPath.Me_Drive_Root_ItemPath: return $"/me/drive/root:/{ItemPath}";
-                    case ApiPath.Sites_SiteId_Drive_Items_ItemId: return $"/sites/{SiteId}/drive/items/{ItemId}";
-                    case ApiPath.Sites_SiteId_Drive_Root_ItemPath: return $"/sites/{SiteId}/drive/root:/{ItemPath}";
-                    case ApiPath.Sites_SiteId_Lists_ListId_Items_ItemId_DriveItem: return $"/sites/{SiteId}/lists/{ListId}/items/{ItemId}/driveItem";
-                    case ApiPath.Users_UserId_Drive_Items_ItemId: return $"/users/{UserId}/drive/items/{ItemId}";
-                    case ApiPath.Users_UserId_Drive_Root_ItemPath: return $"/users/{UserId}/drive/root:/{ItemPath}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -53,13 +70,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string DriveId { get; set; }
-        public string ItemId { get; set; }
-        public string ItemPath { get; set; }
-        public string GroupId { get; set; }
-        public string SiteId { get; set; }
-        public string ListId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class DriveitemGetResponse : RestApiResponse
     {
@@ -97,6 +107,17 @@ namespace HigLabo.Net.Microsoft
         public Video? Video { get; set; }
         public string? WebDavUrl { get; set; }
         public string? WebUrl { get; set; }
+        public ItemActivity[]? Activities { get; set; }
+        public ItemAnalytics? Analytics { get; set; }
+        public DriveItem[]? Children { get; set; }
+        public User? CreatedByUser { get; set; }
+        public User? LastModifiedByUser { get; set; }
+        public ListItem? ListItem { get; set; }
+        public Permission[]? Permissions { get; set; }
+        public Subscription[]? Subscriptions { get; set; }
+        public ThumbnailSet[]? Thumbnails { get; set; }
+        public DriveItemVersion[]? Versions { get; set; }
+        public Workbook? Workbook { get; set; }
     }
     public partial class MicrosoftClient
     {

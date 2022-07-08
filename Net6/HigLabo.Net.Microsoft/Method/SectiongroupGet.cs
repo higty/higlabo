@@ -2,10 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class SectiongroupGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class SectionGroupGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupsId { get; set; }
+            public string SectionGroupsId { get; set; }
+            public string SitesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_SectionGroups_Id: return $"/me/onenote/sectionGroups/{Id}";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_SectionGroups_Id: return $"/users/{IdOrUserPrincipalName}/onenote/sectionGroups/{Id}";
+                    case ApiPath.Groups_Id_Onenote_SectionGroups_Id: return $"/groups/{GroupsId}/onenote/sectionGroups/{SectionGroupsId}";
+                    case ApiPath.Sites_Id_Onenote_SectionGroups_Id: return $"/sites/{SitesId}/onenote/sectionGroups/{SectionGroupsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedBy,
+            CreatedDateTime,
+            Id,
+            LastModifiedBy,
+            LastModifiedDateTime,
+            DisplayName,
+            SectionGroupsUrl,
+            SectionsUrl,
+            Self,
+            ParentNotebook,
+            ParentSectionGroup,
+            SectionGroups,
+            Sections,
         }
         public enum ApiPath
         {
@@ -15,19 +50,12 @@ namespace HigLabo.Net.Microsoft
             Sites_Id_Onenote_SectionGroups_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_SectionGroups_Id: return $"/me/onenote/sectionGroups/{Id}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_SectionGroups_Id: return $"/users/{IdOrUserPrincipalName}/onenote/sectionGroups/{Id}";
-                    case ApiPath.Groups_Id_Onenote_SectionGroups_Id: return $"/groups/{GroupsId}/onenote/sectionGroups/{SectionGroupsId}";
-                    case ApiPath.Sites_Id_Onenote_SectionGroups_Id: return $"/sites/{SitesId}/onenote/sectionGroups/{SectionGroupsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,13 +67,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupsId { get; set; }
-        public string SectionGroupsId { get; set; }
-        public string SitesId { get; set; }
     }
-    public partial class SectiongroupGetResponse : RestApiResponse
+    public partial class SectionGroupGetResponse : RestApiResponse
     {
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -56,38 +79,42 @@ namespace HigLabo.Net.Microsoft
         public string? SectionGroupsUrl { get; set; }
         public string? SectionsUrl { get; set; }
         public string? Self { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public SectionGroup? ParentSectionGroup { get; set; }
+        public SectionGroup[]? SectionGroups { get; set; }
+        public Section[]? Sections { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectiongroupGetResponse> SectiongroupGetAsync()
+        public async Task<SectionGroupGetResponse> SectionGroupGetAsync()
         {
-            var p = new SectiongroupGetParameter();
-            return await this.SendAsync<SectiongroupGetParameter, SectiongroupGetResponse>(p, CancellationToken.None);
+            var p = new SectionGroupGetParameter();
+            return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectiongroupGetResponse> SectiongroupGetAsync(CancellationToken cancellationToken)
+        public async Task<SectionGroupGetResponse> SectionGroupGetAsync(CancellationToken cancellationToken)
         {
-            var p = new SectiongroupGetParameter();
-            return await this.SendAsync<SectiongroupGetParameter, SectiongroupGetResponse>(p, cancellationToken);
+            var p = new SectionGroupGetParameter();
+            return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectiongroupGetResponse> SectiongroupGetAsync(SectiongroupGetParameter parameter)
+        public async Task<SectionGroupGetResponse> SectionGroupGetAsync(SectionGroupGetParameter parameter)
         {
-            return await this.SendAsync<SectiongroupGetParameter, SectiongroupGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<SectiongroupGetResponse> SectiongroupGetAsync(SectiongroupGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<SectionGroupGetResponse> SectionGroupGetAsync(SectionGroupGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SectiongroupGetParameter, SectiongroupGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SectionGroupGetParameter, SectionGroupGetResponse>(parameter, cancellationToken);
         }
     }
 }

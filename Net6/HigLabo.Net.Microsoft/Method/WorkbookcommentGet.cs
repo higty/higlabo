@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorkbookcommentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ItemsId { get; set; }
+            public string CommentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Comments_Id: return $"/me/drive/items/{ItemsId}/workbook/comments/{CommentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Items_Id_Workbook_Comments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Comments_Id: return $"/me/drive/items/{ItemsId}/workbook/comments/{CommentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,14 +45,13 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ItemsId { get; set; }
-        public string CommentsId { get; set; }
     }
     public partial class WorkbookcommentGetResponse : RestApiResponse
     {
         public string? Content { get; set; }
         public string? ContentType { get; set; }
         public string? Id { get; set; }
+        public WorkbookCommentReply[]? Replies { get; set; }
     }
     public partial class MicrosoftClient
     {

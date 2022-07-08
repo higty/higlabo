@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Applications_Id: return $"/applications/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AddIns,
@@ -40,22 +55,21 @@ namespace HigLabo.Net.Microsoft
             TokenEncryptionKeyId,
             VerifiedPublisher,
             Web,
+            CreatedOnBehalfOf,
+            ExtensionProperties,
+            Owners,
         }
         public enum ApiPath
         {
             Applications_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Applications_Id: return $"/applications/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -67,7 +81,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ApplicationGetResponse : RestApiResponse
     {
@@ -105,6 +118,9 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public DirectoryObject? CreatedOnBehalfOf { get; set; }
+        public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
     }
     public partial class MicrosoftClient
     {

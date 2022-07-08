@@ -2,29 +2,47 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ServiceprincipalPostApproleassignmentsParameter : IRestApiParameter
+    public partial class ServiceprincipalPostApproleAssignmentsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_AppRoleAssignments: return $"/servicePrincipals/{Id}/appRoleAssignments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_Id_AppRoleAssignments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_AppRoleAssignments: return $"/servicePrincipals/{Id}/appRoleAssignments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
+        public Guid? AppRoleId { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? PrincipalDisplayName { get; set; }
+        public Guid? PrincipalId { get; set; }
+        public string? PrincipalType { get; set; }
+        public string? ResourceDisplayName { get; set; }
+        public Guid? ResourceId { get; set; }
     }
-    public partial class ServiceprincipalPostApproleassignmentsResponse : RestApiResponse
+    public partial class ServiceprincipalPostApproleAssignmentsResponse : RestApiResponse
     {
         public Guid? AppRoleId { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
@@ -40,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleassignmentsResponse> ServiceprincipalPostApproleassignmentsAsync()
+        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync()
         {
-            var p = new ServiceprincipalPostApproleassignmentsParameter();
-            return await this.SendAsync<ServiceprincipalPostApproleassignmentsParameter, ServiceprincipalPostApproleassignmentsResponse>(p, CancellationToken.None);
+            var p = new ServiceprincipalPostApproleAssignmentsParameter();
+            return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleassignmentsResponse> ServiceprincipalPostApproleassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalPostApproleassignmentsParameter();
-            return await this.SendAsync<ServiceprincipalPostApproleassignmentsParameter, ServiceprincipalPostApproleassignmentsResponse>(p, cancellationToken);
+            var p = new ServiceprincipalPostApproleAssignmentsParameter();
+            return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleassignmentsResponse> ServiceprincipalPostApproleassignmentsAsync(ServiceprincipalPostApproleassignmentsParameter parameter)
+        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(ServiceprincipalPostApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalPostApproleassignmentsParameter, ServiceprincipalPostApproleassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalPostApproleassignmentsResponse> ServiceprincipalPostApproleassignmentsAsync(ServiceprincipalPostApproleassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ServiceprincipalPostApproleAssignmentsResponse> ServiceprincipalPostApproleAssignmentsAsync(ServiceprincipalPostApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalPostApproleassignmentsParameter, ServiceprincipalPostApproleassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServiceprincipalPostApproleAssignmentsParameter, ServiceprincipalPostApproleAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalDeleteApproleassignedtoParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ResourceSPId { get; set; }
+            public string AppRoleAssignmentId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_ResourceSPId_AppRoleAssignedTo_AppRoleAssignmentId: return $"/servicePrincipals/{ResourceSPId}/appRoleAssignedTo/{AppRoleAssignmentId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_ResourceSPId_AppRoleAssignedTo_AppRoleAssignmentId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_ResourceSPId_AppRoleAssignedTo_AppRoleAssignmentId: return $"/servicePrincipals/{ResourceSPId}/appRoleAssignedTo/{AppRoleAssignmentId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ResourceSPId { get; set; }
-        public string AppRoleAssignmentId { get; set; }
     }
     public partial class ServiceprincipalDeleteApproleassignedtoResponse : RestApiResponse
     {

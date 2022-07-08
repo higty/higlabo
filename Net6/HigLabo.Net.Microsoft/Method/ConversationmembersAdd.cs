@@ -4,37 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ConversationmembersAddParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Members_Add: return $"/teams/{TeamId}/members/add";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_TeamId_Members_Add,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Members_Add: return $"/teams/{TeamId}/members/add";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public ConversationMember[]? Values { get; set; }
-        public string TeamId { get; set; }
     }
     public partial class ConversationmembersAddResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0
-        /// </summary>
-        public partial class ActionResultPart
-        {
-            public PublicError? Error { get; set; }
-        }
-
         public ActionResultPart[] Value { get; set; }
     }
     public partial class MicrosoftClient

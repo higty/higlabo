@@ -21,7 +21,7 @@ namespace HigLabo.Net.OAuth
             var req = iRes.Request;
             var url = req.RequestUri?.AbsoluteUri ?? "";
 
-            return url + Environment.NewLine
+            return req.Method.ToString() + " " + url + Environment.NewLine
                 + iRes.RequestBodyText + Environment.NewLine 
                 + res.GetHeaderText() + Environment.NewLine 
                 + res.GetResponseBodyText() + Environment.NewLine 

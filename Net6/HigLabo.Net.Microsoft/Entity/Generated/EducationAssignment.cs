@@ -45,5 +45,9 @@ namespace HigLabo.Net.Microsoft
         public EducationAssignmentstring Status { get; set; }
         public string? WebUrl { get; set; }
         public string? ResourcesFolderUrl { get; set; }
+        public EducationAssignmentResource[]? Resources { get; set; }
+        public EducationSubmission[]? Submissions { get; set; }
+        public EducationCategory[]? Categories { get; set; }
+        public EducationRubric? Rubric { get; set; }
     }
 }

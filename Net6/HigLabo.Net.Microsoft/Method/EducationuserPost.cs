@@ -2,34 +2,56 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationuserPostParameter : IRestApiParameter
+    public partial class EducationUserPostParameter : IRestApiParameter
     {
-        public enum EducationuserPostParameterEducationExternalSource
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Users: return $"/education/users";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum EducationUserPostParameterEducationExternalSource
         {
             Sis,
             Manual,
         }
-        public enum EducationuserPostParameterEducationUserRole
+        public enum EducationUserPostParameterEducationUserRole
         {
             Student,
             Teacher,
             None,
+        }
+        public enum EducationUserEducationExternalSource
+        {
+            Sis,
+            Manual,
+        }
+        public enum EducationUserEducationUserRole
+        {
+            Student,
+            Teacher,
+            None,
+            UnknownFutureValue,
         }
         public enum ApiPath
         {
             Education_Users,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Users: return $"/education/users";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -40,7 +62,7 @@ namespace HigLabo.Net.Microsoft
         public IdentitySet? CreatedBy { get; set; }
         public string? Department { get; set; }
         public string? DisplayName { get; set; }
-        public EducationuserPostParameterEducationExternalSource ExternalSource { get; set; }
+        public EducationUserPostParameterEducationExternalSource ExternalSource { get; set; }
         public string? ExternalSourceDetail { get; set; }
         public string? GivenName { get; set; }
         public string? Mail { get; set; }
@@ -52,7 +74,7 @@ namespace HigLabo.Net.Microsoft
         public string? PasswordPolicies { get; set; }
         public PasswordProfile PasswordProfile { get; set; }
         public string? PreferredLanguage { get; set; }
-        public EducationuserPostParameterEducationUserRole PrimaryRole { get; set; }
+        public EducationUserPostParameterEducationUserRole PrimaryRole { get; set; }
         public ProvisionedPlan[]? ProvisionedPlans { get; set; }
         public PhysicalAddress? ResidenceAddress { get; set; }
         public EducationStudent? Student { get; set; }
@@ -61,8 +83,17 @@ namespace HigLabo.Net.Microsoft
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
+        public string? Id { get; set; }
+        public RelatedContact[]? RelatedContacts { get; set; }
+        public bool? ShowInAddressList { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationClass[]? TaughtClasses { get; set; }
+        public User? User { get; set; }
+        public EducationRubric[]? Rubrics { get; set; }
     }
-    public partial class EducationuserPostResponse : RestApiResponse
+    public partial class EducationUserPostResponse : RestApiResponse
     {
         public enum EducationUserEducationExternalSource
         {
@@ -108,38 +139,44 @@ namespace HigLabo.Net.Microsoft
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationClass[]? TaughtClasses { get; set; }
+        public User? User { get; set; }
+        public EducationRubric[]? Rubrics { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserPostResponse> EducationuserPostAsync()
+        public async Task<EducationUserPostResponse> EducationUserPostAsync()
         {
-            var p = new EducationuserPostParameter();
-            return await this.SendAsync<EducationuserPostParameter, EducationuserPostResponse>(p, CancellationToken.None);
+            var p = new EducationUserPostParameter();
+            return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserPostResponse> EducationuserPostAsync(CancellationToken cancellationToken)
+        public async Task<EducationUserPostResponse> EducationUserPostAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationuserPostParameter();
-            return await this.SendAsync<EducationuserPostParameter, EducationuserPostResponse>(p, cancellationToken);
+            var p = new EducationUserPostParameter();
+            return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserPostResponse> EducationuserPostAsync(EducationuserPostParameter parameter)
+        public async Task<EducationUserPostResponse> EducationUserPostAsync(EducationUserPostParameter parameter)
         {
-            return await this.SendAsync<EducationuserPostParameter, EducationuserPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserPostResponse> EducationuserPostAsync(EducationuserPostParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationUserPostResponse> EducationUserPostAsync(EducationUserPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationuserPostParameter, EducationuserPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationUserPostParameter, EducationUserPostResponse>(parameter, cancellationToken);
         }
     }
 }

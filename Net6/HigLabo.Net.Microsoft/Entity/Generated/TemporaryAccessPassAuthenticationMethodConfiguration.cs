@@ -20,5 +20,6 @@ namespace HigLabo.Net.Microsoft
         public int? MinimumLifetimeInMinutes { get; set; }
         public int? MaximumLifetimeInMinutes { get; set; }
         public TemporaryAccessPassAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
+        public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
 }

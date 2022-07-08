@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetonedriveactivityuserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetonedriveactivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetOneDriveActivityUserDetail: return $"/reports/getOneDriveActivityUserDetail";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetOneDriveActivityUserDetail,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetOneDriveActivityUserDetail: return $"/reports/getOneDriveActivityUserDetail";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetonedriveactivityuserdetailResponse : RestApiResponse
+    public partial class ReportRootGetonedriveactivityUserdetailResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveactivityuserdetailResponse> ReportrootGetonedriveactivityuserdetailAsync()
+        public async Task<ReportRootGetonedriveactivityUserdetailResponse> ReportRootGetonedriveactivityUserdetailAsync()
         {
-            var p = new ReportrootGetonedriveactivityuserdetailParameter();
-            return await this.SendAsync<ReportrootGetonedriveactivityuserdetailParameter, ReportrootGetonedriveactivityuserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetonedriveactivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetonedriveactivityUserdetailParameter, ReportRootGetonedriveactivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveactivityuserdetailResponse> ReportrootGetonedriveactivityuserdetailAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetonedriveactivityUserdetailResponse> ReportRootGetonedriveactivityUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetonedriveactivityuserdetailParameter();
-            return await this.SendAsync<ReportrootGetonedriveactivityuserdetailParameter, ReportrootGetonedriveactivityuserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetonedriveactivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetonedriveactivityUserdetailParameter, ReportRootGetonedriveactivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveactivityuserdetailResponse> ReportrootGetonedriveactivityuserdetailAsync(ReportrootGetonedriveactivityuserdetailParameter parameter)
+        public async Task<ReportRootGetonedriveactivityUserdetailResponse> ReportRootGetonedriveactivityUserdetailAsync(ReportRootGetonedriveactivityUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetonedriveactivityuserdetailParameter, ReportrootGetonedriveactivityuserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetonedriveactivityUserdetailParameter, ReportRootGetonedriveactivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveactivityuserdetailResponse> ReportrootGetonedriveactivityuserdetailAsync(ReportrootGetonedriveactivityuserdetailParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetonedriveactivityUserdetailResponse> ReportRootGetonedriveactivityUserdetailAsync(ReportRootGetonedriveactivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetonedriveactivityuserdetailParameter, ReportrootGetonedriveactivityuserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetonedriveactivityUserdetailParameter, ReportRootGetonedriveactivityUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

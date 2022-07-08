@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UserDeleteApproleassignmentsParameter : IRestApiParameter
+    public partial class UserDeleteApproleAssignmentsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UsersId { get; set; }
+            public string AppRoleAssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_Id_AppRoleAssignments_Id: return $"/users/{UsersId}/appRoleAssignments/{AppRoleAssignmentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Users_Id_AppRoleAssignments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_Id_AppRoleAssignments_Id: return $"/users/{UsersId}/appRoleAssignments/{AppRoleAssignmentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string UsersId { get; set; }
-        public string AppRoleAssignmentsId { get; set; }
     }
-    public partial class UserDeleteApproleassignmentsResponse : RestApiResponse
+    public partial class UserDeleteApproleAssignmentsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteApproleassignmentsResponse> UserDeleteApproleassignmentsAsync()
+        public async Task<UserDeleteApproleAssignmentsResponse> UserDeleteApproleAssignmentsAsync()
         {
-            var p = new UserDeleteApproleassignmentsParameter();
-            return await this.SendAsync<UserDeleteApproleassignmentsParameter, UserDeleteApproleassignmentsResponse>(p, CancellationToken.None);
+            var p = new UserDeleteApproleAssignmentsParameter();
+            return await this.SendAsync<UserDeleteApproleAssignmentsParameter, UserDeleteApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteApproleassignmentsResponse> UserDeleteApproleassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<UserDeleteApproleAssignmentsResponse> UserDeleteApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserDeleteApproleassignmentsParameter();
-            return await this.SendAsync<UserDeleteApproleassignmentsParameter, UserDeleteApproleassignmentsResponse>(p, cancellationToken);
+            var p = new UserDeleteApproleAssignmentsParameter();
+            return await this.SendAsync<UserDeleteApproleAssignmentsParameter, UserDeleteApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteApproleassignmentsResponse> UserDeleteApproleassignmentsAsync(UserDeleteApproleassignmentsParameter parameter)
+        public async Task<UserDeleteApproleAssignmentsResponse> UserDeleteApproleAssignmentsAsync(UserDeleteApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<UserDeleteApproleassignmentsParameter, UserDeleteApproleassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserDeleteApproleAssignmentsParameter, UserDeleteApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserDeleteApproleassignmentsResponse> UserDeleteApproleassignmentsAsync(UserDeleteApproleassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserDeleteApproleAssignmentsResponse> UserDeleteApproleAssignmentsAsync(UserDeleteApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserDeleteApproleassignmentsParameter, UserDeleteApproleassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserDeleteApproleAssignmentsParameter, UserDeleteApproleAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,24 +4,43 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewhistorydefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessReviewHistoryDefinitionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions_AccessReviewHistoryDefinitionId_Instances: return $"/identityGovernance/accessReviews/historyDefinitions/{AccessReviewHistoryDefinitionId}/instances";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DownloadUri,
+            ExpirationDateTime,
+            FulfilledDateTime,
+            Id,
+            ReviewHistoryPeriodEndDateTime,
+            ReviewHistoryPeriodStartDateTime,
+            RunDateTime,
+            Status,
         }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_HistoryDefinitions_AccessReviewHistoryDefinitionId_Instances,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions_AccessReviewHistoryDefinitionId_Instances: return $"/identityGovernance/accessReviews/historyDefinitions/{AccessReviewHistoryDefinitionId}/instances";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,34 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AccessReviewHistoryDefinitionId { get; set; }
     }
     public partial class AccessreviewhistorydefinitionListInstancesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewhistoryinstance?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessReviewHistoryInstance
-        {
-            public enum AccessReviewHistoryInstanceAccessReviewHistoryStatus
-            {
-                Done,
-                InProgress,
-                Error,
-                Requested,
-                UnknownFutureValue,
-            }
-
-            public string? DownloadUri { get; set; }
-            public DateTimeOffset? ExpirationDateTime { get; set; }
-            public DateTimeOffset? FulfilledDateTime { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? ReviewHistoryPeriodEndDateTime { get; set; }
-            public DateTimeOffset? ReviewHistoryPeriodStartDateTime { get; set; }
-            public DateTimeOffset? RunDateTime { get; set; }
-            public AccessReviewHistoryInstanceAccessReviewHistoryStatus Status { get; set; }
-        }
-
         public AccessReviewHistoryInstance[] Value { get; set; }
     }
     public partial class MicrosoftClient

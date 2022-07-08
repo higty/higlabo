@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public string? AppId { get; set; }
         public string? Id { get; set; }
         public AppConsentRequestScope[]? PendingScopes { get; set; }
+        public UserConsentRequest[]? UserConsentRequests { get; set; }
     }
 }

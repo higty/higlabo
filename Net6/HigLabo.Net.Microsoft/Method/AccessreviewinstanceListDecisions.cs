@@ -4,24 +4,50 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewinstanceListDecisionsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessReviewScheduleDefinitionId { get; set; }
+            public string AccessReviewInstanceId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/{AccessReviewInstanceId}/decisions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AccessReviewId,
+            AppliedBy,
+            AppliedDateTime,
+            ApplyResult,
+            Decision,
+            Id,
+            Justification,
+            Principal,
+            PrincipalLink,
+            Recommendation,
+            Resource,
+            ResourceLink,
+            ReviewedBy,
+            ReviewedDateTime,
         }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/{AccessReviewInstanceId}/decisions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,32 +59,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AccessReviewScheduleDefinitionId { get; set; }
-        public string AccessReviewInstanceId { get; set; }
     }
     public partial class AccessreviewinstanceListDecisionsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewinstancedecisionitem?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessReviewInstanceDecisionItem
-        {
-            public string? AccessReviewId { get; set; }
-            public UserIdentity? AppliedBy { get; set; }
-            public DateTimeOffset? AppliedDateTime { get; set; }
-            public string? ApplyResult { get; set; }
-            public string? Decision { get; set; }
-            public string? Id { get; set; }
-            public string? Justification { get; set; }
-            public Identity? Principal { get; set; }
-            public string? PrincipalLink { get; set; }
-            public string? Recommendation { get; set; }
-            public AccessReviewInstanceDecisionItemResource? Resource { get; set; }
-            public string? ResourceLink { get; set; }
-            public UserIdentity? ReviewedBy { get; set; }
-            public DateTimeOffset? ReviewedDateTime { get; set; }
-        }
-
         public AccessReviewInstanceDecisionItem[] Value { get; set; }
     }
     public partial class MicrosoftClient

@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetemailappusageversionsusercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetemailappusageversionsUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetEmailAppUsageVersionsUserCounts: return $"/reports/getEmailAppUsageVersionsUserCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetEmailAppUsageVersionsUserCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetEmailAppUsageVersionsUserCounts: return $"/reports/getEmailAppUsageVersionsUserCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetemailappusageversionsusercountsResponse : RestApiResponse
+    public partial class ReportRootGetemailappusageversionsUsercountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageversionsusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageversionsusercountsResponse> ReportrootGetemailappusageversionsusercountsAsync()
+        public async Task<ReportRootGetemailappusageversionsUsercountsResponse> ReportRootGetemailappusageversionsUsercountsAsync()
         {
-            var p = new ReportrootGetemailappusageversionsusercountsParameter();
-            return await this.SendAsync<ReportrootGetemailappusageversionsusercountsParameter, ReportrootGetemailappusageversionsusercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetemailappusageversionsUsercountsParameter();
+            return await this.SendAsync<ReportRootGetemailappusageversionsUsercountsParameter, ReportRootGetemailappusageversionsUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageversionsusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageversionsusercountsResponse> ReportrootGetemailappusageversionsusercountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetemailappusageversionsUsercountsResponse> ReportRootGetemailappusageversionsUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetemailappusageversionsusercountsParameter();
-            return await this.SendAsync<ReportrootGetemailappusageversionsusercountsParameter, ReportrootGetemailappusageversionsusercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetemailappusageversionsUsercountsParameter();
+            return await this.SendAsync<ReportRootGetemailappusageversionsUsercountsParameter, ReportRootGetemailappusageversionsUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageversionsusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageversionsusercountsResponse> ReportrootGetemailappusageversionsusercountsAsync(ReportrootGetemailappusageversionsusercountsParameter parameter)
+        public async Task<ReportRootGetemailappusageversionsUsercountsResponse> ReportRootGetemailappusageversionsUsercountsAsync(ReportRootGetemailappusageversionsUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetemailappusageversionsusercountsParameter, ReportrootGetemailappusageversionsusercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetemailappusageversionsUsercountsParameter, ReportRootGetemailappusageversionsUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageversionsusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageversionsusercountsResponse> ReportrootGetemailappusageversionsusercountsAsync(ReportrootGetemailappusageversionsusercountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetemailappusageversionsUsercountsResponse> ReportRootGetemailappusageversionsUsercountsAsync(ReportRootGetemailappusageversionsUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetemailappusageversionsusercountsParameter, ReportrootGetemailappusageversionsusercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetemailappusageversionsUsercountsParameter, ReportRootGetemailappusageversionsUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

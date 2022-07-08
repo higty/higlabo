@@ -18,5 +18,7 @@ namespace HigLabo.Net.Microsoft
         public Int32? Order { get; set; }
         public string? Self { get; set; }
         public string? Title { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public Section? ParentSection { get; set; }
     }
 }

@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class NotebookGetrecentnotebooksParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_Notebooks_GetRecentNotebooks: return $"/me/onenote/notebooks/getRecentNotebooks";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Notebooks_GetRecentNotebooks: return $"/users/{IdOrUserPrincipalName}/onenote/notebooks/getRecentNotebooks";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             CreatedBy,
@@ -19,6 +35,8 @@ namespace HigLabo.Net.Microsoft
             SectionsUrl,
             Self,
             UserRole,
+            SectionGroups,
+            Sections,
         }
         public enum ApiPath
         {
@@ -26,17 +44,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Onenote_Notebooks_GetRecentNotebooks,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_Notebooks_GetRecentNotebooks: return $"/me/onenote/notebooks/getRecentNotebooks";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Notebooks_GetRecentNotebooks: return $"/users/{IdOrUserPrincipalName}/onenote/notebooks/getRecentNotebooks";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -48,7 +61,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class NotebookGetrecentnotebooksResponse : RestApiResponse
     {

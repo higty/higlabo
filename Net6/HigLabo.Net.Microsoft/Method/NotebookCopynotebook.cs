@@ -4,6 +4,26 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class NotebookCopynotebookParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupsId { get; set; }
+            public string NotebooksId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_Notebooks_Id_CopyNotebook: return $"/me/onenote/notebooks/{Id}/copyNotebook";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Notebooks_Id_CopyNotebook: return $"/users/{IdOrUserPrincipalName}/onenote/notebooks/{Id}/copyNotebook";
+                    case ApiPath.Groups_Id_Onenote_Notebooks_Id_CopyNotebook: return $"/groups/{GroupsId}/onenote/notebooks/{NotebooksId}/copyNotebook";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Onenote_Notebooks_Id_CopyNotebook,
@@ -11,27 +31,17 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Onenote_Notebooks_Id_CopyNotebook,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_Notebooks_Id_CopyNotebook: return $"/me/onenote/notebooks/{Id}/copyNotebook";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Notebooks_Id_CopyNotebook: return $"/users/{IdOrUserPrincipalName}/onenote/notebooks/{Id}/copyNotebook";
-                    case ApiPath.Groups_Id_Onenote_Notebooks_Id_CopyNotebook: return $"/groups/{GroupsId}/onenote/notebooks/{NotebooksId}/copyNotebook";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? GroupId { get; set; }
         public string? RenameAs { get; set; }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupsId { get; set; }
-        public string NotebooksId { get; set; }
     }
     public partial class NotebookCopynotebookResponse : RestApiResponse
     {

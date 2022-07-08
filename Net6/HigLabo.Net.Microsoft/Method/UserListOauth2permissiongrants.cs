@@ -4,8 +4,30 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserListOauth2permissiongrantsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Oauth2PermissionGrants: return $"/me/oauth2PermissionGrants";
+                    case ApiPath.Users_IdOrUserPrincipalName_Oauth2PermissionGrants: return $"/users/{IdOrUserPrincipalName}/oauth2PermissionGrants";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            ClientId,
+            ConsentType,
+            PrincipalId,
+            ResourceId,
+            Scope,
         }
         public enum ApiPath
         {
@@ -13,17 +35,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Oauth2PermissionGrants,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Oauth2PermissionGrants: return $"/me/oauth2PermissionGrants";
-                    case ApiPath.Users_IdOrUserPrincipalName_Oauth2PermissionGrants: return $"/users/{IdOrUserPrincipalName}/oauth2PermissionGrants";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,23 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserListOauth2permissiongrantsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/oauth2permissiongrant?view=graph-rest-1.0
-        /// </summary>
-        public partial class OAuth2PermissionGrant
-        {
-            public string? Id { get; set; }
-            public string? ClientId { get; set; }
-            public string? ConsentType { get; set; }
-            public string? PrincipalId { get; set; }
-            public string? ResourceId { get; set; }
-            public string? Scope { get; set; }
-        }
-
         public OAuth2PermissionGrant[] Value { get; set; }
     }
     public partial class MicrosoftClient

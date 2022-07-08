@@ -4,8 +4,29 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WindowshelloforbusinessauthenticationmethodListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Authentication_WindowsHelloForBusinessMethods: return $"/me/authentication/windowsHelloForBusinessMethods";
+                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_WindowsHelloForBusinessMethods: return $"/users/{IdOrUserPrincipalName}/authentication/windowsHelloForBusinessMethods";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedDateTime,
+            DisplayName,
+            Id,
+            KeyStrength,
+            Device,
         }
         public enum ApiPath
         {
@@ -13,17 +34,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Authentication_WindowsHelloForBusinessMethods,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Authentication_WindowsHelloForBusinessMethods: return $"/me/authentication/windowsHelloForBusinessMethods";
-                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_WindowsHelloForBusinessMethods: return $"/users/{IdOrUserPrincipalName}/authentication/windowsHelloForBusinessMethods";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,28 +51,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class WindowshelloforbusinessauthenticationmethodListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/windowshelloforbusinessauthenticationmethod?view=graph-rest-1.0
-        /// </summary>
-        public partial class WindowsHelloForBusinessAuthenticationMethod
-        {
-            public enum WindowsHelloForBusinessAuthenticationMethodAuthenticationMethodKeyStrength
-            {
-                Normal,
-                Weak,
-                Unknown,
-            }
-
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public WindowsHelloForBusinessAuthenticationMethodAuthenticationMethodKeyStrength KeyStrength { get; set; }
-        }
-
         public WindowsHelloForBusinessAuthenticationMethod[] Value { get; set; }
     }
     public partial class MicrosoftClient

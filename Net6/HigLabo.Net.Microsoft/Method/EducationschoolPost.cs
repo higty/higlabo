@@ -2,33 +2,48 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationschoolPostParameter : IRestApiParameter
+    public partial class EducationSchoolPostParameter : IRestApiParameter
     {
-        public enum EducationschoolPostParameterEducationExternalSource
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Schools: return $"/education/schools";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum EducationSchoolPostParameterEducationExternalSource
         {
             Sis,
+        }
+        public enum EducationSchoolEducationExternalSource
+        {
+            Sis,
+            Manual,
         }
         public enum ApiPath
         {
             Education_Schools,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Schools: return $"/education/schools";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DisplayName { get; set; }
         public string? Description { get; set; }
-        public EducationschoolPostParameterEducationExternalSource ExternalSource { get; set; }
+        public EducationSchoolPostParameterEducationExternalSource ExternalSource { get; set; }
         public string? ExternalSourceDetail { get; set; }
         public string? PrincipalEmail { get; set; }
         public string? PrincipalName { get; set; }
@@ -41,8 +56,12 @@ namespace HigLabo.Net.Microsoft
         public string? Fax { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public PhysicalAddress? Address { get; set; }
+        public string? Id { get; set; }
+        public AdministrativeUnit? AdministrativeUnit { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationUser[]? Users { get; set; }
     }
-    public partial class EducationschoolPostResponse : RestApiResponse
+    public partial class EducationSchoolPostResponse : RestApiResponse
     {
         public enum EducationSchoolEducationExternalSource
         {
@@ -65,38 +84,41 @@ namespace HigLabo.Net.Microsoft
         public string? PrincipalEmail { get; set; }
         public string? PrincipalName { get; set; }
         public string? SchoolNumber { get; set; }
+        public AdministrativeUnit? AdministrativeUnit { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationUser[]? Users { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolPostResponse> EducationschoolPostAsync()
+        public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync()
         {
-            var p = new EducationschoolPostParameter();
-            return await this.SendAsync<EducationschoolPostParameter, EducationschoolPostResponse>(p, CancellationToken.None);
+            var p = new EducationSchoolPostParameter();
+            return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolPostResponse> EducationschoolPostAsync(CancellationToken cancellationToken)
+        public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationschoolPostParameter();
-            return await this.SendAsync<EducationschoolPostParameter, EducationschoolPostResponse>(p, cancellationToken);
+            var p = new EducationSchoolPostParameter();
+            return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolPostResponse> EducationschoolPostAsync(EducationschoolPostParameter parameter)
+        public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync(EducationSchoolPostParameter parameter)
         {
-            return await this.SendAsync<EducationschoolPostParameter, EducationschoolPostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolPostResponse> EducationschoolPostAsync(EducationschoolPostParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync(EducationSchoolPostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationschoolPostParameter, EducationschoolPostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(parameter, cancellationToken);
         }
     }
 }

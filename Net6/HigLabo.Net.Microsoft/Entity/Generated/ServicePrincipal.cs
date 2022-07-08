@@ -49,5 +49,16 @@ namespace HigLabo.Net.Microsoft
         public String[]? Tags { get; set; }
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
+        public AppRoleAssignment? AppRoleAssignedTo { get; set; }
+        public AppRoleAssignment[]? AppRoleAssignments { get; set; }
+        public ClaimsMappingPolicy[]? ClaimsMappingPolicies { get; set; }
+        public DirectoryObject[]? CreatedObjects { get; set; }
+        public HomeRealmDiscoveryPolicy[]? HomeRealmDiscoveryPolicies { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public OAuth2PermissionGrant[]? Oauth2PermissionGrants { get; set; }
+        public DirectoryObject[]? OwnedObjects { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
+        public TokenIssuancePolicy[]? TokenIssuancePolicies { get; set; }
+        public TokenLifetimePolicy[]? TokenLifetimePolicies { get; set; }
     }
 }

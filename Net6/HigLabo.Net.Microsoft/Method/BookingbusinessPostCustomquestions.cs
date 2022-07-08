@@ -4,7 +4,28 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class BookingbusinessPostCustomquestionsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string BookingBusinessesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Solutions_BookingBusinesses_BookingBusinessesId_CustomQuestions: return $"/solutions/bookingBusinesses/{BookingBusinessesId}/customQuestions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum BookingbusinessPostCustomquestionsParameterAnswerInputType
+        {
+            Text,
+            RadioButton,
+            UnknownFutureValue,
+        }
+        public enum BookingCustomQuestionAnswerInputType
         {
             Text,
             RadioButton,
@@ -15,23 +36,19 @@ namespace HigLabo.Net.Microsoft
             Solutions_BookingBusinesses_BookingBusinessesId_CustomQuestions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Solutions_BookingBusinesses_BookingBusinessesId_CustomQuestions: return $"/solutions/bookingBusinesses/{BookingBusinessesId}/customQuestions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public BookingbusinessPostCustomquestionsParameterAnswerInputType AnswerInputType { get; set; }
         public String[]? AnswerOptions { get; set; }
         public string? DisplayName { get; set; }
-        public string BookingBusinessesId { get; set; }
+        public string? Id { get; set; }
     }
     public partial class BookingbusinessPostCustomquestionsResponse : RestApiResponse
     {

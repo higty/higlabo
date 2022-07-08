@@ -8,5 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class TeamsAppInstallation
     {
         public string? Id { get; set; }
+        public TeamsApp? TeamsApp { get; set; }
+        public TeamsAppDefinition? TeamsAppDefinition { get; set; }
     }
 }

@@ -4,28 +4,44 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EventmessagePostAttachmentsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Messages_Id_Attachments: return $"/me/messages/{Id}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/attachments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Messages_Id_Attachments,
             Users_IdOrUserPrincipalName_Messages_Id_Attachments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Messages_Id_Attachments: return $"/me/messages/{Id}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/attachments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
+        public string? ContentType { get; set; }
+        public string? Id { get; set; }
+        public bool? IsInline { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? Name { get; set; }
+        public Int32? Size { get; set; }
     }
     public partial class EventmessagePostAttachmentsResponse : RestApiResponse
     {

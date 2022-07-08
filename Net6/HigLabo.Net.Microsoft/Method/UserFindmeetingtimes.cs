@@ -4,23 +4,34 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserFindmeetingtimesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_FindMeetingTimes: return $"/me/findMeetingTimes";
+                    case ApiPath.Users_IdOruserPrincipalName_FindMeetingTimes: return $"/users/{IdOrUserPrincipalName}/findMeetingTimes";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_FindMeetingTimes,
             Users_IdOruserPrincipalName_FindMeetingTimes,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_FindMeetingTimes: return $"/me/findMeetingTimes";
-                    case ApiPath.Users_IdOruserPrincipalName_FindMeetingTimes: return $"/users/{IdOrUserPrincipalName}/findMeetingTimes";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -32,7 +43,8 @@ namespace HigLabo.Net.Microsoft
         public Double? MinimumAttendeePercentage { get; set; }
         public Boolean? ReturnSuggestionReasons { get; set; }
         public TimeConstraint? TimeConstraint { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
+        public string? EmptySuggestionsReason { get; set; }
+        public MeetingTimeSuggestion[]? MeetingTimeSuggestions { get; set; }
     }
     public partial class UserFindmeetingtimesResponse : RestApiResponse
     {

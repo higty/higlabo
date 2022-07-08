@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetsharepointactivityusercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetsharepointactivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetSharePointActivityUserCounts: return $"/reports/getSharePointActivityUserCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetSharePointActivityUserCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetSharePointActivityUserCounts: return $"/reports/getSharePointActivityUserCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetsharepointactivityusercountsResponse : RestApiResponse
+    public partial class ReportRootGetsharepointactivityUsercountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetsharepointactivityusercountsResponse> ReportrootGetsharepointactivityusercountsAsync()
+        public async Task<ReportRootGetsharepointactivityUsercountsResponse> ReportRootGetsharepointactivityUsercountsAsync()
         {
-            var p = new ReportrootGetsharepointactivityusercountsParameter();
-            return await this.SendAsync<ReportrootGetsharepointactivityusercountsParameter, ReportrootGetsharepointactivityusercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetsharepointactivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetsharepointactivityUsercountsParameter, ReportRootGetsharepointactivityUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetsharepointactivityusercountsResponse> ReportrootGetsharepointactivityusercountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetsharepointactivityUsercountsResponse> ReportRootGetsharepointactivityUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetsharepointactivityusercountsParameter();
-            return await this.SendAsync<ReportrootGetsharepointactivityusercountsParameter, ReportrootGetsharepointactivityusercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetsharepointactivityUsercountsParameter();
+            return await this.SendAsync<ReportRootGetsharepointactivityUsercountsParameter, ReportRootGetsharepointactivityUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetsharepointactivityusercountsResponse> ReportrootGetsharepointactivityusercountsAsync(ReportrootGetsharepointactivityusercountsParameter parameter)
+        public async Task<ReportRootGetsharepointactivityUsercountsResponse> ReportRootGetsharepointactivityUsercountsAsync(ReportRootGetsharepointactivityUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetsharepointactivityusercountsParameter, ReportrootGetsharepointactivityusercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetsharepointactivityUsercountsParameter, ReportRootGetsharepointactivityUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointactivityusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetsharepointactivityusercountsResponse> ReportrootGetsharepointactivityusercountsAsync(ReportrootGetsharepointactivityusercountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetsharepointactivityUsercountsResponse> ReportRootGetsharepointactivityUsercountsAsync(ReportRootGetsharepointactivityUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetsharepointactivityusercountsParameter, ReportrootGetsharepointactivityusercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetsharepointactivityUsercountsParameter, ReportRootGetsharepointactivityUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

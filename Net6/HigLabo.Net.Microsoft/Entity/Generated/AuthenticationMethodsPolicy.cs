@@ -13,5 +13,6 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public string? PolicyVersion { get; set; }
         public RegistrationEnforcement? RegistrationEnforcement { get; set; }
+        public AuthenticationMethodConfiguration[]? AuthenticationMethodConfigurations { get; set; }
     }
 }

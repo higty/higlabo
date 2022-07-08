@@ -4,24 +4,43 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TermsofusecontainerListAgreementsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements: return $"/identityGovernance/termsOfUse/agreements";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DisplayName,
+            Id,
+            IsPerDeviceAcceptanceRequired,
+            IsViewingBeforeAcceptanceRequired,
+            TermsExpiration,
+            UserReacceptRequiredFrequency,
+            Acceptances,
+            File,
+            Files,
         }
         public enum ApiPath
         {
             IdentityGovernance_TermsOfUse_Agreements,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements: return $"/identityGovernance/termsOfUse/agreements";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,19 +55,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TermsofusecontainerListAgreementsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/agreement?view=graph-rest-1.0
-        /// </summary>
-        public partial class Agreement
-        {
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public bool? IsPerDeviceAcceptanceRequired { get; set; }
-            public bool? IsViewingBeforeAcceptanceRequired { get; set; }
-            public TermsExpiration? TermsExpiration { get; set; }
-            public string? UserReacceptRequiredFrequency { get; set; }
-        }
-
         public Agreement[] Value { get; set; }
     }
     public partial class MicrosoftClient

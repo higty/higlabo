@@ -4,24 +4,43 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationtemplateListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ApplicationTemplates: return $"/applicationTemplates";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Categories,
+            Description,
+            DisplayName,
+            HomePageUrl,
+            Id,
+            LogoUrl,
+            Publisher,
+            SupportedProvisioningTypes,
+            SupportedSingleSignOnModes,
         }
         public enum ApiPath
         {
             ApplicationTemplates,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ApplicationTemplates: return $"/applicationTemplates";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,30 +55,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ApplicationtemplateListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/applicationtemplate?view=graph-rest-1.0
-        /// </summary>
-        public partial class ApplicationTemplate
-        {
-            public enum ApplicationTemplateString
-            {
-                Oidc,
-                Password,
-                Saml,
-                NotSupported,
-            }
-
-            public String[]? Categories { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public string? HomePageUrl { get; set; }
-            public string? Id { get; set; }
-            public string? LogoUrl { get; set; }
-            public string? Publisher { get; set; }
-            public String[]? SupportedProvisioningTypes { get; set; }
-            public ApplicationTemplateString SupportedSingleSignOnModes { get; set; }
-        }
-
         public ApplicationTemplate[] Value { get; set; }
     }
     public partial class MicrosoftClient

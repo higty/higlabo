@@ -2,10 +2,48 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypeGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ContentTypeGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ContentTypeId { get; set; }
+            public string ListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}";
+                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AssociatedHubsUrls,
+            Description,
+            DocumentSet,
+            DocumentTemplate,
+            Group,
+            Hidden,
+            Id,
+            InheritedFrom,
+            IsBuiltIn,
+            Name,
+            Order,
+            ParentId,
+            PropagateChanges,
+            ReadOnly,
+            Sealed,
+            Base,
+            ColumnLinks,
+            BaseTypes,
+            ColumnPositions,
+            Columns,
         }
         public enum ApiPath
         {
@@ -13,17 +51,12 @@ namespace HigLabo.Net.Microsoft
             Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}";
-                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,11 +68,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ContentTypeId { get; set; }
-        public string ListId { get; set; }
     }
-    public partial class ContenttypeGetResponse : RestApiResponse
+    public partial class ContentTypeGetResponse : RestApiResponse
     {
         public String[]? AssociatedHubsUrls { get; set; }
         public string? Description { get; set; }
@@ -56,38 +86,43 @@ namespace HigLabo.Net.Microsoft
         public bool? PropagateChanges { get; set; }
         public bool? ReadOnly { get; set; }
         public bool? Sealed { get; set; }
+        public ContentType? Base { get; set; }
+        public ColumnLink[]? ColumnLinks { get; set; }
+        public ContentType[]? BaseTypes { get; set; }
+        public ColumnDefinition[]? ColumnPositions { get; set; }
+        public ColumnDefinition[]? Columns { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetResponse> ContenttypeGetAsync()
+        public async Task<ContentTypeGetResponse> ContentTypeGetAsync()
         {
-            var p = new ContenttypeGetParameter();
-            return await this.SendAsync<ContenttypeGetParameter, ContenttypeGetResponse>(p, CancellationToken.None);
+            var p = new ContentTypeGetParameter();
+            return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetResponse> ContenttypeGetAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypeGetResponse> ContentTypeGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypeGetParameter();
-            return await this.SendAsync<ContenttypeGetParameter, ContenttypeGetResponse>(p, cancellationToken);
+            var p = new ContentTypeGetParameter();
+            return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetResponse> ContenttypeGetAsync(ContenttypeGetParameter parameter)
+        public async Task<ContentTypeGetResponse> ContentTypeGetAsync(ContentTypeGetParameter parameter)
         {
-            return await this.SendAsync<ContenttypeGetParameter, ContenttypeGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetResponse> ContenttypeGetAsync(ContenttypeGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypeGetResponse> ContentTypeGetAsync(ContentTypeGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypeGetParameter, ContenttypeGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypeGetParameter, ContentTypeGetResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -2,68 +2,84 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UserPostCalendargroupsParameter : IRestApiParameter
+    public partial class UserPostCalendarGroupsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_CalendarGroups: return $"/me/calendarGroups";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups: return $"/users/{IdOrUserPrincipalName}/calendarGroups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_CalendarGroups,
             Users_IdOrUserPrincipalName_CalendarGroups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_CalendarGroups: return $"/me/calendarGroups";
-                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups: return $"/users/{IdOrUserPrincipalName}/calendarGroups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string IdOrUserPrincipalName { get; set; }
+        public string? Name { get; set; }
+        public string? ChangeKey { get; set; }
+        public Guid? ClassId { get; set; }
+        public string? Id { get; set; }
+        public Calendar[]? Calendars { get; set; }
     }
-    public partial class UserPostCalendargroupsResponse : RestApiResponse
+    public partial class UserPostCalendarGroupsResponse : RestApiResponse
     {
         public string? Name { get; set; }
         public string? ChangeKey { get; set; }
         public Guid? ClassId { get; set; }
         public string? Id { get; set; }
+        public Calendar[]? Calendars { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-post-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendargroupsResponse> UserPostCalendargroupsAsync()
+        public async Task<UserPostCalendarGroupsResponse> UserPostCalendarGroupsAsync()
         {
-            var p = new UserPostCalendargroupsParameter();
-            return await this.SendAsync<UserPostCalendargroupsParameter, UserPostCalendargroupsResponse>(p, CancellationToken.None);
+            var p = new UserPostCalendarGroupsParameter();
+            return await this.SendAsync<UserPostCalendarGroupsParameter, UserPostCalendarGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-post-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendargroupsResponse> UserPostCalendargroupsAsync(CancellationToken cancellationToken)
+        public async Task<UserPostCalendarGroupsResponse> UserPostCalendarGroupsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserPostCalendargroupsParameter();
-            return await this.SendAsync<UserPostCalendargroupsParameter, UserPostCalendargroupsResponse>(p, cancellationToken);
+            var p = new UserPostCalendarGroupsParameter();
+            return await this.SendAsync<UserPostCalendarGroupsParameter, UserPostCalendarGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-post-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendargroupsResponse> UserPostCalendargroupsAsync(UserPostCalendargroupsParameter parameter)
+        public async Task<UserPostCalendarGroupsResponse> UserPostCalendarGroupsAsync(UserPostCalendarGroupsParameter parameter)
         {
-            return await this.SendAsync<UserPostCalendargroupsParameter, UserPostCalendargroupsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserPostCalendarGroupsParameter, UserPostCalendarGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-post-calendargroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserPostCalendargroupsResponse> UserPostCalendargroupsAsync(UserPostCalendargroupsParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserPostCalendarGroupsResponse> UserPostCalendarGroupsAsync(UserPostCalendarGroupsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserPostCalendargroupsParameter, UserPostCalendargroupsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserPostCalendarGroupsParameter, UserPostCalendarGroupsResponse>(parameter, cancellationToken);
         }
     }
 }

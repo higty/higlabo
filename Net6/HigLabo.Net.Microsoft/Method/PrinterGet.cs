@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinterGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_Id: return $"/print/printers/{Id}";
+                    case ApiPath.Print_Shares_Id_Printer: return $"/print/shares/{Id}/printer";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             Id,
@@ -19,6 +35,10 @@ namespace HigLabo.Net.Microsoft
             Defaults,
             Capabilities,
             LastSeenDateTime,
+            Jobs,
+            Shares,
+            Connectors,
+            TaskTriggers,
         }
         public enum ApiPath
         {
@@ -26,17 +46,12 @@ namespace HigLabo.Net.Microsoft
             Print_Shares_Id_Printer,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_Id: return $"/print/printers/{Id}";
-                    case ApiPath.Print_Shares_Id_Printer: return $"/print/shares/{Id}/printer";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -48,7 +63,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class PrinterGetResponse : RestApiResponse
     {
@@ -65,6 +79,10 @@ namespace HigLabo.Net.Microsoft
         public PrinterDefaults? Defaults { get; set; }
         public PrinterCapabilities? Capabilities { get; set; }
         public DateTimeOffset? LastSeenDateTime { get; set; }
+        public PrintJob[]? Jobs { get; set; }
+        public PrinterShare[]? Shares { get; set; }
+        public PrintConnector? Connectors { get; set; }
+        public PrintTaskTrigger[]? TaskTriggers { get; set; }
     }
     public partial class MicrosoftClient
     {

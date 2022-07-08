@@ -4,27 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationRemovekeyParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Applications_Id_RemoveKey: return $"/applications/{Id}/removeKey";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Applications_Id_RemoveKey,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Applications_Id_RemoveKey: return $"/applications/{Id}/removeKey";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public Guid? KeyId { get; set; }
         public string? Proof { get; set; }
-        public string Id { get; set; }
     }
     public partial class ApplicationRemovekeyResponse : RestApiResponse
     {

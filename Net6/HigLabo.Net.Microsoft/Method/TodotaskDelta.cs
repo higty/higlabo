@@ -4,8 +4,43 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotaskDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string TodoTaskListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_Id_Tasks_Delta: return $"/me/todo/lists/{Id}/tasks/delta";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_Delta: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Body,
+            BodyLastModifiedDateTime,
+            Categories,
+            CompletedDateTime,
+            CreatedDateTime,
+            DueDateTime,
+            Id,
+            Importance,
+            IsReminderOn,
+            LastModifiedDateTime,
+            Recurrence,
+            ReminderDateTime,
+            Status,
+            Title,
+            ChecklistItems,
+            Extensions,
+            LinkedResources,
         }
         public enum ApiPath
         {
@@ -13,17 +48,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_Id_Tasks_Delta: return $"/me/todo/lists/{Id}/tasks/delta";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_Delta: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,48 +65,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string TodoTaskListId { get; set; }
     }
     public partial class TodotaskDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/todotask?view=graph-rest-1.0
-        /// </summary>
-        public partial class TodoTask
-        {
-            public enum TodoTaskImportance
-            {
-                Low,
-                Normal,
-                High,
-            }
-            public enum TodoTaskTaskStatus
-            {
-                NotStarted,
-                InProgress,
-                Completed,
-                WaitingOnOthers,
-                Deferred,
-            }
-
-            public ItemBody? Body { get; set; }
-            public DateTimeOffset? BodyLastModifiedDateTime { get; set; }
-            public String[]? Categories { get; set; }
-            public DateTimeTimeZone? CompletedDateTime { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeTimeZone? DueDateTime { get; set; }
-            public string? Id { get; set; }
-            public TodoTaskImportance Importance { get; set; }
-            public bool? IsReminderOn { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public PatternedRecurrence? Recurrence { get; set; }
-            public DateTimeTimeZone? ReminderDateTime { get; set; }
-            public TodoTaskTaskStatus Status { get; set; }
-            public string? Title { get; set; }
-        }
-
         public TodoTask[] Value { get; set; }
     }
     public partial class MicrosoftClient

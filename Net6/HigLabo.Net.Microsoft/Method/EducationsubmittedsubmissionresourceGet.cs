@@ -2,8 +2,26 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationsubmittedsubmissionresourceGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationsubmittedsubmissionResourceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+            public string SubmissionsId { get; set; }
+            public string SubmittedResourcesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Submissions_Id_SubmittedResources_Id: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/submissions/{SubmissionsId}/submittedResources/{SubmittedResourcesId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +30,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_Id_Assignments_Id_Submissions_Id_SubmittedResources_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Submissions_Id_SubmittedResources_Id: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/submissions/{SubmissionsId}/submittedResources/{SubmittedResourcesId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,12 +47,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
-        public string SubmissionsId { get; set; }
-        public string SubmittedResourcesId { get; set; }
     }
-    public partial class EducationsubmittedsubmissionresourceGetResponse : RestApiResponse
+    public partial class EducationsubmittedsubmissionResourceGetResponse : RestApiResponse
     {
         public string? AssignmentResourceUrl { get; set; }
         public string? Id { get; set; }
@@ -49,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmittedsubmissionresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmittedsubmissionresourceGetResponse> EducationsubmittedsubmissionresourceGetAsync()
+        public async Task<EducationsubmittedsubmissionResourceGetResponse> EducationsubmittedsubmissionResourceGetAsync()
         {
-            var p = new EducationsubmittedsubmissionresourceGetParameter();
-            return await this.SendAsync<EducationsubmittedsubmissionresourceGetParameter, EducationsubmittedsubmissionresourceGetResponse>(p, CancellationToken.None);
+            var p = new EducationsubmittedsubmissionResourceGetParameter();
+            return await this.SendAsync<EducationsubmittedsubmissionResourceGetParameter, EducationsubmittedsubmissionResourceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmittedsubmissionresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmittedsubmissionresourceGetResponse> EducationsubmittedsubmissionresourceGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationsubmittedsubmissionResourceGetResponse> EducationsubmittedsubmissionResourceGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationsubmittedsubmissionresourceGetParameter();
-            return await this.SendAsync<EducationsubmittedsubmissionresourceGetParameter, EducationsubmittedsubmissionresourceGetResponse>(p, cancellationToken);
+            var p = new EducationsubmittedsubmissionResourceGetParameter();
+            return await this.SendAsync<EducationsubmittedsubmissionResourceGetParameter, EducationsubmittedsubmissionResourceGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmittedsubmissionresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmittedsubmissionresourceGetResponse> EducationsubmittedsubmissionresourceGetAsync(EducationsubmittedsubmissionresourceGetParameter parameter)
+        public async Task<EducationsubmittedsubmissionResourceGetResponse> EducationsubmittedsubmissionResourceGetAsync(EducationsubmittedsubmissionResourceGetParameter parameter)
         {
-            return await this.SendAsync<EducationsubmittedsubmissionresourceGetParameter, EducationsubmittedsubmissionresourceGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationsubmittedsubmissionResourceGetParameter, EducationsubmittedsubmissionResourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmittedsubmissionresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmittedsubmissionresourceGetResponse> EducationsubmittedsubmissionresourceGetAsync(EducationsubmittedsubmissionresourceGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationsubmittedsubmissionResourceGetResponse> EducationsubmittedsubmissionResourceGetAsync(EducationsubmittedsubmissionResourceGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationsubmittedsubmissionresourceGetParameter, EducationsubmittedsubmissionresourceGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationsubmittedsubmissionResourceGetParameter, EducationsubmittedsubmissionResourceGetResponse>(parameter, cancellationToken);
         }
     }
 }

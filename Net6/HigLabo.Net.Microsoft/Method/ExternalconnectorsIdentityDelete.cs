@@ -2,31 +2,41 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ExternalconnectorsIdentityDeleteParameter : IRestApiParameter
+    public partial class ExternalConnectorsIdentityDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ConnectionId { get; set; }
+            public string ExternalGroupId { get; set; }
+            public string IdentityId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.External_Connections_ConnectionId_Groups_ExternalGroupId_Members_IdentityId: return $"/external/connections/{ConnectionId}/groups/{ExternalGroupId}/members/{IdentityId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             External_Connections_ConnectionId_Groups_ExternalGroupId_Members_IdentityId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.External_Connections_ConnectionId_Groups_ExternalGroupId_Members_IdentityId: return $"/external/connections/{ConnectionId}/groups/{ExternalGroupId}/members/{IdentityId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ConnectionId { get; set; }
-        public string ExternalGroupId { get; set; }
-        public string IdentityId { get; set; }
     }
-    public partial class ExternalconnectorsIdentityDeleteResponse : RestApiResponse
+    public partial class ExternalConnectorsIdentityDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -34,32 +44,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsIdentityDeleteResponse> ExternalconnectorsIdentityDeleteAsync()
+        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync()
         {
-            var p = new ExternalconnectorsIdentityDeleteParameter();
-            return await this.SendAsync<ExternalconnectorsIdentityDeleteParameter, ExternalconnectorsIdentityDeleteResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsIdentityDeleteParameter();
+            return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsIdentityDeleteResponse> ExternalconnectorsIdentityDeleteAsync(CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalconnectorsIdentityDeleteParameter();
-            return await this.SendAsync<ExternalconnectorsIdentityDeleteParameter, ExternalconnectorsIdentityDeleteResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsIdentityDeleteParameter();
+            return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsIdentityDeleteResponse> ExternalconnectorsIdentityDeleteAsync(ExternalconnectorsIdentityDeleteParameter parameter)
+        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(ExternalConnectorsIdentityDeleteParameter parameter)
         {
-            return await this.SendAsync<ExternalconnectorsIdentityDeleteParameter, ExternalconnectorsIdentityDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-identity-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsIdentityDeleteResponse> ExternalconnectorsIdentityDeleteAsync(ExternalconnectorsIdentityDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsIdentityDeleteResponse> ExternalConnectorsIdentityDeleteAsync(ExternalConnectorsIdentityDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalconnectorsIdentityDeleteParameter, ExternalconnectorsIdentityDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsIdentityDeleteParameter, ExternalConnectorsIdentityDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

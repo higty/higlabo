@@ -35,5 +35,6 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? StartDateTime { get; set; }
         public CallrecordsCallrecordCallType Type { get; set; }
         public Int64? Version { get; set; }
+        public CallrecordsSession[]? Sessions { get; set; }
     }
 }

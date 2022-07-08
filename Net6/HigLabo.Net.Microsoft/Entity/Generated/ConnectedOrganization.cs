@@ -22,5 +22,7 @@ namespace HigLabo.Net.Microsoft
         public IdentitySource[]? IdentitySources { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
         public ConnectedOrganizationConnectedOrganizationState State { get; set; }
+        public DirectoryObject[]? ExternalSponsors { get; set; }
+        public DirectoryObject[]? InternalSponsors { get; set; }
     }
 }

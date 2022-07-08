@@ -4,21 +4,32 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AgreementPostFilesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AgreementsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Agreements_AgreementsId_Files: return $"/agreements/{AgreementsId}/files";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Agreements_AgreementsId_Files,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Agreements_AgreementsId_Files: return $"/agreements/{AgreementsId}/files";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -28,7 +39,9 @@ namespace HigLabo.Net.Microsoft
         public bool? IsDefault { get; set; }
         public bool? IsMajorVersion { get; set; }
         public string? Language { get; set; }
-        public string AgreementsId { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public AgreementFileVersion[]? Versions { get; set; }
     }
     public partial class AgreementPostFilesResponse : RestApiResponse
     {
@@ -40,6 +53,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsDefault { get; set; }
         public bool? IsMajorVersion { get; set; }
         public string? Language { get; set; }
+        public AgreementFileVersion[]? Versions { get; set; }
     }
     public partial class MicrosoftClient
     {

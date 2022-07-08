@@ -2,8 +2,38 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UserGetMailboxsettingsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserGetMailboxSettingsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_MailboxSettings: return $"/me/mailboxSettings";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings: return $"/users/{IdOrUserPrincipalName}/mailboxSettings";
+                    case ApiPath.Me_MailboxSettings_AutomaticRepliesSetting: return $"/me/mailboxSettings/automaticRepliesSetting";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_AutomaticRepliesSetting: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/automaticRepliesSetting";
+                    case ApiPath.Me_MailboxSettings_DateFormat: return $"/me/mailboxSettings/dateFormat";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_DateFormat: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/dateFormat";
+                    case ApiPath.Me_MailboxSettings_DelegateMeetingMessageDeliveryOptions: return $"/me/mailboxSettings/delegateMeetingMessageDeliveryOptions";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_DelegateMeetingMessageDeliveryOptions: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/delegateMeetingMessageDeliveryOptions";
+                    case ApiPath.Me_MailboxSettings_Language: return $"/me/mailboxSettings/language";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_Language: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/language";
+                    case ApiPath.Me_MailboxSettings_TimeFormat: return $"/me/mailboxSettings/timeFormat";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_TimeFormat: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/timeFormat";
+                    case ApiPath.Me_MailboxSettings_TimeZone: return $"/me/mailboxSettings/timeZone";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_TimeZone: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/timeZone";
+                    case ApiPath.Me_MailboxSettings_WorkingHours: return $"/me/mailboxSettings/workingHours";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_WorkingHours: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/workingHours";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AboutMe,
@@ -78,6 +108,38 @@ namespace HigLabo.Net.Microsoft
             UsageLocation,
             UserPrincipalName,
             UserType,
+            AgreementAcceptances,
+            Activities,
+            AppRoleAssignments,
+            Authentication,
+            Calendar,
+            CalendarGroups,
+            CalendarView,
+            Calendars,
+            ContactFolders,
+            Contacts,
+            CreatedObjects,
+            DirectReports,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            InferenceClassification,
+            Insights,
+            LicenseDetails,
+            MailFolders,
+            Manager,
+            MemberOf,
+            Messages,
+            Onenote,
+            Outlook,
+            OwnedDevices,
+            OwnedObjects,
+            People,
+            Photo,
+            Planner,
+            RegisteredDevices,
+            Todo,
         }
         public enum ApiPath
         {
@@ -99,31 +161,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_MailboxSettings_WorkingHours,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_MailboxSettings: return $"/me/mailboxSettings";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings: return $"/users/{IdOrUserPrincipalName}/mailboxSettings";
-                    case ApiPath.Me_MailboxSettings_AutomaticRepliesSetting: return $"/me/mailboxSettings/automaticRepliesSetting";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_AutomaticRepliesSetting: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/automaticRepliesSetting";
-                    case ApiPath.Me_MailboxSettings_DateFormat: return $"/me/mailboxSettings/dateFormat";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_DateFormat: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/dateFormat";
-                    case ApiPath.Me_MailboxSettings_DelegateMeetingMessageDeliveryOptions: return $"/me/mailboxSettings/delegateMeetingMessageDeliveryOptions";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_DelegateMeetingMessageDeliveryOptions: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/delegateMeetingMessageDeliveryOptions";
-                    case ApiPath.Me_MailboxSettings_Language: return $"/me/mailboxSettings/language";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_Language: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/language";
-                    case ApiPath.Me_MailboxSettings_TimeFormat: return $"/me/mailboxSettings/timeFormat";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_TimeFormat: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/timeFormat";
-                    case ApiPath.Me_MailboxSettings_TimeZone: return $"/me/mailboxSettings/timeZone";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_TimeZone: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/timeZone";
-                    case ApiPath.Me_MailboxSettings_WorkingHours: return $"/me/mailboxSettings/workingHours";
-                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_WorkingHours: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/workingHours";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -135,9 +178,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class UserGetMailboxsettingsResponse : RestApiResponse
+    public partial class UserGetMailboxSettingsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -145,32 +187,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxsettingsResponse> UserGetMailboxsettingsAsync()
+        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync()
         {
-            var p = new UserGetMailboxsettingsParameter();
-            return await this.SendAsync<UserGetMailboxsettingsParameter, UserGetMailboxsettingsResponse>(p, CancellationToken.None);
+            var p = new UserGetMailboxSettingsParameter();
+            return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxsettingsResponse> UserGetMailboxsettingsAsync(CancellationToken cancellationToken)
+        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserGetMailboxsettingsParameter();
-            return await this.SendAsync<UserGetMailboxsettingsParameter, UserGetMailboxsettingsResponse>(p, cancellationToken);
+            var p = new UserGetMailboxSettingsParameter();
+            return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxsettingsResponse> UserGetMailboxsettingsAsync(UserGetMailboxsettingsParameter parameter)
+        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter)
         {
-            return await this.SendAsync<UserGetMailboxsettingsParameter, UserGetMailboxsettingsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserGetMailboxsettingsResponse> UserGetMailboxsettingsAsync(UserGetMailboxsettingsParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserGetMailboxsettingsParameter, UserGetMailboxsettingsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(parameter, cancellationToken);
         }
     }
 }

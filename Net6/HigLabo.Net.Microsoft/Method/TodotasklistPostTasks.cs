@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotasklistPostTasksParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks: return $"/me/todo/lists/{TodoTaskListId}/tasks";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum TodotasklistPostTasksParameterImportance
         {
             Low,
@@ -18,23 +35,32 @@ namespace HigLabo.Net.Microsoft
             WaitingOnOthers,
             Deferred,
         }
+        public enum TodoTaskImportance
+        {
+            Low,
+            Normal,
+            High,
+        }
+        public enum TodoTaskTaskStatus
+        {
+            NotStarted,
+            InProgress,
+            Completed,
+            WaitingOnOthers,
+            Deferred,
+        }
         public enum ApiPath
         {
             Me_Todo_Lists_TodoTaskListId_Tasks,
             Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks: return $"/me/todo/lists/{TodoTaskListId}/tasks";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -52,8 +78,9 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? CreatedDateTime { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? BodyLastModifiedDateTime { get; set; }
-        public string TodoTaskListId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
+        public ChecklistItem[]? ChecklistItems { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public LinkedResource[]? LinkedResources { get; set; }
     }
     public partial class TodotasklistPostTasksResponse : RestApiResponse
     {
@@ -86,6 +113,9 @@ namespace HigLabo.Net.Microsoft
         public DateTimeTimeZone? ReminderDateTime { get; set; }
         public TodoTaskTaskStatus Status { get; set; }
         public string? Title { get; set; }
+        public ChecklistItem[]? ChecklistItems { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public LinkedResource[]? LinkedResources { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -4,24 +4,61 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PlannerplanListTasksParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PlanId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Planner_Plans_PlanId_Tasks: return $"/planner/plans/{PlanId}/tasks";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ActiveChecklistItemCount,
+            AppliedCategories,
+            AssigneePriority,
+            Assignments,
+            BucketId,
+            ChecklistItemCount,
+            CompletedBy,
+            CompletedDateTime,
+            ConversationThreadId,
+            CreatedBy,
+            CreatedDateTime,
+            DueDateTime,
+            HasDescription,
+            Id,
+            OrderHint,
+            PercentComplete,
+            Priority,
+            PlanId,
+            PreviewType,
+            ReferenceCount,
+            StartDateTime,
+            Title,
+            AssignedToTaskBoardFormat,
+            BucketTaskBoardFormat,
+            Details,
+            ProgressTaskBoardFormat,
         }
         public enum ApiPath
         {
             Planner_Plans_PlanId_Tasks,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Planner_Plans_PlanId_Tasks: return $"/planner/plans/{PlanId}/tasks";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,39 +70,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PlanId { get; set; }
     }
     public partial class PlannerplanListTasksResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/plannertask?view=graph-rest-1.0
-        /// </summary>
-        public partial class PlannerTask
-        {
-            public Int32? ActiveChecklistItemCount { get; set; }
-            public PlannerAppliedCategories? AppliedCategories { get; set; }
-            public string? AssigneePriority { get; set; }
-            public PlannerAssignments? Assignments { get; set; }
-            public string? BucketId { get; set; }
-            public Int32? ChecklistItemCount { get; set; }
-            public IdentitySet? CompletedBy { get; set; }
-            public DateTimeOffset? CompletedDateTime { get; set; }
-            public string? ConversationThreadId { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? DueDateTime { get; set; }
-            public bool? HasDescription { get; set; }
-            public string? Id { get; set; }
-            public string? OrderHint { get; set; }
-            public Int32? PercentComplete { get; set; }
-            public Int32? Priority { get; set; }
-            public string? PlanId { get; set; }
-            public string? PreviewType { get; set; }
-            public Int32? ReferenceCount { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public string? Title { get; set; }
-        }
-
         public PlannerTask[] Value { get; set; }
     }
     public partial class MicrosoftClient

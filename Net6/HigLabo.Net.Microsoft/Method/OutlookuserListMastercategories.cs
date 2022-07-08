@@ -2,10 +2,28 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class OutlookuserListMastercategoriesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OutlookUserListMastercategoriesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Outlook_MasterCategories: return $"/me/outlook/masterCategories";
+                    case ApiPath.Users_IdOruserPrincipalName_Outlook_MasterCategories: return $"/users/{IdOrUserPrincipalName}/outlook/masterCategories";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DisplayName,
+            Color,
         }
         public enum ApiPath
         {
@@ -13,17 +31,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Outlook_MasterCategories,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Outlook_MasterCategories: return $"/me/outlook/masterCategories";
-                    case ApiPath.Users_IdOruserPrincipalName_Outlook_MasterCategories: return $"/users/{IdOrUserPrincipalName}/outlook/masterCategories";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,19 +48,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class OutlookuserListMastercategoriesResponse : RestApiResponse
+    public partial class OutlookUserListMastercategoriesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/outlookcategory?view=graph-rest-1.0
-        /// </summary>
-        public partial class OutlookCategory
-        {
-            public string? DisplayName { get; set; }
-            public string? Color { get; set; }
-        }
-
         public OutlookCategory[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -55,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserListMastercategoriesResponse> OutlookuserListMastercategoriesAsync()
+        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync()
         {
-            var p = new OutlookuserListMastercategoriesParameter();
-            return await this.SendAsync<OutlookuserListMastercategoriesParameter, OutlookuserListMastercategoriesResponse>(p, CancellationToken.None);
+            var p = new OutlookUserListMastercategoriesParameter();
+            return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserListMastercategoriesResponse> OutlookuserListMastercategoriesAsync(CancellationToken cancellationToken)
+        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(CancellationToken cancellationToken)
         {
-            var p = new OutlookuserListMastercategoriesParameter();
-            return await this.SendAsync<OutlookuserListMastercategoriesParameter, OutlookuserListMastercategoriesResponse>(p, cancellationToken);
+            var p = new OutlookUserListMastercategoriesParameter();
+            return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserListMastercategoriesResponse> OutlookuserListMastercategoriesAsync(OutlookuserListMastercategoriesParameter parameter)
+        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(OutlookUserListMastercategoriesParameter parameter)
         {
-            return await this.SendAsync<OutlookuserListMastercategoriesParameter, OutlookuserListMastercategoriesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-list-mastercategories?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserListMastercategoriesResponse> OutlookuserListMastercategoriesAsync(OutlookuserListMastercategoriesParameter parameter, CancellationToken cancellationToken)
+        public async Task<OutlookUserListMastercategoriesResponse> OutlookUserListMastercategoriesAsync(OutlookUserListMastercategoriesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OutlookuserListMastercategoriesParameter, OutlookuserListMastercategoriesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OutlookUserListMastercategoriesParameter, OutlookUserListMastercategoriesResponse>(parameter, cancellationToken);
         }
     }
 }

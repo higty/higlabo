@@ -7,5 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class Workbook
     {
+        public NamedItem[]? Names { get; set; }
+        public Table[]? Tables { get; set; }
+        public Worksheet[]? Worksheets { get; set; }
+        public WorkbookOperation[]? Operations { get; set; }
     }
 }

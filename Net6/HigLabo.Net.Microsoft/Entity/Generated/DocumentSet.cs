@@ -12,5 +12,7 @@ namespace HigLabo.Net.Microsoft
         public bool? PropagateWelcomePageChanges { get; set; }
         public bool? ShouldPrefixNameToFile { get; set; }
         public string? WelcomePageUrl { get; set; }
+        public ColumnDefinition[]? SharedColumns { get; set; }
+        public ColumnDefinition[]? WelcomePageColumns { get; set; }
     }
 }

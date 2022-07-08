@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportsGetuserarchivedprintjobsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportsGetUserarchivedprintjobsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetUserArchivedPrintJobs: return $"/reports/getUserArchivedPrintJobs";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetUserArchivedPrintJobs,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetUserArchivedPrintJobs: return $"/reports/getUserArchivedPrintJobs";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,24 +44,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportsGetuserarchivedprintjobsResponse : RestApiResponse
+    public partial class ReportsGetUserarchivedprintjobsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/archivedprintjob?view=graph-rest-1.0
-        /// </summary>
-        public partial class ArchivedPrintJob
-        {
-            public string? Id { get; set; }
-            public string? PrinterId { get; set; }
-            public PrintJobProcessingState? ProcessingState { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? AcquiredDateTime { get; set; }
-            public DateTimeOffset? CompletionDateTime { get; set; }
-            public bool? AcquiredByPrinter { get; set; }
-            public Int32? CopiesPrinted { get; set; }
-            public UserIdentity? CreatedBy { get; set; }
-        }
-
         public ArchivedPrintJob[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -59,32 +53,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetuserarchivedprintjobsResponse> ReportsGetuserarchivedprintjobsAsync()
+        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync()
         {
-            var p = new ReportsGetuserarchivedprintjobsParameter();
-            return await this.SendAsync<ReportsGetuserarchivedprintjobsParameter, ReportsGetuserarchivedprintjobsResponse>(p, CancellationToken.None);
+            var p = new ReportsGetUserarchivedprintjobsParameter();
+            return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetuserarchivedprintjobsResponse> ReportsGetuserarchivedprintjobsAsync(CancellationToken cancellationToken)
+        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportsGetuserarchivedprintjobsParameter();
-            return await this.SendAsync<ReportsGetuserarchivedprintjobsParameter, ReportsGetuserarchivedprintjobsResponse>(p, cancellationToken);
+            var p = new ReportsGetUserarchivedprintjobsParameter();
+            return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetuserarchivedprintjobsResponse> ReportsGetuserarchivedprintjobsAsync(ReportsGetuserarchivedprintjobsParameter parameter)
+        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(ReportsGetUserarchivedprintjobsParameter parameter)
         {
-            return await this.SendAsync<ReportsGetuserarchivedprintjobsParameter, ReportsGetuserarchivedprintjobsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reports-getuserarchivedprintjobs?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportsGetuserarchivedprintjobsResponse> ReportsGetuserarchivedprintjobsAsync(ReportsGetuserarchivedprintjobsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportsGetUserarchivedprintjobsResponse> ReportsGetUserarchivedprintjobsAsync(ReportsGetUserarchivedprintjobsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportsGetuserarchivedprintjobsParameter, ReportsGetuserarchivedprintjobsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportsGetUserarchivedprintjobsParameter, ReportsGetUserarchivedprintjobsResponse>(parameter, cancellationToken);
         }
     }
 }

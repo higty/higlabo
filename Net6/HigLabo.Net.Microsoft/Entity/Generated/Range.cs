@@ -35,5 +35,8 @@ namespace HigLabo.Net.Microsoft
         public Json? Text { get; set; }
         public RangeJson ValueTypes { get; set; }
         public Json? Values { get; set; }
+        public RangeFormat? Format { get; set; }
+        public RangeSort? Sort { get; set; }
+        public Worksheet? Worksheet { get; set; }
     }
 }

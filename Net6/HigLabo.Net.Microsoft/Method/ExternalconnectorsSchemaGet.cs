@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ExternalconnectorsSchemaGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ExternalConnectorsSchemaGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ConnectionsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.External_Connections_ConnectionsId_Schema: return $"/external/connections/{ConnectionsId}/schema";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             External_Connections_ConnectionsId_Schema,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.External_Connections_ConnectionsId_Schema: return $"/external/connections/{ConnectionsId}/schema";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,44 +44,43 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ConnectionsId { get; set; }
     }
-    public partial class ExternalconnectorsSchemaGetResponse : RestApiResponse
+    public partial class ExternalConnectorsSchemaGetResponse : RestApiResponse
     {
         public string? BaseType { get; set; }
-        public Property[]? Properties { get; set; }
+        public ExternalConnectorsProperty[]? Properties { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsSchemaGetResponse> ExternalconnectorsSchemaGetAsync()
+        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync()
         {
-            var p = new ExternalconnectorsSchemaGetParameter();
-            return await this.SendAsync<ExternalconnectorsSchemaGetParameter, ExternalconnectorsSchemaGetResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsSchemaGetParameter();
+            return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsSchemaGetResponse> ExternalconnectorsSchemaGetAsync(CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalconnectorsSchemaGetParameter();
-            return await this.SendAsync<ExternalconnectorsSchemaGetParameter, ExternalconnectorsSchemaGetResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsSchemaGetParameter();
+            return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsSchemaGetResponse> ExternalconnectorsSchemaGetAsync(ExternalconnectorsSchemaGetParameter parameter)
+        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter)
         {
-            return await this.SendAsync<ExternalconnectorsSchemaGetParameter, ExternalconnectorsSchemaGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsSchemaGetResponse> ExternalconnectorsSchemaGetAsync(ExternalconnectorsSchemaGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalconnectorsSchemaGetParameter, ExternalconnectorsSchemaGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(parameter, cancellationToken);
         }
     }
 }

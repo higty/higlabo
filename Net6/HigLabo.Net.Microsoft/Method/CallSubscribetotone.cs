@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallSubscribetotoneParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_SubscribeToTone: return $"/communications/calls/{Id}/subscribeToTone";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_Calls_Id_SubscribeToTone,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_SubscribeToTone: return $"/communications/calls/{Id}/subscribeToTone";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? ClientContext { get; set; }
-        public string Id { get; set; }
     }
     public partial class CallSubscribetotoneResponse : RestApiResponse
     {

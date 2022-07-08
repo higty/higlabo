@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentDeleteParameter : IRestApiParameter
+    public partial class EducationAssignmentDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
     }
-    public partial class EducationassignmentDeleteResponse : RestApiResponse
+    public partial class EducationAssignmentDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeleteResponse> EducationassignmentDeleteAsync()
+        public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync()
         {
-            var p = new EducationassignmentDeleteParameter();
-            return await this.SendAsync<EducationassignmentDeleteParameter, EducationassignmentDeleteResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentDeleteParameter();
+            return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeleteResponse> EducationassignmentDeleteAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentDeleteParameter();
-            return await this.SendAsync<EducationassignmentDeleteParameter, EducationassignmentDeleteResponse>(p, cancellationToken);
+            var p = new EducationAssignmentDeleteParameter();
+            return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeleteResponse> EducationassignmentDeleteAsync(EducationassignmentDeleteParameter parameter)
+        public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync(EducationAssignmentDeleteParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentDeleteParameter, EducationassignmentDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeleteResponse> EducationassignmentDeleteAsync(EducationassignmentDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync(EducationAssignmentDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentDeleteParameter, EducationassignmentDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

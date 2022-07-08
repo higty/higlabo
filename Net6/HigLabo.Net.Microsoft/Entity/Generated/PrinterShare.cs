@@ -18,5 +18,9 @@ namespace HigLabo.Net.Microsoft
         public PrinterLocation? Location { get; set; }
         public PrinterStatus? Status { get; set; }
         public bool? AllowAllUsers { get; set; }
+        public Printer? Printer { get; set; }
+        public User[]? AllowedUsers { get; set; }
+        public Group? AllowedGroups { get; set; }
+        public PrintJob[]? Jobs { get; set; }
     }
 }

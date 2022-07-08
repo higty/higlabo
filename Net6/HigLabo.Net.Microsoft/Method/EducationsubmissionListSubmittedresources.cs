@@ -2,8 +2,25 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationsubmissionListSubmittedresourcesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationsubmissionListSubmittedResourcesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+            public string SubmissionsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Submissions_Id_SubmittedResources: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/submissions/{SubmissionsId}/submittedResources";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +29,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_Id_Assignments_Id_Submissions_Id_SubmittedResources,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Submissions_Id_SubmittedResources: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/submissions/{SubmissionsId}/submittedResources";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,22 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
-        public string SubmissionsId { get; set; }
     }
-    public partial class EducationsubmissionListSubmittedresourcesResponse : RestApiResponse
+    public partial class EducationsubmissionListSubmittedResourcesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationsubmissionresource?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationSubmissionResource
-        {
-            public string? AssignmentResourceUrl { get; set; }
-            public string? Id { get; set; }
-            public EducationResource? Resource { get; set; }
-        }
-
         public EducationSubmissionResource[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -56,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedresourcesResponse> EducationsubmissionListSubmittedresourcesAsync()
+        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync()
         {
-            var p = new EducationsubmissionListSubmittedresourcesParameter();
-            return await this.SendAsync<EducationsubmissionListSubmittedresourcesParameter, EducationsubmissionListSubmittedresourcesResponse>(p, CancellationToken.None);
+            var p = new EducationsubmissionListSubmittedResourcesParameter();
+            return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedresourcesResponse> EducationsubmissionListSubmittedresourcesAsync(CancellationToken cancellationToken)
+        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationsubmissionListSubmittedresourcesParameter();
-            return await this.SendAsync<EducationsubmissionListSubmittedresourcesParameter, EducationsubmissionListSubmittedresourcesResponse>(p, cancellationToken);
+            var p = new EducationsubmissionListSubmittedResourcesParameter();
+            return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedresourcesResponse> EducationsubmissionListSubmittedresourcesAsync(EducationsubmissionListSubmittedresourcesParameter parameter)
+        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter)
         {
-            return await this.SendAsync<EducationsubmissionListSubmittedresourcesParameter, EducationsubmissionListSubmittedresourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-list-submittedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionListSubmittedresourcesResponse> EducationsubmissionListSubmittedresourcesAsync(EducationsubmissionListSubmittedresourcesParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationsubmissionListSubmittedResourcesResponse> EducationsubmissionListSubmittedResourcesAsync(EducationsubmissionListSubmittedResourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationsubmissionListSubmittedresourcesParameter, EducationsubmissionListSubmittedresourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationsubmissionListSubmittedResourcesParameter, EducationsubmissionListSubmittedResourcesResponse>(parameter, cancellationToken);
         }
     }
 }

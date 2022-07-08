@@ -25,5 +25,14 @@ namespace HigLabo.Net.Microsoft
         public bool? SwapShiftsRequestsEnabled { get; set; }
         public bool? OfferShiftRequestsEnabled { get; set; }
         public bool? TimeOffRequestsEnabled { get; set; }
+        public Shift[]? Shifts { get; set; }
+        public TimeOff[]? TimesOff { get; set; }
+        public TimeOffReason[]? TimeOffReasons { get; set; }
+        public SchedulingGroup[]? SchedulingGroups { get; set; }
+        public OpenShift[]? Openshifts { get; set; }
+        public WorkforceIntegration[]? Workforceintegrations { get; set; }
+        public SwapShiftsChangeRequest[]? Swapshiftchangerequests { get; set; }
+        public OpenShiftChangeRequest[]? Openshiftchangerequests { get; set; }
+        public TimeOffRequest[]? Timeoffrequest { get; set; }
     }
 }

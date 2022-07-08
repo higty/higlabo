@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DeviceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Devices_Id: return $"/devices/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AccountEnabled,
@@ -29,22 +44,23 @@ namespace HigLabo.Net.Microsoft
             ProfileType,
             SystemLabels,
             TrustType,
+            Extensions,
+            MemberOf,
+            TransitiveMemberOf,
+            RegisteredOwners,
+            RegisteredUsers,
         }
         public enum ApiPath
         {
             Devices_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Devices_Id: return $"/devices/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -56,7 +72,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class DeviceGetResponse : RestApiResponse
     {
@@ -92,6 +107,11 @@ namespace HigLabo.Net.Microsoft
         public DeviceDeviceProfileType ProfileType { get; set; }
         public String[]? SystemLabels { get; set; }
         public string? TrustType { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? RegisteredOwners { get; set; }
+        public DirectoryObject[]? RegisteredUsers { get; set; }
     }
     public partial class MicrosoftClient
     {

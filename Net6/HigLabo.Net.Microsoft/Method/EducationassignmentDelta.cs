@@ -2,10 +2,53 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationAssignmentDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string EducationClassId { get; set; }
+            public string EducationUserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_EducationClassId_Assignments_Delta: return $"/education/classes/{EducationClassId}/assignments/delta";
+                    case ApiPath.Education_Classes_EducationClassId_Members_EducationUserId_Assignments_Delta: return $"/education/classes/{EducationClassId}/members/{EducationUserId}/assignments/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            AddedStudentAction,
+            AddToCalendarAction,
+            AllowLateSubmissions,
+            AllowStudentsToAddResourcesToSubmission,
+            AssignDateTime,
+            AssignTo,
+            AssignedDateTime,
+            ClassId,
+            CloseDateTime,
+            CreatedBy,
+            CreatedDateTime,
+            DisplayName,
+            DueDateTime,
+            Grading,
+            Instructions,
+            LastModifiedBy,
+            LastModifiedDateTime,
+            NotificationChannelUrl,
+            Status,
+            WebUrl,
+            ResourcesFolderUrl,
+            Resources,
+            Submissions,
+            Categories,
+            Rubric,
         }
         public enum ApiPath
         {
@@ -13,17 +56,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_EducationClassId_Members_EducationUserId_Assignments_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_EducationClassId_Assignments_Delta: return $"/education/classes/{EducationClassId}/assignments/delta";
-                    case ApiPath.Education_Classes_EducationClassId_Members_EducationUserId_Assignments_Delta: return $"/education/classes/{EducationClassId}/members/{EducationUserId}/assignments/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,56 +73,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string EducationClassId { get; set; }
-        public string EducationUserId { get; set; }
     }
-    public partial class EducationassignmentDeltaResponse : RestApiResponse
+    public partial class EducationAssignmentDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationassignment?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationAssignment
-        {
-            public enum EducationAssignmentEducationAddToCalendarOptions
-            {
-                None,
-                StudentsAndPublisher,
-                StudentsAndTeamOwners,
-                UnknownFutureValue,
-                StudentsOnly,
-            }
-            public enum EducationAssignmentstring
-            {
-                Draft,
-                Scheduled,
-                Published,
-                Assigned,
-            }
-
-            public string? Id { get; set; }
-            public string? AddedStudentAction { get; set; }
-            public EducationAssignmentEducationAddToCalendarOptions AddToCalendarAction { get; set; }
-            public bool? AllowLateSubmissions { get; set; }
-            public bool? AllowStudentsToAddResourcesToSubmission { get; set; }
-            public DateTimeOffset? AssignDateTime { get; set; }
-            public EducationAssignmentRecipient? AssignTo { get; set; }
-            public DateTimeOffset? AssignedDateTime { get; set; }
-            public string? ClassId { get; set; }
-            public DateTimeOffset? CloseDateTime { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? DisplayName { get; set; }
-            public DateTimeOffset? DueDateTime { get; set; }
-            public EducationAssignmentGradeType? Grading { get; set; }
-            public ItemBody? Instructions { get; set; }
-            public IdentitySet? LastModifiedBy { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public string? NotificationChannelUrl { get; set; }
-            public EducationAssignmentstring Status { get; set; }
-            public string? WebUrl { get; set; }
-            public string? ResourcesFolderUrl { get; set; }
-        }
-
         public EducationAssignment[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -92,32 +83,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeltaResponse> EducationassignmentDeltaAsync()
+        public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync()
         {
-            var p = new EducationassignmentDeltaParameter();
-            return await this.SendAsync<EducationassignmentDeltaParameter, EducationassignmentDeltaResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentDeltaParameter();
+            return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeltaResponse> EducationassignmentDeltaAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentDeltaParameter();
-            return await this.SendAsync<EducationassignmentDeltaParameter, EducationassignmentDeltaResponse>(p, cancellationToken);
+            var p = new EducationAssignmentDeltaParameter();
+            return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeltaResponse> EducationassignmentDeltaAsync(EducationassignmentDeltaParameter parameter)
+        public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(EducationAssignmentDeltaParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentDeltaParameter, EducationassignmentDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentDeltaResponse> EducationassignmentDeltaAsync(EducationassignmentDeltaParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(EducationAssignmentDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentDeltaParameter, EducationassignmentDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(parameter, cancellationToken);
         }
     }
 }

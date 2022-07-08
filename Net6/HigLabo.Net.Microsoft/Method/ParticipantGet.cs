@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ParticipantGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string CallsId { get; set; }
+            public string ParticipantsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_Participants_Id: return $"/communications/calls/{CallsId}/participants/{ParticipantsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             Id,
@@ -19,16 +35,12 @@ namespace HigLabo.Net.Microsoft
             Communications_Calls_Id_Participants_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_Participants_Id: return $"/communications/calls/{CallsId}/participants/{ParticipantsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -40,8 +52,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string CallsId { get; set; }
-        public string ParticipantsId { get; set; }
     }
     public partial class ParticipantGetResponse : RestApiResponse
     {

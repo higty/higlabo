@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupGetThreadParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string GroupsId { get; set; }
+            public string ThreadsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Threads_Id: return $"/groups/{GroupsId}/threads/{ThreadsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AllowExternalSenders,
@@ -46,22 +62,43 @@ namespace HigLabo.Net.Microsoft
             Theme,
             UnseenCount,
             Visibility,
+            AcceptedSenders,
+            AppRoleAssignments,
+            Calendar,
+            CalendarView,
+            Conversations,
+            CreatedOnBehalfOf,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            GroupLifecyclePolicies,
+            MemberOf,
+            Members,
+            MembersWithLicenseErrors,
+            Onenote,
+            Owners,
+            PermissionGrants,
+            Photo,
+            Photos,
+            Planner,
+            RejectedSenders,
+            Settings,
+            Sites,
+            Team,
+            Threads,
         }
         public enum ApiPath
         {
             Groups_Id_Threads_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Threads_Id: return $"/groups/{GroupsId}/threads/{ThreadsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -73,8 +110,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string GroupsId { get; set; }
-        public string ThreadsId { get; set; }
     }
     public partial class GroupGetThreadResponse : RestApiResponse
     {
@@ -87,6 +122,7 @@ namespace HigLabo.Net.Microsoft
         public String[]? UniqueSenders { get; set; }
         public string? Preview { get; set; }
         public bool? IsLocked { get; set; }
+        public Post[]? Posts { get; set; }
     }
     public partial class MicrosoftClient
     {

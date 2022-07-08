@@ -36,5 +36,8 @@ namespace HigLabo.Net.Microsoft
         public DateTimeTimeZone? ReminderDateTime { get; set; }
         public TodoTaskTaskStatus Status { get; set; }
         public string? Title { get; set; }
+        public ChecklistItem[]? ChecklistItems { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public LinkedResource[]? LinkedResources { get; set; }
     }
 }

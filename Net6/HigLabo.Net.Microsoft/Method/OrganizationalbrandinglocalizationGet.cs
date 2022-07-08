@@ -2,8 +2,24 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class OrganizationalbrandinglocalizationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OrganizationalBrandinglocalizationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string OrganizationId { get; set; }
+            public string OrganizationalBrandingLocalizationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Organization_OrganizationId_Branding_Localizations_OrganizationalBrandingLocalizationId: return $"/organization/{OrganizationId}/branding/localizations/{OrganizationalBrandingLocalizationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Organization_OrganizationId_Branding_Localizations_OrganizationalBrandingLocalizationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Organization_OrganizationId_Branding_Localizations_OrganizationalBrandingLocalizationId: return $"/organization/{OrganizationId}/branding/localizations/{OrganizationalBrandingLocalizationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,10 +45,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string OrganizationId { get; set; }
-        public string OrganizationalBrandingLocalizationId { get; set; }
     }
-    public partial class OrganizationalbrandinglocalizationGetResponse : RestApiResponse
+    public partial class OrganizationalBrandinglocalizationGetResponse : RestApiResponse
     {
         public string? BackgroundColor { get; set; }
         public Stream? BackgroundImage { get; set; }
@@ -55,32 +65,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationGetResponse> OrganizationalbrandinglocalizationGetAsync()
+        public async Task<OrganizationalBrandinglocalizationGetResponse> OrganizationalBrandinglocalizationGetAsync()
         {
-            var p = new OrganizationalbrandinglocalizationGetParameter();
-            return await this.SendAsync<OrganizationalbrandinglocalizationGetParameter, OrganizationalbrandinglocalizationGetResponse>(p, CancellationToken.None);
+            var p = new OrganizationalBrandinglocalizationGetParameter();
+            return await this.SendAsync<OrganizationalBrandinglocalizationGetParameter, OrganizationalBrandinglocalizationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationGetResponse> OrganizationalbrandinglocalizationGetAsync(CancellationToken cancellationToken)
+        public async Task<OrganizationalBrandinglocalizationGetResponse> OrganizationalBrandinglocalizationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new OrganizationalbrandinglocalizationGetParameter();
-            return await this.SendAsync<OrganizationalbrandinglocalizationGetParameter, OrganizationalbrandinglocalizationGetResponse>(p, cancellationToken);
+            var p = new OrganizationalBrandinglocalizationGetParameter();
+            return await this.SendAsync<OrganizationalBrandinglocalizationGetParameter, OrganizationalBrandinglocalizationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationGetResponse> OrganizationalbrandinglocalizationGetAsync(OrganizationalbrandinglocalizationGetParameter parameter)
+        public async Task<OrganizationalBrandinglocalizationGetResponse> OrganizationalBrandinglocalizationGetAsync(OrganizationalBrandinglocalizationGetParameter parameter)
         {
-            return await this.SendAsync<OrganizationalbrandinglocalizationGetParameter, OrganizationalbrandinglocalizationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OrganizationalBrandinglocalizationGetParameter, OrganizationalBrandinglocalizationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/organizationalbrandinglocalization-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<OrganizationalbrandinglocalizationGetResponse> OrganizationalbrandinglocalizationGetAsync(OrganizationalbrandinglocalizationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<OrganizationalBrandinglocalizationGetResponse> OrganizationalBrandinglocalizationGetAsync(OrganizationalBrandinglocalizationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OrganizationalbrandinglocalizationGetParameter, OrganizationalbrandinglocalizationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OrganizationalBrandinglocalizationGetParameter, OrganizationalBrandinglocalizationGetResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,24 +4,44 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AppconsentrequestListUserconsentrequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_Id_UserConsentRequests: return $"/identityGovernance/appConsent/appConsentRequests/{Id}/userConsentRequests";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ApprovalId,
+            CompletedDateTime,
+            CreatedBy,
+            CreatedDateTime,
+            CustomData,
+            Id,
+            Reason,
+            Status,
+            Approval,
         }
         public enum ApiPath
         {
             IdentityGovernance_AppConsent_AppConsentRequests_Id_UserConsentRequests,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_Id_UserConsentRequests: return $"/identityGovernance/appConsent/appConsentRequests/{Id}/userConsentRequests";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class AppconsentrequestListUserconsentrequestsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/userconsentrequest?view=graph-rest-1.0
-        /// </summary>
-        public partial class UserConsentRequest
-        {
-            public string? ApprovalId { get; set; }
-            public DateTimeOffset? CompletedDateTime { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? CustomData { get; set; }
-            public string? Id { get; set; }
-            public string? Reason { get; set; }
-            public string? Status { get; set; }
-        }
-
         public UserConsentRequest[] Value { get; set; }
     }
     public partial class MicrosoftClient

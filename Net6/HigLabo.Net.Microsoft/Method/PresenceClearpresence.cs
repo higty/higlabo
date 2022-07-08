@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PresenceClearpresenceParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_UserId_Presence_ClearPresence: return $"/users/{UserId}/presence/clearPresence";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Users_UserId_Presence_ClearPresence,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_UserId_Presence_ClearPresence: return $"/users/{UserId}/presence/clearPresence";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? SessionId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class PresenceClearpresenceResponse : RestApiResponse
     {

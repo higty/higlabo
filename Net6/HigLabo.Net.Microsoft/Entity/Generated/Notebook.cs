@@ -28,5 +28,7 @@ namespace HigLabo.Net.Microsoft
         public string? SectionsUrl { get; set; }
         public string? Self { get; set; }
         public NotebookOnenoteUserRole UserRole { get; set; }
+        public SectionGroup[]? SectionGroups { get; set; }
+        public Section[]? Sections { get; set; }
     }
 }

@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentSetupresourcesfolderParameter : IRestApiParameter
+    public partial class EducationAssignmentSetupResourcesfolderParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_SetUpResourcesFolder: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/setUpResourcesFolder";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id_SetUpResourcesFolder,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_SetUpResourcesFolder: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/setUpResourcesFolder";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
     }
-    public partial class EducationassignmentSetupresourcesfolderResponse : RestApiResponse
+    public partial class EducationAssignmentSetupResourcesfolderResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentSetupresourcesfolderResponse> EducationassignmentSetupresourcesfolderAsync()
+        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync()
         {
-            var p = new EducationassignmentSetupresourcesfolderParameter();
-            return await this.SendAsync<EducationassignmentSetupresourcesfolderParameter, EducationassignmentSetupresourcesfolderResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentSetupResourcesfolderParameter();
+            return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentSetupresourcesfolderResponse> EducationassignmentSetupresourcesfolderAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentSetupresourcesfolderParameter();
-            return await this.SendAsync<EducationassignmentSetupresourcesfolderParameter, EducationassignmentSetupresourcesfolderResponse>(p, cancellationToken);
+            var p = new EducationAssignmentSetupResourcesfolderParameter();
+            return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentSetupresourcesfolderResponse> EducationassignmentSetupresourcesfolderAsync(EducationassignmentSetupresourcesfolderParameter parameter)
+        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(EducationAssignmentSetupResourcesfolderParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentSetupresourcesfolderParameter, EducationassignmentSetupresourcesfolderResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentSetupresourcesfolderResponse> EducationassignmentSetupresourcesfolderAsync(EducationassignmentSetupresourcesfolderParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentSetupResourcesfolderResponse> EducationAssignmentSetupResourcesfolderAsync(EducationAssignmentSetupResourcesfolderParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentSetupresourcesfolderParameter, EducationassignmentSetupresourcesfolderResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentSetupResourcesfolderParameter, EducationAssignmentSetupResourcesfolderResponse>(parameter, cancellationToken);
         }
     }
 }

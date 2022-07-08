@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetoffice365activationcountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetoffice365activationcountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetOffice365ActivationCounts: return $"/reports/getOffice365ActivationCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetOffice365ActivationCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetOffice365ActivationCounts: return $"/reports/getOffice365ActivationCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetoffice365activationcountsResponse : RestApiResponse
+    public partial class ReportRootGetoffice365activationcountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activationcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activationcountsResponse> ReportrootGetoffice365activationcountsAsync()
+        public async Task<ReportRootGetoffice365activationcountsResponse> ReportRootGetoffice365activationcountsAsync()
         {
-            var p = new ReportrootGetoffice365activationcountsParameter();
-            return await this.SendAsync<ReportrootGetoffice365activationcountsParameter, ReportrootGetoffice365activationcountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetoffice365activationcountsParameter();
+            return await this.SendAsync<ReportRootGetoffice365activationcountsParameter, ReportRootGetoffice365activationcountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activationcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activationcountsResponse> ReportrootGetoffice365activationcountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetoffice365activationcountsResponse> ReportRootGetoffice365activationcountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetoffice365activationcountsParameter();
-            return await this.SendAsync<ReportrootGetoffice365activationcountsParameter, ReportrootGetoffice365activationcountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetoffice365activationcountsParameter();
+            return await this.SendAsync<ReportRootGetoffice365activationcountsParameter, ReportRootGetoffice365activationcountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activationcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activationcountsResponse> ReportrootGetoffice365activationcountsAsync(ReportrootGetoffice365activationcountsParameter parameter)
+        public async Task<ReportRootGetoffice365activationcountsResponse> ReportRootGetoffice365activationcountsAsync(ReportRootGetoffice365activationcountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetoffice365activationcountsParameter, ReportrootGetoffice365activationcountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetoffice365activationcountsParameter, ReportRootGetoffice365activationcountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activationcounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activationcountsResponse> ReportrootGetoffice365activationcountsAsync(ReportrootGetoffice365activationcountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetoffice365activationcountsResponse> ReportRootGetoffice365activationcountsAsync(ReportRootGetoffice365activationcountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetoffice365activationcountsParameter, ReportrootGetoffice365activationcountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetoffice365activationcountsParameter, ReportRootGetoffice365activationcountsResponse>(parameter, cancellationToken);
         }
     }
 }

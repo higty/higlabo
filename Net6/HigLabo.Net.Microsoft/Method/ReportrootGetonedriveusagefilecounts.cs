@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetonedriveusagefilecountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetonedriveusagefilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetOneDriveUsageFileCounts: return $"/reports/getOneDriveUsageFileCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetOneDriveUsageFileCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetOneDriveUsageFileCounts: return $"/reports/getOneDriveUsageFileCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetonedriveusagefilecountsResponse : RestApiResponse
+    public partial class ReportRootGetonedriveusagefilecountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveusagefilecountsResponse> ReportrootGetonedriveusagefilecountsAsync()
+        public async Task<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync()
         {
-            var p = new ReportrootGetonedriveusagefilecountsParameter();
-            return await this.SendAsync<ReportrootGetonedriveusagefilecountsParameter, ReportrootGetonedriveusagefilecountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetonedriveusagefilecountsParameter();
+            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveusagefilecountsResponse> ReportrootGetonedriveusagefilecountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetonedriveusagefilecountsParameter();
-            return await this.SendAsync<ReportrootGetonedriveusagefilecountsParameter, ReportrootGetonedriveusagefilecountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetonedriveusagefilecountsParameter();
+            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveusagefilecountsResponse> ReportrootGetonedriveusagefilecountsAsync(ReportrootGetonedriveusagefilecountsParameter parameter)
+        public async Task<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync(ReportRootGetonedriveusagefilecountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetonedriveusagefilecountsParameter, ReportrootGetonedriveusagefilecountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveusagefilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetonedriveusagefilecountsResponse> ReportrootGetonedriveusagefilecountsAsync(ReportrootGetonedriveusagefilecountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetonedriveusagefilecountsResponse> ReportRootGetonedriveusagefilecountsAsync(ReportRootGetonedriveusagefilecountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetonedriveusagefilecountsParameter, ReportrootGetonedriveusagefilecountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetonedriveusagefilecountsParameter, ReportRootGetonedriveusagefilecountsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -22,5 +22,6 @@ namespace HigLabo.Net.Microsoft
         public NamedItemstring Type { get; set; }
         public Json? Value { get; set; }
         public bool? Visible { get; set; }
+        public Worksheet? Worksheet { get; set; }
     }
 }

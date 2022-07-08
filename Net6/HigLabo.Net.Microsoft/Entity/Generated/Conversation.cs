@@ -13,5 +13,6 @@ namespace HigLabo.Net.Microsoft
         public string? Preview { get; set; }
         public string? Topic { get; set; }
         public String[]? UniqueSenders { get; set; }
+        public ConversationThread[]? Threads { get; set; }
     }
 }

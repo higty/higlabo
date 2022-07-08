@@ -4,24 +4,70 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DevicePostDevicesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Devices: return $"/devices";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum DeviceDeviceProfileType
+        {
+            RegisteredDevice,
+            SecureVM,
+            Printer,
+            Shared,
+            IoT,
+        }
         public enum ApiPath
         {
             Devices,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Devices: return $"/devices";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public bool? AccountEnabled { get; set; }
+        public AlternativeSecurityId[]? AlternativeSecurityIds { get; set; }
+        public DateTimeOffset? ApproximateLastSignInDateTime { get; set; }
+        public DateTimeOffset? ComplianceExpirationDateTime { get; set; }
+        public string? DeviceId { get; set; }
+        public string? DeviceMetadata { get; set; }
+        public Int32? DeviceVersion { get; set; }
+        public string? DisplayName { get; set; }
+        public OnPremisesExtensionAttributes? ExtensionAttributes { get; set; }
+        public string? Id { get; set; }
+        public bool? IsCompliant { get; set; }
+        public bool? IsManaged { get; set; }
+        public string? Manufacturer { get; set; }
+        public string? MdmAppId { get; set; }
+        public string? Model { get; set; }
+        public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
+        public bool? OnPremisesSyncEnabled { get; set; }
+        public string? OperatingSystem { get; set; }
+        public string? OperatingSystemVersion { get; set; }
+        public String[]? PhysicalIds { get; set; }
+        public DeviceDeviceProfileType ProfileType { get; set; }
+        public String[]? SystemLabels { get; set; }
+        public string? TrustType { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? RegisteredOwners { get; set; }
+        public DirectoryObject[]? RegisteredUsers { get; set; }
     }
     public partial class DevicePostDevicesResponse : RestApiResponse
     {
@@ -57,6 +103,11 @@ namespace HigLabo.Net.Microsoft
         public DeviceDeviceProfileType ProfileType { get; set; }
         public String[]? SystemLabels { get; set; }
         public string? TrustType { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? RegisteredOwners { get; set; }
+        public DirectoryObject[]? RegisteredUsers { get; set; }
     }
     public partial class MicrosoftClient
     {

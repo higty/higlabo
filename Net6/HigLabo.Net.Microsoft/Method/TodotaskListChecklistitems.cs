@@ -4,8 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotaskListChecklistitemsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string TodoTaskId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TodoTaskId_ChecklistItems: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TodoTaskId}/checklistItems";
+                    case ApiPath.Users_IdOrUserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TodoTaskId_ChecklistItems: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TodoTaskId}/checklistItems";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CheckedDateTime,
+            CreatedDateTime,
+            DisplayName,
+            Id,
+            IsChecked,
         }
         public enum ApiPath
         {
@@ -13,17 +36,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TodoTaskId_ChecklistItems,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TodoTaskId_ChecklistItems: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TodoTaskId}/checklistItems";
-                    case ApiPath.Users_IdOrUserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TodoTaskId_ChecklistItems: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TodoTaskId}/checklistItems";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,24 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TodoTaskListId { get; set; }
-        public string TodoTaskId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class TodotaskListChecklistitemsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/checklistitem?view=graph-rest-1.0
-        /// </summary>
-        public partial class ChecklistItem
-        {
-            public DateTimeOffset? CheckedDateTime { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public bool? IsChecked { get; set; }
-        }
-
         public ChecklistItem[] Value { get; set; }
     }
     public partial class MicrosoftClient

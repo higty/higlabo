@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AccesspackageassignmentpolicyDeleteParameter : IRestApiParameter
+    public partial class AccesspackageAssignmentPolicyDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessPackageAssignmentPolicyId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentPolicies_AccessPackageAssignmentPolicyId: return $"/identityGovernance/entitlementManagement/assignmentPolicies/{AccessPackageAssignmentPolicyId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             IdentityGovernance_EntitlementManagement_AssignmentPolicies_AccessPackageAssignmentPolicyId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentPolicies_AccessPackageAssignmentPolicyId: return $"/identityGovernance/entitlementManagement/assignmentPolicies/{AccessPackageAssignmentPolicyId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string AccessPackageAssignmentPolicyId { get; set; }
     }
-    public partial class AccesspackageassignmentpolicyDeleteResponse : RestApiResponse
+    public partial class AccesspackageAssignmentPolicyDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentpolicyDeleteResponse> AccesspackageassignmentpolicyDeleteAsync()
+        public async Task<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync()
         {
-            var p = new AccesspackageassignmentpolicyDeleteParameter();
-            return await this.SendAsync<AccesspackageassignmentpolicyDeleteParameter, AccesspackageassignmentpolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new AccesspackageAssignmentPolicyDeleteParameter();
+            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentpolicyDeleteResponse> AccesspackageassignmentpolicyDeleteAsync(CancellationToken cancellationToken)
+        public async Task<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageassignmentpolicyDeleteParameter();
-            return await this.SendAsync<AccesspackageassignmentpolicyDeleteParameter, AccesspackageassignmentpolicyDeleteResponse>(p, cancellationToken);
+            var p = new AccesspackageAssignmentPolicyDeleteParameter();
+            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentpolicyDeleteResponse> AccesspackageassignmentpolicyDeleteAsync(AccesspackageassignmentpolicyDeleteParameter parameter)
+        public async Task<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync(AccesspackageAssignmentPolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<AccesspackageassignmentpolicyDeleteParameter, AccesspackageassignmentpolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentpolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentpolicyDeleteResponse> AccesspackageassignmentpolicyDeleteAsync(AccesspackageassignmentpolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<AccesspackageAssignmentPolicyDeleteResponse> AccesspackageAssignmentPolicyDeleteAsync(AccesspackageAssignmentPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageassignmentpolicyDeleteParameter, AccesspackageassignmentpolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccesspackageAssignmentPolicyDeleteParameter, AccesspackageAssignmentPolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

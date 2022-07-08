@@ -45,5 +45,9 @@ namespace HigLabo.Net.Microsoft
         public string? YomiCompanyName { get; set; }
         public string? YomiGivenName { get; set; }
         public string? YomiSurname { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public ProfilePhoto? Photo { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
 }

@@ -2,26 +2,44 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AccesspackageassignmentFilterbycurrentuserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccesspackageAssignmentFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_Assignments_FilterByCurrentUser: return $"/identityGovernance/entitlementManagement/assignments/filterByCurrentUser";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ExpiredDateTime,
+            Id,
+            Schedule,
+            State,
+            Status,
+            AccessPackage,
+            Target,
+            AssignmentPolicy,
         }
         public enum ApiPath
         {
             IdentityGovernance_EntitlementManagement_Assignments_FilterByCurrentUser,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_Assignments_FilterByCurrentUser: return $"/identityGovernance/entitlementManagement/assignments/filterByCurrentUser";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,30 +52,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AccesspackageassignmentFilterbycurrentuserResponse : RestApiResponse
+    public partial class AccesspackageAssignmentFilterbycurrentUserResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignment?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessPackageAssignment
-        {
-            public enum AccessPackageAssignmentAccessPackageAssignmentState
-            {
-                Delivering,
-                PartiallyDelivered,
-                Delivered,
-                Expired,
-                DeliveryFailed,
-                UnknownFutureValue,
-            }
-
-            public DateTimeOffset? ExpiredDateTime { get; set; }
-            public string? Id { get; set; }
-            public EntitlementManagementSchedule? Schedule { get; set; }
-            public AccessPackageAssignmentAccessPackageAssignmentState State { get; set; }
-            public string? Status { get; set; }
-        }
-
         public AccessPackageAssignment[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -65,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentFilterbycurrentuserResponse> AccesspackageassignmentFilterbycurrentuserAsync()
+        public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync()
         {
-            var p = new AccesspackageassignmentFilterbycurrentuserParameter();
-            return await this.SendAsync<AccesspackageassignmentFilterbycurrentuserParameter, AccesspackageassignmentFilterbycurrentuserResponse>(p, CancellationToken.None);
+            var p = new AccesspackageAssignmentFilterbycurrentUserParameter();
+            return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentFilterbycurrentuserResponse> AccesspackageassignmentFilterbycurrentuserAsync(CancellationToken cancellationToken)
+        public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageassignmentFilterbycurrentuserParameter();
-            return await this.SendAsync<AccesspackageassignmentFilterbycurrentuserParameter, AccesspackageassignmentFilterbycurrentuserResponse>(p, cancellationToken);
+            var p = new AccesspackageAssignmentFilterbycurrentUserParameter();
+            return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentFilterbycurrentuserResponse> AccesspackageassignmentFilterbycurrentuserAsync(AccesspackageassignmentFilterbycurrentuserParameter parameter)
+        public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync(AccesspackageAssignmentFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<AccesspackageassignmentFilterbycurrentuserParameter, AccesspackageassignmentFilterbycurrentuserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentFilterbycurrentuserResponse> AccesspackageassignmentFilterbycurrentuserAsync(AccesspackageassignmentFilterbycurrentuserParameter parameter, CancellationToken cancellationToken)
+        public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync(AccesspackageAssignmentFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageassignmentFilterbycurrentuserParameter, AccesspackageassignmentFilterbycurrentuserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(parameter, cancellationToken);
         }
     }
 }

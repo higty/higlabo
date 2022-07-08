@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public string? ExternalId { get; set; }
         public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
+        public TeamsAppDefinition[]? AppDefinitions { get; set; }
     }
 }

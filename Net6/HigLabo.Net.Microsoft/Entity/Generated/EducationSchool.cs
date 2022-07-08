@@ -28,5 +28,8 @@ namespace HigLabo.Net.Microsoft
         public string? PrincipalEmail { get; set; }
         public string? PrincipalName { get; set; }
         public string? SchoolNumber { get; set; }
+        public AdministrativeUnit? AdministrativeUnit { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationUser[]? Users { get; set; }
     }
 }

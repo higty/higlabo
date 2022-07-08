@@ -4,21 +4,32 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallRecordParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_RecordResponse: return $"/communications/calls/{Id}/recordResponse";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_Calls_Id_RecordResponse,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_RecordResponse: return $"/communications/calls/{Id}/recordResponse";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -30,7 +41,11 @@ namespace HigLabo.Net.Microsoft
         public bool? PlayBeep { get; set; }
         public String[]? StopTones { get; set; }
         public string? ClientContext { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public string? RecordingAccessToken { get; set; }
+        public string? RecordingLocation { get; set; }
+        public ResultInfo? ResultInfo { get; set; }
+        public string? Status { get; set; }
     }
     public partial class CallRecordResponse : RestApiResponse
     {

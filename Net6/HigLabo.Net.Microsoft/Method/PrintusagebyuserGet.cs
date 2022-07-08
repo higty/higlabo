@@ -2,8 +2,24 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PrintusagebyuserGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrintusagebyUserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_DailyPrintUsageByUser_Id: return $"/reports/dailyPrintUsageByUser/{Id}";
+                    case ApiPath.Reports_MonthlyPrintUsageByUser_Id: return $"/reports/monthlyPrintUsageByUser/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +29,12 @@ namespace HigLabo.Net.Microsoft
             Reports_MonthlyPrintUsageByUser_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_DailyPrintUsageByUser_Id: return $"/reports/dailyPrintUsageByUser/{Id}";
-                    case ApiPath.Reports_MonthlyPrintUsageByUser_Id: return $"/reports/monthlyPrintUsageByUser/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,9 +46,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class PrintusagebyuserGetResponse : RestApiResponse
+    public partial class PrintusagebyUserGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? UserPrincipalName { get; set; }
@@ -51,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyuserGetResponse> PrintusagebyuserGetAsync()
+        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync()
         {
-            var p = new PrintusagebyuserGetParameter();
-            return await this.SendAsync<PrintusagebyuserGetParameter, PrintusagebyuserGetResponse>(p, CancellationToken.None);
+            var p = new PrintusagebyUserGetParameter();
+            return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyuserGetResponse> PrintusagebyuserGetAsync(CancellationToken cancellationToken)
+        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintusagebyuserGetParameter();
-            return await this.SendAsync<PrintusagebyuserGetParameter, PrintusagebyuserGetResponse>(p, cancellationToken);
+            var p = new PrintusagebyUserGetParameter();
+            return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyuserGetResponse> PrintusagebyuserGetAsync(PrintusagebyuserGetParameter parameter)
+        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter)
         {
-            return await this.SendAsync<PrintusagebyuserGetParameter, PrintusagebyuserGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintusagebyuserGetResponse> PrintusagebyuserGetAsync(PrintusagebyuserGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintusagebyuserGetParameter, PrintusagebyuserGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(parameter, cancellationToken);
         }
     }
 }

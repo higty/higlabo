@@ -8,5 +8,11 @@ namespace HigLabo.Net.Microsoft
     public partial class Print
     {
         public PrintSettings? Settings { get; set; }
+        public PrintService[]? Services { get; set; }
+        public Printer[]? Printers { get; set; }
+        public PrinterShare[]? Shares { get; set; }
+        public PrintConnector[]? Connectors { get; set; }
+        public PrintOperation[]? Operations { get; set; }
+        public PrintTaskDefinition[]? TaskDefinitions { get; set; }
     }
 }

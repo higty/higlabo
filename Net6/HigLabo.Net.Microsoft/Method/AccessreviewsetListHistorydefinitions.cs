@@ -4,24 +4,45 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewsetListHistorydefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions: return $"/identityGovernance/accessReviews/historyDefinitions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedBy,
+            CreatedDateTime,
+            Decisions,
+            DisplayName,
+            Id,
+            ReviewHistoryPeriodEndDateTime,
+            ReviewHistoryPeriodStartDateTime,
+            ScheduleSettings,
+            Scopes,
+            Status,
+            Instances,
         }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_HistoryDefinitions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions: return $"/identityGovernance/accessReviews/historyDefinitions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,40 +57,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccessreviewsetListHistorydefinitionsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewhistorydefinition?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessReviewHistoryDefinition
-        {
-            public enum AccessReviewHistoryDefinitionString
-            {
-                Approve,
-                Deny,
-                DontKnow,
-                NotReviewed,
-                NotNotified,
-            }
-            public enum AccessReviewHistoryDefinitionAccessReviewHistoryStatus
-            {
-                Done,
-                InProgress,
-                Error,
-                Requested,
-                UnknownFutureValue,
-            }
-
-            public UserIdentity? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public AccessReviewHistoryDefinitionString Decisions { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? ReviewHistoryPeriodEndDateTime { get; set; }
-            public DateTimeOffset? ReviewHistoryPeriodStartDateTime { get; set; }
-            public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
-            public AccessReviewScope[]? Scopes { get; set; }
-            public AccessReviewHistoryDefinitionAccessReviewHistoryStatus Status { get; set; }
-        }
-
         public AccessReviewHistoryDefinition[] Value { get; set; }
     }
     public partial class MicrosoftClient

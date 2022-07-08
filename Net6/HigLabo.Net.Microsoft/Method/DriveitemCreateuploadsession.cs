@@ -4,6 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemCreateuploadsessionParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DriveId { get; set; }
+            public string ItemId { get; set; }
+            public string GroupId { get; set; }
+            public string SiteId { get; set; }
+            public string UserId { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drives_DriveId_Items_ItemId_CreateUploadSession: return $"/drives/{DriveId}/items/{ItemId}/createUploadSession";
+                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_CreateUploadSession: return $"/groups/{GroupId}/drive/items/{ItemId}/createUploadSession";
+                    case ApiPath.Me_Drive_Items_ItemId_CreateUploadSession: return $"/me/drive/items/{ItemId}/createUploadSession";
+                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_CreateUploadSession: return $"/sites/{SiteId}/drive/items/{ItemId}/createUploadSession";
+                    case ApiPath.Users_UserId_Drive_Items_ItemId_CreateUploadSession: return $"/users/{UserId}/drive/items/{ItemId}/createUploadSession";
+                    case ApiPath.Me_Drive_Root_ItemPath_CreateUploadSession: return $"/me/drive/root:/{ItemPath}:/createUploadSession";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Drives_DriveId_Items_ItemId_CreateUploadSession,
@@ -14,30 +39,18 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_CreateUploadSession,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drives_DriveId_Items_ItemId_CreateUploadSession: return $"/drives/{DriveId}/items/{ItemId}/createUploadSession";
-                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_CreateUploadSession: return $"/groups/{GroupId}/drive/items/{ItemId}/createUploadSession";
-                    case ApiPath.Me_Drive_Items_ItemId_CreateUploadSession: return $"/me/drive/items/{ItemId}/createUploadSession";
-                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_CreateUploadSession: return $"/sites/{SiteId}/drive/items/{ItemId}/createUploadSession";
-                    case ApiPath.Users_UserId_Drive_Items_ItemId_CreateUploadSession: return $"/users/{UserId}/drive/items/{ItemId}/createUploadSession";
-                    case ApiPath.Me_Drive_Root_ItemPath_CreateUploadSession: return $"/me/drive/root:/{ItemPath}:/createUploadSession";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string DriveId { get; set; }
-        public string ItemId { get; set; }
-        public string GroupId { get; set; }
-        public string SiteId { get; set; }
-        public string UserId { get; set; }
-        public string ItemPath { get; set; }
+        public DateTimeOffset? ExpirationDateTime { get; set; }
+        public String[]? NextExpectedRanges { get; set; }
+        public string? UploadUrl { get; set; }
     }
     public partial class DriveitemCreateuploadsessionResponse : RestApiResponse
     {

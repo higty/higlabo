@@ -2,31 +2,43 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CallUpdaterecordingstatusParameter : IRestApiParameter
+    public partial class CallUpdaterecordingStatusParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_UpdateRecordingStatus: return $"/communications/calls/{Id}/updateRecordingStatus";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_Calls_Id_UpdateRecordingStatus,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_UpdateRecordingStatus: return $"/communications/calls/{Id}/updateRecordingStatus";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? ClientContext { get; set; }
         public string? Status { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public ResultInfo? ResultInfo { get; set; }
     }
-    public partial class CallUpdaterecordingstatusResponse : RestApiResponse
+    public partial class CallUpdaterecordingStatusResponse : RestApiResponse
     {
         public string? ClientContext { get; set; }
         public string? Id { get; set; }
@@ -38,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingstatusResponse> CallUpdaterecordingstatusAsync()
+        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync()
         {
-            var p = new CallUpdaterecordingstatusParameter();
-            return await this.SendAsync<CallUpdaterecordingstatusParameter, CallUpdaterecordingstatusResponse>(p, CancellationToken.None);
+            var p = new CallUpdaterecordingStatusParameter();
+            return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingstatusResponse> CallUpdaterecordingstatusAsync(CancellationToken cancellationToken)
+        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CancellationToken cancellationToken)
         {
-            var p = new CallUpdaterecordingstatusParameter();
-            return await this.SendAsync<CallUpdaterecordingstatusParameter, CallUpdaterecordingstatusResponse>(p, cancellationToken);
+            var p = new CallUpdaterecordingStatusParameter();
+            return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingstatusResponse> CallUpdaterecordingstatusAsync(CallUpdaterecordingstatusParameter parameter)
+        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CallUpdaterecordingStatusParameter parameter)
         {
-            return await this.SendAsync<CallUpdaterecordingstatusParameter, CallUpdaterecordingstatusResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/call-updaterecordingstatus?view=graph-rest-1.0
         /// </summary>
-        public async Task<CallUpdaterecordingstatusResponse> CallUpdaterecordingstatusAsync(CallUpdaterecordingstatusParameter parameter, CancellationToken cancellationToken)
+        public async Task<CallUpdaterecordingStatusResponse> CallUpdaterecordingStatusAsync(CallUpdaterecordingStatusParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CallUpdaterecordingstatusParameter, CallUpdaterecordingstatusResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CallUpdaterecordingStatusParameter, CallUpdaterecordingStatusResponse>(parameter, cancellationToken);
         }
     }
 }

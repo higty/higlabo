@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentPostCategoriesParameter : IRestApiParameter
+    public partial class EducationAssignmentPostCategoriesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Categories_ref: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/categories/$ref";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id_Categories_ref,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Categories_ref: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/categories/$ref";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
     }
-    public partial class EducationassignmentPostCategoriesResponse : RestApiResponse
+    public partial class EducationAssignmentPostCategoriesResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-post-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPostCategoriesResponse> EducationassignmentPostCategoriesAsync()
+        public async Task<EducationAssignmentPostCategoriesResponse> EducationAssignmentPostCategoriesAsync()
         {
-            var p = new EducationassignmentPostCategoriesParameter();
-            return await this.SendAsync<EducationassignmentPostCategoriesParameter, EducationassignmentPostCategoriesResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentPostCategoriesParameter();
+            return await this.SendAsync<EducationAssignmentPostCategoriesParameter, EducationAssignmentPostCategoriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-post-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPostCategoriesResponse> EducationassignmentPostCategoriesAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentPostCategoriesResponse> EducationAssignmentPostCategoriesAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentPostCategoriesParameter();
-            return await this.SendAsync<EducationassignmentPostCategoriesParameter, EducationassignmentPostCategoriesResponse>(p, cancellationToken);
+            var p = new EducationAssignmentPostCategoriesParameter();
+            return await this.SendAsync<EducationAssignmentPostCategoriesParameter, EducationAssignmentPostCategoriesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-post-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPostCategoriesResponse> EducationassignmentPostCategoriesAsync(EducationassignmentPostCategoriesParameter parameter)
+        public async Task<EducationAssignmentPostCategoriesResponse> EducationAssignmentPostCategoriesAsync(EducationAssignmentPostCategoriesParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentPostCategoriesParameter, EducationassignmentPostCategoriesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentPostCategoriesParameter, EducationAssignmentPostCategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-post-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPostCategoriesResponse> EducationassignmentPostCategoriesAsync(EducationassignmentPostCategoriesParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentPostCategoriesResponse> EducationAssignmentPostCategoriesAsync(EducationAssignmentPostCategoriesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentPostCategoriesParameter, EducationassignmentPostCategoriesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentPostCategoriesParameter, EducationAssignmentPostCategoriesResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetoffice365activeuserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetoffice365activeUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetOffice365ActiveUserDetail: return $"/reports/getOffice365ActiveUserDetail";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetOffice365ActiveUserDetail,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetOffice365ActiveUserDetail: return $"/reports/getOffice365ActiveUserDetail";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetoffice365activeuserdetailResponse : RestApiResponse
+    public partial class ReportRootGetoffice365activeUserdetailResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activeuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activeuserdetailResponse> ReportrootGetoffice365activeuserdetailAsync()
+        public async Task<ReportRootGetoffice365activeUserdetailResponse> ReportRootGetoffice365activeUserdetailAsync()
         {
-            var p = new ReportrootGetoffice365activeuserdetailParameter();
-            return await this.SendAsync<ReportrootGetoffice365activeuserdetailParameter, ReportrootGetoffice365activeuserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetoffice365activeUserdetailParameter();
+            return await this.SendAsync<ReportRootGetoffice365activeUserdetailParameter, ReportRootGetoffice365activeUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activeuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activeuserdetailResponse> ReportrootGetoffice365activeuserdetailAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetoffice365activeUserdetailResponse> ReportRootGetoffice365activeUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetoffice365activeuserdetailParameter();
-            return await this.SendAsync<ReportrootGetoffice365activeuserdetailParameter, ReportrootGetoffice365activeuserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetoffice365activeUserdetailParameter();
+            return await this.SendAsync<ReportRootGetoffice365activeUserdetailParameter, ReportRootGetoffice365activeUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activeuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activeuserdetailResponse> ReportrootGetoffice365activeuserdetailAsync(ReportrootGetoffice365activeuserdetailParameter parameter)
+        public async Task<ReportRootGetoffice365activeUserdetailResponse> ReportRootGetoffice365activeUserdetailAsync(ReportRootGetoffice365activeUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetoffice365activeuserdetailParameter, ReportrootGetoffice365activeuserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetoffice365activeUserdetailParameter, ReportRootGetoffice365activeUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365activeuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365activeuserdetailResponse> ReportrootGetoffice365activeuserdetailAsync(ReportrootGetoffice365activeuserdetailParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetoffice365activeUserdetailResponse> ReportRootGetoffice365activeUserdetailAsync(ReportRootGetoffice365activeUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetoffice365activeuserdetailParameter, ReportrootGetoffice365activeuserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetoffice365activeUserdetailParameter, ReportRootGetoffice365activeUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

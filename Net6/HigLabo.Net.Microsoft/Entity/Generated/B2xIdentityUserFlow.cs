@@ -11,5 +11,8 @@ namespace HigLabo.Net.Microsoft
         public string? UserFlowType { get; set; }
         public Single? UserFlowTypeVersion { get; set; }
         public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
+        public IdentityProvider[]? IdentityProviders { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
+        public UserFlowLanguageConfiguration[]? Languages { get; set; }
     }
 }

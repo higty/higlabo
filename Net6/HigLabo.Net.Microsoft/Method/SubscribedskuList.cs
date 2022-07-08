@@ -4,24 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SubscribedskuListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.SubscribedSkus: return $"/subscribedSkus";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppliesTo,
+            CapabilityStatus,
+            ConsumedUnits,
+            Id,
+            PrepaidUnits,
+            ServicePlans,
+            SkuId,
+            SkuPartNumber,
         }
         public enum ApiPath
         {
             SubscribedSkus,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.SubscribedSkus: return $"/subscribedSkus";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,21 +54,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SubscribedskuListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/subscribedsku?view=graph-rest-1.0
-        /// </summary>
-        public partial class SubscribedSku
-        {
-            public string? AppliesTo { get; set; }
-            public string? CapabilityStatus { get; set; }
-            public Int32? ConsumedUnits { get; set; }
-            public string? Id { get; set; }
-            public LicenseUnitsDetail? PrepaidUnits { get; set; }
-            public ServicePlanInfo[]? ServicePlans { get; set; }
-            public Guid? SkuId { get; set; }
-            public string? SkuPartNumber { get; set; }
-        }
-
         public SubscribedSku[] Value { get; set; }
     }
     public partial class MicrosoftClient

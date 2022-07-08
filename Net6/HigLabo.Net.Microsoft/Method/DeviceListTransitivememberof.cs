@@ -4,24 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DeviceListTransitivememberofParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Devices_IdOrUserPrincipalName_TransitiveMemberOf: return $"/devices/{IdOrUserPrincipalName}/transitiveMemberOf";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DeletedDateTime,
+            Id,
         }
         public enum ApiPath
         {
             Devices_IdOrUserPrincipalName_TransitiveMemberOf,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Devices_IdOrUserPrincipalName_TransitiveMemberOf: return $"/devices/{IdOrUserPrincipalName}/transitiveMemberOf";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,19 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class DeviceListTransitivememberofResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
-        /// </summary>
-        public partial class DirectoryObject
-        {
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Id { get; set; }
-        }
-
         public DirectoryObject[] Value { get; set; }
     }
     public partial class MicrosoftClient

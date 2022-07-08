@@ -62,5 +62,11 @@ namespace HigLabo.Net.Microsoft
         public string? TransactionId { get; set; }
         public string? Type { get; set; }
         public string? WebLink { get; set; }
+        public Attachment[]? Attachments { get; set; }
+        public Calendar? Calendar { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public Event[]? Instances { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
 }

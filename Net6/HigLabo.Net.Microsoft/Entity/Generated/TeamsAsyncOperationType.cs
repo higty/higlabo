@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://docs.microsoft.com/en-us/graph/api/resources/teamsasyncoperationtype?view=graph-rest-1.0
     /// </summary>
-    public partial class TeamsAsyncOperationType
+    public partial class TeamsASyncOperationType
     {
     }
 }

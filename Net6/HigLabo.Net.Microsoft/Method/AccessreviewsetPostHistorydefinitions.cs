@@ -4,21 +4,47 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewsetPostHistorydefinitionsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions: return $"/identityGovernance/accessReviews/historyDefinitions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum AccessReviewHistoryDefinitionString
+        {
+            Approve,
+            Deny,
+            DontKnow,
+            NotReviewed,
+            NotNotified,
+        }
+        public enum AccessReviewHistoryDefinitionAccessReviewHistoryStatus
+        {
+            Done,
+            InProgress,
+            Error,
+            Requested,
+            UnknownFutureValue,
+        }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_HistoryDefinitions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions: return $"/identityGovernance/accessReviews/historyDefinitions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -27,6 +53,12 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? ReviewHistoryPeriodEndDateTime { get; set; }
         public AccessReviewQueryScope[]? Scopes { get; set; }
         public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
+        public UserIdentity? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public AccessReviewHistoryDefinitionString Decisions { get; set; }
+        public string? Id { get; set; }
+        public AccessReviewHistoryDefinitionAccessReviewHistoryStatus Status { get; set; }
+        public AccessReviewHistoryInstance[]? Instances { get; set; }
     }
     public partial class AccessreviewsetPostHistorydefinitionsResponse : RestApiResponse
     {
@@ -57,6 +89,7 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
         public AccessReviewScope[]? Scopes { get; set; }
         public AccessReviewHistoryDefinitionAccessReviewHistoryStatus Status { get; set; }
+        public AccessReviewHistoryInstance[]? Instances { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IdentityuserflowattributeassignmentDeleteParameter : IRestApiParameter
+    public partial class IdentityUserflowattributeAssignmentDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string B2xUserFlowsId { get; set; }
+            public string UserAttributeAssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_B2xUserFlows_Id_UserAttributeAssignments_Id: return $"/identity/b2xUserFlows/{B2xUserFlowsId}/userAttributeAssignments/{UserAttributeAssignmentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Identity_B2xUserFlows_Id_UserAttributeAssignments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_B2xUserFlows_Id_UserAttributeAssignments_Id: return $"/identity/b2xUserFlows/{B2xUserFlowsId}/userAttributeAssignments/{UserAttributeAssignmentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string B2xUserFlowsId { get; set; }
-        public string UserAttributeAssignmentsId { get; set; }
     }
-    public partial class IdentityuserflowattributeassignmentDeleteResponse : RestApiResponse
+    public partial class IdentityUserflowattributeAssignmentDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributeassignmentDeleteResponse> IdentityuserflowattributeassignmentDeleteAsync()
+        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync()
         {
-            var p = new IdentityuserflowattributeassignmentDeleteParameter();
-            return await this.SendAsync<IdentityuserflowattributeassignmentDeleteParameter, IdentityuserflowattributeassignmentDeleteResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowattributeAssignmentDeleteParameter();
+            return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributeassignmentDeleteResponse> IdentityuserflowattributeassignmentDeleteAsync(CancellationToken cancellationToken)
+        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityuserflowattributeassignmentDeleteParameter();
-            return await this.SendAsync<IdentityuserflowattributeassignmentDeleteParameter, IdentityuserflowattributeassignmentDeleteResponse>(p, cancellationToken);
+            var p = new IdentityUserflowattributeAssignmentDeleteParameter();
+            return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributeassignmentDeleteResponse> IdentityuserflowattributeassignmentDeleteAsync(IdentityuserflowattributeassignmentDeleteParameter parameter)
+        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(IdentityUserflowattributeAssignmentDeleteParameter parameter)
         {
-            return await this.SendAsync<IdentityuserflowattributeassignmentDeleteParameter, IdentityuserflowattributeassignmentDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributeassignmentDeleteResponse> IdentityuserflowattributeassignmentDeleteAsync(IdentityuserflowattributeassignmentDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<IdentityUserflowattributeAssignmentDeleteResponse> IdentityUserflowattributeAssignmentDeleteAsync(IdentityUserflowattributeAssignmentDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityuserflowattributeassignmentDeleteParameter, IdentityuserflowattributeassignmentDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowattributeAssignmentDeleteParameter, IdentityUserflowattributeAssignmentDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

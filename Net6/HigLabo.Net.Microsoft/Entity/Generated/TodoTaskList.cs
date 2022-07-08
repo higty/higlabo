@@ -20,5 +20,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsOwner { get; set; }
         public bool? IsShared { get; set; }
         public TodoTaskListWellknownListName WellknownListName { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public TodoTask[]? Tasks { get; set; }
     }
 }

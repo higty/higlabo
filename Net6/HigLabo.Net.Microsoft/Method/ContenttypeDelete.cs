@@ -2,33 +2,43 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypeDeleteParameter : IRestApiParameter
+    public partial class ContentTypeDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ContentTypeId { get; set; }
+            public string ListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}";
+                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Sites_SiteId_ContentTypes_ContentTypeId,
             Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}";
-                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string SiteId { get; set; }
-        public string ContentTypeId { get; set; }
-        public string ListId { get; set; }
     }
-    public partial class ContenttypeDeleteResponse : RestApiResponse
+    public partial class ContentTypeDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -36,32 +46,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeDeleteResponse> ContenttypeDeleteAsync()
+        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync()
         {
-            var p = new ContenttypeDeleteParameter();
-            return await this.SendAsync<ContenttypeDeleteParameter, ContenttypeDeleteResponse>(p, CancellationToken.None);
+            var p = new ContentTypeDeleteParameter();
+            return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeDeleteResponse> ContenttypeDeleteAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypeDeleteParameter();
-            return await this.SendAsync<ContenttypeDeleteParameter, ContenttypeDeleteResponse>(p, cancellationToken);
+            var p = new ContentTypeDeleteParameter();
+            return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeDeleteResponse> ContenttypeDeleteAsync(ContenttypeDeleteParameter parameter)
+        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync(ContentTypeDeleteParameter parameter)
         {
-            return await this.SendAsync<ContenttypeDeleteParameter, ContenttypeDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeDeleteResponse> ContenttypeDeleteAsync(ContenttypeDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypeDeleteResponse> ContentTypeDeleteAsync(ContentTypeDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypeDeleteParameter, ContenttypeDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypeDeleteParameter, ContentTypeDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

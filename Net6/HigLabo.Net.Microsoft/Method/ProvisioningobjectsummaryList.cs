@@ -2,26 +2,53 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ProvisioningobjectsummaryListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ProvisioningobjectSummaryListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.AuditLogs_Provisioning: return $"/auditLogs/provisioning";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ProvisioningAction,
+            ActivityDateTime,
+            ChangeId,
+            CycleId,
+            DurationInMilliseconds,
+            Id,
+            InitiatedBy,
+            JobId,
+            ModifiedProperties,
+            ProvisioningSteps,
+            ServicePrincipal,
+            SourceIdentity,
+            SourceSystem,
+            ProvisioningStatusInfo,
+            TargetIdentity,
+            TargetSystem,
+            TenantId,
         }
         public enum ApiPath
         {
             AuditLogs_Provisioning,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.AuditLogs_Provisioning: return $"/auditLogs/provisioning";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,43 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ProvisioningobjectsummaryListResponse : RestApiResponse
+    public partial class ProvisioningobjectSummaryListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/provisioningobjectsummary?view=graph-rest-1.0
-        /// </summary>
-        public partial class ProvisioningObjectSummary
-        {
-            public enum ProvisioningObjectSummaryProvisioningAction
-            {
-                Create,
-                Update,
-                Delete,
-                Stageddelete,
-                Disable,
-                Other,
-                UnknownFutureValue,
-            }
-
-            public ProvisioningObjectSummaryProvisioningAction ProvisioningAction { get; set; }
-            public DateTimeOffset? ActivityDateTime { get; set; }
-            public string? ChangeId { get; set; }
-            public string? CycleId { get; set; }
-            public Int32? DurationInMilliseconds { get; set; }
-            public string? Id { get; set; }
-            public Initiator? InitiatedBy { get; set; }
-            public string? JobId { get; set; }
-            public ModifiedProperty[]? ModifiedProperties { get; set; }
-            public ProvisioningStep[]? ProvisioningSteps { get; set; }
-            public ProvisioningServicePrincipal[]? ServicePrincipal { get; set; }
-            public ProvisionedIdentity? SourceIdentity { get; set; }
-            public ProvisioningSystem? SourceSystem { get; set; }
-            public ProvisioningStatusInfo? ProvisioningStatusInfo { get; set; }
-            public ProvisionedIdentity? TargetIdentity { get; set; }
-            public ProvisioningSystem? TargetSystem { get; set; }
-            public string? TenantId { get; set; }
-        }
-
         public ProvisioningObjectSummary[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -78,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectsummaryListResponse> ProvisioningobjectsummaryListAsync()
+        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync()
         {
-            var p = new ProvisioningobjectsummaryListParameter();
-            return await this.SendAsync<ProvisioningobjectsummaryListParameter, ProvisioningobjectsummaryListResponse>(p, CancellationToken.None);
+            var p = new ProvisioningobjectSummaryListParameter();
+            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectsummaryListResponse> ProvisioningobjectsummaryListAsync(CancellationToken cancellationToken)
+        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(CancellationToken cancellationToken)
         {
-            var p = new ProvisioningobjectsummaryListParameter();
-            return await this.SendAsync<ProvisioningobjectsummaryListParameter, ProvisioningobjectsummaryListResponse>(p, cancellationToken);
+            var p = new ProvisioningobjectSummaryListParameter();
+            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectsummaryListResponse> ProvisioningobjectsummaryListAsync(ProvisioningobjectsummaryListParameter parameter)
+        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter)
         {
-            return await this.SendAsync<ProvisioningobjectsummaryListParameter, ProvisioningobjectsummaryListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<ProvisioningobjectsummaryListResponse> ProvisioningobjectsummaryListAsync(ProvisioningobjectsummaryListParameter parameter, CancellationToken cancellationToken)
+        public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ProvisioningobjectsummaryListParameter, ProvisioningobjectsummaryListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, cancellationToken);
         }
     }
 }

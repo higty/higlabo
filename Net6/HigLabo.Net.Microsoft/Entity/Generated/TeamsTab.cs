@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? WebUrl { get; set; }
         public TeamsTabConfiguration? Configuration { get; set; }
+        public TeamsApp? TeamsApp { get; set; }
     }
 }

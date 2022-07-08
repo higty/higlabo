@@ -4,8 +4,33 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MailfolderListMessagerulesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_MailFolders_Inbox_MessageRules: return $"/me/mailFolders/inbox/messageRules";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Inbox_MessageRules: return $"/users/{IdOrUserPrincipalName}/mailFolders/inbox/messageRules";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Actions,
+            Conditions,
+            DisplayName,
+            Exceptions,
+            HasError,
+            Id,
+            IsEnabled,
+            IsReadOnly,
+            Sequence,
         }
         public enum ApiPath
         {
@@ -13,17 +38,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_MailFolders_Inbox_MessageRules,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_MailFolders_Inbox_MessageRules: return $"/me/mailFolders/inbox/messageRules";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_Inbox_MessageRules: return $"/users/{IdOrUserPrincipalName}/mailFolders/inbox/messageRules";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,26 +55,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class MailfolderListMessagerulesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/messagerule?view=graph-rest-1.0
-        /// </summary>
-        public partial class MessageRule
-        {
-            public MessageRuleActions? Actions { get; set; }
-            public MessageRulePredicates? Conditions { get; set; }
-            public string? DisplayName { get; set; }
-            public MessageRulePredicates? Exceptions { get; set; }
-            public bool? HasError { get; set; }
-            public string? Id { get; set; }
-            public bool? IsEnabled { get; set; }
-            public bool? IsReadOnly { get; set; }
-            public Int32? Sequence { get; set; }
-        }
-
         public MessageRule[] Value { get; set; }
     }
     public partial class MicrosoftClient

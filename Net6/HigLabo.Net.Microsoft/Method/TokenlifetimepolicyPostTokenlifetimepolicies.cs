@@ -2,66 +2,83 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TokenlifetimepolicyPostTokenlifetimepoliciesParameter : IRestApiParameter
+    public partial class TokenlifetimePolicyPostTokenlifetimepoliciesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Olicies_TokenLifetimePolicies: return $"/olicies/tokenLifetimePolicies";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Olicies_TokenLifetimePolicies,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Olicies_TokenLifetimePolicies: return $"/olicies/tokenLifetimePolicies";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? Id { get; set; }
+        public String[]? Definition { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public bool? IsOrganizationDefault { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
-    public partial class TokenlifetimepolicyPostTokenlifetimepoliciesResponse : RestApiResponse
+    public partial class TokenlifetimePolicyPostTokenlifetimepoliciesResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public bool? IsOrganizationDefault { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyPostTokenlifetimepoliciesResponse> TokenlifetimepolicyPostTokenlifetimepoliciesAsync()
+        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync()
         {
-            var p = new TokenlifetimepolicyPostTokenlifetimepoliciesParameter();
-            return await this.SendAsync<TokenlifetimepolicyPostTokenlifetimepoliciesParameter, TokenlifetimepolicyPostTokenlifetimepoliciesResponse>(p, CancellationToken.None);
+            var p = new TokenlifetimePolicyPostTokenlifetimepoliciesParameter();
+            return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyPostTokenlifetimepoliciesResponse> TokenlifetimepolicyPostTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
+        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
         {
-            var p = new TokenlifetimepolicyPostTokenlifetimepoliciesParameter();
-            return await this.SendAsync<TokenlifetimepolicyPostTokenlifetimepoliciesParameter, TokenlifetimepolicyPostTokenlifetimepoliciesResponse>(p, cancellationToken);
+            var p = new TokenlifetimePolicyPostTokenlifetimepoliciesParameter();
+            return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyPostTokenlifetimepoliciesResponse> TokenlifetimepolicyPostTokenlifetimepoliciesAsync(TokenlifetimepolicyPostTokenlifetimepoliciesParameter parameter)
+        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(TokenlifetimePolicyPostTokenlifetimepoliciesParameter parameter)
         {
-            return await this.SendAsync<TokenlifetimepolicyPostTokenlifetimepoliciesParameter, TokenlifetimepolicyPostTokenlifetimepoliciesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyPostTokenlifetimepoliciesResponse> TokenlifetimepolicyPostTokenlifetimepoliciesAsync(TokenlifetimepolicyPostTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async Task<TokenlifetimePolicyPostTokenlifetimepoliciesResponse> TokenlifetimePolicyPostTokenlifetimepoliciesAsync(TokenlifetimePolicyPostTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TokenlifetimepolicyPostTokenlifetimepoliciesParameter, TokenlifetimepolicyPostTokenlifetimepoliciesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TokenlifetimePolicyPostTokenlifetimepoliciesParameter, TokenlifetimePolicyPostTokenlifetimepoliciesResponse>(parameter, cancellationToken);
         }
     }
 }

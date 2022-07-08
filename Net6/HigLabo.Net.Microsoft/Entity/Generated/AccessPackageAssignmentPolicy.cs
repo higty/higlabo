@@ -32,5 +32,7 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageAssignmentRequestorSettings? RequestorSettings { get; set; }
         public AccessPackageAssignmentReviewSettings? ReviewSettings { get; set; }
         public SubjectSet[]? SpecificAllowedTargets { get; set; }
+        public AccessPackage? AccessPackage { get; set; }
+        public AccessPackageCatalog? Catalog { get; set; }
     }
 }

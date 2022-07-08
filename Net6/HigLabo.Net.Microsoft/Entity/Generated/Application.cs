@@ -41,5 +41,8 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public DirectoryObject? CreatedOnBehalfOf { get; set; }
+        public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
     }
 }

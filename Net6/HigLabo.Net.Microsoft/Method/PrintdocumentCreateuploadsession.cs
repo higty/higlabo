@@ -4,31 +4,44 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintdocumentCreateuploadsessionParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrintersId { get; set; }
+            public string JobsId { get; set; }
+            public string DocumentsId { get; set; }
+            public string SharesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_Id_Jobs_Id_Documents_Id_CreateUploadSession: return $"/print/printers/{PrintersId}/jobs/{JobsId}/documents/{DocumentsId}/createUploadSession";
+                    case ApiPath.Print_Shares_Id_Jobs_Id_Documents_Id_CreateUploadSession: return $"/print/shares/{SharesId}/jobs/{JobsId}/documents/{DocumentsId}/createUploadSession";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Print_Printers_Id_Jobs_Id_Documents_Id_CreateUploadSession,
             Print_Shares_Id_Jobs_Id_Documents_Id_CreateUploadSession,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_Id_Jobs_Id_Documents_Id_CreateUploadSession: return $"/print/printers/{PrintersId}/jobs/{JobsId}/documents/{DocumentsId}/createUploadSession";
-                    case ApiPath.Print_Shares_Id_Jobs_Id_Documents_Id_CreateUploadSession: return $"/print/shares/{SharesId}/jobs/{JobsId}/documents/{DocumentsId}/createUploadSession";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public PrintDocumentUploadProperties? Properties { get; set; }
-        public string PrintersId { get; set; }
-        public string JobsId { get; set; }
-        public string DocumentsId { get; set; }
-        public string SharesId { get; set; }
+        public DateTimeOffset? ExpirationDateTime { get; set; }
+        public String[]? NextExpectedRanges { get; set; }
+        public string? UploadUrl { get; set; }
     }
     public partial class PrintdocumentCreateuploadsessionResponse : RestApiResponse
     {

@@ -12,5 +12,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? DeviceTag { get; set; }
         public string? PhoneAppVersion { get; set; }
+        public Device? Device { get; set; }
     }
 }

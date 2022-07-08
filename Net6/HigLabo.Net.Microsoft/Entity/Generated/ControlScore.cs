@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ControlScore
     {
-        public string ControlName { get; set; }
+        public string? ControlName { get; set; }
         public Double? Score { get; set; }
-        public string ControlCategory { get; set; }
-        public string Description { get; set; }
+        public string? ControlCategory { get; set; }
+        public string? Description { get; set; }
     }
 }

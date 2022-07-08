@@ -2,26 +2,54 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationschoolDeltaParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationSchoolDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Schools_Delta: return $"/education/schools/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Address,
+            CreatedBy,
+            Description,
+            DisplayName,
+            ExternalId,
+            ExternalPrincipalId,
+            ExternalSource,
+            ExternalSourceDetail,
+            HighestGrade,
+            Id,
+            LowestGrade,
+            Phone,
+            PrincipalEmail,
+            PrincipalName,
+            SchoolNumber,
+            AdministrativeUnit,
+            Classes,
+            Users,
         }
         public enum ApiPath
         {
             Education_Schools_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Schools_Delta: return $"/education/schools/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,36 +62,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EducationschoolDeltaResponse : RestApiResponse
+    public partial class EducationSchoolDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationschool?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationSchool
-        {
-            public enum EducationSchoolEducationExternalSource
-            {
-                Sis,
-                Manual,
-            }
-
-            public PhysicalAddress? Address { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public string? ExternalId { get; set; }
-            public string? ExternalPrincipalId { get; set; }
-            public EducationSchoolEducationExternalSource ExternalSource { get; set; }
-            public string? ExternalSourceDetail { get; set; }
-            public string? HighestGrade { get; set; }
-            public string? Id { get; set; }
-            public string? LowestGrade { get; set; }
-            public string? Phone { get; set; }
-            public string? PrincipalEmail { get; set; }
-            public string? PrincipalName { get; set; }
-            public string? SchoolNumber { get; set; }
-        }
-
         public EducationSchool[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -71,32 +71,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolDeltaResponse> EducationschoolDeltaAsync()
+        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync()
         {
-            var p = new EducationschoolDeltaParameter();
-            return await this.SendAsync<EducationschoolDeltaParameter, EducationschoolDeltaResponse>(p, CancellationToken.None);
+            var p = new EducationSchoolDeltaParameter();
+            return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolDeltaResponse> EducationschoolDeltaAsync(CancellationToken cancellationToken)
+        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationschoolDeltaParameter();
-            return await this.SendAsync<EducationschoolDeltaParameter, EducationschoolDeltaResponse>(p, cancellationToken);
+            var p = new EducationSchoolDeltaParameter();
+            return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolDeltaResponse> EducationschoolDeltaAsync(EducationschoolDeltaParameter parameter)
+        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter)
         {
-            return await this.SendAsync<EducationschoolDeltaParameter, EducationschoolDeltaResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolDeltaResponse> EducationschoolDeltaAsync(EducationschoolDeltaParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationschoolDeltaParameter, EducationschoolDeltaResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, cancellationToken);
         }
     }
 }

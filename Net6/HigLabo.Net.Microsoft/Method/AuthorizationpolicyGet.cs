@@ -2,26 +2,46 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AuthorizationpolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AuthorizationPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_AuthorizationPolicy: return $"/policies/authorizationPolicy";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AllowedToSignUpEmailBasedSubscriptions,
+            AllowedToUseSSPR,
+            AllowEmailVerifiedUsersToJoinOrganization,
+            AllowInvitesFrom,
+            BlockMsolPowerShell,
+            DefaultUserRolePermissions,
+            Description,
+            DisplayName,
+            GuestUserRoleId,
+            Id,
         }
         public enum ApiPath
         {
             Policies_AuthorizationPolicy,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_AuthorizationPolicy: return $"/policies/authorizationPolicy";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AuthorizationpolicyGetResponse : RestApiResponse
+    public partial class AuthorizationPolicyGetResponse : RestApiResponse
     {
         public enum AuthorizationPolicyAllowInvitesFrom
         {
@@ -60,32 +80,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationpolicyGetResponse> AuthorizationpolicyGetAsync()
+        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync()
         {
-            var p = new AuthorizationpolicyGetParameter();
-            return await this.SendAsync<AuthorizationpolicyGetParameter, AuthorizationpolicyGetResponse>(p, CancellationToken.None);
+            var p = new AuthorizationPolicyGetParameter();
+            return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationpolicyGetResponse> AuthorizationpolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AuthorizationpolicyGetParameter();
-            return await this.SendAsync<AuthorizationpolicyGetParameter, AuthorizationpolicyGetResponse>(p, cancellationToken);
+            var p = new AuthorizationPolicyGetParameter();
+            return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationpolicyGetResponse> AuthorizationpolicyGetAsync(AuthorizationpolicyGetParameter parameter)
+        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter)
         {
-            return await this.SendAsync<AuthorizationpolicyGetParameter, AuthorizationpolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthorizationpolicyGetResponse> AuthorizationpolicyGetAsync(AuthorizationpolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AuthorizationpolicyGetParameter, AuthorizationpolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

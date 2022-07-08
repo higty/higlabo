@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationDeleteOwnersParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ApplicationsId { get; set; }
+            public string OwnersId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Applications_Id_Owners_Id_ref: return $"/applications/{ApplicationsId}/owners/{OwnersId}/$ref";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Applications_Id_Owners_Id_ref,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Applications_Id_Owners_Id_ref: return $"/applications/{ApplicationsId}/owners/{OwnersId}/$ref";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ApplicationsId { get; set; }
-        public string OwnersId { get; set; }
     }
     public partial class ApplicationDeleteOwnersResponse : RestApiResponse
     {

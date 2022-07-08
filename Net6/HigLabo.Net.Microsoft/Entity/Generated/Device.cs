@@ -39,5 +39,10 @@ namespace HigLabo.Net.Microsoft
         public DeviceDeviceProfileType ProfileType { get; set; }
         public String[]? SystemLabels { get; set; }
         public string? TrustType { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? RegisteredOwners { get; set; }
+        public DirectoryObject[]? RegisteredUsers { get; set; }
     }
 }

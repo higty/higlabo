@@ -4,24 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ScheduleListTimeoffreasonsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Schedule_TimeOffReasons: return $"/teams/{TeamId}/schedule/timeOffReasons";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            IconType,
+            IsActive,
+            CreatedDateTime,
+            LastModifiedDateTime,
+            LastModifiedBy,
         }
         public enum ApiPath
         {
             Teams_TeamId_Schedule_TimeOffReasons,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Schedule_TimeOffReasons: return $"/teams/{TeamId}/schedule/timeOffReasons";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,24 +51,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TeamId { get; set; }
     }
     public partial class ScheduleListTimeoffreasonsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/timeoffreason?view=graph-rest-1.0
-        /// </summary>
-        public partial class TimeOffReason
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public TimeOffReasonIconType? IconType { get; set; }
-            public bool? IsActive { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public IdentitySet? LastModifiedBy { get; set; }
-        }
-
         public TimeOffReason[] Value { get; set; }
     }
     public partial class MicrosoftClient

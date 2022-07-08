@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PrintersharePostAllowedusersParameter : IRestApiParameter
+    public partial class PrintersharePostAllowedUsersParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterShareId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Shares_PrinterShareId_AllowedUsers_ref: return $"/print/shares/{PrinterShareId}/allowedUsers/$ref";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Print_Shares_PrinterShareId_AllowedUsers_ref,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Shares_PrinterShareId_AllowedUsers_ref: return $"/print/shares/{PrinterShareId}/allowedUsers/$ref";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string PrinterShareId { get; set; }
     }
-    public partial class PrintersharePostAllowedusersResponse : RestApiResponse
+    public partial class PrintersharePostAllowedUsersResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedusersResponse> PrintersharePostAllowedusersAsync()
+        public async Task<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync()
         {
-            var p = new PrintersharePostAllowedusersParameter();
-            return await this.SendAsync<PrintersharePostAllowedusersParameter, PrintersharePostAllowedusersResponse>(p, CancellationToken.None);
+            var p = new PrintersharePostAllowedUsersParameter();
+            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedusersResponse> PrintersharePostAllowedusersAsync(CancellationToken cancellationToken)
+        public async Task<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintersharePostAllowedusersParameter();
-            return await this.SendAsync<PrintersharePostAllowedusersParameter, PrintersharePostAllowedusersResponse>(p, cancellationToken);
+            var p = new PrintersharePostAllowedUsersParameter();
+            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedusersResponse> PrintersharePostAllowedusersAsync(PrintersharePostAllowedusersParameter parameter)
+        public async Task<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync(PrintersharePostAllowedUsersParameter parameter)
         {
-            return await this.SendAsync<PrintersharePostAllowedusersParameter, PrintersharePostAllowedusersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-post-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintersharePostAllowedusersResponse> PrintersharePostAllowedusersAsync(PrintersharePostAllowedusersParameter parameter, CancellationToken cancellationToken)
+        public async Task<PrintersharePostAllowedUsersResponse> PrintersharePostAllowedUsersAsync(PrintersharePostAllowedUsersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintersharePostAllowedusersParameter, PrintersharePostAllowedusersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintersharePostAllowedUsersParameter, PrintersharePostAllowedUsersResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class B2xidentityuserflowGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class B2xidentityUserflowGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_B2xUserFlows_Id: return $"/identity/b2xUserFlows/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Identity_B2xUserFlows_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_B2xUserFlows_Id: return $"/identity/b2xUserFlows/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,46 +44,48 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class B2xidentityuserflowGetResponse : RestApiResponse
+    public partial class B2xidentityUserflowGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? UserFlowType { get; set; }
         public Single? UserFlowTypeVersion { get; set; }
         public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
+        public IdentityProvider[]? IdentityProviders { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
+        public UserFlowLanguageConfiguration[]? Languages { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityuserflowGetResponse> B2xidentityuserflowGetAsync()
+        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync()
         {
-            var p = new B2xidentityuserflowGetParameter();
-            return await this.SendAsync<B2xidentityuserflowGetParameter, B2xidentityuserflowGetResponse>(p, CancellationToken.None);
+            var p = new B2xidentityUserflowGetParameter();
+            return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityuserflowGetResponse> B2xidentityuserflowGetAsync(CancellationToken cancellationToken)
+        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(CancellationToken cancellationToken)
         {
-            var p = new B2xidentityuserflowGetParameter();
-            return await this.SendAsync<B2xidentityuserflowGetParameter, B2xidentityuserflowGetResponse>(p, cancellationToken);
+            var p = new B2xidentityUserflowGetParameter();
+            return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityuserflowGetResponse> B2xidentityuserflowGetAsync(B2xidentityuserflowGetParameter parameter)
+        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter)
         {
-            return await this.SendAsync<B2xidentityuserflowGetParameter, B2xidentityuserflowGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<B2xidentityuserflowGetResponse> B2xidentityuserflowGetAsync(B2xidentityuserflowGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<B2xidentityuserflowGetParameter, B2xidentityuserflowGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(parameter, cancellationToken);
         }
     }
 }

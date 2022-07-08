@@ -10,5 +10,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsEnabled { get; set; }
         public string? DisplayName { get; set; }
+        public UserFlowLanguagePage[]? DefaultPages { get; set; }
+        public UserFlowLanguagePage[]? OverridesPages { get; set; }
     }
 }

@@ -12,5 +12,6 @@ namespace HigLabo.Net.Microsoft
         public String[]? InheritableSettings { get; set; }
         public string? Level { get; set; }
         public String[]? Operations { get; set; }
+        public DirectoryObject[]? TargetObjects { get; set; }
     }
 }

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class EducationPointsOutcome
     {
-        public string Id { get; set; }
-        public EducationAssignmentPointsGrade Points { get; set; }
-        public EducationAssignmentPointsGrade PublishedPoints { get; set; }
+        public string? Id { get; set; }
+        public EducationAssignmentPointsGrade? Points { get; set; }
+        public EducationAssignmentPointsGrade? PublishedPoints { get; set; }
     }
 }

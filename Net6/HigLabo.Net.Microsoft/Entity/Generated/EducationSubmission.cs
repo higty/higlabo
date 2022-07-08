@@ -28,5 +28,8 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? UnsubmittedDateTime { get; set; }
         public IdentitySet? ReassignedBy { get; set; }
         public DateTimeOffset? ReassignedDateTime { get; set; }
+        public EducationSubmissionResource[]? Resources { get; set; }
+        public EducationSubmissionResource[]? SubmittedResources { get; set; }
+        public EducationOutcome? Outcomes { get; set; }
     }
 }

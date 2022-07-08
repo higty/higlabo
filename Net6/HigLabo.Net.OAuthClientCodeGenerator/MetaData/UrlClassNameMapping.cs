@@ -16,5 +16,9 @@ namespace HigLabo.Net.CodeGenerator
             this.Url = url;
             this.ClassName = className;
         }
+        public override string ToString()
+        {
+            return $"{this.ClassName} {this.Url}";
+        }
     }
 }

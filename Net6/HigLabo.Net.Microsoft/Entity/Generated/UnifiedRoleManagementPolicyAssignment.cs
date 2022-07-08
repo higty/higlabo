@@ -12,5 +12,6 @@ namespace HigLabo.Net.Microsoft
         public string? RoleDefinitionId { get; set; }
         public string? ScopeId { get; set; }
         public string? ScopeType { get; set; }
+        public UnifiedRoleManagementPolicy? Policy { get; set; }
     }
 }

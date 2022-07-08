@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UnifiedroleassignmentschedulerequestGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UnifiedroleAssignmentschedulerequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UnifiedRoleAssignmentScheduleRequestId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleRequests_UnifiedRoleAssignmentScheduleRequestId: return $"/roleManagement/directory/roleAssignmentScheduleRequests/{UnifiedRoleAssignmentScheduleRequestId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             RoleManagement_Directory_RoleAssignmentScheduleRequests_UnifiedRoleAssignmentScheduleRequestId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleRequests_UnifiedRoleAssignmentScheduleRequestId: return $"/roleManagement/directory/roleAssignmentScheduleRequests/{UnifiedRoleAssignmentScheduleRequestId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +44,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UnifiedRoleAssignmentScheduleRequestId { get; set; }
     }
-    public partial class UnifiedroleassignmentschedulerequestGetResponse : RestApiResponse
+    public partial class UnifiedroleAssignmentschedulerequestGetResponse : RestApiResponse
     {
         public string? Action { get; set; }
         public string? ApprovalId { get; set; }
@@ -54,38 +64,44 @@ namespace HigLabo.Net.Microsoft
         public string? Status { get; set; }
         public string? TargetScheduleId { get; set; }
         public TicketInfo? TicketInfo { get; set; }
+        public UnifiedRoleEligibilitySchedule? ActivatedUsing { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
+        public DirectoryObject? Principal { get; set; }
+        public UnifiedRoleDefinition? RoleDefinition { get; set; }
+        public UnifiedRoleAssignmentSchedule? TargetSchedule { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestGetResponse> UnifiedroleassignmentschedulerequestGetAsync()
+        public async Task<UnifiedroleAssignmentschedulerequestGetResponse> UnifiedroleAssignmentschedulerequestGetAsync()
         {
-            var p = new UnifiedroleassignmentschedulerequestGetParameter();
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestGetParameter, UnifiedroleassignmentschedulerequestGetResponse>(p, CancellationToken.None);
+            var p = new UnifiedroleAssignmentschedulerequestGetParameter();
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestGetParameter, UnifiedroleAssignmentschedulerequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestGetResponse> UnifiedroleassignmentschedulerequestGetAsync(CancellationToken cancellationToken)
+        public async Task<UnifiedroleAssignmentschedulerequestGetResponse> UnifiedroleAssignmentschedulerequestGetAsync(CancellationToken cancellationToken)
         {
-            var p = new UnifiedroleassignmentschedulerequestGetParameter();
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestGetParameter, UnifiedroleassignmentschedulerequestGetResponse>(p, cancellationToken);
+            var p = new UnifiedroleAssignmentschedulerequestGetParameter();
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestGetParameter, UnifiedroleAssignmentschedulerequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestGetResponse> UnifiedroleassignmentschedulerequestGetAsync(UnifiedroleassignmentschedulerequestGetParameter parameter)
+        public async Task<UnifiedroleAssignmentschedulerequestGetResponse> UnifiedroleAssignmentschedulerequestGetAsync(UnifiedroleAssignmentschedulerequestGetParameter parameter)
         {
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestGetParameter, UnifiedroleassignmentschedulerequestGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestGetParameter, UnifiedroleAssignmentschedulerequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestGetResponse> UnifiedroleassignmentschedulerequestGetAsync(UnifiedroleassignmentschedulerequestGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<UnifiedroleAssignmentschedulerequestGetResponse> UnifiedroleAssignmentschedulerequestGetAsync(UnifiedroleAssignmentschedulerequestGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestGetParameter, UnifiedroleassignmentschedulerequestGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestGetParameter, UnifiedroleAssignmentschedulerequestGetResponse>(parameter, cancellationToken);
         }
     }
 }

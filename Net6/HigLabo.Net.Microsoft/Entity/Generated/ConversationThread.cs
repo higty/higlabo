@@ -16,5 +16,6 @@ namespace HigLabo.Net.Microsoft
         public String[]? UniqueSenders { get; set; }
         public string? Preview { get; set; }
         public bool? IsLocked { get; set; }
+        public Post[]? Posts { get; set; }
     }
 }

@@ -2,28 +2,42 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter : IRestApiParameter
+    public partial class GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.GroupLifecyclePolicies: return $"/groupLifecyclePolicies";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             GroupLifecyclePolicies,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.GroupLifecyclePolicies: return $"/groupLifecyclePolicies";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? AlternateNotificationEmails { get; set; }
+        public Int32? GroupLifetimeInDays { get; set; }
+        public string? Id { get; set; }
+        public string? ManagedGroupTypes { get; set; }
     }
-    public partial class GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse : RestApiResponse
+    public partial class GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse : RestApiResponse
     {
         public string? AlternateNotificationEmails { get; set; }
         public Int32? GroupLifetimeInDays { get; set; }
@@ -35,32 +49,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclepolicyPostGrouplifecyclepoliciesAsync()
+        public async Task<GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclePolicyPostGrouplifecyclepoliciesAsync()
         {
-            var p = new GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter();
-            return await this.SendAsync<GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse>(p, CancellationToken.None);
+            var p = new GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter();
+            return await this.SendAsync<GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclepolicyPostGrouplifecyclepoliciesAsync(CancellationToken cancellationToken)
+        public async Task<GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclePolicyPostGrouplifecyclepoliciesAsync(CancellationToken cancellationToken)
         {
-            var p = new GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter();
-            return await this.SendAsync<GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse>(p, cancellationToken);
+            var p = new GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter();
+            return await this.SendAsync<GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclepolicyPostGrouplifecyclepoliciesAsync(GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter parameter)
+        public async Task<GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclePolicyPostGrouplifecyclepoliciesAsync(GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter parameter)
         {
-            return await this.SendAsync<GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-post-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclepolicyPostGrouplifecyclepoliciesAsync(GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter parameter, CancellationToken cancellationToken)
+        public async Task<GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse> GrouplifecyclePolicyPostGrouplifecyclepoliciesAsync(GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GrouplifecyclepolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclepolicyPostGrouplifecyclepoliciesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GrouplifecyclePolicyPostGrouplifecyclepoliciesParameter, GrouplifecyclePolicyPostGrouplifecyclepoliciesResponse>(parameter, cancellationToken);
         }
     }
 }

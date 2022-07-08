@@ -4,8 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotasklistDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_Delta: return $"/me/todo/lists/delta";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_Delta: return $"/users/{IdOrUserPrincipalName}/todo/lists/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DisplayName,
+            Id,
+            IsOwner,
+            IsShared,
+            WellknownListName,
+            Extensions,
+            Tasks,
         }
         public enum ApiPath
         {
@@ -13,17 +36,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Todo_Lists_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_Delta: return $"/me/todo/lists/delta";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_Delta: return $"/users/{IdOrUserPrincipalName}/todo/lists/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,30 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class TodotasklistDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/todotasklist?view=graph-rest-1.0
-        /// </summary>
-        public partial class TodoTaskList
-        {
-            public enum TodoTaskListWellknownListName
-            {
-                None,
-                DefaultList,
-                FlaggedEmails,
-                UnknownFutureValue,
-            }
-
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public bool? IsOwner { get; set; }
-            public bool? IsShared { get; set; }
-            public TodoTaskListWellknownListName WellknownListName { get; set; }
-        }
-
         public TodoTaskList[] Value { get; set; }
     }
     public partial class MicrosoftClient

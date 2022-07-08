@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class OrgcontactGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Contacts_Id: return $"/contacts/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Contacts_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Contacts_Id: return $"/contacts/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class OrgcontactGetResponse : RestApiResponse
     {
@@ -52,6 +62,10 @@ namespace HigLabo.Net.Microsoft
         public Phone[]? Phones { get; set; }
         public String[]? ProxyAddresses { get; set; }
         public string? Surname { get; set; }
+        public DirectoryObject[]? DirectReports { get; set; }
+        public DirectoryObject? Manager { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
     }
     public partial class MicrosoftClient
     {

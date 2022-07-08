@@ -4,6 +4,20 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SubjectrightsrequestPostParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Privacy_SubjectRightsRequests: return $"/privacy/subjectRightsRequests";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum SubjectrightsrequestPostParameterDataSubjectType
         {
             Customer,
@@ -24,21 +38,43 @@ namespace HigLabo.Net.Microsoft
             TagForAction,
             UnknownFutureValue,
         }
+        public enum SubjectRightsRequestDataSubjectType
+        {
+            Customer,
+            CurrentEmployee,
+            FormerEmployee,
+            ProspectiveEmployee,
+            Student,
+            Teacher,
+            Faculty,
+            Other,
+            UnknownFutureValue,
+        }
+        public enum SubjectRightsRequestSubjectRightsRequestStatus
+        {
+            Active,
+            Closed,
+            UnknownFutureValue,
+        }
+        public enum SubjectRightsRequestSubjectRightsRequestType
+        {
+            Export,
+            Delete,
+            Access,
+            TagForAction,
+            UnknownFutureValue,
+        }
         public enum ApiPath
         {
             Privacy_SubjectRightsRequests,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Privacy_SubjectRightsRequests: return $"/privacy/subjectRightsRequests";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -49,6 +85,18 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? InternalDueDateTime { get; set; }
         public String[]? Regulations { get; set; }
         public SubjectrightsrequestPostParameterSubjectRightsRequestType Type { get; set; }
+        public Identity? AssignedTo { get; set; }
+        public DateTimeOffset? ClosedDateTime { get; set; }
+        public IdentitySet? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public SubjectRightsRequestHistory[]? History { get; set; }
+        public SubjectRightsRequestDetail? Insight { get; set; }
+        public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public SubjectRightsRequestStageDetail[]? Stages { get; set; }
+        public SubjectRightsRequestSubjectRightsRequestStatus Status { get; set; }
+        public AuthoredNote[]? Notes { get; set; }
+        public Team? Team { get; set; }
     }
     public partial class SubjectrightsrequestPostResponse : RestApiResponse
     {
@@ -96,6 +144,8 @@ namespace HigLabo.Net.Microsoft
         public SubjectRightsRequestStageDetail[]? Stages { get; set; }
         public SubjectRightsRequestSubjectRightsRequestStatus Status { get; set; }
         public SubjectRightsRequestSubjectRightsRequestType Type { get; set; }
+        public AuthoredNote[]? Notes { get; set; }
+        public Team? Team { get; set; }
     }
     public partial class MicrosoftClient
     {

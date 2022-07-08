@@ -4,6 +4,24 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotaskGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string TaskId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TaskId: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TaskId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TaskId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +31,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TaskId: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TaskId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TaskId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,9 +48,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TodoTaskListId { get; set; }
-        public string TaskId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class TodotaskGetResponse : RestApiResponse
     {
@@ -70,6 +80,9 @@ namespace HigLabo.Net.Microsoft
         public DateTimeTimeZone? ReminderDateTime { get; set; }
         public TodoTaskTaskStatus Status { get; set; }
         public string? Title { get; set; }
+        public ChecklistItem[]? ChecklistItems { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public LinkedResource[]? LinkedResources { get; set; }
     }
     public partial class MicrosoftClient
     {

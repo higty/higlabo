@@ -19,5 +19,9 @@ namespace HigLabo.Net.Microsoft
         public Int32? PasswordValidityPeriodInDays { get; set; }
         public String[]? SupportedServices { get; set; }
         public DomainState? State { get; set; }
+        public DirectoryObject[]? DomainNameReferences { get; set; }
+        public DomainDnsRecord[]? ServiceConfigurationRecords { get; set; }
+        public DomainDnsRecord[]? VerificationDnsRecords { get; set; }
+        public InternalDomainFederation? FederationConfiguration { get; set; }
     }
 }

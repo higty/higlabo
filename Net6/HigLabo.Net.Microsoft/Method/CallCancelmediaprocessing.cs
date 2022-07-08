@@ -4,26 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallCancelmediaprocessingParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_CancelMediaProcessing: return $"/communications/calls/{Id}/cancelMediaProcessing";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_Calls_Id_CancelMediaProcessing,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_CancelMediaProcessing: return $"/communications/calls/{Id}/cancelMediaProcessing";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? ClientContext { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public ResultInfo? ResultInfo { get; set; }
+        public string? Status { get; set; }
     }
     public partial class CallCancelmediaprocessingResponse : RestApiResponse
     {

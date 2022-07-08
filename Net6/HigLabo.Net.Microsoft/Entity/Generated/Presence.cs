@@ -20,7 +20,7 @@ namespace HigLabo.Net.Microsoft
             PresenceUnknown,
         }
 
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public Presencestring Availability { get; set; }
         public Presencestring Activity { get; set; }
     }

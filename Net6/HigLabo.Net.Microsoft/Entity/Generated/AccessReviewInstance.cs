@@ -14,5 +14,7 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? StartDateTime { get; set; }
         public string? Status { get; set; }
         public AccessReviewReviewerScope[]? Reviewers { get; set; }
+        public AccessReviewInstanceDecisionItem[]? Decisions { get; set; }
+        public AccessReviewReviewer[]? ContactedReviewers { get; set; }
     }
 }

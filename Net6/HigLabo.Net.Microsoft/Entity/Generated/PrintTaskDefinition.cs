@@ -10,5 +10,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
         public AppIdentity? CreatedBy { get; set; }
+        public PrintTask[]? Tasks { get; set; }
     }
 }

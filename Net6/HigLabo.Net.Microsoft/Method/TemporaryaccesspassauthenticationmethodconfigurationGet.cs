@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TemporaryaccesspassauthenticationmethodconfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TemporaryAccesspassauthenticationmethodConfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_TemporaryAccessPass: return $"/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/temporaryAccessPass";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_TemporaryAccessPass,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_TemporaryAccessPass: return $"/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/temporaryAccessPass";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class TemporaryaccesspassauthenticationmethodconfigurationGetResponse : RestApiResponse
+    public partial class TemporaryAccesspassauthenticationmethodConfigurationGetResponse : RestApiResponse
     {
         public enum TemporaryAccessPassAuthenticationMethodConfigurationAuthenticationMethodState
         {
@@ -49,38 +59,39 @@ namespace HigLabo.Net.Microsoft
         public int? MinimumLifetimeInMinutes { get; set; }
         public int? MaximumLifetimeInMinutes { get; set; }
         public TemporaryAccessPassAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
+        public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodconfigurationGetResponse> TemporaryaccesspassauthenticationmethodconfigurationGetAsync()
+        public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync()
         {
-            var p = new TemporaryaccesspassauthenticationmethodconfigurationGetParameter();
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodconfigurationGetParameter, TemporaryaccesspassauthenticationmethodconfigurationGetResponse>(p, CancellationToken.None);
+            var p = new TemporaryAccesspassauthenticationmethodConfigurationGetParameter();
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodconfigurationGetResponse> TemporaryaccesspassauthenticationmethodconfigurationGetAsync(CancellationToken cancellationToken)
+        public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new TemporaryaccesspassauthenticationmethodconfigurationGetParameter();
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodconfigurationGetParameter, TemporaryaccesspassauthenticationmethodconfigurationGetResponse>(p, cancellationToken);
+            var p = new TemporaryAccesspassauthenticationmethodConfigurationGetParameter();
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodconfigurationGetResponse> TemporaryaccesspassauthenticationmethodconfigurationGetAsync(TemporaryaccesspassauthenticationmethodconfigurationGetParameter parameter)
+        public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync(TemporaryAccesspassauthenticationmethodConfigurationGetParameter parameter)
         {
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodconfigurationGetParameter, TemporaryaccesspassauthenticationmethodconfigurationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodconfigurationGetResponse> TemporaryaccesspassauthenticationmethodconfigurationGetAsync(TemporaryaccesspassauthenticationmethodconfigurationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync(TemporaryAccesspassauthenticationmethodConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodconfigurationGetParameter, TemporaryaccesspassauthenticationmethodconfigurationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(parameter, cancellationToken);
         }
     }
 }

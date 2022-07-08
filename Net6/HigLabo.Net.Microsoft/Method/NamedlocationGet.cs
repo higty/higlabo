@@ -2,26 +2,41 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class NamedlocationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class NamedLocationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_ConditionalAccess_NamedLocations_Id: return $"/identity/conditionalAccess/namedLocations/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedDateTime,
+            DisplayName,
+            Id,
+            ModifiedDateTime,
         }
         public enum ApiPath
         {
             Identity_ConditionalAccess_NamedLocations_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_ConditionalAccess_NamedLocations_Id: return $"/identity/conditionalAccess/namedLocations/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +48,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class NamedlocationGetResponse : RestApiResponse
+    public partial class NamedLocationGetResponse : RestApiResponse
     {
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
@@ -47,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedlocationGetResponse> NamedlocationGetAsync()
+        public async Task<NamedLocationGetResponse> NamedLocationGetAsync()
         {
-            var p = new NamedlocationGetParameter();
-            return await this.SendAsync<NamedlocationGetParameter, NamedlocationGetResponse>(p, CancellationToken.None);
+            var p = new NamedLocationGetParameter();
+            return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedlocationGetResponse> NamedlocationGetAsync(CancellationToken cancellationToken)
+        public async Task<NamedLocationGetResponse> NamedLocationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new NamedlocationGetParameter();
-            return await this.SendAsync<NamedlocationGetParameter, NamedlocationGetResponse>(p, cancellationToken);
+            var p = new NamedLocationGetParameter();
+            return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedlocationGetResponse> NamedlocationGetAsync(NamedlocationGetParameter parameter)
+        public async Task<NamedLocationGetResponse> NamedLocationGetAsync(NamedLocationGetParameter parameter)
         {
-            return await this.SendAsync<NamedlocationGetParameter, NamedlocationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/namedlocation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<NamedlocationGetResponse> NamedlocationGetAsync(NamedlocationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<NamedLocationGetResponse> NamedLocationGetAsync(NamedLocationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<NamedlocationGetParameter, NamedlocationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<NamedLocationGetParameter, NamedLocationGetResponse>(parameter, cancellationToken);
         }
     }
 }

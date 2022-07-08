@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IdentityapiconnectorGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityapiConnectorGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdentityApiConnectorId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_ApiConnectors_IdentityApiConnectorId: return $"/identity/apiConnectors/{IdentityApiConnectorId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Identity_ApiConnectors_IdentityApiConnectorId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_ApiConnectors_IdentityApiConnectorId: return $"/identity/apiConnectors/{IdentityApiConnectorId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +44,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdentityApiConnectorId { get; set; }
     }
-    public partial class IdentityapiconnectorGetResponse : RestApiResponse
+    public partial class IdentityapiConnectorGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
@@ -47,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorGetResponse> IdentityapiconnectorGetAsync()
+        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync()
         {
-            var p = new IdentityapiconnectorGetParameter();
-            return await this.SendAsync<IdentityapiconnectorGetParameter, IdentityapiconnectorGetResponse>(p, CancellationToken.None);
+            var p = new IdentityapiConnectorGetParameter();
+            return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorGetResponse> IdentityapiconnectorGetAsync(CancellationToken cancellationToken)
+        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityapiconnectorGetParameter();
-            return await this.SendAsync<IdentityapiconnectorGetParameter, IdentityapiconnectorGetResponse>(p, cancellationToken);
+            var p = new IdentityapiConnectorGetParameter();
+            return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorGetResponse> IdentityapiconnectorGetAsync(IdentityapiconnectorGetParameter parameter)
+        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(IdentityapiConnectorGetParameter parameter)
         {
-            return await this.SendAsync<IdentityapiconnectorGetParameter, IdentityapiconnectorGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorGetResponse> IdentityapiconnectorGetAsync(IdentityapiconnectorGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<IdentityapiConnectorGetResponse> IdentityapiConnectorGetAsync(IdentityapiConnectorGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityapiconnectorGetParameter, IdentityapiconnectorGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityapiConnectorGetParameter, IdentityapiConnectorGetResponse>(parameter, cancellationToken);
         }
     }
 }

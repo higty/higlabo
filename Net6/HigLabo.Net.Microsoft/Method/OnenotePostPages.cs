@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class OnenotePostPagesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_Pages: return $"/me/onenote/pages";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Pages: return $"/users/{IdOrUserPrincipalName}/onenote/pages";
+                    case ApiPath.Groups_Id_Onenote_Pages: return $"/groups/{Id}/onenote/pages";
+                    case ApiPath.Sites_Id_Onenote_Pages: return $"/sites/{Id}/onenote/pages";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Onenote_Pages,
@@ -12,24 +31,28 @@ namespace HigLabo.Net.Microsoft
             Sites_Id_Onenote_Pages,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_Pages: return $"/me/onenote/pages";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Pages: return $"/users/{IdOrUserPrincipalName}/onenote/pages";
-                    case ApiPath.Groups_Id_Onenote_Pages: return $"/groups/{Id}/onenote/pages";
-                    case ApiPath.Sites_Id_Onenote_Pages: return $"/sites/{Id}/onenote/pages";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
+        public Stream? Content { get; set; }
+        public string? ContentUrl { get; set; }
+        public string? CreatedByAppId { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public Int32? Level { get; set; }
+        public PageLinks? Links { get; set; }
+        public Int32? Order { get; set; }
+        public string? Self { get; set; }
+        public string? Title { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public Section? ParentSection { get; set; }
     }
     public partial class OnenotePostPagesResponse : RestApiResponse
     {
@@ -44,6 +67,8 @@ namespace HigLabo.Net.Microsoft
         public Int32? Order { get; set; }
         public string? Self { get; set; }
         public string? Title { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public Section? ParentSection { get; set; }
     }
     public partial class MicrosoftClient
     {

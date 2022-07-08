@@ -4,24 +4,41 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalListOauth2permissiongrantsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_Oauth2PermissionGrants: return $"/servicePrincipals/{Id}/oauth2PermissionGrants";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            ClientId,
+            ConsentType,
+            PrincipalId,
+            ResourceId,
+            Scope,
         }
         public enum ApiPath
         {
             ServicePrincipals_Id_Oauth2PermissionGrants,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_Oauth2PermissionGrants: return $"/servicePrincipals/{Id}/oauth2PermissionGrants";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,23 +50,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ServiceprincipalListOauth2permissiongrantsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/oauth2permissiongrant?view=graph-rest-1.0
-        /// </summary>
-        public partial class OAuth2PermissionGrant
-        {
-            public string? Id { get; set; }
-            public string? ClientId { get; set; }
-            public string? ConsentType { get; set; }
-            public string? PrincipalId { get; set; }
-            public string? ResourceId { get; set; }
-            public string? Scope { get; set; }
-        }
-
         public OAuth2PermissionGrant[] Value { get; set; }
     }
     public partial class MicrosoftClient

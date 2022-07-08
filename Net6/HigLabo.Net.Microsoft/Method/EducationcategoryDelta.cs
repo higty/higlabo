@@ -4,8 +4,27 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EducationcategoryDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string EducationClassId { get; set; }
+            public string EducationAssignmentId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_EducationClassId_AssignmentCategories_Delta: return $"/education/classes/{EducationClassId}/assignmentCategories/delta";
+                    case ApiPath.Education_Classes_EducationClassId_Assignments_EducationAssignmentId_Categories_Delta: return $"/education/classes/{EducationClassId}/assignments/{EducationAssignmentId}/categories/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
         }
         public enum ApiPath
         {
@@ -13,17 +32,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_EducationClassId_Assignments_EducationAssignmentId_Categories_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_EducationClassId_AssignmentCategories_Delta: return $"/education/classes/{EducationClassId}/assignmentCategories/delta";
-                    case ApiPath.Education_Classes_EducationClassId_Assignments_EducationAssignmentId_Categories_Delta: return $"/education/classes/{EducationClassId}/assignments/{EducationAssignmentId}/categories/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,20 +49,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string EducationClassId { get; set; }
-        public string EducationAssignmentId { get; set; }
     }
     public partial class EducationcategoryDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationcategory?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationCategory
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-        }
-
         public EducationCategory[] Value { get; set; }
     }
     public partial class MicrosoftClient

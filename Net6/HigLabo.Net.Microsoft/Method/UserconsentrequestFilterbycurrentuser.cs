@@ -2,26 +2,46 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UserconsentrequestFilterbycurrentuserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserconsentrequestFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_Id_UserConsentRequests_FilterByCurrentUser: return $"/identityGovernance/appConsent/appConsentRequests/{Id}/userConsentRequests/filterByCurrentUser";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ApprovalId,
+            CompletedDateTime,
+            CreatedBy,
+            CreatedDateTime,
+            CustomData,
+            Id,
+            Reason,
+            Status,
+            Approval,
         }
         public enum ApiPath
         {
             IdentityGovernance_AppConsent_AppConsentRequests_Id_UserConsentRequests_FilterByCurrentUser,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_Id_UserConsentRequests_FilterByCurrentUser: return $"/identityGovernance/appConsent/appConsentRequests/{Id}/userConsentRequests/filterByCurrentUser";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class UserconsentrequestFilterbycurrentuserResponse : RestApiResponse
+    public partial class UserconsentrequestFilterbycurrentUserResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/userconsentrequest?view=graph-rest-1.0
-        /// </summary>
-        public partial class UserConsentRequest
-        {
-            public string? ApprovalId { get; set; }
-            public DateTimeOffset? CompletedDateTime { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? CustomData { get; set; }
-            public string? Id { get; set; }
-            public string? Reason { get; set; }
-            public string? Status { get; set; }
-        }
-
         public UserConsentRequest[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -59,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestFilterbycurrentuserResponse> UserconsentrequestFilterbycurrentuserAsync()
+        public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync()
         {
-            var p = new UserconsentrequestFilterbycurrentuserParameter();
-            return await this.SendAsync<UserconsentrequestFilterbycurrentuserParameter, UserconsentrequestFilterbycurrentuserResponse>(p, CancellationToken.None);
+            var p = new UserconsentrequestFilterbycurrentUserParameter();
+            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestFilterbycurrentuserResponse> UserconsentrequestFilterbycurrentuserAsync(CancellationToken cancellationToken)
+        public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new UserconsentrequestFilterbycurrentuserParameter();
-            return await this.SendAsync<UserconsentrequestFilterbycurrentuserParameter, UserconsentrequestFilterbycurrentuserResponse>(p, cancellationToken);
+            var p = new UserconsentrequestFilterbycurrentUserParameter();
+            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestFilterbycurrentuserResponse> UserconsentrequestFilterbycurrentuserAsync(UserconsentrequestFilterbycurrentuserParameter parameter)
+        public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(UserconsentrequestFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<UserconsentrequestFilterbycurrentuserParameter, UserconsentrequestFilterbycurrentuserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserconsentrequestFilterbycurrentuserResponse> UserconsentrequestFilterbycurrentuserAsync(UserconsentrequestFilterbycurrentuserParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(UserconsentrequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserconsentrequestFilterbycurrentuserParameter, UserconsentrequestFilterbycurrentuserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(parameter, cancellationToken);
         }
     }
 }

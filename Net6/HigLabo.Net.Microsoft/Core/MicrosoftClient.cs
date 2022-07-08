@@ -12,17 +12,20 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MicrosoftClient : OAuthClient
     {
-        public static String ApiUrl = "https://graph.microsoft.com/v1.0/";
+        public static String ApiUrl = "https://graph.microsoft.com/v1.0";
 
-        public MicrosoftClient(string accessToken)
+        public MicrosoftClient(IJsonConverter jsonConverter, string accessToken)
+               : base(jsonConverter)
         {
             this.AccessToken = accessToken;
         }
-        public MicrosoftClient(OAuthSetting setting)
+        public MicrosoftClient(IJsonConverter jsonConverter, OAuthSetting setting)
+            : base(jsonConverter)
         {
             this.OAuthSetting = setting;
         }
-        public MicrosoftClient(string accessToken, string refreshToken, OAuthSetting setting)
+        public MicrosoftClient(IJsonConverter jsonConverter, string accessToken, string refreshToken, OAuthSetting setting)
+            : base(jsonConverter)
         {
             this.AccessToken = accessToken;
             this.RefreshToken = refreshToken;

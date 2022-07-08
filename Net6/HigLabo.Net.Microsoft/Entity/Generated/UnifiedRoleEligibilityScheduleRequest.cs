@@ -38,5 +38,10 @@ namespace HigLabo.Net.Microsoft
         public string? Status { get; set; }
         public string? TargetScheduleId { get; set; }
         public TicketInfo? TicketInfo { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
+        public DirectoryObject? Principal { get; set; }
+        public UnifiedRoleDefinition? RoleDefinition { get; set; }
+        public UnifiedRoleEligibilitySchedule? TargetSchedule { get; set; }
     }
 }

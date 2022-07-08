@@ -4,26 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintjobStartParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterShareId { get; set; }
+            public string PrintJobId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Shares_PrinterShareId_Jobs_PrintJobId_Start: return $"/print/shares/{PrinterShareId}/jobs/{PrintJobId}/start";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Print_Shares_PrinterShareId_Jobs_PrintJobId_Start,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Shares_PrinterShareId_Jobs_PrintJobId_Start: return $"/print/shares/{PrinterShareId}/jobs/{PrintJobId}/start";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string PrinterShareId { get; set; }
-        public string PrintJobId { get; set; }
+        public PrintJobProcessingState? State { get; set; }
+        public PrintJobProcessingDetail[]? Details { get; set; }
+        public string? Description { get; set; }
+        public bool? IsAcquiredByPrinter { get; set; }
     }
     public partial class PrintjobStartResponse : RestApiResponse
     {

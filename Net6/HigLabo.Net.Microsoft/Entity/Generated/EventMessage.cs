@@ -50,5 +50,10 @@ namespace HigLabo.Net.Microsoft
         public Recipient[]? ToRecipients { get; set; }
         public ItemBody? UniqueBody { get; set; }
         public string? WebLink { get; set; }
+        public Attachment[]? Attachments { get; set; }
+        public Event? Event { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
 }

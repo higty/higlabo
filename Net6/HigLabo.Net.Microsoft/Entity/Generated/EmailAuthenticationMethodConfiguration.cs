@@ -23,5 +23,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public EmailAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
         public EmailAuthenticationMethodConfigurationExternalEmailOtpState AllowExternalIdToUseEmailOtp { get; set; }
+        public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
 }

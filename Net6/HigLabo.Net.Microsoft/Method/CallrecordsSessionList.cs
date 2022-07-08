@@ -4,24 +4,43 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallrecordsSessionListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_CallRecords_Id_Sessions: return $"/communications/callRecords/{Id}/sessions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Caller,
+            Callee,
+            FailureInfo,
+            Modalities,
+            StartDateTime,
+            EndDateTime,
+            Segments,
         }
         public enum ApiPath
         {
             Communications_CallRecords_Id_Sessions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_CallRecords_Id_Sessions: return $"/communications/callRecords/{Id}/sessions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,35 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class CallrecordsSessionListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/callrecords-session?view=graph-rest-1.0
-        /// </summary>
-        public partial class CallrecordsSession
-        {
-            public enum CallrecordsSessionCallRecordsModality
-            {
-                Unknown,
-                Audio,
-                Video,
-                VideoBasedScreenSharing,
-                Data,
-                ScreenSharing,
-                UnknownFutureValue,
-            }
-
-            public string? Id { get; set; }
-            public CallRecordsEndpoint? Caller { get; set; }
-            public CallRecordsEndpoint? Callee { get; set; }
-            public CallRecordsFailureInfo? FailureInfo { get; set; }
-            public CallrecordsSessionCallRecordsModality Modalities { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public DateTimeOffset? EndDateTime { get; set; }
-        }
-
         public enum CallrecordsSessionCallRecordsModality
         {
             Unknown,
@@ -73,14 +66,15 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
+        public CallrecordsSession[] Value { get; set; }
         public string? Id { get; set; }
-        public CallRecordsEndpoint? Caller { get; set; }
-        public CallRecordsEndpoint? Callee { get; set; }
-        public CallRecordsFailureInfo? FailureInfo { get; set; }
+        public CallrecordsEndpoint? Caller { get; set; }
+        public CallrecordsEndpoint? Callee { get; set; }
+        public CallrecordsFailureinfo? FailureInfo { get; set; }
         public CallrecordsSessionCallRecordsModality Modalities { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
         public DateTimeOffset? EndDateTime { get; set; }
-        public CallrecordsSession[] Value { get; set; }
+        public CallrecordsSegment[]? Segments { get; set; }
     }
     public partial class MicrosoftClient
     {

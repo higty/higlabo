@@ -4,27 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TimeoffrequestDeclineParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+            public string TimeOffRequestId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Schedule_TimeOffRequests_TimeOffRequestId_Decline: return $"/teams/{TeamId}/schedule/timeOffRequests/{TimeOffRequestId}/decline";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_TeamId_Schedule_TimeOffRequests_TimeOffRequestId_Decline,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Schedule_TimeOffRequests_TimeOffRequestId_Decline: return $"/teams/{TeamId}/schedule/timeOffRequests/{TimeOffRequestId}/decline";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Message { get; set; }
-        public string TeamId { get; set; }
-        public string TimeOffRequestId { get; set; }
     }
     public partial class TimeoffrequestDeclineResponse : RestApiResponse
     {

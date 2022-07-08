@@ -4,24 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintListServicesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Services: return $"/print/services";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Endpoints,
         }
         public enum ApiPath
         {
             Print_Services,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Services: return $"/print/services";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,14 +48,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintListServicesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printservice?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintService
-        {
-            public string? Id { get; set; }
-        }
-
         public PrintService[] Value { get; set; }
     }
     public partial class MicrosoftClient

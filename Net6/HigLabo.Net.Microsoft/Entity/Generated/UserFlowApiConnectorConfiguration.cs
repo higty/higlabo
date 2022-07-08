@@ -7,5 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class UserFlowApiConnectorConfiguration
     {
+        public IdentityApiConnector? PostFederationSignup { get; set; }
+        public IdentityApiConnector? PostAttributeCollection { get; set; }
     }
 }

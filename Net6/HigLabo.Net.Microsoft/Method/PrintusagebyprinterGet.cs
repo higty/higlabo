@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintusagebyprinterGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_DailyPrintUsageByPrinter_Id: return $"/reports/dailyPrintUsageByPrinter/{Id}";
+                    case ApiPath.Reports_MonthlyPrintUsageByPrinter_Id: return $"/reports/monthlyPrintUsageByPrinter/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +29,12 @@ namespace HigLabo.Net.Microsoft
             Reports_MonthlyPrintUsageByPrinter_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_DailyPrintUsageByPrinter_Id: return $"/reports/dailyPrintUsageByPrinter/{Id}";
-                    case ApiPath.Reports_MonthlyPrintUsageByPrinter_Id: return $"/reports/monthlyPrintUsageByPrinter/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,7 +46,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class PrintusagebyprinterGetResponse : RestApiResponse
     {

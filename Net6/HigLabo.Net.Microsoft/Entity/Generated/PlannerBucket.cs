@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public string? OrderHint { get; set; }
         public string? PlanId { get; set; }
+        public PlannerTask[]? Tasks { get; set; }
     }
 }

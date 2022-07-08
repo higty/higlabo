@@ -2,10 +2,29 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UsersettingsGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserSettingsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Settings_: return $"/me/settings/";
+                    case ApiPath.Users_IdOrUserPrincipalName_Settings_: return $"/users/{IdOrUserPrincipalName}/settings/";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ContributionToContentDiscoveryDisabled,
+            ContributionToContentDiscoveryAsOrganizationDisabled,
+            Id,
         }
         public enum ApiPath
         {
@@ -13,17 +32,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Settings_,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Settings_: return $"/me/settings/";
-                    case ApiPath.Users_IdOrUserPrincipalName_Settings_: return $"/users/{IdOrUserPrincipalName}/settings/";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,9 +49,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class UsersettingsGetResponse : RestApiResponse
+    public partial class UserSettingsGetResponse : RestApiResponse
     {
         public bool? ContributionToContentDiscoveryDisabled { get; set; }
         public bool? ContributionToContentDiscoveryAsOrganizationDisabled { get; set; }
@@ -48,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersettingsGetResponse> UsersettingsGetAsync()
+        public async Task<UserSettingsGetResponse> UserSettingsGetAsync()
         {
-            var p = new UsersettingsGetParameter();
-            return await this.SendAsync<UsersettingsGetParameter, UsersettingsGetResponse>(p, CancellationToken.None);
+            var p = new UserSettingsGetParameter();
+            return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersettingsGetResponse> UsersettingsGetAsync(CancellationToken cancellationToken)
+        public async Task<UserSettingsGetResponse> UserSettingsGetAsync(CancellationToken cancellationToken)
         {
-            var p = new UsersettingsGetParameter();
-            return await this.SendAsync<UsersettingsGetParameter, UsersettingsGetResponse>(p, cancellationToken);
+            var p = new UserSettingsGetParameter();
+            return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersettingsGetResponse> UsersettingsGetAsync(UsersettingsGetParameter parameter)
+        public async Task<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter)
         {
-            return await this.SendAsync<UsersettingsGetParameter, UsersettingsGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UsersettingsGetResponse> UsersettingsGetAsync(UsersettingsGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UsersettingsGetParameter, UsersettingsGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(parameter, cancellationToken);
         }
     }
 }

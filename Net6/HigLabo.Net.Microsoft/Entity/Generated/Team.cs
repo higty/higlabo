@@ -20,5 +20,12 @@ namespace HigLabo.Net.Microsoft
         public TeamMessagingSettings? MessagingSettings { get; set; }
         public string? WebUrl { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public Channel[]? Channels { get; set; }
+        public TeamsAppInstallation[]? InstalledApps { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public TeamsASyncOperation[]? Operations { get; set; }
+        public Channel? PrimaryChannel { get; set; }
+        public Schedule? Schedule { get; set; }
+        public TeamsTemplate? Template { get; set; }
     }
 }

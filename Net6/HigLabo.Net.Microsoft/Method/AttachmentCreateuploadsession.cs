@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AttachmentCreateuploadsessionParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Events_Id_Attachments_CreateUploadSession: return $"/me/events/{Id}/attachments/createUploadSession";
+                    case ApiPath.Users_IdOrUserPrincipalName_Events_Id_Attachments_CreateUploadSession: return $"/users/{IdOrUserPrincipalName}/events/{Id}/attachments/createUploadSession";
+                    case ApiPath.Me_Messages_Id_Attachments_CreateUploadSession: return $"/me/messages/{Id}/attachments/createUploadSession";
+                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments_CreateUploadSession: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/attachments/createUploadSession";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Events_Id_Attachments_CreateUploadSession,
@@ -12,25 +31,19 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Messages_Id_Attachments_CreateUploadSession,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Events_Id_Attachments_CreateUploadSession: return $"/me/events/{Id}/attachments/createUploadSession";
-                    case ApiPath.Users_IdOrUserPrincipalName_Events_Id_Attachments_CreateUploadSession: return $"/users/{IdOrUserPrincipalName}/events/{Id}/attachments/createUploadSession";
-                    case ApiPath.Me_Messages_Id_Attachments_CreateUploadSession: return $"/me/messages/{Id}/attachments/createUploadSession";
-                    case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments_CreateUploadSession: return $"/users/{IdOrUserPrincipalName}/messages/{Id}/attachments/createUploadSession";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public AttachmentItem? AttachmentItem { get; set; }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
+        public DateTimeOffset? ExpirationDateTime { get; set; }
+        public String[]? NextExpectedRanges { get; set; }
+        public string? UploadUrl { get; set; }
     }
     public partial class AttachmentCreateuploadsessionResponse : RestApiResponse
     {

@@ -32,5 +32,6 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? Service { get; set; }
         public ServiceHealthServiceHealthStatus Status { get; set; }
+        public ServiceHealthIssue[]? Issues { get; set; }
     }
 }

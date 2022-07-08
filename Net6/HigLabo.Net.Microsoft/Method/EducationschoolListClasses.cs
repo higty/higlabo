@@ -2,10 +2,46 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationschoolListClassesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationSchoolListClassesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string EducationSchoolId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Schools_EducationSchoolId_Classes: return $"/education/schools/{EducationSchoolId}/classes";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            MailNickname,
+            Description,
+            CreatedBy,
+            ClassCode,
+            ExternalName,
+            ExternalId,
+            ExternalSource,
+            ExternalSourceDetail,
+            Grade,
+            Term,
+            Assignments,
+            Group,
+            Members,
+            Schools,
+            Teachers,
+            AssignmentCategories,
+            AssignmentDefaults,
+            AssignmentSettings,
         }
         public enum ApiPath
         {
@@ -13,17 +49,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Groups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Schools_EducationSchoolId_Classes: return $"/education/schools/{EducationSchoolId}/classes";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,35 +66,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string EducationSchoolId { get; set; }
     }
-    public partial class EducationschoolListClassesResponse : RestApiResponse
+    public partial class EducationSchoolListClassesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationclass?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationClass
-        {
-            public enum EducationClassEducationExternalSource
-            {
-                Sis,
-                Manual,
-            }
-
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public string? MailNickname { get; set; }
-            public string? Description { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public string? ClassCode { get; set; }
-            public string? ExternalName { get; set; }
-            public string? ExternalId { get; set; }
-            public EducationClassEducationExternalSource ExternalSource { get; set; }
-            public string? ExternalSourceDetail { get; set; }
-            public string? Grade { get; set; }
-            public EducationTerm? Term { get; set; }
-        }
-
         public EducationClass[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -71,32 +76,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-list-classes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolListClassesResponse> EducationschoolListClassesAsync()
+        public async Task<EducationSchoolListClassesResponse> EducationSchoolListClassesAsync()
         {
-            var p = new EducationschoolListClassesParameter();
-            return await this.SendAsync<EducationschoolListClassesParameter, EducationschoolListClassesResponse>(p, CancellationToken.None);
+            var p = new EducationSchoolListClassesParameter();
+            return await this.SendAsync<EducationSchoolListClassesParameter, EducationSchoolListClassesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-list-classes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolListClassesResponse> EducationschoolListClassesAsync(CancellationToken cancellationToken)
+        public async Task<EducationSchoolListClassesResponse> EducationSchoolListClassesAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationschoolListClassesParameter();
-            return await this.SendAsync<EducationschoolListClassesParameter, EducationschoolListClassesResponse>(p, cancellationToken);
+            var p = new EducationSchoolListClassesParameter();
+            return await this.SendAsync<EducationSchoolListClassesParameter, EducationSchoolListClassesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-list-classes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolListClassesResponse> EducationschoolListClassesAsync(EducationschoolListClassesParameter parameter)
+        public async Task<EducationSchoolListClassesResponse> EducationSchoolListClassesAsync(EducationSchoolListClassesParameter parameter)
         {
-            return await this.SendAsync<EducationschoolListClassesParameter, EducationschoolListClassesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationSchoolListClassesParameter, EducationSchoolListClassesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-list-classes?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolListClassesResponse> EducationschoolListClassesAsync(EducationschoolListClassesParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationSchoolListClassesResponse> EducationSchoolListClassesAsync(EducationSchoolListClassesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationschoolListClassesParameter, EducationschoolListClassesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationSchoolListClassesParameter, EducationSchoolListClassesResponse>(parameter, cancellationToken);
         }
     }
 }

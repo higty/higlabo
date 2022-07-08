@@ -2,26 +2,47 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class RiskyuserGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RiskyUserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string RiskyUserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityProtection_RiskyUsers_RiskyUserId: return $"/identityProtection/riskyUsers/{RiskyUserId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            IsDeleted,
+            IsProcessing,
+            RiskDetail,
+            RiskLastUpdatedDateTime,
+            RiskLevel,
+            RiskState,
+            UserDisplayName,
+            UserPrincipalName,
+            History,
         }
         public enum ApiPath
         {
             IdentityProtection_RiskyUsers_RiskyUserId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityProtection_RiskyUsers_RiskyUserId: return $"/identityProtection/riskyUsers/{RiskyUserId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +54,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string RiskyUserId { get; set; }
     }
-    public partial class RiskyuserGetResponse : RestApiResponse
+    public partial class RiskyUserGetResponse : RestApiResponse
     {
         public enum RiskyUserRiskDetail
         {
@@ -81,38 +101,39 @@ namespace HigLabo.Net.Microsoft
         public RiskyUserRiskState RiskState { get; set; }
         public string? UserDisplayName { get; set; }
         public string? UserPrincipalName { get; set; }
+        public RiskyUserHistoryItem[]? History { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetResponse> RiskyuserGetAsync()
+        public async Task<RiskyUserGetResponse> RiskyUserGetAsync()
         {
-            var p = new RiskyuserGetParameter();
-            return await this.SendAsync<RiskyuserGetParameter, RiskyuserGetResponse>(p, CancellationToken.None);
+            var p = new RiskyUserGetParameter();
+            return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetResponse> RiskyuserGetAsync(CancellationToken cancellationToken)
+        public async Task<RiskyUserGetResponse> RiskyUserGetAsync(CancellationToken cancellationToken)
         {
-            var p = new RiskyuserGetParameter();
-            return await this.SendAsync<RiskyuserGetParameter, RiskyuserGetResponse>(p, cancellationToken);
+            var p = new RiskyUserGetParameter();
+            return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetResponse> RiskyuserGetAsync(RiskyuserGetParameter parameter)
+        public async Task<RiskyUserGetResponse> RiskyUserGetAsync(RiskyUserGetParameter parameter)
         {
-            return await this.SendAsync<RiskyuserGetParameter, RiskyuserGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetResponse> RiskyuserGetAsync(RiskyuserGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<RiskyUserGetResponse> RiskyUserGetAsync(RiskyUserGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RiskyuserGetParameter, RiskyuserGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(parameter, cancellationToken);
         }
     }
 }

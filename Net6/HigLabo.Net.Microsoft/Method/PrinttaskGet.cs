@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinttaskGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TaskDefinitionId { get; set; }
+            public string TaskId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_TaskDefinitions_TaskDefinitionId_Tasks_TaskId: return $"/print/taskDefinitions/{TaskDefinitionId}/tasks/{TaskId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Print_TaskDefinitions_TaskDefinitionId_Tasks_TaskId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_TaskDefinitions_TaskDefinitionId_Tasks_TaskId: return $"/print/taskDefinitions/{TaskDefinitionId}/tasks/{TaskId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,14 +45,14 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TaskDefinitionId { get; set; }
-        public string TaskId { get; set; }
     }
     public partial class PrinttaskGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public PrintTaskStatus? Status { get; set; }
         public string? ParentUrl { get; set; }
+        public PrintTaskTrigger? Trigger { get; set; }
+        public PrintTaskDefinition? Definition { get; set; }
     }
     public partial class MicrosoftClient
     {

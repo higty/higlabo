@@ -16,5 +16,6 @@ namespace HigLabo.Net.Microsoft
         public UnifiedRolePermission[]? RolePermissions { get; set; }
         public string? TemplateId { get; set; }
         public string? Version { get; set; }
+        public UnifiedRoleDefinition[]? InheritsPermissionsFrom { get; set; }
     }
 }

@@ -4,24 +4,49 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceannouncementListIssuesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Admin_ServiceAnnouncement_Issues: return $"/admin/serviceAnnouncement/issues";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Classification,
+            Details,
+            EndDateTime,
+            Feature,
+            FeatureGroup,
+            Id,
+            ImpactDescription,
+            IsResolved,
+            LastModifiedDateTime,
+            Origin,
+            Posts,
+            Service,
+            StartDateTime,
+            Status,
+            Title,
         }
         public enum ApiPath
         {
             Admin_ServiceAnnouncement_Issues,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Admin_ServiceAnnouncement_Issues: return $"/admin/serviceAnnouncement/issues";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,63 +61,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceannouncementListIssuesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/servicehealthissue?view=graph-rest-1.0
-        /// </summary>
-        public partial class ServiceHealthIssue
-        {
-            public enum ServiceHealthIssueServiceHealthClassificationType
-            {
-                Advisory,
-                Incident,
-                UnknownFutureValue,
-            }
-            public enum ServiceHealthIssueServiceHealthOrigin
-            {
-                Microsoft,
-                ThirdParty,
-                Customer,
-                UnknownFutureValue,
-            }
-            public enum ServiceHealthIssueServiceHealthStatus
-            {
-                ServiceOperational,
-                Investigating,
-                RestoringService,
-                VerifyingService,
-                ServiceRestored,
-                PostIncidentReviewPublished,
-                ServiceDegradation,
-                ServiceInterruption,
-                ExtendedRecovery,
-                FalsePositive,
-                InvestigationSuspended,
-                Resolved,
-                MitigatedExternal,
-                Mitigated,
-                ResolvedExternal,
-                Confirmed,
-                Reported,
-                UnknownFutureValue,
-            }
-
-            public ServiceHealthIssueServiceHealthClassificationType Classification { get; set; }
-            public KeyValuePair[]? Details { get; set; }
-            public DateTimeOffset? EndDateTime { get; set; }
-            public string? Feature { get; set; }
-            public string? FeatureGroup { get; set; }
-            public string? Id { get; set; }
-            public string? ImpactDescription { get; set; }
-            public bool? IsResolved { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public ServiceHealthIssueServiceHealthOrigin Origin { get; set; }
-            public ServiceHealthIssuePost[]? Posts { get; set; }
-            public string? Service { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public ServiceHealthIssueServiceHealthStatus Status { get; set; }
-            public string? Title { get; set; }
-        }
-
         public ServiceHealthIssue[] Value { get; set; }
     }
     public partial class MicrosoftClient

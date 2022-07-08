@@ -4,24 +4,45 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SiteListPermissionsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SitesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SitesId_Permissions: return $"/sites/{SitesId}/permissions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            GrantedToV2,
+            GrantedToIdentitiesV2,
+            Invitation,
+            InheritedFrom,
+            Link,
+            Roles,
+            ShareId,
+            ExpirationDateTime,
+            HasPassword,
         }
         public enum ApiPath
         {
             Sites_SitesId_Permissions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SitesId_Permissions: return $"/sites/{SitesId}/permissions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,27 +54,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SitesId { get; set; }
     }
     public partial class SiteListPermissionsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/permission?view=graph-rest-1.0
-        /// </summary>
-        public partial class Permission
-        {
-            public string? Id { get; set; }
-            public SharePointIdentitySet? GrantedToV2 { get; set; }
-            public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
-            public SharingInvitation? Invitation { get; set; }
-            public ItemReference? InheritedFrom { get; set; }
-            public SharingLink? Link { get; set; }
-            public string[]? Roles { get; set; }
-            public string? ShareId { get; set; }
-            public DateTimeOffset? ExpirationDateTime { get; set; }
-            public bool? HasPassword { get; set; }
-        }
-
         public Permission[] Value { get; set; }
     }
     public partial class MicrosoftClient

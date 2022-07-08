@@ -2,26 +2,41 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AppconsentrequestFilterbycurrentuserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AppconsentrequestFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_FilterByCurrentUser: return $"/identityGovernance/appConsent/appConsentRequests/filterByCurrentUser";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppDisplayName,
+            AppId,
+            Id,
+            PendingScopes,
+            UserConsentRequests,
         }
         public enum ApiPath
         {
             IdentityGovernance_AppConsent_AppConsentRequests_FilterByCurrentUser,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_FilterByCurrentUser: return $"/identityGovernance/appConsent/appConsentRequests/filterByCurrentUser";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,19 +49,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AppconsentrequestFilterbycurrentuserResponse : RestApiResponse
+    public partial class AppconsentrequestFilterbycurrentUserResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/appconsentrequest?view=graph-rest-1.0
-        /// </summary>
-        public partial class AppConsentRequest
-        {
-            public string? AppDisplayName { get; set; }
-            public string? AppId { get; set; }
-            public string? Id { get; set; }
-            public AppConsentRequestScope[]? PendingScopes { get; set; }
-        }
-
         public AppConsentRequest[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -54,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentuserResponse> AppconsentrequestFilterbycurrentuserAsync()
+        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync()
         {
-            var p = new AppconsentrequestFilterbycurrentuserParameter();
-            return await this.SendAsync<AppconsentrequestFilterbycurrentuserParameter, AppconsentrequestFilterbycurrentuserResponse>(p, CancellationToken.None);
+            var p = new AppconsentrequestFilterbycurrentUserParameter();
+            return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentuserResponse> AppconsentrequestFilterbycurrentuserAsync(CancellationToken cancellationToken)
+        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new AppconsentrequestFilterbycurrentuserParameter();
-            return await this.SendAsync<AppconsentrequestFilterbycurrentuserParameter, AppconsentrequestFilterbycurrentuserResponse>(p, cancellationToken);
+            var p = new AppconsentrequestFilterbycurrentUserParameter();
+            return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentuserResponse> AppconsentrequestFilterbycurrentuserAsync(AppconsentrequestFilterbycurrentuserParameter parameter)
+        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(AppconsentrequestFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<AppconsentrequestFilterbycurrentuserParameter, AppconsentrequestFilterbycurrentuserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AppconsentrequestFilterbycurrentuserResponse> AppconsentrequestFilterbycurrentuserAsync(AppconsentrequestFilterbycurrentuserParameter parameter, CancellationToken cancellationToken)
+        public async Task<AppconsentrequestFilterbycurrentUserResponse> AppconsentrequestFilterbycurrentUserAsync(AppconsentrequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AppconsentrequestFilterbycurrentuserParameter, AppconsentrequestFilterbycurrentuserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AppconsentrequestFilterbycurrentUserParameter, AppconsentrequestFilterbycurrentUserResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -18,5 +18,10 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public int? Position { get; set; }
         public Worksheetstring Visibility { get; set; }
+        public Chart[]? Charts { get; set; }
+        public NamedItem[]? Names { get; set; }
+        public PivotTable[]? PivotTables { get; set; }
+        public WorksheetProtection? Protection { get; set; }
+        public Table[]? Tables { get; set; }
     }
 }

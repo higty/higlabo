@@ -15,5 +15,7 @@ namespace HigLabo.Net.Microsoft
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
         public UserIdentity? CreatedBy { get; set; }
+        public PrintDocument[]? Documents { get; set; }
+        public PrintTask[]? Tasks { get; set; }
     }
 }

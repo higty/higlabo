@@ -4,24 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PlannerPostPlansParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Planner_Plans: return $"/planner/plans";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Planner_Plans,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Planner_Plans: return $"/planner/plans";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public PlannerPlanContainer? Container { get; set; }
+        public IdentitySet? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
+        public string? Title { get; set; }
+        public PlannerBucket[]? Buckets { get; set; }
+        public PlannerPlanDetails? Details { get; set; }
+        public PlannerTask[]? Tasks { get; set; }
     }
     public partial class PlannerPostPlansResponse : RestApiResponse
     {
@@ -30,6 +48,9 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
         public string? Title { get; set; }
+        public PlannerBucket[]? Buckets { get; set; }
+        public PlannerPlanDetails? Details { get; set; }
+        public PlannerTask[]? Tasks { get; set; }
     }
     public partial class MicrosoftClient
     {

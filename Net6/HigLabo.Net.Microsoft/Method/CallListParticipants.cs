@@ -4,24 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallListParticipantsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_Participants: return $"/communications/calls/{Id}/participants";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Info,
+            IsInLobby,
+            IsMuted,
+            MediaStreams,
+            Metadata,
+            RecordingInfo,
         }
         public enum ApiPath
         {
             Communications_Calls_Id_Participants,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_Participants: return $"/communications/calls/{Id}/participants";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,24 +51,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class CallListParticipantsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/participant?view=graph-rest-1.0
-        /// </summary>
-        public partial class Participant
-        {
-            public string? Id { get; set; }
-            public ParticipantInfo? Info { get; set; }
-            public bool? IsInLobby { get; set; }
-            public bool? IsMuted { get; set; }
-            public MediaStream[]? MediaStreams { get; set; }
-            public string? Metadata { get; set; }
-            public RecordingInfo? RecordingInfo { get; set; }
-        }
-
         public Participant[] Value { get; set; }
     }
     public partial class MicrosoftClient

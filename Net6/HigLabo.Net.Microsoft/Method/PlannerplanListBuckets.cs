@@ -4,24 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PlannerplanListBucketsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PlanId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Planner_Plans_PlanId_Buckets: return $"/planner/plans/{PlanId}/buckets";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Name,
+            OrderHint,
+            PlanId,
+            Tasks,
         }
         public enum ApiPath
         {
             Planner_Plans_PlanId_Buckets,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Planner_Plans_PlanId_Buckets: return $"/planner/plans/{PlanId}/buckets";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,21 +49,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PlanId { get; set; }
     }
     public partial class PlannerplanListBucketsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/plannerbucket?view=graph-rest-1.0
-        /// </summary>
-        public partial class PlannerBucket
-        {
-            public string? Id { get; set; }
-            public string? Name { get; set; }
-            public string? OrderHint { get; set; }
-            public string? PlanId { get; set; }
-        }
-
         public PlannerBucket[] Value { get; set; }
     }
     public partial class MicrosoftClient

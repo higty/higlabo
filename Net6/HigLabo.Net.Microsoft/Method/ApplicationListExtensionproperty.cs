@@ -4,24 +4,41 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationListExtensionpropertyParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ApplicationObjectId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Applications_ApplicationObjectId_ExtensionProperties: return $"/applications/{ApplicationObjectId}/extensionProperties";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppDisplayName,
+            DataType,
+            DeletedDateTime,
+            IsSyncedFromOnPremises,
+            Name,
+            TargetObjects,
         }
         public enum ApiPath
         {
             Applications_ApplicationObjectId_ExtensionProperties,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Applications_ApplicationObjectId_ExtensionProperties: return $"/applications/{ApplicationObjectId}/extensionProperties";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,23 +50,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ApplicationObjectId { get; set; }
     }
     public partial class ApplicationListExtensionpropertyResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/extensionproperty?view=graph-rest-1.0
-        /// </summary>
-        public partial class ExtensionProperty
-        {
-            public string? AppDisplayName { get; set; }
-            public string? DataType { get; set; }
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public bool? IsSyncedFromOnPremises { get; set; }
-            public string? Name { get; set; }
-            public String[]? TargetObjects { get; set; }
-        }
-
         public ExtensionProperty[] Value { get; set; }
     }
     public partial class MicrosoftClient

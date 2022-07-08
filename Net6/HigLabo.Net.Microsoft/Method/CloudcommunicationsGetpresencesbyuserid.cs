@@ -2,53 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CloudcommunicationsGetpresencesbyuseridParameter : IRestApiParameter
+    public partial class CloudcommunicationsGetpresencesbyUseridParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_GetPresencesByUserId: return $"/communications/getPresencesByUserId";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_GetPresencesByUserId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_GetPresencesByUserId: return $"/communications/getPresencesByUserId";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public String[]? Ids { get; set; }
     }
-    public partial class CloudcommunicationsGetpresencesbyuseridResponse : RestApiResponse
+    public partial class CloudcommunicationsGetpresencesbyUseridResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-1.0
-        /// </summary>
-        public partial class Presence
-        {
-            public enum Presencestring
-            {
-                Available,
-                AvailableIdle,
-                Away,
-                BeRightBack,
-                Busy,
-                BusyIdle,
-                DoNotDisturb,
-                Offline,
-                PresenceUnknown,
-            }
-
-            public string? Id { get; set; }
-            public Presencestring Availability { get; set; }
-            public Presencestring Activity { get; set; }
-        }
-
         public Presence[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -56,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyuseridResponse> CloudcommunicationsGetpresencesbyuseridAsync()
+        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync()
         {
-            var p = new CloudcommunicationsGetpresencesbyuseridParameter();
-            return await this.SendAsync<CloudcommunicationsGetpresencesbyuseridParameter, CloudcommunicationsGetpresencesbyuseridResponse>(p, CancellationToken.None);
+            var p = new CloudcommunicationsGetpresencesbyUseridParameter();
+            return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyuseridResponse> CloudcommunicationsGetpresencesbyuseridAsync(CancellationToken cancellationToken)
+        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CancellationToken cancellationToken)
         {
-            var p = new CloudcommunicationsGetpresencesbyuseridParameter();
-            return await this.SendAsync<CloudcommunicationsGetpresencesbyuseridParameter, CloudcommunicationsGetpresencesbyuseridResponse>(p, cancellationToken);
+            var p = new CloudcommunicationsGetpresencesbyUseridParameter();
+            return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyuseridResponse> CloudcommunicationsGetpresencesbyuseridAsync(CloudcommunicationsGetpresencesbyuseridParameter parameter)
+        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CloudcommunicationsGetpresencesbyUseridParameter parameter)
         {
-            return await this.SendAsync<CloudcommunicationsGetpresencesbyuseridParameter, CloudcommunicationsGetpresencesbyuseridResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/cloudcommunications-getpresencesbyuserid?view=graph-rest-1.0
         /// </summary>
-        public async Task<CloudcommunicationsGetpresencesbyuseridResponse> CloudcommunicationsGetpresencesbyuseridAsync(CloudcommunicationsGetpresencesbyuseridParameter parameter, CancellationToken cancellationToken)
+        public async Task<CloudcommunicationsGetpresencesbyUseridResponse> CloudcommunicationsGetpresencesbyUseridAsync(CloudcommunicationsGetpresencesbyUseridParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CloudcommunicationsGetpresencesbyuseridParameter, CloudcommunicationsGetpresencesbyuseridResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CloudcommunicationsGetpresencesbyUseridParameter, CloudcommunicationsGetpresencesbyUseridResponse>(parameter, cancellationToken);
         }
     }
 }

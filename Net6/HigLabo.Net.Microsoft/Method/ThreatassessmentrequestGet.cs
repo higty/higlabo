@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ThreatassessmentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.InformationProtection_ThreatAssessmentRequests_Id: return $"/informationProtection/threatAssessmentRequests/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             InformationProtection_ThreatAssessmentRequests_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.InformationProtection_ThreatAssessmentRequests_Id: return $"/informationProtection/threatAssessmentRequests/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ThreatassessmentrequestGetResponse : RestApiResponse
     {
@@ -64,14 +74,15 @@ namespace HigLabo.Net.Microsoft
             Completed,
         }
 
-        public Enum? Category { get; set; }
-        public Enum? ContentType { get; set; }
+        public ThreatAssessmentRequestThreatCategory Category { get; set; }
+        public ThreatAssessmentRequestThreatAssessmentContentType ContentType { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public Enum? ExpectedAssessment { get; set; }
+        public ThreatAssessmentRequestThreatExpectedAssessment ExpectedAssessment { get; set; }
         public string? Id { get; set; }
-        public Enum? RequestSource { get; set; }
-        public Enum? Status { get; set; }
+        public ThreatAssessmentRequestThreatAssessmentRequestSource RequestSource { get; set; }
+        public ThreatAssessmentRequestThreatAssessmentStatus Status { get; set; }
+        public ThreatAssessmentResult[]? Results { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -2,8 +2,32 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ChatmessagehostedcontentGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ChatmessagehostedContentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+            public string ChannelId { get; set; }
+            public string MessageId { get; set; }
+            public string HostedContentId { get; set; }
+            public string ReplyId { get; set; }
+            public string ChatId { get; set; }
+            public string UserIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId_HostedContents_HostedContentId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}/hostedContents/{HostedContentId}";
+                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId_Replies_ReplyId_HostedContents_HostedContentId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}/replies/{ReplyId}/hostedContents/{HostedContentId}";
+                    case ApiPath.Chats_ChatId_Messages_MessageId_HostedContents_HostedContentId: return $"/chats/{ChatId}/messages/{MessageId}/hostedContents/{HostedContentId}";
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats_ChatId_Messages_MessageId_HostedContents_HostedContentId: return $"/users/{UserIdOrUserPrincipalName}/chats/{ChatId}/messages/{MessageId}/hostedContents/{HostedContentId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -15,19 +39,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserIdOrUserPrincipalName_Chats_ChatId_Messages_MessageId_HostedContents_HostedContentId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId_HostedContents_HostedContentId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}/hostedContents/{HostedContentId}";
-                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId_Replies_ReplyId_HostedContents_HostedContentId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}/replies/{ReplyId}/hostedContents/{HostedContentId}";
-                    case ApiPath.Chats_ChatId_Messages_MessageId_HostedContents_HostedContentId: return $"/chats/{ChatId}/messages/{MessageId}/hostedContents/{HostedContentId}";
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats_ChatId_Messages_MessageId_HostedContents_HostedContentId: return $"/users/{UserIdOrUserPrincipalName}/chats/{ChatId}/messages/{MessageId}/hostedContents/{HostedContentId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,15 +56,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TeamId { get; set; }
-        public string ChannelId { get; set; }
-        public string MessageId { get; set; }
-        public string HostedContentId { get; set; }
-        public string ReplyId { get; set; }
-        public string ChatId { get; set; }
-        public string UserIdOrUserPrincipalName { get; set; }
     }
-    public partial class ChatmessagehostedcontentGetResponse : RestApiResponse
+    public partial class ChatmessagehostedContentGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? ContentBytes { get; set; }
@@ -58,32 +68,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedcontentGetResponse> ChatmessagehostedcontentGetAsync()
+        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync()
         {
-            var p = new ChatmessagehostedcontentGetParameter();
-            return await this.SendAsync<ChatmessagehostedcontentGetParameter, ChatmessagehostedcontentGetResponse>(p, CancellationToken.None);
+            var p = new ChatmessagehostedContentGetParameter();
+            return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedcontentGetResponse> ChatmessagehostedcontentGetAsync(CancellationToken cancellationToken)
+        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ChatmessagehostedcontentGetParameter();
-            return await this.SendAsync<ChatmessagehostedcontentGetParameter, ChatmessagehostedcontentGetResponse>(p, cancellationToken);
+            var p = new ChatmessagehostedContentGetParameter();
+            return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedcontentGetResponse> ChatmessagehostedcontentGetAsync(ChatmessagehostedcontentGetParameter parameter)
+        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(ChatmessagehostedContentGetParameter parameter)
         {
-            return await this.SendAsync<ChatmessagehostedcontentGetParameter, ChatmessagehostedcontentGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/chatmessagehostedcontent-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ChatmessagehostedcontentGetResponse> ChatmessagehostedcontentGetAsync(ChatmessagehostedcontentGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<ChatmessagehostedContentGetResponse> ChatmessagehostedContentGetAsync(ChatmessagehostedContentGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ChatmessagehostedcontentGetParameter, ChatmessagehostedcontentGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ChatmessagehostedContentGetParameter, ChatmessagehostedContentGetResponse>(parameter, cancellationToken);
         }
     }
 }

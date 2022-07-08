@@ -7,5 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RoleManagement
     {
+        public RbacApplication? Directory { get; set; }
+        public RbacApplication? EntitlementManagement { get; set; }
     }
 }

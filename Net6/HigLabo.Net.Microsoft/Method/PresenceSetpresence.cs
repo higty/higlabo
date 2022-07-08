@@ -4,21 +4,32 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PresenceSetpresenceParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_UserId_Presence_SetPresence: return $"/users/{UserId}/presence/setPresence";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Users_UserId_Presence_SetPresence,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_UserId_Presence_SetPresence: return $"/users/{UserId}/presence/setPresence";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -26,7 +37,6 @@ namespace HigLabo.Net.Microsoft
         public string? Availability { get; set; }
         public string? Activity { get; set; }
         public string? ExpirationDuration { get; set; }
-        public string UserId { get; set; }
     }
     public partial class PresenceSetpresenceResponse : RestApiResponse
     {

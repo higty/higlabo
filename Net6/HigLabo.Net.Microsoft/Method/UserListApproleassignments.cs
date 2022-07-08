@@ -2,26 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UserListApproleassignmentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UserListApproleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_IdOrUserPrincipalName_AppRoleAssignments: return $"/users/{IdOrUserPrincipalName}/appRoleAssignments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppRoleId,
+            CreatedDateTime,
+            Id,
+            PrincipalDisplayName,
+            PrincipalId,
+            PrincipalType,
+            ResourceDisplayName,
+            ResourceId,
         }
         public enum ApiPath
         {
             Users_IdOrUserPrincipalName_AppRoleAssignments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_IdOrUserPrincipalName_AppRoleAssignments: return $"/users/{IdOrUserPrincipalName}/appRoleAssignments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class UserListApproleassignmentsResponse : RestApiResponse
+    public partial class UserListApproleAssignmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/approleassignment?view=graph-rest-1.0
-        /// </summary>
-        public partial class AppRoleAssignment
-        {
-            public Guid? AppRoleId { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Id { get; set; }
-            public string? PrincipalDisplayName { get; set; }
-            public Guid? PrincipalId { get; set; }
-            public string? PrincipalType { get; set; }
-            public string? ResourceDisplayName { get; set; }
-            public Guid? ResourceId { get; set; }
-        }
-
         public AppRoleAssignment[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -59,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleassignmentsResponse> UserListApproleassignmentsAsync()
+        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync()
         {
-            var p = new UserListApproleassignmentsParameter();
-            return await this.SendAsync<UserListApproleassignmentsParameter, UserListApproleassignmentsResponse>(p, CancellationToken.None);
+            var p = new UserListApproleAssignmentsParameter();
+            return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleassignmentsResponse> UserListApproleassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserListApproleassignmentsParameter();
-            return await this.SendAsync<UserListApproleassignmentsParameter, UserListApproleassignmentsResponse>(p, cancellationToken);
+            var p = new UserListApproleAssignmentsParameter();
+            return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleassignmentsResponse> UserListApproleassignmentsAsync(UserListApproleassignmentsParameter parameter)
+        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<UserListApproleassignmentsParameter, UserListApproleassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserListApproleassignmentsResponse> UserListApproleassignmentsAsync(UserListApproleassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserListApproleassignmentsParameter, UserListApproleassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

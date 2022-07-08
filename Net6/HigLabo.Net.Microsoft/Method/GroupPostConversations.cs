@@ -4,25 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupPostConversationsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Conversations: return $"/groups/{Id}/conversations";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Groups_Id_Conversations,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Conversations: return $"/groups/{Id}/conversations";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
+        public bool? HasAttachments { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastDeliveredDateTime { get; set; }
+        public string? Preview { get; set; }
+        public string? Topic { get; set; }
+        public String[]? UniqueSenders { get; set; }
+        public ConversationThread[]? Threads { get; set; }
     }
     public partial class GroupPostConversationsResponse : RestApiResponse
     {
@@ -32,6 +49,7 @@ namespace HigLabo.Net.Microsoft
         public string? Preview { get; set; }
         public string? Topic { get; set; }
         public String[]? UniqueSenders { get; set; }
+        public ConversationThread[]? Threads { get; set; }
     }
     public partial class MicrosoftClient
     {

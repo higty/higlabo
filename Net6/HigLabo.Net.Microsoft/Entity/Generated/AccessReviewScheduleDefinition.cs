@@ -21,5 +21,6 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewScope? Scope { get; set; }
         public AccessReviewScheduleSettings? Settings { get; set; }
         public string? Status { get; set; }
+        public AccessReviewInstance[]? Instances { get; set; }
     }
 }

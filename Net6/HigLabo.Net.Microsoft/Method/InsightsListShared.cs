@@ -4,6 +4,24 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class InsightsListSharedParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Insights_Shared: return $"/me/insights/shared";
+                    case ApiPath.Users_IdOrUserPrincipalName_Insights_Shared: return $"/users/{IdOrUserPrincipalName}/insights/shared";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Me_Insights_Shared_Id_Resource: return $"/ttps://graph.microsoft.com/v1.0/me/insights/shared/{Id}/resource";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -14,18 +32,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Me_Insights_Shared_Id_Resource,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Insights_Shared: return $"/me/insights/shared";
-                    case ApiPath.Users_IdOrUserPrincipalName_Insights_Shared: return $"/users/{IdOrUserPrincipalName}/insights/shared";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Me_Insights_Shared_Id_Resource: return $"/ttps://graph.microsoft.com/v1.0/me/insights/shared/{Id}/resource";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,8 +49,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
     }
     public partial class InsightsListSharedResponse : RestApiResponse
     {
@@ -46,6 +56,7 @@ namespace HigLabo.Net.Microsoft
         public SharingDetail? LastShared { get; set; }
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
+        public Entity[]? Resource { get; set; }
     }
     public partial class MicrosoftClient
     {

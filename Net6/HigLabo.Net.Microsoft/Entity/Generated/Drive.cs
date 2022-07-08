@@ -20,5 +20,11 @@ namespace HigLabo.Net.Microsoft
         public SharePointIds? SharepointIds { get; set; }
         public System? System { get; set; }
         public string? WebUrl { get; set; }
+        public DriveItem[]? Bundles { get; set; }
+        public DriveItem[]? Following { get; set; }
+        public DriveItem[]? Items { get; set; }
+        public DriveItem? Root { get; set; }
+        public DriveItem[]? Special { get; set; }
+        public SiteList? List { get; set; }
     }
 }

@@ -20,9 +20,67 @@ namespace HigLabo.Net.CodeGenerator
 {
     public class MicrosoftSourceCodeGenerator : OAuthClientCodeGenerator
     {
+        private static List<string> _ClassNameList = new List<string>();
         private List<UrlClassNameMapping> _UrlClassNameMappingList = new List<UrlClassNameMapping>();
 
         public override bool UseSelenium => true;
+
+        static MicrosoftSourceCodeGenerator()
+        {
+            var l = _ClassNameList;
+            l.Add("Store");
+            l.Add("Management");
+            l.Add("Account");
+            l.Add("Type");
+            l.Add("Token");
+            l.Add("Partner");
+            l.Add("Expense");
+            l.Add("Option");
+            l.Add("Generation");
+            l.Add("Content");
+            l.Add("Target");
+            l.Add("Assignment");
+            l.Add("Group");
+            l.Add("Enrollment");
+            l.Add("AppManagement");
+            l.Add("Manager");
+            l.Add("Collection");
+            l.Add("Status");
+            l.Add("Enterprise");
+            l.Add("Always");
+            l.Add("PackageType");
+            l.Add("User");
+            l.Add("TokenState");
+            l.Add("Color");
+            l.Add("Settings");
+            l.Add("School");
+            l.Add("Conditional");
+            l.Add("Access");
+            l.Add("Connector");
+            l.Add("Threat");
+            l.Add("Defense");
+            l.Add("Brand");
+            l.Add("Configuration");
+            l.Add("Exchange");
+            l.Add("Sync");
+            l.Add("Resource");
+            l.Add("Policy");
+            l.Add("Protection");
+            l.Add("Information");
+            l.Add("Requirements");
+            l.Add("Summary");
+            l.Add("Learning");
+            l.Add("Network");
+            l.Add("Level");
+            l.Add("Desktop");
+            l.Add("Operation");
+            l.Add("Location");
+            l.Add("Identifier");
+            l.Add("Action");
+            l.Add("Result");
+            l.Add("Root");
+            l.Add("MessageRule");
+        }
 
         public MicrosoftSourceCodeGenerator(string folderPath)
             : base(folderPath, "Microsoft")
@@ -88,7 +146,7 @@ namespace HigLabo.Net.CodeGenerator
                 stream.Flush();
                 stream.Close();
             }
-            Console.WriteLine("Scope");
+            ConsoleWriteText("Scope");
 
             return Task.FromResult(0);
         }
@@ -114,9 +172,15 @@ namespace HigLabo.Net.CodeGenerator
             if (url.Contains("overview?") ||
                 url.Contains("-overview?") ||
                 url.Contains("-conceptual?") ||
+                url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/enums?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
                 url.Equals("https://docs.microsoft.com/en-US/graph/api/resources/parentalcontrolsettings", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase))
+                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/security-error-codes?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/report?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/excel?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase))
             { return false; }
+            if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/intune-", StringComparison.OrdinalIgnoreCase) == true) { return false; }
             return true;
         }
 
@@ -153,6 +217,8 @@ namespace HigLabo.Net.CodeGenerator
                     yield return url;
                 }
             }
+            yield return "https://docs.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0";
+            yield return "https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0";
         }
         protected override async Task<List<ApiParameter>> GetEntityParameterList(IDocument document)
         {
@@ -207,9 +273,9 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var c = await CreateEntityClass(url, context);
                 l.Add(new UrlClassNameMapping(url, c.Name));
-                Console.WriteLine(c.Name + " " + url);
+                ConsoleWriteText(c.Name + " " + url);
             }
-            File.WriteAllText(this.GetResouceUrlMappingFilePath(), Newtonsoft.Json.JsonConvert.SerializeObject(l));
+            File.WriteAllText(this.GetResouceUrlMappingFilePath(), Newtonsoft.Json.JsonConvert.SerializeObject(l, Formatting.Indented));
         }
         public async Task LoadUrlClassNameMappingList()
         {
@@ -246,6 +312,8 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var url = item.GetAttribute("href").ToString();
                 if (this.IsAvailabelUrl(url) == false) { continue; }
+                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/intune-", StringComparison.OrdinalIgnoreCase) == true) { continue; }
+
                 if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/", StringComparison.OrdinalIgnoreCase) == false) { continue; }
                 var pDoc = this.GetDocumentAsync(url).GetAwaiter().GetResult();
                 var mm = this.GetApiRequestPathList(pDoc);
@@ -267,14 +335,14 @@ namespace HigLabo.Net.CodeGenerator
             var sc = await base.CreateMethodSourceCode(url, document, className);
             var context = new CreateEntityClassContext();
 
-            var c = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Parameter");
+            var cParameter = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Parameter");
             var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response");
             var rx = new Regex("{[^}]*}");
 
             var entityUrl = "";
-            if (c.Name.Contains("Get"))
+            if (cParameter.Name.Contains("Get"))
             {
-                var resourceName = c.Name.Substring(0, c.Name.IndexOf("Get"));
+                var resourceName = cParameter.Name.Substring(0, cParameter.Name.IndexOf("Get"));
                 var u = this._UrlClassNameMappingList.Find(el => el.ClassName == resourceName);
                 if (u != null)
                 {
@@ -282,11 +350,11 @@ namespace HigLabo.Net.CodeGenerator
                 }
             }
 
-            var httpMethod = c.Properties.Find(el => el.Name == "IRestApiParameter.HttpMethod").Initializer.Replace("\"", "");
+            var httpMethod = cParameter.Properties.Find(el => el.Name == "IRestApiParameter.HttpMethod").Initializer.Replace("\"", "");
             if (httpMethod == "GET")
             {
                 var cField = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, "Field");
-                c.Enums.Add(cField);
+                cParameter.Enums.Add(cField);
                 if (entityUrl.IsNullOrEmpty() == false)
                 {
                     try
@@ -322,103 +390,117 @@ namespace HigLabo.Net.CodeGenerator
 
                 var p = new Property("QueryParameter<Field>", "Query", true);
                 p.Initializer = "new QueryParameter<Field>()";
-                c.Properties.Add(p);
+                cParameter.Properties.Add(p);
 
-                c.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
+                cParameter.ImplementInterfaces.Add(new TypeName("IQueryParameterProperty"));
                 var pQuery = new Property("IQueryParameter", "IQueryParameterProperty.Query");
                 pQuery.Modifier.AccessModifier = MethodAccessModifier.None;
                 pQuery.Get = new PropertyBody(PropertyBodyType.Get);
                 pQuery.Get.Body.Add(SourceCodeLanguage.CSharp, "return this.Query;");
                 pQuery.Set = null;
-                c.Properties.Add(pQuery);
+                cParameter.Properties.Add(pQuery);
             }
             else if (httpMethod == "POST")
             {
                 foreach (var item in cResponse.Properties)
                 {
-                    c.Properties.Add(item);
+                    if (item.Name == "Value" && item.TypeName.Name.Contains("[]")) { continue; }
+                    cParameter.Properties.AddIfNotExist(item, el => el.Name == item.Name);
                 }
                 foreach (var item in cResponse.Enums)
                 {
-                    c.Enums.Add(item);
+                    cParameter.Enums.AddIfNotExist(item, el => el.Name == item.Name);
                 }
             }
 
-            c.Properties.Insert(0, new Property("ApiPath", "Path", true));
+            cParameter.Properties.Insert(0, new Property("ApiPathSettings", "ApiPathSetting", true) {  Initializer = "new ApiPathSettings()" });
 
-            var pApiPath = c.Properties.Find(el => el.Name == "IRestApiParameter.ApiPath");
-            pApiPath.Get.IsAutomaticProperty = false;
-            pApiPath.Get.Body.Clear();
-            var cb = new CodeBlock(SourceCodeLanguage.CSharp, "switch (this.Path)");
-            cb.CurlyBracket = true;
-            pApiPath.Get.Body.Add(cb);
-
-            var em = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, "ApiPath");
-            c.Enums.Add(em);
-            foreach (var item in this.GetApiRequestPathList(document))
+            var hasBinaryMethod = false;
             {
-                var apiPath = item.ApiPath.Substring(1, item.ApiPath.Length - 1);
-                var apiPathFormat = "/" + apiPath;
-                var eValue = this.CreateEnumValue(apiPath);
+                var cSetting = new Class(AccessModifier.Public, "ApiPathSettings");
+                cParameter.Classes.Add(cSetting);
+                cSetting.Properties.Add(new Property("ApiPath", "ApiPath", true));
 
-                var hasBinaryMethod = apiPath.EndsWith("$value", StringComparison.OrdinalIgnoreCase);
-                if (hasBinaryMethod == true)
-                {
-                    var cClient = sc.Namespaces[0].Classes.Find(el => el.Name == "MicrosoftClient");
-                    var md = new Method(MethodAccessModifier.Public, className + "StreamAsync");
-                    md.Comment = url;
-                    md.Parameters.Add(new MethodParameter(className + "Parameter", "parameter"));
-                    md.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
-                    md.ReturnTypeName.Name = "async Task";
-                    md.ReturnTypeName.GenericTypes.Add(new TypeName("Stream"));
-                    md.Body.Add(SourceCodeLanguage.CSharp, $"return await this.DownloadStreamAsync(parameter, cancellationToken);");
-                    if (cClient.Methods.Exists(el => el.Name == md.Name) == false)
-                    {
-                        cClient.Methods.Add(md);
-                    }
-                }
+                var md = new Method(MethodAccessModifier.Public, "GetApiPath");
+                md.ReturnTypeName = new TypeName("string");
+                cSetting.Methods.Add(md);
+                var cb = new CodeBlock(SourceCodeLanguage.CSharp, "switch (this.ApiPath)");
+                cb.CurlyBracket = true;
+                md.Body.Add(cb);
 
-                var vv = rx.Matches(apiPath).Select(el => el.Value).ToList();
-                var isIdDuplicate = false;
-                foreach (var kv in vv.GroupBy(el => el))
+                var em = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, "ApiPath");
+                cParameter.Enums.Add(em);
+                foreach (var item in this.GetApiRequestPathList(document))
                 {
-                    if (kv.Count() > 1)
+                    var apiPath = item.ApiPath.Substring(1, item.ApiPath.Length - 1);
+                    var apiPathFormat = "/" + apiPath;
+                    var eValue = this.CreateEnumValue(apiPath);
+
+                    hasBinaryMethod = apiPath.EndsWith("$value", StringComparison.OrdinalIgnoreCase);
+
+                    var vv = rx.Matches(apiPath).Select(el => el.Value).ToList();
+                    var isIdDuplicate = false;
+                    foreach (var kv in vv.GroupBy(el => el))
                     {
-                        isIdDuplicate = true;
-                        break;
-                    }
-                }
-                if (isIdDuplicate)
-                {
-                    var ss = apiPathFormat.Split('/');
-                    var vIndex = 0;
-                    for (int i = 0; i < ss.Length; i++)
-                    {
-                        if (ss[i].StartsWith("{"))
+                        if (kv.Count() > 1)
                         {
-                            ss[i] = "{" + ss[i - 1] + ss[i].Substring(1, ss[i].Length - 2).ToPascalCase() + "}";
-                            vv[vIndex] = ss[i];
-                            vIndex++;
+                            isIdDuplicate = true;
+                            break;
                         }
                     }
-                    apiPathFormat = String.Join("/", ss);
-                }
-                foreach (var v in vv)
-                {
-                    var pName = CreateParameterNameFromApiPath(v.Replace("{", "").Replace("}", ""));
-                    apiPathFormat = apiPathFormat.Replace(v, "{" + pName + "}", StringComparison.OrdinalIgnoreCase);
+                    if (isIdDuplicate)
+                    {
+                        var ss = apiPathFormat.Split('/');
+                        var vIndex = 0;
+                        for (int i = 0; i < ss.Length; i++)
+                        {
+                            if (ss[i].StartsWith("{"))
+                            {
+                                ss[i] = "{" + ss[i - 1] + ss[i].Substring(1, ss[i].Length - 2).ToPascalCase() + "}";
+                                vv[vIndex] = ss[i];
+                                vIndex++;
+                            }
+                        }
+                        apiPathFormat = String.Join("/", ss);
+                    }
+                    foreach (var v in vv)
+                    {
+                        var pName = CreateParameterNameFromApiPath(v.Replace("{", "").Replace("}", ""));
+                        apiPathFormat = apiPathFormat.Replace(v, "{" + pName + "}", StringComparison.OrdinalIgnoreCase);
 
-                    var p = new Property("string", pName, true);
-                    if (c.Properties.Exists(el => el.Name == p.Name)) { continue; }
-                    c.Properties.Add(p);
+                        var p = new Property("string", pName, true);
+                        if (cSetting.Properties.Exists(el => el.Name == p.Name)) { continue; }
+                        cSetting.Properties.Add(p);
+                    }
+                    if (em.Values.Exists(el => el.Text == eValue) == false)
+                    {
+                        em.Values.Add(new EnumValue(eValue));
+                        cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"case ApiPath.{eValue}: return $\"{apiPathFormat}\";"));
+                    }
                 }
-                if (em.Values.Exists(el => el.Text == eValue) == false)
+                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);"));
+            }
+
+            var pApiPath = cParameter.Properties.Find(el => el.Name == "IRestApiParameter.ApiPath");
+            pApiPath.Get.IsAutomaticProperty = false;
+            pApiPath.Get.Body.Clear();
+            pApiPath.Get.Body.Add(SourceCodeLanguage.CSharp, "return this.ApiPathSetting.GetApiPath();");
+
+            if (hasBinaryMethod == true)
+            {
+                var cClient = sc.Namespaces[0].Classes.Find(el => el.Name == "MicrosoftClient");
+                var md = new Method(MethodAccessModifier.Public, className + "StreamAsync");
+                md.Comment = url;
+                md.Parameters.Add(new MethodParameter(className + "Parameter", "parameter"));
+                md.Parameters.Add(new MethodParameter("CancellationToken", "cancellationToken"));
+                md.ReturnTypeName.Name = "async Task";
+                md.ReturnTypeName.GenericTypes.Add(new TypeName("Stream"));
+                md.Body.Add(SourceCodeLanguage.CSharp, $"return await this.DownloadStreamAsync(parameter, cancellationToken);");
+                if (cClient.Methods.Exists(el => el.Name == md.Name) == false)
                 {
-                    em.Values.Add(new EnumValue(eValue));
-                    cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"case ApiPath.{eValue}: return $\"{apiPathFormat}\";"));
+                    cClient.Methods.Add(md);
                 }
             }
-            cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);"));
 
             return sc;
         }
@@ -513,12 +595,14 @@ namespace HigLabo.Net.CodeGenerator
                         td3.TextContent.Contains("the condition or exception to apply") ||
                         td3.TextContent.Contains("Allowed values: ") ||
                         td3.TextContent.Contains("The recurrence pattern type") ||
+                        td3.TextContent.Contains("The current status of the operation") ||
                         td3.TextContent.Contains("The type of event message"))
                     {
                         foreach (var code in td3.QuerySelectorAll("code"))
                         {
                             var eValue = code.TextContent.Replace(".", "");
                             if (eValue == "Prefer: include-unknown-enum-members") { continue; }
+                            if (eValue == "Prefer: include - unknown -enum-members") { continue; }
                             if (eValue.StartsWith("$")) { break; }
 
                             p.IsEnum = true;
@@ -537,20 +621,14 @@ namespace HigLabo.Net.CodeGenerator
 
             if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/"))
             {
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-useragent", StringComparison.InvariantCulture)) { return "CallRecordsUserAgent"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-endpoint", StringComparison.InvariantCulture)) { return "CallRecordsEndpoint"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-failureinfo", StringComparison.InvariantCulture)) { return "CallRecordsFailureInfo"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-set", StringComparison.OrdinalIgnoreCase)) { return "TermStoreSet"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-term", StringComparison.OrdinalIgnoreCase)) { return "TermStoreTerm"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizedname", StringComparison.OrdinalIgnoreCase)) { return "TermStoreLocalizedName"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizedlabel", StringComparison.OrdinalIgnoreCase)) { return "TermStoreLocalizedLabel"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizeddescription", StringComparison.OrdinalIgnoreCase)) { return "TermStoreLocalizedDescription"; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/intune-"))
-                {
-                    var apiPath = url.Replace("https://docs.microsoft.com/en-us/graph/api/", "").ExtractString(null, '?');
-                    return CreateClassName(apiPath);
-                }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-"))
+                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/intune-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/microsoft-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/email-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/office-365-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/onedrive-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-") ||
+                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-"))
                 {
                     var path = url.Replace("https://docs.microsoft.com/en-us/graph/api/resources/", "").ExtractString(null, '?');
                     return CreateClassName(path);
@@ -584,12 +662,21 @@ namespace HigLabo.Net.CodeGenerator
                     sb.Append(path[i]);
                 }
             }
-            return sb.ToString().Replace(".", "").Replace("-", "").Replace("_", "");
+            var cName = sb.ToString().Replace(".", "").Replace("-", "").Replace("_", "");
+            foreach (var item in _ClassNameList)
+            {
+                cName = cName.Replace(item.ToLower(), item);
+            }
+            return cName;
         }
         protected override Property CreateParameterProperty(ApiParameter parameter)
         {
             var p = parameter;
             var pType = CreatePropertyType(parameter);
+            if (parameter.Name == "Anonymous Sharing Link")
+            {
+                parameter.Name = "AnonymousSharingLink";
+            }
             return new Property(pType, parameter.Name, true);
         }
         private String CreatePropertyType(ApiParameter parameter)
@@ -623,11 +710,9 @@ namespace HigLabo.Net.CodeGenerator
             else if (type.Equals("SharepointIds", StringComparison.OrdinalIgnoreCase)) { type = "SharePointIds"; }
             else if (type.Equals("TeamFunSettingsString (enum)", StringComparison.OrdinalIgnoreCase)) { type = "GiphyContentRating"; }
             else if (type.Equals("EducationTeacher", StringComparison.OrdinalIgnoreCase)) { type = "Teacher"; }
+            else if (type.Equals("Collection(microsoft.graph.displayNameLocalization)", StringComparison.OrdinalIgnoreCase)) { return "string"; }
             else if (type == "Collection(recipient)") { type = "Recipient[]"; }
             else if (type == "Collection(keyValuePair)") { type = "KeyValuePair<string, string>[]"; }
-            else if (type == "Collection(microsoft.graph.displayNameLocalization)") { type = "string[]"; }
-            else if (type == "Collection(microsoft.graph.documentSetContent)") { type = "DocumentSetContent[]"; }
-            else if (type == "Collection(microsoft.graph.contentTypeInfo)") { type = "ContentTypeInfo[]"; }
             else if (type == "appHostedMediaConfig or serviceHostedMediaConfig") { type = "MediaConfig"; }
             else if (type == "organizerMeetingInfo or tokenMeetingInfo") { type = "MeetingInfo"; }
             else if (type.ToLower() == "sharepointids") { type = "SharePointIds"; }
@@ -650,9 +735,13 @@ namespace HigLabo.Net.CodeGenerator
             else if (type.Equals("CategoryColor", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
             else if (type.Equals("%unique_string%", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
             else if (type.Equals("TeamVisibilityType (optional)", StringComparison.OrdinalIgnoreCase)) { type = "TeamVisibilityType"; }
-            else if (type.EndsWith("collection")) { type = type.ExtractString(null, ' ').ToPascalCase() + "[]"; }
+            else if (type.Equals("Error object", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
+            else if (type.Equals("roles", StringComparison.OrdinalIgnoreCase)) { type = "string[]"; }
+            else if (type.Equals("expirationDateTime", StringComparison.OrdinalIgnoreCase)) { type = "DateTimeOffset"; }
+            else if (type.EndsWith("collection", StringComparison.OrdinalIgnoreCase)) { type = type.ExtractString(null, ' ').ToPascalCase() + "[]"; }
             else if (type.StartsWith("Collection(") && type.EndsWith(")"))
             {
+                type = type.Replace("microsoft.graph.", "", StringComparison.OrdinalIgnoreCase);
                 type = type.ExtractString('(', ')').ToPascalCase() + "[]";
             }
             else
@@ -747,11 +836,10 @@ namespace HigLabo.Net.CodeGenerator
             return l.ToArray();
         }
 
-        protected override Class CreateResponseClass(IDocument document, string className)
+        protected override Class CreateResponseClass(IDocument document, string className, CreateEntityClassContext context)
         {
-            var c = base.CreateResponseClass(document, className);
+            var c = base.CreateResponseClass(document, className, context);
 
-            var context = new CreateEntityClassContext();
             var entityUrl = "";
 
             var node = document.QuerySelector("[id='response']");
@@ -769,6 +857,10 @@ namespace HigLabo.Net.CodeGenerator
                             if (pNode.TextContent.Contains("collection of") ||
                                 pNode.TextContent.Contains(" collection"))
                             {
+                                var doc = this.GetDocumentAsync(href).GetAwaiter().GetResult();
+                                var cValue = this.CreateEntityClass(href, context).GetAwaiter().GetResult();
+                                this.CreateEntitySourceCodeFile(href, cValue);
+                                c.Properties.Add(new Property(cValue.Name + "[]", "Value", true));
                             }
                             else
                             {
@@ -793,7 +885,7 @@ namespace HigLabo.Net.CodeGenerator
                 var u = this._UrlClassNameMappingList.Find(el => el.ClassName == resourceName);
                 if (u != null)
                 {
-                    c.Properties.Add(new Property(resourceName + "[]", "Value", true));
+                    c.Properties.AddIfNotExist(new Property(resourceName + "[]", "Value", true), el => el.Name == resourceName);
                 }
             }
 

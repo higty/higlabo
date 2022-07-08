@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalDeleteDelegatedpermissionclassificationsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ServicePrincipalsId { get; set; }
+            public string DelegatedPermissionClassificationsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_DelegatedPermissionClassifications_Id: return $"/servicePrincipals/{ServicePrincipalsId}/delegatedPermissionClassifications/{DelegatedPermissionClassificationsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_Id_DelegatedPermissionClassifications_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_DelegatedPermissionClassifications_Id: return $"/servicePrincipals/{ServicePrincipalsId}/delegatedPermissionClassifications/{DelegatedPermissionClassificationsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ServicePrincipalsId { get; set; }
-        public string DelegatedPermissionClassificationsId { get; set; }
     }
     public partial class ServiceprincipalDeleteDelegatedpermissionclassificationsResponse : RestApiResponse
     {

@@ -2,26 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EntitlementmanagementListConnectedorganizationsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EntitlementManagementListConnectedorganizationsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_ConnectedOrganizations: return $"/identityGovernance/entitlementManagement/connectedOrganizations";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedDateTime,
+            Description,
+            DisplayName,
+            Id,
+            IdentitySources,
+            ModifiedDateTime,
+            State,
+            ExternalSponsors,
+            InternalSponsors,
         }
         public enum ApiPath
         {
             IdentityGovernance_EntitlementManagement_ConnectedOrganizations,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_ConnectedOrganizations: return $"/identityGovernance/entitlementManagement/connectedOrganizations";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,30 +53,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementmanagementListConnectedorganizationsResponse : RestApiResponse
+    public partial class EntitlementManagementListConnectedorganizationsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/connectedorganization?view=graph-rest-1.0
-        /// </summary>
-        public partial class ConnectedOrganization
-        {
-            public enum ConnectedOrganizationConnectedOrganizationState
-            {
-                AllConfiguredConnectedOrganizationSubjects,
-                Configured,
-                Proposed,
-                UnknownFutureValue,
-            }
-
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public IdentitySource[]? IdentitySources { get; set; }
-            public DateTimeOffset? ModifiedDateTime { get; set; }
-            public ConnectedOrganizationConnectedOrganizationState State { get; set; }
-        }
-
         public ConnectedOrganization[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -65,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListConnectedorganizationsResponse> EntitlementmanagementListConnectedorganizationsAsync()
+        public async Task<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync()
         {
-            var p = new EntitlementmanagementListConnectedorganizationsParameter();
-            return await this.SendAsync<EntitlementmanagementListConnectedorganizationsParameter, EntitlementmanagementListConnectedorganizationsResponse>(p, CancellationToken.None);
+            var p = new EntitlementManagementListConnectedorganizationsParameter();
+            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListConnectedorganizationsResponse> EntitlementmanagementListConnectedorganizationsAsync(CancellationToken cancellationToken)
+        public async Task<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync(CancellationToken cancellationToken)
         {
-            var p = new EntitlementmanagementListConnectedorganizationsParameter();
-            return await this.SendAsync<EntitlementmanagementListConnectedorganizationsParameter, EntitlementmanagementListConnectedorganizationsResponse>(p, cancellationToken);
+            var p = new EntitlementManagementListConnectedorganizationsParameter();
+            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListConnectedorganizationsResponse> EntitlementmanagementListConnectedorganizationsAsync(EntitlementmanagementListConnectedorganizationsParameter parameter)
+        public async Task<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync(EntitlementManagementListConnectedorganizationsParameter parameter)
         {
-            return await this.SendAsync<EntitlementmanagementListConnectedorganizationsParameter, EntitlementmanagementListConnectedorganizationsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-connectedorganizations?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListConnectedorganizationsResponse> EntitlementmanagementListConnectedorganizationsAsync(EntitlementmanagementListConnectedorganizationsParameter parameter, CancellationToken cancellationToken)
+        public async Task<EntitlementManagementListConnectedorganizationsResponse> EntitlementManagementListConnectedorganizationsAsync(EntitlementManagementListConnectedorganizationsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EntitlementmanagementListConnectedorganizationsParameter, EntitlementmanagementListConnectedorganizationsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EntitlementManagementListConnectedorganizationsParameter, EntitlementManagementListConnectedorganizationsResponse>(parameter, cancellationToken);
         }
     }
 }

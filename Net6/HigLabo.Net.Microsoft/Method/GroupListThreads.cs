@@ -4,24 +4,45 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupListThreadsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Threads: return $"/groups/{Id}/threads";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            ToRecipients,
+            CcRecipients,
+            Topic,
+            HasAttachments,
+            LastDeliveredDateTime,
+            UniqueSenders,
+            Preview,
+            IsLocked,
+            Posts,
         }
         public enum ApiPath
         {
             Groups_Id_Threads,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Threads: return $"/groups/{Id}/threads";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,26 +54,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class GroupListThreadsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/conversationthread?view=graph-rest-1.0
-        /// </summary>
-        public partial class ConversationThread
-        {
-            public string? Id { get; set; }
-            public Recipient[]? ToRecipients { get; set; }
-            public Recipient[]? CcRecipients { get; set; }
-            public string? Topic { get; set; }
-            public bool? HasAttachments { get; set; }
-            public DateTimeOffset? LastDeliveredDateTime { get; set; }
-            public String[]? UniqueSenders { get; set; }
-            public string? Preview { get; set; }
-            public bool? IsLocked { get; set; }
-        }
-
         public ConversationThread[] Value { get; set; }
     }
     public partial class MicrosoftClient

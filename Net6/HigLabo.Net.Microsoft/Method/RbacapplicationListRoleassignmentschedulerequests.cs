@@ -2,26 +2,59 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class RbacapplicationListRoleassignmentschedulerequestsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RbacapplicationListRoleAssignmentschedulerequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleRequests: return $"/roleManagement/directory/roleAssignmentScheduleRequests";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Action,
+            ApprovalId,
+            AppScopeId,
+            CompletedDateTime,
+            CreatedBy,
+            CreatedDateTime,
+            CustomData,
+            DirectoryScopeId,
+            Id,
+            IsValidationOnly,
+            Justification,
+            PrincipalId,
+            RoleDefinitionId,
+            ScheduleInfo,
+            Status,
+            TargetScheduleId,
+            TicketInfo,
+            ActivatedUsing,
+            AppScope,
+            DirectoryScope,
+            Principal,
+            RoleDefinition,
+            TargetSchedule,
         }
         public enum ApiPath
         {
             RoleManagement_Directory_RoleAssignmentScheduleRequests,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleRequests: return $"/roleManagement/directory/roleAssignmentScheduleRequests";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,32 +67,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RbacapplicationListRoleassignmentschedulerequestsResponse : RestApiResponse
+    public partial class RbacapplicationListRoleAssignmentschedulerequestsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignmentschedulerequest?view=graph-rest-1.0
-        /// </summary>
-        public partial class UnifiedRoleAssignmentScheduleRequest
-        {
-            public string? Action { get; set; }
-            public string? ApprovalId { get; set; }
-            public string? AppScopeId { get; set; }
-            public DateTimeOffset? CompletedDateTime { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? CustomData { get; set; }
-            public string? DirectoryScopeId { get; set; }
-            public string? Id { get; set; }
-            public bool? IsValidationOnly { get; set; }
-            public string? Justification { get; set; }
-            public string? PrincipalId { get; set; }
-            public string? RoleDefinitionId { get; set; }
-            public RequestSchedule? ScheduleInfo { get; set; }
-            public string? Status { get; set; }
-            public string? TargetScheduleId { get; set; }
-            public TicketInfo? TicketInfo { get; set; }
-        }
-
         public UnifiedRoleAssignmentScheduleRequest[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -67,32 +76,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulerequestsResponse> RbacapplicationListRoleassignmentschedulerequestsAsync()
+        public async Task<RbacapplicationListRoleAssignmentschedulerequestsResponse> RbacapplicationListRoleAssignmentschedulerequestsAsync()
         {
-            var p = new RbacapplicationListRoleassignmentschedulerequestsParameter();
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulerequestsParameter, RbacapplicationListRoleassignmentschedulerequestsResponse>(p, CancellationToken.None);
+            var p = new RbacapplicationListRoleAssignmentschedulerequestsParameter();
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulerequestsParameter, RbacapplicationListRoleAssignmentschedulerequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulerequestsResponse> RbacapplicationListRoleassignmentschedulerequestsAsync(CancellationToken cancellationToken)
+        public async Task<RbacapplicationListRoleAssignmentschedulerequestsResponse> RbacapplicationListRoleAssignmentschedulerequestsAsync(CancellationToken cancellationToken)
         {
-            var p = new RbacapplicationListRoleassignmentschedulerequestsParameter();
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulerequestsParameter, RbacapplicationListRoleassignmentschedulerequestsResponse>(p, cancellationToken);
+            var p = new RbacapplicationListRoleAssignmentschedulerequestsParameter();
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulerequestsParameter, RbacapplicationListRoleAssignmentschedulerequestsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulerequestsResponse> RbacapplicationListRoleassignmentschedulerequestsAsync(RbacapplicationListRoleassignmentschedulerequestsParameter parameter)
+        public async Task<RbacapplicationListRoleAssignmentschedulerequestsResponse> RbacapplicationListRoleAssignmentschedulerequestsAsync(RbacapplicationListRoleAssignmentschedulerequestsParameter parameter)
         {
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulerequestsParameter, RbacapplicationListRoleassignmentschedulerequestsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulerequestsParameter, RbacapplicationListRoleAssignmentschedulerequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulerequestsResponse> RbacapplicationListRoleassignmentschedulerequestsAsync(RbacapplicationListRoleassignmentschedulerequestsParameter parameter, CancellationToken cancellationToken)
+        public async Task<RbacapplicationListRoleAssignmentschedulerequestsResponse> RbacapplicationListRoleAssignmentschedulerequestsAsync(RbacapplicationListRoleAssignmentschedulerequestsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulerequestsParameter, RbacapplicationListRoleassignmentschedulerequestsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulerequestsParameter, RbacapplicationListRoleAssignmentschedulerequestsResponse>(parameter, cancellationToken);
         }
     }
 }

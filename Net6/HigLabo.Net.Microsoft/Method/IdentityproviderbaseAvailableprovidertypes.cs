@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IdentityproviderbaseAvailableprovidertypesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class IdentityproviderbaseAvailableproviderTypesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_IdentityProviders_AvailableProviderTypes: return $"/identity/identityProviders/availableProviderTypes";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Identity_IdentityProviders_AvailableProviderTypes,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_IdentityProviders_AvailableProviderTypes: return $"/identity/identityProviders/availableProviderTypes";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class IdentityproviderbaseAvailableprovidertypesResponse : RestApiResponse
+    public partial class IdentityproviderbaseAvailableproviderTypesResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseAvailableprovidertypesResponse> IdentityproviderbaseAvailableprovidertypesAsync()
+        public async Task<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync()
         {
-            var p = new IdentityproviderbaseAvailableprovidertypesParameter();
-            return await this.SendAsync<IdentityproviderbaseAvailableprovidertypesParameter, IdentityproviderbaseAvailableprovidertypesResponse>(p, CancellationToken.None);
+            var p = new IdentityproviderbaseAvailableproviderTypesParameter();
+            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseAvailableprovidertypesResponse> IdentityproviderbaseAvailableprovidertypesAsync(CancellationToken cancellationToken)
+        public async Task<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityproviderbaseAvailableprovidertypesParameter();
-            return await this.SendAsync<IdentityproviderbaseAvailableprovidertypesParameter, IdentityproviderbaseAvailableprovidertypesResponse>(p, cancellationToken);
+            var p = new IdentityproviderbaseAvailableproviderTypesParameter();
+            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseAvailableprovidertypesResponse> IdentityproviderbaseAvailableprovidertypesAsync(IdentityproviderbaseAvailableprovidertypesParameter parameter)
+        public async Task<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync(IdentityproviderbaseAvailableproviderTypesParameter parameter)
         {
-            return await this.SendAsync<IdentityproviderbaseAvailableprovidertypesParameter, IdentityproviderbaseAvailableprovidertypesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-availableprovidertypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityproviderbaseAvailableprovidertypesResponse> IdentityproviderbaseAvailableprovidertypesAsync(IdentityproviderbaseAvailableprovidertypesParameter parameter, CancellationToken cancellationToken)
+        public async Task<IdentityproviderbaseAvailableproviderTypesResponse> IdentityproviderbaseAvailableproviderTypesAsync(IdentityproviderbaseAvailableproviderTypesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityproviderbaseAvailableprovidertypesParameter, IdentityproviderbaseAvailableprovidertypesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityproviderbaseAvailableproviderTypesParameter, IdentityproviderbaseAvailableproviderTypesResponse>(parameter, cancellationToken);
         }
     }
 }

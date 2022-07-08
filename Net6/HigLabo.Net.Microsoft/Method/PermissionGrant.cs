@@ -4,47 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PermissionGrantParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string EncodedSharingUrl { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Shares_EncodedSharingUrl_Permission_Grant: return $"/shares/{EncodedSharingUrl}/permission/grant";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Shares_EncodedSharingUrl_Permission_Grant,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Shares_EncodedSharingUrl_Permission_Grant: return $"/shares/{EncodedSharingUrl}/permission/grant";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public DriveRecipient[]? Recipients { get; set; }
         public String[]? Roles { get; set; }
-        public string EncodedSharingUrl { get; set; }
     }
     public partial class PermissionGrantResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/permission?view=graph-rest-1.0
-        /// </summary>
-        public partial class Permission
-        {
-            public string? Id { get; set; }
-            public SharePointIdentitySet? GrantedToV2 { get; set; }
-            public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
-            public SharingInvitation? Invitation { get; set; }
-            public ItemReference? InheritedFrom { get; set; }
-            public SharingLink? Link { get; set; }
-            public string[]? Roles { get; set; }
-            public string? ShareId { get; set; }
-            public DateTimeOffset? ExpirationDateTime { get; set; }
-            public bool? HasPassword { get; set; }
-        }
-
         public Permission[] Value { get; set; }
     }
     public partial class MicrosoftClient

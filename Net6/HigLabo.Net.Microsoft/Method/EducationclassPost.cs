@@ -4,7 +4,26 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EducationclassPostParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes: return $"/education/classes";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum EducationclassPostParameterEducationExternalSource
+        {
+            Sis,
+            Manual,
+        }
+        public enum EducationClassEducationExternalSource
         {
             Sis,
             Manual,
@@ -14,16 +33,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes: return $"/education/classes";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -39,6 +54,14 @@ namespace HigLabo.Net.Microsoft
         public string? ExternalSourceDetail { get; set; }
         public string? Grade { get; set; }
         public EducationTerm? Term { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public Group? Group { get; set; }
+        public EducationUser[]? Members { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationUser[]? Teachers { get; set; }
+        public EducationCategory[]? AssignmentCategories { get; set; }
+        public EducationAssignmentDefaults[]? AssignmentDefaults { get; set; }
+        public EducationAssignmentSettings[]? AssignmentSettings { get; set; }
     }
     public partial class EducationclassPostResponse : RestApiResponse
     {
@@ -60,6 +83,14 @@ namespace HigLabo.Net.Microsoft
         public string? ExternalSourceDetail { get; set; }
         public string? Grade { get; set; }
         public EducationTerm? Term { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public Group? Group { get; set; }
+        public EducationUser[]? Members { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationUser[]? Teachers { get; set; }
+        public EducationCategory[]? AssignmentCategories { get; set; }
+        public EducationAssignmentDefaults[]? AssignmentDefaults { get; set; }
+        public EducationAssignmentSettings[]? AssignmentSettings { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemUnfollowParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ItemId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Following_ItemId: return $"/me/drive/following/{ItemId}";
+                    case ApiPath.Users_UserId_Drive_Following_ItemId: return $"/users/{UserId}/drive/following/{ItemId}";
+                    case ApiPath.Me_Drive_Items_ItemId_Unfollow: return $"/me/drive/items/{ItemId}/unfollow";
+                    case ApiPath.Users_UserId_Drive_Items_ItemId_Unfollow: return $"/users/{UserId}/drive/items/{ItemId}/unfollow";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Drive_Following_ItemId,
@@ -12,24 +31,15 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_Drive_Items_ItemId_Unfollow,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Following_ItemId: return $"/me/drive/following/{ItemId}";
-                    case ApiPath.Users_UserId_Drive_Following_ItemId: return $"/users/{UserId}/drive/following/{ItemId}";
-                    case ApiPath.Me_Drive_Items_ItemId_Unfollow: return $"/me/drive/items/{ItemId}/unfollow";
-                    case ApiPath.Users_UserId_Drive_Items_ItemId_Unfollow: return $"/users/{UserId}/drive/items/{ItemId}/unfollow";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ItemId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class DriveitemUnfollowResponse : RestApiResponse
     {

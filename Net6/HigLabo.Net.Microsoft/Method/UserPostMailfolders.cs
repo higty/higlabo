@@ -4,29 +4,49 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserPostMailfoldersParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_MailFolders: return $"/me/mailFolders";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders: return $"/users/{IdOrUserPrincipalName}/mailFolders";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_MailFolders,
             Users_IdOrUserPrincipalName_MailFolders,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_MailFolders: return $"/me/mailFolders";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders: return $"/users/{IdOrUserPrincipalName}/mailFolders";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DisplayName { get; set; }
         public bool? IsHidden { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
+        public Int32? ChildFolderCount { get; set; }
+        public string? Id { get; set; }
+        public string? ParentFolderId { get; set; }
+        public Int32? TotalItemCount { get; set; }
+        public Int32? UnreadItemCount { get; set; }
+        public MailFolder[]? ChildFolders { get; set; }
+        public MessageRule[]? MessageRules { get; set; }
+        public Message[]? Messages { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
     public partial class UserPostMailfoldersResponse : RestApiResponse
     {
@@ -37,6 +57,11 @@ namespace HigLabo.Net.Microsoft
         public string? ParentFolderId { get; set; }
         public Int32? TotalItemCount { get; set; }
         public Int32? UnreadItemCount { get; set; }
+        public MailFolder[]? ChildFolders { get; set; }
+        public MessageRule[]? MessageRules { get; set; }
+        public Message[]? Messages { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
     public partial class MicrosoftClient
     {

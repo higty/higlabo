@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewhistorydefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DefinitionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions_DefinitionId: return $"/identityGovernance/accessReviews/historyDefinitions/{DefinitionId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             IdentityGovernance_AccessReviews_HistoryDefinitions_DefinitionId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_HistoryDefinitions_DefinitionId: return $"/identityGovernance/accessReviews/historyDefinitions/{DefinitionId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string DefinitionId { get; set; }
     }
     public partial class AccessreviewhistorydefinitionGetResponse : RestApiResponse
     {
@@ -64,6 +74,7 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
         public AccessReviewScope[]? Scopes { get; set; }
         public AccessReviewHistoryDefinitionAccessReviewHistoryStatus Status { get; set; }
+        public AccessReviewHistoryInstance[]? Instances { get; set; }
     }
     public partial class MicrosoftClient
     {

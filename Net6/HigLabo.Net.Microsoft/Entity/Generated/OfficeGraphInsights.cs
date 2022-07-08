@@ -7,5 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OfficeGraphInsights
     {
+        public Trending[]? Trending { get; set; }
+        public UsedInsight[]? Used { get; set; }
+        public SharedInsight[]? Shared { get; set; }
     }
 }

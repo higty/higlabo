@@ -4,8 +4,44 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ConversationthreadListPostsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string GroupId { get; set; }
+            public string ThreadId { get; set; }
+            public string ConversationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_GroupId_Threads_ThreadId_Posts: return $"/groups/{GroupId}/threads/{ThreadId}/posts";
+                    case ApiPath.Groups_GroupId_Conversations_ConversationId_Threads_ThreadId_Posts: return $"/groups/{GroupId}/conversations/{ConversationId}/threads/{ThreadId}/posts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Body,
+            Categories,
+            ChangeKey,
+            ConversationId,
+            ConversationThreadId,
+            CreatedDateTime,
+            From,
+            HasAttachments,
+            Id,
+            LastModifiedDateTime,
+            NewParticipants,
+            ReceivedDateTime,
+            Sender,
+            Attachments,
+            Extensions,
+            InReplyTo,
+            MultiValueExtendedProperties,
+            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -13,17 +49,12 @@ namespace HigLabo.Net.Microsoft
             Groups_GroupId_Conversations_ConversationId_Threads_ThreadId_Posts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_GroupId_Threads_ThreadId_Posts: return $"/groups/{GroupId}/threads/{ThreadId}/posts";
-                    case ApiPath.Groups_GroupId_Conversations_ConversationId_Threads_ThreadId_Posts: return $"/groups/{GroupId}/conversations/{ConversationId}/threads/{ThreadId}/posts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,32 +66,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string GroupId { get; set; }
-        public string ThreadId { get; set; }
-        public string ConversationId { get; set; }
     }
     public partial class ConversationthreadListPostsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/post?view=graph-rest-1.0
-        /// </summary>
-        public partial class Post
-        {
-            public ItemBody? Body { get; set; }
-            public String[]? Categories { get; set; }
-            public string? ChangeKey { get; set; }
-            public string? ConversationId { get; set; }
-            public string? ConversationThreadId { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public Recipient? From { get; set; }
-            public bool? HasAttachments { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public Recipient[]? NewParticipants { get; set; }
-            public DateTimeOffset? ReceivedDateTime { get; set; }
-            public Recipient? Sender { get; set; }
-        }
-
         public Post[] Value { get; set; }
     }
     public partial class MicrosoftClient

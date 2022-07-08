@@ -4,8 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorkbookListTablesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Tables: return $"/me/drive/items/{Id}/workbook/tables";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Tables: return $"/me/drive/root:/{ItemPath}:/workbook/tables";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Name,
+            ShowHeaders,
+            ShowTotals,
+            Style,
+            HighlightFirstColumn,
+            HighlightLastColumn,
+            ShowBandedColumns,
+            ShowBandedRows,
+            ShowFilterButton,
+            LegacyId,
+            Columns,
+            Rows,
+            Sort,
+            Worksheet,
         }
         public enum ApiPath
         {
@@ -13,17 +45,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Tables,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Tables: return $"/me/drive/items/{Id}/workbook/tables";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Tables: return $"/me/drive/root:/{ItemPath}:/workbook/tables";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,29 +62,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class WorkbookListTablesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/table?view=graph-rest-1.0
-        /// </summary>
-        public partial class Table
-        {
-            public string? Id { get; set; }
-            public string? Name { get; set; }
-            public bool? ShowHeaders { get; set; }
-            public bool? ShowTotals { get; set; }
-            public string? Style { get; set; }
-            public bool? HighlightFirstColumn { get; set; }
-            public bool? HighlightLastColumn { get; set; }
-            public bool? ShowBandedColumns { get; set; }
-            public bool? ShowBandedRows { get; set; }
-            public bool? ShowFilterButton { get; set; }
-            public string? LegacyId { get; set; }
-        }
-
         public Table[] Value { get; set; }
     }
     public partial class MicrosoftClient

@@ -4,28 +4,38 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotasklistDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId: return $"/me/todo/lists/{TodoTaskListId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Todo_Lists_TodoTaskListId,
             Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_TodoTaskListId: return $"/me/todo/lists/{TodoTaskListId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string TodoTaskListId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class TodotasklistDeleteResponse : RestApiResponse
     {

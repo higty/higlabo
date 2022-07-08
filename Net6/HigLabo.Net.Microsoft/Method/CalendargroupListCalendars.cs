@@ -2,10 +2,48 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CalendargroupListCalendarsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class CalendarGroupListCalendarsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Calendars: return $"/me/calendars";
+                    case ApiPath.Users_IdOrUserPrincipalName_Calendars: return $"/users/{IdOrUserPrincipalName}/calendars";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars: return $"/me/calendarGroups/{Id}/calendars";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars: return $"/users/{IdOrUserPrincipalName}/calendarGroups/{Id}/calendars";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AllowedOnlineMeetingProviders,
+            CanEdit,
+            CanShare,
+            CanViewPrivateItems,
+            ChangeKey,
+            Color,
+            DefaultOnlineMeetingProvider,
+            HexColor,
+            Id,
+            IsDefaultCalendar,
+            IsRemovable,
+            IsTallyingResponses,
+            Name,
+            Owner,
+            CalendarPermissions,
+            CalendarView,
+            Events,
+            MultiValueExtendedProperties,
+            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -15,19 +53,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Calendars: return $"/me/calendars";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendars: return $"/users/{IdOrUserPrincipalName}/calendars";
-                    case ApiPath.Me_CalendarGroups_Id_Calendars: return $"/me/calendarGroups/{Id}/calendars";
-                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars: return $"/users/{IdOrUserPrincipalName}/calendarGroups/{Id}/calendars";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,54 +70,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
     }
-    public partial class CalendargroupListCalendarsResponse : RestApiResponse
+    public partial class CalendarGroupListCalendarsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0
-        /// </summary>
-        public partial class Calendar
-        {
-            public enum CalendarOnlineMeetingProviderType
-            {
-                Unknown,
-                SkypeForBusiness,
-                SkypeForConsumer,
-                TeamsForBusiness,
-            }
-            public enum CalendarCalendarColor
-            {
-                Auto,
-                LightBlue,
-                LightGreen,
-                LightOrange,
-                LightGray,
-                LightYellow,
-                LightTeal,
-                LightPink,
-                LightBrown,
-                LightRed,
-                MaxColor,
-            }
-
-            public CalendarOnlineMeetingProviderType AllowedOnlineMeetingProviders { get; set; }
-            public bool? CanEdit { get; set; }
-            public bool? CanShare { get; set; }
-            public bool? CanViewPrivateItems { get; set; }
-            public string? ChangeKey { get; set; }
-            public CalendarCalendarColor Color { get; set; }
-            public CalendarOnlineMeetingProviderType DefaultOnlineMeetingProvider { get; set; }
-            public string? HexColor { get; set; }
-            public string? Id { get; set; }
-            public bool? IsDefaultCalendar { get; set; }
-            public bool? IsRemovable { get; set; }
-            public bool? IsTallyingResponses { get; set; }
-            public string? Name { get; set; }
-            public EmailAddress? Owner { get; set; }
-        }
-
         public Calendar[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -94,32 +80,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendargroupListCalendarsResponse> CalendargroupListCalendarsAsync()
+        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync()
         {
-            var p = new CalendargroupListCalendarsParameter();
-            return await this.SendAsync<CalendargroupListCalendarsParameter, CalendargroupListCalendarsResponse>(p, CancellationToken.None);
+            var p = new CalendarGroupListCalendarsParameter();
+            return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendargroupListCalendarsResponse> CalendargroupListCalendarsAsync(CancellationToken cancellationToken)
+        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CancellationToken cancellationToken)
         {
-            var p = new CalendargroupListCalendarsParameter();
-            return await this.SendAsync<CalendargroupListCalendarsParameter, CalendargroupListCalendarsResponse>(p, cancellationToken);
+            var p = new CalendarGroupListCalendarsParameter();
+            return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendargroupListCalendarsResponse> CalendargroupListCalendarsAsync(CalendargroupListCalendarsParameter parameter)
+        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CalendarGroupListCalendarsParameter parameter)
         {
-            return await this.SendAsync<CalendargroupListCalendarsParameter, CalendargroupListCalendarsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/calendargroup-list-calendars?view=graph-rest-1.0
         /// </summary>
-        public async Task<CalendargroupListCalendarsResponse> CalendargroupListCalendarsAsync(CalendargroupListCalendarsParameter parameter, CancellationToken cancellationToken)
+        public async Task<CalendarGroupListCalendarsResponse> CalendarGroupListCalendarsAsync(CalendarGroupListCalendarsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CalendargroupListCalendarsParameter, CalendargroupListCalendarsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CalendarGroupListCalendarsParameter, CalendarGroupListCalendarsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,25 +4,35 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamPutTeamsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Team: return $"/groups/{Id}/team";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Groups_Id_Team,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Team: return $"/groups/{Id}/team";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PUT";
-        public string Id { get; set; }
     }
     public partial class TeamPutTeamsResponse : RestApiResponse
     {
@@ -39,6 +49,13 @@ namespace HigLabo.Net.Microsoft
         public TeamMessagingSettings? MessagingSettings { get; set; }
         public string? WebUrl { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public Channel[]? Channels { get; set; }
+        public TeamsAppInstallation[]? InstalledApps { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public TeamsASyncOperation[]? Operations { get; set; }
+        public Channel? PrimaryChannel { get; set; }
+        public Schedule? Schedule { get; set; }
+        public TeamsTemplate? Template { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -15,5 +15,6 @@ namespace HigLabo.Net.Microsoft
         public bool? IsDefault { get; set; }
         public bool? IsMajorVersion { get; set; }
         public string? Language { get; set; }
+        public AgreementFileVersion[]? Versions { get; set; }
     }
 }

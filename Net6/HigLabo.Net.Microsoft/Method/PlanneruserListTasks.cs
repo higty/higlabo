@@ -2,10 +2,53 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PlanneruserListTasksParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PlannerUserListTasksParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Planner_Tasks: return $"/me/planner/tasks";
+                    case ApiPath.Users_Id_Planner_Tasks: return $"/users/{Id}/planner/tasks";
+                    case ApiPath.Drive_Root_CreatedByUser_Planner_Tasks: return $"/drive/root/createdByUser/planner/tasks";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ActiveChecklistItemCount,
+            AppliedCategories,
+            AssigneePriority,
+            Assignments,
+            BucketId,
+            ChecklistItemCount,
+            CompletedBy,
+            CompletedDateTime,
+            ConversationThreadId,
+            CreatedBy,
+            CreatedDateTime,
+            DueDateTime,
+            HasDescription,
+            Id,
+            OrderHint,
+            PercentComplete,
+            Priority,
+            PlanId,
+            PreviewType,
+            ReferenceCount,
+            StartDateTime,
+            Title,
+            AssignedToTaskBoardFormat,
+            BucketTaskBoardFormat,
+            Details,
+            ProgressTaskBoardFormat,
         }
         public enum ApiPath
         {
@@ -14,18 +57,12 @@ namespace HigLabo.Net.Microsoft
             Drive_Root_CreatedByUser_Planner_Tasks,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Planner_Tasks: return $"/me/planner/tasks";
-                    case ApiPath.Users_Id_Planner_Tasks: return $"/users/{Id}/planner/tasks";
-                    case ApiPath.Drive_Root_CreatedByUser_Planner_Tasks: return $"/drive/root/createdByUser/planner/tasks";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,39 +74,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class PlanneruserListTasksResponse : RestApiResponse
+    public partial class PlannerUserListTasksResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/plannertask?view=graph-rest-1.0
-        /// </summary>
-        public partial class PlannerTask
-        {
-            public Int32? ActiveChecklistItemCount { get; set; }
-            public PlannerAppliedCategories? AppliedCategories { get; set; }
-            public string? AssigneePriority { get; set; }
-            public PlannerAssignments? Assignments { get; set; }
-            public string? BucketId { get; set; }
-            public Int32? ChecklistItemCount { get; set; }
-            public IdentitySet? CompletedBy { get; set; }
-            public DateTimeOffset? CompletedDateTime { get; set; }
-            public string? ConversationThreadId { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? DueDateTime { get; set; }
-            public bool? HasDescription { get; set; }
-            public string? Id { get; set; }
-            public string? OrderHint { get; set; }
-            public Int32? PercentComplete { get; set; }
-            public Int32? Priority { get; set; }
-            public string? PlanId { get; set; }
-            public string? PreviewType { get; set; }
-            public Int32? ReferenceCount { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public string? Title { get; set; }
-        }
-
         public PlannerTask[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -77,32 +84,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlanneruserListTasksResponse> PlanneruserListTasksAsync()
+        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync()
         {
-            var p = new PlanneruserListTasksParameter();
-            return await this.SendAsync<PlanneruserListTasksParameter, PlanneruserListTasksResponse>(p, CancellationToken.None);
+            var p = new PlannerUserListTasksParameter();
+            return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlanneruserListTasksResponse> PlanneruserListTasksAsync(CancellationToken cancellationToken)
+        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(CancellationToken cancellationToken)
         {
-            var p = new PlanneruserListTasksParameter();
-            return await this.SendAsync<PlanneruserListTasksParameter, PlanneruserListTasksResponse>(p, cancellationToken);
+            var p = new PlannerUserListTasksParameter();
+            return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlanneruserListTasksResponse> PlanneruserListTasksAsync(PlanneruserListTasksParameter parameter)
+        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter)
         {
-            return await this.SendAsync<PlanneruserListTasksParameter, PlanneruserListTasksResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlanneruserListTasksResponse> PlanneruserListTasksAsync(PlanneruserListTasksParameter parameter, CancellationToken cancellationToken)
+        public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PlanneruserListTasksParameter, PlanneruserListTasksResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, cancellationToken);
         }
     }
 }

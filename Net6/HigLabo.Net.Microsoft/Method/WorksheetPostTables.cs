@@ -4,31 +4,56 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorksheetPostTablesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrName { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Tables_Add: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}/tables/add";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Tables_Add: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}/tables/add";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Tables_Add,
             Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Tables_Add,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname_Tables_Add: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}/tables/add";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname_Tables_Add: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}/tables/add";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Address { get; set; }
         public bool? HasHeaders { get; set; }
-        public string Id { get; set; }
-        public string IdOrName { get; set; }
-        public string ItemPath { get; set; }
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public bool? ShowHeaders { get; set; }
+        public bool? ShowTotals { get; set; }
+        public string? Style { get; set; }
+        public bool? HighlightFirstColumn { get; set; }
+        public bool? HighlightLastColumn { get; set; }
+        public bool? ShowBandedColumns { get; set; }
+        public bool? ShowBandedRows { get; set; }
+        public bool? ShowFilterButton { get; set; }
+        public string? LegacyId { get; set; }
+        public WorkbookTableColumn[]? Columns { get; set; }
+        public WorkbookTableRow[]? Rows { get; set; }
+        public TableSort? Sort { get; set; }
+        public Worksheet? Worksheet { get; set; }
     }
     public partial class WorksheetPostTablesResponse : RestApiResponse
     {
@@ -43,6 +68,10 @@ namespace HigLabo.Net.Microsoft
         public bool? ShowBandedRows { get; set; }
         public bool? ShowFilterButton { get; set; }
         public string? LegacyId { get; set; }
+        public WorkbookTableColumn[]? Columns { get; set; }
+        public WorkbookTableRow[]? Rows { get; set; }
+        public TableSort? Sort { get; set; }
+        public Worksheet? Worksheet { get; set; }
     }
     public partial class MicrosoftClient
     {

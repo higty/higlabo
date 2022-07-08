@@ -7,11 +7,12 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ItemAttachment
     {
-        public string ContentType { get; set; }
-        public string Id { get; set; }
-        public bool IsInline { get; set; }
-        public DateTimeOffset LastModifiedDateTime { get; set; }
-        public string Name { get; set; }
+        public string? ContentType { get; set; }
+        public string? Id { get; set; }
+        public bool? IsInline { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? Name { get; set; }
         public Int32? Size { get; set; }
+        public OutlookItem? Item { get; set; }
     }
 }

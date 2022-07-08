@@ -8,5 +8,8 @@ namespace HigLabo.Net.Microsoft
     public partial class Directory
     {
         public string? Id { get; set; }
+        public AdministrativeUnit[]? AdministrativeUnits { get; set; }
+        public DirectoryObject[]? DeletedItems { get; set; }
+        public IdentityProviderBase[]? FederationConfigurations { get; set; }
     }
 }

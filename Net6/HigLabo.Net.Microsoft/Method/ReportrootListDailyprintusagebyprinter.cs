@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootListDailyprintusagebyprinterParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootListDailyprintusagebyprinterParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_DailyPrintUsageByPrinter: return $"/reports/dailyPrintUsageByPrinter";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_DailyPrintUsageByPrinter,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_DailyPrintUsageByPrinter: return $"/reports/dailyPrintUsageByPrinter";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,21 +44,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootListDailyprintusagebyprinterResponse : RestApiResponse
+    public partial class ReportRootListDailyprintusagebyprinterResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printusagebyprinter?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintUsageByPrinter
-        {
-            public string? Id { get; set; }
-            public string? PrinterID { get; set; }
-            public DateOnly? UsageDate { get; set; }
-            public Int64? CompletedBlackAndWhiteJobCount { get; set; }
-            public Int64? CompletedColorJobCount { get; set; }
-            public Int64? IncompleteJobCount { get; set; }
-        }
-
         public PrintUsageByPrinter[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -56,32 +53,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyprinterResponse> ReportrootListDailyprintusagebyprinterAsync()
+        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync()
         {
-            var p = new ReportrootListDailyprintusagebyprinterParameter();
-            return await this.SendAsync<ReportrootListDailyprintusagebyprinterParameter, ReportrootListDailyprintusagebyprinterResponse>(p, CancellationToken.None);
+            var p = new ReportRootListDailyprintusagebyprinterParameter();
+            return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyprinterResponse> ReportrootListDailyprintusagebyprinterAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootListDailyprintusagebyprinterParameter();
-            return await this.SendAsync<ReportrootListDailyprintusagebyprinterParameter, ReportrootListDailyprintusagebyprinterResponse>(p, cancellationToken);
+            var p = new ReportRootListDailyprintusagebyprinterParameter();
+            return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyprinterResponse> ReportrootListDailyprintusagebyprinterAsync(ReportrootListDailyprintusagebyprinterParameter parameter)
+        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter)
         {
-            return await this.SendAsync<ReportrootListDailyprintusagebyprinterParameter, ReportrootListDailyprintusagebyprinterResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyprinterResponse> ReportrootListDailyprintusagebyprinterAsync(ReportrootListDailyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootListDailyprintusagebyprinterParameter, ReportrootListDailyprintusagebyprinterResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, cancellationToken);
         }
     }
 }

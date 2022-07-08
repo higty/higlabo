@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class RubricQualitySelectedColumnModel
     {
-        public string ColumnId { get; set; }
-        public string QualityId { get; set; }
+        public string? ColumnId { get; set; }
+        public string? QualityId { get; set; }
     }
 }

@@ -2,26 +2,46 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EntitlementmanagementListAssignmentrequestsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EntitlementManagementListAssignmentrequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentRequests: return $"/identityGovernance/entitlementManagement/assignmentRequests";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CompletedDateTime,
+            CreatedDateTime,
+            Id,
+            RequestType,
+            Schedule,
+            State,
+            Status,
+            AccessPackage,
+            Assignment,
+            Requestor,
         }
         public enum ApiPath
         {
             IdentityGovernance_EntitlementManagement_AssignmentRequests,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentRequests: return $"/identityGovernance/entitlementManagement/assignmentRequests";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,51 +54,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EntitlementmanagementListAssignmentrequestsResponse : RestApiResponse
+    public partial class EntitlementManagementListAssignmentrequestsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequest?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessPackageAssignmentRequest
-        {
-            public enum AccessPackageAssignmentRequestAccessPackageRequestType
-            {
-                NotSpecified,
-                UserAdd,
-                UserUpdate,
-                UserRemove,
-                AdminAdd,
-                AdminUpdate,
-                AdminRemove,
-                SystemAdd,
-                SystemUpdate,
-                SystemRemove,
-                OnBehalfAdd,
-                UnknownFutureValue,
-            }
-            public enum AccessPackageAssignmentRequestAccessPackageRequestState
-            {
-                Submitted,
-                PendingApproval,
-                Delivering,
-                Delivered,
-                DeliveryFailed,
-                Denied,
-                Scheduled,
-                Canceled,
-                PartiallyDelivered,
-                UnknownFutureValue,
-            }
-
-            public DateTimeOffset? CompletedDateTime { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Id { get; set; }
-            public AccessPackageAssignmentRequestAccessPackageRequestType RequestType { get; set; }
-            public EntitlementManagementSchedule? Schedule { get; set; }
-            public AccessPackageAssignmentRequestAccessPackageRequestState State { get; set; }
-            public string? Status { get; set; }
-        }
-
         public AccessPackageAssignmentRequest[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -86,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListAssignmentrequestsResponse> EntitlementmanagementListAssignmentrequestsAsync()
+        public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync()
         {
-            var p = new EntitlementmanagementListAssignmentrequestsParameter();
-            return await this.SendAsync<EntitlementmanagementListAssignmentrequestsParameter, EntitlementmanagementListAssignmentrequestsResponse>(p, CancellationToken.None);
+            var p = new EntitlementManagementListAssignmentrequestsParameter();
+            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListAssignmentrequestsResponse> EntitlementmanagementListAssignmentrequestsAsync(CancellationToken cancellationToken)
+        public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(CancellationToken cancellationToken)
         {
-            var p = new EntitlementmanagementListAssignmentrequestsParameter();
-            return await this.SendAsync<EntitlementmanagementListAssignmentrequestsParameter, EntitlementmanagementListAssignmentrequestsResponse>(p, cancellationToken);
+            var p = new EntitlementManagementListAssignmentrequestsParameter();
+            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListAssignmentrequestsResponse> EntitlementmanagementListAssignmentrequestsAsync(EntitlementmanagementListAssignmentrequestsParameter parameter)
+        public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(EntitlementManagementListAssignmentrequestsParameter parameter)
         {
-            return await this.SendAsync<EntitlementmanagementListAssignmentrequestsParameter, EntitlementmanagementListAssignmentrequestsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
-        public async Task<EntitlementmanagementListAssignmentrequestsResponse> EntitlementmanagementListAssignmentrequestsAsync(EntitlementmanagementListAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
+        public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(EntitlementManagementListAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EntitlementmanagementListAssignmentrequestsParameter, EntitlementmanagementListAssignmentrequestsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(parameter, cancellationToken);
         }
     }
 }

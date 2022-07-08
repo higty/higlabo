@@ -4,6 +4,29 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ItemanalyticsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DriveId { get; set; }
+            public string ItemId { get; set; }
+            public string SiteId { get; set; }
+            public string ListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drives_DriveId_Items_ItemId_Analytics_AllTime: return $"/drives/{DriveId}/items/{ItemId}/analytics/allTime";
+                    case ApiPath.Sites_SiteId_Analytics_AllTime: return $"/sites/{SiteId}/analytics/allTime";
+                    case ApiPath.Sites_SiteId_Lists_ListId_Items_ItemId_Analytics_AllTime: return $"/sites/{SiteId}/lists/{ListId}/items/{ItemId}/analytics/allTime";
+                    case ApiPath.Drives_DriveId_Items_ItemId_Analytics_LastSevenDays: return $"/drives/{DriveId}/items/{ItemId}/analytics/lastSevenDays";
+                    case ApiPath.Sites_SiteId_Analytics_LastSevenDays: return $"/sites/{SiteId}/analytics/lastSevenDays";
+                    case ApiPath.Sites_SiteId_Lists_ListId_Items_ItemId_Analytics_LastSevenDays: return $"/sites/{SiteId}/lists/{ListId}/items/{ItemId}/analytics/lastSevenDays";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -17,21 +40,12 @@ namespace HigLabo.Net.Microsoft
             Sites_SiteId_Lists_ListId_Items_ItemId_Analytics_LastSevenDays,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drives_DriveId_Items_ItemId_Analytics_AllTime: return $"/drives/{DriveId}/items/{ItemId}/analytics/allTime";
-                    case ApiPath.Sites_SiteId_Analytics_AllTime: return $"/sites/{SiteId}/analytics/allTime";
-                    case ApiPath.Sites_SiteId_Lists_ListId_Items_ItemId_Analytics_AllTime: return $"/sites/{SiteId}/lists/{ListId}/items/{ItemId}/analytics/allTime";
-                    case ApiPath.Drives_DriveId_Items_ItemId_Analytics_LastSevenDays: return $"/drives/{DriveId}/items/{ItemId}/analytics/lastSevenDays";
-                    case ApiPath.Sites_SiteId_Analytics_LastSevenDays: return $"/sites/{SiteId}/analytics/lastSevenDays";
-                    case ApiPath.Sites_SiteId_Lists_ListId_Items_ItemId_Analytics_LastSevenDays: return $"/sites/{SiteId}/lists/{ListId}/items/{ItemId}/analytics/lastSevenDays";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -43,22 +57,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string DriveId { get; set; }
-        public string ItemId { get; set; }
-        public string SiteId { get; set; }
-        public string ListId { get; set; }
     }
     public partial class ItemanalyticsGetResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/itemanalytics?view=graph-rest-1.0
-        /// </summary>
-        public partial class ItemAnalytics
-        {
-            public ItemActivityStat? AllTime { get; set; }
-            public ItemActivityStat? LastSevenDays { get; set; }
-        }
-
         public ItemAnalytics[] Value { get; set; }
     }
     public partial class MicrosoftClient

@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetteamsdeviceusagedistributionusercountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetteamsdeviceusagedistributionUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetTeamsDeviceUsageDistributionUserCounts: return $"/reports/getTeamsDeviceUsageDistributionUserCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetTeamsDeviceUsageDistributionUserCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetTeamsDeviceUsageDistributionUserCounts: return $"/reports/getTeamsDeviceUsageDistributionUserCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetteamsdeviceusagedistributionusercountsResponse : RestApiResponse
+    public partial class ReportRootGetteamsdeviceusagedistributionUsercountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusagedistributionusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetteamsdeviceusagedistributionusercountsResponse> ReportrootGetteamsdeviceusagedistributionusercountsAsync()
+        public async Task<ReportRootGetteamsdeviceusagedistributionUsercountsResponse> ReportRootGetteamsdeviceusagedistributionUsercountsAsync()
         {
-            var p = new ReportrootGetteamsdeviceusagedistributionusercountsParameter();
-            return await this.SendAsync<ReportrootGetteamsdeviceusagedistributionusercountsParameter, ReportrootGetteamsdeviceusagedistributionusercountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetteamsdeviceusagedistributionUsercountsParameter();
+            return await this.SendAsync<ReportRootGetteamsdeviceusagedistributionUsercountsParameter, ReportRootGetteamsdeviceusagedistributionUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusagedistributionusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetteamsdeviceusagedistributionusercountsResponse> ReportrootGetteamsdeviceusagedistributionusercountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetteamsdeviceusagedistributionUsercountsResponse> ReportRootGetteamsdeviceusagedistributionUsercountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetteamsdeviceusagedistributionusercountsParameter();
-            return await this.SendAsync<ReportrootGetteamsdeviceusagedistributionusercountsParameter, ReportrootGetteamsdeviceusagedistributionusercountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetteamsdeviceusagedistributionUsercountsParameter();
+            return await this.SendAsync<ReportRootGetteamsdeviceusagedistributionUsercountsParameter, ReportRootGetteamsdeviceusagedistributionUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusagedistributionusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetteamsdeviceusagedistributionusercountsResponse> ReportrootGetteamsdeviceusagedistributionusercountsAsync(ReportrootGetteamsdeviceusagedistributionusercountsParameter parameter)
+        public async Task<ReportRootGetteamsdeviceusagedistributionUsercountsResponse> ReportRootGetteamsdeviceusagedistributionUsercountsAsync(ReportRootGetteamsdeviceusagedistributionUsercountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetteamsdeviceusagedistributionusercountsParameter, ReportrootGetteamsdeviceusagedistributionusercountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetteamsdeviceusagedistributionUsercountsParameter, ReportRootGetteamsdeviceusagedistributionUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusagedistributionusercounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetteamsdeviceusagedistributionusercountsResponse> ReportrootGetteamsdeviceusagedistributionusercountsAsync(ReportrootGetteamsdeviceusagedistributionusercountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetteamsdeviceusagedistributionUsercountsResponse> ReportRootGetteamsdeviceusagedistributionUsercountsAsync(ReportRootGetteamsdeviceusagedistributionUsercountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetteamsdeviceusagedistributionusercountsParameter, ReportrootGetteamsdeviceusagedistributionusercountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetteamsdeviceusagedistributionUsercountsParameter, ReportRootGetteamsdeviceusagedistributionUsercountsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -2,26 +2,42 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class HomerealmdiscoverypolicyListParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class HomerealmdiscoveryPolicyListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_HomeRealmDiscoveryPolicies: return $"/policies/homeRealmDiscoveryPolicies";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Definition,
+            Description,
+            DisplayName,
+            IsOrganizationDefault,
+            AppliesTo,
         }
         public enum ApiPath
         {
             Policies_HomeRealmDiscoveryPolicies,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_HomeRealmDiscoveryPolicies: return $"/policies/homeRealmDiscoveryPolicies";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,20 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class HomerealmdiscoverypolicyListResponse : RestApiResponse
+    public partial class HomerealmdiscoveryPolicyListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/homerealmdiscoverypolicy?view=graph-rest-1.0
-        /// </summary>
-        public partial class HomeRealmDiscoveryPolicy
-        {
-            public string? Id { get; set; }
-            public String[]? Definition { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public bool? IsOrganizationDefault { get; set; }
-        }
-
         public HomeRealmDiscoveryPolicy[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -55,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListResponse> HomerealmdiscoverypolicyListAsync()
+        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync()
         {
-            var p = new HomerealmdiscoverypolicyListParameter();
-            return await this.SendAsync<HomerealmdiscoverypolicyListParameter, HomerealmdiscoverypolicyListResponse>(p, CancellationToken.None);
+            var p = new HomerealmdiscoveryPolicyListParameter();
+            return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListResponse> HomerealmdiscoverypolicyListAsync(CancellationToken cancellationToken)
+        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(CancellationToken cancellationToken)
         {
-            var p = new HomerealmdiscoverypolicyListParameter();
-            return await this.SendAsync<HomerealmdiscoverypolicyListParameter, HomerealmdiscoverypolicyListResponse>(p, cancellationToken);
+            var p = new HomerealmdiscoveryPolicyListParameter();
+            return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListResponse> HomerealmdiscoverypolicyListAsync(HomerealmdiscoverypolicyListParameter parameter)
+        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(HomerealmdiscoveryPolicyListParameter parameter)
         {
-            return await this.SendAsync<HomerealmdiscoverypolicyListParameter, HomerealmdiscoverypolicyListResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListResponse> HomerealmdiscoverypolicyListAsync(HomerealmdiscoverypolicyListParameter parameter, CancellationToken cancellationToken)
+        public async Task<HomerealmdiscoveryPolicyListResponse> HomerealmdiscoveryPolicyListAsync(HomerealmdiscoveryPolicyListParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<HomerealmdiscoverypolicyListParameter, HomerealmdiscoverypolicyListResponse>(parameter, cancellationToken);
+            return await this.SendAsync<HomerealmdiscoveryPolicyListParameter, HomerealmdiscoveryPolicyListResponse>(parameter, cancellationToken);
         }
     }
 }

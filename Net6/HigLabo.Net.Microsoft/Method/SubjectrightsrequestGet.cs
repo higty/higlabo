@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SubjectrightsrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SubjectRightsRequestId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Privacy_SubjectRightsRequests_SubjectRightsRequestId: return $"/privacy/subjectRightsRequests/{SubjectRightsRequestId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Privacy_SubjectRightsRequests_SubjectRightsRequestId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Privacy_SubjectRightsRequests_SubjectRightsRequestId: return $"/privacy/subjectRightsRequests/{SubjectRightsRequestId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SubjectRightsRequestId { get; set; }
     }
     public partial class SubjectrightsrequestGetResponse : RestApiResponse
     {
@@ -81,6 +91,8 @@ namespace HigLabo.Net.Microsoft
         public SubjectRightsRequestStageDetail[]? Stages { get; set; }
         public SubjectRightsRequestSubjectRightsRequestStatus Status { get; set; }
         public SubjectRightsRequestSubjectRightsRequestType Type { get; set; }
+        public AuthoredNote[]? Notes { get; set; }
+        public Team? Team { get; set; }
     }
     public partial class MicrosoftClient
     {

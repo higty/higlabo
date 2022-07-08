@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AverageComparativeScore
     {
-        public string Basis { get; set; }
+        public string? Basis { get; set; }
         public Double? AverageScore { get; set; }
     }
 }

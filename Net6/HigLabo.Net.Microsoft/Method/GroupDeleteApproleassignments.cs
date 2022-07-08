@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class GroupDeleteApproleassignmentsParameter : IRestApiParameter
+    public partial class GroupDeleteApproleAssignmentsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string GroupsId { get; set; }
+            public string AppRoleAssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_AppRoleAssignments_Id: return $"/groups/{GroupsId}/appRoleAssignments/{AppRoleAssignmentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Groups_Id_AppRoleAssignments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_AppRoleAssignments_Id: return $"/groups/{GroupsId}/appRoleAssignments/{AppRoleAssignmentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string GroupsId { get; set; }
-        public string AppRoleAssignmentsId { get; set; }
     }
-    public partial class GroupDeleteApproleassignmentsResponse : RestApiResponse
+    public partial class GroupDeleteApproleAssignmentsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteApproleassignmentsResponse> GroupDeleteApproleassignmentsAsync()
+        public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync()
         {
-            var p = new GroupDeleteApproleassignmentsParameter();
-            return await this.SendAsync<GroupDeleteApproleassignmentsParameter, GroupDeleteApproleassignmentsResponse>(p, CancellationToken.None);
+            var p = new GroupDeleteApproleAssignmentsParameter();
+            return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteApproleassignmentsResponse> GroupDeleteApproleassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new GroupDeleteApproleassignmentsParameter();
-            return await this.SendAsync<GroupDeleteApproleassignmentsParameter, GroupDeleteApproleassignmentsResponse>(p, cancellationToken);
+            var p = new GroupDeleteApproleAssignmentsParameter();
+            return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteApproleassignmentsResponse> GroupDeleteApproleassignmentsAsync(GroupDeleteApproleassignmentsParameter parameter)
+        public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync(GroupDeleteApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<GroupDeleteApproleassignmentsParameter, GroupDeleteApproleassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<GroupDeleteApproleassignmentsResponse> GroupDeleteApproleassignmentsAsync(GroupDeleteApproleassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync(GroupDeleteApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GroupDeleteApproleassignmentsParameter, GroupDeleteApproleassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DomainGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Domains_Id: return $"/domains/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AuthenticationType,
@@ -18,22 +33,22 @@ namespace HigLabo.Net.Microsoft
             PasswordValidityPeriodInDays,
             SupportedServices,
             State,
+            DomainNameReferences,
+            ServiceConfigurationRecords,
+            VerificationDnsRecords,
+            FederationConfiguration,
         }
         public enum ApiPath
         {
             Domains_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Domains_Id: return $"/domains/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -45,7 +60,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class DomainGetResponse : RestApiResponse
     {
@@ -61,6 +75,10 @@ namespace HigLabo.Net.Microsoft
         public Int32? PasswordValidityPeriodInDays { get; set; }
         public String[]? SupportedServices { get; set; }
         public DomainState? State { get; set; }
+        public DirectoryObject[]? DomainNameReferences { get; set; }
+        public DomainDnsRecord[]? ServiceConfigurationRecords { get; set; }
+        public DomainDnsRecord[]? VerificationDnsRecords { get; set; }
+        public InternalDomainFederation? FederationConfiguration { get; set; }
     }
     public partial class MicrosoftClient
     {

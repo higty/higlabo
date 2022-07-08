@@ -4,6 +4,28 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string GroupsId { get; set; }
+            public string PagesId { get; set; }
+            public string SitesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Onenote_Pages_Id: return $"/me/onenote/pages/{Id}";
+                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Pages_Id: return $"/users/{IdOrUserPrincipalName}/onenote/pages/{Id}";
+                    case ApiPath.Groups_Id_Onenote_Pages_Id: return $"/groups/{GroupsId}/onenote/pages/{PagesId}";
+                    case ApiPath.Sites_Id_Onenote_Pages_Id: return $"/sites/{SitesId}/onenote/pages/{PagesId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             Content,
@@ -17,6 +39,8 @@ namespace HigLabo.Net.Microsoft
             Order,
             Self,
             Title,
+            ParentNotebook,
+            ParentSection,
         }
         public enum ApiPath
         {
@@ -26,19 +50,12 @@ namespace HigLabo.Net.Microsoft
             Sites_Id_Onenote_Pages_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Onenote_Pages_Id: return $"/me/onenote/pages/{Id}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Onenote_Pages_Id: return $"/users/{IdOrUserPrincipalName}/onenote/pages/{Id}";
-                    case ApiPath.Groups_Id_Onenote_Pages_Id: return $"/groups/{GroupsId}/onenote/pages/{PagesId}";
-                    case ApiPath.Sites_Id_Onenote_Pages_Id: return $"/sites/{SitesId}/onenote/pages/{PagesId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -50,11 +67,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
-        public string GroupsId { get; set; }
-        public string PagesId { get; set; }
-        public string SitesId { get; set; }
     }
     public partial class PageGetResponse : RestApiResponse
     {
@@ -69,6 +81,8 @@ namespace HigLabo.Net.Microsoft
         public Int32? Order { get; set; }
         public string? Self { get; set; }
         public string? Title { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public Section? ParentSection { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class InsightsListTrendingParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Insights_Trending: return $"/me/insights/trending";
+                    case ApiPath.Users_IdOrUserPrincipalName_Insights_Trending: return $"/users/{IdOrUserPrincipalName}/insights/trending";
+                    case ApiPath.Me_Insights_Trending_Id_Resource: return $"/me/insights/trending/{Id}/resource";
+                    case ApiPath.Users_IdOrUserPrincipalName_Insights_Trending_Id_Resource: return $"/users/{IdOrUserPrincipalName}/insights/trending/{Id}/resource";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -15,19 +34,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Insights_Trending_Id_Resource,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Insights_Trending: return $"/me/insights/trending";
-                    case ApiPath.Users_IdOrUserPrincipalName_Insights_Trending: return $"/users/{IdOrUserPrincipalName}/insights/trending";
-                    case ApiPath.Me_Insights_Trending_Id_Resource: return $"/me/insights/trending/{Id}/resource";
-                    case ApiPath.Users_IdOrUserPrincipalName_Insights_Trending_Id_Resource: return $"/users/{IdOrUserPrincipalName}/insights/trending/{Id}/resource";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,8 +51,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
     }
     public partial class InsightsListTrendingResponse : RestApiResponse
     {
@@ -49,6 +59,7 @@ namespace HigLabo.Net.Microsoft
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public Entity? Resource { get; set; }
     }
     public partial class MicrosoftClient
     {

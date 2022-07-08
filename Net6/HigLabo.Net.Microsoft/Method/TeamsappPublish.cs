@@ -4,24 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamsappPublishParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.AppCatalogs_TeamsApps: return $"/appCatalogs/teamsApps";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             AppCatalogs_TeamsApps,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.AppCatalogs_TeamsApps: return $"/appCatalogs/teamsApps";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? Id { get; set; }
+        public string? ExternalId { get; set; }
+        public string? DisplayName { get; set; }
+        public TeamsAppDistributionMethod? DistributionMethod { get; set; }
+        public TeamsAppDefinition[]? AppDefinitions { get; set; }
     }
     public partial class TeamsappPublishResponse : RestApiResponse
     {
@@ -29,6 +44,7 @@ namespace HigLabo.Net.Microsoft
         public string? ExternalId { get; set; }
         public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
+        public TeamsAppDefinition[]? AppDefinitions { get; set; }
     }
     public partial class MicrosoftClient
     {

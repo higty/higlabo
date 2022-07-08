@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamDeleteInstalledappsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+            public string AppInstallationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_InstalledApps_AppInstallationId: return $"/teams/{TeamId}/installedApps/{AppInstallationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_TeamId_InstalledApps_AppInstallationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_InstalledApps_AppInstallationId: return $"/teams/{TeamId}/installedApps/{AppInstallationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string TeamId { get; set; }
-        public string AppInstallationId { get; set; }
     }
     public partial class TeamDeleteInstalledappsResponse : RestApiResponse
     {

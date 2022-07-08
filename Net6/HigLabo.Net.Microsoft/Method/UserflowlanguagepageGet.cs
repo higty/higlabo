@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserflowlanguagepageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string B2xUserFlowsId { get; set; }
+            public string LanguagesId { get; set; }
+            public string DefaultPagesId { get; set; }
+            public string OverridesPagesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_B2xUserFlows_Id_Languages_Id_DefaultPages_Id_value: return $"/identity/b2xUserFlows/{B2xUserFlowsId}/languages/{LanguagesId}/defaultPages/{DefaultPagesId}/$value";
+                    case ApiPath.Identity_B2xUserFlows_Id_Languages_Id_OverridesPages_Id_value: return $"/identity/b2xUserFlows/{B2xUserFlowsId}/languages/{LanguagesId}/overridesPages/{OverridesPagesId}/$value";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +32,12 @@ namespace HigLabo.Net.Microsoft
             Identity_B2xUserFlows_Id_Languages_Id_OverridesPages_Id_value,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_B2xUserFlows_Id_Languages_Id_DefaultPages_Id_value: return $"/identity/b2xUserFlows/{B2xUserFlowsId}/languages/{LanguagesId}/defaultPages/{DefaultPagesId}/$value";
-                    case ApiPath.Identity_B2xUserFlows_Id_Languages_Id_OverridesPages_Id_value: return $"/identity/b2xUserFlows/{B2xUserFlowsId}/languages/{LanguagesId}/overridesPages/{OverridesPagesId}/$value";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,10 +49,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string B2xUserFlowsId { get; set; }
-        public string LanguagesId { get; set; }
-        public string DefaultPagesId { get; set; }
-        public string OverridesPagesId { get; set; }
     }
     public partial class UserflowlanguagepageGetResponse : RestApiResponse
     {

@@ -2,8 +2,24 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CertificatebasedauthconfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class CertificatebasedauthConfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string OrganizationId { get; set; }
+            public string CertificateBasedAuthConfigurationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Organization_Id_CertificateBasedAuthConfiguration_Id: return $"/organization/{OrganizationId}/certificateBasedAuthConfiguration/{CertificateBasedAuthConfigurationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Organization_Id_CertificateBasedAuthConfiguration_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Organization_Id_CertificateBasedAuthConfiguration_Id: return $"/organization/{OrganizationId}/certificateBasedAuthConfiguration/{CertificateBasedAuthConfigurationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,10 +45,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string OrganizationId { get; set; }
-        public string CertificateBasedAuthConfigurationId { get; set; }
     }
-    public partial class CertificatebasedauthconfigurationGetResponse : RestApiResponse
+    public partial class CertificatebasedauthConfigurationGetResponse : RestApiResponse
     {
         public CertificateAuthority[]? CertificateAuthorities { get; set; }
         public string? Id { get; set; }
@@ -46,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationGetResponse> CertificatebasedauthconfigurationGetAsync()
+        public async Task<CertificatebasedauthConfigurationGetResponse> CertificatebasedauthConfigurationGetAsync()
         {
-            var p = new CertificatebasedauthconfigurationGetParameter();
-            return await this.SendAsync<CertificatebasedauthconfigurationGetParameter, CertificatebasedauthconfigurationGetResponse>(p, CancellationToken.None);
+            var p = new CertificatebasedauthConfigurationGetParameter();
+            return await this.SendAsync<CertificatebasedauthConfigurationGetParameter, CertificatebasedauthConfigurationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationGetResponse> CertificatebasedauthconfigurationGetAsync(CancellationToken cancellationToken)
+        public async Task<CertificatebasedauthConfigurationGetResponse> CertificatebasedauthConfigurationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new CertificatebasedauthconfigurationGetParameter();
-            return await this.SendAsync<CertificatebasedauthconfigurationGetParameter, CertificatebasedauthconfigurationGetResponse>(p, cancellationToken);
+            var p = new CertificatebasedauthConfigurationGetParameter();
+            return await this.SendAsync<CertificatebasedauthConfigurationGetParameter, CertificatebasedauthConfigurationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationGetResponse> CertificatebasedauthconfigurationGetAsync(CertificatebasedauthconfigurationGetParameter parameter)
+        public async Task<CertificatebasedauthConfigurationGetResponse> CertificatebasedauthConfigurationGetAsync(CertificatebasedauthConfigurationGetParameter parameter)
         {
-            return await this.SendAsync<CertificatebasedauthconfigurationGetParameter, CertificatebasedauthconfigurationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CertificatebasedauthConfigurationGetParameter, CertificatebasedauthConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationGetResponse> CertificatebasedauthconfigurationGetAsync(CertificatebasedauthconfigurationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<CertificatebasedauthConfigurationGetResponse> CertificatebasedauthConfigurationGetAsync(CertificatebasedauthConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CertificatebasedauthconfigurationGetParameter, CertificatebasedauthconfigurationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CertificatebasedauthConfigurationGetParameter, CertificatebasedauthConfigurationGetResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SharesGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ShareIdOrEncodedSharingUrl { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Shares_ShareIdOrEncodedSharingUrl: return $"/shares/{ShareIdOrEncodedSharingUrl}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Shares_ShareIdOrEncodedSharingUrl,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Shares_ShareIdOrEncodedSharingUrl: return $"/shares/{ShareIdOrEncodedSharingUrl}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,13 +44,17 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ShareIdOrEncodedSharingUrl { get; set; }
     }
     public partial class SharesGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? Name { get; set; }
         public IdentitySet? Owner { get; set; }
+        public DriveItem? DriveItem { get; set; }
+        public SiteList? List { get; set; }
+        public ListItem? ListItem { get; set; }
+        public Permission? Permission { get; set; }
+        public Site? Site { get; set; }
     }
     public partial class MicrosoftClient
     {

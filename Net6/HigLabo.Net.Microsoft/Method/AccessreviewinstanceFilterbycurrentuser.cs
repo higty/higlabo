@@ -2,26 +2,46 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AccessreviewinstanceFilterbycurrentuserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AccessreviewinstanceFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessReviewScheduleDefinitionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_FilterByCurrentUser: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/filterByCurrentUser";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            EndDateTime,
+            FallbackReviewers,
+            Id,
+            Scope,
+            StartDateTime,
+            Status,
+            Reviewers,
+            Decisions,
+            ContactedReviewers,
         }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_FilterByCurrentUser,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_FilterByCurrentUser: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/filterByCurrentUser";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,24 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AccessReviewScheduleDefinitionId { get; set; }
     }
-    public partial class AccessreviewinstanceFilterbycurrentuserResponse : RestApiResponse
+    public partial class AccessreviewinstanceFilterbycurrentUserResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewinstance?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessReviewInstance
-        {
-            public DateTimeOffset? EndDateTime { get; set; }
-            public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
-            public string? Id { get; set; }
-            public AccessReviewScope? Scope { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public string? Status { get; set; }
-            public AccessReviewReviewerScope[]? Reviewers { get; set; }
-        }
-
         public AccessReviewInstance[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -58,32 +63,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceFilterbycurrentuserResponse> AccessreviewinstanceFilterbycurrentuserAsync()
+        public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync()
         {
-            var p = new AccessreviewinstanceFilterbycurrentuserParameter();
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentuserParameter, AccessreviewinstanceFilterbycurrentuserResponse>(p, CancellationToken.None);
+            var p = new AccessreviewinstanceFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceFilterbycurrentuserResponse> AccessreviewinstanceFilterbycurrentuserAsync(CancellationToken cancellationToken)
+        public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
-            var p = new AccessreviewinstanceFilterbycurrentuserParameter();
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentuserParameter, AccessreviewinstanceFilterbycurrentuserResponse>(p, cancellationToken);
+            var p = new AccessreviewinstanceFilterbycurrentUserParameter();
+            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceFilterbycurrentuserResponse> AccessreviewinstanceFilterbycurrentuserAsync(AccessreviewinstanceFilterbycurrentuserParameter parameter)
+        public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(AccessreviewinstanceFilterbycurrentUserParameter parameter)
         {
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentuserParameter, AccessreviewinstanceFilterbycurrentuserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccessreviewinstanceFilterbycurrentuserResponse> AccessreviewinstanceFilterbycurrentuserAsync(AccessreviewinstanceFilterbycurrentuserParameter parameter, CancellationToken cancellationToken)
+        public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(AccessreviewinstanceFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccessreviewinstanceFilterbycurrentuserParameter, AccessreviewinstanceFilterbycurrentuserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(parameter, cancellationToken);
         }
     }
 }

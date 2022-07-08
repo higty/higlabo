@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TokenissuancepolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TokenissuancePolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_TokenIssuancePolicies_Id: return $"/policies/tokenIssuancePolicies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Policies_TokenIssuancePolicies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_TokenIssuancePolicies_Id: return $"/policies/tokenIssuancePolicies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,47 +44,47 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class TokenissuancepolicyGetResponse : RestApiResponse
+    public partial class TokenissuancePolicyGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public bool? IsOrganizationDefault { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyGetResponse> TokenissuancepolicyGetAsync()
+        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync()
         {
-            var p = new TokenissuancepolicyGetParameter();
-            return await this.SendAsync<TokenissuancepolicyGetParameter, TokenissuancepolicyGetResponse>(p, CancellationToken.None);
+            var p = new TokenissuancePolicyGetParameter();
+            return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyGetResponse> TokenissuancepolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new TokenissuancepolicyGetParameter();
-            return await this.SendAsync<TokenissuancepolicyGetParameter, TokenissuancepolicyGetResponse>(p, cancellationToken);
+            var p = new TokenissuancePolicyGetParameter();
+            return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyGetResponse> TokenissuancepolicyGetAsync(TokenissuancepolicyGetParameter parameter)
+        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(TokenissuancePolicyGetParameter parameter)
         {
-            return await this.SendAsync<TokenissuancepolicyGetParameter, TokenissuancepolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyGetResponse> TokenissuancepolicyGetAsync(TokenissuancepolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<TokenissuancePolicyGetResponse> TokenissuancePolicyGetAsync(TokenissuancePolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TokenissuancepolicyGetParameter, TokenissuancepolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TokenissuancePolicyGetParameter, TokenissuancePolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

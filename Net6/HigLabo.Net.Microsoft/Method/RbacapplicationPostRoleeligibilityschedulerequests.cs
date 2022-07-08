@@ -4,7 +4,34 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class RbacapplicationPostRoleeligibilityschedulerequestsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleEligibilityScheduleRequests: return $"/roleManagement/directory/roleEligibilityScheduleRequests";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum RbacapplicationPostRoleeligibilityschedulerequestsParameterUnifiedRoleScheduleRequestActions
+        {
+            AdminAssign,
+            AdminUpdate,
+            AdminRemove,
+            SelfActivate,
+            SelfDeactivate,
+            AdminExtend,
+            AdminRenew,
+            SelfExtend,
+            SelfRenew,
+            UnknownFutureValue,
+        }
+        public enum UnifiedRoleEligibilityScheduleRequestUnifiedRoleScheduleRequestActions
         {
             AdminAssign,
             AdminUpdate,
@@ -22,16 +49,12 @@ namespace HigLabo.Net.Microsoft
             RoleManagement_Directory_RoleEligibilityScheduleRequests,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleEligibilityScheduleRequests: return $"/roleManagement/directory/roleEligibilityScheduleRequests";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -44,6 +67,19 @@ namespace HigLabo.Net.Microsoft
         public string? RoleDefinitionId { get; set; }
         public RequestSchedule? ScheduleInfo { get; set; }
         public TicketInfo? TicketInfo { get; set; }
+        public string? ApprovalId { get; set; }
+        public DateTimeOffset? CompletedDateTime { get; set; }
+        public IdentitySet? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? CustomData { get; set; }
+        public string? Id { get; set; }
+        public string? Status { get; set; }
+        public string? TargetScheduleId { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
+        public DirectoryObject? Principal { get; set; }
+        public UnifiedRoleDefinition? RoleDefinition { get; set; }
+        public UnifiedRoleEligibilitySchedule? TargetSchedule { get; set; }
     }
     public partial class RbacapplicationPostRoleeligibilityschedulerequestsResponse : RestApiResponse
     {
@@ -78,6 +114,11 @@ namespace HigLabo.Net.Microsoft
         public string? Status { get; set; }
         public string? TargetScheduleId { get; set; }
         public TicketInfo? TicketInfo { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
+        public DirectoryObject? Principal { get; set; }
+        public UnifiedRoleDefinition? RoleDefinition { get; set; }
+        public UnifiedRoleEligibilitySchedule? TargetSchedule { get; set; }
     }
     public partial class MicrosoftClient
     {

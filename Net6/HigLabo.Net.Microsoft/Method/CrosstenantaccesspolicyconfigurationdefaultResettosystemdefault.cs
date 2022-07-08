@@ -2,28 +2,38 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter : IRestApiParameter
+    public partial class CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_CrossTenantAccessPolicy_Default_ResetToSystemDefault: return $"/policies/crossTenantAccessPolicy/default/resetToSystemDefault";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_CrossTenantAccessPolicy_Default_ResetToSystemDefault,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_CrossTenantAccessPolicy_Default_ResetToSystemDefault: return $"/policies/crossTenantAccessPolicy/default/resetToSystemDefault";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
     }
-    public partial class CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse : RestApiResponse
+    public partial class CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -31,32 +41,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse> CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultAsync()
+        public async Task<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse> CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultAsync()
         {
-            var p = new CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter();
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter, CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse>(p, CancellationToken.None);
+            var p = new CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter();
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter, CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse> CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultAsync(CancellationToken cancellationToken)
+        public async Task<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse> CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultAsync(CancellationToken cancellationToken)
         {
-            var p = new CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter();
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter, CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse>(p, cancellationToken);
+            var p = new CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter();
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter, CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse> CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultAsync(CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter parameter)
+        public async Task<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse> CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultAsync(CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter parameter)
         {
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter, CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter, CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-resettosystemdefault?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse> CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultAsync(CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter parameter, CancellationToken cancellationToken)
+        public async Task<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse> CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultAsync(CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultParameter, CrosstenantaccesspolicyconfigurationdefaultResettosystemdefaultResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultParameter, CrosstenantAccessPolicyConfigurationdefaultResettosystemdefaultResponse>(parameter, cancellationToken);
         }
     }
 }

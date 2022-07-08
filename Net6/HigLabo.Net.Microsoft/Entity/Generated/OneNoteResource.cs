@@ -8,6 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class OneNoteResource
     {
         public Stream? Content { get; set; }
-        public string ContentUrl { get; set; }
+        public string? ContentUrl { get; set; }
     }
 }

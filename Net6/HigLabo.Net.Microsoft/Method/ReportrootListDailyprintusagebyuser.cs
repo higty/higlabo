@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootListDailyprintusagebyuserParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootListDailyprintusagebyUserParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_DailyPrintUsageByUser: return $"/reports/dailyPrintUsageByUser";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_DailyPrintUsageByUser,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_DailyPrintUsageByUser: return $"/reports/dailyPrintUsageByUser";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,21 +44,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootListDailyprintusagebyuserResponse : RestApiResponse
+    public partial class ReportRootListDailyprintusagebyUserResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printusagebyuser?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintUsageByUser
-        {
-            public string? Id { get; set; }
-            public string? UserPrincipalName { get; set; }
-            public DateOnly? UsageDate { get; set; }
-            public Int64? CompletedBlackAndWhiteJobCount { get; set; }
-            public Int64? CompletedColorJobCount { get; set; }
-            public Int64? IncompleteJobCount { get; set; }
-        }
-
         public PrintUsageByUser[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -56,32 +53,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyuserResponse> ReportrootListDailyprintusagebyuserAsync()
+        public async Task<ReportRootListDailyprintusagebyUserResponse> ReportRootListDailyprintusagebyUserAsync()
         {
-            var p = new ReportrootListDailyprintusagebyuserParameter();
-            return await this.SendAsync<ReportrootListDailyprintusagebyuserParameter, ReportrootListDailyprintusagebyuserResponse>(p, CancellationToken.None);
+            var p = new ReportRootListDailyprintusagebyUserParameter();
+            return await this.SendAsync<ReportRootListDailyprintusagebyUserParameter, ReportRootListDailyprintusagebyUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyuserResponse> ReportrootListDailyprintusagebyuserAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootListDailyprintusagebyUserResponse> ReportRootListDailyprintusagebyUserAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootListDailyprintusagebyuserParameter();
-            return await this.SendAsync<ReportrootListDailyprintusagebyuserParameter, ReportrootListDailyprintusagebyuserResponse>(p, cancellationToken);
+            var p = new ReportRootListDailyprintusagebyUserParameter();
+            return await this.SendAsync<ReportRootListDailyprintusagebyUserParameter, ReportRootListDailyprintusagebyUserResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyuserResponse> ReportrootListDailyprintusagebyuserAsync(ReportrootListDailyprintusagebyuserParameter parameter)
+        public async Task<ReportRootListDailyprintusagebyUserResponse> ReportRootListDailyprintusagebyUserAsync(ReportRootListDailyprintusagebyUserParameter parameter)
         {
-            return await this.SendAsync<ReportrootListDailyprintusagebyuserParameter, ReportrootListDailyprintusagebyuserResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootListDailyprintusagebyUserParameter, ReportRootListDailyprintusagebyUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyuser?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootListDailyprintusagebyuserResponse> ReportrootListDailyprintusagebyuserAsync(ReportrootListDailyprintusagebyuserParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootListDailyprintusagebyUserResponse> ReportRootListDailyprintusagebyUserAsync(ReportRootListDailyprintusagebyUserParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootListDailyprintusagebyuserParameter, ReportrootListDailyprintusagebyuserResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootListDailyprintusagebyUserParameter, ReportRootListDailyprintusagebyUserResponse>(parameter, cancellationToken);
         }
     }
 }

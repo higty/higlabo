@@ -4,24 +4,53 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class OrgcontactDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Contacts_Delta: return $"/contacts/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Addresses,
+            CompanyName,
+            Department,
+            DisplayName,
+            GivenName,
+            Id,
+            JobTitle,
+            Mail,
+            MailNickname,
+            OnPremisesLastSyncDateTime,
+            OnPremisesProvisioningErrors,
+            OnPremisesSyncEnabled,
+            Phones,
+            ProxyAddresses,
+            Surname,
+            DirectReports,
+            Manager,
+            MemberOf,
+            TransitiveMemberOf,
         }
         public enum ApiPath
         {
             Contacts_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Contacts_Delta: return $"/contacts/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,28 +65,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OrgcontactDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/orgcontact?view=graph-rest-1.0
-        /// </summary>
-        public partial class OrgContact
-        {
-            public PhysicalOfficeAddress[]? Addresses { get; set; }
-            public string? CompanyName { get; set; }
-            public string? Department { get; set; }
-            public string? DisplayName { get; set; }
-            public string? GivenName { get; set; }
-            public string? Id { get; set; }
-            public string? JobTitle { get; set; }
-            public string? Mail { get; set; }
-            public string? MailNickname { get; set; }
-            public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
-            public OnPremisesProvisioningError[]? OnPremisesProvisioningErrors { get; set; }
-            public bool? OnPremisesSyncEnabled { get; set; }
-            public Phone[]? Phones { get; set; }
-            public String[]? ProxyAddresses { get; set; }
-            public string? Surname { get; set; }
-        }
-
         public OrgContact[] Value { get; set; }
     }
     public partial class MicrosoftClient

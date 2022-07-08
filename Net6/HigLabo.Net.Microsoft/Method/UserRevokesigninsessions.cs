@@ -4,27 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserRevokesigninsessionsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_RevokeSignInSessions: return $"/me/revokeSignInSessions";
+                    case ApiPath.Users_IdOrUserPrincipalName_RevokeSignInSessions: return $"/users/{IdOrUserPrincipalName}/revokeSignInSessions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_RevokeSignInSessions,
             Users_IdOrUserPrincipalName_RevokeSignInSessions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_RevokeSignInSessions: return $"/me/revokeSignInSessions";
-                    case ApiPath.Users_IdOrUserPrincipalName_RevokeSignInSessions: return $"/users/{IdOrUserPrincipalName}/revokeSignInSessions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserRevokesigninsessionsResponse : RestApiResponse
     {

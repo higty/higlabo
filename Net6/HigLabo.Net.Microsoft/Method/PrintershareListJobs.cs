@@ -4,24 +4,45 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintershareListJobsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterShareId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Shares_PrinterShareId_Jobs: return $"/print/shares/{PrinterShareId}/jobs";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            CreatedDateTime,
+            Status,
+            Configuration,
+            IsFetchable,
+            RedirectedFrom,
+            RedirectedTo,
+            CreatedBy,
+            Documents,
+            Tasks,
         }
         public enum ApiPath
         {
             Print_Shares_PrinterShareId_Jobs,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Shares_PrinterShareId_Jobs: return $"/print/shares/{PrinterShareId}/jobs";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +54,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrinterShareId { get; set; }
     }
     public partial class PrintershareListJobsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printjob?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintJob
-        {
-            public string? Id { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public PrintJobStatus? Status { get; set; }
-            public PrintJobConfiguration? Configuration { get; set; }
-            public Boolean? IsFetchable { get; set; }
-            public String? RedirectedFrom { get; set; }
-            public String? RedirectedTo { get; set; }
-            public UserIdentity? CreatedBy { get; set; }
-        }
-
         public PrintJob[] Value { get; set; }
     }
     public partial class MicrosoftClient

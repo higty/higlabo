@@ -2,26 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentListCategoriesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationAssignmentListCategoriesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Categories: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/categories";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
         }
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id_Categories,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Categories: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/categories";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,20 +47,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
     }
-    public partial class EducationassignmentListCategoriesResponse : RestApiResponse
+    public partial class EducationAssignmentListCategoriesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationcategory?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationCategory
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-        }
-
         public EducationCategory[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -54,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentListCategoriesResponse> EducationassignmentListCategoriesAsync()
+        public async Task<EducationAssignmentListCategoriesResponse> EducationAssignmentListCategoriesAsync()
         {
-            var p = new EducationassignmentListCategoriesParameter();
-            return await this.SendAsync<EducationassignmentListCategoriesParameter, EducationassignmentListCategoriesResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentListCategoriesParameter();
+            return await this.SendAsync<EducationAssignmentListCategoriesParameter, EducationAssignmentListCategoriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentListCategoriesResponse> EducationassignmentListCategoriesAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentListCategoriesResponse> EducationAssignmentListCategoriesAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentListCategoriesParameter();
-            return await this.SendAsync<EducationassignmentListCategoriesParameter, EducationassignmentListCategoriesResponse>(p, cancellationToken);
+            var p = new EducationAssignmentListCategoriesParameter();
+            return await this.SendAsync<EducationAssignmentListCategoriesParameter, EducationAssignmentListCategoriesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentListCategoriesResponse> EducationassignmentListCategoriesAsync(EducationassignmentListCategoriesParameter parameter)
+        public async Task<EducationAssignmentListCategoriesResponse> EducationAssignmentListCategoriesAsync(EducationAssignmentListCategoriesParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentListCategoriesParameter, EducationassignmentListCategoriesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentListCategoriesParameter, EducationAssignmentListCategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-list-categories?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentListCategoriesResponse> EducationassignmentListCategoriesAsync(EducationassignmentListCategoriesParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentListCategoriesResponse> EducationAssignmentListCategoriesAsync(EducationAssignmentListCategoriesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentListCategoriesParameter, EducationassignmentListCategoriesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentListCategoriesParameter, EducationAssignmentListCategoriesResponse>(parameter, cancellationToken);
         }
     }
 }

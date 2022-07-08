@@ -2,26 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class HomerealmdiscoverypolicyListAppliestoParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class HomerealmdiscoveryPolicyListAppliestoParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_HomeRealmDiscoveryPolicies_Id_AppliesTo: return $"/policies/homeRealmDiscoveryPolicies/{Id}/appliesTo";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DeletedDateTime,
+            Id,
         }
         public enum ApiPath
         {
             Policies_HomeRealmDiscoveryPolicies_Id_AppliesTo,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_HomeRealmDiscoveryPolicies_Id_AppliesTo: return $"/policies/homeRealmDiscoveryPolicies/{Id}/appliesTo";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,19 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class HomerealmdiscoverypolicyListAppliestoResponse : RestApiResponse
+    public partial class HomerealmdiscoveryPolicyListAppliestoResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
-        /// </summary>
-        public partial class DirectoryObject
-        {
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Id { get; set; }
-        }
-
         public DirectoryObject[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -53,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListAppliestoResponse> HomerealmdiscoverypolicyListAppliestoAsync()
+        public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync()
         {
-            var p = new HomerealmdiscoverypolicyListAppliestoParameter();
-            return await this.SendAsync<HomerealmdiscoverypolicyListAppliestoParameter, HomerealmdiscoverypolicyListAppliestoResponse>(p, CancellationToken.None);
+            var p = new HomerealmdiscoveryPolicyListAppliestoParameter();
+            return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListAppliestoResponse> HomerealmdiscoverypolicyListAppliestoAsync(CancellationToken cancellationToken)
+        public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
-            var p = new HomerealmdiscoverypolicyListAppliestoParameter();
-            return await this.SendAsync<HomerealmdiscoverypolicyListAppliestoParameter, HomerealmdiscoverypolicyListAppliestoResponse>(p, cancellationToken);
+            var p = new HomerealmdiscoveryPolicyListAppliestoParameter();
+            return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListAppliestoResponse> HomerealmdiscoverypolicyListAppliestoAsync(HomerealmdiscoverypolicyListAppliestoParameter parameter)
+        public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync(HomerealmdiscoveryPolicyListAppliestoParameter parameter)
         {
-            return await this.SendAsync<HomerealmdiscoverypolicyListAppliestoParameter, HomerealmdiscoverypolicyListAppliestoResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<HomerealmdiscoverypolicyListAppliestoResponse> HomerealmdiscoverypolicyListAppliestoAsync(HomerealmdiscoverypolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync(HomerealmdiscoveryPolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<HomerealmdiscoverypolicyListAppliestoParameter, HomerealmdiscoverypolicyListAppliestoResponse>(parameter, cancellationToken);
+            return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(parameter, cancellationToken);
         }
     }
 }

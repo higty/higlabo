@@ -38,5 +38,6 @@ namespace HigLabo.Net.Microsoft
         public String[]? Tags { get; set; }
         public string? Title { get; set; }
         public ServiceUpdateMessageViewpoint? ViewPoint { get; set; }
+        public ServiceAnnouncementAttachment[]? Attachments { get; set; }
     }
 }

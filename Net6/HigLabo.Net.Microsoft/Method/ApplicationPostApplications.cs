@@ -4,24 +4,71 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationPostApplicationsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Applications: return $"/applications";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Applications,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Applications: return $"/applications";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public AddIn[]? AddIns { get; set; }
+        public ApiApplication? Api { get; set; }
+        public string? AppId { get; set; }
+        public string? ApplicationTemplateId { get; set; }
+        public AppRole[]? AppRoles { get; set; }
+        public Certification? Certification { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? DisabledByMicrosoftStatus { get; set; }
+        public string? DisplayName { get; set; }
+        public string? GroupMembershipClaims { get; set; }
+        public string? Id { get; set; }
+        public String[]? IdentifierUris { get; set; }
+        public InformationalUrl? Info { get; set; }
+        public bool? IsDeviceOnlyAuthSupported { get; set; }
+        public bool? IsFallbackPublicClient { get; set; }
+        public KeyCredential[]? KeyCredentials { get; set; }
+        public Stream? Logo { get; set; }
+        public string? Notes { get; set; }
+        public bool? Oauth2RequiredPostResponse { get; set; }
+        public OptionalClaims? OptionalClaims { get; set; }
+        public ParentalControlSettings? ParentalControlSettings { get; set; }
+        public PasswordCredential[]? PasswordCredentials { get; set; }
+        public PublicClientApplication? PublicClient { get; set; }
+        public string? PublisherDomain { get; set; }
+        public RequiredResourceAccess[]? RequiredResourceAccess { get; set; }
+        public string? ServiceManagementReference { get; set; }
+        public string? SignInAudience { get; set; }
+        public SpaApplication? Spa { get; set; }
+        public String[]? Tags { get; set; }
+        public string? TokenEncryptionKeyId { get; set; }
+        public VerifiedPublisher? VerifiedPublisher { get; set; }
+        public WebApplication? Web { get; set; }
+        public DirectoryObject? CreatedOnBehalfOf { get; set; }
+        public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
     }
     public partial class ApplicationPostApplicationsResponse : RestApiResponse
     {
@@ -59,6 +106,9 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public DirectoryObject? CreatedOnBehalfOf { get; set; }
+        public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
     }
     public partial class MicrosoftClient
     {

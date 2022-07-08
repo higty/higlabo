@@ -4,24 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalListDelegatedpermissionclassificationsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_DelegatedPermissionClassifications: return $"/servicePrincipals/{Id}/delegatedPermissionClassifications";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Classification,
+            PermissionId,
+            PermissionName,
         }
         public enum ApiPath
         {
             ServicePrincipals_Id_DelegatedPermissionClassifications,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_DelegatedPermissionClassifications: return $"/servicePrincipals/{Id}/delegatedPermissionClassifications";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,26 +48,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ServiceprincipalListDelegatedpermissionclassificationsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/delegatedpermissionclassification?view=graph-rest-1.0
-        /// </summary>
-        public partial class DelegatedPermissionClassification
-        {
-            public enum DelegatedPermissionClassificationPermissionClassificationType
-            {
-                Low,
-            }
-
-            public string? Id { get; set; }
-            public DelegatedPermissionClassificationPermissionClassificationType Classification { get; set; }
-            public string? PermissionId { get; set; }
-            public string? PermissionName { get; set; }
-        }
-
         public DelegatedPermissionClassification[] Value { get; set; }
     }
     public partial class MicrosoftClient

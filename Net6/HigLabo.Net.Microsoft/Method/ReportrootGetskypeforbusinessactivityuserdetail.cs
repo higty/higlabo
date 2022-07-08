@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetskypeforbusinessactivityuserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetskypeforbusinessactivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetSkypeForBusinessActivityUserDetail: return $"/reports/getSkypeForBusinessActivityUserDetail";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetSkypeForBusinessActivityUserDetail,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetSkypeForBusinessActivityUserDetail: return $"/reports/getSkypeForBusinessActivityUserDetail";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetskypeforbusinessactivityuserdetailResponse : RestApiResponse
+    public partial class ReportRootGetskypeforbusinessactivityUserdetailResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessactivityuserdetailResponse> ReportrootGetskypeforbusinessactivityuserdetailAsync()
+        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync()
         {
-            var p = new ReportrootGetskypeforbusinessactivityuserdetailParameter();
-            return await this.SendAsync<ReportrootGetskypeforbusinessactivityuserdetailParameter, ReportrootGetskypeforbusinessactivityuserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetskypeforbusinessactivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessactivityuserdetailResponse> ReportrootGetskypeforbusinessactivityuserdetailAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetskypeforbusinessactivityuserdetailParameter();
-            return await this.SendAsync<ReportrootGetskypeforbusinessactivityuserdetailParameter, ReportrootGetskypeforbusinessactivityuserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetskypeforbusinessactivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessactivityuserdetailResponse> ReportrootGetskypeforbusinessactivityuserdetailAsync(ReportrootGetskypeforbusinessactivityuserdetailParameter parameter)
+        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetskypeforbusinessactivityuserdetailParameter, ReportrootGetskypeforbusinessactivityuserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetskypeforbusinessactivityuserdetailResponse> ReportrootGetskypeforbusinessactivityuserdetailAsync(ReportrootGetskypeforbusinessactivityuserdetailParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetskypeforbusinessactivityuserdetailParameter, ReportrootGetskypeforbusinessactivityuserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

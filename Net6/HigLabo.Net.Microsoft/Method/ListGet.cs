@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ListGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ListId { get; set; }
+            public string ListTitle { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListId}";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListTitle: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListTitle}";
+                    case ApiPath.Sites_SiteId_Lists_ListId: return $"/sites/{SiteId}/lists/{ListId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -14,18 +33,12 @@ namespace HigLabo.Net.Microsoft
             Sites_SiteId_Lists_ListId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListId}";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListTitle: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListTitle}";
-                    case ApiPath.Sites_SiteId_Lists_ListId: return $"/sites/{SiteId}/lists/{ListId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,9 +50,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ListId { get; set; }
-        public string ListTitle { get; set; }
     }
     public partial class ListGetResponse : RestApiResponse
     {

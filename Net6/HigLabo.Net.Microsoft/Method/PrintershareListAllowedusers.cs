@@ -2,26 +2,141 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PrintershareListAllowedusersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrintershareListAllowedUsersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterShareId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Shares_PrinterShareId_AllowedUsers: return $"/print/shares/{PrinterShareId}/allowedUsers";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AboutMe,
+            AccountEnabled,
+            AgeGroup,
+            AssignedLicenses,
+            AssignedPlans,
+            Birthday,
+            BusinessPhones,
+            City,
+            CompanyName,
+            ConsentProvidedForMinor,
+            Country,
+            CreatedDateTime,
+            CreationType,
+            DeletedDateTime,
+            Department,
+            DisplayName,
+            EmployeeHireDate,
+            EmployeeId,
+            EmployeeOrgData,
+            EmployeeType,
+            ExternalUserState,
+            ExternalUserStateChangeDateTime,
+            FaxNumber,
+            GivenName,
+            HireDate,
+            Id,
+            Identities,
+            ImAddresses,
+            Interests,
+            IsResourceAccount,
+            JobTitle,
+            LastPasswordChangeDateTime,
+            LegalAgeGroupClassification,
+            LicenseAssignmentStates,
+            Mail,
+            MailboxSettings,
+            MailNickname,
+            MobilePhone,
+            MySite,
+            OfficeLocation,
+            OnPremisesDistinguishedName,
+            OnPremisesDomainName,
+            OnPremisesExtensionAttributes,
+            OnPremisesImmutableId,
+            OnPremisesLastSyncDateTime,
+            OnPremisesProvisioningErrors,
+            OnPremisesSamAccountName,
+            OnPremisesSecurityIdentifier,
+            OnPremisesSyncEnabled,
+            OnPremisesUserPrincipalName,
+            OtherMails,
+            PasswordPolicies,
+            PasswordProfile,
+            PastProjects,
+            PostalCode,
+            PreferredDataLocation,
+            PreferredLanguage,
+            PreferredName,
+            ProvisionedPlans,
+            ProxyAddresses,
+            RefreshTokensValidFromDateTime,
+            Responsibilities,
+            Schools,
+            ShowInAddressList,
+            Skills,
+            SignInSessionsValidFromDateTime,
+            State,
+            StreetAddress,
+            Surname,
+            UsageLocation,
+            UserPrincipalName,
+            UserType,
+            AgreementAcceptances,
+            Activities,
+            AppRoleAssignments,
+            Authentication,
+            Calendar,
+            CalendarGroups,
+            CalendarView,
+            Calendars,
+            ContactFolders,
+            Contacts,
+            CreatedObjects,
+            DirectReports,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            InferenceClassification,
+            Insights,
+            LicenseDetails,
+            MailFolders,
+            Manager,
+            MemberOf,
+            Messages,
+            Onenote,
+            Outlook,
+            OwnedDevices,
+            OwnedObjects,
+            People,
+            Photo,
+            Planner,
+            RegisteredDevices,
+            Todo,
         }
         public enum ApiPath
         {
             Print_Shares_PrinterShareId_AllowedUsers,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Shares_PrinterShareId_AllowedUsers: return $"/print/shares/{PrinterShareId}/allowedUsers";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,113 +148,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrinterShareId { get; set; }
     }
-    public partial class PrintershareListAllowedusersResponse : RestApiResponse
+    public partial class PrintershareListAllowedUsersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
-        /// </summary>
-        public partial class User
-        {
-            public enum UserAgeGroup
-            {
-                Null,
-                Minor,
-                NotAdult,
-                Adult,
-            }
-            public enum UserConsentProvidedForMinor
-            {
-                Null,
-                Granted,
-                Denied,
-                NotRequired,
-            }
-            public enum UserLegalAgeGroupClassification
-            {
-                Null,
-                MinorWithOutParentalConsent,
-                MinorWithParentalConsent,
-                MinorNoParentalConsentRequired,
-                NotAdult,
-                Adult,
-            }
-
-            public string? AboutMe { get; set; }
-            public bool? AccountEnabled { get; set; }
-            public UserAgeGroup AgeGroup { get; set; }
-            public AssignedLicense[]? AssignedLicenses { get; set; }
-            public AssignedPlan[]? AssignedPlans { get; set; }
-            public DateTimeOffset? Birthday { get; set; }
-            public String[]? BusinessPhones { get; set; }
-            public string? City { get; set; }
-            public string? CompanyName { get; set; }
-            public UserConsentProvidedForMinor ConsentProvidedForMinor { get; set; }
-            public string? Country { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? CreationType { get; set; }
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Department { get; set; }
-            public string? DisplayName { get; set; }
-            public DateTimeOffset? EmployeeHireDate { get; set; }
-            public string? EmployeeId { get; set; }
-            public EmployeeOrgData? EmployeeOrgData { get; set; }
-            public string? EmployeeType { get; set; }
-            public string? ExternalUserState { get; set; }
-            public DateTimeOffset? ExternalUserStateChangeDateTime { get; set; }
-            public string? FaxNumber { get; set; }
-            public string? GivenName { get; set; }
-            public DateTimeOffset? HireDate { get; set; }
-            public string? Id { get; set; }
-            public ObjectIdentity[]? Identities { get; set; }
-            public String[]? ImAddresses { get; set; }
-            public String[]? Interests { get; set; }
-            public bool? IsResourceAccount { get; set; }
-            public string? JobTitle { get; set; }
-            public DateTimeOffset? LastPasswordChangeDateTime { get; set; }
-            public UserLegalAgeGroupClassification LegalAgeGroupClassification { get; set; }
-            public LicenseAssignmentState[]? LicenseAssignmentStates { get; set; }
-            public string? Mail { get; set; }
-            public MailboxSettings? MailboxSettings { get; set; }
-            public string? MailNickname { get; set; }
-            public string? MobilePhone { get; set; }
-            public string? MySite { get; set; }
-            public string? OfficeLocation { get; set; }
-            public string? OnPremisesDistinguishedName { get; set; }
-            public string? OnPremisesDomainName { get; set; }
-            public OnPremisesExtensionAttributes? OnPremisesExtensionAttributes { get; set; }
-            public string? OnPremisesImmutableId { get; set; }
-            public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
-            public OnPremisesProvisioningError[]? OnPremisesProvisioningErrors { get; set; }
-            public string? OnPremisesSamAccountName { get; set; }
-            public string? OnPremisesSecurityIdentifier { get; set; }
-            public bool? OnPremisesSyncEnabled { get; set; }
-            public string? OnPremisesUserPrincipalName { get; set; }
-            public String[]? OtherMails { get; set; }
-            public string? PasswordPolicies { get; set; }
-            public PasswordProfile? PasswordProfile { get; set; }
-            public String[]? PastProjects { get; set; }
-            public string? PostalCode { get; set; }
-            public string? PreferredDataLocation { get; set; }
-            public string? PreferredLanguage { get; set; }
-            public string? PreferredName { get; set; }
-            public ProvisionedPlan[]? ProvisionedPlans { get; set; }
-            public String[]? ProxyAddresses { get; set; }
-            public DateTimeOffset? RefreshTokensValidFromDateTime { get; set; }
-            public String[]? Responsibilities { get; set; }
-            public String[]? Schools { get; set; }
-            public bool? ShowInAddressList { get; set; }
-            public String[]? Skills { get; set; }
-            public DateTimeOffset? SignInSessionsValidFromDateTime { get; set; }
-            public string? State { get; set; }
-            public string? StreetAddress { get; set; }
-            public string? Surname { get; set; }
-            public string? UsageLocation { get; set; }
-            public string? UserPrincipalName { get; set; }
-            public string? UserType { get; set; }
-        }
-
         public User[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -147,32 +158,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedusersResponse> PrintershareListAllowedusersAsync()
+        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync()
         {
-            var p = new PrintershareListAllowedusersParameter();
-            return await this.SendAsync<PrintershareListAllowedusersParameter, PrintershareListAllowedusersResponse>(p, CancellationToken.None);
+            var p = new PrintershareListAllowedUsersParameter();
+            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedusersResponse> PrintershareListAllowedusersAsync(CancellationToken cancellationToken)
+        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintershareListAllowedusersParameter();
-            return await this.SendAsync<PrintershareListAllowedusersParameter, PrintershareListAllowedusersResponse>(p, cancellationToken);
+            var p = new PrintershareListAllowedUsersParameter();
+            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedusersResponse> PrintershareListAllowedusersAsync(PrintershareListAllowedusersParameter parameter)
+        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter)
         {
-            return await this.SendAsync<PrintershareListAllowedusersParameter, PrintershareListAllowedusersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printershare-list-allowedusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintershareListAllowedusersResponse> PrintershareListAllowedusersAsync(PrintershareListAllowedusersParameter parameter, CancellationToken cancellationToken)
+        public async Task<PrintershareListAllowedUsersResponse> PrintershareListAllowedUsersAsync(PrintershareListAllowedUsersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintershareListAllowedusersParameter, PrintershareListAllowedusersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintershareListAllowedUsersParameter, PrintershareListAllowedUsersResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
+    /// https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#consentprovidedforminor-values
     /// </summary>
     public partial class User
     {
@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
         public string? OnPremisesUserPrincipalName { get; set; }
         public String[]? OtherMails { get; set; }
         public string? PasswordPolicies { get; set; }
-        public PasswordProfile? PasswordProfile { get; set; }
+        public PasswordProfile PasswordProfile { get; set; }
         public String[]? PastProjects { get; set; }
         public string? PostalCode { get; set; }
         public string? PreferredDataLocation { get; set; }
@@ -135,5 +135,6 @@ namespace HigLabo.Net.Microsoft
         public PlannerUser? Planner { get; set; }
         public DirectoryObject[]? RegisteredDevices { get; set; }
         public Todo? Todo { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
     }
 }

@@ -4,24 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SchemaextensionListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.SchemaExtensions: return $"/schemaExtensions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Description,
+            Id,
+            Owner,
+            Properties,
+            Status,
+            TargetTypes,
         }
         public enum ApiPath
         {
             SchemaExtensions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.SchemaExtensions: return $"/schemaExtensions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,19 +52,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SchemaextensionListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/schemaextension?view=graph-rest-1.0
-        /// </summary>
-        public partial class SchemaExtension
-        {
-            public string? Description { get; set; }
-            public string? Id { get; set; }
-            public string? Owner { get; set; }
-            public ExtensionSchemaProperty[]? Properties { get; set; }
-            public string? Status { get; set; }
-            public String[]? TargetTypes { get; set; }
-        }
-
         public SchemaExtension[] Value { get; set; }
     }
     public partial class MicrosoftClient

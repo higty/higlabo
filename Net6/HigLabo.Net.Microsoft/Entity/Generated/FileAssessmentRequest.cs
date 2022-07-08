@@ -34,15 +34,16 @@ namespace HigLabo.Net.Microsoft
             Completed,
         }
 
-        public string ContentData { get; set; }
-        public string FileName { get; set; }
-        public Enum Category { get; set; }
-        public Enum ContentType { get; set; }
-        public IdentitySet CreatedBy { get; set; }
-        public DateTimeOffset CreatedDateTime { get; set; }
-        public Enum ExpectedAssessment { get; set; }
-        public string Id { get; set; }
-        public Enum RequestSource { get; set; }
-        public Enum Status { get; set; }
+        public string? ContentData { get; set; }
+        public string? FileName { get; set; }
+        public FileAssessmentRequestThreatCategory Category { get; set; }
+        public FileAssessmentRequestThreatAssessmentContentType ContentType { get; set; }
+        public IdentitySet? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public FileAssessmentRequestThreatExpectedAssessment ExpectedAssessment { get; set; }
+        public string? Id { get; set; }
+        public FileAssessmentRequestThreatAssessmentRequestSource RequestSource { get; set; }
+        public FileAssessmentRequestThreatAssessmentStatus Status { get; set; }
+        public ThreatAssessmentResult[]? Results { get; set; }
     }
 }

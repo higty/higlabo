@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetemailappusageuserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetemailappusageUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetEmailAppUsageUserDetail: return $"/reports/getEmailAppUsageUserDetail";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetEmailAppUsageUserDetail,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetEmailAppUsageUserDetail: return $"/reports/getEmailAppUsageUserDetail";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetemailappusageuserdetailResponse : RestApiResponse
+    public partial class ReportRootGetemailappusageUserdetailResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageuserdetailResponse> ReportrootGetemailappusageuserdetailAsync()
+        public async Task<ReportRootGetemailappusageUserdetailResponse> ReportRootGetemailappusageUserdetailAsync()
         {
-            var p = new ReportrootGetemailappusageuserdetailParameter();
-            return await this.SendAsync<ReportrootGetemailappusageuserdetailParameter, ReportrootGetemailappusageuserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetemailappusageUserdetailParameter();
+            return await this.SendAsync<ReportRootGetemailappusageUserdetailParameter, ReportRootGetemailappusageUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageuserdetailResponse> ReportrootGetemailappusageuserdetailAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetemailappusageUserdetailResponse> ReportRootGetemailappusageUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetemailappusageuserdetailParameter();
-            return await this.SendAsync<ReportrootGetemailappusageuserdetailParameter, ReportrootGetemailappusageuserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetemailappusageUserdetailParameter();
+            return await this.SendAsync<ReportRootGetemailappusageUserdetailParameter, ReportRootGetemailappusageUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageuserdetailResponse> ReportrootGetemailappusageuserdetailAsync(ReportrootGetemailappusageuserdetailParameter parameter)
+        public async Task<ReportRootGetemailappusageUserdetailResponse> ReportRootGetemailappusageUserdetailAsync(ReportRootGetemailappusageUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetemailappusageuserdetailParameter, ReportrootGetemailappusageuserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetemailappusageUserdetailParameter, ReportRootGetemailappusageUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetemailappusageuserdetailResponse> ReportrootGetemailappusageuserdetailAsync(ReportrootGetemailappusageuserdetailParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetemailappusageUserdetailResponse> ReportRootGetemailappusageUserdetailAsync(ReportRootGetemailappusageUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetemailappusageuserdetailParameter, ReportrootGetemailappusageuserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetemailappusageUserdetailParameter, ReportRootGetemailappusageUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

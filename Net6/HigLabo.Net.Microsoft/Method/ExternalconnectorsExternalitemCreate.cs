@@ -2,34 +2,44 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ExternalconnectorsExternalitemCreateParameter : IRestApiParameter
+    public partial class ExternalConnectorsExternalitemCreateParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ConnectionId { get; set; }
+            public string ItemId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.External_Connections_ConnectionId_Items_ItemId: return $"/external/connections/{ConnectionId}/items/{ItemId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             External_Connections_ConnectionId_Items_ItemId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.External_Connections_ConnectionId_Items_ItemId: return $"/external/connections/{ConnectionId}/items/{ItemId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PUT";
         public string? Id { get; set; }
-        public Properties? Properties { get; set; }
-        public ExternalItemContent? Content { get; set; }
-        public Acl[]? Acl { get; set; }
-        public string ConnectionId { get; set; }
-        public string ItemId { get; set; }
+        public ExternalConnectorsProperties? Properties { get; set; }
+        public ExternalConnectorsExternalitemContent? Content { get; set; }
+        public ExternalConnectorsAcl[]? Acl { get; set; }
     }
-    public partial class ExternalconnectorsExternalitemCreateResponse : RestApiResponse
+    public partial class ExternalConnectorsExternalitemCreateResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -37,32 +47,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalitemCreateResponse> ExternalconnectorsExternalitemCreateAsync()
+        public async Task<ExternalConnectorsExternalitemCreateResponse> ExternalConnectorsExternalitemCreateAsync()
         {
-            var p = new ExternalconnectorsExternalitemCreateParameter();
-            return await this.SendAsync<ExternalconnectorsExternalitemCreateParameter, ExternalconnectorsExternalitemCreateResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsExternalitemCreateParameter();
+            return await this.SendAsync<ExternalConnectorsExternalitemCreateParameter, ExternalConnectorsExternalitemCreateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalitemCreateResponse> ExternalconnectorsExternalitemCreateAsync(CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsExternalitemCreateResponse> ExternalConnectorsExternalitemCreateAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalconnectorsExternalitemCreateParameter();
-            return await this.SendAsync<ExternalconnectorsExternalitemCreateParameter, ExternalconnectorsExternalitemCreateResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsExternalitemCreateParameter();
+            return await this.SendAsync<ExternalConnectorsExternalitemCreateParameter, ExternalConnectorsExternalitemCreateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalitemCreateResponse> ExternalconnectorsExternalitemCreateAsync(ExternalconnectorsExternalitemCreateParameter parameter)
+        public async Task<ExternalConnectorsExternalitemCreateResponse> ExternalConnectorsExternalitemCreateAsync(ExternalConnectorsExternalitemCreateParameter parameter)
         {
-            return await this.SendAsync<ExternalconnectorsExternalitemCreateParameter, ExternalconnectorsExternalitemCreateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsExternalitemCreateParameter, ExternalConnectorsExternalitemCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-create?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalitemCreateResponse> ExternalconnectorsExternalitemCreateAsync(ExternalconnectorsExternalitemCreateParameter parameter, CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsExternalitemCreateResponse> ExternalConnectorsExternalitemCreateAsync(ExternalConnectorsExternalitemCreateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalconnectorsExternalitemCreateParameter, ExternalconnectorsExternalitemCreateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsExternalitemCreateParameter, ExternalConnectorsExternalitemCreateResponse>(parameter, cancellationToken);
         }
     }
 }

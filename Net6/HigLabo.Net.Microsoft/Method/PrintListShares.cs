@@ -4,24 +4,49 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintListSharesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Shares: return $"/print/shares";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            CreatedDateTime,
+            Manufacturer,
+            Model,
+            IsAcceptingJobs,
+            Defaults,
+            Capabilities,
+            Location,
+            Status,
+            AllowAllUsers,
+            Printer,
+            AllowedUsers,
+            AllowedGroups,
+            Jobs,
         }
         public enum ApiPath
         {
             Print_Shares,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Shares: return $"/print/shares";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,24 +61,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintListSharesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printershare?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrinterShare
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Manufacturer { get; set; }
-            public string? Model { get; set; }
-            public bool? IsAcceptingJobs { get; set; }
-            public PrinterDefaults? Defaults { get; set; }
-            public PrinterCapabilities? Capabilities { get; set; }
-            public PrinterLocation? Location { get; set; }
-            public PrinterStatus? Status { get; set; }
-            public bool? AllowAllUsers { get; set; }
-        }
-
         public PrinterShare[] Value { get; set; }
     }
     public partial class MicrosoftClient

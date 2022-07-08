@@ -2,26 +2,42 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PolicyrootListRolemanagementpolicyassignmentsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PolicyRootListRoleManagementPolicyAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_RoleManagementPolicyAssignments: return $"/policies/roleManagementPolicyAssignments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            PolicyId,
+            RoleDefinitionId,
+            ScopeId,
+            ScopeType,
+            Policy,
         }
         public enum ApiPath
         {
             Policies_RoleManagementPolicyAssignments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_RoleManagementPolicyAssignments: return $"/policies/roleManagementPolicyAssignments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,20 +50,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class PolicyrootListRolemanagementpolicyassignmentsResponse : RestApiResponse
+    public partial class PolicyRootListRoleManagementPolicyAssignmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/unifiedrolemanagementpolicyassignment?view=graph-rest-1.0
-        /// </summary>
-        public partial class UnifiedRoleManagementPolicyAssignment
-        {
-            public string? Id { get; set; }
-            public string? PolicyId { get; set; }
-            public string? RoleDefinitionId { get; set; }
-            public string? ScopeId { get; set; }
-            public string? ScopeType { get; set; }
-        }
-
         public UnifiedRoleManagementPolicyAssignment[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -55,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyrootListRolemanagementpolicyassignmentsResponse> PolicyrootListRolemanagementpolicyassignmentsAsync()
+        public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync()
         {
-            var p = new PolicyrootListRolemanagementpolicyassignmentsParameter();
-            return await this.SendAsync<PolicyrootListRolemanagementpolicyassignmentsParameter, PolicyrootListRolemanagementpolicyassignmentsResponse>(p, CancellationToken.None);
+            var p = new PolicyRootListRoleManagementPolicyAssignmentsParameter();
+            return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyrootListRolemanagementpolicyassignmentsResponse> PolicyrootListRolemanagementpolicyassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new PolicyrootListRolemanagementpolicyassignmentsParameter();
-            return await this.SendAsync<PolicyrootListRolemanagementpolicyassignmentsParameter, PolicyrootListRolemanagementpolicyassignmentsResponse>(p, cancellationToken);
+            var p = new PolicyRootListRoleManagementPolicyAssignmentsParameter();
+            return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyrootListRolemanagementpolicyassignmentsResponse> PolicyrootListRolemanagementpolicyassignmentsAsync(PolicyrootListRolemanagementpolicyassignmentsParameter parameter)
+        public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(PolicyRootListRoleManagementPolicyAssignmentsParameter parameter)
         {
-            return await this.SendAsync<PolicyrootListRolemanagementpolicyassignmentsParameter, PolicyrootListRolemanagementpolicyassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<PolicyrootListRolemanagementpolicyassignmentsResponse> PolicyrootListRolemanagementpolicyassignmentsAsync(PolicyrootListRolemanagementpolicyassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(PolicyRootListRoleManagementPolicyAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PolicyrootListRolemanagementpolicyassignmentsParameter, PolicyrootListRolemanagementpolicyassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

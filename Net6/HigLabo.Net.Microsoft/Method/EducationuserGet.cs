@@ -2,10 +2,63 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationuserGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationUserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Me: return $"/education/me";
+                    case ApiPath.Education_Users_Id: return $"/education/users/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AccountEnabled,
+            AssignedLicenses,
+            AssignedPlans,
+            BusinessPhones,
+            CreatedBy,
+            Department,
+            DisplayName,
+            ExternalSource,
+            ExternalSourceDetail,
+            GivenName,
+            Id,
+            Mail,
+            MailingAddress,
+            MailNickname,
+            MiddleName,
+            MobilePhone,
+            OnPremisesInfo,
+            PasswordPolicies,
+            PasswordProfile,
+            PreferredLanguage,
+            PrimaryRole,
+            ProvisionedPlans,
+            RelatedContacts,
+            ResidenceAddress,
+            ShowInAddressList,
+            Student,
+            Surname,
+            Teacher,
+            UsageLocation,
+            UserPrincipalName,
+            UserType,
+            Assignments,
+            Classes,
+            Schools,
+            TaughtClasses,
+            User,
+            Rubrics,
         }
         public enum ApiPath
         {
@@ -13,17 +66,12 @@ namespace HigLabo.Net.Microsoft
             Education_Users_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Me: return $"/education/me";
-                    case ApiPath.Education_Users_Id: return $"/education/users/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,9 +83,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class EducationuserGetResponse : RestApiResponse
+    public partial class EducationUserGetResponse : RestApiResponse
     {
         public enum EducationUserEducationExternalSource
         {
@@ -83,38 +130,44 @@ namespace HigLabo.Net.Microsoft
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
+        public EducationAssignment[]? Assignments { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationSchool[]? Schools { get; set; }
+        public EducationClass[]? TaughtClasses { get; set; }
+        public User? User { get; set; }
+        public EducationRubric[]? Rubrics { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetResponse> EducationuserGetAsync()
+        public async Task<EducationUserGetResponse> EducationUserGetAsync()
         {
-            var p = new EducationuserGetParameter();
-            return await this.SendAsync<EducationuserGetParameter, EducationuserGetResponse>(p, CancellationToken.None);
+            var p = new EducationUserGetParameter();
+            return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetResponse> EducationuserGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationUserGetResponse> EducationUserGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationuserGetParameter();
-            return await this.SendAsync<EducationuserGetParameter, EducationuserGetResponse>(p, cancellationToken);
+            var p = new EducationUserGetParameter();
+            return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetResponse> EducationuserGetAsync(EducationuserGetParameter parameter)
+        public async Task<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter)
         {
-            return await this.SendAsync<EducationuserGetParameter, EducationuserGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserGetResponse> EducationuserGetAsync(EducationuserGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationuserGetParameter, EducationuserGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(parameter, cancellationToken);
         }
     }
 }

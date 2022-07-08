@@ -2,26 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PlannergroupListPlansParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PlannerGroupListPlansParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string GroupId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_GroupId_Planner_Plans: return $"/groups/{GroupId}/planner/plans";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Container,
+            CreatedBy,
+            CreatedDateTime,
+            Id,
+            Title,
+            Buckets,
+            Details,
+            Tasks,
         }
         public enum ApiPath
         {
             Groups_GroupId_Planner_Plans,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_GroupId_Planner_Plans: return $"/groups/{GroupId}/planner/plans";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,22 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string GroupId { get; set; }
     }
-    public partial class PlannergroupListPlansResponse : RestApiResponse
+    public partial class PlannerGroupListPlansResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/plannerplan?view=graph-rest-1.0
-        /// </summary>
-        public partial class PlannerPlan
-        {
-            public PlannerPlanContainer? Container { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Id { get; set; }
-            public string? Title { get; set; }
-        }
-
         public PlannerPlan[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -56,32 +62,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannergroupListPlansResponse> PlannergroupListPlansAsync()
+        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync()
         {
-            var p = new PlannergroupListPlansParameter();
-            return await this.SendAsync<PlannergroupListPlansParameter, PlannergroupListPlansResponse>(p, CancellationToken.None);
+            var p = new PlannerGroupListPlansParameter();
+            return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannergroupListPlansResponse> PlannergroupListPlansAsync(CancellationToken cancellationToken)
+        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(CancellationToken cancellationToken)
         {
-            var p = new PlannergroupListPlansParameter();
-            return await this.SendAsync<PlannergroupListPlansParameter, PlannergroupListPlansResponse>(p, cancellationToken);
+            var p = new PlannerGroupListPlansParameter();
+            return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannergroupListPlansResponse> PlannergroupListPlansAsync(PlannergroupListPlansParameter parameter)
+        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(PlannerGroupListPlansParameter parameter)
         {
-            return await this.SendAsync<PlannergroupListPlansParameter, PlannergroupListPlansResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/plannergroup-list-plans?view=graph-rest-1.0
         /// </summary>
-        public async Task<PlannergroupListPlansResponse> PlannergroupListPlansAsync(PlannergroupListPlansParameter parameter, CancellationToken cancellationToken)
+        public async Task<PlannerGroupListPlansResponse> PlannerGroupListPlansAsync(PlannerGroupListPlansParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PlannergroupListPlansParameter, PlannergroupListPlansResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PlannerGroupListPlansParameter, PlannerGroupListPlansResponse>(parameter, cancellationToken);
         }
     }
 }

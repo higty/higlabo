@@ -4,24 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class IdentitycontainerListIdentityprovidersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_IdentityProviders: return $"/identity/identityProviders";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ClientId,
+            ClientSecret,
+            Id,
+            DisplayName,
+            IdentityProviderType,
         }
         public enum ApiPath
         {
             Identity_IdentityProviders,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_IdentityProviders: return $"/identity/identityProviders";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,18 +51,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentitycontainerListIdentityprovidersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/socialidentityprovider?view=graph-rest-1.0
-        /// </summary>
-        public partial class SocialIdentityProvider
-        {
-            public string? ClientId { get; set; }
-            public string? ClientSecret { get; set; }
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public string? IdentityProviderType { get; set; }
-        }
-
         public SocialIdentityProvider[] Value { get; set; }
     }
     public partial class MicrosoftClient

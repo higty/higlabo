@@ -4,25 +4,35 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SamlorwsfedexternaldomainfederationDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SamlOrWsFedExternalDomainFederationID { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Irectory_FederationConfigurations_SamlOrWsFedExternalDomainFederationID: return $"/irectory/federationConfigurations/{SamlOrWsFedExternalDomainFederationID}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Irectory_FederationConfigurations_SamlOrWsFedExternalDomainFederationID,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Irectory_FederationConfigurations_SamlOrWsFedExternalDomainFederationID: return $"/irectory/federationConfigurations/{SamlOrWsFedExternalDomainFederationID}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string SamlOrWsFedExternalDomainFederationID { get; set; }
     }
     public partial class SamlorwsfedexternaldomainfederationDeleteResponse : RestApiResponse
     {

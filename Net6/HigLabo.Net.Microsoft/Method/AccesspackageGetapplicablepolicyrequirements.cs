@@ -2,44 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AccesspackageGetapplicablepolicyrequirementsParameter : IRestApiParameter
+    public partial class AccesspackageGetapplicablePolicyRequirementsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessPackageId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_AccessPackages_AccessPackageId_GetApplicablePolicyRequirements: return $"/identityGovernance/entitlementManagement/accessPackages/{AccessPackageId}/getApplicablePolicyRequirements";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             IdentityGovernance_EntitlementManagement_AccessPackages_AccessPackageId_GetApplicablePolicyRequirements,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AccessPackages_AccessPackageId_GetApplicablePolicyRequirements: return $"/identityGovernance/entitlementManagement/accessPackages/{AccessPackageId}/getApplicablePolicyRequirements";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string AccessPackageId { get; set; }
     }
-    public partial class AccesspackageGetapplicablepolicyrequirementsResponse : RestApiResponse
+    public partial class AccesspackageGetapplicablePolicyRequirementsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessPackageAssignmentRequestRequirements
-        {
-            public bool? AllowCustomAssignmentSchedule { get; set; }
-            public bool? IsApprovalRequiredForAdd { get; set; }
-            public bool? IsApprovalRequiredForUpdate { get; set; }
-            public string? PolicyDescription { get; set; }
-            public string? PolicyDisplayName { get; set; }
-            public string? PolicyId { get; set; }
-            public EntitlementManagementSchedule? Schedule { get; set; }
-        }
-
         public AccessPackageAssignmentRequestRequirements[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -47,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablepolicyrequirementsResponse> AccesspackageGetapplicablepolicyrequirementsAsync()
+        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync()
         {
-            var p = new AccesspackageGetapplicablepolicyrequirementsParameter();
-            return await this.SendAsync<AccesspackageGetapplicablepolicyrequirementsParameter, AccesspackageGetapplicablepolicyrequirementsResponse>(p, CancellationToken.None);
+            var p = new AccesspackageGetapplicablePolicyRequirementsParameter();
+            return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablepolicyrequirementsResponse> AccesspackageGetapplicablepolicyrequirementsAsync(CancellationToken cancellationToken)
+        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageGetapplicablepolicyrequirementsParameter();
-            return await this.SendAsync<AccesspackageGetapplicablepolicyrequirementsParameter, AccesspackageGetapplicablepolicyrequirementsResponse>(p, cancellationToken);
+            var p = new AccesspackageGetapplicablePolicyRequirementsParameter();
+            return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablepolicyrequirementsResponse> AccesspackageGetapplicablepolicyrequirementsAsync(AccesspackageGetapplicablepolicyrequirementsParameter parameter)
+        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(AccesspackageGetapplicablePolicyRequirementsParameter parameter)
         {
-            return await this.SendAsync<AccesspackageGetapplicablepolicyrequirementsParameter, AccesspackageGetapplicablepolicyrequirementsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackage-getapplicablepolicyrequirements?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageGetapplicablepolicyrequirementsResponse> AccesspackageGetapplicablepolicyrequirementsAsync(AccesspackageGetapplicablepolicyrequirementsParameter parameter, CancellationToken cancellationToken)
+        public async Task<AccesspackageGetapplicablePolicyRequirementsResponse> AccesspackageGetapplicablePolicyRequirementsAsync(AccesspackageGetapplicablePolicyRequirementsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageGetapplicablepolicyrequirementsParameter, AccesspackageGetapplicablepolicyrequirementsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccesspackageGetapplicablePolicyRequirementsParameter, AccesspackageGetapplicablePolicyRequirementsResponse>(parameter, cancellationToken);
         }
     }
 }

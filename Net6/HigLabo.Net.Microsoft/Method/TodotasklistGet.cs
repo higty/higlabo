@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TodotasklistGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId: return $"/me/todo/lists/{TodoTaskListId}";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +30,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_TodoTaskListId: return $"/me/todo/lists/{TodoTaskListId}";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,8 +47,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TodoTaskListId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class TodotasklistGetResponse : RestApiResponse
     {
@@ -53,6 +63,8 @@ namespace HigLabo.Net.Microsoft
         public bool? IsOwner { get; set; }
         public bool? IsShared { get; set; }
         public TodoTaskListWellknownListName WellknownListName { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public TodoTask[]? Tasks { get; set; }
     }
     public partial class MicrosoftClient
     {

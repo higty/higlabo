@@ -4,21 +4,32 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamSendactivitynotificationParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_SendActivityNotification: return $"/teams/{TeamId}/sendActivityNotification";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_TeamId_SendActivityNotification,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_SendActivityNotification: return $"/teams/{TeamId}/sendActivityNotification";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -28,7 +39,6 @@ namespace HigLabo.Net.Microsoft
         public ItemBody? PreviewText { get; set; }
         public KeyValuePair[]? TemplateParameters { get; set; }
         public TeamworkNotificationRecipient? Recipient { get; set; }
-        public string TeamId { get; set; }
     }
     public partial class TeamSendactivitynotificationResponse : RestApiResponse
     {

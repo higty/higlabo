@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public SharingDetail? LastShared { get; set; }
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
+        public Entity[]? Resource { get; set; }
     }
 }

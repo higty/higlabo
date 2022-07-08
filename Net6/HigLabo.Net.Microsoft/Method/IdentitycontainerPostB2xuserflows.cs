@@ -2,23 +2,33 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IdentitycontainerPostB2xuserflowsParameter : IRestApiParameter
+    public partial class IdentitycontainerPostB2xUserflowsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_B2xUserFlows: return $"/identity/b2xUserFlows";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Identity_B2xUserFlows,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_B2xUserFlows: return $"/identity/b2xUserFlows";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -26,45 +36,51 @@ namespace HigLabo.Net.Microsoft
         public string? UserFlowType { get; set; }
         public float? UserFlowTypeVersion { get; set; }
         public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
+        public IdentityProvider[]? IdentityProviders { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
+        public UserFlowLanguageConfiguration[]? Languages { get; set; }
     }
-    public partial class IdentitycontainerPostB2xuserflowsResponse : RestApiResponse
+    public partial class IdentitycontainerPostB2xUserflowsResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? UserFlowType { get; set; }
         public Single? UserFlowTypeVersion { get; set; }
         public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
+        public IdentityProvider[]? IdentityProviders { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
+        public UserFlowLanguageConfiguration[]? Languages { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerPostB2xuserflowsResponse> IdentitycontainerPostB2xuserflowsAsync()
+        public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync()
         {
-            var p = new IdentitycontainerPostB2xuserflowsParameter();
-            return await this.SendAsync<IdentitycontainerPostB2xuserflowsParameter, IdentitycontainerPostB2xuserflowsResponse>(p, CancellationToken.None);
+            var p = new IdentitycontainerPostB2xUserflowsParameter();
+            return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerPostB2xuserflowsResponse> IdentitycontainerPostB2xuserflowsAsync(CancellationToken cancellationToken)
+        public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentitycontainerPostB2xuserflowsParameter();
-            return await this.SendAsync<IdentitycontainerPostB2xuserflowsParameter, IdentitycontainerPostB2xuserflowsResponse>(p, cancellationToken);
+            var p = new IdentitycontainerPostB2xUserflowsParameter();
+            return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerPostB2xuserflowsResponse> IdentitycontainerPostB2xuserflowsAsync(IdentitycontainerPostB2xuserflowsParameter parameter)
+        public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync(IdentitycontainerPostB2xUserflowsParameter parameter)
         {
-            return await this.SendAsync<IdentitycontainerPostB2xuserflowsParameter, IdentitycontainerPostB2xuserflowsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentitycontainerPostB2xuserflowsResponse> IdentitycontainerPostB2xuserflowsAsync(IdentitycontainerPostB2xuserflowsParameter parameter, CancellationToken cancellationToken)
+        public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync(IdentitycontainerPostB2xUserflowsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentitycontainerPostB2xuserflowsParameter, IdentitycontainerPostB2xuserflowsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(parameter, cancellationToken);
         }
     }
 }

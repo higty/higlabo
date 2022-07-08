@@ -2,26 +2,64 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationAssignmentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            AddedStudentAction,
+            AddToCalendarAction,
+            AllowLateSubmissions,
+            AllowStudentsToAddResourcesToSubmission,
+            AssignDateTime,
+            AssignTo,
+            AssignedDateTime,
+            ClassId,
+            CloseDateTime,
+            CreatedBy,
+            CreatedDateTime,
+            DisplayName,
+            DueDateTime,
+            Grading,
+            Instructions,
+            LastModifiedBy,
+            LastModifiedDateTime,
+            NotificationChannelUrl,
+            Status,
+            WebUrl,
+            ResourcesFolderUrl,
+            Resources,
+            Submissions,
+            Categories,
+            Rubric,
         }
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,10 +71,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
     }
-    public partial class EducationassignmentGetResponse : RestApiResponse
+    public partial class EducationAssignmentGetResponse : RestApiResponse
     {
         public enum EducationAssignmentEducationAddToCalendarOptions
         {
@@ -76,38 +112,42 @@ namespace HigLabo.Net.Microsoft
         public EducationAssignmentstring Status { get; set; }
         public string? WebUrl { get; set; }
         public string? ResourcesFolderUrl { get; set; }
+        public EducationAssignmentResource[]? Resources { get; set; }
+        public EducationSubmission[]? Submissions { get; set; }
+        public EducationCategory[]? Categories { get; set; }
+        public EducationRubric? Rubric { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentGetResponse> EducationassignmentGetAsync()
+        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync()
         {
-            var p = new EducationassignmentGetParameter();
-            return await this.SendAsync<EducationassignmentGetParameter, EducationassignmentGetResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentGetParameter();
+            return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentGetResponse> EducationassignmentGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentGetParameter();
-            return await this.SendAsync<EducationassignmentGetParameter, EducationassignmentGetResponse>(p, cancellationToken);
+            var p = new EducationAssignmentGetParameter();
+            return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentGetResponse> EducationassignmentGetAsync(EducationassignmentGetParameter parameter)
+        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentGetParameter, EducationassignmentGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentGetResponse> EducationassignmentGetAsync(EducationassignmentGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentGetParameter, EducationassignmentGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(parameter, cancellationToken);
         }
     }
 }

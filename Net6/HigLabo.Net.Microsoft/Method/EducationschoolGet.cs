@@ -2,26 +2,55 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationschoolGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationSchoolGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string EducationSchoolId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Schools_EducationSchoolId: return $"/education/schools/{EducationSchoolId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Address,
+            CreatedBy,
+            Description,
+            DisplayName,
+            ExternalId,
+            ExternalPrincipalId,
+            ExternalSource,
+            ExternalSourceDetail,
+            HighestGrade,
+            Id,
+            LowestGrade,
+            Phone,
+            PrincipalEmail,
+            PrincipalName,
+            SchoolNumber,
+            AdministrativeUnit,
+            Classes,
+            Users,
         }
         public enum ApiPath
         {
             Education_Schools_EducationSchoolId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Schools_EducationSchoolId: return $"/education/schools/{EducationSchoolId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +62,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string EducationSchoolId { get; set; }
     }
-    public partial class EducationschoolGetResponse : RestApiResponse
+    public partial class EducationSchoolGetResponse : RestApiResponse
     {
         public enum EducationSchoolEducationExternalSource
         {
@@ -58,38 +86,41 @@ namespace HigLabo.Net.Microsoft
         public string? PrincipalEmail { get; set; }
         public string? PrincipalName { get; set; }
         public string? SchoolNumber { get; set; }
+        public AdministrativeUnit? AdministrativeUnit { get; set; }
+        public EducationClass[]? Classes { get; set; }
+        public EducationUser[]? Users { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolGetResponse> EducationschoolGetAsync()
+        public async Task<EducationSchoolGetResponse> EducationSchoolGetAsync()
         {
-            var p = new EducationschoolGetParameter();
-            return await this.SendAsync<EducationschoolGetParameter, EducationschoolGetResponse>(p, CancellationToken.None);
+            var p = new EducationSchoolGetParameter();
+            return await this.SendAsync<EducationSchoolGetParameter, EducationSchoolGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolGetResponse> EducationschoolGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationSchoolGetResponse> EducationSchoolGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationschoolGetParameter();
-            return await this.SendAsync<EducationschoolGetParameter, EducationschoolGetResponse>(p, cancellationToken);
+            var p = new EducationSchoolGetParameter();
+            return await this.SendAsync<EducationSchoolGetParameter, EducationSchoolGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolGetResponse> EducationschoolGetAsync(EducationschoolGetParameter parameter)
+        public async Task<EducationSchoolGetResponse> EducationSchoolGetAsync(EducationSchoolGetParameter parameter)
         {
-            return await this.SendAsync<EducationschoolGetParameter, EducationschoolGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationSchoolGetParameter, EducationSchoolGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationschool-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationschoolGetResponse> EducationschoolGetAsync(EducationschoolGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationSchoolGetResponse> EducationSchoolGetAsync(EducationSchoolGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationschoolGetParameter, EducationschoolGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationSchoolGetParameter, EducationSchoolGetResponse>(parameter, cancellationToken);
         }
     }
 }

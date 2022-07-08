@@ -4,6 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintershareGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterShareId { get; set; }
+            public string PrinterId { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Shares_PrinterShareId: return $"/print/shares/{PrinterShareId}";
+                    case ApiPath.Print_Printers_PrinterId_Shares_PrinterShareId: return $"/print/printers/{PrinterId}/shares/{PrinterShareId}";
+                    case ApiPath.Print_Printers_Id: return $"/print/printers/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -14,18 +33,12 @@ namespace HigLabo.Net.Microsoft
             Print_Printers_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Shares_PrinterShareId: return $"/print/shares/{PrinterShareId}";
-                    case ApiPath.Print_Printers_PrinterId_Shares_PrinterShareId: return $"/print/printers/{PrinterId}/shares/{PrinterShareId}";
-                    case ApiPath.Print_Printers_Id: return $"/print/printers/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,9 +50,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrinterShareId { get; set; }
-        public string PrinterId { get; set; }
-        public string Id { get; set; }
     }
     public partial class PrintershareGetResponse : RestApiResponse
     {
@@ -54,6 +64,10 @@ namespace HigLabo.Net.Microsoft
         public PrinterLocation? Location { get; set; }
         public PrinterStatus? Status { get; set; }
         public bool? AllowAllUsers { get; set; }
+        public Printer? Printer { get; set; }
+        public User[]? AllowedUsers { get; set; }
+        public Group? AllowedGroups { get; set; }
+        public PrintJob[]? Jobs { get; set; }
     }
     public partial class MicrosoftClient
     {

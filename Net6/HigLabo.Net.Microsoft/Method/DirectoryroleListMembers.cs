@@ -4,8 +4,26 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DirectoryroleListMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string RoleId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.DirectoryRoles_RoleId_Members: return $"/directoryRoles/{RoleId}/members";
+                    case ApiPath.DirectoryRoles_RoleTemplateId: return $"/directoryRoles/roleTemplateId";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DeletedDateTime,
+            Id,
         }
         public enum ApiPath
         {
@@ -13,17 +31,12 @@ namespace HigLabo.Net.Microsoft
             DirectoryRoles_RoleTemplateId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.DirectoryRoles_RoleId_Members: return $"/directoryRoles/{RoleId}/members";
-                    case ApiPath.DirectoryRoles_RoleTemplateId: return $"/directoryRoles/roleTemplateId";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,19 +48,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string RoleId { get; set; }
     }
     public partial class DirectoryroleListMembersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
-        /// </summary>
-        public partial class DirectoryObject
-        {
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Id { get; set; }
-        }
-
         public DirectoryObject[] Value { get; set; }
     }
     public partial class MicrosoftClient

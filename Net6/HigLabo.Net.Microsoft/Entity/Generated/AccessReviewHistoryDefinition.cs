@@ -34,5 +34,6 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewHistoryScheduleSettings? ScheduleSettings { get; set; }
         public AccessReviewScope[]? Scopes { get; set; }
         public AccessReviewHistoryDefinitionAccessReviewHistoryStatus Status { get; set; }
+        public AccessReviewHistoryInstance[]? Instances { get; set; }
     }
 }

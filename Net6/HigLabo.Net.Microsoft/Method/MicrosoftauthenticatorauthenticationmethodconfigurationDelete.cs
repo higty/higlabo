@@ -2,28 +2,38 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter : IRestApiParameter
+    public partial class MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_MicrosoftAuthenticator: return $"/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/microsoftAuthenticator";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_MicrosoftAuthenticator,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_MicrosoftAuthenticator: return $"/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/microsoftAuthenticator";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
     }
-    public partial class MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse : RestApiResponse
+    public partial class MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -31,32 +41,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodconfigurationDeleteAsync()
+        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodConfigurationDeleteAsync()
         {
-            var p = new MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter();
-            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse>(p, CancellationToken.None);
+            var p = new MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter();
+            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodconfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter();
-            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse>(p, cancellationToken);
+            var p = new MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter();
+            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodconfigurationDeleteAsync(MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter parameter)
+        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodConfigurationDeleteAsync(MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter parameter)
         {
-            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodconfigurationDeleteAsync(MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse> MicrosoftauthenticatorauthenticationmethodConfigurationDeleteAsync(MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodconfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodconfigurationDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodConfigurationDeleteParameter, MicrosoftauthenticatorauthenticationmethodConfigurationDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

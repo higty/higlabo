@@ -24,5 +24,9 @@ namespace HigLabo.Net.Microsoft
         public Double? RowHeight { get; set; }
         public RangeFormatstring VerticalAlignment { get; set; }
         public bool? WrapText { get; set; }
+        public RangeBorder[]? Borders { get; set; }
+        public RangeFill? Fill { get; set; }
+        public RangeFont? Font { get; set; }
+        public FormatProtection? Protection { get; set; }
     }
 }

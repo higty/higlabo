@@ -13,15 +13,18 @@ namespace HigLabo.Net.Slack
     {
         public static String ApiUrl = "https://slack.com/api/";
 
-        public SlackClient(string accessToken)
+        public SlackClient(IJsonConverter jsonConverter, string accessToken)
+            : base(jsonConverter)
         {
             this.AccessToken = accessToken;
         }
-        public SlackClient(OAuthSetting setting)
+        public SlackClient(IJsonConverter jsonConverter, OAuthSetting setting)
+            : base(jsonConverter)
         {
             this.OAuthSetting = setting;
         }
-        public SlackClient(string accessToken, string refreshToken, OAuthSetting setting)
+        public SlackClient(IJsonConverter jsonConverter, string accessToken, string refreshToken, OAuthSetting setting)
+            : base(jsonConverter)
         {
             this.AccessToken = accessToken;
             this.RefreshToken = refreshToken;

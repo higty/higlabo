@@ -2,10 +2,47 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypeGetcompatiblehubcontenttypesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ContentTypeGetcompatiblehubContentTypesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_GetCompatibleHubContentTypes: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/getCompatibleHubContentTypes";
+                    case ApiPath.Sites_SiteId_ContentTypes_GetCompatibleHubContentTypes: return $"/sites/{SiteId}/contentTypes/getCompatibleHubContentTypes";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AssociatedHubsUrls,
+            Description,
+            DocumentSet,
+            DocumentTemplate,
+            Group,
+            Hidden,
+            Id,
+            InheritedFrom,
+            IsBuiltIn,
+            Name,
+            Order,
+            ParentId,
+            PropagateChanges,
+            ReadOnly,
+            Sealed,
+            Base,
+            ColumnLinks,
+            BaseTypes,
+            ColumnPositions,
+            Columns,
         }
         public enum ApiPath
         {
@@ -13,17 +50,12 @@ namespace HigLabo.Net.Microsoft
             Sites_SiteId_ContentTypes_GetCompatibleHubContentTypes,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_GetCompatibleHubContentTypes: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/getCompatibleHubContentTypes";
-                    case ApiPath.Sites_SiteId_ContentTypes_GetCompatibleHubContentTypes: return $"/sites/{SiteId}/contentTypes/getCompatibleHubContentTypes";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,33 +67,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ListId { get; set; }
     }
-    public partial class ContenttypeGetcompatiblehubcontenttypesResponse : RestApiResponse
+    public partial class ContentTypeGetcompatiblehubContentTypesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/contenttype?view=graph-rest-1.0
-        /// </summary>
-        public partial class ContentType
-        {
-            public String[]? AssociatedHubsUrls { get; set; }
-            public string? Description { get; set; }
-            public DocumentSet? DocumentSet { get; set; }
-            public DocumentSetContent? DocumentTemplate { get; set; }
-            public string? Group { get; set; }
-            public bool? Hidden { get; set; }
-            public string? Id { get; set; }
-            public ItemReference? InheritedFrom { get; set; }
-            public bool? IsBuiltIn { get; set; }
-            public string? Name { get; set; }
-            public ContentTypeOrder? Order { get; set; }
-            public string? ParentId { get; set; }
-            public bool? PropagateChanges { get; set; }
-            public bool? ReadOnly { get; set; }
-            public bool? Sealed { get; set; }
-        }
-
         public ContentType[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -69,32 +77,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetcompatiblehubcontenttypesResponse> ContenttypeGetcompatiblehubcontenttypesAsync()
+        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync()
         {
-            var p = new ContenttypeGetcompatiblehubcontenttypesParameter();
-            return await this.SendAsync<ContenttypeGetcompatiblehubcontenttypesParameter, ContenttypeGetcompatiblehubcontenttypesResponse>(p, CancellationToken.None);
+            var p = new ContentTypeGetcompatiblehubContentTypesParameter();
+            return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetcompatiblehubcontenttypesResponse> ContenttypeGetcompatiblehubcontenttypesAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypeGetcompatiblehubcontenttypesParameter();
-            return await this.SendAsync<ContenttypeGetcompatiblehubcontenttypesParameter, ContenttypeGetcompatiblehubcontenttypesResponse>(p, cancellationToken);
+            var p = new ContentTypeGetcompatiblehubContentTypesParameter();
+            return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetcompatiblehubcontenttypesResponse> ContenttypeGetcompatiblehubcontenttypesAsync(ContenttypeGetcompatiblehubcontenttypesParameter parameter)
+        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter)
         {
-            return await this.SendAsync<ContenttypeGetcompatiblehubcontenttypesParameter, ContenttypeGetcompatiblehubcontenttypesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-getcompatiblehubcontenttypes?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeGetcompatiblehubcontenttypesResponse> ContenttypeGetcompatiblehubcontenttypesAsync(ContenttypeGetcompatiblehubcontenttypesParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypeGetcompatiblehubContentTypesResponse> ContentTypeGetcompatiblehubContentTypesAsync(ContentTypeGetcompatiblehubContentTypesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypeGetcompatiblehubcontenttypesParameter, ContenttypeGetcompatiblehubcontenttypesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypeGetcompatiblehubContentTypesParameter, ContentTypeGetcompatiblehubContentTypesResponse>(parameter, cancellationToken);
         }
     }
 }

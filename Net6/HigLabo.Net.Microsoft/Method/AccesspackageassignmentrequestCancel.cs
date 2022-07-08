@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AccesspackageassignmentrequestCancelParameter : IRestApiParameter
+    public partial class AccesspackageAssignmentrequestCancelParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessPackageAssignmentRequestId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentRequests_AccessPackageAssignmentRequestId_Cancel: return $"/identityGovernance/entitlementManagement/assignmentRequests/{AccessPackageAssignmentRequestId}/cancel";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             IdentityGovernance_EntitlementManagement_AssignmentRequests_AccessPackageAssignmentRequestId_Cancel,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentRequests_AccessPackageAssignmentRequestId_Cancel: return $"/identityGovernance/entitlementManagement/assignmentRequests/{AccessPackageAssignmentRequestId}/cancel";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string AccessPackageAssignmentRequestId { get; set; }
     }
-    public partial class AccesspackageassignmentrequestCancelResponse : RestApiResponse
+    public partial class AccesspackageAssignmentrequestCancelResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentrequestCancelResponse> AccesspackageassignmentrequestCancelAsync()
+        public async Task<AccesspackageAssignmentrequestCancelResponse> AccesspackageAssignmentrequestCancelAsync()
         {
-            var p = new AccesspackageassignmentrequestCancelParameter();
-            return await this.SendAsync<AccesspackageassignmentrequestCancelParameter, AccesspackageassignmentrequestCancelResponse>(p, CancellationToken.None);
+            var p = new AccesspackageAssignmentrequestCancelParameter();
+            return await this.SendAsync<AccesspackageAssignmentrequestCancelParameter, AccesspackageAssignmentrequestCancelResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentrequestCancelResponse> AccesspackageassignmentrequestCancelAsync(CancellationToken cancellationToken)
+        public async Task<AccesspackageAssignmentrequestCancelResponse> AccesspackageAssignmentrequestCancelAsync(CancellationToken cancellationToken)
         {
-            var p = new AccesspackageassignmentrequestCancelParameter();
-            return await this.SendAsync<AccesspackageassignmentrequestCancelParameter, AccesspackageassignmentrequestCancelResponse>(p, cancellationToken);
+            var p = new AccesspackageAssignmentrequestCancelParameter();
+            return await this.SendAsync<AccesspackageAssignmentrequestCancelParameter, AccesspackageAssignmentrequestCancelResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentrequestCancelResponse> AccesspackageassignmentrequestCancelAsync(AccesspackageassignmentrequestCancelParameter parameter)
+        public async Task<AccesspackageAssignmentrequestCancelResponse> AccesspackageAssignmentrequestCancelAsync(AccesspackageAssignmentrequestCancelParameter parameter)
         {
-            return await this.SendAsync<AccesspackageassignmentrequestCancelParameter, AccesspackageassignmentrequestCancelResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AccesspackageAssignmentrequestCancelParameter, AccesspackageAssignmentrequestCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<AccesspackageassignmentrequestCancelResponse> AccesspackageassignmentrequestCancelAsync(AccesspackageassignmentrequestCancelParameter parameter, CancellationToken cancellationToken)
+        public async Task<AccesspackageAssignmentrequestCancelResponse> AccesspackageAssignmentrequestCancelAsync(AccesspackageAssignmentrequestCancelParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AccesspackageassignmentrequestCancelParameter, AccesspackageassignmentrequestCancelResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AccesspackageAssignmentrequestCancelParameter, AccesspackageAssignmentrequestCancelResponse>(parameter, cancellationToken);
         }
     }
 }

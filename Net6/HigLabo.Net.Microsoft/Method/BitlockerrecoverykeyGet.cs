@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class BitlockerrecoverykeyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string BitlockeryRecoveryKeyId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.InformationProtection_Bitlocker_RecoveryKeys_BitlockeryRecoveryKeyId: return $"/informationProtection/bitlocker/recoveryKeys/{BitlockeryRecoveryKeyId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             InformationProtection_Bitlocker_RecoveryKeys_BitlockeryRecoveryKeyId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.InformationProtection_Bitlocker_RecoveryKeys_BitlockeryRecoveryKeyId: return $"/informationProtection/bitlocker/recoveryKeys/{BitlockeryRecoveryKeyId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string BitlockeryRecoveryKeyId { get; set; }
     }
     public partial class BitlockerrecoverykeyGetResponse : RestApiResponse
     {

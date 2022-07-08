@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentdefaultsGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationAssignmentdefaultsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_AssignmentDefaults: return $"/education/classes/{Id}/assignmentDefaults";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_Id_AssignmentDefaults,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_AssignmentDefaults: return $"/education/classes/{Id}/assignmentDefaults";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +44,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class EducationassignmentdefaultsGetResponse : RestApiResponse
+    public partial class EducationAssignmentdefaultsGetResponse : RestApiResponse
     {
         public enum EducationAssignmentDefaultsEducationAddedStudentAction
         {
@@ -62,32 +72,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentdefaultsGetResponse> EducationassignmentdefaultsGetAsync()
+        public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync()
         {
-            var p = new EducationassignmentdefaultsGetParameter();
-            return await this.SendAsync<EducationassignmentdefaultsGetParameter, EducationassignmentdefaultsGetResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentdefaultsGetParameter();
+            return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentdefaultsGetResponse> EducationassignmentdefaultsGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentdefaultsGetParameter();
-            return await this.SendAsync<EducationassignmentdefaultsGetParameter, EducationassignmentdefaultsGetResponse>(p, cancellationToken);
+            var p = new EducationAssignmentdefaultsGetParameter();
+            return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentdefaultsGetResponse> EducationassignmentdefaultsGetAsync(EducationassignmentdefaultsGetParameter parameter)
+        public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync(EducationAssignmentdefaultsGetParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentdefaultsGetParameter, EducationassignmentdefaultsGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentdefaultsGetResponse> EducationassignmentdefaultsGetAsync(EducationassignmentdefaultsGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync(EducationAssignmentdefaultsGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentdefaultsGetParameter, EducationassignmentdefaultsGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(parameter, cancellationToken);
         }
     }
 }

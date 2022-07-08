@@ -4,24 +4,52 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class BookingbusinessListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Solutions_BookingBusinesses: return $"/solutions/bookingBusinesses";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Address,
+            BusinessHours,
+            BusinessType,
+            DefaultCurrencyIso,
+            DisplayName,
+            Email,
+            Id,
+            IsPublished,
+            Phone,
+            PublicUrl,
+            SchedulingPolicy,
+            WebSiteUrl,
+            Appointments,
+            CalendarView,
+            Customers,
+            CustomQuestions,
+            Services,
+            StaffMembers,
         }
         public enum ApiPath
         {
             Solutions_BookingBusinesses,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Solutions_BookingBusinesses: return $"/solutions/bookingBusinesses";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,25 +64,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BookingbusinessListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/bookingbusiness?view=graph-rest-1.0
-        /// </summary>
-        public partial class BookingBusiness
-        {
-            public PhysicalAddress? Address { get; set; }
-            public BookingWorkHours[]? BusinessHours { get; set; }
-            public string? BusinessType { get; set; }
-            public string? DefaultCurrencyIso { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Email { get; set; }
-            public string? Id { get; set; }
-            public bool? IsPublished { get; set; }
-            public string? Phone { get; set; }
-            public string? PublicUrl { get; set; }
-            public BookingSchedulingPolicy? SchedulingPolicy { get; set; }
-            public string? WebSiteUrl { get; set; }
-        }
-
         public BookingBusiness[] Value { get; set; }
     }
     public partial class MicrosoftClient

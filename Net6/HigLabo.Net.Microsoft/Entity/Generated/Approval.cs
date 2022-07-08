@@ -8,5 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class Approval
     {
         public string? Id { get; set; }
+        public ApprovalStage[]? Stages { get; set; }
     }
 }

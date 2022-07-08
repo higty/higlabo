@@ -29,5 +29,9 @@ namespace HigLabo.Net.Microsoft
         public Int32? ReferenceCount { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
         public string? Title { get; set; }
+        public PlannerAssignedToTaskBoardTaskFormat? AssignedToTaskBoardFormat { get; set; }
+        public PlannerBucketTaskBoardTaskFormat? BucketTaskBoardFormat { get; set; }
+        public PlannerTaskDetails? Details { get; set; }
+        public PlannerProgressTaskBoardTaskFormat? ProgressTaskBoardFormat { get; set; }
     }
 }

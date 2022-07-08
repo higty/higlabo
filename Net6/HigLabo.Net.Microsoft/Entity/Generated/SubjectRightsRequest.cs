@@ -51,5 +51,7 @@ namespace HigLabo.Net.Microsoft
         public SubjectRightsRequestStageDetail[]? Stages { get; set; }
         public SubjectRightsRequestSubjectRightsRequestStatus Status { get; set; }
         public SubjectRightsRequestSubjectRightsRequestType Type { get; set; }
+        public AuthoredNote[]? Notes { get; set; }
+        public Team? Team { get; set; }
     }
 }

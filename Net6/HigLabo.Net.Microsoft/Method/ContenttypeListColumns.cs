@@ -2,10 +2,61 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypeListColumnsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ContentTypeListColumnsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ContentTypeId { get; set; }
+            public string ListId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Columns: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/columns";
+                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId_Columns: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}/columns";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ColumnGroup,
+            Description,
+            DisplayName,
+            EnforceUniqueValues,
+            Hidden,
+            Id,
+            Indexed,
+            Name,
+            ReadOnly,
+            Required,
+            Boolean,
+            Calculated,
+            Choice,
+            Currency,
+            DateTime,
+            DefaultValue,
+            Geolocation,
+            Lookup,
+            Number,
+            PersonOrGroup,
+            Text,
+            IsDeletable,
+            PropagateChanges,
+            IsReorderable,
+            IsSealed,
+            Validation,
+            HyperlinkOrPicture,
+            Term,
+            SourceContentType,
+            Thumbnail,
+            Type,
+            ContentApprovalStatus,
+            SourceColumn,
         }
         public enum ApiPath
         {
@@ -13,17 +64,12 @@ namespace HigLabo.Net.Microsoft
             Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId_Columns,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Columns: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/columns";
-                    case ApiPath.Sites_SiteId_Lists_ListId_ContentTypes_ContentTypeId_Columns: return $"/sites/{SiteId}/lists/{ListId}/contentTypes/{ContentTypeId}/columns";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,51 +81,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string ContentTypeId { get; set; }
-        public string ListId { get; set; }
     }
-    public partial class ContenttypeListColumnsResponse : RestApiResponse
+    public partial class ContentTypeListColumnsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/columndefinition?view=graph-rest-1.0
-        /// </summary>
-        public partial class ColumnDefinition
-        {
-            public string? ColumnGroup { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public bool? EnforceUniqueValues { get; set; }
-            public bool? Hidden { get; set; }
-            public string? Id { get; set; }
-            public bool? Indexed { get; set; }
-            public string? Name { get; set; }
-            public bool? ReadOnly { get; set; }
-            public bool? Required { get; set; }
-            public BooleanColumn? Boolean { get; set; }
-            public CalculatedColumn? Calculated { get; set; }
-            public ChoiceColumn? Choice { get; set; }
-            public CurrencyColumn? Currency { get; set; }
-            public DateTimeColumn? DateTime { get; set; }
-            public DefaultColumnValue? DefaultValue { get; set; }
-            public GeolocationColumn? Geolocation { get; set; }
-            public LookupColumn? Lookup { get; set; }
-            public NumberColumn? Number { get; set; }
-            public PersonOrGroupColumn? PersonOrGroup { get; set; }
-            public TextColumn? Text { get; set; }
-            public bool? IsDeletable { get; set; }
-            public bool? PropagateChanges { get; set; }
-            public bool? IsReorderable { get; set; }
-            public bool? IsSealed { get; set; }
-            public ColumnValidation? Validation { get; set; }
-            public HyperlinkOrPictureColumn? HyperlinkOrPicture { get; set; }
-            public TermColumn? Term { get; set; }
-            public ContentTypeInfo? SourceContentType { get; set; }
-            public ThumbnailColumn? Thumbnail { get; set; }
-            public string? Type { get; set; }
-            public ContentApprovalStatusColumn? ContentApprovalStatus { get; set; }
-        }
-
         public ColumnDefinition[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -87,32 +91,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeListColumnsResponse> ContenttypeListColumnsAsync()
+        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync()
         {
-            var p = new ContenttypeListColumnsParameter();
-            return await this.SendAsync<ContenttypeListColumnsParameter, ContenttypeListColumnsResponse>(p, CancellationToken.None);
+            var p = new ContentTypeListColumnsParameter();
+            return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeListColumnsResponse> ContenttypeListColumnsAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypeListColumnsParameter();
-            return await this.SendAsync<ContenttypeListColumnsParameter, ContenttypeListColumnsResponse>(p, cancellationToken);
+            var p = new ContentTypeListColumnsParameter();
+            return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeListColumnsResponse> ContenttypeListColumnsAsync(ContenttypeListColumnsParameter parameter)
+        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter)
         {
-            return await this.SendAsync<ContenttypeListColumnsParameter, ContenttypeListColumnsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeListColumnsResponse> ContenttypeListColumnsAsync(ContenttypeListColumnsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypeListColumnsParameter, ContenttypeListColumnsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(parameter, cancellationToken);
         }
     }
 }

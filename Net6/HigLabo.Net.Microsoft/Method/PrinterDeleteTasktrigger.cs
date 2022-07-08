@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinterDeleteTasktriggerParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterId { get; set; }
+            public string PrintTaskTriggerId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_PrinterId_TaskTriggers_PrintTaskTriggerId: return $"/print/printers/{PrinterId}/taskTriggers/{PrintTaskTriggerId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Print_Printers_PrinterId_TaskTriggers_PrintTaskTriggerId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_PrinterId_TaskTriggers_PrintTaskTriggerId: return $"/print/printers/{PrinterId}/taskTriggers/{PrintTaskTriggerId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string PrinterId { get; set; }
-        public string PrintTaskTriggerId { get; set; }
     }
     public partial class PrinterDeleteTasktriggerResponse : RestApiResponse
     {

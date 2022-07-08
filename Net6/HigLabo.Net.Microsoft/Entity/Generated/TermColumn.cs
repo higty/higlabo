@@ -9,5 +9,7 @@ namespace HigLabo.Net.Microsoft
     {
         public bool? AllowMultipleValues { get; set; }
         public bool? ShowFullyQualifiedName { get; set; }
+        public TermStoreTerm? ParentTerm { get; set; }
+        public TermStoreSet? TermSet { get; set; }
     }
 }

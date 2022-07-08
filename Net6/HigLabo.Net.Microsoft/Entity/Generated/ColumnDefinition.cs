@@ -23,7 +23,7 @@ namespace HigLabo.Net.Microsoft
         public CurrencyColumn? Currency { get; set; }
         public DateTimeColumn? DateTime { get; set; }
         public DefaultColumnValue? DefaultValue { get; set; }
-        public GeolocationColumn? Geolocation { get; set; }
+        public GeoLocationColumn? Geolocation { get; set; }
         public LookupColumn? Lookup { get; set; }
         public NumberColumn? Number { get; set; }
         public PersonOrGroupColumn? PersonOrGroup { get; set; }
@@ -39,5 +39,6 @@ namespace HigLabo.Net.Microsoft
         public ThumbnailColumn? Thumbnail { get; set; }
         public string? Type { get; set; }
         public ContentApprovalStatusColumn? ContentApprovalStatus { get; set; }
+        public ColumnDefinition? SourceColumn { get; set; }
     }
 }

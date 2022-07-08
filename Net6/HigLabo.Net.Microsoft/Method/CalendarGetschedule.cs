@@ -4,23 +4,34 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CalendarGetscheduleParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Calendar_GetSchedule: return $"/me/calendar/getSchedule";
+                    case ApiPath.Users_IdOruserPrincipalName_Calendar_GetSchedule: return $"/users/{IdOrUserPrincipalName}/calendar/getSchedule";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Calendar_GetSchedule,
             Users_IdOruserPrincipalName_Calendar_GetSchedule,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Calendar_GetSchedule: return $"/me/calendar/getSchedule";
-                    case ApiPath.Users_IdOruserPrincipalName_Calendar_GetSchedule: return $"/users/{IdOrUserPrincipalName}/calendar/getSchedule";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -28,22 +39,9 @@ namespace HigLabo.Net.Microsoft
         public DateTimeTimeZone? EndTime { get; set; }
         public String[]? Schedules { get; set; }
         public DateTimeTimeZone? StartTime { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class CalendarGetscheduleResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/scheduleinformation?view=graph-rest-1.0
-        /// </summary>
-        public partial class ScheduleInformation
-        {
-            public string? AvailabilityView { get; set; }
-            public FreeBusyError? Error { get; set; }
-            public string? ScheduleId { get; set; }
-            public ScheduleItem[]? ScheduleItems { get; set; }
-            public WorkingHours? WorkingHours { get; set; }
-        }
-
         public ScheduleInformation[] Value { get; set; }
     }
     public partial class MicrosoftClient

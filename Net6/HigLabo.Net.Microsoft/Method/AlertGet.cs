@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AlertGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Alert_id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Security_Alerts_Alert_id: return $"/security/alerts/{Alert_id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             ActivityGroupName,
@@ -46,16 +61,12 @@ namespace HigLabo.Net.Microsoft
             Security_Alerts_Alert_id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Security_Alerts_Alert_id: return $"/security/alerts/{Alert_id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -67,7 +78,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Alert_id { get; set; }
     }
     public partial class AlertGetResponse : RestApiResponse
     {

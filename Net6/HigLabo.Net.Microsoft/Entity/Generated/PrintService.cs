@@ -8,5 +8,6 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintService
     {
         public string? Id { get; set; }
+        public PrintServiceEndpoint[]? Endpoints { get; set; }
     }
 }

@@ -4,24 +4,47 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class RbacapplicationListRoleeligibilityscheduleinstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleEligibilityScheduleInstances: return $"/roleManagement/directory/roleEligibilityScheduleInstances";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppScopeId,
+            DirectoryScopeId,
+            EndDateTime,
+            Id,
+            MemberType,
+            PrincipalId,
+            RoleDefinitionId,
+            RoleEligibilityScheduleId,
+            StartDateTime,
+            AppScope,
+            DirectoryScope,
+            Principal,
+            RoleDefinition,
         }
         public enum ApiPath
         {
             RoleManagement_Directory_RoleEligibilityScheduleInstances,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleEligibilityScheduleInstances: return $"/roleManagement/directory/roleEligibilityScheduleInstances";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,22 +59,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class RbacapplicationListRoleeligibilityscheduleinstancesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleeligibilityscheduleinstance?view=graph-rest-1.0
-        /// </summary>
-        public partial class UnifiedRoleEligibilityScheduleInstance
-        {
-            public string? AppScopeId { get; set; }
-            public string? DirectoryScopeId { get; set; }
-            public DateTimeOffset? EndDateTime { get; set; }
-            public string? Id { get; set; }
-            public string? MemberType { get; set; }
-            public string? PrincipalId { get; set; }
-            public string? RoleDefinitionId { get; set; }
-            public string? RoleEligibilityScheduleId { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-        }
-
         public UnifiedRoleEligibilityScheduleInstance[] Value { get; set; }
     }
     public partial class MicrosoftClient

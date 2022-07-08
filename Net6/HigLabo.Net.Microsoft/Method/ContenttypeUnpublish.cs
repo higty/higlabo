@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypeUnpublishParameter : IRestApiParameter
+    public partial class ContentTypeUnpublishParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ContentTypeId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Unpublish: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/unpublish";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Sites_SiteId_ContentTypes_ContentTypeId_Unpublish,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_Unpublish: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/unpublish";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string SiteId { get; set; }
-        public string ContentTypeId { get; set; }
     }
-    public partial class ContenttypeUnpublishResponse : RestApiResponse
+    public partial class ContentTypeUnpublishResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeUnpublishResponse> ContenttypeUnpublishAsync()
+        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync()
         {
-            var p = new ContenttypeUnpublishParameter();
-            return await this.SendAsync<ContenttypeUnpublishParameter, ContenttypeUnpublishResponse>(p, CancellationToken.None);
+            var p = new ContentTypeUnpublishParameter();
+            return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeUnpublishResponse> ContenttypeUnpublishAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypeUnpublishParameter();
-            return await this.SendAsync<ContenttypeUnpublishParameter, ContenttypeUnpublishResponse>(p, cancellationToken);
+            var p = new ContentTypeUnpublishParameter();
+            return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeUnpublishResponse> ContenttypeUnpublishAsync(ContenttypeUnpublishParameter parameter)
+        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(ContentTypeUnpublishParameter parameter)
         {
-            return await this.SendAsync<ContenttypeUnpublishParameter, ContenttypeUnpublishResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-unpublish?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeUnpublishResponse> ContenttypeUnpublishAsync(ContenttypeUnpublishParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypeUnpublishResponse> ContentTypeUnpublishAsync(ContentTypeUnpublishParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypeUnpublishParameter, ContenttypeUnpublishResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypeUnpublishParameter, ContentTypeUnpublishResponse>(parameter, cancellationToken);
         }
     }
 }

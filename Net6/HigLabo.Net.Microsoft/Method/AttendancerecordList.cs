@@ -4,8 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AttendancerecordListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string MeetingId { get; set; }
+            public string ReportId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_OnlineMeetings_MeetingId_AttendanceReports_ReportId_AttendanceRecords: return $"/me/onlineMeetings/{MeetingId}/attendanceReports/{ReportId}/attendanceRecords";
+                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId_AttendanceReports_ReportId_AttendanceRecords: return $"/users/{UserId}/onlineMeetings/{MeetingId}/attendanceReports/{ReportId}/attendanceRecords";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AttendanceIntervals,
+            EmailAddress,
+            Identity,
+            Role,
+            TotalAttendanceInSeconds,
         }
         public enum ApiPath
         {
@@ -13,17 +36,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_OnlineMeetings_MeetingId_AttendanceReports_ReportId_AttendanceRecords,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_OnlineMeetings_MeetingId_AttendanceReports_ReportId_AttendanceRecords: return $"/me/onlineMeetings/{MeetingId}/attendanceReports/{ReportId}/attendanceRecords";
-                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId_AttendanceReports_ReportId_AttendanceRecords: return $"/users/{UserId}/onlineMeetings/{MeetingId}/attendanceReports/{ReportId}/attendanceRecords";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,24 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string MeetingId { get; set; }
-        public string ReportId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class AttendancerecordListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/attendancerecord?view=graph-rest-1.0
-        /// </summary>
-        public partial class AttendanceRecord
-        {
-            public AttendanceInterval[]? AttendanceIntervals { get; set; }
-            public string? EmailAddress { get; set; }
-            public Identity? Identity { get; set; }
-            public string? Role { get; set; }
-            public Int32? TotalAttendanceInSeconds { get; set; }
-        }
-
         public AttendanceRecord[] Value { get; set; }
     }
     public partial class MicrosoftClient

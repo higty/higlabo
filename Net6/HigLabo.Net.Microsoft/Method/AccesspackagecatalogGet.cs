@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccesspackagecatalogGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessPackageCatalogId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_Catalogs_AccessPackageCatalogId: return $"/identityGovernance/entitlementManagement/catalogs/{AccessPackageCatalogId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             IdentityGovernance_EntitlementManagement_Catalogs_AccessPackageCatalogId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_Catalogs_AccessPackageCatalogId: return $"/identityGovernance/entitlementManagement/catalogs/{AccessPackageCatalogId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AccessPackageCatalogId { get; set; }
     }
     public partial class AccesspackagecatalogGetResponse : RestApiResponse
     {
@@ -59,6 +69,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsExternallyVisible { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
         public AccessPackageCatalogAccessPackageCatalogState State { get; set; }
+        public AccessPackage[]? AccessPackages { get; set; }
     }
     public partial class MicrosoftClient
     {

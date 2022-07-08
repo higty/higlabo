@@ -5,7 +5,7 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://docs.microsoft.com/en-us/graph/api/resources/termstore-localizedname?view=graph-rest-1.0
     /// </summary>
-    public partial class TermStoreLocalizedName
+    public partial class TermStoreLocalizedname
     {
         public string? LanguageTag { get; set; }
         public string? Name { get; set; }

@@ -2,8 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UnifiedrolemanagementpolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class UnifiedroleManagementPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UnifiedRoleManagementPolicyId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_RoleManagementPolicies_UnifiedRoleManagementPolicyId: return $"/policies/roleManagementPolicies/{UnifiedRoleManagementPolicyId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Policies_RoleManagementPolicies_UnifiedRoleManagementPolicyId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_RoleManagementPolicies_UnifiedRoleManagementPolicyId: return $"/policies/roleManagementPolicies/{UnifiedRoleManagementPolicyId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +44,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UnifiedRoleManagementPolicyId { get; set; }
     }
-    public partial class UnifiedrolemanagementpolicyGetResponse : RestApiResponse
+    public partial class UnifiedroleManagementPolicyGetResponse : RestApiResponse
     {
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -45,38 +55,40 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public string? ScopeId { get; set; }
         public string? ScopeType { get; set; }
+        public UnifiedRoleManagementPolicyRule[]? EffectiveRules { get; set; }
+        public UnifiedRoleManagementPolicyRule[]? Rules { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedrolemanagementpolicyGetResponse> UnifiedrolemanagementpolicyGetAsync()
+        public async Task<UnifiedroleManagementPolicyGetResponse> UnifiedroleManagementPolicyGetAsync()
         {
-            var p = new UnifiedrolemanagementpolicyGetParameter();
-            return await this.SendAsync<UnifiedrolemanagementpolicyGetParameter, UnifiedrolemanagementpolicyGetResponse>(p, CancellationToken.None);
+            var p = new UnifiedroleManagementPolicyGetParameter();
+            return await this.SendAsync<UnifiedroleManagementPolicyGetParameter, UnifiedroleManagementPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedrolemanagementpolicyGetResponse> UnifiedrolemanagementpolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<UnifiedroleManagementPolicyGetResponse> UnifiedroleManagementPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new UnifiedrolemanagementpolicyGetParameter();
-            return await this.SendAsync<UnifiedrolemanagementpolicyGetParameter, UnifiedrolemanagementpolicyGetResponse>(p, cancellationToken);
+            var p = new UnifiedroleManagementPolicyGetParameter();
+            return await this.SendAsync<UnifiedroleManagementPolicyGetParameter, UnifiedroleManagementPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedrolemanagementpolicyGetResponse> UnifiedrolemanagementpolicyGetAsync(UnifiedrolemanagementpolicyGetParameter parameter)
+        public async Task<UnifiedroleManagementPolicyGetResponse> UnifiedroleManagementPolicyGetAsync(UnifiedroleManagementPolicyGetParameter parameter)
         {
-            return await this.SendAsync<UnifiedrolemanagementpolicyGetParameter, UnifiedrolemanagementpolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UnifiedroleManagementPolicyGetParameter, UnifiedroleManagementPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedrolemanagementpolicyGetResponse> UnifiedrolemanagementpolicyGetAsync(UnifiedrolemanagementpolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<UnifiedroleManagementPolicyGetResponse> UnifiedroleManagementPolicyGetAsync(UnifiedroleManagementPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UnifiedrolemanagementpolicyGetParameter, UnifiedrolemanagementpolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UnifiedroleManagementPolicyGetParameter, UnifiedroleManagementPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

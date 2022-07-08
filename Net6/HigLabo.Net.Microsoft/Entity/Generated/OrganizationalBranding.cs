@@ -18,5 +18,6 @@ namespace HigLabo.Net.Microsoft
         public Stream? SquareLogo { get; set; }
         public string? SquareLogoRelativeUrl { get; set; }
         public string? UsernameHintText { get; set; }
+        public OrganizationalBrandingLocalization[]? Localizations { get; set; }
     }
 }

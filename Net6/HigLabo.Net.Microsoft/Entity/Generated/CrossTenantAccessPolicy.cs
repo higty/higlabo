@@ -8,5 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class CrossTenantAccessPolicy
     {
         public string? DisplayName { get; set; }
+        public CrossTenantAccessPolicyConfigurationDefault? Default { get; set; }
+        public CrossTenantAccessPolicyConfigurationPartner[]? Partners { get; set; }
     }
 }

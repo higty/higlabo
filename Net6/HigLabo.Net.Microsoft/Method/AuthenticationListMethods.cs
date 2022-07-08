@@ -4,8 +4,25 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AuthenticationListMethodsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Authentication_Methods: return $"/me/authentication/methods";
+                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_Methods: return $"/users/{IdOrUserPrincipalName}/authentication/methods";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
         }
         public enum ApiPath
         {
@@ -13,17 +30,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Authentication_Methods,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Authentication_Methods: return $"/me/authentication/methods";
-                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_Methods: return $"/users/{IdOrUserPrincipalName}/authentication/methods";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,18 +47,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class AuthenticationListMethodsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/authenticationmethod?view=graph-rest-1.0
-        /// </summary>
-        public partial class AuthenticationMethod
-        {
-            public string? Id { get; set; }
-        }
-
         public AuthenticationMethod[] Value { get; set; }
     }
     public partial class MicrosoftClient

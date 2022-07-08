@@ -4,30 +4,45 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrintPostTaskdefinitionsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_TaskDefinitions: return $"/print/taskDefinitions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Print_TaskDefinitions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_TaskDefinitions: return $"/print/taskDefinitions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public AppIdentity? CreatedBy { get; set; }
+        public PrintTask[]? Tasks { get; set; }
     }
     public partial class PrintPostTaskdefinitionsResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
         public AppIdentity? CreatedBy { get; set; }
+        public PrintTask[]? Tasks { get; set; }
     }
     public partial class MicrosoftClient
     {

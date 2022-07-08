@@ -4,6 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CalendarGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+            public string CalendarGroupsId { get; set; }
+            public string CalendarsId { get; set; }
+            public string UsersIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Calendar: return $"/me/calendar";
+                    case ApiPath.Users_IdOrUserPrincipalName_Calendar: return $"/users/{IdOrUserPrincipalName}/calendar";
+                    case ApiPath.Groups_Id_Calendar: return $"/groups/{Id}/calendar";
+                    case ApiPath.Me_Calendars_Id: return $"/me/calendars/{Id}";
+                    case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id: return $"/users/{IdOrUserPrincipalName}/calendars/{Id}";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AllowedOnlineMeetingProviders,
@@ -20,6 +45,11 @@ namespace HigLabo.Net.Microsoft
             IsTallyingResponses,
             Name,
             Owner,
+            CalendarPermissions,
+            CalendarView,
+            Events,
+            MultiValueExtendedProperties,
+            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -32,22 +62,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Calendar: return $"/me/calendar";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendar: return $"/users/{IdOrUserPrincipalName}/calendar";
-                    case ApiPath.Groups_Id_Calendar: return $"/groups/{Id}/calendar";
-                    case ApiPath.Me_Calendars_Id: return $"/me/calendars/{Id}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id: return $"/users/{IdOrUserPrincipalName}/calendars/{Id}";
-                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -59,11 +79,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
-        public string CalendarGroupsId { get; set; }
-        public string CalendarsId { get; set; }
-        public string UsersIdOrUserPrincipalName { get; set; }
     }
     public partial class CalendarGetResponse : RestApiResponse
     {
@@ -103,6 +118,11 @@ namespace HigLabo.Net.Microsoft
         public bool? IsTallyingResponses { get; set; }
         public string? Name { get; set; }
         public EmailAddress? Owner { get; set; }
+        public CalendarPermission[]? CalendarPermissions { get; set; }
+        public Event[]? CalendarView { get; set; }
+        public Event[]? Events { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
     public partial class MicrosoftClient
     {

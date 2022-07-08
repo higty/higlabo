@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public string? ChangeKey { get; set; }
         public Guid? ClassId { get; set; }
         public string? Id { get; set; }
+        public Calendar[]? Calendars { get; set; }
     }
 }

@@ -2,26 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class PrintoperationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class PrintOperationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrintOperationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Operations_PrintOperationId: return $"/print/operations/{PrintOperationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Status,
+            CreatedDateTime,
         }
         public enum ApiPath
         {
             Print_Operations_PrintOperationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Operations_PrintOperationId: return $"/print/operations/{PrintOperationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +47,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrintOperationId { get; set; }
     }
-    public partial class PrintoperationGetResponse : RestApiResponse
+    public partial class PrintOperationGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public PrintOperationStatus? Status { get; set; }
@@ -46,32 +59,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintoperationGetResponse> PrintoperationGetAsync()
+        public async Task<PrintOperationGetResponse> PrintOperationGetAsync()
         {
-            var p = new PrintoperationGetParameter();
-            return await this.SendAsync<PrintoperationGetParameter, PrintoperationGetResponse>(p, CancellationToken.None);
+            var p = new PrintOperationGetParameter();
+            return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintoperationGetResponse> PrintoperationGetAsync(CancellationToken cancellationToken)
+        public async Task<PrintOperationGetResponse> PrintOperationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new PrintoperationGetParameter();
-            return await this.SendAsync<PrintoperationGetParameter, PrintoperationGetResponse>(p, cancellationToken);
+            var p = new PrintOperationGetParameter();
+            return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintoperationGetResponse> PrintoperationGetAsync(PrintoperationGetParameter parameter)
+        public async Task<PrintOperationGetResponse> PrintOperationGetAsync(PrintOperationGetParameter parameter)
         {
-            return await this.SendAsync<PrintoperationGetParameter, PrintoperationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/printoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<PrintoperationGetResponse> PrintoperationGetAsync(PrintoperationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<PrintOperationGetResponse> PrintOperationGetAsync(PrintOperationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<PrintoperationGetParameter, PrintoperationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<PrintOperationGetParameter, PrintOperationGetResponse>(parameter, cancellationToken);
         }
     }
 }

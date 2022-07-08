@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AppconsentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_Id: return $"/identityGovernance/appConsent/appConsentRequests/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             IdentityGovernance_AppConsent_AppConsentRequests_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AppConsent_AppConsentRequests_Id: return $"/identityGovernance/appConsent/appConsentRequests/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class AppconsentrequestGetResponse : RestApiResponse
     {
@@ -41,6 +51,7 @@ namespace HigLabo.Net.Microsoft
         public string? AppId { get; set; }
         public string? Id { get; set; }
         public AppConsentRequestScope[]? PendingScopes { get; set; }
+        public UserConsentRequest[]? UserConsentRequests { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -4,8 +4,44 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserListJoinedteamsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_JoinedTeams: return $"/me/joinedTeams";
+                    case ApiPath.Users_IdOrUserPrincipalName_JoinedTeams: return $"/users/{IdOrUserPrincipalName}/joinedTeams";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DisplayName,
+            Description,
+            Classification,
+            Specialization,
+            Visibility,
+            FunSettings,
+            GuestSettings,
+            InternalId,
+            IsArchived,
+            MemberSettings,
+            MessagingSettings,
+            WebUrl,
+            CreatedDateTime,
+            Channels,
+            InstalledApps,
+            Members,
+            Operations,
+            PrimaryChannel,
+            Schedule,
+            Template,
         }
         public enum ApiPath
         {
@@ -13,17 +49,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_JoinedTeams,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_JoinedTeams: return $"/me/joinedTeams";
-                    case ApiPath.Users_IdOrUserPrincipalName_JoinedTeams: return $"/users/{IdOrUserPrincipalName}/joinedTeams";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,30 +66,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserListJoinedteamsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/team?view=graph-rest-1.0
-        /// </summary>
-        public partial class Team
-        {
-            public string? DisplayName { get; set; }
-            public string? Description { get; set; }
-            public string? Classification { get; set; }
-            public TeamSpecialization? Specialization { get; set; }
-            public TeamVisibilityType? Visibility { get; set; }
-            public TeamFunSettings? FunSettings { get; set; }
-            public TeamGuestSettings? GuestSettings { get; set; }
-            public string? InternalId { get; set; }
-            public bool? IsArchived { get; set; }
-            public TeamMemberSettings? MemberSettings { get; set; }
-            public TeamMessagingSettings? MessagingSettings { get; set; }
-            public string? WebUrl { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-        }
-
         public Team[] Value { get; set; }
     }
     public partial class MicrosoftClient

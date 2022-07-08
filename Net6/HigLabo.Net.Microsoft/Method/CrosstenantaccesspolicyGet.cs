@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CrosstenantaccesspolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class CrosstenantAccessPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_CrossTenantAccessPolicy: return $"/policies/crossTenantAccessPolicy";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Policies_CrossTenantAccessPolicy,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_CrossTenantAccessPolicy: return $"/policies/crossTenantAccessPolicy";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,41 +44,43 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class CrosstenantaccesspolicyGetResponse : RestApiResponse
+    public partial class CrosstenantAccessPolicyGetResponse : RestApiResponse
     {
         public string? DisplayName { get; set; }
+        public CrossTenantAccessPolicyConfigurationDefault? Default { get; set; }
+        public CrossTenantAccessPolicyConfigurationPartner[]? Partners { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyGetResponse> CrosstenantaccesspolicyGetAsync()
+        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync()
         {
-            var p = new CrosstenantaccesspolicyGetParameter();
-            return await this.SendAsync<CrosstenantaccesspolicyGetParameter, CrosstenantaccesspolicyGetResponse>(p, CancellationToken.None);
+            var p = new CrosstenantAccessPolicyGetParameter();
+            return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyGetResponse> CrosstenantaccesspolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new CrosstenantaccesspolicyGetParameter();
-            return await this.SendAsync<CrosstenantaccesspolicyGetParameter, CrosstenantaccesspolicyGetResponse>(p, cancellationToken);
+            var p = new CrosstenantAccessPolicyGetParameter();
+            return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyGetResponse> CrosstenantaccesspolicyGetAsync(CrosstenantaccesspolicyGetParameter parameter)
+        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CrosstenantAccessPolicyGetParameter parameter)
         {
-            return await this.SendAsync<CrosstenantaccesspolicyGetParameter, CrosstenantaccesspolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyGetResponse> CrosstenantaccesspolicyGetAsync(CrosstenantaccesspolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<CrosstenantAccessPolicyGetResponse> CrosstenantAccessPolicyGetAsync(CrosstenantAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CrosstenantaccesspolicyGetParameter, CrosstenantaccesspolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CrosstenantAccessPolicyGetParameter, CrosstenantAccessPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

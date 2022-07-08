@@ -34,13 +34,14 @@ namespace HigLabo.Net.Microsoft
             Completed,
         }
 
-        public Enum? Category { get; set; }
-        public Enum? ContentType { get; set; }
+        public ThreatAssessmentRequestThreatCategory Category { get; set; }
+        public ThreatAssessmentRequestThreatAssessmentContentType ContentType { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public Enum? ExpectedAssessment { get; set; }
+        public ThreatAssessmentRequestThreatExpectedAssessment ExpectedAssessment { get; set; }
         public string? Id { get; set; }
-        public Enum? RequestSource { get; set; }
-        public Enum? Status { get; set; }
+        public ThreatAssessmentRequestThreatAssessmentRequestSource RequestSource { get; set; }
+        public ThreatAssessmentRequestThreatAssessmentStatus Status { get; set; }
+        public ThreatAssessmentResult[]? Results { get; set; }
     }
 }

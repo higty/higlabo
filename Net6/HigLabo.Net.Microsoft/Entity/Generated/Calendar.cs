@@ -43,5 +43,10 @@ namespace HigLabo.Net.Microsoft
         public bool? IsTallyingResponses { get; set; }
         public string? Name { get; set; }
         public EmailAddress? Owner { get; set; }
+        public CalendarPermission[]? CalendarPermissions { get; set; }
+        public Event[]? CalendarView { get; set; }
+        public Event[]? Events { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
 }

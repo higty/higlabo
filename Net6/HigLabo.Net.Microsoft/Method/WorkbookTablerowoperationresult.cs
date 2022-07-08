@@ -2,8 +2,25 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class WorkbookTablerowoperationresultParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class WorkbookTablerowOperationResultParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_TableRowOperationResult: return $"/me/drive/items/{Id}/workbook/tableRowOperationResult";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_TableRowOperationResult: return $"/me/drive/root:/{ItemPath}:/workbook/tableRowOperationResult";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +30,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_TableRowOperationResult,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_TableRowOperationResult: return $"/me/drive/items/{Id}/workbook/tableRowOperationResult";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_TableRowOperationResult: return $"/me/drive/root:/{ItemPath}:/workbook/tableRowOperationResult";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,10 +47,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string ItemPath { get; set; }
     }
-    public partial class WorkbookTablerowoperationresultResponse : RestApiResponse
+    public partial class WorkbookTablerowOperationResultResponse : RestApiResponse
     {
         public Int32? Index { get; set; }
         public Json? Values { get; set; }
@@ -48,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowoperationresultResponse> WorkbookTablerowoperationresultAsync()
+        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync()
         {
-            var p = new WorkbookTablerowoperationresultParameter();
-            return await this.SendAsync<WorkbookTablerowoperationresultParameter, WorkbookTablerowoperationresultResponse>(p, CancellationToken.None);
+            var p = new WorkbookTablerowOperationResultParameter();
+            return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowoperationresultResponse> WorkbookTablerowoperationresultAsync(CancellationToken cancellationToken)
+        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(CancellationToken cancellationToken)
         {
-            var p = new WorkbookTablerowoperationresultParameter();
-            return await this.SendAsync<WorkbookTablerowoperationresultParameter, WorkbookTablerowoperationresultResponse>(p, cancellationToken);
+            var p = new WorkbookTablerowOperationResultParameter();
+            return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowoperationresultResponse> WorkbookTablerowoperationresultAsync(WorkbookTablerowoperationresultParameter parameter)
+        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(WorkbookTablerowOperationResultParameter parameter)
         {
-            return await this.SendAsync<WorkbookTablerowoperationresultParameter, WorkbookTablerowoperationresultResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/workbook-tablerowoperationresult?view=graph-rest-1.0
         /// </summary>
-        public async Task<WorkbookTablerowoperationresultResponse> WorkbookTablerowoperationresultAsync(WorkbookTablerowoperationresultParameter parameter, CancellationToken cancellationToken)
+        public async Task<WorkbookTablerowOperationResultResponse> WorkbookTablerowOperationResultAsync(WorkbookTablerowOperationResultParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<WorkbookTablerowoperationresultParameter, WorkbookTablerowoperationresultResponse>(parameter, cancellationToken);
+            return await this.SendAsync<WorkbookTablerowOperationResultParameter, WorkbookTablerowOperationResultResponse>(parameter, cancellationToken);
         }
     }
 }

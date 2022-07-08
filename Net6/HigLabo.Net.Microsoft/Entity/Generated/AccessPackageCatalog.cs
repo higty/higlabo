@@ -29,5 +29,6 @@ namespace HigLabo.Net.Microsoft
         public bool? IsExternallyVisible { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
         public AccessPackageCatalogAccessPackageCatalogState State { get; set; }
+        public AccessPackage[]? AccessPackages { get; set; }
     }
 }

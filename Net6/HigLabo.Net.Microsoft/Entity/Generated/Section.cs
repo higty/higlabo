@@ -17,5 +17,8 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? PagesUrl { get; set; }
         public string? Self { get; set; }
+        public Page[]? Pages { get; set; }
+        public Notebook? ParentNotebook { get; set; }
+        public SectionGroup? ParentSectionGroup { get; set; }
     }
 }

@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me: return $"/me";
+                    case ApiPath.Users_IdOrUserPrincipalName: return $"/users/{IdOrUserPrincipalName}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AboutMe,
@@ -78,6 +94,38 @@ namespace HigLabo.Net.Microsoft
             UsageLocation,
             UserPrincipalName,
             UserType,
+            AgreementAcceptances,
+            Activities,
+            AppRoleAssignments,
+            Authentication,
+            Calendar,
+            CalendarGroups,
+            CalendarView,
+            Calendars,
+            ContactFolders,
+            Contacts,
+            CreatedObjects,
+            DirectReports,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            InferenceClassification,
+            Insights,
+            LicenseDetails,
+            MailFolders,
+            Manager,
+            MemberOf,
+            Messages,
+            Onenote,
+            Outlook,
+            OwnedDevices,
+            OwnedObjects,
+            People,
+            Photo,
+            Planner,
+            RegisteredDevices,
+            Todo,
         }
         public enum ApiPath
         {
@@ -85,17 +133,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me: return $"/me";
-                    case ApiPath.Users_IdOrUserPrincipalName: return $"/users/{IdOrUserPrincipalName}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -107,7 +150,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserGetResponse : RestApiResponse
     {
@@ -207,6 +249,38 @@ namespace HigLabo.Net.Microsoft
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
+        public AgreementAcceptance[]? AgreementAcceptances { get; set; }
+        public Activity[]? Activities { get; set; }
+        public AppRoleAssignment[]? AppRoleAssignments { get; set; }
+        public Authentication? Authentication { get; set; }
+        public Calendar? Calendar { get; set; }
+        public CalendarGroup[]? CalendarGroups { get; set; }
+        public Event[]? CalendarView { get; set; }
+        public Calendar[]? Calendars { get; set; }
+        public ContactFolder[]? ContactFolders { get; set; }
+        public Contact[]? Contacts { get; set; }
+        public DirectoryObject[]? CreatedObjects { get; set; }
+        public DirectoryObject[]? DirectReports { get; set; }
+        public Drive? Drive { get; set; }
+        public Drive[]? Drives { get; set; }
+        public Event[]? Events { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public InferenceClassification? InferenceClassification { get; set; }
+        public OfficeGraphInsights? Insights { get; set; }
+        public LicenseDetails[]? LicenseDetails { get; set; }
+        public MailFolder[]? MailFolders { get; set; }
+        public DirectoryObject? Manager { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public Message[]? Messages { get; set; }
+        public Onenote? Onenote { get; set; }
+        public OutlookUser? Outlook { get; set; }
+        public DirectoryObject[]? OwnedDevices { get; set; }
+        public DirectoryObject[]? OwnedObjects { get; set; }
+        public Person[]? People { get; set; }
+        public ProfilePhoto? Photo { get; set; }
+        public PlannerUser? Planner { get; set; }
+        public DirectoryObject[]? RegisteredDevices { get; set; }
+        public Todo? Todo { get; set; }
     }
     public partial class MicrosoftClient
     {

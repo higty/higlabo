@@ -2,32 +2,42 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ContenttypeCopytodefaultcontentlocationParameter : IRestApiParameter
+    public partial class ContentTypeCopytodefaultContentLocationParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string ContentTypeId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_CopyToDefaultContentLocation: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/copyToDefaultContentLocation";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Sites_SiteId_ContentTypes_ContentTypeId_CopyToDefaultContentLocation,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Sites_SiteId_ContentTypes_ContentTypeId_CopyToDefaultContentLocation: return $"/sites/{SiteId}/contentTypes/{ContentTypeId}/copyToDefaultContentLocation";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public ItemReference? SourceFile { get; set; }
         public string? DestinationFileName { get; set; }
-        public string SiteId { get; set; }
-        public string ContentTypeId { get; set; }
     }
-    public partial class ContenttypeCopytodefaultcontentlocationResponse : RestApiResponse
+    public partial class ContentTypeCopytodefaultContentLocationResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -35,32 +45,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeCopytodefaultcontentlocationResponse> ContenttypeCopytodefaultcontentlocationAsync()
+        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync()
         {
-            var p = new ContenttypeCopytodefaultcontentlocationParameter();
-            return await this.SendAsync<ContenttypeCopytodefaultcontentlocationParameter, ContenttypeCopytodefaultcontentlocationResponse>(p, CancellationToken.None);
+            var p = new ContentTypeCopytodefaultContentLocationParameter();
+            return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeCopytodefaultcontentlocationResponse> ContenttypeCopytodefaultcontentlocationAsync(CancellationToken cancellationToken)
+        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(CancellationToken cancellationToken)
         {
-            var p = new ContenttypeCopytodefaultcontentlocationParameter();
-            return await this.SendAsync<ContenttypeCopytodefaultcontentlocationParameter, ContenttypeCopytodefaultcontentlocationResponse>(p, cancellationToken);
+            var p = new ContentTypeCopytodefaultContentLocationParameter();
+            return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeCopytodefaultcontentlocationResponse> ContenttypeCopytodefaultcontentlocationAsync(ContenttypeCopytodefaultcontentlocationParameter parameter)
+        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(ContentTypeCopytodefaultContentLocationParameter parameter)
         {
-            return await this.SendAsync<ContenttypeCopytodefaultcontentlocationParameter, ContenttypeCopytodefaultcontentlocationResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/contenttype-copytodefaultcontentlocation?view=graph-rest-1.0
         /// </summary>
-        public async Task<ContenttypeCopytodefaultcontentlocationResponse> ContenttypeCopytodefaultcontentlocationAsync(ContenttypeCopytodefaultcontentlocationParameter parameter, CancellationToken cancellationToken)
+        public async Task<ContentTypeCopytodefaultContentLocationResponse> ContentTypeCopytodefaultContentLocationAsync(ContentTypeCopytodefaultContentLocationParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ContenttypeCopytodefaultcontentlocationParameter, ContenttypeCopytodefaultcontentlocationResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ContentTypeCopytodefaultContentLocationParameter, ContentTypeCopytodefaultContentLocationResponse>(parameter, cancellationToken);
         }
     }
 }

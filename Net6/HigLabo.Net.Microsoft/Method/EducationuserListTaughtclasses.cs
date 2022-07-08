@@ -2,10 +2,47 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationuserListTaughtclassesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationUserListTaughtclassesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string EducationUserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Me_TaughtClasses: return $"/education/me/taughtClasses";
+                    case ApiPath.Education_Users_EducationUserId_TaughtClasses: return $"/education/users/{EducationUserId}/taughtClasses";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            MailNickname,
+            Description,
+            CreatedBy,
+            ClassCode,
+            ExternalName,
+            ExternalId,
+            ExternalSource,
+            ExternalSourceDetail,
+            Grade,
+            Term,
+            Assignments,
+            Group,
+            Members,
+            Schools,
+            Teachers,
+            AssignmentCategories,
+            AssignmentDefaults,
+            AssignmentSettings,
         }
         public enum ApiPath
         {
@@ -14,18 +51,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Groups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Me_TaughtClasses: return $"/education/me/taughtClasses";
-                    case ApiPath.Education_Users_EducationUserId_TaughtClasses: return $"/education/users/{EducationUserId}/taughtClasses";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Groups: return $"/ttps://graph.microsoft.com/v1.0/groups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,35 +68,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string EducationUserId { get; set; }
     }
-    public partial class EducationuserListTaughtclassesResponse : RestApiResponse
+    public partial class EducationUserListTaughtclassesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/educationclass?view=graph-rest-1.0
-        /// </summary>
-        public partial class EducationClass
-        {
-            public enum EducationClassEducationExternalSource
-            {
-                Sis,
-                Manual,
-            }
-
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public string? MailNickname { get; set; }
-            public string? Description { get; set; }
-            public IdentitySet? CreatedBy { get; set; }
-            public string? ClassCode { get; set; }
-            public string? ExternalName { get; set; }
-            public string? ExternalId { get; set; }
-            public EducationClassEducationExternalSource ExternalSource { get; set; }
-            public string? ExternalSourceDetail { get; set; }
-            public string? Grade { get; set; }
-            public EducationTerm? Term { get; set; }
-        }
-
         public EducationClass[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -73,32 +78,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListTaughtclassesResponse> EducationuserListTaughtclassesAsync()
+        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync()
         {
-            var p = new EducationuserListTaughtclassesParameter();
-            return await this.SendAsync<EducationuserListTaughtclassesParameter, EducationuserListTaughtclassesResponse>(p, CancellationToken.None);
+            var p = new EducationUserListTaughtclassesParameter();
+            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListTaughtclassesResponse> EducationuserListTaughtclassesAsync(CancellationToken cancellationToken)
+        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationuserListTaughtclassesParameter();
-            return await this.SendAsync<EducationuserListTaughtclassesParameter, EducationuserListTaughtclassesResponse>(p, cancellationToken);
+            var p = new EducationUserListTaughtclassesParameter();
+            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListTaughtclassesResponse> EducationuserListTaughtclassesAsync(EducationuserListTaughtclassesParameter parameter)
+        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter)
         {
-            return await this.SendAsync<EducationuserListTaughtclassesParameter, EducationuserListTaughtclassesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationuser-list-taughtclasses?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationuserListTaughtclassesResponse> EducationuserListTaughtclassesAsync(EducationuserListTaughtclassesParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationUserListTaughtclassesResponse> EducationUserListTaughtclassesAsync(EducationUserListTaughtclassesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationuserListTaughtclassesParameter, EducationuserListTaughtclassesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationUserListTaughtclassesParameter, EducationUserListTaughtclassesResponse>(parameter, cancellationToken);
         }
     }
 }

@@ -2,31 +2,41 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentRemoveCategoryParameter : IRestApiParameter
+    public partial class EducationAssignmentRemoveCategoryParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+            public string CategoriesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Categories_Id_ref: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/categories/{CategoriesId}/$ref";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id_Categories_Id_ref,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Categories_Id_ref: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/categories/{CategoriesId}/$ref";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
-        public string CategoriesId { get; set; }
     }
-    public partial class EducationassignmentRemoveCategoryResponse : RestApiResponse
+    public partial class EducationAssignmentRemoveCategoryResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -34,32 +44,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentRemoveCategoryResponse> EducationassignmentRemoveCategoryAsync()
+        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync()
         {
-            var p = new EducationassignmentRemoveCategoryParameter();
-            return await this.SendAsync<EducationassignmentRemoveCategoryParameter, EducationassignmentRemoveCategoryResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentRemoveCategoryParameter();
+            return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentRemoveCategoryResponse> EducationassignmentRemoveCategoryAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentRemoveCategoryParameter();
-            return await this.SendAsync<EducationassignmentRemoveCategoryParameter, EducationassignmentRemoveCategoryResponse>(p, cancellationToken);
+            var p = new EducationAssignmentRemoveCategoryParameter();
+            return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentRemoveCategoryResponse> EducationassignmentRemoveCategoryAsync(EducationassignmentRemoveCategoryParameter parameter)
+        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentRemoveCategoryParameter, EducationassignmentRemoveCategoryResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentRemoveCategoryResponse> EducationassignmentRemoveCategoryAsync(EducationassignmentRemoveCategoryParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentRemoveCategoryParameter, EducationassignmentRemoveCategoryResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(parameter, cancellationToken);
         }
     }
 }

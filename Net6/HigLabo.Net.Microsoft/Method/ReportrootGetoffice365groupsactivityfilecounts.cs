@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetoffice365groupsactivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetoffice365GroupsactivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetOffice365GroupsActivityFileCounts: return $"/reports/getOffice365GroupsActivityFileCounts";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetOffice365GroupsActivityFileCounts,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetOffice365GroupsActivityFileCounts: return $"/reports/getOffice365GroupsActivityFileCounts";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetoffice365groupsactivityfilecountsResponse : RestApiResponse
+    public partial class ReportRootGetoffice365GroupsactivityfilecountsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365groupsactivityfilecountsResponse> ReportrootGetoffice365groupsactivityfilecountsAsync()
+        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync()
         {
-            var p = new ReportrootGetoffice365groupsactivityfilecountsParameter();
-            return await this.SendAsync<ReportrootGetoffice365groupsactivityfilecountsParameter, ReportrootGetoffice365groupsactivityfilecountsResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetoffice365GroupsactivityfilecountsParameter();
+            return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365groupsactivityfilecountsResponse> ReportrootGetoffice365groupsactivityfilecountsAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetoffice365groupsactivityfilecountsParameter();
-            return await this.SendAsync<ReportrootGetoffice365groupsactivityfilecountsParameter, ReportrootGetoffice365groupsactivityfilecountsResponse>(p, cancellationToken);
+            var p = new ReportRootGetoffice365GroupsactivityfilecountsParameter();
+            return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365groupsactivityfilecountsResponse> ReportrootGetoffice365groupsactivityfilecountsAsync(ReportrootGetoffice365groupsactivityfilecountsParameter parameter)
+        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(ReportRootGetoffice365GroupsactivityfilecountsParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetoffice365groupsactivityfilecountsParameter, ReportrootGetoffice365groupsactivityfilecountsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getoffice365groupsactivityfilecounts?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetoffice365groupsactivityfilecountsResponse> ReportrootGetoffice365groupsactivityfilecountsAsync(ReportrootGetoffice365groupsactivityfilecountsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetoffice365GroupsactivityfilecountsResponse> ReportRootGetoffice365GroupsactivityfilecountsAsync(ReportRootGetoffice365GroupsactivityfilecountsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetoffice365groupsactivityfilecountsParameter, ReportrootGetoffice365groupsactivityfilecountsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetoffice365GroupsactivityfilecountsParameter, ReportRootGetoffice365GroupsactivityfilecountsResponse>(parameter, cancellationToken);
         }
     }
 }

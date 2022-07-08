@@ -4,6 +4,28 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DirectoryobjectGetmemberobjectsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.DirectoryObjects_Id_GetMemberObjects: return $"/directoryObjects/{Id}/getMemberObjects";
+                    case ApiPath.Me_GetMemberObjects: return $"/me/getMemberObjects";
+                    case ApiPath.Users_IdOrUserPrincipalName_GetMemberObjects: return $"/users/{IdOrUserPrincipalName}/getMemberObjects";
+                    case ApiPath.Groups_Id_GetMemberObjects: return $"/groups/{Id}/getMemberObjects";
+                    case ApiPath.ServicePrincipals_Id_GetMemberObjects: return $"/servicePrincipals/{Id}/getMemberObjects";
+                    case ApiPath.Contacts_Id_GetMemberObjects: return $"/contacts/{Id}/getMemberObjects";
+                    case ApiPath.Devices_Id_GetMemberObjects: return $"/devices/{Id}/getMemberObjects";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             DirectoryObjects_Id_GetMemberObjects,
@@ -15,28 +37,16 @@ namespace HigLabo.Net.Microsoft
             Devices_Id_GetMemberObjects,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.DirectoryObjects_Id_GetMemberObjects: return $"/directoryObjects/{Id}/getMemberObjects";
-                    case ApiPath.Me_GetMemberObjects: return $"/me/getMemberObjects";
-                    case ApiPath.Users_IdOrUserPrincipalName_GetMemberObjects: return $"/users/{IdOrUserPrincipalName}/getMemberObjects";
-                    case ApiPath.Groups_Id_GetMemberObjects: return $"/groups/{Id}/getMemberObjects";
-                    case ApiPath.ServicePrincipals_Id_GetMemberObjects: return $"/servicePrincipals/{Id}/getMemberObjects";
-                    case ApiPath.Contacts_Id_GetMemberObjects: return $"/contacts/{Id}/getMemberObjects";
-                    case ApiPath.Devices_Id_GetMemberObjects: return $"/devices/{Id}/getMemberObjects";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public bool? SecurityEnabledOnly { get; set; }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class DirectoryobjectGetmemberobjectsResponse : RestApiResponse
     {

@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TokenlifetimepolicyDeleteParameter : IRestApiParameter
+    public partial class TokenlifetimePolicyDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_TokenLifetimePolicies_Id: return $"/policies/tokenLifetimePolicies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_TokenLifetimePolicies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_TokenLifetimePolicies_Id: return $"/policies/tokenLifetimePolicies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string Id { get; set; }
     }
-    public partial class TokenlifetimepolicyDeleteResponse : RestApiResponse
+    public partial class TokenlifetimePolicyDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyDeleteResponse> TokenlifetimepolicyDeleteAsync()
+        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync()
         {
-            var p = new TokenlifetimepolicyDeleteParameter();
-            return await this.SendAsync<TokenlifetimepolicyDeleteParameter, TokenlifetimepolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new TokenlifetimePolicyDeleteParameter();
+            return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyDeleteResponse> TokenlifetimepolicyDeleteAsync(CancellationToken cancellationToken)
+        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new TokenlifetimepolicyDeleteParameter();
-            return await this.SendAsync<TokenlifetimepolicyDeleteParameter, TokenlifetimepolicyDeleteResponse>(p, cancellationToken);
+            var p = new TokenlifetimePolicyDeleteParameter();
+            return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyDeleteResponse> TokenlifetimepolicyDeleteAsync(TokenlifetimepolicyDeleteParameter parameter)
+        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(TokenlifetimePolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<TokenlifetimepolicyDeleteParameter, TokenlifetimepolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenlifetimepolicyDeleteResponse> TokenlifetimepolicyDeleteAsync(TokenlifetimepolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<TokenlifetimePolicyDeleteResponse> TokenlifetimePolicyDeleteAsync(TokenlifetimePolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TokenlifetimepolicyDeleteParameter, TokenlifetimepolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TokenlifetimePolicyDeleteParameter, TokenlifetimePolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

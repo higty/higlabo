@@ -4,6 +4,29 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemCreatelinkParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DriveId { get; set; }
+            public string ItemId { get; set; }
+            public string GroupId { get; set; }
+            public string SiteId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drives_DriveId_Items_ItemId_CreateLink: return $"/drives/{DriveId}/items/{ItemId}/createLink";
+                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_CreateLink: return $"/groups/{GroupId}/drive/items/{ItemId}/createLink";
+                    case ApiPath.Me_Drive_Items_ItemId_CreateLink: return $"/me/drive/items/{ItemId}/createLink";
+                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_CreateLink: return $"/sites/{SiteId}/drive/items/{ItemId}/createLink";
+                    case ApiPath.Users_UserId_Drive_Items_ItemId_CreateLink: return $"/users/{UserId}/drive/items/{ItemId}/createLink";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Drives_DriveId_Items_ItemId_CreateLink,
@@ -13,20 +36,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_Drive_Items_ItemId_CreateLink,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drives_DriveId_Items_ItemId_CreateLink: return $"/drives/{DriveId}/items/{ItemId}/createLink";
-                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_CreateLink: return $"/groups/{GroupId}/drive/items/{ItemId}/createLink";
-                    case ApiPath.Me_Drive_Items_ItemId_CreateLink: return $"/me/drive/items/{ItemId}/createLink";
-                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_CreateLink: return $"/sites/{SiteId}/drive/items/{ItemId}/createLink";
-                    case ApiPath.Users_UserId_Drive_Items_ItemId_CreateLink: return $"/users/{UserId}/drive/items/{ItemId}/createLink";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -34,11 +49,15 @@ namespace HigLabo.Net.Microsoft
         public string? Password { get; set; }
         public string? ExpirationDateTime { get; set; }
         public string? Scope { get; set; }
-        public string DriveId { get; set; }
-        public string ItemId { get; set; }
-        public string GroupId { get; set; }
-        public string SiteId { get; set; }
-        public string UserId { get; set; }
+        public string? Id { get; set; }
+        public SharePointIdentitySet? GrantedToV2 { get; set; }
+        public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
+        public SharingInvitation? Invitation { get; set; }
+        public ItemReference? InheritedFrom { get; set; }
+        public SharingLink? Link { get; set; }
+        public string[]? Roles { get; set; }
+        public string? ShareId { get; set; }
+        public bool? HasPassword { get; set; }
     }
     public partial class DriveitemCreatelinkResponse : RestApiResponse
     {

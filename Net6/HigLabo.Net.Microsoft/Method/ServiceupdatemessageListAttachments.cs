@@ -4,24 +4,41 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceupdatemessageListAttachmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ServiceUpdateMessageId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Admin_ServiceAnnouncement_Messages_ServiceUpdateMessageId_Attachments: return $"/admin/serviceAnnouncement/messages/{ServiceUpdateMessageId}/attachments";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Content,
+            ContentType,
+            Id,
+            LastModifiedDateTime,
+            Name,
+            Size,
         }
         public enum ApiPath
         {
             Admin_ServiceAnnouncement_Messages_ServiceUpdateMessageId_Attachments,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Admin_ServiceAnnouncement_Messages_ServiceUpdateMessageId_Attachments: return $"/admin/serviceAnnouncement/messages/{ServiceUpdateMessageId}/attachments";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,23 +50,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ServiceUpdateMessageId { get; set; }
     }
     public partial class ServiceupdatemessageListAttachmentsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/serviceannouncementattachment?view=graph-rest-1.0
-        /// </summary>
-        public partial class ServiceAnnouncementAttachment
-        {
-            public Stream? Content { get; set; }
-            public string? ContentType { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public string? Name { get; set; }
-            public Int32? Size { get; set; }
-        }
-
         public ServiceAnnouncementAttachment[] Value { get; set; }
     }
     public partial class MicrosoftClient

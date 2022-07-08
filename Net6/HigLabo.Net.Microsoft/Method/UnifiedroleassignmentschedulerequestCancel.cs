@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UnifiedroleassignmentschedulerequestCancelParameter : IRestApiParameter
+    public partial class UnifiedroleAssignmentschedulerequestCancelParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UnifiedRoleAssignmentScheduleRequestId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleRequests_UnifiedRoleAssignmentScheduleRequestId_Cancel: return $"/roleManagement/directory/roleAssignmentScheduleRequests/{UnifiedRoleAssignmentScheduleRequestId}/cancel";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             RoleManagement_Directory_RoleAssignmentScheduleRequests_UnifiedRoleAssignmentScheduleRequestId_Cancel,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleAssignmentScheduleRequests_UnifiedRoleAssignmentScheduleRequestId_Cancel: return $"/roleManagement/directory/roleAssignmentScheduleRequests/{UnifiedRoleAssignmentScheduleRequestId}/cancel";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string UnifiedRoleAssignmentScheduleRequestId { get; set; }
     }
-    public partial class UnifiedroleassignmentschedulerequestCancelResponse : RestApiResponse
+    public partial class UnifiedroleAssignmentschedulerequestCancelResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestCancelResponse> UnifiedroleassignmentschedulerequestCancelAsync()
+        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync()
         {
-            var p = new UnifiedroleassignmentschedulerequestCancelParameter();
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestCancelParameter, UnifiedroleassignmentschedulerequestCancelResponse>(p, CancellationToken.None);
+            var p = new UnifiedroleAssignmentschedulerequestCancelParameter();
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestCancelResponse> UnifiedroleassignmentschedulerequestCancelAsync(CancellationToken cancellationToken)
+        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(CancellationToken cancellationToken)
         {
-            var p = new UnifiedroleassignmentschedulerequestCancelParameter();
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestCancelParameter, UnifiedroleassignmentschedulerequestCancelResponse>(p, cancellationToken);
+            var p = new UnifiedroleAssignmentschedulerequestCancelParameter();
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestCancelResponse> UnifiedroleassignmentschedulerequestCancelAsync(UnifiedroleassignmentschedulerequestCancelParameter parameter)
+        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(UnifiedroleAssignmentschedulerequestCancelParameter parameter)
         {
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestCancelParameter, UnifiedroleassignmentschedulerequestCancelResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-cancel?view=graph-rest-1.0
         /// </summary>
-        public async Task<UnifiedroleassignmentschedulerequestCancelResponse> UnifiedroleassignmentschedulerequestCancelAsync(UnifiedroleassignmentschedulerequestCancelParameter parameter, CancellationToken cancellationToken)
+        public async Task<UnifiedroleAssignmentschedulerequestCancelResponse> UnifiedroleAssignmentschedulerequestCancelAsync(UnifiedroleAssignmentschedulerequestCancelParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UnifiedroleassignmentschedulerequestCancelParameter, UnifiedroleassignmentschedulerequestCancelResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UnifiedroleAssignmentschedulerequestCancelParameter, UnifiedroleAssignmentschedulerequestCancelResponse>(parameter, cancellationToken);
         }
     }
 }

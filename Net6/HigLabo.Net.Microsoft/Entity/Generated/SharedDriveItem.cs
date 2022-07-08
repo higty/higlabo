@@ -10,5 +10,10 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? Name { get; set; }
         public IdentitySet? Owner { get; set; }
+        public DriveItem? DriveItem { get; set; }
+        public SiteList? List { get; set; }
+        public ListItem? ListItem { get; set; }
+        public Permission? Permission { get; set; }
+        public Site? Site { get; set; }
     }
 }

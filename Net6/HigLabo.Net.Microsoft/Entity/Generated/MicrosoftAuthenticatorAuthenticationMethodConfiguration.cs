@@ -15,5 +15,6 @@ namespace HigLabo.Net.Microsoft
 
         public string? Id { get; set; }
         public MicrosoftAuthenticatorAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
+        public MicrosoftAuthenticatorAuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
 }

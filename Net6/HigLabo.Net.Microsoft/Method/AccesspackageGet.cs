@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccesspackageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessPackageId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_AccessPackages_AccessPackageId: return $"/identityGovernance/entitlementManagement/accessPackages/{AccessPackageId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             IdentityGovernance_EntitlementManagement_AccessPackages_AccessPackageId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AccessPackages_AccessPackageId: return $"/identityGovernance/entitlementManagement/accessPackages/{AccessPackageId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AccessPackageId { get; set; }
     }
     public partial class AccesspackageGetResponse : RestApiResponse
     {
@@ -43,6 +53,8 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsHidden { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        public AccessPackageAssignmentPolicy[]? AssignmentPolicies { get; set; }
+        public AccessPackageCatalog? Catalog { get; set; }
     }
     public partial class MicrosoftClient
     {

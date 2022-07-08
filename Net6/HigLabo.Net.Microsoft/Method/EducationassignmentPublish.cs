@@ -2,30 +2,81 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentPublishParameter : IRestApiParameter
+    public partial class EducationAssignmentPublishParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Publish: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/publish";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum EducationAssignmentEducationAddToCalendarOptions
+        {
+            None,
+            StudentsAndPublisher,
+            StudentsAndTeamOwners,
+            UnknownFutureValue,
+            StudentsOnly,
+        }
+        public enum EducationAssignmentstring
+        {
+            Draft,
+            Scheduled,
+            Published,
+            Assigned,
+        }
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id_Publish,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Publish: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/publish";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
+        public string? Id { get; set; }
+        public string? AddedStudentAction { get; set; }
+        public EducationAssignmentEducationAddToCalendarOptions AddToCalendarAction { get; set; }
+        public bool? AllowLateSubmissions { get; set; }
+        public bool? AllowStudentsToAddResourcesToSubmission { get; set; }
+        public DateTimeOffset? AssignDateTime { get; set; }
+        public EducationAssignmentRecipient? AssignTo { get; set; }
+        public DateTimeOffset? AssignedDateTime { get; set; }
+        public string? ClassId { get; set; }
+        public DateTimeOffset? CloseDateTime { get; set; }
+        public IdentitySet? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public DateTimeOffset? DueDateTime { get; set; }
+        public EducationAssignmentGradeType? Grading { get; set; }
+        public ItemBody? Instructions { get; set; }
+        public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? NotificationChannelUrl { get; set; }
+        public EducationAssignmentstring Status { get; set; }
+        public string? WebUrl { get; set; }
+        public string? ResourcesFolderUrl { get; set; }
+        public EducationAssignmentResource[]? Resources { get; set; }
+        public EducationSubmission[]? Submissions { get; set; }
+        public EducationCategory[]? Categories { get; set; }
+        public EducationRubric? Rubric { get; set; }
     }
-    public partial class EducationassignmentPublishResponse : RestApiResponse
+    public partial class EducationAssignmentPublishResponse : RestApiResponse
     {
         public enum EducationAssignmentEducationAddToCalendarOptions
         {
@@ -65,38 +116,42 @@ namespace HigLabo.Net.Microsoft
         public EducationAssignmentstring Status { get; set; }
         public string? WebUrl { get; set; }
         public string? ResourcesFolderUrl { get; set; }
+        public EducationAssignmentResource[]? Resources { get; set; }
+        public EducationSubmission[]? Submissions { get; set; }
+        public EducationCategory[]? Categories { get; set; }
+        public EducationRubric? Rubric { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPublishResponse> EducationassignmentPublishAsync()
+        public async Task<EducationAssignmentPublishResponse> EducationAssignmentPublishAsync()
         {
-            var p = new EducationassignmentPublishParameter();
-            return await this.SendAsync<EducationassignmentPublishParameter, EducationassignmentPublishResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentPublishParameter();
+            return await this.SendAsync<EducationAssignmentPublishParameter, EducationAssignmentPublishResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPublishResponse> EducationassignmentPublishAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentPublishResponse> EducationAssignmentPublishAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentPublishParameter();
-            return await this.SendAsync<EducationassignmentPublishParameter, EducationassignmentPublishResponse>(p, cancellationToken);
+            var p = new EducationAssignmentPublishParameter();
+            return await this.SendAsync<EducationAssignmentPublishParameter, EducationAssignmentPublishResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPublishResponse> EducationassignmentPublishAsync(EducationassignmentPublishParameter parameter)
+        public async Task<EducationAssignmentPublishResponse> EducationAssignmentPublishAsync(EducationAssignmentPublishParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentPublishParameter, EducationassignmentPublishResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentPublishParameter, EducationAssignmentPublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignment-publish?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentPublishResponse> EducationassignmentPublishAsync(EducationassignmentPublishParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentPublishResponse> EducationAssignmentPublishAsync(EducationAssignmentPublishParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentPublishParameter, EducationassignmentPublishResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentPublishParameter, EducationAssignmentPublishResponse>(parameter, cancellationToken);
         }
     }
 }

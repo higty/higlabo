@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserscopeteamsappinstallationGetChatParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserIdOrUserPrincipalName { get; set; }
+            public string AppInstallationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps_AppInstallationId_Chat: return $"/users/{UserIdOrUserPrincipalName}/teamwork/installedApps/{AppInstallationId}/chat";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps_AppInstallationId_Chat,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Teamwork_InstalledApps_AppInstallationId_Chat: return $"/users/{UserIdOrUserPrincipalName}/teamwork/installedApps/{AppInstallationId}/chat";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,8 +45,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UserIdOrUserPrincipalName { get; set; }
-        public string AppInstallationId { get; set; }
     }
     public partial class UserscopeteamsappinstallationGetChatResponse : RestApiResponse
     {
@@ -54,6 +64,10 @@ namespace HigLabo.Net.Microsoft
         public string? TenantId { get; set; }
         public string? Topic { get; set; }
         public string? WebUrl { get; set; }
+        public TeamsAppInstallation[]? InstalledApps { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public ChatMessage[]? Messages { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
     }
     public partial class MicrosoftClient
     {

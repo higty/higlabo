@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ConnectedorganizationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ConnectedOrganizationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_EntitlementManagement_ConnectedOrganizations_ConnectedOrganizationId: return $"/identityGovernance/entitlementManagement/connectedOrganizations/{ConnectedOrganizationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             IdentityGovernance_EntitlementManagement_ConnectedOrganizations_ConnectedOrganizationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_ConnectedOrganizations_ConnectedOrganizationId: return $"/identityGovernance/entitlementManagement/connectedOrganizations/{ConnectedOrganizationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,7 +44,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ConnectedOrganizationId { get; set; }
     }
     public partial class ConnectedorganizationGetResponse : RestApiResponse
     {
@@ -52,6 +62,8 @@ namespace HigLabo.Net.Microsoft
         public IdentitySource[]? IdentitySources { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
         public ConnectedOrganizationConnectedOrganizationState State { get; set; }
+        public DirectoryObject[]? ExternalSponsors { get; set; }
+        public DirectoryObject[]? InternalSponsors { get; set; }
     }
     public partial class MicrosoftClient
     {

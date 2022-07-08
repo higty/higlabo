@@ -2,32 +2,42 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TemporaryaccesspassauthenticationmethodDeleteParameter : IRestApiParameter
+    public partial class TemporaryAccesspassauthenticationmethodDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_TemporaryAccessPassMethods_Id: return $"/users/{IdOrUserPrincipalName}/authentication/temporaryAccessPassMethods/{Id}";
+                    case ApiPath.Me_Authentication_TemporaryAccessPassMethods_Id: return $"/me/authentication/temporaryAccessPassMethods/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Users_IdOrUserPrincipalName_Authentication_TemporaryAccessPassMethods_Id,
             Me_Authentication_TemporaryAccessPassMethods_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_TemporaryAccessPassMethods_Id: return $"/users/{IdOrUserPrincipalName}/authentication/temporaryAccessPassMethods/{Id}";
-                    case ApiPath.Me_Authentication_TemporaryAccessPassMethods_Id: return $"/me/authentication/temporaryAccessPassMethods/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string IdOrUserPrincipalName { get; set; }
-        public string Id { get; set; }
     }
-    public partial class TemporaryaccesspassauthenticationmethodDeleteResponse : RestApiResponse
+    public partial class TemporaryAccesspassauthenticationmethodDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -35,32 +45,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodDeleteResponse> TemporaryaccesspassauthenticationmethodDeleteAsync()
+        public async Task<TemporaryAccesspassauthenticationmethodDeleteResponse> TemporaryAccesspassauthenticationmethodDeleteAsync()
         {
-            var p = new TemporaryaccesspassauthenticationmethodDeleteParameter();
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodDeleteParameter, TemporaryaccesspassauthenticationmethodDeleteResponse>(p, CancellationToken.None);
+            var p = new TemporaryAccesspassauthenticationmethodDeleteParameter();
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodDeleteParameter, TemporaryAccesspassauthenticationmethodDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodDeleteResponse> TemporaryaccesspassauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
+        public async Task<TemporaryAccesspassauthenticationmethodDeleteResponse> TemporaryAccesspassauthenticationmethodDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new TemporaryaccesspassauthenticationmethodDeleteParameter();
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodDeleteParameter, TemporaryaccesspassauthenticationmethodDeleteResponse>(p, cancellationToken);
+            var p = new TemporaryAccesspassauthenticationmethodDeleteParameter();
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodDeleteParameter, TemporaryAccesspassauthenticationmethodDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodDeleteResponse> TemporaryaccesspassauthenticationmethodDeleteAsync(TemporaryaccesspassauthenticationmethodDeleteParameter parameter)
+        public async Task<TemporaryAccesspassauthenticationmethodDeleteResponse> TemporaryAccesspassauthenticationmethodDeleteAsync(TemporaryAccesspassauthenticationmethodDeleteParameter parameter)
         {
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodDeleteParameter, TemporaryaccesspassauthenticationmethodDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodDeleteParameter, TemporaryAccesspassauthenticationmethodDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethod-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<TemporaryaccesspassauthenticationmethodDeleteResponse> TemporaryaccesspassauthenticationmethodDeleteAsync(TemporaryaccesspassauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<TemporaryAccesspassauthenticationmethodDeleteResponse> TemporaryAccesspassauthenticationmethodDeleteAsync(TemporaryAccesspassauthenticationmethodDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TemporaryaccesspassauthenticationmethodDeleteParameter, TemporaryaccesspassauthenticationmethodDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TemporaryAccesspassauthenticationmethodDeleteParameter, TemporaryAccesspassauthenticationmethodDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

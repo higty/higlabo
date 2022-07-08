@@ -23,5 +23,6 @@ namespace HigLabo.Net.Microsoft
         public bool? RequiresVerification { get; set; }
         public UserAttributeValuesItem[]? UserAttributeValues { get; set; }
         public IdentityUserFlowAttributeAssignmentIdentityUserFlowAttributeInputType UserInputType { get; set; }
+        public IdentityUserFlowAttribute? UserAttribute { get; set; }
     }
 }

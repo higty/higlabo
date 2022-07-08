@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UnifiedroledefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleDefinitions_Id: return $"/roleManagement/directory/roleDefinitions/{Id}";
+                    case ApiPath.RoleManagement_EntitlementManagement_RoleDefinitions_Id: return $"/roleManagement/entitlementManagement/roleDefinitions/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +29,12 @@ namespace HigLabo.Net.Microsoft
             RoleManagement_EntitlementManagement_RoleDefinitions_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleDefinitions_Id: return $"/roleManagement/directory/roleDefinitions/{Id}";
-                    case ApiPath.RoleManagement_EntitlementManagement_RoleDefinitions_Id: return $"/roleManagement/entitlementManagement/roleDefinitions/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,7 +46,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class UnifiedroledefinitionGetResponse : RestApiResponse
     {
@@ -48,6 +58,7 @@ namespace HigLabo.Net.Microsoft
         public UnifiedRolePermission[]? RolePermissions { get; set; }
         public string? TemplateId { get; set; }
         public string? Version { get; set; }
+        public UnifiedRoleDefinition[]? InheritsPermissionsFrom { get; set; }
     }
     public partial class MicrosoftClient
     {

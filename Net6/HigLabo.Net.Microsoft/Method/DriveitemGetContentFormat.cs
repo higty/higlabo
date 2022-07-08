@@ -4,6 +4,24 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemGetContentFormatParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ItemId { get; set; }
+            public string PathAndFilename { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drive_Items_ItemId_Content: return $"/drive/items/{ItemId}/content";
+                    case ApiPath.Drive_Root_PathAndFilename_Content: return $"/drive/root:/{PathAndFilename}:/content";
+                    case ApiPath.Me_Drive_Items_ItemId_Content: return $"/me/drive/items/{ItemId}/content";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -14,18 +32,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Items_ItemId_Content,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drive_Items_ItemId_Content: return $"/drive/items/{ItemId}/content";
-                    case ApiPath.Drive_Root_PathAndFilename_Content: return $"/drive/root:/{PathAndFilename}:/content";
-                    case ApiPath.Me_Drive_Items_ItemId_Content: return $"/me/drive/items/{ItemId}/content";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,8 +49,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ItemId { get; set; }
-        public string PathAndFilename { get; set; }
     }
     public partial class DriveitemGetContentFormatResponse : RestApiResponse
     {

@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamListMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Members: return $"/teams/{TeamId}/members";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Teams_TeamId_Members,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Members: return $"/teams/{TeamId}/members";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,21 +44,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TeamId { get; set; }
     }
     public partial class TeamListMembersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/conversationmember?view=graph-rest-1.0
-        /// </summary>
-        public partial class ConversationMember
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public string[]? Roles { get; set; }
-            public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
-        }
-
         public ConversationMember[] Value { get; set; }
     }
     public partial class MicrosoftClient

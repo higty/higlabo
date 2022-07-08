@@ -5,9 +5,9 @@ namespace HigLabo.Net.Microsoft
     /// <summary>
     /// https://docs.microsoft.com/en-us/graph/api/resources/callrecords-failureinfo?view=graph-rest-1.0
     /// </summary>
-    public partial class CallRecordsFailureInfo
+    public partial class CallrecordsFailureinfo
     {
-        public enum CallRecordsFailureInfoCallRecordsFailureStage
+        public enum CallrecordsFailureinfoCallRecordsFailureStage
         {
             Unknown,
             CallSetup,
@@ -16,6 +16,6 @@ namespace HigLabo.Net.Microsoft
         }
 
         public string? Reason { get; set; }
-        public CallRecordsFailureInfoCallRecordsFailureStage Stage { get; set; }
+        public CallrecordsFailureinfoCallRecordsFailureStage Stage { get; set; }
     }
 }

@@ -4,24 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class IdentityproviderListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityProviders: return $"/identityProviders";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ClientId,
+            ClientSecret,
+            Id,
+            Name,
+            Type,
         }
         public enum ApiPath
         {
             IdentityProviders,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityProviders: return $"/identityProviders";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,18 +51,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentityproviderListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/identityprovider?view=graph-rest-1.0
-        /// </summary>
-        public partial class IdentityProvider
-        {
-            public string? ClientId { get; set; }
-            public string? ClientSecret { get; set; }
-            public string? Id { get; set; }
-            public string? Name { get; set; }
-            public string? Type { get; set; }
-        }
-
         public IdentityProvider[] Value { get; set; }
     }
     public partial class MicrosoftClient

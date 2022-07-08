@@ -4,8 +4,30 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MicrosoftauthenticatorauthenticationmethodListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Authentication_MicrosoftAuthenticatorMethods: return $"/me/authentication/microsoftAuthenticatorMethods";
+                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_MicrosoftAuthenticatorMethods: return $"/users/{IdOrUserPrincipalName}/authentication/microsoftAuthenticatorMethods";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            CreatedDateTime,
+            DisplayName,
+            Id,
+            DeviceTag,
+            PhoneAppVersion,
+            Device,
         }
         public enum ApiPath
         {
@@ -13,17 +35,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Authentication_MicrosoftAuthenticatorMethods,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Authentication_MicrosoftAuthenticatorMethods: return $"/me/authentication/microsoftAuthenticatorMethods";
-                    case ApiPath.Users_IdOrUserPrincipalName_Authentication_MicrosoftAuthenticatorMethods: return $"/users/{IdOrUserPrincipalName}/authentication/microsoftAuthenticatorMethods";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,22 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class MicrosoftauthenticatorauthenticationmethodListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/microsoftauthenticatorauthenticationmethod?view=graph-rest-1.0
-        /// </summary>
-        public partial class MicrosoftAuthenticatorAuthenticationMethod
-        {
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public string? DeviceTag { get; set; }
-            public string? PhoneAppVersion { get; set; }
-        }
-
         public MicrosoftAuthenticatorAuthenticationMethod[] Value { get; set; }
     }
     public partial class MicrosoftClient

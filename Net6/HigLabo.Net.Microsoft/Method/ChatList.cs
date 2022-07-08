@@ -4,8 +4,37 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ChatListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Chats: return $"/me/chats";
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats: return $"/users/{UserIdOrUserPrincipalName}/chats";
+                    case ApiPath.Chats: return $"/chats";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ChatType,
+            CreatedDateTime,
+            Id,
+            LastUpdatedDateTime,
+            OnlineMeetingInfo,
+            TenantId,
+            Topic,
+            WebUrl,
+            InstalledApps,
+            Members,
+            Messages,
+            Tabs,
         }
         public enum ApiPath
         {
@@ -14,18 +43,12 @@ namespace HigLabo.Net.Microsoft
             Chats,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Chats: return $"/me/chats";
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats: return $"/users/{UserIdOrUserPrincipalName}/chats";
-                    case ApiPath.Chats: return $"/chats";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,33 +60,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UserIdOrUserPrincipalName { get; set; }
     }
     public partial class ChatListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/chat?view=graph-rest-1.0
-        /// </summary>
-        public partial class Chat
-        {
-            public enum ChatChatType
-            {
-                Group,
-                OneOnOne,
-                Meeting,
-                UnknownFutureValue,
-            }
-
-            public Chat? ChatType { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? LastUpdatedDateTime { get; set; }
-            public TeamworkOnlineMeetingInfo? OnlineMeetingInfo { get; set; }
-            public string? TenantId { get; set; }
-            public string? Topic { get; set; }
-            public string? WebUrl { get; set; }
-        }
-
         public Chat[] Value { get; set; }
     }
     public partial class MicrosoftClient

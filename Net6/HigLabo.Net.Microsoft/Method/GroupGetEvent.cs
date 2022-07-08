@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupGetEventParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string GroupsId { get; set; }
+            public string EventsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Events_Id: return $"/groups/{GroupsId}/events/{EventsId}";
+                    case ApiPath.Groups_Id_Calendar_Events_Id: return $"/groups/{GroupsId}/calendar/events/{EventsId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             AllowExternalSenders,
@@ -46,6 +63,31 @@ namespace HigLabo.Net.Microsoft
             Theme,
             UnseenCount,
             Visibility,
+            AcceptedSenders,
+            AppRoleAssignments,
+            Calendar,
+            CalendarView,
+            Conversations,
+            CreatedOnBehalfOf,
+            Drive,
+            Drives,
+            Events,
+            Extensions,
+            GroupLifecyclePolicies,
+            MemberOf,
+            Members,
+            MembersWithLicenseErrors,
+            Onenote,
+            Owners,
+            PermissionGrants,
+            Photo,
+            Photos,
+            Planner,
+            RejectedSenders,
+            Settings,
+            Sites,
+            Team,
+            Threads,
         }
         public enum ApiPath
         {
@@ -53,17 +95,12 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Calendar_Events_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Events_Id: return $"/groups/{GroupsId}/events/{EventsId}";
-                    case ApiPath.Groups_Id_Calendar_Events_Id: return $"/groups/{GroupsId}/calendar/events/{EventsId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -75,8 +112,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string GroupsId { get; set; }
-        public string EventsId { get; set; }
     }
     public partial class GroupGetEventResponse : RestApiResponse
     {
@@ -135,6 +170,12 @@ namespace HigLabo.Net.Microsoft
         public string? TransactionId { get; set; }
         public string? Type { get; set; }
         public string? WebLink { get; set; }
+        public Attachment[]? Attachments { get; set; }
+        public Calendar? Calendar { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public Event[]? Instances { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
     public partial class MicrosoftClient
     {

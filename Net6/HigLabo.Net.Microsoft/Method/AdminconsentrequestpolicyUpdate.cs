@@ -2,23 +2,33 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AdminconsentrequestpolicyUpdateParameter : IRestApiParameter
+    public partial class AdminconsentrequestPolicyUpdateParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_AdminConsentRequestPolicy: return $"/policies/adminConsentRequestPolicy";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_AdminConsentRequestPolicy,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_AdminConsentRequestPolicy: return $"/policies/adminConsentRequestPolicy";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PUT";
@@ -28,7 +38,7 @@ namespace HigLabo.Net.Microsoft
         public Int32? RequestDurationInDays { get; set; }
         public AccessReviewReviewerScope[]? Reviewers { get; set; }
     }
-    public partial class AdminconsentrequestpolicyUpdateResponse : RestApiResponse
+    public partial class AdminconsentrequestPolicyUpdateResponse : RestApiResponse
     {
         public bool? IsEnabled { get; set; }
         public bool? NotifyReviewers { get; set; }
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestpolicyUpdateResponse> AdminconsentrequestpolicyUpdateAsync()
+        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync()
         {
-            var p = new AdminconsentrequestpolicyUpdateParameter();
-            return await this.SendAsync<AdminconsentrequestpolicyUpdateParameter, AdminconsentrequestpolicyUpdateResponse>(p, CancellationToken.None);
+            var p = new AdminconsentrequestPolicyUpdateParameter();
+            return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestpolicyUpdateResponse> AdminconsentrequestpolicyUpdateAsync(CancellationToken cancellationToken)
+        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(CancellationToken cancellationToken)
         {
-            var p = new AdminconsentrequestpolicyUpdateParameter();
-            return await this.SendAsync<AdminconsentrequestpolicyUpdateParameter, AdminconsentrequestpolicyUpdateResponse>(p, cancellationToken);
+            var p = new AdminconsentrequestPolicyUpdateParameter();
+            return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestpolicyUpdateResponse> AdminconsentrequestpolicyUpdateAsync(AdminconsentrequestpolicyUpdateParameter parameter)
+        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(AdminconsentrequestPolicyUpdateParameter parameter)
         {
-            return await this.SendAsync<AdminconsentrequestpolicyUpdateParameter, AdminconsentrequestpolicyUpdateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-update?view=graph-rest-1.0
         /// </summary>
-        public async Task<AdminconsentrequestpolicyUpdateResponse> AdminconsentrequestpolicyUpdateAsync(AdminconsentrequestpolicyUpdateParameter parameter, CancellationToken cancellationToken)
+        public async Task<AdminconsentrequestPolicyUpdateResponse> AdminconsentrequestPolicyUpdateAsync(AdminconsentrequestPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AdminconsentrequestpolicyUpdateParameter, AdminconsentrequestpolicyUpdateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AdminconsentrequestPolicyUpdateParameter, AdminconsentrequestPolicyUpdateResponse>(parameter, cancellationToken);
         }
     }
 }

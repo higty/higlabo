@@ -19,7 +19,12 @@ namespace HigLabo.Net.Microsoft
         public bool? IsFavoriteByDefault { get; set; }
         public string? Email { get; set; }
         public string? WebUrl { get; set; }
-        public Enum? MembershipType { get; set; }
+        public ChannelChannelMembershipType MembershipType { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public ChatMessage[]? Messages { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public DriveItem? FilesFolder { get; set; }
+        public TeamsASyncOperation[]? Operations { get; set; }
     }
 }

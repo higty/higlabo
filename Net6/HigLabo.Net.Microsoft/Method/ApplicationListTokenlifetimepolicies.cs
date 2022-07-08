@@ -4,24 +4,41 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ApplicationListTokenlifetimepoliciesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Applications_Id_TokenLifetimePolicies: return $"/applications/{Id}/tokenLifetimePolicies";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Definition,
+            Description,
+            DisplayName,
+            IsOrganizationDefault,
+            AppliesTo,
         }
         public enum ApiPath
         {
             Applications_Id_TokenLifetimePolicies,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Applications_Id_TokenLifetimePolicies: return $"/applications/{Id}/tokenLifetimePolicies";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,22 +50,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ApplicationListTokenlifetimepoliciesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/tokenlifetimepolicy?view=graph-rest-1.0
-        /// </summary>
-        public partial class TokenLifetimePolicy
-        {
-            public string? Id { get; set; }
-            public String[]? Definition { get; set; }
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public bool? IsOrganizationDefault { get; set; }
-        }
-
         public TokenLifetimePolicy[] Value { get; set; }
     }
     public partial class MicrosoftClient

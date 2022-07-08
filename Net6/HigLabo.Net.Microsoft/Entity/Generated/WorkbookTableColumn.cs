@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public int? Index { get; set; }
         public string? Name { get; set; }
         public Json? Values { get; set; }
+        public Filter? Filter { get; set; }
     }
 }

@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ServiceprincipalDeleteApproleassignmentsParameter : IRestApiParameter
+    public partial class ServiceprincipalDeleteApproleAssignmentsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ServicePrincipalId { get; set; }
+            public string AppRoleAssignmentId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_ServicePrincipalId_AppRoleAssignments_AppRoleAssignmentId: return $"/servicePrincipals/{ServicePrincipalId}/appRoleAssignments/{AppRoleAssignmentId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_ServicePrincipalId_AppRoleAssignments_AppRoleAssignmentId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_ServicePrincipalId_AppRoleAssignments_AppRoleAssignmentId: return $"/servicePrincipals/{ServicePrincipalId}/appRoleAssignments/{AppRoleAssignmentId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ServicePrincipalId { get; set; }
-        public string AppRoleAssignmentId { get; set; }
     }
-    public partial class ServiceprincipalDeleteApproleassignmentsResponse : RestApiResponse
+    public partial class ServiceprincipalDeleteApproleAssignmentsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteApproleassignmentsResponse> ServiceprincipalDeleteApproleassignmentsAsync()
+        public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync()
         {
-            var p = new ServiceprincipalDeleteApproleassignmentsParameter();
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignmentsParameter, ServiceprincipalDeleteApproleassignmentsResponse>(p, CancellationToken.None);
+            var p = new ServiceprincipalDeleteApproleAssignmentsParameter();
+            return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteApproleassignmentsResponse> ServiceprincipalDeleteApproleassignmentsAsync(CancellationToken cancellationToken)
+        public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
-            var p = new ServiceprincipalDeleteApproleassignmentsParameter();
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignmentsParameter, ServiceprincipalDeleteApproleassignmentsResponse>(p, cancellationToken);
+            var p = new ServiceprincipalDeleteApproleAssignmentsParameter();
+            return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteApproleassignmentsResponse> ServiceprincipalDeleteApproleassignmentsAsync(ServiceprincipalDeleteApproleassignmentsParameter parameter)
+        public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync(ServiceprincipalDeleteApproleAssignmentsParameter parameter)
         {
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignmentsParameter, ServiceprincipalDeleteApproleassignmentsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
-        public async Task<ServiceprincipalDeleteApproleassignmentsResponse> ServiceprincipalDeleteApproleassignmentsAsync(ServiceprincipalDeleteApproleassignmentsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync(ServiceprincipalDeleteApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ServiceprincipalDeleteApproleassignmentsParameter, ServiceprincipalDeleteApproleassignmentsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(parameter, cancellationToken);
         }
     }
 }

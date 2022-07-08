@@ -2,26 +2,53 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class RbacapplicationListRoleassignmentschedulesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RbacapplicationListRoleAssignmentschedulesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleAssignmentSchedules: return $"/roleManagement/directory/roleAssignmentSchedules";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppScopeId,
+            AssignmentType,
+            CreatedDateTime,
+            CreatedUsing,
+            DirectoryScopeId,
+            Id,
+            MemberType,
+            ModifiedDateTime,
+            PrincipalId,
+            RoleDefinitionId,
+            ScheduleInfo,
+            Status,
+            ActivatedUsing,
+            AppScope,
+            DirectoryScope,
+            Principal,
+            RoleDefinition,
         }
         public enum ApiPath
         {
             RoleManagement_Directory_RoleAssignmentSchedules,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleAssignmentSchedules: return $"/roleManagement/directory/roleAssignmentSchedules";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,27 +61,8 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class RbacapplicationListRoleassignmentschedulesResponse : RestApiResponse
+    public partial class RbacapplicationListRoleAssignmentschedulesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignmentschedule?view=graph-rest-1.0
-        /// </summary>
-        public partial class UnifiedRoleAssignmentSchedule
-        {
-            public string? AppScopeId { get; set; }
-            public string? AssignmentType { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public string? CreatedUsing { get; set; }
-            public string? DirectoryScopeId { get; set; }
-            public string? Id { get; set; }
-            public string? MemberType { get; set; }
-            public DateTimeOffset? ModifiedDateTime { get; set; }
-            public string? PrincipalId { get; set; }
-            public string? RoleDefinitionId { get; set; }
-            public RequestSchedule? ScheduleInfo { get; set; }
-            public string? Status { get; set; }
-        }
-
         public UnifiedRoleAssignmentSchedule[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -62,32 +70,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulesResponse> RbacapplicationListRoleassignmentschedulesAsync()
+        public async Task<RbacapplicationListRoleAssignmentschedulesResponse> RbacapplicationListRoleAssignmentschedulesAsync()
         {
-            var p = new RbacapplicationListRoleassignmentschedulesParameter();
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulesParameter, RbacapplicationListRoleassignmentschedulesResponse>(p, CancellationToken.None);
+            var p = new RbacapplicationListRoleAssignmentschedulesParameter();
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulesParameter, RbacapplicationListRoleAssignmentschedulesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulesResponse> RbacapplicationListRoleassignmentschedulesAsync(CancellationToken cancellationToken)
+        public async Task<RbacapplicationListRoleAssignmentschedulesResponse> RbacapplicationListRoleAssignmentschedulesAsync(CancellationToken cancellationToken)
         {
-            var p = new RbacapplicationListRoleassignmentschedulesParameter();
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulesParameter, RbacapplicationListRoleassignmentschedulesResponse>(p, cancellationToken);
+            var p = new RbacapplicationListRoleAssignmentschedulesParameter();
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulesParameter, RbacapplicationListRoleAssignmentschedulesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulesResponse> RbacapplicationListRoleassignmentschedulesAsync(RbacapplicationListRoleassignmentschedulesParameter parameter)
+        public async Task<RbacapplicationListRoleAssignmentschedulesResponse> RbacapplicationListRoleAssignmentschedulesAsync(RbacapplicationListRoleAssignmentschedulesParameter parameter)
         {
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulesParameter, RbacapplicationListRoleassignmentschedulesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulesParameter, RbacapplicationListRoleAssignmentschedulesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignmentschedules?view=graph-rest-1.0
         /// </summary>
-        public async Task<RbacapplicationListRoleassignmentschedulesResponse> RbacapplicationListRoleassignmentschedulesAsync(RbacapplicationListRoleassignmentschedulesParameter parameter, CancellationToken cancellationToken)
+        public async Task<RbacapplicationListRoleAssignmentschedulesResponse> RbacapplicationListRoleAssignmentschedulesAsync(RbacapplicationListRoleAssignmentschedulesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RbacapplicationListRoleassignmentschedulesParameter, RbacapplicationListRoleassignmentschedulesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RbacapplicationListRoleAssignmentschedulesParameter, RbacapplicationListRoleAssignmentschedulesResponse>(parameter, cancellationToken);
         }
     }
 }

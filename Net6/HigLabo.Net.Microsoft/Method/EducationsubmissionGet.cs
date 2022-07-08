@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class EducationsubmissionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassId { get; set; }
+            public string AssignmentId { get; set; }
+            public string SubmissionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_ClassId_Assignments_AssignmentId_Submissions_SubmissionId: return $"/education/classes/{ClassId}/assignments/{AssignmentId}/submissions/{SubmissionId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +29,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_ClassId_Assignments_AssignmentId_Submissions_SubmissionId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_ClassId_Assignments_AssignmentId_Submissions_SubmissionId: return $"/education/classes/{ClassId}/assignments/{AssignmentId}/submissions/{SubmissionId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +46,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassId { get; set; }
-        public string AssignmentId { get; set; }
-        public string SubmissionId { get; set; }
     }
     public partial class EducationsubmissionGetResponse : RestApiResponse
     {
@@ -60,6 +70,9 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? UnsubmittedDateTime { get; set; }
         public IdentitySet? ReassignedBy { get; set; }
         public DateTimeOffset? ReassignedDateTime { get; set; }
+        public EducationSubmissionResource[]? Resources { get; set; }
+        public EducationSubmissionResource[]? SubmittedResources { get; set; }
+        public EducationOutcome? Outcomes { get; set; }
     }
     public partial class MicrosoftClient
     {

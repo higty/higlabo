@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ComplianceInformation
     {
-        public string CertificationName { get; set; }
-        public CertificationControl CertificationControls { get; set; }
+        public string? CertificationName { get; set; }
+        public CertificationControl[]? CertificationControls { get; set; }
     }
 }

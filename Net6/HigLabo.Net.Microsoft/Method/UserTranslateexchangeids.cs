@@ -2,45 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class UserTranslateexchangeidsParameter : IRestApiParameter
+    public partial class UserTranslateExchangeidsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_TranslateExchangeIds: return $"/me/translateExchangeIds";
+                    case ApiPath.Users_IdOruserPrincipalName_TranslateExchangeIds: return $"/users/{IdOrUserPrincipalName}/translateExchangeIds";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_TranslateExchangeIds,
             Users_IdOruserPrincipalName_TranslateExchangeIds,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_TranslateExchangeIds: return $"/me/translateExchangeIds";
-                    case ApiPath.Users_IdOruserPrincipalName_TranslateExchangeIds: return $"/users/{IdOrUserPrincipalName}/translateExchangeIds";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public String[]? InputIds { get; set; }
         public string? SourceIdType { get; set; }
         public string? TargetIdType { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class UserTranslateexchangeidsResponse : RestApiResponse
+    public partial class UserTranslateExchangeidsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/convertidresult?view=graph-rest-1.0
-        /// </summary>
-        public partial class ConvertIdResult
-        {
-            public string? SourceId { get; set; }
-            public string? TargetId { get; set; }
-            public GenericError? ErrorDetails { get; set; }
-        }
-
         public ConvertIdResult[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -48,32 +48,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateexchangeidsResponse> UserTranslateexchangeidsAsync()
+        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync()
         {
-            var p = new UserTranslateexchangeidsParameter();
-            return await this.SendAsync<UserTranslateexchangeidsParameter, UserTranslateexchangeidsResponse>(p, CancellationToken.None);
+            var p = new UserTranslateExchangeidsParameter();
+            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateexchangeidsResponse> UserTranslateexchangeidsAsync(CancellationToken cancellationToken)
+        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(CancellationToken cancellationToken)
         {
-            var p = new UserTranslateexchangeidsParameter();
-            return await this.SendAsync<UserTranslateexchangeidsParameter, UserTranslateexchangeidsResponse>(p, cancellationToken);
+            var p = new UserTranslateExchangeidsParameter();
+            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateexchangeidsResponse> UserTranslateexchangeidsAsync(UserTranslateexchangeidsParameter parameter)
+        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter)
         {
-            return await this.SendAsync<UserTranslateexchangeidsParameter, UserTranslateexchangeidsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/user-translateexchangeids?view=graph-rest-1.0
         /// </summary>
-        public async Task<UserTranslateexchangeidsResponse> UserTranslateexchangeidsAsync(UserTranslateexchangeidsParameter parameter, CancellationToken cancellationToken)
+        public async Task<UserTranslateExchangeidsResponse> UserTranslateExchangeidsAsync(UserTranslateExchangeidsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<UserTranslateexchangeidsParameter, UserTranslateexchangeidsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<UserTranslateExchangeidsParameter, UserTranslateExchangeidsResponse>(parameter, cancellationToken);
         }
     }
 }

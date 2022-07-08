@@ -2,8 +2,24 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class OutlookuserSupportedlanguagesParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class OutlookUserSupportedlanguagesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Outlook_SupportedLanguages: return $"/me/outlook/supportedLanguages";
+                    case ApiPath.Users_IdOruserPrincipalName_Outlook_SupportedLanguages: return $"/users/{IdOrUserPrincipalName}/outlook/supportedLanguages";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +29,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_Outlook_SupportedLanguages,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Outlook_SupportedLanguages: return $"/me/outlook/supportedLanguages";
-                    case ApiPath.Users_IdOruserPrincipalName_Outlook_SupportedLanguages: return $"/users/{IdOrUserPrincipalName}/outlook/supportedLanguages";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,19 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class OutlookuserSupportedlanguagesResponse : RestApiResponse
+    public partial class OutlookUserSupportedlanguagesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/localeinfo?view=graph-rest-1.0
-        /// </summary>
-        public partial class LocaleInfo
-        {
-            public string? Locale { get; set; }
-            public string? DisplayName { get; set; }
-        }
-
         public LocaleInfo[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -55,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserSupportedlanguagesResponse> OutlookuserSupportedlanguagesAsync()
+        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync()
         {
-            var p = new OutlookuserSupportedlanguagesParameter();
-            return await this.SendAsync<OutlookuserSupportedlanguagesParameter, OutlookuserSupportedlanguagesResponse>(p, CancellationToken.None);
+            var p = new OutlookUserSupportedlanguagesParameter();
+            return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserSupportedlanguagesResponse> OutlookuserSupportedlanguagesAsync(CancellationToken cancellationToken)
+        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(CancellationToken cancellationToken)
         {
-            var p = new OutlookuserSupportedlanguagesParameter();
-            return await this.SendAsync<OutlookuserSupportedlanguagesParameter, OutlookuserSupportedlanguagesResponse>(p, cancellationToken);
+            var p = new OutlookUserSupportedlanguagesParameter();
+            return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserSupportedlanguagesResponse> OutlookuserSupportedlanguagesAsync(OutlookuserSupportedlanguagesParameter parameter)
+        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter)
         {
-            return await this.SendAsync<OutlookuserSupportedlanguagesParameter, OutlookuserSupportedlanguagesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/outlookuser-supportedlanguages?view=graph-rest-1.0
         /// </summary>
-        public async Task<OutlookuserSupportedlanguagesResponse> OutlookuserSupportedlanguagesAsync(OutlookuserSupportedlanguagesParameter parameter, CancellationToken cancellationToken)
+        public async Task<OutlookUserSupportedlanguagesResponse> OutlookUserSupportedlanguagesAsync(OutlookUserSupportedlanguagesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<OutlookuserSupportedlanguagesParameter, OutlookuserSupportedlanguagesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<OutlookUserSupportedlanguagesParameter, OutlookUserSupportedlanguagesResponse>(parameter, cancellationToken);
         }
     }
 }

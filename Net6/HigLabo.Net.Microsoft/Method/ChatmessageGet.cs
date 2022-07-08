@@ -4,6 +4,30 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ChatmessageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+            public string ChannelId { get; set; }
+            public string MessageId { get; set; }
+            public string ReplyId { get; set; }
+            public string ChatId { get; set; }
+            public string UserIdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}";
+                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId_Replies_ReplyId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}/replies/{ReplyId}";
+                    case ApiPath.Chats_ChatId_Messages_MessageId: return $"/chats/{ChatId}/messages/{MessageId}";
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats_ChatId_Messages_MessageId: return $"/users/{UserIdOrUserPrincipalName}/chats/{ChatId}/messages/{MessageId}";
+                    case ApiPath.Me_Chats_ChatId_Messages_MessageId: return $"/me/chats/{ChatId}/messages/{MessageId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -16,20 +40,12 @@ namespace HigLabo.Net.Microsoft
             Me_Chats_ChatId_Messages_MessageId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}";
-                    case ApiPath.Teams_TeamId_Channels_ChannelId_Messages_MessageId_Replies_ReplyId: return $"/teams/{TeamId}/channels/{ChannelId}/messages/{MessageId}/replies/{ReplyId}";
-                    case ApiPath.Chats_ChatId_Messages_MessageId: return $"/chats/{ChatId}/messages/{MessageId}";
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats_ChatId_Messages_MessageId: return $"/users/{UserIdOrUserPrincipalName}/chats/{ChatId}/messages/{MessageId}";
-                    case ApiPath.Me_Chats_ChatId_Messages_MessageId: return $"/me/chats/{ChatId}/messages/{MessageId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -41,12 +57,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TeamId { get; set; }
-        public string ChannelId { get; set; }
-        public string MessageId { get; set; }
-        public string ReplyId { get; set; }
-        public string ChatId { get; set; }
-        public string UserIdOrUserPrincipalName { get; set; }
     }
     public partial class ChatmessageGetResponse : RestApiResponse
     {
@@ -80,13 +90,15 @@ namespace HigLabo.Net.Microsoft
         public ChatMessageAttachment[]? Attachments { get; set; }
         public ChatMessageMention[]? Mentions { get; set; }
         public ChatMessagestring Importance { get; set; }
-        public ChatMessageReaction[]? Reactions { get; set; }
+        public ChatMessageReAction[]? Reactions { get; set; }
         public string? Locale { get; set; }
         public ChatMessagePolicyViolation? PolicyViolation { get; set; }
         public string? ChatId { get; set; }
         public ChannelIdentity? ChannelIdentity { get; set; }
         public string? WebUrl { get; set; }
         public EventMessageDetail? EventDetail { get; set; }
+        public ChatMessage? Replies { get; set; }
+        public ChatMessageHostedContent? HostedContents { get; set; }
     }
     public partial class MicrosoftClient
     {

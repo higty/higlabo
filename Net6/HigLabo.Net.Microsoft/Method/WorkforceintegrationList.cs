@@ -4,24 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorkforceintegrationListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teamwork_WorkforceIntegrations: return $"/teamwork/workforceIntegrations";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ApiVersion,
+            DisplayName,
+            Encryption,
+            IsActive,
+            SupportedEntities,
+            Url,
         }
         public enum ApiPath
         {
             Teamwork_WorkforceIntegrations,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teamwork_WorkforceIntegrations: return $"/teamwork/workforceIntegrations";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,31 +52,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class WorkforceintegrationListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/workforceintegration?view=graph-rest-1.0
-        /// </summary>
-        public partial class WorkforceIntegration
-        {
-            public enum WorkforceIntegrationWorkforceIntegrationSupportedEntities
-            {
-                None,
-                Shift,
-                SwapRequest,
-                UserShiftPreferences,
-                Openshift,
-                OpenShiftRequest,
-                OfferShiftRequest,
-                UnknownFutureValue,
-            }
-
-            public Int32? ApiVersion { get; set; }
-            public string? DisplayName { get; set; }
-            public WorkforceIntegrationEncryption? Encryption { get; set; }
-            public bool? IsActive { get; set; }
-            public WorkforceIntegrationWorkforceIntegrationSupportedEntities SupportedEntities { get; set; }
-            public string? Url { get; set; }
-        }
-
         public WorkforceIntegration[] Value { get; set; }
     }
     public partial class MicrosoftClient

@@ -13,5 +13,8 @@ namespace HigLabo.Net.Microsoft
         public bool? IsViewingBeforeAcceptanceRequired { get; set; }
         public TermsExpiration? TermsExpiration { get; set; }
         public string? UserReacceptRequiredFrequency { get; set; }
+        public AgreementAcceptance[]? Acceptances { get; set; }
+        public AgreementFile? File { get; set; }
+        public AgreementFileLocalization[]? Files { get; set; }
     }
 }

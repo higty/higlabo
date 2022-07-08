@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AgreementGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements_Id: return $"/identityGovernance/termsOfUse/agreements/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             DisplayName,
@@ -12,22 +27,21 @@ namespace HigLabo.Net.Microsoft
             IsViewingBeforeAcceptanceRequired,
             TermsExpiration,
             UserReacceptRequiredFrequency,
+            Acceptances,
+            File,
+            Files,
         }
         public enum ApiPath
         {
             IdentityGovernance_TermsOfUse_Agreements_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements_Id: return $"/identityGovernance/termsOfUse/agreements/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,7 +53,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class AgreementGetResponse : RestApiResponse
     {
@@ -49,6 +62,9 @@ namespace HigLabo.Net.Microsoft
         public bool? IsViewingBeforeAcceptanceRequired { get; set; }
         public TermsExpiration? TermsExpiration { get; set; }
         public string? UserReacceptRequiredFrequency { get; set; }
+        public AgreementAcceptance[]? Acceptances { get; set; }
+        public AgreementFile? File { get; set; }
+        public AgreementFileLocalization[]? Files { get; set; }
     }
     public partial class MicrosoftClient
     {

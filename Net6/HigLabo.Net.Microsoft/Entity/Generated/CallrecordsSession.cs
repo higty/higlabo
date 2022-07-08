@@ -19,11 +19,12 @@ namespace HigLabo.Net.Microsoft
         }
 
         public string? Id { get; set; }
-        public CallRecordsEndpoint? Caller { get; set; }
-        public CallRecordsEndpoint? Callee { get; set; }
-        public CallRecordsFailureInfo? FailureInfo { get; set; }
+        public CallrecordsEndpoint? Caller { get; set; }
+        public CallrecordsEndpoint? Callee { get; set; }
+        public CallrecordsFailureinfo? FailureInfo { get; set; }
         public CallrecordsSessionCallRecordsModality Modalities { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
         public DateTimeOffset? EndDateTime { get; set; }
+        public CallrecordsSegment[]? Segments { get; set; }
     }
 }

@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id: return $"/communications/calls/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             CallbackUri,
@@ -25,22 +40,20 @@ namespace HigLabo.Net.Microsoft
             Targets,
             ToneInfo,
             IncomingContext,
+            Operations,
+            Participants,
         }
         public enum ApiPath
         {
             Communications_Calls_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id: return $"/communications/calls/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -52,7 +65,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class CallGetResponse : RestApiResponse
     {
@@ -102,6 +114,8 @@ namespace HigLabo.Net.Microsoft
         public ParticipantInfo[]? Targets { get; set; }
         public ToneInfo? ToneInfo { get; set; }
         public IncomingContext? IncomingContext { get; set; }
+        public CommsOperation[]? Operations { get; set; }
+        public Participant[]? Participants { get; set; }
     }
     public partial class MicrosoftClient
     {

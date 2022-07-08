@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserListLicensedetailsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_LicenseDetails: return $"/me/licenseDetails";
+                    case ApiPath.Users_Id_LicenseDetails: return $"/users/{Id}/licenseDetails";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +29,12 @@ namespace HigLabo.Net.Microsoft
             Users_Id_LicenseDetails,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_LicenseDetails: return $"/me/licenseDetails";
-                    case ApiPath.Users_Id_LicenseDetails: return $"/users/{Id}/licenseDetails";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,21 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class UserListLicensedetailsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/licensedetails?view=graph-rest-1.0
-        /// </summary>
-        public partial class LicenseDetails
-        {
-            public string? Id { get; set; }
-            public ServicePlanInfo[]? ServicePlans { get; set; }
-            public Guid? SkuId { get; set; }
-            public string? SkuPartNumber { get; set; }
-        }
-
         public LicenseDetails[] Value { get; set; }
     }
     public partial class MicrosoftClient

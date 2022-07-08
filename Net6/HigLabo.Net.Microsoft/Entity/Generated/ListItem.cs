@@ -8,5 +8,10 @@ namespace HigLabo.Net.Microsoft
     public partial class ListItem
     {
         public ContentTypeInfo? ContentType { get; set; }
+        public ItemActivity[]? Activities { get; set; }
+        public ItemAnalytics? Analytics { get; set; }
+        public DriveItem? DriveItem { get; set; }
+        public FieldValueSet? Fields { get; set; }
+        public ListItemVersion[]? Versions { get; set; }
     }
 }

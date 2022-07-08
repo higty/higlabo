@@ -4,24 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class GroupListConversationsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Groups_Id_Conversations: return $"/groups/{Id}/conversations";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            HasAttachments,
+            Id,
+            LastDeliveredDateTime,
+            Preview,
+            Topic,
+            UniqueSenders,
+            Threads,
         }
         public enum ApiPath
         {
             Groups_Id_Conversations,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Groups_Id_Conversations: return $"/groups/{Id}/conversations";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,23 +51,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class GroupListConversationsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/conversation?view=graph-rest-1.0
-        /// </summary>
-        public partial class Conversation
-        {
-            public bool? HasAttachments { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? LastDeliveredDateTime { get; set; }
-            public string? Preview { get; set; }
-            public string? Topic { get; set; }
-            public String[]? UniqueSenders { get; set; }
-        }
-
         public Conversation[] Value { get; set; }
     }
     public partial class MicrosoftClient

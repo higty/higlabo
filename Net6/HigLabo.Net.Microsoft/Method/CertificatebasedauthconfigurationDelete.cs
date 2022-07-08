@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CertificatebasedauthconfigurationDeleteParameter : IRestApiParameter
+    public partial class CertificatebasedauthConfigurationDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string OrganizationId { get; set; }
+            public string CertificateBasedAuthConfigurationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Organization_Id_CertificateBasedAuthConfiguration_Id: return $"/organization/{OrganizationId}/certificateBasedAuthConfiguration/{CertificateBasedAuthConfigurationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Organization_Id_CertificateBasedAuthConfiguration_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Organization_Id_CertificateBasedAuthConfiguration_Id: return $"/organization/{OrganizationId}/certificateBasedAuthConfiguration/{CertificateBasedAuthConfigurationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string OrganizationId { get; set; }
-        public string CertificateBasedAuthConfigurationId { get; set; }
     }
-    public partial class CertificatebasedauthconfigurationDeleteResponse : RestApiResponse
+    public partial class CertificatebasedauthConfigurationDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -33,32 +43,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationDeleteResponse> CertificatebasedauthconfigurationDeleteAsync()
+        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync()
         {
-            var p = new CertificatebasedauthconfigurationDeleteParameter();
-            return await this.SendAsync<CertificatebasedauthconfigurationDeleteParameter, CertificatebasedauthconfigurationDeleteResponse>(p, CancellationToken.None);
+            var p = new CertificatebasedauthConfigurationDeleteParameter();
+            return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationDeleteResponse> CertificatebasedauthconfigurationDeleteAsync(CancellationToken cancellationToken)
+        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new CertificatebasedauthconfigurationDeleteParameter();
-            return await this.SendAsync<CertificatebasedauthconfigurationDeleteParameter, CertificatebasedauthconfigurationDeleteResponse>(p, cancellationToken);
+            var p = new CertificatebasedauthConfigurationDeleteParameter();
+            return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationDeleteResponse> CertificatebasedauthconfigurationDeleteAsync(CertificatebasedauthconfigurationDeleteParameter parameter)
+        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CertificatebasedauthConfigurationDeleteParameter parameter)
         {
-            return await this.SendAsync<CertificatebasedauthconfigurationDeleteParameter, CertificatebasedauthconfigurationDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CertificatebasedauthconfigurationDeleteResponse> CertificatebasedauthconfigurationDeleteAsync(CertificatebasedauthconfigurationDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<CertificatebasedauthConfigurationDeleteResponse> CertificatebasedauthConfigurationDeleteAsync(CertificatebasedauthConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CertificatebasedauthconfigurationDeleteParameter, CertificatebasedauthconfigurationDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CertificatebasedauthConfigurationDeleteParameter, CertificatebasedauthConfigurationDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

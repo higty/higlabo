@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class GrouplifecyclepolicyDeleteParameter : IRestApiParameter
+    public partial class GrouplifecyclePolicyDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.GroupLifecyclePolicies_Id: return $"/groupLifecyclePolicies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             GroupLifecyclePolicies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.GroupLifecyclePolicies_Id: return $"/groupLifecyclePolicies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string Id { get; set; }
     }
-    public partial class GrouplifecyclepolicyDeleteResponse : RestApiResponse
+    public partial class GrouplifecyclePolicyDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyDeleteResponse> GrouplifecyclepolicyDeleteAsync()
+        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync()
         {
-            var p = new GrouplifecyclepolicyDeleteParameter();
-            return await this.SendAsync<GrouplifecyclepolicyDeleteParameter, GrouplifecyclepolicyDeleteResponse>(p, CancellationToken.None);
+            var p = new GrouplifecyclePolicyDeleteParameter();
+            return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyDeleteResponse> GrouplifecyclepolicyDeleteAsync(CancellationToken cancellationToken)
+        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new GrouplifecyclepolicyDeleteParameter();
-            return await this.SendAsync<GrouplifecyclepolicyDeleteParameter, GrouplifecyclepolicyDeleteResponse>(p, cancellationToken);
+            var p = new GrouplifecyclePolicyDeleteParameter();
+            return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyDeleteResponse> GrouplifecyclepolicyDeleteAsync(GrouplifecyclepolicyDeleteParameter parameter)
+        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(GrouplifecyclePolicyDeleteParameter parameter)
         {
-            return await this.SendAsync<GrouplifecyclepolicyDeleteParameter, GrouplifecyclepolicyDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/grouplifecyclepolicy-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<GrouplifecyclepolicyDeleteResponse> GrouplifecyclepolicyDeleteAsync(GrouplifecyclepolicyDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<GrouplifecyclePolicyDeleteResponse> GrouplifecyclePolicyDeleteAsync(GrouplifecyclePolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<GrouplifecyclepolicyDeleteParameter, GrouplifecyclepolicyDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<GrouplifecyclePolicyDeleteParameter, GrouplifecyclePolicyDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

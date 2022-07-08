@@ -16,5 +16,6 @@ namespace HigLabo.Net.Microsoft
         public ItemActionStat? Delete { get; set; }
         public ItemActionStat? Move { get; set; }
         public ItemActionStat? Access { get; set; }
+        public ItemActivity[]? Activities { get; set; }
     }
 }

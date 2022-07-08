@@ -7,5 +7,8 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class ServiceAnnouncement
     {
+        public ServiceUpdateMessage[]? Messages { get; set; }
+        public ServiceHealth[]? HealthOverviews { get; set; }
+        public ServiceHealthIssue[]? Issues { get; set; }
     }
 }

@@ -2,8 +2,25 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentresourceGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationAssignmentResourceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassId { get; set; }
+            public string AssignmentId { get; set; }
+            public string ResourceId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_ClassId_Assignments_AssignmentId_Resources_ResourceId: return $"/education/classes/{ClassId}/assignments/{AssignmentId}/resources/{ResourceId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +29,12 @@ namespace HigLabo.Net.Microsoft
             Education_Classes_ClassId_Assignments_AssignmentId_Resources_ResourceId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_ClassId_Assignments_AssignmentId_Resources_ResourceId: return $"/education/classes/{ClassId}/assignments/{AssignmentId}/resources/{ResourceId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,11 +46,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ClassId { get; set; }
-        public string AssignmentId { get; set; }
-        public string ResourceId { get; set; }
     }
-    public partial class EducationassignmentresourceGetResponse : RestApiResponse
+    public partial class EducationAssignmentResourceGetResponse : RestApiResponse
     {
         public bool? DistributeForStudentWork { get; set; }
         public string? Id { get; set; }
@@ -48,32 +58,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentresourceGetResponse> EducationassignmentresourceGetAsync()
+        public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync()
         {
-            var p = new EducationassignmentresourceGetParameter();
-            return await this.SendAsync<EducationassignmentresourceGetParameter, EducationassignmentresourceGetResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentResourceGetParameter();
+            return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentresourceGetResponse> EducationassignmentresourceGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentresourceGetParameter();
-            return await this.SendAsync<EducationassignmentresourceGetParameter, EducationassignmentresourceGetResponse>(p, cancellationToken);
+            var p = new EducationAssignmentResourceGetParameter();
+            return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentresourceGetResponse> EducationassignmentresourceGetAsync(EducationassignmentresourceGetParameter parameter)
+        public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync(EducationAssignmentResourceGetParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentresourceGetParameter, EducationassignmentresourceGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentresourceGetResponse> EducationassignmentresourceGetAsync(EducationassignmentresourceGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync(EducationAssignmentResourceGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentresourceGetParameter, EducationassignmentresourceGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(parameter, cancellationToken);
         }
     }
 }

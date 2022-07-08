@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DomainListVerificationdnsrecordsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Domains_Id_VerificationDnsRecords: return $"/domains/{Id}/verificationDnsRecords";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Domains_Id_VerificationDnsRecords,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Domains_Id_VerificationDnsRecords: return $"/domains/{Id}/verificationDnsRecords";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,23 +44,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class DomainListVerificationdnsrecordsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/domaindnsrecord?view=graph-rest-1.0
-        /// </summary>
-        public partial class DomainDnsRecord
-        {
-            public string? Id { get; set; }
-            public bool? IsOptional { get; set; }
-            public string? Label { get; set; }
-            public string? RecordType { get; set; }
-            public string? SupportedService { get; set; }
-            public Int32? Ttl { get; set; }
-        }
-
         public DomainDnsRecord[] Value { get; set; }
     }
     public partial class MicrosoftClient

@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class BundleGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string BundleId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drive_Bundles_BundleId: return $"/drive/bundles/{BundleId}";
+                    case ApiPath.Drive_Items_BundleId: return $"/drive/items/{BundleId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             ChildCount,
@@ -15,17 +31,12 @@ namespace HigLabo.Net.Microsoft
             Drive_Items_BundleId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drive_Bundles_BundleId: return $"/drive/bundles/{BundleId}";
-                    case ApiPath.Drive_Items_BundleId: return $"/drive/items/{BundleId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -37,7 +48,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string BundleId { get; set; }
     }
     public partial class BundleGetResponse : RestApiResponse
     {

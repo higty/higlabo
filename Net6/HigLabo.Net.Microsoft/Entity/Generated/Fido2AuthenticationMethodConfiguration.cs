@@ -18,5 +18,6 @@ namespace HigLabo.Net.Microsoft
         public bool? IsSelfServiceRegistrationAllowed { get; set; }
         public Fido2KeyRestrictions? KeyRestrictions { get; set; }
         public Fido2AuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
+        public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
 }

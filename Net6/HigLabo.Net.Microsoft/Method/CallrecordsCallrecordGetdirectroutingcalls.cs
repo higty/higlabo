@@ -4,6 +4,20 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallrecordsCallrecordGetdirectroutingcallsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_CallRecords_GetDirectRoutingCalls: return $"/communications/callRecords/getDirectRoutingCalls";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             EndDateTime,
@@ -16,22 +30,37 @@ namespace HigLabo.Net.Microsoft
             StartDateTime,
             Type,
             Version,
+            Sessions,
+            CallEndSubReason,
+            CallType,
+            CalleeNumber,
+            CallerNumber,
+            CorrelationId,
+            Duration,
+            FailureDateTime,
+            FinalSipCodePhrase,
+            FinalSipCode,
+            InviteDateTime,
+            MediaBypassEnabled,
+            MediaPathLocation,
+            SignalingLocation,
+            SuccessfulCall,
+            TrunkFullyQualifiedDomainName,
+            UserDisplayName,
+            UserId,
+            UserPrincipalName,
         }
         public enum ApiPath
         {
             Communications_CallRecords_GetDirectRoutingCalls,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_CallRecords_GetDirectRoutingCalls: return $"/communications/callRecords/getDirectRoutingCalls";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -46,34 +75,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CallrecordsCallrecordGetdirectroutingcallsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/callrecords-directroutinglogrow?view=graph-rest-1.0
-        /// </summary>
-        public partial class CallrecordsDirectroutinglogrow
-        {
-            public Int32? CallEndSubReason { get; set; }
-            public string? CallType { get; set; }
-            public string? CalleeNumber { get; set; }
-            public string? CallerNumber { get; set; }
-            public string? CorrelationId { get; set; }
-            public Int32? Duration { get; set; }
-            public DateTimeOffset? EndDateTime { get; set; }
-            public DateTimeOffset? FailureDateTime { get; set; }
-            public string? FinalSipCodePhrase { get; set; }
-            public Int32? FinalSipCode { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? InviteDateTime { get; set; }
-            public bool? MediaBypassEnabled { get; set; }
-            public string? MediaPathLocation { get; set; }
-            public string? SignalingLocation { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public bool? SuccessfulCall { get; set; }
-            public string? TrunkFullyQualifiedDomainName { get; set; }
-            public string? UserDisplayName { get; set; }
-            public string? UserId { get; set; }
-            public string? UserPrincipalName { get; set; }
-        }
-
         public CallrecordsDirectroutinglogrow[] Value { get; set; }
     }
     public partial class MicrosoftClient

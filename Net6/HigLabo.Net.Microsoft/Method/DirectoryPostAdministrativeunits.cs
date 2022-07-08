@@ -4,24 +4,41 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DirectoryPostAdministrativeunitsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Directory_AdministrativeUnits: return $"/directory/administrativeUnits";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Directory_AdministrativeUnits,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Directory_AdministrativeUnits: return $"/directory/administrativeUnits";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? Visibility { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? Members { get; set; }
+        public ScopedRoleMembership[]? ScopedRoleMembers { get; set; }
     }
     public partial class DirectoryPostAdministrativeunitsResponse : RestApiResponse
     {
@@ -29,6 +46,9 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public string? Visibility { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public DirectoryObject[]? Members { get; set; }
+        public ScopedRoleMembership[]? ScopedRoleMembers { get; set; }
     }
     public partial class MicrosoftClient
     {

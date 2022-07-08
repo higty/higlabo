@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationAssignmentPointsGrade
     {
         public Single? Points { get; set; }
-        public IdentitySet GradedBy { get; set; }
-        public DateTimeOffset GradedDateTime { get; set; }
+        public IdentitySet? GradedBy { get; set; }
+        public DateTimeOffset? GradedDateTime { get; set; }
     }
 }

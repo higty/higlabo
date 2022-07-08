@@ -22,5 +22,10 @@ namespace HigLabo.Net.Microsoft
         public bool? PropagateChanges { get; set; }
         public bool? ReadOnly { get; set; }
         public bool? Sealed { get; set; }
+        public ContentType? Base { get; set; }
+        public ColumnLink[]? ColumnLinks { get; set; }
+        public ContentType[]? BaseTypes { get; set; }
+        public ColumnDefinition[]? ColumnPositions { get; set; }
+        public ColumnDefinition[]? Columns { get; set; }
     }
 }

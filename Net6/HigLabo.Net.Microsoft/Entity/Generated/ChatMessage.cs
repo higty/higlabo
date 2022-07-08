@@ -37,12 +37,14 @@ namespace HigLabo.Net.Microsoft
         public ChatMessageAttachment[]? Attachments { get; set; }
         public ChatMessageMention[]? Mentions { get; set; }
         public ChatMessagestring Importance { get; set; }
-        public ChatMessageReaction[]? Reactions { get; set; }
+        public ChatMessageReAction[]? Reactions { get; set; }
         public string? Locale { get; set; }
         public ChatMessagePolicyViolation? PolicyViolation { get; set; }
         public string? ChatId { get; set; }
         public ChannelIdentity? ChannelIdentity { get; set; }
         public string? WebUrl { get; set; }
         public EventMessageDetail? EventDetail { get; set; }
+        public ChatMessage? Replies { get; set; }
+        public ChatMessageHostedContent? HostedContents { get; set; }
     }
 }

@@ -2,26 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationassignmentsettingsGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EducationAssignmentSettingsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_AssignmentSettings: return $"/education/classes/{Id}/assignmentSettings";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            SubmissionAnimationDisabled,
         }
         public enum ApiPath
         {
             Education_Classes_Id_AssignmentSettings,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_AssignmentSettings: return $"/education/classes/{Id}/assignmentSettings";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +46,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class EducationassignmentsettingsGetResponse : RestApiResponse
+    public partial class EducationAssignmentSettingsGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public bool? SubmissionAnimationDisabled { get; set; }
@@ -45,32 +57,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentsettingsGetResponse> EducationassignmentsettingsGetAsync()
+        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync()
         {
-            var p = new EducationassignmentsettingsGetParameter();
-            return await this.SendAsync<EducationassignmentsettingsGetParameter, EducationassignmentsettingsGetResponse>(p, CancellationToken.None);
+            var p = new EducationAssignmentSettingsGetParameter();
+            return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentsettingsGetResponse> EducationassignmentsettingsGetAsync(CancellationToken cancellationToken)
+        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationassignmentsettingsGetParameter();
-            return await this.SendAsync<EducationassignmentsettingsGetParameter, EducationassignmentsettingsGetResponse>(p, cancellationToken);
+            var p = new EducationAssignmentSettingsGetParameter();
+            return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentsettingsGetResponse> EducationassignmentsettingsGetAsync(EducationassignmentsettingsGetParameter parameter)
+        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(EducationAssignmentSettingsGetParameter parameter)
         {
-            return await this.SendAsync<EducationassignmentsettingsGetParameter, EducationassignmentsettingsGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationassignmentsettings-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationassignmentsettingsGetResponse> EducationassignmentsettingsGetAsync(EducationassignmentsettingsGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationAssignmentSettingsGetResponse> EducationAssignmentSettingsGetAsync(EducationAssignmentSettingsGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationassignmentsettingsGetParameter, EducationassignmentsettingsGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationAssignmentSettingsGetParameter, EducationAssignmentSettingsGetResponse>(parameter, cancellationToken);
         }
     }
 }

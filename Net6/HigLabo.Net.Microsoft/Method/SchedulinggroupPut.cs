@@ -2,30 +2,40 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class SchedulinggroupPutParameter : IRestApiParameter
+    public partial class SchedulingGroupPutParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+            public string SchedulingGroupId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Schedule_SchedulingGroups_SchedulingGroupId: return $"/teams/{TeamId}/schedule/schedulingGroups/{SchedulingGroupId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_TeamId_Schedule_SchedulingGroups_SchedulingGroupId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Schedule_SchedulingGroups_SchedulingGroupId: return $"/teams/{TeamId}/schedule/schedulingGroups/{SchedulingGroupId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PUT";
-        public string TeamId { get; set; }
-        public string SchedulingGroupId { get; set; }
     }
-    public partial class SchedulinggroupPutResponse : RestApiResponse
+    public partial class SchedulingGroupPutResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
@@ -40,32 +50,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulinggroupPutResponse> SchedulinggroupPutAsync()
+        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync()
         {
-            var p = new SchedulinggroupPutParameter();
-            return await this.SendAsync<SchedulinggroupPutParameter, SchedulinggroupPutResponse>(p, CancellationToken.None);
+            var p = new SchedulingGroupPutParameter();
+            return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulinggroupPutResponse> SchedulinggroupPutAsync(CancellationToken cancellationToken)
+        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync(CancellationToken cancellationToken)
         {
-            var p = new SchedulinggroupPutParameter();
-            return await this.SendAsync<SchedulinggroupPutParameter, SchedulinggroupPutResponse>(p, cancellationToken);
+            var p = new SchedulingGroupPutParameter();
+            return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulinggroupPutResponse> SchedulinggroupPutAsync(SchedulinggroupPutParameter parameter)
+        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync(SchedulingGroupPutParameter parameter)
         {
-            return await this.SendAsync<SchedulinggroupPutParameter, SchedulinggroupPutResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-put?view=graph-rest-1.0
         /// </summary>
-        public async Task<SchedulinggroupPutResponse> SchedulinggroupPutAsync(SchedulinggroupPutParameter parameter, CancellationToken cancellationToken)
+        public async Task<SchedulingGroupPutResponse> SchedulingGroupPutAsync(SchedulingGroupPutParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<SchedulinggroupPutParameter, SchedulinggroupPutResponse>(parameter, cancellationToken);
+            return await this.SendAsync<SchedulingGroupPutParameter, SchedulingGroupPutResponse>(parameter, cancellationToken);
         }
     }
 }

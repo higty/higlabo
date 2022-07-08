@@ -4,26 +4,36 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalDeleteClaimsmappingpoliciesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ServicePrincipalsId { get; set; }
+            public string ClaimsMappingPoliciesId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_ClaimsMappingPolicies_Id_ref: return $"/servicePrincipals/{ServicePrincipalsId}/claimsMappingPolicies/{ClaimsMappingPoliciesId}/$ref";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_Id_ClaimsMappingPolicies_Id_ref,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_ClaimsMappingPolicies_Id_ref: return $"/servicePrincipals/{ServicePrincipalsId}/claimsMappingPolicies/{ClaimsMappingPoliciesId}/$ref";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string ServicePrincipalsId { get; set; }
-        public string ClaimsMappingPoliciesId { get; set; }
     }
     public partial class ServiceprincipalDeleteClaimsmappingpoliciesResponse : RestApiResponse
     {

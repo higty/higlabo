@@ -4,24 +4,49 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AgreementListAcceptancesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AgreementsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements_AgreementsId_Acceptances: return $"/identityGovernance/termsOfUse/agreements/{AgreementsId}/acceptances";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AgreementFileId,
+            AgreementId,
+            DeviceDisplayName,
+            DeviceId,
+            DeviceOSType,
+            DeviceOSVersion,
+            ExpirationDateTime,
+            Id,
+            RecordedDateTime,
+            State,
+            UserDisplayName,
+            UserEmail,
+            UserId,
+            UserPrincipalName,
         }
         public enum ApiPath
         {
             IdentityGovernance_TermsOfUse_Agreements_AgreementsId_Acceptances,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_TermsOfUse_Agreements_AgreementsId_Acceptances: return $"/identityGovernance/termsOfUse/agreements/{AgreementsId}/acceptances";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,37 +58,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AgreementsId { get; set; }
     }
     public partial class AgreementListAcceptancesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/agreementacceptance?view=graph-rest-1.0
-        /// </summary>
-        public partial class AgreementAcceptance
-        {
-            public enum AgreementAcceptancestring
-            {
-                Accepted,
-                Declined,
-            }
-
-            public string? AgreementFileId { get; set; }
-            public string? AgreementId { get; set; }
-            public string? DeviceDisplayName { get; set; }
-            public string? DeviceId { get; set; }
-            public string? DeviceOSType { get; set; }
-            public string? DeviceOSVersion { get; set; }
-            public DateTimeOffset? ExpirationDateTime { get; set; }
-            public string? Id { get; set; }
-            public DateTimeOffset? RecordedDateTime { get; set; }
-            public AgreementAcceptancestring State { get; set; }
-            public string? UserDisplayName { get; set; }
-            public string? UserEmail { get; set; }
-            public string? UserId { get; set; }
-            public string? UserPrincipalName { get; set; }
-        }
-
         public AgreementAcceptance[] Value { get; set; }
     }
     public partial class MicrosoftClient

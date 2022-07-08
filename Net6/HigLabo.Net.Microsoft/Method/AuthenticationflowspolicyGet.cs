@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class AuthenticationflowspolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class AuthenticationflowsPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_AuthenticationFlowsPolicy: return $"/policies/authenticationFlowsPolicy";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Policies_AuthenticationFlowsPolicy,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_AuthenticationFlowsPolicy: return $"/policies/authenticationFlowsPolicy";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class AuthenticationflowspolicyGetResponse : RestApiResponse
+    public partial class AuthenticationflowsPolicyGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
@@ -46,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationflowspolicyGetResponse> AuthenticationflowspolicyGetAsync()
+        public async Task<AuthenticationflowsPolicyGetResponse> AuthenticationflowsPolicyGetAsync()
         {
-            var p = new AuthenticationflowspolicyGetParameter();
-            return await this.SendAsync<AuthenticationflowspolicyGetParameter, AuthenticationflowspolicyGetResponse>(p, CancellationToken.None);
+            var p = new AuthenticationflowsPolicyGetParameter();
+            return await this.SendAsync<AuthenticationflowsPolicyGetParameter, AuthenticationflowsPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationflowspolicyGetResponse> AuthenticationflowspolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<AuthenticationflowsPolicyGetResponse> AuthenticationflowsPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new AuthenticationflowspolicyGetParameter();
-            return await this.SendAsync<AuthenticationflowspolicyGetParameter, AuthenticationflowspolicyGetResponse>(p, cancellationToken);
+            var p = new AuthenticationflowsPolicyGetParameter();
+            return await this.SendAsync<AuthenticationflowsPolicyGetParameter, AuthenticationflowsPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationflowspolicyGetResponse> AuthenticationflowspolicyGetAsync(AuthenticationflowspolicyGetParameter parameter)
+        public async Task<AuthenticationflowsPolicyGetResponse> AuthenticationflowsPolicyGetAsync(AuthenticationflowsPolicyGetParameter parameter)
         {
-            return await this.SendAsync<AuthenticationflowspolicyGetParameter, AuthenticationflowspolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<AuthenticationflowsPolicyGetParameter, AuthenticationflowsPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/authenticationflowspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<AuthenticationflowspolicyGetResponse> AuthenticationflowspolicyGetAsync(AuthenticationflowspolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<AuthenticationflowsPolicyGetResponse> AuthenticationflowsPolicyGetAsync(AuthenticationflowsPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<AuthenticationflowspolicyGetParameter, AuthenticationflowspolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<AuthenticationflowsPolicyGetParameter, AuthenticationflowsPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

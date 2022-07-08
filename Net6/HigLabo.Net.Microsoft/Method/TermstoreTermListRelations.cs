@@ -2,10 +2,33 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TermstoreTermListRelationsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TermStoreTermListRelationsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string SiteId { get; set; }
+            public string SetId { get; set; }
+            public string TermId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Relations: return $"/ites/{SiteId}/termStore/sets/{SetId}/relations";
+                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations: return $"/ites/{SiteId}/termStore/sets/{SetId}/terms/{TermId}/relations";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Relationship,
+            FromTerm,
+            Set,
+            ToTerm,
         }
         public enum ApiPath
         {
@@ -13,17 +36,12 @@ namespace HigLabo.Net.Microsoft
             Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Relations: return $"/ites/{SiteId}/termStore/sets/{SetId}/relations";
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations: return $"/ites/{SiteId}/termStore/sets/{SetId}/terms/{TermId}/relations";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,60 +53,42 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string SiteId { get; set; }
-        public string SetId { get; set; }
-        public string TermId { get; set; }
     }
-    public partial class TermstoreTermListRelationsResponse : RestApiResponse
+    public partial class TermStoreTermListRelationsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/termstore-relation?view=graph-rest-1.0
-        /// </summary>
-        public partial class Relation
-        {
-            public enum RelationTermStoreRelationType
-            {
-                Pin,
-                Reuse,
-            }
-
-            public string? Id { get; set; }
-            public RelationTermStoreRelationType Relationship { get; set; }
-        }
-
-        public Relation[] Value { get; set; }
+        public TermStoreRelation[] Value { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreTermListRelationsResponse> TermstoreTermListRelationsAsync()
+        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync()
         {
-            var p = new TermstoreTermListRelationsParameter();
-            return await this.SendAsync<TermstoreTermListRelationsParameter, TermstoreTermListRelationsResponse>(p, CancellationToken.None);
+            var p = new TermStoreTermListRelationsParameter();
+            return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreTermListRelationsResponse> TermstoreTermListRelationsAsync(CancellationToken cancellationToken)
+        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(CancellationToken cancellationToken)
         {
-            var p = new TermstoreTermListRelationsParameter();
-            return await this.SendAsync<TermstoreTermListRelationsParameter, TermstoreTermListRelationsResponse>(p, cancellationToken);
+            var p = new TermStoreTermListRelationsParameter();
+            return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreTermListRelationsResponse> TermstoreTermListRelationsAsync(TermstoreTermListRelationsParameter parameter)
+        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter)
         {
-            return await this.SendAsync<TermstoreTermListRelationsParameter, TermstoreTermListRelationsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
-        public async Task<TermstoreTermListRelationsResponse> TermstoreTermListRelationsAsync(TermstoreTermListRelationsParameter parameter, CancellationToken cancellationToken)
+        public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TermstoreTermListRelationsParameter, TermstoreTermListRelationsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(parameter, cancellationToken);
         }
     }
 }

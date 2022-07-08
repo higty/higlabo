@@ -4,6 +4,20 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ReportsGetprinterarchivedprintjobsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetPrinterArchivedPrintJobs: return $"/reports/getPrinterArchivedPrintJobs";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetPrinterArchivedPrintJobs,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetPrinterArchivedPrintJobs: return $"/reports/getPrinterArchivedPrintJobs";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,22 +46,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ReportsGetprinterarchivedprintjobsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/archivedprintjob?view=graph-rest-1.0
-        /// </summary>
-        public partial class ArchivedPrintJob
-        {
-            public string? Id { get; set; }
-            public string? PrinterId { get; set; }
-            public PrintJobProcessingState? ProcessingState { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? AcquiredDateTime { get; set; }
-            public DateTimeOffset? CompletionDateTime { get; set; }
-            public bool? AcquiredByPrinter { get; set; }
-            public Int32? CopiesPrinted { get; set; }
-            public UserIdentity? CreatedBy { get; set; }
-        }
-
         public ArchivedPrintJob[] Value { get; set; }
     }
     public partial class MicrosoftClient

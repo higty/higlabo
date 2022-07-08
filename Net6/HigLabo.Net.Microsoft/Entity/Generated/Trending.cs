@@ -12,5 +12,6 @@ namespace HigLabo.Net.Microsoft
         public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public Entity? Resource { get; set; }
     }
 }

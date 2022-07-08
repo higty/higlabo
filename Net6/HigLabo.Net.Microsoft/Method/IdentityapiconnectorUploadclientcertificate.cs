@@ -2,31 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IdentityapiconnectorUploadclientcertificateParameter : IRestApiParameter
+    public partial class IdentityapiConnectorUploadclientcertificateParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_Apiconnectors_Id_UploadClientCertificate: return $"/identity/apiconnectors/{Id}/uploadClientCertificate";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Identity_Apiconnectors_Id_UploadClientCertificate,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_Apiconnectors_Id_UploadClientCertificate: return $"/identity/apiconnectors/{Id}/uploadClientCertificate";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Pkcs12Value { get; set; }
         public string? Password { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public string? DisplayName { get; set; }
+        public string? TargetUrl { get; set; }
+        public ApiAuthenticationConfigurationBase? AuthenticationConfiguration { get; set; }
     }
-    public partial class IdentityapiconnectorUploadclientcertificateResponse : RestApiResponse
+    public partial class IdentityapiConnectorUploadclientcertificateResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
@@ -38,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorUploadclientcertificateResponse> IdentityapiconnectorUploadclientcertificateAsync()
+        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync()
         {
-            var p = new IdentityapiconnectorUploadclientcertificateParameter();
-            return await this.SendAsync<IdentityapiconnectorUploadclientcertificateParameter, IdentityapiconnectorUploadclientcertificateResponse>(p, CancellationToken.None);
+            var p = new IdentityapiConnectorUploadclientcertificateParameter();
+            return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorUploadclientcertificateResponse> IdentityapiconnectorUploadclientcertificateAsync(CancellationToken cancellationToken)
+        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityapiconnectorUploadclientcertificateParameter();
-            return await this.SendAsync<IdentityapiconnectorUploadclientcertificateParameter, IdentityapiconnectorUploadclientcertificateResponse>(p, cancellationToken);
+            var p = new IdentityapiConnectorUploadclientcertificateParameter();
+            return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorUploadclientcertificateResponse> IdentityapiconnectorUploadclientcertificateAsync(IdentityapiconnectorUploadclientcertificateParameter parameter)
+        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(IdentityapiConnectorUploadclientcertificateParameter parameter)
         {
-            return await this.SendAsync<IdentityapiconnectorUploadclientcertificateParameter, IdentityapiconnectorUploadclientcertificateResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-uploadclientcertificate?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityapiconnectorUploadclientcertificateResponse> IdentityapiconnectorUploadclientcertificateAsync(IdentityapiconnectorUploadclientcertificateParameter parameter, CancellationToken cancellationToken)
+        public async Task<IdentityapiConnectorUploadclientcertificateResponse> IdentityapiConnectorUploadclientcertificateAsync(IdentityapiConnectorUploadclientcertificateParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityapiconnectorUploadclientcertificateParameter, IdentityapiconnectorUploadclientcertificateResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityapiConnectorUploadclientcertificateParameter, IdentityapiConnectorUploadclientcertificateResponse>(parameter, cancellationToken);
         }
     }
 }

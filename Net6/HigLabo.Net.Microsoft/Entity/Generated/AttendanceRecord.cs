@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class AttendanceRecord
     {
-        public AttendanceInterval AttendanceIntervals { get; set; }
-        public string EmailAddress { get; set; }
-        public Identity Identity { get; set; }
-        public string Role { get; set; }
+        public AttendanceInterval[]? AttendanceIntervals { get; set; }
+        public string? EmailAddress { get; set; }
+        public Identity? Identity { get; set; }
+        public string? Role { get; set; }
         public Int32? TotalAttendanceInSeconds { get; set; }
     }
 }

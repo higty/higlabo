@@ -2,26 +2,45 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ConditionalaccesspolicyGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ConditionalAccessPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_ConditionalAccess_Policies_Id: return $"/identity/conditionalAccess/policies/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Conditions,
+            CreatedDateTime,
+            DisplayName,
+            GrantControls,
+            Id,
+            ModifiedDateTime,
+            SessionControls,
+            State,
         }
         public enum ApiPath
         {
             Identity_ConditionalAccess_Policies_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_ConditionalAccess_Policies_Id: return $"/identity/conditionalAccess/policies/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +52,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class ConditionalaccesspolicyGetResponse : RestApiResponse
+    public partial class ConditionalAccessPolicyGetResponse : RestApiResponse
     {
         public enum ConditionalAccessPolicyConditionalAccessPolicyState
         {
@@ -58,32 +76,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyGetResponse> ConditionalaccesspolicyGetAsync()
+        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync()
         {
-            var p = new ConditionalaccesspolicyGetParameter();
-            return await this.SendAsync<ConditionalaccesspolicyGetParameter, ConditionalaccesspolicyGetResponse>(p, CancellationToken.None);
+            var p = new ConditionalAccessPolicyGetParameter();
+            return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyGetResponse> ConditionalaccesspolicyGetAsync(CancellationToken cancellationToken)
+        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ConditionalaccesspolicyGetParameter();
-            return await this.SendAsync<ConditionalaccesspolicyGetParameter, ConditionalaccesspolicyGetResponse>(p, cancellationToken);
+            var p = new ConditionalAccessPolicyGetParameter();
+            return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyGetResponse> ConditionalaccesspolicyGetAsync(ConditionalaccesspolicyGetParameter parameter)
+        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter)
         {
-            return await this.SendAsync<ConditionalaccesspolicyGetParameter, ConditionalaccesspolicyGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ConditionalaccesspolicyGetResponse> ConditionalaccesspolicyGetAsync(ConditionalaccesspolicyGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ConditionalaccesspolicyGetParameter, ConditionalaccesspolicyGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(parameter, cancellationToken);
         }
     }
 }

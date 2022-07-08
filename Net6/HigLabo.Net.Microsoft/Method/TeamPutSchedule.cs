@@ -4,25 +4,35 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamPutScheduleParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Schedule: return $"/teams/{TeamId}/schedule";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_TeamId_Schedule,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Schedule: return $"/teams/{TeamId}/schedule";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PUT";
-        public string TeamId { get; set; }
     }
     public partial class TeamPutScheduleResponse : RestApiResponse
     {
@@ -44,6 +54,15 @@ namespace HigLabo.Net.Microsoft
         public bool? SwapShiftsRequestsEnabled { get; set; }
         public bool? OfferShiftRequestsEnabled { get; set; }
         public bool? TimeOffRequestsEnabled { get; set; }
+        public Shift[]? Shifts { get; set; }
+        public TimeOff[]? TimesOff { get; set; }
+        public TimeOffReason[]? TimeOffReasons { get; set; }
+        public SchedulingGroup[]? SchedulingGroups { get; set; }
+        public OpenShift[]? Openshifts { get; set; }
+        public WorkforceIntegration[]? Workforceintegrations { get; set; }
+        public SwapShiftsChangeRequest[]? Swapshiftchangerequests { get; set; }
+        public OpenShiftChangeRequest[]? Openshiftchangerequests { get; set; }
+        public TimeOffRequest[]? Timeoffrequest { get; set; }
     }
     public partial class MicrosoftClient
     {

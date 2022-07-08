@@ -4,21 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinterCreateParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_Create: return $"/print/printers/create";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Print_Printers_Create,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_Create: return $"/print/printers/create";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -29,6 +39,11 @@ namespace HigLabo.Net.Microsoft
         public bool? HasPhysicalDevice { get; set; }
         public PrintCertificateSigningRequest? CertificateSigningRequest { get; set; }
         public string? ConnectorId { get; set; }
+        public string? Id { get; set; }
+        public PrintOperationStatus? Status { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Certificate { get; set; }
+        public Printer? Printer { get; set; }
     }
     public partial class PrinterCreateResponse : RestApiResponse
     {
@@ -36,6 +51,7 @@ namespace HigLabo.Net.Microsoft
         public PrintOperationStatus? Status { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Certificate { get; set; }
+        public Printer? Printer { get; set; }
     }
     public partial class MicrosoftClient
     {

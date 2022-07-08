@@ -4,6 +4,22 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class InferenceclassificationListOverridesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_InferenceClassification_Overrides: return $"/me/inferenceClassification/overrides";
+                    case ApiPath.Users_Id_InferenceClassification_Overrides: return $"/users/{Id}/inferenceClassification/overrides";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -13,17 +29,12 @@ namespace HigLabo.Net.Microsoft
             Users_Id_InferenceClassification_Overrides,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_InferenceClassification_Overrides: return $"/me/inferenceClassification/overrides";
-                    case ApiPath.Users_Id_InferenceClassification_Overrides: return $"/users/{Id}/inferenceClassification/overrides";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,26 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class InferenceclassificationListOverridesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/inferenceclassificationoverride?view=graph-rest-1.0
-        /// </summary>
-        public partial class InferenceClassificationOverride
-        {
-            public enum InferenceClassificationOverrideInferenceClassificationType
-            {
-                Focused,
-                Other,
-            }
-
-            public InferenceClassificationOverrideInferenceClassificationType ClassifyAs { get; set; }
-            public string? Id { get; set; }
-            public EmailAddress? SenderEmailAddress { get; set; }
-        }
-
         public InferenceClassificationOverride[] Value { get; set; }
     }
     public partial class MicrosoftClient

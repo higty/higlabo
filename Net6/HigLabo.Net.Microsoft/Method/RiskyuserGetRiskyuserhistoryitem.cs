@@ -2,26 +2,47 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class RiskyuserGetRiskyuserhistoryitemParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class RiskyUserGetRiskyUserhistoryitemParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityProtection_RiskyUsers_UserId_History: return $"/identityProtection/riskyUsers/{UserId}/history";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            IsDeleted,
+            IsProcessing,
+            RiskDetail,
+            RiskLastUpdatedDateTime,
+            RiskLevel,
+            RiskState,
+            UserDisplayName,
+            UserPrincipalName,
+            History,
         }
         public enum ApiPath
         {
             IdentityProtection_RiskyUsers_UserId_History,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityProtection_RiskyUsers_UserId_History: return $"/identityProtection/riskyUsers/{UserId}/history";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,9 +54,8 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string UserId { get; set; }
     }
-    public partial class RiskyuserGetRiskyuserhistoryitemResponse : RestApiResponse
+    public partial class RiskyUserGetRiskyUserhistoryitemResponse : RestApiResponse
     {
         public enum RiskyUserHistoryItemRiskDetail
         {
@@ -84,38 +104,39 @@ namespace HigLabo.Net.Microsoft
         public string? UserDisplayName { get; set; }
         public string? UserId { get; set; }
         public string? UserPrincipalName { get; set; }
+        public RiskyUserHistoryItem[]? History { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetRiskyuserhistoryitemResponse> RiskyuserGetRiskyuserhistoryitemAsync()
+        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync()
         {
-            var p = new RiskyuserGetRiskyuserhistoryitemParameter();
-            return await this.SendAsync<RiskyuserGetRiskyuserhistoryitemParameter, RiskyuserGetRiskyuserhistoryitemResponse>(p, CancellationToken.None);
+            var p = new RiskyUserGetRiskyUserhistoryitemParameter();
+            return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetRiskyuserhistoryitemResponse> RiskyuserGetRiskyuserhistoryitemAsync(CancellationToken cancellationToken)
+        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(CancellationToken cancellationToken)
         {
-            var p = new RiskyuserGetRiskyuserhistoryitemParameter();
-            return await this.SendAsync<RiskyuserGetRiskyuserhistoryitemParameter, RiskyuserGetRiskyuserhistoryitemResponse>(p, cancellationToken);
+            var p = new RiskyUserGetRiskyUserhistoryitemParameter();
+            return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetRiskyuserhistoryitemResponse> RiskyuserGetRiskyuserhistoryitemAsync(RiskyuserGetRiskyuserhistoryitemParameter parameter)
+        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(RiskyUserGetRiskyUserhistoryitemParameter parameter)
         {
-            return await this.SendAsync<RiskyuserGetRiskyuserhistoryitemParameter, RiskyuserGetRiskyuserhistoryitemResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get-riskyuserhistoryitem?view=graph-rest-1.0
         /// </summary>
-        public async Task<RiskyuserGetRiskyuserhistoryitemResponse> RiskyuserGetRiskyuserhistoryitemAsync(RiskyuserGetRiskyuserhistoryitemParameter parameter, CancellationToken cancellationToken)
+        public async Task<RiskyUserGetRiskyUserhistoryitemResponse> RiskyUserGetRiskyUserhistoryitemAsync(RiskyUserGetRiskyUserhistoryitemParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<RiskyuserGetRiskyuserhistoryitemParameter, RiskyuserGetRiskyuserhistoryitemResponse>(parameter, cancellationToken);
+            return await this.SendAsync<RiskyUserGetRiskyUserhistoryitemParameter, RiskyUserGetRiskyUserhistoryitemResponse>(parameter, cancellationToken);
         }
     }
 }

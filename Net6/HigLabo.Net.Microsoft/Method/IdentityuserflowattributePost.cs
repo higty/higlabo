@@ -2,23 +2,47 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class IdentityuserflowattributePostParameter : IRestApiParameter
+    public partial class IdentityUserflowattributePostParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Identity_UserFlowAttributes: return $"/identity/userFlowAttributes";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum IdentityUserFlowAttributeIdentityUserFlowAttributeType
+        {
+            BuiltIn,
+            Custom,
+            Required,
+        }
+        public enum IdentityUserFlowAttributeIdentityUserFlowAttributeDataType
+        {
+            String,
+            Boolean,
+            Int64,
+            StringCollection,
+            DateTime,
+        }
         public enum ApiPath
         {
             Identity_UserFlowAttributes,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Identity_UserFlowAttributes: return $"/identity/userFlowAttributes";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -28,7 +52,7 @@ namespace HigLabo.Net.Microsoft
         public string? UserFlowAttributeType { get; set; }
         public string? DataType { get; set; }
     }
-    public partial class IdentityuserflowattributePostResponse : RestApiResponse
+    public partial class IdentityUserflowattributePostResponse : RestApiResponse
     {
         public enum IdentityUserFlowAttributeIdentityUserFlowAttributeType
         {
@@ -56,32 +80,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributePostResponse> IdentityuserflowattributePostAsync()
+        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync()
         {
-            var p = new IdentityuserflowattributePostParameter();
-            return await this.SendAsync<IdentityuserflowattributePostParameter, IdentityuserflowattributePostResponse>(p, CancellationToken.None);
+            var p = new IdentityUserflowattributePostParameter();
+            return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributePostResponse> IdentityuserflowattributePostAsync(CancellationToken cancellationToken)
+        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(CancellationToken cancellationToken)
         {
-            var p = new IdentityuserflowattributePostParameter();
-            return await this.SendAsync<IdentityuserflowattributePostParameter, IdentityuserflowattributePostResponse>(p, cancellationToken);
+            var p = new IdentityUserflowattributePostParameter();
+            return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributePostResponse> IdentityuserflowattributePostAsync(IdentityuserflowattributePostParameter parameter)
+        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(IdentityUserflowattributePostParameter parameter)
         {
-            return await this.SendAsync<IdentityuserflowattributePostParameter, IdentityuserflowattributePostResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-post?view=graph-rest-1.0
         /// </summary>
-        public async Task<IdentityuserflowattributePostResponse> IdentityuserflowattributePostAsync(IdentityuserflowattributePostParameter parameter, CancellationToken cancellationToken)
+        public async Task<IdentityUserflowattributePostResponse> IdentityUserflowattributePostAsync(IdentityUserflowattributePostParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<IdentityuserflowattributePostParameter, IdentityuserflowattributePostResponse>(parameter, cancellationToken);
+            return await this.SendAsync<IdentityUserflowattributePostParameter, IdentityUserflowattributePostResponse>(parameter, cancellationToken);
         }
     }
 }

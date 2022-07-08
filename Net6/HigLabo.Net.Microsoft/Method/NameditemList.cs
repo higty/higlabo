@@ -4,8 +4,32 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class NameditemListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Names: return $"/me/drive/items/{Id}/workbook/names";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Names: return $"/me/drive/root:/{ItemPath}:/workbook/names";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Name,
+            Comment,
+            Scope,
+            Type,
+            Value,
+            Visible,
+            Worksheet,
         }
         public enum ApiPath
         {
@@ -13,17 +37,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Names,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Names: return $"/me/drive/items/{Id}/workbook/names";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Names: return $"/me/drive/root:/{ItemPath}:/workbook/names";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,33 +54,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class NameditemListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/nameditem?view=graph-rest-1.0
-        /// </summary>
-        public partial class NamedItem
-        {
-            public enum NamedItemstring
-            {
-                String,
-                Integer,
-                Double,
-                Boolean,
-                Range,
-            }
-
-            public string? Name { get; set; }
-            public string? Comment { get; set; }
-            public string? Scope { get; set; }
-            public NamedItemstring Type { get; set; }
-            public Json? Value { get; set; }
-            public bool? Visible { get; set; }
-        }
-
         public NamedItem[] Value { get; set; }
     }
     public partial class MicrosoftClient

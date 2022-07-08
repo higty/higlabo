@@ -7,5 +7,6 @@ namespace HigLabo.Net.Microsoft
     /// </summary>
     public partial class OutlookUser
     {
+        public OutlookCategory[]? MasterCategories { get; set; }
     }
 }

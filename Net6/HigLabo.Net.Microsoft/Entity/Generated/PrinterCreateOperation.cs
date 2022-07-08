@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public PrintOperationStatus? Status { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Certificate { get; set; }
+        public Printer? Printer { get; set; }
     }
 }

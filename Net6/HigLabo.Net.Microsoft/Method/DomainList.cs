@@ -4,24 +4,50 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DomainListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Domains: return $"/domains";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AuthenticationType,
+            AvailabilityStatus,
+            Id,
+            IsAdminManaged,
+            IsDefault,
+            IsInitial,
+            IsRoot,
+            IsVerified,
+            PasswordNotificationWindowInDays,
+            PasswordValidityPeriodInDays,
+            SupportedServices,
+            State,
+            DomainNameReferences,
+            ServiceConfigurationRecords,
+            VerificationDnsRecords,
+            FederationConfiguration,
         }
         public enum ApiPath
         {
             Domains,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Domains: return $"/domains";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,25 +62,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DomainListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/domain?view=graph-rest-1.0
-        /// </summary>
-        public partial class Domain
-        {
-            public string? AuthenticationType { get; set; }
-            public string? AvailabilityStatus { get; set; }
-            public string? Id { get; set; }
-            public bool? IsAdminManaged { get; set; }
-            public bool? IsDefault { get; set; }
-            public bool? IsInitial { get; set; }
-            public bool? IsRoot { get; set; }
-            public bool? IsVerified { get; set; }
-            public Int32? PasswordNotificationWindowInDays { get; set; }
-            public Int32? PasswordValidityPeriodInDays { get; set; }
-            public String[]? SupportedServices { get; set; }
-            public DomainState? State { get; set; }
-        }
-
         public Domain[] Value { get; set; }
     }
     public partial class MicrosoftClient

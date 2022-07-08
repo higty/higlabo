@@ -4,24 +4,43 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinterListConnectorsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrinterId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_Printers_PrinterId_Connectors: return $"/print/printers/{PrinterId}/connectors";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            FullyQualifiedDomainName,
+            OperatingSystem,
+            AppVersion,
+            Location,
+            RegisteredDateTime,
+            RegisteredBy,
         }
         public enum ApiPath
         {
             Print_Printers_PrinterId_Connectors,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_Printers_PrinterId_Connectors: return $"/print/printers/{PrinterId}/connectors";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,25 +52,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrinterId { get; set; }
     }
     public partial class PrinterListConnectorsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/printconnector?view=graph-rest-1.0
-        /// </summary>
-        public partial class PrintConnector
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public string? FullyQualifiedDomainName { get; set; }
-            public string? OperatingSystem { get; set; }
-            public string? AppVersion { get; set; }
-            public PrinterLocation? Location { get; set; }
-            public DateTimeOffset? RegisteredDateTime { get; set; }
-            public UserIdentity? RegisteredBy { get; set; }
-        }
-
         public PrintConnector[] Value { get; set; }
     }
     public partial class MicrosoftClient

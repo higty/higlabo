@@ -2,25 +2,38 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TodotaskPostLinkedresourcesParameter : IRestApiParameter
+    public partial class TodotaskPostLinkedResourcesParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TodoTaskListId { get; set; }
+            public string TaskId { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_LinkedResources: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TaskId}/linkedResources";
+                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId_LinkedResources: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TaskId}/linkedResources";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_LinkedResources,
             Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId_LinkedResources,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_LinkedResources: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TaskId}/linkedResources";
-                    case ApiPath.Users_IdOruserPrincipalName_Todo_Lists_TodoTaskListId_Tasks_TaskId_LinkedResources: return $"/users/{IdOrUserPrincipalName}/todo/lists/{TodoTaskListId}/tasks/{TaskId}/linkedResources";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
@@ -29,11 +42,8 @@ namespace HigLabo.Net.Microsoft
         public string? ApplicationName { get; set; }
         public string? DisplayName { get; set; }
         public string? ExternalId { get; set; }
-        public string TodoTaskListId { get; set; }
-        public string TaskId { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class TodotaskPostLinkedresourcesResponse : RestApiResponse
+    public partial class TodotaskPostLinkedResourcesResponse : RestApiResponse
     {
         public string? ApplicationName { get; set; }
         public string? DisplayName { get; set; }
@@ -46,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedresourcesResponse> TodotaskPostLinkedresourcesAsync()
+        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync()
         {
-            var p = new TodotaskPostLinkedresourcesParameter();
-            return await this.SendAsync<TodotaskPostLinkedresourcesParameter, TodotaskPostLinkedresourcesResponse>(p, CancellationToken.None);
+            var p = new TodotaskPostLinkedResourcesParameter();
+            return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedresourcesResponse> TodotaskPostLinkedresourcesAsync(CancellationToken cancellationToken)
+        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(CancellationToken cancellationToken)
         {
-            var p = new TodotaskPostLinkedresourcesParameter();
-            return await this.SendAsync<TodotaskPostLinkedresourcesParameter, TodotaskPostLinkedresourcesResponse>(p, cancellationToken);
+            var p = new TodotaskPostLinkedResourcesParameter();
+            return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedresourcesResponse> TodotaskPostLinkedresourcesAsync(TodotaskPostLinkedresourcesParameter parameter)
+        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter)
         {
-            return await this.SendAsync<TodotaskPostLinkedresourcesParameter, TodotaskPostLinkedresourcesResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
-        public async Task<TodotaskPostLinkedresourcesResponse> TodotaskPostLinkedresourcesAsync(TodotaskPostLinkedresourcesParameter parameter, CancellationToken cancellationToken)
+        public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TodotaskPostLinkedresourcesParameter, TodotaskPostLinkedresourcesResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(parameter, cancellationToken);
         }
     }
 }

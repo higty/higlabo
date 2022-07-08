@@ -4,12 +4,35 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorksheetGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrName { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             Id,
             Name,
             Position,
             Visibility,
+            Charts,
+            Names,
+            PivotTables,
+            Protection,
+            Tables,
         }
         public enum ApiPath
         {
@@ -17,17 +40,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_IdOrname: return $"/me/drive/items/{Id}/workbook/worksheets/{IdOrName}";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_IdOrname: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/{IdOrName}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,9 +57,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string IdOrName { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class WorksheetGetResponse : RestApiResponse
     {
@@ -56,6 +71,11 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public int? Position { get; set; }
         public Worksheetstring Visibility { get; set; }
+        public Chart[]? Charts { get; set; }
+        public NamedItem[]? Names { get; set; }
+        public PivotTable[]? PivotTables { get; set; }
+        public WorksheetProtection? Protection { get; set; }
+        public Table[]? Tables { get; set; }
     }
     public partial class MicrosoftClient
     {

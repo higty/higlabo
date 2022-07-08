@@ -54,5 +54,6 @@ namespace HigLabo.Net.Microsoft
         public string? UserDisplayName { get; set; }
         public string? UserId { get; set; }
         public string? UserPrincipalName { get; set; }
+        public RiskyUserHistoryItem[]? History { get; set; }
     }
 }

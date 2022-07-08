@@ -4,32 +4,51 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamArchiveParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_Id_Archive: return $"/teams/{Id}/archive";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Teams_Id_Archive,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_Id_Archive: return $"/teams/{Id}/archive";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public TeamsASyncOperationType? OperationType { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public TeamsASyncOperationStatus? Status { get; set; }
+        public DateTimeOffset? LastActionDateTime { get; set; }
+        public Int32? AttemptsCount { get; set; }
+        public Guid? TargetResourceId { get; set; }
+        public string? TargetResourceLocation { get; set; }
+        public OperationError? Error { get; set; }
     }
     public partial class TeamArchiveResponse : RestApiResponse
     {
         public string? Id { get; set; }
-        public TeamsAsyncOperationType? OperationType { get; set; }
+        public TeamsASyncOperationType? OperationType { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public TeamsAsyncOperationStatus? Status { get; set; }
+        public TeamsASyncOperationStatus? Status { get; set; }
         public DateTimeOffset? LastActionDateTime { get; set; }
         public Int32? AttemptsCount { get; set; }
         public Guid? TargetResourceId { get; set; }

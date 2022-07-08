@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ReportrootGetyammeractivityuserdetailParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ReportRootGetyammeractivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Reports_GetYammerActivityUserDetail: return $"/reports/getYammerActivityUserDetail";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Reports_GetYammerActivityUserDetail,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Reports_GetYammerActivityUserDetail: return $"/reports/getYammerActivityUserDetail";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class ReportrootGetyammeractivityuserdetailResponse : RestApiResponse
+    public partial class ReportRootGetyammeractivityUserdetailResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -42,32 +52,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetyammeractivityuserdetailResponse> ReportrootGetyammeractivityuserdetailAsync()
+        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync()
         {
-            var p = new ReportrootGetyammeractivityuserdetailParameter();
-            return await this.SendAsync<ReportrootGetyammeractivityuserdetailParameter, ReportrootGetyammeractivityuserdetailResponse>(p, CancellationToken.None);
+            var p = new ReportRootGetyammeractivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetyammeractivityuserdetailResponse> ReportrootGetyammeractivityuserdetailAsync(CancellationToken cancellationToken)
+        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(CancellationToken cancellationToken)
         {
-            var p = new ReportrootGetyammeractivityuserdetailParameter();
-            return await this.SendAsync<ReportrootGetyammeractivityuserdetailParameter, ReportrootGetyammeractivityuserdetailResponse>(p, cancellationToken);
+            var p = new ReportRootGetyammeractivityUserdetailParameter();
+            return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetyammeractivityuserdetailResponse> ReportrootGetyammeractivityuserdetailAsync(ReportrootGetyammeractivityuserdetailParameter parameter)
+        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(ReportRootGetyammeractivityUserdetailParameter parameter)
         {
-            return await this.SendAsync<ReportrootGetyammeractivityuserdetailParameter, ReportrootGetyammeractivityuserdetailResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammeractivityuserdetail?view=graph-rest-1.0
         /// </summary>
-        public async Task<ReportrootGetyammeractivityuserdetailResponse> ReportrootGetyammeractivityuserdetailAsync(ReportrootGetyammeractivityuserdetailParameter parameter, CancellationToken cancellationToken)
+        public async Task<ReportRootGetyammeractivityUserdetailResponse> ReportRootGetyammeractivityUserdetailAsync(ReportRootGetyammeractivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ReportrootGetyammeractivityuserdetailParameter, ReportrootGetyammeractivityuserdetailResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ReportRootGetyammeractivityUserdetailParameter, ReportRootGetyammeractivityUserdetailResponse>(parameter, cancellationToken);
         }
     }
 }

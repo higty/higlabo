@@ -20,5 +20,10 @@ namespace HigLabo.Net.Microsoft
         public Recipient[]? NewParticipants { get; set; }
         public DateTimeOffset? ReceivedDateTime { get; set; }
         public Recipient? Sender { get; set; }
+        public Attachment[]? Attachments { get; set; }
+        public Extension[]? Extensions { get; set; }
+        public Post? InReplyTo { get; set; }
+        public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
+        public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
 }

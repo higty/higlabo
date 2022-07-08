@@ -4,8 +4,31 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ContactfolderDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_ContactFolders_Delta: return $"/me/contactFolders/delta";
+                    case ApiPath.Users_Id_ContactFolders_Delta: return $"/users/{Id}/contactFolders/delta";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DisplayName,
+            Id,
+            ParentFolderId,
+            ChildFolders,
+            Contacts,
+            MultiValueExtendedProperties,
+            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -13,17 +36,12 @@ namespace HigLabo.Net.Microsoft
             Users_Id_ContactFolders_Delta,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_ContactFolders_Delta: return $"/me/contactFolders/delta";
-                    case ApiPath.Users_Id_ContactFolders_Delta: return $"/users/{Id}/contactFolders/delta";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,20 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
     public partial class ContactfolderDeltaResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/contactfolder?view=graph-rest-1.0
-        /// </summary>
-        public partial class ContactFolder
-        {
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public string? ParentFolderId { get; set; }
-        }
-
         public ContactFolder[] Value { get; set; }
     }
     public partial class MicrosoftClient

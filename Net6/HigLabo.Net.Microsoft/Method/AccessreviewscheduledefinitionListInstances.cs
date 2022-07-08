@@ -4,24 +4,44 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class AccessreviewscheduledefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string AccessReviewScheduleDefinitionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            EndDateTime,
+            FallbackReviewers,
+            Id,
+            Scope,
+            StartDateTime,
+            Status,
+            Reviewers,
+            Decisions,
+            ContactedReviewers,
         }
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,24 +53,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string AccessReviewScheduleDefinitionId { get; set; }
     }
     public partial class AccessreviewscheduledefinitionListInstancesResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewinstance?view=graph-rest-1.0
-        /// </summary>
-        public partial class AccessReviewInstance
-        {
-            public DateTimeOffset? EndDateTime { get; set; }
-            public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
-            public string? Id { get; set; }
-            public AccessReviewScope? Scope { get; set; }
-            public DateTimeOffset? StartDateTime { get; set; }
-            public string? Status { get; set; }
-            public AccessReviewReviewerScope[]? Reviewers { get; set; }
-        }
-
         public AccessReviewInstance[] Value { get; set; }
     }
     public partial class MicrosoftClient

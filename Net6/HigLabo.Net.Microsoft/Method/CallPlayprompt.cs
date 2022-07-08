@@ -4,27 +4,40 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class CallPlaypromptParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Communications_Calls_Id_PlayPrompt: return $"/communications/calls/{Id}/playPrompt";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Communications_Calls_Id_PlayPrompt,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Communications_Calls_Id_PlayPrompt: return $"/communications/calls/{Id}/playPrompt";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public MediaPrompt[]? Prompts { get; set; }
         public string? ClientContext { get; set; }
-        public string Id { get; set; }
+        public string? Id { get; set; }
+        public ResultInfo? ResultInfo { get; set; }
+        public string? Status { get; set; }
     }
     public partial class CallPlaypromptResponse : RestApiResponse
     {

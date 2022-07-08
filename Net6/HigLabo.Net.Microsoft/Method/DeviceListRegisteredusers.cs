@@ -2,26 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class DeviceListRegisteredusersParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class DeviceListRegisteredUsersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Devices_Id_RegisteredUsers: return $"/devices/{Id}/registeredUsers";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DeletedDateTime,
+            Id,
         }
         public enum ApiPath
         {
             Devices_Id_RegisteredUsers,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Devices_Id_RegisteredUsers: return $"/devices/{Id}/registeredUsers";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,19 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class DeviceListRegisteredusersResponse : RestApiResponse
+    public partial class DeviceListRegisteredUsersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
-        /// </summary>
-        public partial class DirectoryObject
-        {
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Id { get; set; }
-        }
-
         public DirectoryObject[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -53,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredusersResponse> DeviceListRegisteredusersAsync()
+        public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync()
         {
-            var p = new DeviceListRegisteredusersParameter();
-            return await this.SendAsync<DeviceListRegisteredusersParameter, DeviceListRegisteredusersResponse>(p, CancellationToken.None);
+            var p = new DeviceListRegisteredUsersParameter();
+            return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredusersResponse> DeviceListRegisteredusersAsync(CancellationToken cancellationToken)
+        public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync(CancellationToken cancellationToken)
         {
-            var p = new DeviceListRegisteredusersParameter();
-            return await this.SendAsync<DeviceListRegisteredusersParameter, DeviceListRegisteredusersResponse>(p, cancellationToken);
+            var p = new DeviceListRegisteredUsersParameter();
+            return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredusersResponse> DeviceListRegisteredusersAsync(DeviceListRegisteredusersParameter parameter)
+        public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync(DeviceListRegisteredUsersParameter parameter)
         {
-            return await this.SendAsync<DeviceListRegisteredusersParameter, DeviceListRegisteredusersResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
-        public async Task<DeviceListRegisteredusersResponse> DeviceListRegisteredusersAsync(DeviceListRegisteredusersParameter parameter, CancellationToken cancellationToken)
+        public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync(DeviceListRegisteredUsersParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DeviceListRegisteredusersParameter, DeviceListRegisteredusersResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(parameter, cancellationToken);
         }
     }
 }

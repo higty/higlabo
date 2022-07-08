@@ -4,29 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserSendmailParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_SendMail: return $"/me/sendMail";
+                    case ApiPath.Users_IdOrUserPrincipalName_SendMail: return $"/users/{IdOrUserPrincipalName}/sendMail";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Me_SendMail,
             Users_IdOrUserPrincipalName_SendMail,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_SendMail: return $"/me/sendMail";
-                    case ApiPath.Users_IdOrUserPrincipalName_SendMail: return $"/users/{IdOrUserPrincipalName}/sendMail";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public Message? Message { get; set; }
         public bool? SaveToSentItems { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserSendmailResponse : RestApiResponse
     {

@@ -4,8 +4,33 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class RbacapplicationListRoledefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.RoleManagement_Directory_RoleDefinitions: return $"/roleManagement/directory/roleDefinitions";
+                    case ApiPath.RoleManagement_EntitlementManagement_RoleDefinitions: return $"/roleManagement/entitlementManagement/roleDefinitions";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Description,
+            DisplayName,
+            Id,
+            IsBuiltIn,
+            IsEnabled,
+            ResourceScopes,
+            RolePermissions,
+            TemplateId,
+            Version,
+            InheritsPermissionsFrom,
         }
         public enum ApiPath
         {
@@ -13,17 +38,12 @@ namespace HigLabo.Net.Microsoft
             RoleManagement_EntitlementManagement_RoleDefinitions,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.RoleManagement_Directory_RoleDefinitions: return $"/roleManagement/directory/roleDefinitions";
-                    case ApiPath.RoleManagement_EntitlementManagement_RoleDefinitions: return $"/roleManagement/entitlementManagement/roleDefinitions";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -38,22 +58,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class RbacapplicationListRoledefinitionsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/unifiedroledefinition?view=graph-rest-1.0
-        /// </summary>
-        public partial class UnifiedRoleDefinition
-        {
-            public string? Description { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public bool? IsBuiltIn { get; set; }
-            public bool? IsEnabled { get; set; }
-            public String[]? ResourceScopes { get; set; }
-            public UnifiedRolePermission[]? RolePermissions { get; set; }
-            public string? TemplateId { get; set; }
-            public string? Version { get; set; }
-        }
-
         public UnifiedRoleDefinition[] Value { get; set; }
     }
     public partial class MicrosoftClient

@@ -4,6 +4,23 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorkbookapplicationCalculateParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Application_Calculate: return $"/me/drive/items/{Id}/workbook/application/calculate";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Application_Calculate: return $"/me/drive/root:/{ItemPath}:/workbook/application/calculate";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum WorkbookapplicationCalculateParameterstring
         {
             Recalculate,
@@ -16,23 +33,16 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Application_Calculate,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Application_Calculate: return $"/me/drive/items/{Id}/workbook/application/calculate";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Application_Calculate: return $"/me/drive/root:/{ItemPath}:/workbook/application/calculate";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public WorkbookapplicationCalculateParameterstring CalculationType { get; set; }
-        public string Id { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class WorkbookapplicationCalculateResponse : RestApiResponse
     {

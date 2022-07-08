@@ -4,24 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PlannerPostBucketsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Planner_Buckets: return $"/planner/buckets";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Planner_Buckets,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Planner_Buckets: return $"/planner/buckets";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? Id { get; set; }
+        public string? Name { get; set; }
+        public string? OrderHint { get; set; }
+        public string? PlanId { get; set; }
+        public PlannerTask[]? Tasks { get; set; }
     }
     public partial class PlannerPostBucketsResponse : RestApiResponse
     {
@@ -29,6 +44,7 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public string? OrderHint { get; set; }
         public string? PlanId { get; set; }
+        public PlannerTask[]? Tasks { get; set; }
     }
     public partial class MicrosoftClient
     {

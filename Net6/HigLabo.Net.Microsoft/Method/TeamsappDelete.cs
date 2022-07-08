@@ -4,29 +4,39 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class TeamsappDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string AppId { get; set; }
+            public string AppDefinitionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.AppCatalogs_TeamsApps_Id: return $"/appCatalogs/teamsApps/{Id}";
+                    case ApiPath.PpCatalogs_TeamsApps_AppId_AppDefinitions_AppDefinitionId: return $"/ppCatalogs/teamsApps/{AppId}/appDefinitions/{AppDefinitionId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             AppCatalogs_TeamsApps_Id,
             PpCatalogs_TeamsApps_AppId_AppDefinitions_AppDefinitionId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.AppCatalogs_TeamsApps_Id: return $"/appCatalogs/teamsApps/{Id}";
-                    case ApiPath.PpCatalogs_TeamsApps_AppId_AppDefinitions_AppDefinitionId: return $"/ppCatalogs/teamsApps/{AppId}/appDefinitions/{AppDefinitionId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string Id { get; set; }
-        public string AppId { get; set; }
-        public string AppDefinitionId { get; set; }
     }
     public partial class TeamsappDeleteResponse : RestApiResponse
     {

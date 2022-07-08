@@ -13,5 +13,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsHidden { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        public AccessPackageAssignmentPolicy[]? AssignmentPolicies { get; set; }
+        public AccessPackageCatalog? Catalog { get; set; }
     }
 }

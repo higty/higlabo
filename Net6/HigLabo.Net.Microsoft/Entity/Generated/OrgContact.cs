@@ -22,5 +22,9 @@ namespace HigLabo.Net.Microsoft
         public Phone[]? Phones { get; set; }
         public String[]? ProxyAddresses { get; set; }
         public string? Surname { get; set; }
+        public DirectoryObject[]? DirectReports { get; set; }
+        public DirectoryObject? Manager { get; set; }
+        public DirectoryObject[]? MemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
     }
 }

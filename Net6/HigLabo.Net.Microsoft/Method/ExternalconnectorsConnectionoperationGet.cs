@@ -2,8 +2,24 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ExternalconnectorsConnectionoperationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ExternalConnectorsConnectionOperationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ConnectionsId { get; set; }
+            public string ConnectionOperationId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.External_Connections_ConnectionsId_Operations_ConnectionOperationId: return $"/external/connections/{ConnectionsId}/operations/{ConnectionOperationId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +28,12 @@ namespace HigLabo.Net.Microsoft
             External_Connections_ConnectionsId_Operations_ConnectionOperationId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.External_Connections_ConnectionsId_Operations_ConnectionOperationId: return $"/external/connections/{ConnectionsId}/operations/{ConnectionOperationId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,12 +45,10 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ConnectionsId { get; set; }
-        public string ConnectionOperationId { get; set; }
     }
-    public partial class ExternalconnectorsConnectionoperationGetResponse : RestApiResponse
+    public partial class ExternalConnectorsConnectionOperationGetResponse : RestApiResponse
     {
-        public enum ConnectionOperationExternalConnectorsConnectionOperationStatus
+        public enum ExternalConnectorsConnectionOperationExternalConnectorsConnectionOperationStatus
         {
             Unspecified,
             Inprogress,
@@ -49,39 +59,39 @@ namespace HigLabo.Net.Microsoft
 
         public PublicError? Error { get; set; }
         public string? Id { get; set; }
-        public ConnectionOperationExternalConnectorsConnectionOperationStatus Status { get; set; }
+        public ExternalConnectorsConnectionOperationExternalConnectorsConnectionOperationStatus Status { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-connectionoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsConnectionoperationGetResponse> ExternalconnectorsConnectionoperationGetAsync()
+        public async Task<ExternalConnectorsConnectionOperationGetResponse> ExternalConnectorsConnectionOperationGetAsync()
         {
-            var p = new ExternalconnectorsConnectionoperationGetParameter();
-            return await this.SendAsync<ExternalconnectorsConnectionoperationGetParameter, ExternalconnectorsConnectionoperationGetResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsConnectionOperationGetParameter();
+            return await this.SendAsync<ExternalConnectorsConnectionOperationGetParameter, ExternalConnectorsConnectionOperationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-connectionoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsConnectionoperationGetResponse> ExternalconnectorsConnectionoperationGetAsync(CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsConnectionOperationGetResponse> ExternalConnectorsConnectionOperationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalconnectorsConnectionoperationGetParameter();
-            return await this.SendAsync<ExternalconnectorsConnectionoperationGetParameter, ExternalconnectorsConnectionoperationGetResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsConnectionOperationGetParameter();
+            return await this.SendAsync<ExternalConnectorsConnectionOperationGetParameter, ExternalConnectorsConnectionOperationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-connectionoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsConnectionoperationGetResponse> ExternalconnectorsConnectionoperationGetAsync(ExternalconnectorsConnectionoperationGetParameter parameter)
+        public async Task<ExternalConnectorsConnectionOperationGetResponse> ExternalConnectorsConnectionOperationGetAsync(ExternalConnectorsConnectionOperationGetParameter parameter)
         {
-            return await this.SendAsync<ExternalconnectorsConnectionoperationGetParameter, ExternalconnectorsConnectionoperationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsConnectionOperationGetParameter, ExternalConnectorsConnectionOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-connectionoperation-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsConnectionoperationGetResponse> ExternalconnectorsConnectionoperationGetAsync(ExternalconnectorsConnectionoperationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsConnectionOperationGetResponse> ExternalConnectorsConnectionOperationGetAsync(ExternalConnectorsConnectionOperationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalconnectorsConnectionoperationGetParameter, ExternalconnectorsConnectionoperationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsConnectionOperationGetParameter, ExternalConnectorsConnectionOperationGetResponse>(parameter, cancellationToken);
         }
     }
 }

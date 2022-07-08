@@ -2,8 +2,30 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class DirectoryobjectGetmembergroupsParameter : IRestApiParameter
+    public partial class DirectoryobjectGetmemberGroupsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.DirectoryObjects_Id_GetMemberGroups: return $"/directoryObjects/{Id}/getMemberGroups";
+                    case ApiPath.Me_GetMemberGroups: return $"/me/getMemberGroups";
+                    case ApiPath.Users_IdOrUserPrincipalName_GetMemberGroups: return $"/users/{IdOrUserPrincipalName}/getMemberGroups";
+                    case ApiPath.Groups_Id_GetMemberGroups: return $"/groups/{Id}/getMemberGroups";
+                    case ApiPath.ServicePrincipals_Id_GetMemberGroups: return $"/servicePrincipals/{Id}/getMemberGroups";
+                    case ApiPath.Contacts_Id_GetMemberGroups: return $"/contacts/{Id}/getMemberGroups";
+                    case ApiPath.Devices_Id_GetMemberGroups: return $"/devices/{Id}/getMemberGroups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             DirectoryObjects_Id_GetMemberGroups,
@@ -15,30 +37,18 @@ namespace HigLabo.Net.Microsoft
             Devices_Id_GetMemberGroups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.DirectoryObjects_Id_GetMemberGroups: return $"/directoryObjects/{Id}/getMemberGroups";
-                    case ApiPath.Me_GetMemberGroups: return $"/me/getMemberGroups";
-                    case ApiPath.Users_IdOrUserPrincipalName_GetMemberGroups: return $"/users/{IdOrUserPrincipalName}/getMemberGroups";
-                    case ApiPath.Groups_Id_GetMemberGroups: return $"/groups/{Id}/getMemberGroups";
-                    case ApiPath.ServicePrincipals_Id_GetMemberGroups: return $"/servicePrincipals/{Id}/getMemberGroups";
-                    case ApiPath.Contacts_Id_GetMemberGroups: return $"/contacts/{Id}/getMemberGroups";
-                    case ApiPath.Devices_Id_GetMemberGroups: return $"/devices/{Id}/getMemberGroups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public bool? SecurityEnabledOnly { get; set; }
-        public string Id { get; set; }
-        public string IdOrUserPrincipalName { get; set; }
     }
-    public partial class DirectoryobjectGetmembergroupsResponse : RestApiResponse
+    public partial class DirectoryobjectGetmemberGroupsResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -46,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetmembergroupsResponse> DirectoryobjectGetmembergroupsAsync()
+        public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync()
         {
-            var p = new DirectoryobjectGetmembergroupsParameter();
-            return await this.SendAsync<DirectoryobjectGetmembergroupsParameter, DirectoryobjectGetmembergroupsResponse>(p, CancellationToken.None);
+            var p = new DirectoryobjectGetmemberGroupsParameter();
+            return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetmembergroupsResponse> DirectoryobjectGetmembergroupsAsync(CancellationToken cancellationToken)
+        public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync(CancellationToken cancellationToken)
         {
-            var p = new DirectoryobjectGetmembergroupsParameter();
-            return await this.SendAsync<DirectoryobjectGetmembergroupsParameter, DirectoryobjectGetmembergroupsResponse>(p, cancellationToken);
+            var p = new DirectoryobjectGetmemberGroupsParameter();
+            return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetmembergroupsResponse> DirectoryobjectGetmembergroupsAsync(DirectoryobjectGetmembergroupsParameter parameter)
+        public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync(DirectoryobjectGetmemberGroupsParameter parameter)
         {
-            return await this.SendAsync<DirectoryobjectGetmembergroupsParameter, DirectoryobjectGetmembergroupsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<DirectoryobjectGetmembergroupsResponse> DirectoryobjectGetmembergroupsAsync(DirectoryobjectGetmembergroupsParameter parameter, CancellationToken cancellationToken)
+        public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync(DirectoryobjectGetmemberGroupsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<DirectoryobjectGetmembergroupsParameter, DirectoryobjectGetmembergroupsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(parameter, cancellationToken);
         }
     }
 }

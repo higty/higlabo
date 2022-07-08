@@ -4,6 +4,28 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class OnlinemeetingGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string MeetingId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_OnlineMeetings_MeetingId: return $"/me/onlineMeetings/{MeetingId}";
+                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId: return $"/users/{UserId}/onlineMeetings/{MeetingId}";
+                    case ApiPath.Communications_OnlineMeetings_: return $"/communications/onlineMeetings/";
+                    case ApiPath.Me_OnlineMeetings: return $"/me/onlineMeetings";
+                    case ApiPath.Users_UserId_OnlineMeetings: return $"/users/{UserId}/onlineMeetings";
+                    case ApiPath.Me_OnlineMeetings_MeetingId_AttendeeReport: return $"/me/onlineMeetings/{MeetingId}/attendeeReport";
+                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId_AttendeeReport: return $"/users/{UserId}/onlineMeetings/{MeetingId}/attendeeReport";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -18,22 +40,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_OnlineMeetings_MeetingId_AttendeeReport,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_OnlineMeetings_MeetingId: return $"/me/onlineMeetings/{MeetingId}";
-                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId: return $"/users/{UserId}/onlineMeetings/{MeetingId}";
-                    case ApiPath.Communications_OnlineMeetings_: return $"/communications/onlineMeetings/";
-                    case ApiPath.Me_OnlineMeetings: return $"/me/onlineMeetings";
-                    case ApiPath.Users_UserId_OnlineMeetings: return $"/users/{UserId}/onlineMeetings";
-                    case ApiPath.Me_OnlineMeetings_MeetingId_AttendeeReport: return $"/me/onlineMeetings/{MeetingId}/attendeeReport";
-                    case ApiPath.Users_UserId_OnlineMeetings_MeetingId_AttendeeReport: return $"/users/{UserId}/onlineMeetings/{MeetingId}/attendeeReport";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -45,8 +57,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string MeetingId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class OnlinemeetingGetResponse : RestApiResponse
     {

@@ -4,28 +4,42 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ServiceprincipalAddpasswordParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.ServicePrincipals_Id_AddPassword: return $"/servicePrincipals/{Id}/addPassword";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             ServicePrincipals_Id_AddPassword,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.ServicePrincipals_Id_AddPassword: return $"/servicePrincipals/{Id}/addPassword";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DisplayName { get; set; }
         public DateTimeOffset? EndDateTime { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
-        public string Id { get; set; }
+        public string? CustomKeyIdentifier { get; set; }
+        public string? Hint { get; set; }
+        public Guid? KeyId { get; set; }
+        public string? SecretText { get; set; }
     }
     public partial class ServiceprincipalAddpasswordResponse : RestApiResponse
     {

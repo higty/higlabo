@@ -2,29 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class CrosstenantaccesspolicyconfigurationpartnerDeleteParameter : IRestApiParameter
+    public partial class CrosstenantAccessPolicyConfigurationPartnerDeleteParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_CrossTenantAccessPolicy_Partners_Id: return $"/policies/crossTenantAccessPolicy/partners/{Id}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Policies_CrossTenantAccessPolicy_Partners_Id,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_CrossTenantAccessPolicy_Partners_Id: return $"/policies/crossTenantAccessPolicy/partners/{Id}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "DELETE";
-        public string Id { get; set; }
     }
-    public partial class CrosstenantaccesspolicyconfigurationpartnerDeleteResponse : RestApiResponse
+    public partial class CrosstenantAccessPolicyConfigurationPartnerDeleteResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -32,32 +42,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationpartnerDeleteResponse> CrosstenantaccesspolicyconfigurationpartnerDeleteAsync()
+        public async Task<CrosstenantAccessPolicyConfigurationPartnerDeleteResponse> CrosstenantAccessPolicyConfigurationPartnerDeleteAsync()
         {
-            var p = new CrosstenantaccesspolicyconfigurationpartnerDeleteParameter();
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationpartnerDeleteParameter, CrosstenantaccesspolicyconfigurationpartnerDeleteResponse>(p, CancellationToken.None);
+            var p = new CrosstenantAccessPolicyConfigurationPartnerDeleteParameter();
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerDeleteParameter, CrosstenantAccessPolicyConfigurationPartnerDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationpartnerDeleteResponse> CrosstenantaccesspolicyconfigurationpartnerDeleteAsync(CancellationToken cancellationToken)
+        public async Task<CrosstenantAccessPolicyConfigurationPartnerDeleteResponse> CrosstenantAccessPolicyConfigurationPartnerDeleteAsync(CancellationToken cancellationToken)
         {
-            var p = new CrosstenantaccesspolicyconfigurationpartnerDeleteParameter();
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationpartnerDeleteParameter, CrosstenantaccesspolicyconfigurationpartnerDeleteResponse>(p, cancellationToken);
+            var p = new CrosstenantAccessPolicyConfigurationPartnerDeleteParameter();
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerDeleteParameter, CrosstenantAccessPolicyConfigurationPartnerDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationpartnerDeleteResponse> CrosstenantaccesspolicyconfigurationpartnerDeleteAsync(CrosstenantaccesspolicyconfigurationpartnerDeleteParameter parameter)
+        public async Task<CrosstenantAccessPolicyConfigurationPartnerDeleteResponse> CrosstenantAccessPolicyConfigurationPartnerDeleteAsync(CrosstenantAccessPolicyConfigurationPartnerDeleteParameter parameter)
         {
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationpartnerDeleteParameter, CrosstenantaccesspolicyconfigurationpartnerDeleteResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerDeleteParameter, CrosstenantAccessPolicyConfigurationPartnerDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-delete?view=graph-rest-1.0
         /// </summary>
-        public async Task<CrosstenantaccesspolicyconfigurationpartnerDeleteResponse> CrosstenantaccesspolicyconfigurationpartnerDeleteAsync(CrosstenantaccesspolicyconfigurationpartnerDeleteParameter parameter, CancellationToken cancellationToken)
+        public async Task<CrosstenantAccessPolicyConfigurationPartnerDeleteResponse> CrosstenantAccessPolicyConfigurationPartnerDeleteAsync(CrosstenantAccessPolicyConfigurationPartnerDeleteParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<CrosstenantaccesspolicyconfigurationpartnerDeleteParameter, CrosstenantaccesspolicyconfigurationpartnerDeleteResponse>(parameter, cancellationToken);
+            return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerDeleteParameter, CrosstenantAccessPolicyConfigurationPartnerDeleteResponse>(parameter, cancellationToken);
         }
     }
 }

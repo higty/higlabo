@@ -18,5 +18,9 @@ namespace HigLabo.Net.Microsoft
         public bool? ShowBandedRows { get; set; }
         public bool? ShowFilterButton { get; set; }
         public string? LegacyId { get; set; }
+        public WorkbookTableColumn[]? Columns { get; set; }
+        public WorkbookTableRow[]? Rows { get; set; }
+        public TableSort? Sort { get; set; }
+        public Worksheet? Worksheet { get; set; }
     }
 }

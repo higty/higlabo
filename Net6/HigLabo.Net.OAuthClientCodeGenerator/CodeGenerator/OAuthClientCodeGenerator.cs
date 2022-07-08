@@ -40,6 +40,10 @@ namespace HigLabo.Net.CodeGenerator
             options.AddArguments("--user-agent=" + this.UserAgent);
             _Driver = new ChromeDriver(options);
         }
+        protected void ConsoleWriteText(string text)
+        {
+            Console.WriteLine($"{DateTime.Now.ToString("HH:mm:ss")} {text}");
+        }
 
         protected async Task<IDocument> GetDocumentAsync(string url)
         {
@@ -104,10 +108,10 @@ namespace HigLabo.Net.CodeGenerator
             //await CreateScopeSourceCode();
 
             _CreatedUrlList.Clear();
-            //foreach (var url in this.GetEntiryUrlList())
-            //{
-            //    await CreateEntitySourceCodeFile(url);
-            //}
+            foreach (var url in this.GetEntiryUrlList())
+            {
+                await CreateEntitySourceCodeFile(url, new CreateEntityClassContext());
+            }
 
             foreach (var url in GetMethodUrlList())
             {
@@ -121,16 +125,16 @@ namespace HigLabo.Net.CodeGenerator
                     var s = ex.ToString();
                 }
             }
-            Console.WriteLine("Completed!");
+            ConsoleWriteText("Completed!");
         }
         public abstract Task CreateScopeSourceCode();
 
         protected abstract IEnumerable<String> GetEntiryUrlList();
-        public async Task CreateEntitySourceCodeFile(string url)
+        public async Task CreateEntitySourceCodeFile(string url, CreateEntityClassContext context)
         {
             var doc = await this.GetDocumentAsync(url);
             var cName = this.GetClassName(url, doc);
-            var c = await this.CreateEntityClass(url, new CreateEntityClassContext());
+            var c = await this.CreateEntityClass(url, context);
             this.CreateEntitySourceCodeFile(url, c);
         }
         public void CreateEntitySourceCodeFile(string url, Class @class)
@@ -147,7 +151,7 @@ namespace HigLabo.Net.CodeGenerator
             {
                 this.WriteFile(filePath, sc);
                 _CreatedUrlList.Add(url);
-                Console.WriteLine(filePath);
+                ConsoleWriteText(filePath);
             }
         }
         public async Task<Class> CreateEntityClass(string url, CreateEntityClassContext context)
@@ -172,6 +176,10 @@ namespace HigLabo.Net.CodeGenerator
                     entityUrlList.Add(parameter.EntityUrl);
                     var eDoc = await this.GetDocumentAsync(parameter.EntityUrl);
                     var eName = this.GetClassName(parameter.EntityUrl, eDoc);
+                    if (context.UrlList.Contains(parameter.EntityUrl) == false)
+                    {
+                        await this.CreateEntitySourceCodeFile(parameter.EntityUrl, context);
+                    }
                     if (property.TypeName.Name.Contains("[]"))
                     {
                         property.TypeName.Name = eName + "[]?";
@@ -189,7 +197,7 @@ namespace HigLabo.Net.CodeGenerator
         protected abstract IEnumerable<String> GetMethodUrlList();
         public async Task CreateMethodSourceCodeFile(string url)
         {
-            Console.WriteLine(url);
+            ConsoleWriteText(url);
 
             var doc = await this.GetDocumentAsync(url);
             var cName = this.GetClassName(url, doc);
@@ -197,12 +205,13 @@ namespace HigLabo.Net.CodeGenerator
             var filePath = Path.Combine(FolderPath, "Method", cName + ".cs");
             this.WriteFile(filePath, sc);
 
-            Console.WriteLine(filePath);
+            ConsoleWriteText(filePath);
         }
         public virtual async Task<SourceCode> CreateMethodSourceCode(string url, IDocument document, string className)
         {
             var doc = document;
             var cName = className;
+            var context = new CreateEntityClassContext();
 
             var sc = new SourceCode();
             sc.UsingNamespaces.Add("HigLabo.Net.OAuth");
@@ -213,7 +222,7 @@ namespace HigLabo.Net.CodeGenerator
             c.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
             sc.Namespaces[0].Classes.Add(c);
 
-            sc.Namespaces[0].Classes.Add(CreateResponseClass(document, cName + "Response"));
+            sc.Namespaces[0].Classes.Add(CreateResponseClass(document, cName + "Response", context));
 
             var cClient = new Class(AccessModifier.Public, this.ServiceName + "Client");
             cClient.Modifier.Partial = true;
@@ -248,7 +257,7 @@ namespace HigLabo.Net.CodeGenerator
 
                 if (parameter.EntityUrl.IsNullOrEmpty() == false)
                 {
-                    await this.CreateEntitySourceCodeFile(parameter.EntityUrl);
+                    await this.CreateEntitySourceCodeFile(parameter.EntityUrl, context);
                 }
 
                 if (this.IsNextPageTokenProperty(property))
@@ -383,7 +392,7 @@ namespace HigLabo.Net.CodeGenerator
         protected abstract bool IsNextPageTokenProperty(Property property);
         protected abstract Property CreateApiPathProperty(string url, IDocument document);
         protected abstract Property CreateHttpMethodProperty(string url, IDocument document);
-        protected virtual Class CreateResponseClass(IDocument document, string className)
+        protected virtual Class CreateResponseClass(IDocument document, string className, CreateEntityClassContext context)
         {
             var c = new Class(AccessModifier.Public, className);
             c.Modifier.Partial = true;

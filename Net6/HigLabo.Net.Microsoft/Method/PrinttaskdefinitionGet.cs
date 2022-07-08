@@ -4,6 +4,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class PrinttaskdefinitionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string PrintTaskDefinitionId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Print_TaskDefinitions_PrintTaskDefinitionId: return $"/print/taskDefinitions/{PrintTaskDefinitionId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +27,12 @@ namespace HigLabo.Net.Microsoft
             Print_TaskDefinitions_PrintTaskDefinitionId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Print_TaskDefinitions_PrintTaskDefinitionId: return $"/print/taskDefinitions/{PrintTaskDefinitionId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,13 +44,13 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string PrintTaskDefinitionId { get; set; }
     }
     public partial class PrinttaskdefinitionGetResponse : RestApiResponse
     {
         public string? Id { get; set; }
         public string? DisplayName { get; set; }
         public AppIdentity? CreatedBy { get; set; }
+        public PrintTask[]? Tasks { get; set; }
     }
     public partial class MicrosoftClient
     {

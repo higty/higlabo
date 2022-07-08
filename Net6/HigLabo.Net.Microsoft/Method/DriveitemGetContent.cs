@@ -4,6 +4,33 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class DriveitemGetContentParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string DriveId { get; set; }
+            public string ItemId { get; set; }
+            public string GroupId { get; set; }
+            public string ItemPath { get; set; }
+            public string ShareIdOrEncodedSharingUrl { get; set; }
+            public string SiteId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Drives_DriveId_Items_ItemId_Content: return $"/drives/{DriveId}/items/{ItemId}/content";
+                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_Content: return $"/groups/{GroupId}/drive/items/{ItemId}/content";
+                    case ApiPath.Me_Drive_Root_ItemPath_Content: return $"/me/drive/root:/{ItemPath}:/content";
+                    case ApiPath.Me_Drive_Items_ItemId_Content: return $"/me/drive/items/{ItemId}/content";
+                    case ApiPath.Shares_ShareIdOrEncodedSharingUrl_DriveItem_Content: return $"/shares/{ShareIdOrEncodedSharingUrl}/driveItem/content";
+                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_Content: return $"/sites/{SiteId}/drive/items/{ItemId}/content";
+                    case ApiPath.Users_UserId_Drive_Items_ItemId_Content: return $"/users/{UserId}/drive/items/{ItemId}/content";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -18,22 +45,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserId_Drive_Items_ItemId_Content,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Drives_DriveId_Items_ItemId_Content: return $"/drives/{DriveId}/items/{ItemId}/content";
-                    case ApiPath.Groups_GroupId_Drive_Items_ItemId_Content: return $"/groups/{GroupId}/drive/items/{ItemId}/content";
-                    case ApiPath.Me_Drive_Root_ItemPath_Content: return $"/me/drive/root:/{ItemPath}:/content";
-                    case ApiPath.Me_Drive_Items_ItemId_Content: return $"/me/drive/items/{ItemId}/content";
-                    case ApiPath.Shares_ShareIdOrEncodedSharingUrl_DriveItem_Content: return $"/shares/{ShareIdOrEncodedSharingUrl}/driveItem/content";
-                    case ApiPath.Sites_SiteId_Drive_Items_ItemId_Content: return $"/sites/{SiteId}/drive/items/{ItemId}/content";
-                    case ApiPath.Users_UserId_Drive_Items_ItemId_Content: return $"/users/{UserId}/drive/items/{ItemId}/content";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -45,13 +62,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string DriveId { get; set; }
-        public string ItemId { get; set; }
-        public string GroupId { get; set; }
-        public string ItemPath { get; set; }
-        public string ShareIdOrEncodedSharingUrl { get; set; }
-        public string SiteId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class DriveitemGetContentResponse : RestApiResponse
     {

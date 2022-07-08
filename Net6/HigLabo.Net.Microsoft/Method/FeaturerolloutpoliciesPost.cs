@@ -4,27 +4,49 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class FeaturerolloutpoliciesPostParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_FeatureRolloutPolicies: return $"/policies/featureRolloutPolicies";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum FeatureRolloutPolicystring
+        {
+            PassthroughAuthentication,
+            SeamlessSso,
+            PasswordHashSync,
+            EmailAsAlternateId,
+            UnknownFutureValue,
+        }
         public enum ApiPath
         {
             Policies_FeatureRolloutPolicies,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_FeatureRolloutPolicies: return $"/policies/featureRolloutPolicies";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DisplayName { get; set; }
         public string? Feature { get; set; }
         public string? IsEnabled { get; set; }
+        public string? Description { get; set; }
+        public string? Id { get; set; }
+        public bool? IsAppliedToOrganization { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class FeaturerolloutpoliciesPostResponse : RestApiResponse
     {
@@ -43,6 +65,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsAppliedToOrganization { get; set; }
         public bool? IsEnabled { get; set; }
+        public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class MicrosoftClient
     {

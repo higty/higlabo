@@ -4,8 +4,34 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class WorkbookListWorksheetsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+            public string ItemPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets: return $"/me/drive/items/{Id}/workbook/worksheets";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            Name,
+            Position,
+            Visibility,
+            Charts,
+            Names,
+            PivotTables,
+            Protection,
+            Tables,
         }
         public enum ApiPath
         {
@@ -13,17 +39,12 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_ItemPath_Workbook_Worksheets,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets: return $"/me/drive/items/{Id}/workbook/worksheets";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -35,29 +56,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
-        public string ItemPath { get; set; }
     }
     public partial class WorkbookListWorksheetsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/worksheet?view=graph-rest-1.0
-        /// </summary>
-        public partial class Worksheet
-        {
-            public enum Worksheetstring
-            {
-                Visible,
-                Hidden,
-                VeryHidden,
-            }
-
-            public string? Id { get; set; }
-            public string? Name { get; set; }
-            public int? Position { get; set; }
-            public Worksheetstring Visibility { get; set; }
-        }
-
         public Worksheet[] Value { get; set; }
     }
     public partial class MicrosoftClient

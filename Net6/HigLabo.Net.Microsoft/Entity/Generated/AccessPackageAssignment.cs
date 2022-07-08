@@ -22,5 +22,8 @@ namespace HigLabo.Net.Microsoft
         public EntitlementManagementSchedule? Schedule { get; set; }
         public AccessPackageAssignmentAccessPackageAssignmentState State { get; set; }
         public string? Status { get; set; }
+        public AccessPackage? AccessPackage { get; set; }
+        public AccessPackageSubject? Target { get; set; }
+        public AccessPackageAssignmentPolicy? AssignmentPolicy { get; set; }
     }
 }

@@ -2,26 +2,39 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class TokenissuancepolicyListAppliestoParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class TokenissuancePolicyListAppliestoParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string Id { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Policies_TokenIssuancePolicies_Id_AppliesTo: return $"/policies/tokenIssuancePolicies/{Id}/appliesTo";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            DeletedDateTime,
+            Id,
         }
         public enum ApiPath
         {
             Policies_TokenIssuancePolicies_Id_AppliesTo,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Policies_TokenIssuancePolicies_Id_AppliesTo: return $"/policies/tokenIssuancePolicies/{Id}/appliesTo";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,19 +46,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string Id { get; set; }
     }
-    public partial class TokenissuancepolicyListAppliestoResponse : RestApiResponse
+    public partial class TokenissuancePolicyListAppliestoResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0
-        /// </summary>
-        public partial class DirectoryObject
-        {
-            public DateTimeOffset? DeletedDateTime { get; set; }
-            public string? Id { get; set; }
-        }
-
         public DirectoryObject[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -53,32 +56,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyListAppliestoResponse> TokenissuancepolicyListAppliestoAsync()
+        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync()
         {
-            var p = new TokenissuancepolicyListAppliestoParameter();
-            return await this.SendAsync<TokenissuancepolicyListAppliestoParameter, TokenissuancepolicyListAppliestoResponse>(p, CancellationToken.None);
+            var p = new TokenissuancePolicyListAppliestoParameter();
+            return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyListAppliestoResponse> TokenissuancepolicyListAppliestoAsync(CancellationToken cancellationToken)
+        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
-            var p = new TokenissuancepolicyListAppliestoParameter();
-            return await this.SendAsync<TokenissuancepolicyListAppliestoParameter, TokenissuancepolicyListAppliestoResponse>(p, cancellationToken);
+            var p = new TokenissuancePolicyListAppliestoParameter();
+            return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyListAppliestoResponse> TokenissuancepolicyListAppliestoAsync(TokenissuancepolicyListAppliestoParameter parameter)
+        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(TokenissuancePolicyListAppliestoParameter parameter)
         {
-            return await this.SendAsync<TokenissuancepolicyListAppliestoParameter, TokenissuancepolicyListAppliestoResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/tokenissuancepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
-        public async Task<TokenissuancepolicyListAppliestoResponse> TokenissuancepolicyListAppliestoAsync(TokenissuancepolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
+        public async Task<TokenissuancePolicyListAppliestoResponse> TokenissuancePolicyListAppliestoAsync(TokenissuancePolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<TokenissuancepolicyListAppliestoParameter, TokenissuancepolicyListAppliestoResponse>(parameter, cancellationToken);
+            return await this.SendAsync<TokenissuancePolicyListAppliestoParameter, TokenissuancePolicyListAppliestoResponse>(parameter, cancellationToken);
         }
     }
 }

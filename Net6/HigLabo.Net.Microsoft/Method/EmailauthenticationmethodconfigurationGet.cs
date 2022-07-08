@@ -2,8 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EmailauthenticationmethodconfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class EmailauthenticationmethodConfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_Email: return $"/ttps://graph.microsoft.com/v1.0/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/email";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
         }
@@ -12,16 +26,12 @@ namespace HigLabo.Net.Microsoft
             Ttps__Graphmicrosoftcom_V10_Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_Email,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Policies_AuthenticationMethodsPolicy_AuthenticationMethodConfigurations_Email: return $"/ttps://graph.microsoft.com/v1.0/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/email";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -34,7 +44,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
     }
-    public partial class EmailauthenticationmethodconfigurationGetResponse : RestApiResponse
+    public partial class EmailauthenticationmethodConfigurationGetResponse : RestApiResponse
     {
         public enum EmailAuthenticationMethodConfigurationAuthenticationMethodState
         {
@@ -52,38 +62,39 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public EmailAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
         public EmailAuthenticationMethodConfigurationExternalEmailOtpState AllowExternalIdToUseEmailOtp { get; set; }
+        public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/emailauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodconfigurationGetResponse> EmailauthenticationmethodconfigurationGetAsync()
+        public async Task<EmailauthenticationmethodConfigurationGetResponse> EmailauthenticationmethodConfigurationGetAsync()
         {
-            var p = new EmailauthenticationmethodconfigurationGetParameter();
-            return await this.SendAsync<EmailauthenticationmethodconfigurationGetParameter, EmailauthenticationmethodconfigurationGetResponse>(p, CancellationToken.None);
+            var p = new EmailauthenticationmethodConfigurationGetParameter();
+            return await this.SendAsync<EmailauthenticationmethodConfigurationGetParameter, EmailauthenticationmethodConfigurationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/emailauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodconfigurationGetResponse> EmailauthenticationmethodconfigurationGetAsync(CancellationToken cancellationToken)
+        public async Task<EmailauthenticationmethodConfigurationGetResponse> EmailauthenticationmethodConfigurationGetAsync(CancellationToken cancellationToken)
         {
-            var p = new EmailauthenticationmethodconfigurationGetParameter();
-            return await this.SendAsync<EmailauthenticationmethodconfigurationGetParameter, EmailauthenticationmethodconfigurationGetResponse>(p, cancellationToken);
+            var p = new EmailauthenticationmethodConfigurationGetParameter();
+            return await this.SendAsync<EmailauthenticationmethodConfigurationGetParameter, EmailauthenticationmethodConfigurationGetResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/emailauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodconfigurationGetResponse> EmailauthenticationmethodconfigurationGetAsync(EmailauthenticationmethodconfigurationGetParameter parameter)
+        public async Task<EmailauthenticationmethodConfigurationGetResponse> EmailauthenticationmethodConfigurationGetAsync(EmailauthenticationmethodConfigurationGetParameter parameter)
         {
-            return await this.SendAsync<EmailauthenticationmethodconfigurationGetParameter, EmailauthenticationmethodconfigurationGetResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EmailauthenticationmethodConfigurationGetParameter, EmailauthenticationmethodConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/emailauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
-        public async Task<EmailauthenticationmethodconfigurationGetResponse> EmailauthenticationmethodconfigurationGetAsync(EmailauthenticationmethodconfigurationGetParameter parameter, CancellationToken cancellationToken)
+        public async Task<EmailauthenticationmethodConfigurationGetResponse> EmailauthenticationmethodConfigurationGetAsync(EmailauthenticationmethodConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EmailauthenticationmethodconfigurationGetParameter, EmailauthenticationmethodconfigurationGetResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EmailauthenticationmethodConfigurationGetParameter, EmailauthenticationmethodConfigurationGetResponse>(parameter, cancellationToken);
         }
     }
 }

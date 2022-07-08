@@ -2,26 +2,44 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ScheduleListSchedulinggroupsParameter : IRestApiParameter, IQueryParameterProperty
+    public partial class ScheduleListSchedulingGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string TeamId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Teams_TeamId_Schedule_SchedulingGroups: return $"/teams/{TeamId}/schedule/schedulingGroups";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            Id,
+            DisplayName,
+            IsActive,
+            UserIds,
+            CreatedDateTime,
+            LastModifiedDateTime,
+            LastModifiedBy,
         }
         public enum ApiPath
         {
             Teams_TeamId_Schedule_SchedulingGroups,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Teams_TeamId_Schedule_SchedulingGroups: return $"/teams/{TeamId}/schedule/schedulingGroups";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -33,24 +51,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string TeamId { get; set; }
     }
-    public partial class ScheduleListSchedulinggroupsResponse : RestApiResponse
+    public partial class ScheduleListSchedulingGroupsResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/schedulinggroup?view=graph-rest-1.0
-        /// </summary>
-        public partial class SchedulingGroup
-        {
-            public string? Id { get; set; }
-            public string? DisplayName { get; set; }
-            public bool? IsActive { get; set; }
-            public string[]? UserIds { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DateTimeOffset? LastModifiedDateTime { get; set; }
-            public IdentitySet? LastModifiedBy { get; set; }
-        }
-
         public SchedulingGroup[] Value { get; set; }
     }
     public partial class MicrosoftClient
@@ -58,32 +61,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListSchedulinggroupsResponse> ScheduleListSchedulinggroupsAsync()
+        public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync()
         {
-            var p = new ScheduleListSchedulinggroupsParameter();
-            return await this.SendAsync<ScheduleListSchedulinggroupsParameter, ScheduleListSchedulinggroupsResponse>(p, CancellationToken.None);
+            var p = new ScheduleListSchedulingGroupsParameter();
+            return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListSchedulinggroupsResponse> ScheduleListSchedulinggroupsAsync(CancellationToken cancellationToken)
+        public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(CancellationToken cancellationToken)
         {
-            var p = new ScheduleListSchedulinggroupsParameter();
-            return await this.SendAsync<ScheduleListSchedulinggroupsParameter, ScheduleListSchedulinggroupsResponse>(p, cancellationToken);
+            var p = new ScheduleListSchedulingGroupsParameter();
+            return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListSchedulinggroupsResponse> ScheduleListSchedulinggroupsAsync(ScheduleListSchedulinggroupsParameter parameter)
+        public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(ScheduleListSchedulingGroupsParameter parameter)
         {
-            return await this.SendAsync<ScheduleListSchedulinggroupsParameter, ScheduleListSchedulinggroupsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
-        public async Task<ScheduleListSchedulinggroupsResponse> ScheduleListSchedulinggroupsAsync(ScheduleListSchedulinggroupsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(ScheduleListSchedulingGroupsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ScheduleListSchedulinggroupsParameter, ScheduleListSchedulinggroupsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(parameter, cancellationToken);
         }
     }
 }

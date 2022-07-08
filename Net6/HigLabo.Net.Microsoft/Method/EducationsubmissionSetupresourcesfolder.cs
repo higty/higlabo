@@ -2,31 +2,41 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class EducationsubmissionSetupresourcesfolderParameter : IRestApiParameter
+    public partial class EducationsubmissionSetupResourcesfolderParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ClassesId { get; set; }
+            public string AssignmentsId { get; set; }
+            public string SubmissionsId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Education_Classes_Id_Assignments_Id_Submissions_Id_SetUpResourcesFolder: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/submissions/{SubmissionsId}/setUpResourcesFolder";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum ApiPath
         {
             Education_Classes_Id_Assignments_Id_Submissions_Id_SetUpResourcesFolder,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Education_Classes_Id_Assignments_Id_Submissions_Id_SetUpResourcesFolder: return $"/education/classes/{ClassesId}/assignments/{AssignmentsId}/submissions/{SubmissionsId}/setUpResourcesFolder";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string ClassesId { get; set; }
-        public string AssignmentsId { get; set; }
-        public string SubmissionsId { get; set; }
     }
-    public partial class EducationsubmissionSetupresourcesfolderResponse : RestApiResponse
+    public partial class EducationsubmissionSetupResourcesfolderResponse : RestApiResponse
     {
     }
     public partial class MicrosoftClient
@@ -34,32 +44,32 @@ namespace HigLabo.Net.Microsoft
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionSetupresourcesfolderResponse> EducationsubmissionSetupresourcesfolderAsync()
+        public async Task<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync()
         {
-            var p = new EducationsubmissionSetupresourcesfolderParameter();
-            return await this.SendAsync<EducationsubmissionSetupresourcesfolderParameter, EducationsubmissionSetupresourcesfolderResponse>(p, CancellationToken.None);
+            var p = new EducationsubmissionSetupResourcesfolderParameter();
+            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionSetupresourcesfolderResponse> EducationsubmissionSetupresourcesfolderAsync(CancellationToken cancellationToken)
+        public async Task<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync(CancellationToken cancellationToken)
         {
-            var p = new EducationsubmissionSetupresourcesfolderParameter();
-            return await this.SendAsync<EducationsubmissionSetupresourcesfolderParameter, EducationsubmissionSetupresourcesfolderResponse>(p, cancellationToken);
+            var p = new EducationsubmissionSetupResourcesfolderParameter();
+            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionSetupresourcesfolderResponse> EducationsubmissionSetupresourcesfolderAsync(EducationsubmissionSetupresourcesfolderParameter parameter)
+        public async Task<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync(EducationsubmissionSetupResourcesfolderParameter parameter)
         {
-            return await this.SendAsync<EducationsubmissionSetupresourcesfolderParameter, EducationsubmissionSetupresourcesfolderResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-setupresourcesfolder?view=graph-rest-1.0
         /// </summary>
-        public async Task<EducationsubmissionSetupresourcesfolderResponse> EducationsubmissionSetupresourcesfolderAsync(EducationsubmissionSetupresourcesfolderParameter parameter, CancellationToken cancellationToken)
+        public async Task<EducationsubmissionSetupResourcesfolderResponse> EducationsubmissionSetupResourcesfolderAsync(EducationsubmissionSetupResourcesfolderParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<EducationsubmissionSetupresourcesfolderParameter, EducationsubmissionSetupresourcesfolderResponse>(parameter, cancellationToken);
+            return await this.SendAsync<EducationsubmissionSetupResourcesfolderParameter, EducationsubmissionSetupResourcesfolderResponse>(parameter, cancellationToken);
         }
     }
 }

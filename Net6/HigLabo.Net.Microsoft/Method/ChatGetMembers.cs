@@ -4,6 +4,24 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class ChatGetMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string ChatId { get; set; }
+            public string MembershipId { get; set; }
+            public string UserId { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Chats_ChatId_Members_MembershipId: return $"/chats/{ChatId}/members/{MembershipId}";
+                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats_ChatId_Members_MembershipId: return $"/users/{UserId} | user-principal-name/chats/{ChatId}/members/{MembershipId}";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
             ChatType,
@@ -14,6 +32,10 @@ namespace HigLabo.Net.Microsoft
             TenantId,
             Topic,
             WebUrl,
+            InstalledApps,
+            Members,
+            Messages,
+            Tabs,
         }
         public enum ApiPath
         {
@@ -21,17 +43,12 @@ namespace HigLabo.Net.Microsoft
             Users_UserIdOrUserPrincipalName_Chats_ChatId_Members_MembershipId,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Chats_ChatId_Members_MembershipId: return $"/chats/{ChatId}/members/{MembershipId}";
-                    case ApiPath.Users_UserIdOrUserPrincipalName_Chats_ChatId_Members_MembershipId: return $"/users/{UserId} | user-principal-name/chats/{ChatId}/members/{MembershipId}";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -43,9 +60,6 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string ChatId { get; set; }
-        public string MembershipId { get; set; }
-        public string UserId { get; set; }
     }
     public partial class ChatGetMembersResponse : RestApiResponse
     {

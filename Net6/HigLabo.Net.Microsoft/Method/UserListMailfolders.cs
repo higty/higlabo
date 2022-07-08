@@ -4,8 +4,38 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class UserListMailfoldersParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+            public string IdOrUserPrincipalName { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.Me_MailFolders: return $"/me/mailFolders";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders: return $"/users/{IdOrUserPrincipalName}/mailFolders";
+                    case ApiPath.Me_MailFolders_: return $"/me/mailFolders/";
+                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_: return $"/users/{IdOrUserPrincipalName}/mailFolders/";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            ChildFolderCount,
+            DisplayName,
+            Id,
+            IsHidden,
+            ParentFolderId,
+            TotalItemCount,
+            UnreadItemCount,
+            ChildFolders,
+            MessageRules,
+            Messages,
+            MultiValueExtendedProperties,
+            SingleValueExtendedProperties,
         }
         public enum ApiPath
         {
@@ -15,19 +45,12 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_MailFolders_,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.Me_MailFolders: return $"/me/mailFolders";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders: return $"/users/{IdOrUserPrincipalName}/mailFolders";
-                    case ApiPath.Me_MailFolders_: return $"/me/mailFolders/";
-                    case ApiPath.Users_IdOrUserPrincipalName_MailFolders_: return $"/users/{IdOrUserPrincipalName}/mailFolders/";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -39,24 +62,9 @@ namespace HigLabo.Net.Microsoft
                 return this.Query;
             }
         }
-        public string IdOrUserPrincipalName { get; set; }
     }
     public partial class UserListMailfoldersResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/mailfolder?view=graph-rest-1.0
-        /// </summary>
-        public partial class MailFolder
-        {
-            public Int32? ChildFolderCount { get; set; }
-            public string? DisplayName { get; set; }
-            public string? Id { get; set; }
-            public bool? IsHidden { get; set; }
-            public string? ParentFolderId { get; set; }
-            public Int32? TotalItemCount { get; set; }
-            public Int32? UnreadItemCount { get; set; }
-        }
-
         public MailFolder[] Value { get; set; }
     }
     public partial class MicrosoftClient

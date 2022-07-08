@@ -4,24 +4,58 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class SigninListParameter : IRestApiParameter, IQueryParameterProperty
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.UditLogs_SignIns: return $"/uditLogs/signIns";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
         public enum Field
         {
+            AppDisplayName,
+            AppId,
+            AppliedConditionalAccessPolicy,
+            ClientAppUsed,
+            ConditionalAccessStatus,
+            CorrelationId,
+            CreatedDateTime,
+            DeviceDetail,
+            Id,
+            IpAddress,
+            IsInteractive,
+            Location,
+            ResourceDisplayName,
+            ResourceId,
+            RiskDetail,
+            RiskEventTypes,
+            RiskEventTypes_v2,
+            RiskLevelAggregated,
+            RiskLevelDuringSignIn,
+            RiskState,
+            Status,
+            UserDisplayName,
+            UserId,
+            UserPrincipalName,
         }
         public enum ApiPath
         {
             UditLogs_SignIns,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.UditLogs_SignIns: return $"/uditLogs/signIns";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "GET";
@@ -36,103 +70,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SigninListResponse : RestApiResponse
     {
-        /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/resources/signin?view=graph-rest-1.0
-        /// </summary>
-        public partial class SignIn
-        {
-            public enum SignInConditionalAccessStatus
-            {
-                Success,
-                Failure,
-                NotApplied,
-                UnknownFutureValue,
-            }
-            public enum SignInRiskDetail
-            {
-                None,
-                AdminGeneratedTemporaryPassword,
-                UserPerformedSecuredPasswordChange,
-                UserPerformedSecuredPasswordReset,
-                AdminConfirmedSigninSafe,
-                AiConfirmedSigninSafe,
-                UserPassedMFADrivenByRiskBasedPolicy,
-                AdminDismissedAllRiskForUser,
-                AdminConfirmedSigninCompromised,
-                UnknownFutureValue,
-            }
-            public enum SignInRiskEventType
-            {
-                UnlikelyTravel,
-                AnonymizedIPAddress,
-                MaliciousIPAddress,
-                UnfamiliarFeatures,
-                MalwareInfectedIPAddress,
-                SuspiciousIPAddress,
-                LeakedCredentials,
-                InvestigationsThreatIntelligence,
-                Generic,
-                UnknownFutureValue,
-            }
-            public enum SignInString
-            {
-                UnlikelyTravel,
-                AnonymizedIPAddress,
-                MaliciousIPAddress,
-                UnfamiliarFeatures,
-                MalwareInfectedIPAddress,
-                SuspiciousIPAddress,
-                LeakedCredentials,
-                InvestigationsThreatIntelligence,
-                Generic,
-                UnknownFutureValue,
-            }
-            public enum SignInRiskLevel
-            {
-                None,
-                Low,
-                Medium,
-                High,
-                Hidden,
-                UnknownFutureValue,
-            }
-            public enum SignInRiskState
-            {
-                None,
-                ConfirmedSafe,
-                Remediated,
-                Dismissed,
-                AtRisk,
-                ConfirmedCompromised,
-                UnknownFutureValue,
-            }
-
-            public string? AppDisplayName { get; set; }
-            public string? AppId { get; set; }
-            public AppliedConditionalAccessPolicy[]? AppliedConditionalAccessPolicy { get; set; }
-            public string? ClientAppUsed { get; set; }
-            public SignInConditionalAccessStatus ConditionalAccessStatus { get; set; }
-            public string? CorrelationId { get; set; }
-            public DateTimeOffset? CreatedDateTime { get; set; }
-            public DeviceDetail? DeviceDetail { get; set; }
-            public string? Id { get; set; }
-            public string? IpAddress { get; set; }
-            public bool? IsInteractive { get; set; }
-            public SignInLocation? Location { get; set; }
-            public string? ResourceDisplayName { get; set; }
-            public string? ResourceId { get; set; }
-            public SignInRiskDetail RiskDetail { get; set; }
-            public SignInRiskEventType RiskEventTypes { get; set; }
-            public SignInString RiskEventTypes_v2 { get; set; }
-            public SignInRiskLevel RiskLevelAggregated { get; set; }
-            public SignInRiskLevel RiskLevelDuringSignIn { get; set; }
-            public SignInRiskState RiskState { get; set; }
-            public SignInStatus? Status { get; set; }
-            public string? UserDisplayName { get; set; }
-            public string? UserId { get; set; }
-            public string? UserPrincipalName { get; set; }
-        }
-
         public SignIn[] Value { get; set; }
     }
     public partial class MicrosoftClient

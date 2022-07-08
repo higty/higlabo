@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? MeetingEndDateTime { get; set; }
         public DateTimeOffset? MeetingStartDateTime { get; set; }
         public Int32? TotalParticipantCount { get; set; }
+        public AttendanceRecord[]? AttendanceRecords { get; set; }
     }
 }

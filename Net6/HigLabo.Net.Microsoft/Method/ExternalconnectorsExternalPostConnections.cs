@@ -2,34 +2,56 @@
 
 namespace HigLabo.Net.Microsoft
 {
-    public partial class ExternalconnectorsExternalPostConnectionsParameter : IRestApiParameter
+    public partial class ExternalConnectorsExternalPostConnectionsParameter : IRestApiParameter
     {
+        public class ApiPathSettings
+        {
+            public ApiPath ApiPath { get; set; }
+
+            public string GetApiPath()
+            {
+                switch (this.ApiPath)
+                {
+                    case ApiPath.External_Connections: return $"/external/connections";
+                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
+                }
+            }
+        }
+
+        public enum ExternalConnectorsExternalconnectionExternalConnectorsConnectionState
+        {
+            Draft,
+            Ready,
+            Obsolete,
+            LimitExceeded,
+            UnknownFutureValue,
+        }
         public enum ApiPath
         {
             External_Connections,
         }
 
-        public ApiPath Path { get; set; }
+        public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
         string IRestApiParameter.ApiPath
         {
             get
             {
-                switch (this.Path)
-                {
-                    case ApiPath.External_Connections: return $"/external/connections";
-                    default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.Path);
-                }
+                return this.ApiPathSetting.GetApiPath();
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Id { get; set; }
         public string? Name { get; set; }
         public string? Description { get; set; }
-        public Configuration? Configuration { get; set; }
+        public ExternalConnectorsConfiguration? Configuration { get; set; }
+        public ExternalConnectorsExternalconnectionExternalConnectorsConnectionState State { get; set; }
+        public ExternalConnectorsExternalitem[]? Items { get; set; }
+        public ExternalConnectorsConnectionOperation[]? Operations { get; set; }
+        public ExternalConnectorsSchema? Schema { get; set; }
     }
-    public partial class ExternalconnectorsExternalPostConnectionsResponse : RestApiResponse
+    public partial class ExternalConnectorsExternalPostConnectionsResponse : RestApiResponse
     {
-        public enum ExternalConnectionExternalConnectorsConnectionState
+        public enum ExternalConnectorsExternalconnectionExternalConnectorsConnectionState
         {
             Draft,
             Ready,
@@ -38,43 +60,46 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public Configuration? Configuration { get; set; }
+        public ExternalConnectorsConfiguration? Configuration { get; set; }
         public string? Description { get; set; }
         public string? Id { get; set; }
         public string? Name { get; set; }
-        public ExternalConnectionExternalConnectorsConnectionState State { get; set; }
+        public ExternalConnectorsExternalconnectionExternalConnectorsConnectionState State { get; set; }
+        public ExternalConnectorsExternalitem[]? Items { get; set; }
+        public ExternalConnectorsConnectionOperation[]? Operations { get; set; }
+        public ExternalConnectorsSchema? Schema { get; set; }
     }
     public partial class MicrosoftClient
     {
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-external-post-connections?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalPostConnectionsResponse> ExternalconnectorsExternalPostConnectionsAsync()
+        public async Task<ExternalConnectorsExternalPostConnectionsResponse> ExternalConnectorsExternalPostConnectionsAsync()
         {
-            var p = new ExternalconnectorsExternalPostConnectionsParameter();
-            return await this.SendAsync<ExternalconnectorsExternalPostConnectionsParameter, ExternalconnectorsExternalPostConnectionsResponse>(p, CancellationToken.None);
+            var p = new ExternalConnectorsExternalPostConnectionsParameter();
+            return await this.SendAsync<ExternalConnectorsExternalPostConnectionsParameter, ExternalConnectorsExternalPostConnectionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-external-post-connections?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalPostConnectionsResponse> ExternalconnectorsExternalPostConnectionsAsync(CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsExternalPostConnectionsResponse> ExternalConnectorsExternalPostConnectionsAsync(CancellationToken cancellationToken)
         {
-            var p = new ExternalconnectorsExternalPostConnectionsParameter();
-            return await this.SendAsync<ExternalconnectorsExternalPostConnectionsParameter, ExternalconnectorsExternalPostConnectionsResponse>(p, cancellationToken);
+            var p = new ExternalConnectorsExternalPostConnectionsParameter();
+            return await this.SendAsync<ExternalConnectorsExternalPostConnectionsParameter, ExternalConnectorsExternalPostConnectionsResponse>(p, cancellationToken);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-external-post-connections?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalPostConnectionsResponse> ExternalconnectorsExternalPostConnectionsAsync(ExternalconnectorsExternalPostConnectionsParameter parameter)
+        public async Task<ExternalConnectorsExternalPostConnectionsResponse> ExternalConnectorsExternalPostConnectionsAsync(ExternalConnectorsExternalPostConnectionsParameter parameter)
         {
-            return await this.SendAsync<ExternalconnectorsExternalPostConnectionsParameter, ExternalconnectorsExternalPostConnectionsResponse>(parameter, CancellationToken.None);
+            return await this.SendAsync<ExternalConnectorsExternalPostConnectionsParameter, ExternalConnectorsExternalPostConnectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
         /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-external-post-connections?view=graph-rest-1.0
         /// </summary>
-        public async Task<ExternalconnectorsExternalPostConnectionsResponse> ExternalconnectorsExternalPostConnectionsAsync(ExternalconnectorsExternalPostConnectionsParameter parameter, CancellationToken cancellationToken)
+        public async Task<ExternalConnectorsExternalPostConnectionsResponse> ExternalConnectorsExternalPostConnectionsAsync(ExternalConnectorsExternalPostConnectionsParameter parameter, CancellationToken cancellationToken)
         {
-            return await this.SendAsync<ExternalconnectorsExternalPostConnectionsParameter, ExternalconnectorsExternalPostConnectionsResponse>(parameter, cancellationToken);
+            return await this.SendAsync<ExternalConnectorsExternalPostConnectionsParameter, ExternalConnectorsExternalPostConnectionsResponse>(parameter, cancellationToken);
         }
     }
 }
