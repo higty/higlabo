@@ -73,14 +73,16 @@ A library for database access.
 ## HigLabo.Converter
 Converter library for Base64,QueryString,QuotedPrintable,Rfc2047,ModifiedUtf7,ISO8601...etc.
 
+## HigLabo.Net.Slack
+Slack client library to call Slack API.
+https://www.codeproject.com/Articles/5336184/Creating-best-Csharp-Slack-client-library-in-the-w
+
 ## HigLabo.Bot.Facebook
 A library to call Facebook Messenger API.
 
 ## HigLabo.Bot.LINE
 A library to call LINE API.LINE is most used messaging app in Japan.
 
-## HigLabo.Csv
-CsvWriter libary.This library does not include CsvReader library.
 
 
 
