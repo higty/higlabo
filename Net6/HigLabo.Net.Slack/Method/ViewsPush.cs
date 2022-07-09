@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "views.push";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Trigger_Id { get; set; }
-        public string View { get; set; }
+        public string? Trigger_Id { get; set; }
+        public string? View { get; set; }
     }
     public partial class ViewsPushResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.push
         /// </summary>
-        public async Task<ViewsPushResponse> ViewsPushAsync(string trigger_Id, string view)
+        public async Task<ViewsPushResponse> ViewsPushAsync(string? trigger_Id, string? view)
         {
             var p = new ViewsPushParameter();
             p.Trigger_Id = trigger_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.push
         /// </summary>
-        public async Task<ViewsPushResponse> ViewsPushAsync(string trigger_Id, string view, CancellationToken cancellationToken)
+        public async Task<ViewsPushResponse> ViewsPushAsync(string? trigger_Id, string? view, CancellationToken cancellationToken)
         {
             var p = new ViewsPushParameter();
             p.Trigger_Id = trigger_Id;

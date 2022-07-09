@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OutlookUserSupportedtimezonesResponse : RestApiResponse
     {
-        public TimeZoneInformation[] Value { get; set; }
+        public TimeZoneInformation[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
-            public string Id { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -96,7 +96,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ContactfolderListContactsResponse : RestApiResponse
     {
-        public Contact[] Value { get; set; }
+        public Contact[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DriveListFollowingResponse : RestApiResponse
     {
-        public DriveItem[] Value { get; set; }
+        public DriveItem[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.convertToPrivate";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public string Name { get; set; }
+        public string? Channel_Id { get; set; }
+        public string? Name { get; set; }
     }
     public partial class AdminConversationsConvertToPrivateResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.convertToPrivate
         /// </summary>
-        public async Task<AdminConversationsConvertToPrivateResponse> AdminConversationsConvertToPrivateAsync(string channel_Id)
+        public async Task<AdminConversationsConvertToPrivateResponse> AdminConversationsConvertToPrivateAsync(string? channel_Id)
         {
             var p = new AdminConversationsConvertToPrivateParameter();
             p.Channel_Id = channel_Id;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.convertToPrivate
         /// </summary>
-        public async Task<AdminConversationsConvertToPrivateResponse> AdminConversationsConvertToPrivateAsync(string channel_Id, CancellationToken cancellationToken)
+        public async Task<AdminConversationsConvertToPrivateResponse> AdminConversationsConvertToPrivateAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsConvertToPrivateParameter();
             p.Channel_Id = channel_Id;

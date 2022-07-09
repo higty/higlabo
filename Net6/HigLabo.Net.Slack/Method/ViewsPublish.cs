@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "views.publish";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string User_Id { get; set; }
-        public string View { get; set; }
-        public string Hash { get; set; }
+        public string? User_Id { get; set; }
+        public string? View { get; set; }
+        public string? Hash { get; set; }
     }
     public partial class ViewsPublishResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.publish
         /// </summary>
-        public async Task<ViewsPublishResponse> ViewsPublishAsync(string user_Id, string view)
+        public async Task<ViewsPublishResponse> ViewsPublishAsync(string? user_Id, string? view)
         {
             var p = new ViewsPublishParameter();
             p.User_Id = user_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.publish
         /// </summary>
-        public async Task<ViewsPublishResponse> ViewsPublishAsync(string user_Id, string view, CancellationToken cancellationToken)
+        public async Task<ViewsPublishResponse> ViewsPublishAsync(string? user_Id, string? view, CancellationToken cancellationToken)
         {
             var p = new ViewsPublishParameter();
             p.User_Id = user_Id;

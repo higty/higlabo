@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ApplicationObjectId { get; set; }
+            public string? ApplicationObjectId { get; set; }
 
             public string GetApiPath()
             {

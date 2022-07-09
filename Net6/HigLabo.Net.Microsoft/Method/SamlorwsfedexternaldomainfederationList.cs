@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SamlorwsfedexternaldomainfederationListResponse : RestApiResponse
     {
-        public SamlOrWsFedExternalDomainFederation[] Value { get; set; }
+        public SamlOrWsFedExternalDomainFederation[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string PrintServiceId { get; set; }
+            public string? PrintServiceId { get; set; }
 
             public string GetApiPath()
             {
@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintserviceListEndpointsResponse : RestApiResponse
     {
-        public PrintServiceEndpoint[] Value { get; set; }
+        public PrintServiceEndpoint[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

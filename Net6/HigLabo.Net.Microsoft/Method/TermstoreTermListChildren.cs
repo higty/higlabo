@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SiteId { get; set; }
-            public string SetId { get; set; }
-            public string TermId { get; set; }
+            public string? SiteId { get; set; }
+            public string? SetId { get; set; }
+            public string? TermId { get; set; }
 
             public string GetApiPath()
             {
@@ -60,7 +60,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TermStoreTermListChildrenResponse : RestApiResponse
     {
-        public TermStoreTerm[] Value { get; set; }
+        public TermStoreTerm[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

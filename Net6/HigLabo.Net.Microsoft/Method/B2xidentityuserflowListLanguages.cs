@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class B2xidentityUserflowListLanguagesResponse : RestApiResponse
     {
-        public UserFlowLanguageConfiguration[] Value { get; set; }
+        public UserFlowLanguageConfiguration[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

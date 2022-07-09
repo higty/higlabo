@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "bookmarks.remove";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Bookmark_Id { get; set; }
-        public string Channel_Id { get; set; }
+        public string? Bookmark_Id { get; set; }
+        public string? Channel_Id { get; set; }
     }
     public partial class BookmarksRemoveResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.remove
         /// </summary>
-        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string bookmark_Id, string channel_Id)
+        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string? bookmark_Id, string? channel_Id)
         {
             var p = new BookmarksRemoveParameter();
             p.Bookmark_Id = bookmark_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.remove
         /// </summary>
-        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string bookmark_Id, string channel_Id, CancellationToken cancellationToken)
+        public async Task<BookmarksRemoveResponse> BookmarksRemoveAsync(string? bookmark_Id, string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksRemoveParameter();
             p.Bookmark_Id = bookmark_Id;

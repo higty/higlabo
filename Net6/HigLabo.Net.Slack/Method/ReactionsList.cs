@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public int Count { get; set; }
-        public string Cursor { get; set; }
+        public int? Count { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -19,11 +19,11 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool Full { get; set; }
-        public int Limit { get; set; }
-        public int Page { get; set; }
-        public string Team_Id { get; set; }
-        public string User { get; set; }
+        public bool? Full { get; set; }
+        public int? Limit { get; set; }
+        public int? Page { get; set; }
+        public string? Team_Id { get; set; }
+        public string? User { get; set; }
     }
     public partial class ReactionsListResponse : RestApiResponse
     {

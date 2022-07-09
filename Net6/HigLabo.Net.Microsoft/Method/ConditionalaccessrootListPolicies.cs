@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ConditionalAccessRootListPoliciesResponse : RestApiResponse
     {
-        public ConditionalAccessPolicy[] Value { get; set; }
+        public ConditionalAccessPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

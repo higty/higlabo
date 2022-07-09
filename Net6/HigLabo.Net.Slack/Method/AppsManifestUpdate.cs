@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "apps.manifest.update";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string App_Id { get; set; }
-        public string Manifest { get; set; }
+        public string? App_Id { get; set; }
+        public string? Manifest { get; set; }
     }
     public partial class AppsManifestUpdateResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.update
         /// </summary>
-        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string app_Id, string manifest)
+        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string? app_Id, string? manifest)
         {
             var p = new AppsManifestUpdateParameter();
             p.App_Id = app_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.update
         /// </summary>
-        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string app_Id, string manifest, CancellationToken cancellationToken)
+        public async Task<AppsManifestUpdateResponse> AppsManifestUpdateAsync(string? app_Id, string? manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestUpdateParameter();
             p.App_Id = app_Id;

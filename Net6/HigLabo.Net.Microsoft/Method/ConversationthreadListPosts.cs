@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string GroupId { get; set; }
-            public string ThreadId { get; set; }
-            public string ConversationId { get; set; }
+            public string? GroupId { get; set; }
+            public string? ThreadId { get; set; }
+            public string? ConversationId { get; set; }
 
             public string GetApiPath()
             {
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ConversationthreadListPostsResponse : RestApiResponse
     {
-        public Post[] Value { get; set; }
+        public Post[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

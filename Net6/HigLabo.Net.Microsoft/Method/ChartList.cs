@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string IdOrName { get; set; }
-            public string ItemPath { get; set; }
+            public string? Id { get; set; }
+            public string? IdOrName { get; set; }
+            public string? ItemPath { get; set; }
 
             public string GetApiPath()
             {
@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChartListResponse : RestApiResponse
     {
-        public Chart[] Value { get; set; }
+        public Chart[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.inviteShared";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel { get; set; }
-        public string Emails { get; set; }
-        public bool External_Limited { get; set; }
-        public string User_Ids { get; set; }
+        public string? Channel { get; set; }
+        public string? Emails { get; set; }
+        public bool? External_Limited { get; set; }
+        public string? User_Ids { get; set; }
     }
     public partial class ConversationsInviteSharedResponse : RestApiResponse
     {
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.inviteShared
         /// </summary>
-        public async Task<ConversationsInviteSharedResponse> ConversationsInviteSharedAsync(string channel)
+        public async Task<ConversationsInviteSharedResponse> ConversationsInviteSharedAsync(string? channel)
         {
             var p = new ConversationsInviteSharedParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.inviteShared
         /// </summary>
-        public async Task<ConversationsInviteSharedResponse> ConversationsInviteSharedAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsInviteSharedResponse> ConversationsInviteSharedAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsInviteSharedParameter();
             p.Channel = channel;

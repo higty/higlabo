@@ -36,7 +36,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SearchQueryResponse : RestApiResponse
     {
-        public SearchResponse[] Value { get; set; }
+        public SearchResponse[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

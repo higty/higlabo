@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "calls.update";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
-        public string Desktop_App_Join_Url { get; set; }
-        public string Join_Url { get; set; }
-        public string Title { get; set; }
+        public string? Id { get; set; }
+        public string? Desktop_App_Join_Url { get; set; }
+        public string? Join_Url { get; set; }
+        public string? Title { get; set; }
     }
     public partial class CallsUpdateResponse : RestApiResponse
     {
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.update
         /// </summary>
-        public async Task<CallsUpdateResponse> CallsUpdateAsync(string id)
+        public async Task<CallsUpdateResponse> CallsUpdateAsync(string? id)
         {
             var p = new CallsUpdateParameter();
             p.Id = id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.update
         /// </summary>
-        public async Task<CallsUpdateResponse> CallsUpdateAsync(string id, CancellationToken cancellationToken)
+        public async Task<CallsUpdateResponse> CallsUpdateAsync(string? id, CancellationToken cancellationToken)
         {
             var p = new CallsUpdateParameter();
             p.Id = id;

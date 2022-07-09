@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string UnifiedRoleManagementPolicyId { get; set; }
+            public string? UnifiedRoleManagementPolicyId { get; set; }
 
             public string GetApiPath()
             {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UnifiedroleManagementPolicyListRulesResponse : RestApiResponse
     {
-        public UnifiedRoleManagementPolicyRule[] Value { get; set; }
+        public UnifiedRoleManagementPolicyRule[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

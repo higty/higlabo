@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string OrganizationId { get; set; }
+            public string? OrganizationId { get; set; }
 
             public string GetApiPath()
             {
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OrganizationalBrandingListLocalizationsResponse : RestApiResponse
     {
-        public OrganizationalBrandingLocalization[] Value { get; set; }
+        public OrganizationalBrandingLocalization[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

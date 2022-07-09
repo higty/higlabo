@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "pins.remove";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Timestamp { get; set; }
+        public string? Channel { get; set; }
+        public string? Timestamp { get; set; }
     }
     public partial class PinsRemoveResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.remove
         /// </summary>
-        public async Task<PinsRemoveResponse> PinsRemoveAsync(string channel)
+        public async Task<PinsRemoveResponse> PinsRemoveAsync(string? channel)
         {
             var p = new PinsRemoveParameter();
             p.Channel = channel;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.remove
         /// </summary>
-        public async Task<PinsRemoveResponse> PinsRemoveAsync(string channel, CancellationToken cancellationToken)
+        public async Task<PinsRemoveResponse> PinsRemoveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new PinsRemoveParameter();
             p.Channel = channel;

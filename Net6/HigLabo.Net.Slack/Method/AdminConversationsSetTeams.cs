@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.setTeams";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public bool Org_Channel { get; set; }
-        public string Target_Team_Ids { get; set; }
-        public string Team_Id { get; set; }
+        public string? Channel_Id { get; set; }
+        public bool? Org_Channel { get; set; }
+        public string? Target_Team_Ids { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminConversationsSetTeamsResponse : RestApiResponse
     {
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setTeams
         /// </summary>
-        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string channel_Id)
+        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string? channel_Id)
         {
             var p = new AdminConversationsSetTeamsParameter();
             p.Channel_Id = channel_Id;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setTeams
         /// </summary>
-        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string channel_Id, CancellationToken cancellationToken)
+        public async Task<AdminConversationsSetTeamsResponse> AdminConversationsSetTeamsAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSetTeamsParameter();
             p.Channel_Id = channel_Id;

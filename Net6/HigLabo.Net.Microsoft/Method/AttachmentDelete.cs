@@ -7,18 +7,18 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string EventsId { get; set; }
-            public string AttachmentsId { get; set; }
-            public string UsersIdOrUserPrincipalName { get; set; }
-            public string CalendarsId { get; set; }
-            public string CalendargroupsId { get; set; }
-            public string MessagesId { get; set; }
-            public string MailFoldersId { get; set; }
-            public string ChildFoldersId { get; set; }
-            public string GroupsId { get; set; }
-            public string ThreadsId { get; set; }
-            public string PostsId { get; set; }
-            public string ConversationsId { get; set; }
+            public string? EventsId { get; set; }
+            public string? AttachmentsId { get; set; }
+            public string? UsersIdOrUserPrincipalName { get; set; }
+            public string? CalendarsId { get; set; }
+            public string? CalendargroupsId { get; set; }
+            public string? MessagesId { get; set; }
+            public string? MailFoldersId { get; set; }
+            public string? ChildFoldersId { get; set; }
+            public string? GroupsId { get; set; }
+            public string? ThreadsId { get; set; }
+            public string? PostsId { get; set; }
+            public string? ConversationsId { get; set; }
 
             public string GetApiPath()
             {

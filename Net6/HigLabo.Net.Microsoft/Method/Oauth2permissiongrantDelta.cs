@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class Oauth2permissiongrantDeltaResponse : RestApiResponse
     {
-        public OAuth2PermissionGrant[] Value { get; set; }
+        public OAuth2PermissionGrant[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

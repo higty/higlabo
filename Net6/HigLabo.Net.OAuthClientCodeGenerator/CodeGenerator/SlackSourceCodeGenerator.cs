@@ -186,20 +186,18 @@ namespace HigLabo.Net.CodeGenerator
         {
             var type = parameter.TypeName;
 
-            if (type == "") { return "string"; }
-            if (type.Equals("integer", StringComparison.OrdinalIgnoreCase)) { return "int"; }
-            if (type.Equals("number", StringComparison.OrdinalIgnoreCase)) { return "double"; }
-            if (type.Equals("boolean", StringComparison.OrdinalIgnoreCase)) { return "bool"; }
-            if (type.Equals("array", StringComparison.OrdinalIgnoreCase)) { return "string"; }
-            if (type.Equals("null", StringComparison.OrdinalIgnoreCase)) { return "string"; }
-            if (type.Equals("blocks[] as string", StringComparison.OrdinalIgnoreCase)) { return "string"; }
-            if (type.Equals("manifest object as string", StringComparison.OrdinalIgnoreCase)) { return "string"; }
-            if (type.Equals("view as string", StringComparison.OrdinalIgnoreCase)) { return "string"; }
+            if (type == "") { type = "string"; }
+            if (type.Equals("integer", StringComparison.OrdinalIgnoreCase)) { type = "int"; }
+            if (type.Equals("number", StringComparison.OrdinalIgnoreCase)) { type = "double"; }
+            if (type.Equals("boolean", StringComparison.OrdinalIgnoreCase)) { type = "bool"; }
+            if (type.Equals("array", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
+            if (type.Equals("null", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
+            if (type.Equals("blocks[] as string", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
+            if (type.Equals("manifest object as string", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
+            if (type.Equals("view as string", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
 
-            if (parameter.Required == false && type != "string")
-            {
-                type += "?";
-            }
+            type += "?";
+
             return type;
         }
 

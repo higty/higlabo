@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class RiskyUserListResponse : RestApiResponse
     {
-        public RiskyUser[] Value { get; set; }
+        public RiskyUser[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string IdOrName { get; set; }
-            public string ItemPath { get; set; }
-            public string ItemsId { get; set; }
-            public string WorksheetsIdOrName { get; set; }
-            public string TablesIdOrName { get; set; }
-            public string RootItemPath { get; set; }
+            public string? Id { get; set; }
+            public string? IdOrName { get; set; }
+            public string? ItemPath { get; set; }
+            public string? ItemsId { get; set; }
+            public string? WorksheetsIdOrName { get; set; }
+            public string? TablesIdOrName { get; set; }
+            public string? RootItemPath { get; set; }
 
             public string GetApiPath()
             {
@@ -59,7 +59,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TableListRowsResponse : RestApiResponse
     {
-        public WorkbookTableRow[] Value { get; set; }
+        public WorkbookTableRow[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

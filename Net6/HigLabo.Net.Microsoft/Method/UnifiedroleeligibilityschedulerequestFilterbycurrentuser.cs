@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UnifiedroleeligibilityschedulerequestFilterbycurrentUserResponse : RestApiResponse
     {
-        public UnifiedRoleEligibilityScheduleRequest[] Value { get; set; }
+        public UnifiedRoleEligibilityScheduleRequest[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

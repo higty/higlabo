@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.replies";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel { get; set; }
-        public string Ts { get; set; }
-        public string Cursor { get; set; }
+        public string? Channel { get; set; }
+        public string? Ts { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -20,10 +20,10 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool Inclusive { get; set; }
-        public string Latest { get; set; }
-        public double Limit { get; set; }
-        public string Oldest { get; set; }
+        public bool? Inclusive { get; set; }
+        public string? Latest { get; set; }
+        public double? Limit { get; set; }
+        public string? Oldest { get; set; }
     }
     public partial class ConversationsRepliesResponse : RestApiResponse
     {
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(string channel, string ts)
+        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(string? channel, string? ts)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(string channel, string ts, CancellationToken cancellationToken)
+        public async Task<ConversationsRepliesResponse> ConversationsRepliesAsync(string? channel, string? ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -67,7 +67,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string channel, PagingContext<ConversationsRepliesResponse> context, string ts)
+        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;
@@ -77,7 +77,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.replies
         /// </summary>
-        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string channel, PagingContext<ConversationsRepliesResponse> context, string ts, CancellationToken cancellationToken)
+        public async Task<List<ConversationsRepliesResponse>> ConversationsRepliesAsync(string? channel, PagingContext<ConversationsRepliesResponse> context, string? ts, CancellationToken cancellationToken)
         {
             var p = new ConversationsRepliesParameter();
             p.Channel = channel;

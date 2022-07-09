@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class GroupsettingtemplateListResponse : RestApiResponse
     {
-        public GroupSettingTemplate[] Value { get; set; }
+        public GroupSettingTemplate[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

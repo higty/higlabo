@@ -6,11 +6,11 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.remove";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Name { get; set; }
-        public string Channel { get; set; }
-        public string File { get; set; }
-        public string File_Comment { get; set; }
-        public string Timestamp { get; set; }
+        public string? Name { get; set; }
+        public string? Channel { get; set; }
+        public string? File { get; set; }
+        public string? File_Comment { get; set; }
+        public string? Timestamp { get; set; }
     }
     public partial class ReactionsRemoveResponse : RestApiResponse
     {
@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.remove
         /// </summary>
-        public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(string name)
+        public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(string? name)
         {
             var p = new ReactionsRemoveParameter();
             p.Name = name;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.remove
         /// </summary>
-        public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(string name, CancellationToken cancellationToken)
+        public async Task<ReactionsRemoveResponse> ReactionsRemoveAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new ReactionsRemoveParameter();
             p.Name = name;

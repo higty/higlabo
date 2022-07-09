@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.setCustomRetention";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public int Duration_Days { get; set; }
+        public string? Channel_Id { get; set; }
+        public int? Duration_Days { get; set; }
     }
     public partial class AdminConversationsSetCustomRetentionResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setCustomRetention
         /// </summary>
-        public async Task<AdminConversationsSetCustomRetentionResponse> AdminConversationsSetCustomRetentionAsync(string channel_Id, int duration_Days)
+        public async Task<AdminConversationsSetCustomRetentionResponse> AdminConversationsSetCustomRetentionAsync(string? channel_Id, int? duration_Days)
         {
             var p = new AdminConversationsSetCustomRetentionParameter();
             p.Channel_Id = channel_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setCustomRetention
         /// </summary>
-        public async Task<AdminConversationsSetCustomRetentionResponse> AdminConversationsSetCustomRetentionAsync(string channel_Id, int duration_Days, CancellationToken cancellationToken)
+        public async Task<AdminConversationsSetCustomRetentionResponse> AdminConversationsSetCustomRetentionAsync(string? channel_Id, int? duration_Days, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSetCustomRetentionParameter();
             p.Channel_Id = channel_Id;

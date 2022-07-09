@@ -7,10 +7,10 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ClassesId { get; set; }
-            public string AssignmentsId { get; set; }
-            public string SubmissionsId { get; set; }
-            public string SubmittedResourcesId { get; set; }
+            public string? ClassesId { get; set; }
+            public string? AssignmentsId { get; set; }
+            public string? SubmissionsId { get; set; }
+            public string? SubmittedResourcesId { get; set; }
 
             public string GetApiPath()
             {

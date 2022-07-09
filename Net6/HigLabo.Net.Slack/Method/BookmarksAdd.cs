@@ -6,13 +6,13 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "bookmarks.add";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public string Title { get; set; }
-        public string Type { get; set; }
-        public string Emoji { get; set; }
-        public string Entity_Id { get; set; }
-        public string Link { get; set; }
-        public string Parent_Id { get; set; }
+        public string? Channel_Id { get; set; }
+        public string? Title { get; set; }
+        public string? Type { get; set; }
+        public string? Emoji { get; set; }
+        public string? Entity_Id { get; set; }
+        public string? Link { get; set; }
+        public string? Parent_Id { get; set; }
     }
     public partial class BookmarksAddResponse : RestApiResponse
     {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.add
         /// </summary>
-        public async Task<BookmarksAddResponse> BookmarksAddAsync(string channel_Id, string title, string type)
+        public async Task<BookmarksAddResponse> BookmarksAddAsync(string? channel_Id, string? title, string? type)
         {
             var p = new BookmarksAddParameter();
             p.Channel_Id = channel_Id;
@@ -33,7 +33,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.add
         /// </summary>
-        public async Task<BookmarksAddResponse> BookmarksAddAsync(string channel_Id, string title, string type, CancellationToken cancellationToken)
+        public async Task<BookmarksAddResponse> BookmarksAddAsync(string? channel_Id, string? title, string? type, CancellationToken cancellationToken)
         {
             var p = new BookmarksAddParameter();
             p.Channel_Id = channel_Id;

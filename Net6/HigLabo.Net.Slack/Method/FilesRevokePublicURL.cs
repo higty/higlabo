@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.revokePublicURL";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string File { get; set; }
+        public string? File { get; set; }
     }
     public partial class FilesRevokePublicURLResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.revokePublicURL
         /// </summary>
-        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string file)
+        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string? file)
         {
             var p = new FilesRevokePublicURLParameter();
             p.File = file;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.revokePublicURL
         /// </summary>
-        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string file, CancellationToken cancellationToken)
+        public async Task<FilesRevokePublicURLResponse> FilesRevokePublicURLAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesRevokePublicURLParameter();
             p.File = file;

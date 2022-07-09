@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SiteSearchResponse : RestApiResponse
     {
-        public Site[] Value { get; set; }
+        public Site[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

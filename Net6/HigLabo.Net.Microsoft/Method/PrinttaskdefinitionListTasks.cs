@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string TaskDefinitionId { get; set; }
+            public string? TaskDefinitionId { get; set; }
 
             public string GetApiPath()
             {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrinttaskdefinitionListTasksResponse : RestApiResponse
     {
-        public PrintTask[] Value { get; set; }
+        public PrintTask[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

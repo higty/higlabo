@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SubjectRightsRequestId { get; set; }
+            public string? SubjectRightsRequestId { get; set; }
 
             public string GetApiPath()
             {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SubjectrightsrequestListNotesResponse : RestApiResponse
     {
-        public AuthoredNote[] Value { get; set; }
+        public AuthoredNote[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

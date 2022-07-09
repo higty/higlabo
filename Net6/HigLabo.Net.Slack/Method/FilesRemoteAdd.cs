@@ -6,12 +6,12 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.remote.add";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string External_Id { get; set; }
-        public string External_Url { get; set; }
-        public string Title { get; set; }
-        public string Filetype { get; set; }
-        public string Indexable_File_Contents { get; set; }
-        public string Preview_Image { get; set; }
+        public string? External_Id { get; set; }
+        public string? External_Url { get; set; }
+        public string? Title { get; set; }
+        public string? Filetype { get; set; }
+        public string? Indexable_File_Contents { get; set; }
+        public string? Preview_Image { get; set; }
     }
     public partial class FilesRemoteAddResponse : RestApiResponse
     {
@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.add
         /// </summary>
-        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string external_Id, string external_Url, string title)
+        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string? external_Id, string? external_Url, string? title)
         {
             var p = new FilesRemoteAddParameter();
             p.External_Id = external_Id;
@@ -32,7 +32,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.add
         /// </summary>
-        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string external_Id, string external_Url, string title, CancellationToken cancellationToken)
+        public async Task<FilesRemoteAddResponse> FilesRemoteAddAsync(string? external_Id, string? external_Url, string? title, CancellationToken cancellationToken)
         {
             var p = new FilesRemoteAddParameter();
             p.External_Id = external_Id;

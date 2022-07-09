@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string PlanId { get; set; }
+            public string? PlanId { get; set; }
 
             public string GetApiPath()
             {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PlannerplanListBucketsResponse : RestApiResponse
     {
-        public PlannerBucket[] Value { get; set; }
+        public PlannerBucket[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

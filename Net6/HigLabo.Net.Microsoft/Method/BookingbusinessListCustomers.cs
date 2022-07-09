@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BookingbusinessListCustomersResponse : RestApiResponse
     {
-        public BookingCustomer[] Value { get; set; }
+        public BookingCustomer[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

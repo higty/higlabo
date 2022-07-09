@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string B2xUserFlowsId { get; set; }
-            public string LanguagesId { get; set; }
-            public string OverridesPagesId { get; set; }
+            public string? B2xUserFlowsId { get; set; }
+            public string? LanguagesId { get; set; }
+            public string? OverridesPagesId { get; set; }
 
             public string GetApiPath()
             {

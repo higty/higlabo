@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "team.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Domain { get; set; }
-        public string Team { get; set; }
+        public string? Domain { get; set; }
+        public string? Team { get; set; }
     }
     public partial class TeamInfoResponse : RestApiResponse
     {

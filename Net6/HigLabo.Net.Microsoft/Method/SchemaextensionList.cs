@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SchemaextensionListResponse : RestApiResponse
     {
-        public SchemaExtension[] Value { get; set; }
+        public SchemaExtension[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

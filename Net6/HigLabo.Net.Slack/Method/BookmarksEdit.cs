@@ -6,11 +6,11 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "bookmarks.edit";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Bookmark_Id { get; set; }
-        public string Channel_Id { get; set; }
-        public string Emoji { get; set; }
-        public string Link { get; set; }
-        public string Title { get; set; }
+        public string? Bookmark_Id { get; set; }
+        public string? Channel_Id { get; set; }
+        public string? Emoji { get; set; }
+        public string? Link { get; set; }
+        public string? Title { get; set; }
     }
     public partial class BookmarksEditResponse : RestApiResponse
     {
@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.edit
         /// </summary>
-        public async Task<BookmarksEditResponse> BookmarksEditAsync(string bookmark_Id, string channel_Id)
+        public async Task<BookmarksEditResponse> BookmarksEditAsync(string? bookmark_Id, string? channel_Id)
         {
             var p = new BookmarksEditParameter();
             p.Bookmark_Id = bookmark_Id;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/bookmarks.edit
         /// </summary>
-        public async Task<BookmarksEditResponse> BookmarksEditAsync(string bookmark_Id, string channel_Id, CancellationToken cancellationToken)
+        public async Task<BookmarksEditResponse> BookmarksEditAsync(string? bookmark_Id, string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new BookmarksEditParameter();
             p.Bookmark_Id = bookmark_Id;

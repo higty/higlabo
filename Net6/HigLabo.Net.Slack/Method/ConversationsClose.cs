@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.close";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
+        public string? Channel { get; set; }
     }
     public partial class ConversationsCloseResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.close
         /// </summary>
-        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(string channel)
+        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(string? channel)
         {
             var p = new ConversationsCloseParameter();
             p.Channel = channel;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.close
         /// </summary>
-        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsCloseResponse> ConversationsCloseAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsCloseParameter();
             p.Channel = channel;

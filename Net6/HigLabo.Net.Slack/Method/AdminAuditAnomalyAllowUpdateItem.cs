@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.audit.anomaly.allow.updateItem";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Trusted_Asns { get; set; }
-        public string Trusted_Cidr { get; set; }
+        public string? Trusted_Asns { get; set; }
+        public string? Trusted_Cidr { get; set; }
     }
     public partial class AdminAuditAnomalyAllowUpdateItemResponse : RestApiResponse
     {

@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.setAdmin";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Team_Id { get; set; }
-        public string User_Id { get; set; }
+        public string? Team_Id { get; set; }
+        public string? User_Id { get; set; }
     }
     public partial class AdminUsersSetAdminResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setAdmin
         /// </summary>
-        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string team_Id, string user_Id)
+        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string? team_Id, string? user_Id)
         {
             var p = new AdminUsersSetAdminParameter();
             p.Team_Id = team_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setAdmin
         /// </summary>
-        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string team_Id, string user_Id, CancellationToken cancellationToken)
+        public async Task<AdminUsersSetAdminResponse> AdminUsersSetAdminAsync(string? team_Id, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetAdminParameter();
             p.Team_Id = team_Id;

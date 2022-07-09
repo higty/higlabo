@@ -36,7 +36,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DirectoryobjectGetavailableextensionpropertiesResponse : RestApiResponse
     {
-        public ExtensionProperty[] Value { get; set; }
+        public ExtensionProperty[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

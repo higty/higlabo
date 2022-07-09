@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BitlockerListRecoverykeysResponse : RestApiResponse
     {
-        public BitlockerRecoveryKey[] Value { get; set; }
+        public BitlockerRecoveryKey[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.members";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel { get; set; }
-        public string Cursor { get; set; }
+        public string? Channel { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public double Limit { get; set; }
+        public double? Limit { get; set; }
     }
     public partial class ConversationsMembersResponse : RestApiResponse
     {
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.members
         /// </summary>
-        public async Task<ConversationsMembersResponse> ConversationsMembersAsync(string channel)
+        public async Task<ConversationsMembersResponse> ConversationsMembersAsync(string? channel)
         {
             var p = new ConversationsMembersParameter();
             p.Channel = channel;
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.members
         /// </summary>
-        public async Task<ConversationsMembersResponse> ConversationsMembersAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsMembersResponse> ConversationsMembersAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsMembersParameter();
             p.Channel = channel;
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.members
         /// </summary>
-        public async Task<List<ConversationsMembersResponse>> ConversationsMembersAsync(string channel, PagingContext<ConversationsMembersResponse> context)
+        public async Task<List<ConversationsMembersResponse>> ConversationsMembersAsync(string? channel, PagingContext<ConversationsMembersResponse> context)
         {
             var p = new ConversationsMembersParameter();
             p.Channel = channel;
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.members
         /// </summary>
-        public async Task<List<ConversationsMembersResponse>> ConversationsMembersAsync(string channel, PagingContext<ConversationsMembersResponse> context, CancellationToken cancellationToken)
+        public async Task<List<ConversationsMembersResponse>> ConversationsMembersAsync(string? channel, PagingContext<ConversationsMembersResponse> context, CancellationToken cancellationToken)
         {
             var p = new ConversationsMembersParameter();
             p.Channel = channel;

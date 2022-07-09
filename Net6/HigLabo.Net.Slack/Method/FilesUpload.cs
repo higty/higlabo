@@ -6,14 +6,14 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.upload";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channels { get; set; }
-        public string Content { get; set; }
-        public string File { get; set; }
-        public string Filename { get; set; }
-        public string Filetype { get; set; }
-        public string Initial_Comment { get; set; }
-        public string Thread_Ts { get; set; }
-        public string Title { get; set; }
+        public string? Channels { get; set; }
+        public string? Content { get; set; }
+        public string? File { get; set; }
+        public string? Filename { get; set; }
+        public string? Filetype { get; set; }
+        public string? Initial_Comment { get; set; }
+        public string? Thread_Ts { get; set; }
+        public string? Title { get; set; }
     }
     public partial class FilesUploadResponse : RestApiResponse
     {

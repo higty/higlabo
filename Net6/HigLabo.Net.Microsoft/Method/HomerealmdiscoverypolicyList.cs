@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class HomerealmdiscoveryPolicyListResponse : RestApiResponse
     {
-        public HomeRealmDiscoveryPolicy[] Value { get; set; }
+        public HomeRealmDiscoveryPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

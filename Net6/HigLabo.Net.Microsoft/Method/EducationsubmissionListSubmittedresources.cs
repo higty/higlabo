@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ClassesId { get; set; }
-            public string AssignmentsId { get; set; }
-            public string SubmissionsId { get; set; }
+            public string? ClassesId { get; set; }
+            public string? AssignmentsId { get; set; }
+            public string? SubmissionsId { get; set; }
 
             public string GetApiPath()
             {
@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationsubmissionListSubmittedResourcesResponse : RestApiResponse
     {
-        public EducationSubmissionResource[] Value { get; set; }
+        public EducationSubmissionResource[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

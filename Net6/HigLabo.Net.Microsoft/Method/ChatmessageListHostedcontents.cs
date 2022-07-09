@@ -7,12 +7,12 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string TeamId { get; set; }
-            public string ChannelId { get; set; }
-            public string MessageId { get; set; }
-            public string ReplyId { get; set; }
-            public string ChatId { get; set; }
-            public string UserIdOrUserPrincipalName { get; set; }
+            public string? TeamId { get; set; }
+            public string? ChannelId { get; set; }
+            public string? MessageId { get; set; }
+            public string? ReplyId { get; set; }
+            public string? ChatId { get; set; }
+            public string? UserIdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChatmessageListHostedContentsResponse : RestApiResponse
     {
-        public ChatMessageHostedContent[] Value { get; set; }
+        public ChatMessageHostedContent[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

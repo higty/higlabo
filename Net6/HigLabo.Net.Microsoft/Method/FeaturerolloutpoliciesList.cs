@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class FeaturerolloutpoliciesListResponse : RestApiResponse
     {
-        public FeatureRolloutPolicy[] Value { get; set; }
+        public FeatureRolloutPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

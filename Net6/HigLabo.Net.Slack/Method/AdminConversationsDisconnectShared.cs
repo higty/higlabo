@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.disconnectShared";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public string Leaving_Team_Ids { get; set; }
+        public string? Channel_Id { get; set; }
+        public string? Leaving_Team_Ids { get; set; }
     }
     public partial class AdminConversationsDisconnectSharedResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.disconnectShared
         /// </summary>
-        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string channel_Id)
+        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string? channel_Id)
         {
             var p = new AdminConversationsDisconnectSharedParameter();
             p.Channel_Id = channel_Id;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.disconnectShared
         /// </summary>
-        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string channel_Id, CancellationToken cancellationToken)
+        public async Task<AdminConversationsDisconnectSharedResponse> AdminConversationsDisconnectSharedAsync(string? channel_Id, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsDisconnectSharedParameter();
             p.Channel_Id = channel_Id;

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string TodoTaskListId { get; set; }
-            public string TaskId { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
+            public string? TodoTaskListId { get; set; }
+            public string? TaskId { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {

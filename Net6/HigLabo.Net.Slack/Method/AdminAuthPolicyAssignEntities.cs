@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.auth.policy.assignEntities";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Entity_Ids { get; set; }
-        public string Entity_Type { get; set; }
-        public string Policy_Name { get; set; }
+        public string? Entity_Ids { get; set; }
+        public string? Entity_Type { get; set; }
+        public string? Policy_Name { get; set; }
     }
     public partial class AdminAuthPolicyAssignEntitiesResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.assignEntities
         /// </summary>
-        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string entity_Ids, string entity_Type, string policy_Name)
+        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name)
         {
             var p = new AdminAuthPolicyAssignEntitiesParameter();
             p.Entity_Ids = entity_Ids;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.auth.policy.assignEntities
         /// </summary>
-        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string entity_Ids, string entity_Type, string policy_Name, CancellationToken cancellationToken)
+        public async Task<AdminAuthPolicyAssignEntitiesResponse> AdminAuthPolicyAssignEntitiesAsync(string? entity_Ids, string? entity_Type, string? policy_Name, CancellationToken cancellationToken)
         {
             var p = new AdminAuthPolicyAssignEntitiesParameter();
             p.Entity_Ids = entity_Ids;

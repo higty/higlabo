@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SubscriptionListResponse : RestApiResponse
     {
-        public Subscription[] Value { get; set; }
+        public Subscription[]? Value { get; set; }
         public string? ApplicationId { get; set; }
         public string? ChangeType { get; set; }
         public string? ClientState { get; set; }

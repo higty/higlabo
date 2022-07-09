@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "oauth.v2.exchange";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Client_Id { get; set; }
-        public string Client_Secret { get; set; }
+        public string? Client_Id { get; set; }
+        public string? Client_Secret { get; set; }
     }
     public partial class OauthV2ExchangeResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.exchange
         /// </summary>
-        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string client_Id, string client_Secret)
+        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string? client_Id, string? client_Secret)
         {
             var p = new OauthV2ExchangeParameter();
             p.Client_Id = client_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/oauth.v2.exchange
         /// </summary>
-        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string client_Id, string client_Secret, CancellationToken cancellationToken)
+        public async Task<OauthV2ExchangeResponse> OauthV2ExchangeAsync(string? client_Id, string? client_Secret, CancellationToken cancellationToken)
         {
             var p = new OauthV2ExchangeParameter();
             p.Client_Id = client_Id;

@@ -6,13 +6,13 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "usergroups.update";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Usergroup { get; set; }
-        public string Channels { get; set; }
-        public string Description { get; set; }
-        public string Handle { get; set; }
-        public bool Include_Count { get; set; }
-        public string Name { get; set; }
-        public string Team_Id { get; set; }
+        public string? Usergroup { get; set; }
+        public string? Channels { get; set; }
+        public string? Description { get; set; }
+        public string? Handle { get; set; }
+        public bool? Include_Count { get; set; }
+        public string? Name { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class UsergroupsUpdateResponse : RestApiResponse
     {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.update
         /// </summary>
-        public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(string usergroup)
+        public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(string? usergroup)
         {
             var p = new UsergroupsUpdateParameter();
             p.Usergroup = usergroup;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.update
         /// </summary>
-        public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(string usergroup, CancellationToken cancellationToken)
+        public async Task<UsergroupsUpdateResponse> UsergroupsUpdateAsync(string? usergroup, CancellationToken cancellationToken)
         {
             var p = new UsergroupsUpdateParameter();
             p.Usergroup = usergroup;

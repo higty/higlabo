@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceprincipalListHomerealmdiscoverypoliciesResponse : RestApiResponse
     {
-        public HomeRealmDiscoveryPolicy[] Value { get; set; }
+        public HomeRealmDiscoveryPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

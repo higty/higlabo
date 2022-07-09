@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.setExpiration";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public int Expiration_Ts { get; set; }
-        public string User_Id { get; set; }
-        public string Team_Id { get; set; }
+        public int? Expiration_Ts { get; set; }
+        public string? User_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminUsersSetExpirationResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setExpiration
         /// </summary>
-        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int expiration_Ts, string user_Id)
+        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int? expiration_Ts, string? user_Id)
         {
             var p = new AdminUsersSetExpirationParameter();
             p.Expiration_Ts = expiration_Ts;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.setExpiration
         /// </summary>
-        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int expiration_Ts, string user_Id, CancellationToken cancellationToken)
+        public async Task<AdminUsersSetExpirationResponse> AdminUsersSetExpirationAsync(int? expiration_Ts, string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSetExpirationParameter();
             p.Expiration_Ts = expiration_Ts;

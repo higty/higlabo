@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AppconsentrequestFilterbycurrentUserResponse : RestApiResponse
     {
-        public AppConsentRequest[] Value { get; set; }
+        public AppConsentRequest[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

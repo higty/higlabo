@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.owners.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Team_Id { get; set; }
-        public string Cursor { get; set; }
+        public string? Team_Id { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int Limit { get; set; }
+        public int? Limit { get; set; }
     }
     public partial class AdminTeamsOwnersListResponse : RestApiResponse
     {
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string team_Id)
+        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string? team_Id)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminTeamsOwnersListResponse> AdminTeamsOwnersListAsync(string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string team_Id, PagingContext<AdminTeamsOwnersListResponse> context)
+        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string? team_Id, PagingContext<AdminTeamsOwnersListResponse> context)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.owners.list
         /// </summary>
-        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string team_Id, PagingContext<AdminTeamsOwnersListResponse> context, CancellationToken cancellationToken)
+        public async Task<List<AdminTeamsOwnersListResponse>> AdminTeamsOwnersListAsync(string? team_Id, PagingContext<AdminTeamsOwnersListResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsOwnersListParameter();
             p.Team_Id = team_Id;

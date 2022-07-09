@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.setPurpose";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Purpose { get; set; }
+        public string? Channel { get; set; }
+        public string? Purpose { get; set; }
     }
     public partial class ConversationsSetPurposeResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setPurpose
         /// </summary>
-        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string channel, string purpose)
+        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string? channel, string? purpose)
         {
             var p = new ConversationsSetPurposeParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setPurpose
         /// </summary>
-        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string channel, string purpose, CancellationToken cancellationToken)
+        public async Task<ConversationsSetPurposeResponse> ConversationsSetPurposeAsync(string? channel, string? purpose, CancellationToken cancellationToken)
         {
             var p = new ConversationsSetPurposeParameter();
             p.Channel = channel;

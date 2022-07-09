@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceannouncementListHealthoverviewsResponse : RestApiResponse
     {
-        public ServiceHealth[] Value { get; set; }
+        public ServiceHealth[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

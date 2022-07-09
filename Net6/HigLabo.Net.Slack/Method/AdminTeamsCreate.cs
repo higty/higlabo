@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.create";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Team_Domain { get; set; }
-        public string Team_Name { get; set; }
-        public string Team_Description { get; set; }
-        public string Team_Discoverability { get; set; }
+        public string? Team_Domain { get; set; }
+        public string? Team_Name { get; set; }
+        public string? Team_Description { get; set; }
+        public string? Team_Discoverability { get; set; }
     }
     public partial class AdminTeamsCreateResponse : RestApiResponse
     {
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.create
         /// </summary>
-        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string team_Domain, string team_Name)
+        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string? team_Domain, string? team_Name)
         {
             var p = new AdminTeamsCreateParameter();
             p.Team_Domain = team_Domain;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.create
         /// </summary>
-        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string team_Domain, string team_Name, CancellationToken cancellationToken)
+        public async Task<AdminTeamsCreateResponse> AdminTeamsCreateAsync(string? team_Domain, string? team_Name, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsCreateParameter();
             p.Team_Domain = team_Domain;

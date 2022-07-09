@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintListTaskdefinitionsResponse : RestApiResponse
     {
-        public PrintTaskDefinition[] Value { get; set; }
+        public PrintTaskDefinition[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

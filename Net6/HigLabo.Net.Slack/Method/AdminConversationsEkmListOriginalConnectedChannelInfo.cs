@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.ekm.listOriginalConnectedChannelInfo";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel_Ids { get; set; }
-        public string Cursor { get; set; }
+        public string? Channel_Ids { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -19,8 +19,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int Limit { get; set; }
-        public string Team_Ids { get; set; }
+        public int? Limit { get; set; }
+        public string? Team_Ids { get; set; }
     }
     public partial class AdminConversationsEkmListOriginalConnectedChannelInfoResponse : RestApiResponse
     {

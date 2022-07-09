@@ -372,7 +372,7 @@ namespace HigLabo.Net.CodeGenerator
                 var pValueList = cResponse.Properties.Find(el => el.Name == "Value");
                 if (pValueList != null && pValueList.TypeName.Name.Contains("[]"))
                 {
-                    var responseListClassName = pValueList.TypeName.Name.Replace("[]", "");
+                    var responseListClassName = pValueList.TypeName.Name.Replace("[]?", "");
                     var responseListUrl = this._UrlClassNameMappingList.Find(el => el.ClassName == responseListClassName)?.Url;
                     if (responseListUrl.IsNullOrEmpty() == false)
                     {
@@ -468,7 +468,7 @@ namespace HigLabo.Net.CodeGenerator
                         var pName = CreateParameterNameFromApiPath(v.Replace("{", "").Replace("}", ""));
                         apiPathFormat = apiPathFormat.Replace(v, "{" + pName + "}", StringComparison.OrdinalIgnoreCase);
 
-                        var p = new Property("string", pName, true);
+                        var p = new Property("string?", pName, true);
                         if (cSetting.Properties.Exists(el => el.Name == p.Name)) { continue; }
                         cSetting.Properties.Add(p);
                     }
@@ -860,7 +860,7 @@ namespace HigLabo.Net.CodeGenerator
                                 var doc = this.GetDocumentAsync(href).GetAwaiter().GetResult();
                                 var cValue = this.CreateEntityClass(href, context).GetAwaiter().GetResult();
                                 this.CreateEntitySourceCodeFile(href, cValue);
-                                c.Properties.Add(new Property(cValue.Name + "[]", "Value", true));
+                                c.Properties.Add(new Property(cValue.Name + "[]?", "Value", true));
                             }
                             else
                             {
@@ -885,7 +885,7 @@ namespace HigLabo.Net.CodeGenerator
                 var u = this._UrlClassNameMappingList.Find(el => el.ClassName == resourceName);
                 if (u != null)
                 {
-                    c.Properties.AddIfNotExist(new Property(resourceName + "[]", "Value", true), el => el.Name == resourceName);
+                    c.Properties.AddIfNotExist(new Property(resourceName + "[]?", "Value", true), el => el.Name == resourceName);
                 }
             }
 

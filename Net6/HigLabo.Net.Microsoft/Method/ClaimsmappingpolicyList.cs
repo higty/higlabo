@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ClaimsmappingPolicyListResponse : RestApiResponse
     {
-        public ClaimsMappingPolicy[] Value { get; set; }
+        public ClaimsMappingPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

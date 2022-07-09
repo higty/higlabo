@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string User { get; set; }
-        public bool Include_Locale { get; set; }
+        public string? User { get; set; }
+        public bool? Include_Locale { get; set; }
     }
     public partial class UsersInfoResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.info
         /// </summary>
-        public async Task<UsersInfoResponse> UsersInfoAsync(string user)
+        public async Task<UsersInfoResponse> UsersInfoAsync(string? user)
         {
             var p = new UsersInfoParameter();
             p.User = user;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.info
         /// </summary>
-        public async Task<UsersInfoResponse> UsersInfoAsync(string user, CancellationToken cancellationToken)
+        public async Task<UsersInfoResponse> UsersInfoAsync(string? user, CancellationToken cancellationToken)
         {
             var p = new UsersInfoParameter();
             p.User = user;

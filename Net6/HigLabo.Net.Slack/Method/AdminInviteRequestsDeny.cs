@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.deny";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Invite_Request_Id { get; set; }
-        public string Team_Id { get; set; }
+        public string? Invite_Request_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminInviteRequestsDenyResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.deny
         /// </summary>
-        public async Task<AdminInviteRequestsDenyResponse> AdminInviteRequestsDenyAsync(string invite_Request_Id)
+        public async Task<AdminInviteRequestsDenyResponse> AdminInviteRequestsDenyAsync(string? invite_Request_Id)
         {
             var p = new AdminInviteRequestsDenyParameter();
             p.Invite_Request_Id = invite_Request_Id;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.deny
         /// </summary>
-        public async Task<AdminInviteRequestsDenyResponse> AdminInviteRequestsDenyAsync(string invite_Request_Id, CancellationToken cancellationToken)
+        public async Task<AdminInviteRequestsDenyResponse> AdminInviteRequestsDenyAsync(string? invite_Request_Id, CancellationToken cancellationToken)
         {
             var p = new AdminInviteRequestsDenyParameter();
             p.Invite_Request_Id = invite_Request_Id;

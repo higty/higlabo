@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string UnifiedRoleEligibilityScheduleId { get; set; }
+            public string? UnifiedRoleEligibilityScheduleId { get; set; }
 
             public string GetApiPath()
             {

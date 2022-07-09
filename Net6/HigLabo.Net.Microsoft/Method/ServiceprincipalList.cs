@@ -91,7 +91,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceprincipalListResponse : RestApiResponse
     {
-        public ServicePrincipal[] Value { get; set; }
+        public ServicePrincipal[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "views.update";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string View { get; set; }
-        public string External_Id { get; set; }
-        public string View_Id { get; set; }
-        public string Hash { get; set; }
+        public string? View { get; set; }
+        public string? External_Id { get; set; }
+        public string? View_Id { get; set; }
+        public string? Hash { get; set; }
     }
     public partial class ViewsUpdateResponse : RestApiResponse
     {
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.update
         /// </summary>
-        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string view)
+        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string? view)
         {
             var p = new ViewsUpdateParameter();
             p.View = view;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/views.update
         /// </summary>
-        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string view, CancellationToken cancellationToken)
+        public async Task<ViewsUpdateResponse> ViewsUpdateAsync(string? view, CancellationToken cancellationToken)
         {
             var p = new ViewsUpdateParameter();
             p.View = view;

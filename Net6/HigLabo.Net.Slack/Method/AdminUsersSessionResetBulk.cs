@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.resetBulk";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string User_Ids { get; set; }
-        public bool Mobile_Only { get; set; }
-        public bool Web_Only { get; set; }
+        public string? User_Ids { get; set; }
+        public bool? Mobile_Only { get; set; }
+        public bool? Web_Only { get; set; }
     }
     public partial class AdminUsersSessionResetBulkResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.resetBulk
         /// </summary>
-        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string user_Ids)
+        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string? user_Ids)
         {
             var p = new AdminUsersSessionResetBulkParameter();
             p.User_Ids = user_Ids;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.resetBulk
         /// </summary>
-        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string user_Ids, CancellationToken cancellationToken)
+        public async Task<AdminUsersSessionResetBulkResponse> AdminUsersSessionResetBulkAsync(string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionResetBulkParameter();
             p.User_Ids = user_Ids;

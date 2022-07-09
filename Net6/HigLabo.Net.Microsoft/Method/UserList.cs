@@ -150,7 +150,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UserListResponse : RestApiResponse
     {
-        public User[] Value { get; set; }
+        public User[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

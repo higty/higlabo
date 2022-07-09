@@ -33,7 +33,7 @@
                 //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0");
                 //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/columnvalidation?view=graph-rest-1.0", new CreateEntityClassContext());
                 //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-identity?view=graph-rest-1.0", new CreateEntityClassContext());
-                //await g.CreateMethodSourceCodeFile("https://docs.microsoft.com/en-us/graph/api/educationschool-update?view=graph-rest-1.0");
+                await g.CreateMethodSourceCodeFile("https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0");
                 //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0", new CreateEntityClassContext());
                 await g.Execute();
             }

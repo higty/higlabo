@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ReportsGetUserarchivedprintjobsResponse : RestApiResponse
     {
-        public ArchivedPrintJob[] Value { get; set; }
+        public ArchivedPrintJob[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

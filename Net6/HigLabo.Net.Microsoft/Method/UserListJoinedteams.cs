@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UserListJoinedteamsResponse : RestApiResponse
     {
-        public Team[] Value { get; set; }
+        public Team[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

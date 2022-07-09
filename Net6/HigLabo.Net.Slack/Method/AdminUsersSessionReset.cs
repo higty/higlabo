@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.reset";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string User_Id { get; set; }
-        public bool Mobile_Only { get; set; }
-        public bool Web_Only { get; set; }
+        public string? User_Id { get; set; }
+        public bool? Mobile_Only { get; set; }
+        public bool? Web_Only { get; set; }
     }
     public partial class AdminUsersSessionResetResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.reset
         /// </summary>
-        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string user_Id)
+        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string? user_Id)
         {
             var p = new AdminUsersSessionResetParameter();
             p.User_Id = user_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.reset
         /// </summary>
-        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string user_Id, CancellationToken cancellationToken)
+        public async Task<AdminUsersSessionResetResponse> AdminUsersSessionResetAsync(string? user_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionResetParameter();
             p.User_Id = user_Id;

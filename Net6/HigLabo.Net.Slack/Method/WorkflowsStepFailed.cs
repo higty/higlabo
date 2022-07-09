@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "workflows.stepFailed";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public object Error { get; set; }
-        public string Workflow_Step_Execute_Id { get; set; }
+        public object? Error { get; set; }
+        public string? Workflow_Step_Execute_Id { get; set; }
     }
     public partial class WorkflowsStepFailedResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.stepFailed
         /// </summary>
-        public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(object error, string workflow_Step_Execute_Id)
+        public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(object? error, string? workflow_Step_Execute_Id)
         {
             var p = new WorkflowsStepFailedParameter();
             p.Error = error;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.stepFailed
         /// </summary>
-        public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(object error, string workflow_Step_Execute_Id, CancellationToken cancellationToken)
+        public async Task<WorkflowsStepFailedResponse> WorkflowsStepFailedAsync(object? error, string? workflow_Step_Execute_Id, CancellationToken cancellationToken)
         {
             var p = new WorkflowsStepFailedParameter();
             p.Error = error;

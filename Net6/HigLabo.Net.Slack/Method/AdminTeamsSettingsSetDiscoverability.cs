@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setDiscoverability";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Discoverability { get; set; }
-        public string Team_Id { get; set; }
+        public string? Discoverability { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsSetDiscoverabilityResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string discoverability, string team_Id)
+        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string? discoverability, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetDiscoverabilityParameter();
             p.Discoverability = discoverability;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setDiscoverability
         /// </summary>
-        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string discoverability, string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminTeamsSettingsSetDiscoverabilityResponse> AdminTeamsSettingsSetDiscoverabilityAsync(string? discoverability, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetDiscoverabilityParameter();
             p.Discoverability = discoverability;

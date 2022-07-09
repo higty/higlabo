@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string AccessReviewScheduleDefinitionId { get; set; }
-            public string AccessReviewInstanceId { get; set; }
-            public string AccessReviewInstanceDecisionItemId { get; set; }
+            public string? AccessReviewScheduleDefinitionId { get; set; }
+            public string? AccessReviewInstanceId { get; set; }
+            public string? AccessReviewInstanceDecisionItemId { get; set; }
 
             public string GetApiPath()
             {

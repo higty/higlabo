@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.sharedPublicURL";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string File { get; set; }
+        public string? File { get; set; }
     }
     public partial class FilesSharedPublicURLResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.sharedPublicURL
         /// </summary>
-        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string file)
+        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string? file)
         {
             var p = new FilesSharedPublicURLParameter();
             p.File = file;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.sharedPublicURL
         /// </summary>
-        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string file, CancellationToken cancellationToken)
+        public async Task<FilesSharedPublicURLResponse> FilesSharedPublicURLAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesSharedPublicURLParameter();
             p.File = file;

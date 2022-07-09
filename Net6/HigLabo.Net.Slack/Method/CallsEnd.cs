@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "calls.end";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
-        public int Duration { get; set; }
+        public string? Id { get; set; }
+        public int? Duration { get; set; }
     }
     public partial class CallsEndResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.end
         /// </summary>
-        public async Task<CallsEndResponse> CallsEndAsync(string id)
+        public async Task<CallsEndResponse> CallsEndAsync(string? id)
         {
             var p = new CallsEndParameter();
             p.Id = id;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.end
         /// </summary>
-        public async Task<CallsEndResponse> CallsEndAsync(string id, CancellationToken cancellationToken)
+        public async Task<CallsEndResponse> CallsEndAsync(string? id, CancellationToken cancellationToken)
         {
             var p = new CallsEndParameter();
             p.Id = id;

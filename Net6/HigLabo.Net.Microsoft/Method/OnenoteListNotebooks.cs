@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
-            public string Id { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -69,7 +69,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OnenoteListNotebooksResponse : RestApiResponse
     {
-        public Notebook[] Value { get; set; }
+        public Notebook[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

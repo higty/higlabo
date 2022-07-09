@@ -6,11 +6,11 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "workflows.updateStep";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Workflow_Step_Edit_Id { get; set; }
+        public string? Workflow_Step_Edit_Id { get; set; }
         public object? Inputs { get; set; }
-        public string Outputs { get; set; }
-        public string Step_Image_Url { get; set; }
-        public string Step_Name { get; set; }
+        public string? Outputs { get; set; }
+        public string? Step_Image_Url { get; set; }
+        public string? Step_Name { get; set; }
     }
     public partial class WorkflowsUpdateStepResponse : RestApiResponse
     {
@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.updateStep
         /// </summary>
-        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string workflow_Step_Edit_Id)
+        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string? workflow_Step_Edit_Id)
         {
             var p = new WorkflowsUpdateStepParameter();
             p.Workflow_Step_Edit_Id = workflow_Step_Edit_Id;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.updateStep
         /// </summary>
-        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string workflow_Step_Edit_Id, CancellationToken cancellationToken)
+        public async Task<WorkflowsUpdateStepResponse> WorkflowsUpdateStepAsync(string? workflow_Step_Edit_Id, CancellationToken cancellationToken)
         {
             var p = new WorkflowsUpdateStepParameter();
             p.Workflow_Step_Edit_Id = workflow_Step_Edit_Id;

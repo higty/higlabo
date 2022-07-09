@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string File { get; set; }
-        public int Count { get; set; }
-        public string Cursor { get; set; }
+        public string? File { get; set; }
+        public int? Count { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -20,8 +20,8 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int Limit { get; set; }
-        public int Page { get; set; }
+        public int? Limit { get; set; }
+        public int? Page { get; set; }
     }
     public partial class FilesInfoResponse : RestApiResponse
     {
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<FilesInfoResponse> FilesInfoAsync(string file)
+        public async Task<FilesInfoResponse> FilesInfoAsync(string? file)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -40,7 +40,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<FilesInfoResponse> FilesInfoAsync(string file, CancellationToken cancellationToken)
+        public async Task<FilesInfoResponse> FilesInfoAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -63,7 +63,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string file, PagingContext<FilesInfoResponse> context)
+        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context)
         {
             var p = new FilesInfoParameter();
             p.File = file;
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.info
         /// </summary>
-        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string file, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
+        public async Task<List<FilesInfoResponse>> FilesInfoAsync(string? file, PagingContext<FilesInfoResponse> context, CancellationToken cancellationToken)
         {
             var p = new FilesInfoParameter();
             p.File = file;

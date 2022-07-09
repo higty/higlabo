@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.create";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Name { get; set; }
-        public bool Is_Private { get; set; }
-        public string Team_Id { get; set; }
+        public string? Name { get; set; }
+        public bool? Is_Private { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class ConversationsCreateResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.create
         /// </summary>
-        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(string name)
+        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(string? name)
         {
             var p = new ConversationsCreateParameter();
             p.Name = name;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.create
         /// </summary>
-        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(string name, CancellationToken cancellationToken)
+        public async Task<ConversationsCreateResponse> ConversationsCreateAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new ConversationsCreateParameter();
             p.Name = name;

@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "reminders.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Reminder { get; set; }
-        public string Team_Id { get; set; }
+        public string? Reminder { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class RemindersInfoResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.info
         /// </summary>
-        public async Task<RemindersInfoResponse> RemindersInfoAsync(string reminder)
+        public async Task<RemindersInfoResponse> RemindersInfoAsync(string? reminder)
         {
             var p = new RemindersInfoParameter();
             p.Reminder = reminder;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reminders.info
         /// </summary>
-        public async Task<RemindersInfoResponse> RemindersInfoAsync(string reminder, CancellationToken cancellationToken)
+        public async Task<RemindersInfoResponse> RemindersInfoAsync(string? reminder, CancellationToken cancellationToken)
         {
             var p = new RemindersInfoParameter();
             p.Reminder = reminder;

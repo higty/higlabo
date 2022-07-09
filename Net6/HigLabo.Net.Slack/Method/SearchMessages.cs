@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "search.messages";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Query { get; set; }
-        public int Count { get; set; }
-        public string Cursor { get; set; }
+        public string? Query { get; set; }
+        public int? Count { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -20,11 +20,11 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool Highlight { get; set; }
-        public int Page { get; set; }
+        public bool? Highlight { get; set; }
+        public int? Page { get; set; }
         public Sort Sort { get; set; }
         public SortDirection Sort_Dir { get; set; }
-        public string Team_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class SearchMessagesResponse : RestApiResponse
     {
@@ -34,7 +34,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<SearchMessagesResponse> SearchMessagesAsync(string query)
+        public async Task<SearchMessagesResponse> SearchMessagesAsync(string? query)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -43,7 +43,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<SearchMessagesResponse> SearchMessagesAsync(string query, CancellationToken cancellationToken)
+        public async Task<SearchMessagesResponse> SearchMessagesAsync(string? query, CancellationToken cancellationToken)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string query, PagingContext<SearchMessagesResponse> context)
+        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;
@@ -75,7 +75,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.messages
         /// </summary>
-        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string query, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
+        public async Task<List<SearchMessagesResponse>> SearchMessagesAsync(string? query, PagingContext<SearchMessagesResponse> context, CancellationToken cancellationToken)
         {
             var p = new SearchMessagesParameter();
             p.Query = query;

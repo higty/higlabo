@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.invalidate";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public int Session_Id { get; set; }
-        public string Team_Id { get; set; }
+        public int? Session_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminUsersSessionInvalidateResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.invalidate
         /// </summary>
-        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int session_Id, string team_Id)
+        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int? session_Id, string? team_Id)
         {
             var p = new AdminUsersSessionInvalidateParameter();
             p.Session_Id = session_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.invalidate
         /// </summary>
-        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int session_Id, string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminUsersSessionInvalidateResponse> AdminUsersSessionInvalidateAsync(int? session_Id, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionInvalidateParameter();
             p.Session_Id = session_Id;

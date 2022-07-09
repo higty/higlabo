@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "chat.delete";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Ts { get; set; }
-        public bool As_User { get; set; }
+        public string? Channel { get; set; }
+        public string? Ts { get; set; }
+        public bool? As_User { get; set; }
     }
     public partial class ChatDeleteResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.delete
         /// </summary>
-        public async Task<ChatDeleteResponse> ChatDeleteAsync(string channel, string ts)
+        public async Task<ChatDeleteResponse> ChatDeleteAsync(string? channel, string? ts)
         {
             var p = new ChatDeleteParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.delete
         /// </summary>
-        public async Task<ChatDeleteResponse> ChatDeleteAsync(string channel, string ts, CancellationToken cancellationToken)
+        public async Task<ChatDeleteResponse> ChatDeleteAsync(string? channel, string? ts, CancellationToken cancellationToken)
         {
             var p = new ChatDeleteParameter();
             p.Channel = channel;

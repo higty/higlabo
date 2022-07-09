@@ -7,11 +7,11 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
-            public string GroupsId { get; set; }
-            public string SectionsId { get; set; }
-            public string SitesId { get; set; }
+            public string? Id { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
+            public string? GroupsId { get; set; }
+            public string? SectionsId { get; set; }
+            public string? SitesId { get; set; }
 
             public string GetApiPath()
             {
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SectionListPagesResponse : RestApiResponse
     {
-        public Page[] Value { get; set; }
+        public Page[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

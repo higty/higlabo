@@ -7,16 +7,16 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string ExtensionId { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
-            public string GroupsId { get; set; }
-            public string EventsId { get; set; }
-            public string ExtensionsExtensionId { get; set; }
-            public string ThreadsId { get; set; }
-            public string PostsId { get; set; }
-            public string TodoTaskListId { get; set; }
-            public string TaskId { get; set; }
+            public string? Id { get; set; }
+            public string? ExtensionId { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
+            public string? GroupsId { get; set; }
+            public string? EventsId { get; set; }
+            public string? ExtensionsExtensionId { get; set; }
+            public string? ThreadsId { get; set; }
+            public string? PostsId { get; set; }
+            public string? TodoTaskListId { get; set; }
+            public string? TaskId { get; set; }
 
             public string GetApiPath()
             {

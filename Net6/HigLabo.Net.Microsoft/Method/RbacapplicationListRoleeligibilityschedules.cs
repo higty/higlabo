@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class RbacapplicationListRoleeligibilityschedulesResponse : RestApiResponse
     {
-        public UnifiedRoleEligibilitySchedule[] Value { get; set; }
+        public UnifiedRoleEligibilitySchedule[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

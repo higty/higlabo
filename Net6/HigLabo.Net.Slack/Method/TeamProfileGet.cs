@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "team.profile.get";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Visibility { get; set; }
+        public string? Visibility { get; set; }
     }
     public partial class TeamProfileGetResponse : RestApiResponse
     {

@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "apps.manifest.validate";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Manifest { get; set; }
-        public string App_Id { get; set; }
+        public string? Manifest { get; set; }
+        public string? App_Id { get; set; }
     }
     public partial class AppsManifestValidateResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.validate
         /// </summary>
-        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(string manifest)
+        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(string? manifest)
         {
             var p = new AppsManifestValidateParameter();
             p.Manifest = manifest;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.validate
         /// </summary>
-        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(string manifest, CancellationToken cancellationToken)
+        public async Task<AppsManifestValidateResponse> AppsManifestValidateAsync(string? manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestValidateParameter();
             p.Manifest = manifest;

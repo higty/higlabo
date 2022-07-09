@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OrgcontactDeltaResponse : RestApiResponse
     {
-        public OrgContact[] Value { get; set; }
+        public OrgContact[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

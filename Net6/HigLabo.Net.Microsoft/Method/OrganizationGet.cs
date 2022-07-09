@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OrganizationGetResponse : RestApiResponse
     {
-        public Organization[] Value { get; set; }
+        public Organization[]? Value { get; set; }
         public AssignedPlan[]? AssignedPlans { get; set; }
         public String[]? BusinessPhones { get; set; }
         public string? City { get; set; }

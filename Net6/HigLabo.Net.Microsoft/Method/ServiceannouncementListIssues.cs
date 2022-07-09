@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceannouncementListIssuesResponse : RestApiResponse
     {
-        public ServiceHealthIssue[] Value { get; set; }
+        public ServiceHealthIssue[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

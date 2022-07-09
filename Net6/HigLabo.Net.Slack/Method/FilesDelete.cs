@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.delete";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string File { get; set; }
+        public string? File { get; set; }
     }
     public partial class FilesDeleteResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.delete
         /// </summary>
-        public async Task<FilesDeleteResponse> FilesDeleteAsync(string file)
+        public async Task<FilesDeleteResponse> FilesDeleteAsync(string? file)
         {
             var p = new FilesDeleteParameter();
             p.File = file;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.delete
         /// </summary>
-        public async Task<FilesDeleteResponse> FilesDeleteAsync(string file, CancellationToken cancellationToken)
+        public async Task<FilesDeleteResponse> FilesDeleteAsync(string? file, CancellationToken cancellationToken)
         {
             var p = new FilesDeleteParameter();
             p.File = file;

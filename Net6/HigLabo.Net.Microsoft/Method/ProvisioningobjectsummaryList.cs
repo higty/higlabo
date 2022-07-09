@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ProvisioningobjectSummaryListResponse : RestApiResponse
     {
-        public ProvisioningObjectSummary[] Value { get; set; }
+        public ProvisioningObjectSummary[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

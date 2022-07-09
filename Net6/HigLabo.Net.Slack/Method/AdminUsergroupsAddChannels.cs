@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.usergroups.addChannels";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Ids { get; set; }
-        public string Usergroup_Id { get; set; }
-        public string Team_Id { get; set; }
+        public string? Channel_Ids { get; set; }
+        public string? Usergroup_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminUsergroupsAddChannelsResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addChannels
         /// </summary>
-        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string channel_Ids, string usergroup_Id)
+        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string? channel_Ids, string? usergroup_Id)
         {
             var p = new AdminUsergroupsAddChannelsParameter();
             p.Channel_Ids = channel_Ids;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.usergroups.addChannels
         /// </summary>
-        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string channel_Ids, string usergroup_Id, CancellationToken cancellationToken)
+        public async Task<AdminUsergroupsAddChannelsResponse> AdminUsergroupsAddChannelsAsync(string? channel_Ids, string? usergroup_Id, CancellationToken cancellationToken)
         {
             var p = new AdminUsergroupsAddChannelsParameter();
             p.Channel_Ids = channel_Ids;

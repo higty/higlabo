@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string WindowsHelloForBusinessAuthenticationMethodId { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
+            public string? WindowsHelloForBusinessAuthenticationMethodId { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {

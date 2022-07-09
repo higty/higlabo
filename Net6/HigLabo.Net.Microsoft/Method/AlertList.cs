@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AlertListResponse : RestApiResponse
     {
-        public Microsoft[] Value { get; set; }
+        public Microsoft[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

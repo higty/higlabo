@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "pins.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel { get; set; }
+        public string? Channel { get; set; }
     }
     public partial class PinsListResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.list
         /// </summary>
-        public async Task<PinsListResponse> PinsListAsync(string channel)
+        public async Task<PinsListResponse> PinsListAsync(string? channel)
         {
             var p = new PinsListParameter();
             p.Channel = channel;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/pins.list
         /// </summary>
-        public async Task<PinsListResponse> PinsListAsync(string channel, CancellationToken cancellationToken)
+        public async Task<PinsListResponse> PinsListAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new PinsListParameter();
             p.Channel = channel;

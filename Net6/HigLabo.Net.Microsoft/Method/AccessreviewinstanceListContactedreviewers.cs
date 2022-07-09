@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string AccessReviewScheduleDefinitionId { get; set; }
-            public string AccessReviewInstanceId { get; set; }
+            public string? AccessReviewScheduleDefinitionId { get; set; }
+            public string? AccessReviewInstanceId { get; set; }
 
             public string GetApiPath()
             {
@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccessreviewinstanceListContactedreviewersResponse : RestApiResponse
     {
-        public AccessReviewReviewer[] Value { get; set; }
+        public AccessReviewReviewer[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

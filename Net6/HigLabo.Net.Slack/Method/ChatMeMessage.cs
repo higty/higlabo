@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "chat.meMessage";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Text { get; set; }
+        public string? Channel { get; set; }
+        public string? Text { get; set; }
     }
     public partial class ChatMeMessageResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.meMessage
         /// </summary>
-        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(string channel, string text)
+        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(string? channel, string? text)
         {
             var p = new ChatMeMessageParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.meMessage
         /// </summary>
-        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(string channel, string text, CancellationToken cancellationToken)
+        public async Task<ChatMeMessageResponse> ChatMeMessageAsync(string? channel, string? text, CancellationToken cancellationToken)
         {
             var p = new ChatMeMessageParameter();
             p.Channel = channel;

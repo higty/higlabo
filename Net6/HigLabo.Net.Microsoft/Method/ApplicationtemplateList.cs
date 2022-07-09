@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ApplicationtemplateListResponse : RestApiResponse
     {
-        public ApplicationTemplate[] Value { get; set; }
+        public ApplicationTemplate[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

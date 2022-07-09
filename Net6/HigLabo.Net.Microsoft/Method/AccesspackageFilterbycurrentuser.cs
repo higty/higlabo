@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccesspackageFilterbycurrentUserResponse : RestApiResponse
     {
-        public AccessPackage[] Value { get; set; }
+        public AccessPackage[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

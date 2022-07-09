@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.emoji.rename";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Name { get; set; }
-        public string New_Name { get; set; }
+        public string? Name { get; set; }
+        public string? New_Name { get; set; }
     }
     public partial class AdminEmojiRenameResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.rename
         /// </summary>
-        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string name, string new_Name)
+        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string? name, string? new_Name)
         {
             var p = new AdminEmojiRenameParameter();
             p.Name = name;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.rename
         /// </summary>
-        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string name, string new_Name, CancellationToken cancellationToken)
+        public async Task<AdminEmojiRenameResponse> AdminEmojiRenameAsync(string? name, string? new_Name, CancellationToken cancellationToken)
         {
             var p = new AdminEmojiRenameParameter();
             p.Name = name;

@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EntitlementManagementListCatalogsResponse : RestApiResponse
     {
-        public AccessPackageCatalog[] Value { get; set; }
+        public AccessPackageCatalog[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

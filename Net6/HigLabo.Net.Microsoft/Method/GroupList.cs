@@ -113,7 +113,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class GroupListResponse : RestApiResponse
     {
-        public Group[] Value { get; set; }
+        public Group[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DeviceListResponse : RestApiResponse
     {
-        public Device[] Value { get; set; }
+        public Device[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

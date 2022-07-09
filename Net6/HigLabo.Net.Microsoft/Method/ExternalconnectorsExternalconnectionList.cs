@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ExternalConnectorsExternalconnectionListResponse : RestApiResponse
     {
-        public ExternalConnectorsExternalconnection[] Value { get; set; }
+        public ExternalConnectorsExternalconnection[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

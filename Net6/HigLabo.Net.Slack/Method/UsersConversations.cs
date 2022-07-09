@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.conversations";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Cursor { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -18,11 +18,11 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool Exclude_Archived { get; set; }
-        public double Limit { get; set; }
-        public string Team_Id { get; set; }
-        public string Types { get; set; }
-        public string User { get; set; }
+        public bool? Exclude_Archived { get; set; }
+        public double? Limit { get; set; }
+        public string? Team_Id { get; set; }
+        public string? Types { get; set; }
+        public string? User { get; set; }
     }
     public partial class UsersConversationsResponse : RestApiResponse
     {

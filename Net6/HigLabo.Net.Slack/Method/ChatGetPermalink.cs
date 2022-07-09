@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "chat.getPermalink";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel { get; set; }
-        public string Message_Ts { get; set; }
+        public string? Channel { get; set; }
+        public string? Message_Ts { get; set; }
     }
     public partial class ChatGetPermalinkResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.getPermalink
         /// </summary>
-        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string channel, string message_Ts)
+        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string? channel, string? message_Ts)
         {
             var p = new ChatGetPermalinkParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.getPermalink
         /// </summary>
-        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string channel, string message_Ts, CancellationToken cancellationToken)
+        public async Task<ChatGetPermalinkResponse> ChatGetPermalinkAsync(string? channel, string? message_Ts, CancellationToken cancellationToken)
         {
             var p = new ChatGetPermalinkParameter();
             p.Channel = channel;

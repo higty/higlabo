@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TokenissuancePolicyListResponse : RestApiResponse
     {
-        public TokenIssuancePolicy[] Value { get; set; }
+        public TokenIssuancePolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {
@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AuthenticationListMethodsResponse : RestApiResponse
     {
-        public AuthenticationMethod[] Value { get; set; }
+        public AuthenticationMethod[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

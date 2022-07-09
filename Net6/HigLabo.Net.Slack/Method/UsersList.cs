@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Cursor { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -18,9 +18,9 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public bool Include_Locale { get; set; }
-        public double Limit { get; set; }
-        public string Team_Id { get; set; }
+        public bool? Include_Locale { get; set; }
+        public double? Limit { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class UsersListResponse : RestApiResponse
     {

@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentityproviderListResponse : RestApiResponse
     {
-        public IdentityProvider[] Value { get; set; }
+        public IdentityProvider[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

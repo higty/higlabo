@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string ItemPath { get; set; }
+            public string? Id { get; set; }
+            public string? ItemPath { get; set; }
 
             public string GetApiPath()
             {
@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class WorkbookListTablesResponse : RestApiResponse
     {
-        public Table[] Value { get; set; }
+        public Table[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.barriers.delete";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Barrier_Id { get; set; }
+        public string? Barrier_Id { get; set; }
     }
     public partial class AdminBarriersDeleteResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.delete
         /// </summary>
-        public async Task<AdminBarriersDeleteResponse> AdminBarriersDeleteAsync(string barrier_Id)
+        public async Task<AdminBarriersDeleteResponse> AdminBarriersDeleteAsync(string? barrier_Id)
         {
             var p = new AdminBarriersDeleteParameter();
             p.Barrier_Id = barrier_Id;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.delete
         /// </summary>
-        public async Task<AdminBarriersDeleteResponse> AdminBarriersDeleteAsync(string barrier_Id, CancellationToken cancellationToken)
+        public async Task<AdminBarriersDeleteResponse> AdminBarriersDeleteAsync(string? barrier_Id, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersDeleteParameter();
             p.Barrier_Id = barrier_Id;

@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SubscribedskuListResponse : RestApiResponse
     {
-        public SubscribedSku[] Value { get; set; }
+        public SubscribedSku[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

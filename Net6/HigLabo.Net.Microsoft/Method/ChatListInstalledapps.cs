@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ChatId { get; set; }
+            public string? ChatId { get; set; }
 
             public string GetApiPath()
             {
@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChatListInstalledappsResponse : RestApiResponse
     {
-        public TeamsAppInstallation[] Value { get; set; }
+        public TeamsAppInstallation[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

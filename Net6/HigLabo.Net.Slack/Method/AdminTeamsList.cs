@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.list";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Cursor { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int Limit { get; set; }
+        public int? Limit { get; set; }
     }
     public partial class AdminTeamsListResponse : RestApiResponse
     {

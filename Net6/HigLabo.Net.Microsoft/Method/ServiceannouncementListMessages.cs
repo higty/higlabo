@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceannouncementListMessagesResponse : RestApiResponse
     {
-        public ServiceUpdateMessage[] Value { get; set; }
+        public ServiceUpdateMessage[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

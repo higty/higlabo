@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccessreviewsetListHistorydefinitionsResponse : RestApiResponse
     {
-        public AccessReviewHistoryDefinition[] Value { get; set; }
+        public AccessReviewHistoryDefinition[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

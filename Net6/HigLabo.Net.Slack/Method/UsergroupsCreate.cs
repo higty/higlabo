@@ -6,12 +6,12 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "usergroups.create";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Name { get; set; }
-        public string Channels { get; set; }
-        public string Description { get; set; }
-        public string Handle { get; set; }
-        public bool Include_Count { get; set; }
-        public string Team_Id { get; set; }
+        public string? Name { get; set; }
+        public string? Channels { get; set; }
+        public string? Description { get; set; }
+        public string? Handle { get; set; }
+        public bool? Include_Count { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class UsergroupsCreateResponse : RestApiResponse
     {
@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.create
         /// </summary>
-        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(string name)
+        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(string? name)
         {
             var p = new UsergroupsCreateParameter();
             p.Name = name;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.create
         /// </summary>
-        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(string name, CancellationToken cancellationToken)
+        public async Task<UsergroupsCreateResponse> UsergroupsCreateAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new UsergroupsCreateParameter();
             p.Name = name;

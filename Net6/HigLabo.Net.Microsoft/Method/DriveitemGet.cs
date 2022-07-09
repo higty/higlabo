@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string DriveId { get; set; }
-            public string ItemId { get; set; }
-            public string ItemPath { get; set; }
-            public string GroupId { get; set; }
-            public string SiteId { get; set; }
-            public string ListId { get; set; }
-            public string UserId { get; set; }
+            public string? DriveId { get; set; }
+            public string? ItemId { get; set; }
+            public string? ItemPath { get; set; }
+            public string? GroupId { get; set; }
+            public string? SiteId { get; set; }
+            public string? ListId { get; set; }
+            public string? UserId { get; set; }
 
             public string GetApiPath()
             {

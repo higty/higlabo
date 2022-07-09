@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "team.accessLogs";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Before { get; set; }
-        public string Count { get; set; }
-        public string Page { get; set; }
-        public string Team_Id { get; set; }
+        public string? Before { get; set; }
+        public string? Count { get; set; }
+        public string? Page { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class TeamAccessLogsResponse : RestApiResponse
     {

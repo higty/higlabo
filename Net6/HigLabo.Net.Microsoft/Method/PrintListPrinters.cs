@@ -63,7 +63,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintListPrintersResponse : RestApiResponse
     {
-        public Printer[] Value { get; set; }
+        public Printer[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

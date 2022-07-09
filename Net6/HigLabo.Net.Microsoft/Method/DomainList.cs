@@ -62,7 +62,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DomainListResponse : RestApiResponse
     {
-        public Domain[] Value { get; set; }
+        public Domain[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

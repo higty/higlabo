@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ReportRootListMonthlyprintusagebyprinterResponse : RestApiResponse
     {
-        public PrintUsageByPrinter[] Value { get; set; }
+        public PrintUsageByPrinter[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

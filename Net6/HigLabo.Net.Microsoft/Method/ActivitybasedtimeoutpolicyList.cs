@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ActivitybasedtimeoutPolicyListResponse : RestApiResponse
     {
-        public ActivityBasedTimeoutPolicy[] Value { get; set; }
+        public ActivityBasedTimeoutPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

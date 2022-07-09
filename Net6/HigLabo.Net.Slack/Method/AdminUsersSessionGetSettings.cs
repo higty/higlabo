@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.users.session.getSettings";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string User_Ids { get; set; }
+        public string? User_Ids { get; set; }
     }
     public partial class AdminUsersSessionGetSettingsResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.getSettings
         /// </summary>
-        public async Task<AdminUsersSessionGetSettingsResponse> AdminUsersSessionGetSettingsAsync(string user_Ids)
+        public async Task<AdminUsersSessionGetSettingsResponse> AdminUsersSessionGetSettingsAsync(string? user_Ids)
         {
             var p = new AdminUsersSessionGetSettingsParameter();
             p.User_Ids = user_Ids;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.users.session.getSettings
         /// </summary>
-        public async Task<AdminUsersSessionGetSettingsResponse> AdminUsersSessionGetSettingsAsync(string user_Ids, CancellationToken cancellationToken)
+        public async Task<AdminUsersSessionGetSettingsResponse> AdminUsersSessionGetSettingsAsync(string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminUsersSessionGetSettingsParameter();
             p.User_Ids = user_Ids;

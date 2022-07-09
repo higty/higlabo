@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.emoji.remove";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Name { get; set; }
+        public string? Name { get; set; }
     }
     public partial class AdminEmojiRemoveResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.remove
         /// </summary>
-        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string name)
+        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string? name)
         {
             var p = new AdminEmojiRemoveParameter();
             p.Name = name;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.emoji.remove
         /// </summary>
-        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string name, CancellationToken cancellationToken)
+        public async Task<AdminEmojiRemoveResponse> AdminEmojiRemoveAsync(string? name, CancellationToken cancellationToken)
         {
             var p = new AdminEmojiRemoveParameter();
             p.Name = name;

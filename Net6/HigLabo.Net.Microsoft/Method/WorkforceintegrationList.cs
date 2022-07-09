@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class WorkforceintegrationListResponse : RestApiResponse
     {
-        public WorkforceIntegration[] Value { get; set; }
+        public WorkforceIntegration[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

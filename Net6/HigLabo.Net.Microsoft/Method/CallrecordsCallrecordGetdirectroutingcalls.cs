@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CallrecordsCallrecordGetdirectroutingcallsResponse : RestApiResponse
     {
-        public CallrecordsDirectroutinglogrow[] Value { get; set; }
+        public CallrecordsDirectroutinglogrow[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

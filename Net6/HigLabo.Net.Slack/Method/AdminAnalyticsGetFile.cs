@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.analytics.getFile";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Type { get; set; }
-        public string Date { get; set; }
-        public bool Metadata_Only { get; set; }
+        public string? Type { get; set; }
+        public string? Date { get; set; }
+        public bool? Metadata_Only { get; set; }
     }
     public partial class AdminAnalyticsGetFileResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.analytics.getFile
         /// </summary>
-        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string type)
+        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string? type)
         {
             var p = new AdminAnalyticsGetFileParameter();
             p.Type = type;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.analytics.getFile
         /// </summary>
-        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string type, CancellationToken cancellationToken)
+        public async Task<AdminAnalyticsGetFileResponse> AdminAnalyticsGetFileAsync(string? type, CancellationToken cancellationToken)
         {
             var p = new AdminAnalyticsGetFileParameter();
             p.Type = type;

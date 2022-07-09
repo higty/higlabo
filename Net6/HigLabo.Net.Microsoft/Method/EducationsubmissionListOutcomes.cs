@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationsubmissionListOutcomesResponse : RestApiResponse
     {
-        public EducationOutcome[] Value { get; set; }
+        public EducationOutcome[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "usergroups.disable";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Usergroup { get; set; }
-        public bool Include_Count { get; set; }
-        public string Team_Id { get; set; }
+        public string? Usergroup { get; set; }
+        public bool? Include_Count { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class UsergroupsDisableResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.disable
         /// </summary>
-        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(string usergroup)
+        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(string? usergroup)
         {
             var p = new UsergroupsDisableParameter();
             p.Usergroup = usergroup;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/usergroups.disable
         /// </summary>
-        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(string usergroup, CancellationToken cancellationToken)
+        public async Task<UsergroupsDisableResponse> UsergroupsDisableAsync(string? usergroup, CancellationToken cancellationToken)
         {
             var p = new UsergroupsDisableParameter();
             p.Usergroup = usergroup;

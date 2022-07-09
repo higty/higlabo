@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class RiskdetectionListResponse : RestApiResponse
     {
-        public RiskDetection[] Value { get; set; }
+        public RiskDetection[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

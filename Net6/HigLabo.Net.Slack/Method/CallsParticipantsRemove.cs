@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "calls.participants.remove";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Id { get; set; }
-        public string Users { get; set; }
+        public string? Id { get; set; }
+        public string? Users { get; set; }
     }
     public partial class CallsParticipantsRemoveResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.participants.remove
         /// </summary>
-        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string id, string users)
+        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string? id, string? users)
         {
             var p = new CallsParticipantsRemoveParameter();
             p.Id = id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/calls.participants.remove
         /// </summary>
-        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string id, string users, CancellationToken cancellationToken)
+        public async Task<CallsParticipantsRemoveResponse> CallsParticipantsRemoveAsync(string? id, string? users, CancellationToken cancellationToken)
         {
             var p = new CallsParticipantsRemoveParameter();
             p.Id = id;

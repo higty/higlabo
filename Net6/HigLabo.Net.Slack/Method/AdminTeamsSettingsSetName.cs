@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setName";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Name { get; set; }
-        public string Team_Id { get; set; }
+        public string? Name { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsSetNameResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setName
         /// </summary>
-        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string name, string team_Id)
+        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string? name, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetNameParameter();
             p.Name = name;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setName
         /// </summary>
-        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string name, string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminTeamsSettingsSetNameResponse> AdminTeamsSettingsSetNameAsync(string? name, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetNameParameter();
             p.Name = name;

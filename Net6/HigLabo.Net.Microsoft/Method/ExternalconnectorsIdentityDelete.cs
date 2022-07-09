@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ConnectionId { get; set; }
-            public string ExternalGroupId { get; set; }
-            public string IdentityId { get; set; }
+            public string? ConnectionId { get; set; }
+            public string? ExternalGroupId { get; set; }
+            public string? IdentityId { get; set; }
 
             public string GetApiPath()
             {

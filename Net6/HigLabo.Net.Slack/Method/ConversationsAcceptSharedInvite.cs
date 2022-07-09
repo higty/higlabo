@@ -6,12 +6,12 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.acceptSharedInvite";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Name { get; set; }
-        public string Channel_Id { get; set; }
-        public bool Free_Trial_Accepted { get; set; }
-        public string Invite_Id { get; set; }
-        public bool Is_Private { get; set; }
-        public string Team_Id { get; set; }
+        public string? Channel_Name { get; set; }
+        public string? Channel_Id { get; set; }
+        public bool? Free_Trial_Accepted { get; set; }
+        public string? Invite_Id { get; set; }
+        public bool? Is_Private { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class ConversationsAcceptSharedInviteResponse : RestApiResponse
     {
@@ -21,7 +21,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.acceptSharedInvite
         /// </summary>
-        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string channel_Name)
+        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string? channel_Name)
         {
             var p = new ConversationsAcceptSharedInviteParameter();
             p.Channel_Name = channel_Name;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.acceptSharedInvite
         /// </summary>
-        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string channel_Name, CancellationToken cancellationToken)
+        public async Task<ConversationsAcceptSharedInviteResponse> ConversationsAcceptSharedInviteAsync(string? channel_Name, CancellationToken cancellationToken)
         {
             var p = new ConversationsAcceptSharedInviteParameter();
             p.Channel_Name = channel_Name;

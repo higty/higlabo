@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class GrouplifecyclePolicyListResponse : RestApiResponse
     {
-        public GroupLifecyclePolicy[] Value { get; set; }
+        public GroupLifecyclePolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

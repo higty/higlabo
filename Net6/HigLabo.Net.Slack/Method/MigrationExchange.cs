@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "migration.exchange";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Users { get; set; }
-        public string Team_Id { get; set; }
-        public bool To_Old { get; set; }
+        public string? Users { get; set; }
+        public string? Team_Id { get; set; }
+        public bool? To_Old { get; set; }
     }
     public partial class MigrationExchangeResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/migration.exchange
         /// </summary>
-        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(string users)
+        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(string? users)
         {
             var p = new MigrationExchangeParameter();
             p.Users = users;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/migration.exchange
         /// </summary>
-        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(string users, CancellationToken cancellationToken)
+        public async Task<MigrationExchangeResponse> MigrationExchangeAsync(string? users, CancellationToken cancellationToken)
         {
             var p = new MigrationExchangeParameter();
             p.Users = users;

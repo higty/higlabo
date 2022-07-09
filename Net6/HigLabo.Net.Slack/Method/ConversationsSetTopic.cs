@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.setTopic";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Topic { get; set; }
+        public string? Channel { get; set; }
+        public string? Topic { get; set; }
     }
     public partial class ConversationsSetTopicResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setTopic
         /// </summary>
-        public async Task<ConversationsSetTopicResponse> ConversationsSetTopicAsync(string channel, string topic)
+        public async Task<ConversationsSetTopicResponse> ConversationsSetTopicAsync(string? channel, string? topic)
         {
             var p = new ConversationsSetTopicParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.setTopic
         /// </summary>
-        public async Task<ConversationsSetTopicResponse> ConversationsSetTopicAsync(string channel, string topic, CancellationToken cancellationToken)
+        public async Task<ConversationsSetTopicResponse> ConversationsSetTopicAsync(string? channel, string? topic, CancellationToken cancellationToken)
         {
             var p = new ConversationsSetTopicParameter();
             p.Channel = channel;

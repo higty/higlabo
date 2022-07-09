@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "tooling.tokens.rotate";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Refresh_Token { get; set; }
+        public string? Refresh_Token { get; set; }
     }
     public partial class ToolingTokensRotateResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/tooling.tokens.rotate
         /// </summary>
-        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string refresh_Token)
+        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string? refresh_Token)
         {
             var p = new ToolingTokensRotateParameter();
             p.Refresh_Token = refresh_Token;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/tooling.tokens.rotate
         /// </summary>
-        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string refresh_Token, CancellationToken cancellationToken)
+        public async Task<ToolingTokensRotateResponse> ToolingTokensRotateAsync(string? refresh_Token, CancellationToken cancellationToken)
         {
             var p = new ToolingTokensRotateParameter();
             p.Refresh_Token = refresh_Token;

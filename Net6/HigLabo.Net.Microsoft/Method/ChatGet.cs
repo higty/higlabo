@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ChatId { get; set; }
-            public string UserIdOrUserPrincipalName { get; set; }
+            public string? ChatId { get; set; }
+            public string? UserIdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public Chat[] Value { get; set; }
+        public Chat[]? Value { get; set; }
         public ChatChatType ChatType { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }

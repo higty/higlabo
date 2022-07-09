@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SiteId { get; set; }
-            public string ListId { get; set; }
+            public string? SiteId { get; set; }
+            public string? ListId { get; set; }
 
             public string GetApiPath()
             {
@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ListListOperationsResponse : RestApiResponse
     {
-        public RichLongRunningOperation[] Value { get; set; }
+        public RichLongRunningOperation[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

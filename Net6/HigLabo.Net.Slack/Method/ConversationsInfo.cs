@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.info";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channel { get; set; }
-        public bool Include_Locale { get; set; }
-        public bool Include_Num_Members { get; set; }
+        public string? Channel { get; set; }
+        public bool? Include_Locale { get; set; }
+        public bool? Include_Num_Members { get; set; }
     }
     public partial class ConversationsInfoResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.info
         /// </summary>
-        public async Task<ConversationsInfoResponse> ConversationsInfoAsync(string channel)
+        public async Task<ConversationsInfoResponse> ConversationsInfoAsync(string? channel)
         {
             var p = new ConversationsInfoParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.info
         /// </summary>
-        public async Task<ConversationsInfoResponse> ConversationsInfoAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsInfoResponse> ConversationsInfoAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsInfoParameter();
             p.Channel = channel;

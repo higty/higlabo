@@ -49,7 +49,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DirectoryroletemplateListResponse : RestApiResponse
     {
-        public DirectoryRoleTemplate[] Value { get; set; }
+        public DirectoryRoleTemplate[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

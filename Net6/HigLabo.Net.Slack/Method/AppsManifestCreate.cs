@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "apps.manifest.create";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Manifest { get; set; }
+        public string? Manifest { get; set; }
     }
     public partial class AppsManifestCreateResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.create
         /// </summary>
-        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(string manifest)
+        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(string? manifest)
         {
             var p = new AppsManifestCreateParameter();
             p.Manifest = manifest;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.create
         /// </summary>
-        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(string manifest, CancellationToken cancellationToken)
+        public async Task<AppsManifestCreateResponse> AppsManifestCreateAsync(string? manifest, CancellationToken cancellationToken)
         {
             var p = new AppsManifestCreateParameter();
             p.Manifest = manifest;

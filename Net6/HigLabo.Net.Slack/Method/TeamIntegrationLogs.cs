@@ -6,13 +6,13 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "team.integrationLogs";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string App_Id { get; set; }
-        public string Change_Type { get; set; }
-        public string Count { get; set; }
-        public string Page { get; set; }
-        public string Service_Id { get; set; }
-        public string Team_Id { get; set; }
-        public string User { get; set; }
+        public string? App_Id { get; set; }
+        public string? Change_Type { get; set; }
+        public string? Count { get; set; }
+        public string? Page { get; set; }
+        public string? Service_Id { get; set; }
+        public string? Team_Id { get; set; }
+        public string? User { get; set; }
     }
     public partial class TeamIntegrationLogsResponse : RestApiResponse
     {

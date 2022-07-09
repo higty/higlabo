@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
 
             public string GetApiPath()
             {
@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class Fido2authenticationmethodListResponse : RestApiResponse
     {
-        public Fido2AuthenticationMethod[] Value { get; set; }
+        public Fido2AuthenticationMethod[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

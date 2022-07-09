@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CrosstenantAccessPolicyListPartnersResponse : RestApiResponse
     {
-        public CrossTenantAccessPolicyConfigurationPartner[] Value { get; set; }
+        public CrossTenantAccessPolicyConfigurationPartner[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

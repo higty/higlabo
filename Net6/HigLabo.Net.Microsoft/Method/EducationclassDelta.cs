@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationclassDeltaResponse : RestApiResponse
     {
-        public EducationClass[] Value { get; set; }
+        public EducationClass[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

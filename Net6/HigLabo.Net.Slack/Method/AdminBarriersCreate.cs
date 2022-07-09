@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.barriers.create";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Barriered_From_Usergroup_Ids { get; set; }
-        public string Primary_Usergroup_Id { get; set; }
-        public string Restricted_Subjects { get; set; }
+        public string? Barriered_From_Usergroup_Ids { get; set; }
+        public string? Primary_Usergroup_Id { get; set; }
+        public string? Restricted_Subjects { get; set; }
     }
     public partial class AdminBarriersCreateResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.create
         /// </summary>
-        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects)
+        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects)
         {
             var p = new AdminBarriersCreateParameter();
             p.Barriered_From_Usergroup_Ids = barriered_From_Usergroup_Ids;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.barriers.create
         /// </summary>
-        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects, CancellationToken cancellationToken)
+        public async Task<AdminBarriersCreateResponse> AdminBarriersCreateAsync(string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersCreateParameter();
             p.Barriered_From_Usergroup_Ids = barriered_From_Usergroup_Ids;

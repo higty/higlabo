@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "workflows.stepCompleted";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Workflow_Step_Execute_Id { get; set; }
+        public string? Workflow_Step_Execute_Id { get; set; }
         public object? Outputs { get; set; }
     }
     public partial class WorkflowsStepCompletedResponse : RestApiResponse
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.stepCompleted
         /// </summary>
-        public async Task<WorkflowsStepCompletedResponse> WorkflowsStepCompletedAsync(string workflow_Step_Execute_Id)
+        public async Task<WorkflowsStepCompletedResponse> WorkflowsStepCompletedAsync(string? workflow_Step_Execute_Id)
         {
             var p = new WorkflowsStepCompletedParameter();
             p.Workflow_Step_Execute_Id = workflow_Step_Execute_Id;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/workflows.stepCompleted
         /// </summary>
-        public async Task<WorkflowsStepCompletedResponse> WorkflowsStepCompletedAsync(string workflow_Step_Execute_Id, CancellationToken cancellationToken)
+        public async Task<WorkflowsStepCompletedResponse> WorkflowsStepCompletedAsync(string? workflow_Step_Execute_Id, CancellationToken cancellationToken)
         {
             var p = new WorkflowsStepCompletedParameter();
             p.Workflow_Step_Execute_Id = workflow_Step_Execute_Id;

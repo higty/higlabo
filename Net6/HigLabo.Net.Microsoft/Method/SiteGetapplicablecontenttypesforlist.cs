@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SiteId { get; set; }
+            public string? SiteId { get; set; }
 
             public string GetApiPath()
             {
@@ -87,7 +87,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SiteGetapplicableContentTypesforlistResponse : RestApiResponse
     {
-        public ContentType[] Value { get; set; }
+        public ContentType[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

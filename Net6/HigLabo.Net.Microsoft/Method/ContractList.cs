@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ContractListResponse : RestApiResponse
     {
-        public Contract[] Value { get; set; }
+        public Contract[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TermsofusecontainerListAgreementsResponse : RestApiResponse
     {
-        public Agreement[] Value { get; set; }
+        public Agreement[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string GroupId { get; set; }
-            public string SiteId { get; set; }
-            public string UserId { get; set; }
+            public string? GroupId { get; set; }
+            public string? SiteId { get; set; }
+            public string? UserId { get; set; }
 
             public string GetApiPath()
             {
@@ -74,7 +74,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DriveListResponse : RestApiResponse
     {
-        public Drive[] Value { get; set; }
+        public Drive[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

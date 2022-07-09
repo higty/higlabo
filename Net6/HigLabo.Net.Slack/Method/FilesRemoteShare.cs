@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "files.remote.share";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Channels { get; set; }
-        public string External_Id { get; set; }
-        public string File { get; set; }
+        public string? Channels { get; set; }
+        public string? External_Id { get; set; }
+        public string? File { get; set; }
     }
     public partial class FilesRemoteShareResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.share
         /// </summary>
-        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(string channels)
+        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(string? channels)
         {
             var p = new FilesRemoteShareParameter();
             p.Channels = channels;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/files.remote.share
         /// </summary>
-        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(string channels, CancellationToken cancellationToken)
+        public async Task<FilesRemoteShareResponse> FilesRemoteShareAsync(string? channels, CancellationToken cancellationToken)
         {
             var p = new FilesRemoteShareParameter();
             p.Channels = channels;

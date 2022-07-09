@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationUserListRubricsResponse : RestApiResponse
     {
-        public EducationRubric[] Value { get; set; }
+        public EducationRubric[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

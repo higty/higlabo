@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SiteId { get; set; }
-            public string ItemId { get; set; }
-            public string ListId { get; set; }
+            public string? SiteId { get; set; }
+            public string? ItemId { get; set; }
+            public string? ListId { get; set; }
 
             public string GetApiPath()
             {
@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ListitemListVersionsResponse : RestApiResponse
     {
-        public ListItemVersion[] Value { get; set; }
+        public ListItemVersion[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.getPresence";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string User { get; set; }
+        public string? User { get; set; }
     }
     public partial class UsersGetPresenceResponse : RestApiResponse
     {

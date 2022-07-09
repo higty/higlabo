@@ -64,7 +64,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BookingbusinessListResponse : RestApiResponse
     {
-        public BookingBusiness[] Value { get; set; }
+        public BookingBusiness[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

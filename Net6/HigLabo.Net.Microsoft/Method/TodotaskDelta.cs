@@ -7,9 +7,9 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
-            public string TodoTaskListId { get; set; }
+            public string? Id { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
+            public string? TodoTaskListId { get; set; }
 
             public string GetApiPath()
             {
@@ -68,7 +68,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TodotaskDeltaResponse : RestApiResponse
     {
-        public TodoTask[] Value { get; set; }
+        public TodoTask[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

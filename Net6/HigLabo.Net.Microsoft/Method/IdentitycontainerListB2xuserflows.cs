@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentitycontainerListB2xUserflowsResponse : RestApiResponse
     {
-        public B2xIdentityUserFlow[] Value { get; set; }
+        public B2xIdentityUserFlow[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

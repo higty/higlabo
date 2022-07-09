@@ -6,15 +6,15 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "chat.unfurl";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Ts { get; set; }
-        public string Unfurls { get; set; }
-        public string Source { get; set; }
-        public string Unfurl_Id { get; set; }
-        public string User_Auth_Blocks { get; set; }
-        public string User_Auth_Message { get; set; }
-        public bool User_Auth_Required { get; set; }
-        public string User_Auth_Url { get; set; }
+        public string? Channel { get; set; }
+        public string? Ts { get; set; }
+        public string? Unfurls { get; set; }
+        public string? Source { get; set; }
+        public string? Unfurl_Id { get; set; }
+        public string? User_Auth_Blocks { get; set; }
+        public string? User_Auth_Message { get; set; }
+        public bool? User_Auth_Required { get; set; }
+        public string? User_Auth_Url { get; set; }
     }
     public partial class ChatUnfurlResponse : RestApiResponse
     {
@@ -24,7 +24,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.unfurl
         /// </summary>
-        public async Task<ChatUnfurlResponse> ChatUnfurlAsync(string channel, string ts, string unfurls)
+        public async Task<ChatUnfurlResponse> ChatUnfurlAsync(string? channel, string? ts, string? unfurls)
         {
             var p = new ChatUnfurlParameter();
             p.Channel = channel;
@@ -35,7 +35,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.unfurl
         /// </summary>
-        public async Task<ChatUnfurlResponse> ChatUnfurlAsync(string channel, string ts, string unfurls, CancellationToken cancellationToken)
+        public async Task<ChatUnfurlResponse> ChatUnfurlAsync(string? channel, string? ts, string? unfurls, CancellationToken cancellationToken)
         {
             var p = new ChatUnfurlParameter();
             p.Channel = channel;

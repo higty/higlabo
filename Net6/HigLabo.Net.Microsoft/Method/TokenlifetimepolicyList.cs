@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TokenlifetimePolicyListResponse : RestApiResponse
     {
-        public TokenLifetimePolicy[] Value { get; set; }
+        public TokenLifetimePolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

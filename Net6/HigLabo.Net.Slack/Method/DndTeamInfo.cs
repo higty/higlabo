@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "dnd.teamInfo";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Users { get; set; }
-        public string Team_Id { get; set; }
+        public string? Users { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class DndTeamInfoResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.teamInfo
         /// </summary>
-        public async Task<DndTeamInfoResponse> DndTeamInfoAsync(string users)
+        public async Task<DndTeamInfoResponse> DndTeamInfoAsync(string? users)
         {
             var p = new DndTeamInfoParameter();
             p.Users = users;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dnd.teamInfo
         /// </summary>
-        public async Task<DndTeamInfoResponse> DndTeamInfoAsync(string users, CancellationToken cancellationToken)
+        public async Task<DndTeamInfoResponse> DndTeamInfoAsync(string? users, CancellationToken cancellationToken)
         {
             var p = new DndTeamInfoParameter();
             p.Users = users;

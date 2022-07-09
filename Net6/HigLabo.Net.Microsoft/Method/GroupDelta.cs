@@ -111,7 +111,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class GroupDeltaResponse : RestApiResponse
     {
-        public Group[] Value { get; set; }
+        public Group[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

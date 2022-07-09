@@ -6,13 +6,13 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "search.all";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Query { get; set; }
-        public int Count { get; set; }
-        public bool Highlight { get; set; }
-        public int Page { get; set; }
+        public string? Query { get; set; }
+        public int? Count { get; set; }
+        public bool? Highlight { get; set; }
+        public int? Page { get; set; }
         public Sort Sort { get; set; }
         public SortDirection Sort_Dir { get; set; }
-        public string Team_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class SearchAllResponse : RestApiResponse
     {
@@ -22,7 +22,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.all
         /// </summary>
-        public async Task<SearchAllResponse> SearchAllAsync(string query)
+        public async Task<SearchAllResponse> SearchAllAsync(string? query)
         {
             var p = new SearchAllParameter();
             p.Query = query;
@@ -31,7 +31,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/search.all
         /// </summary>
-        public async Task<SearchAllResponse> SearchAllAsync(string query, CancellationToken cancellationToken)
+        public async Task<SearchAllResponse> SearchAllAsync(string? query, CancellationToken cancellationToken)
         {
             var p = new SearchAllParameter();
             p.Query = query;

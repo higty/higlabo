@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.kick";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string User { get; set; }
+        public string? Channel { get; set; }
+        public string? User { get; set; }
     }
     public partial class ConversationsKickResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.kick
         /// </summary>
-        public async Task<ConversationsKickResponse> ConversationsKickAsync(string channel, string user)
+        public async Task<ConversationsKickResponse> ConversationsKickAsync(string? channel, string? user)
         {
             var p = new ConversationsKickParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.kick
         /// </summary>
-        public async Task<ConversationsKickResponse> ConversationsKickAsync(string channel, string user, CancellationToken cancellationToken)
+        public async Task<ConversationsKickResponse> ConversationsKickAsync(string? channel, string? user, CancellationToken cancellationToken)
         {
             var p = new ConversationsKickParameter();
             p.Channel = channel;

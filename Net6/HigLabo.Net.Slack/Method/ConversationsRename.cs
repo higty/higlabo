@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.rename";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Name { get; set; }
+        public string? Channel { get; set; }
+        public string? Name { get; set; }
     }
     public partial class ConversationsRenameResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.rename
         /// </summary>
-        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string channel, string name)
+        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string? channel, string? name)
         {
             var p = new ConversationsRenameParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.rename
         /// </summary>
-        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string channel, string name, CancellationToken cancellationToken)
+        public async Task<ConversationsRenameResponse> ConversationsRenameAsync(string? channel, string? name, CancellationToken cancellationToken)
         {
             var p = new ConversationsRenameParameter();
             p.Channel = channel;

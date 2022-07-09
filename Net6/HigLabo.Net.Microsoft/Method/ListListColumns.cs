@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SiteId { get; set; }
-            public string ListId { get; set; }
+            public string? SiteId { get; set; }
+            public string? ListId { get; set; }
 
             public string GetApiPath()
             {
@@ -81,7 +81,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ListListColumnsResponse : RestApiResponse
     {
-        public ColumnDefinition[] Value { get; set; }
+        public ColumnDefinition[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

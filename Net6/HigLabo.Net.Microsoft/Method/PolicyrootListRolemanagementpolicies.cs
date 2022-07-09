@@ -56,7 +56,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PolicyRootListRoleManagementpoliciesResponse : RestApiResponse
     {
-        public UnifiedRoleManagementPolicy[] Value { get; set; }
+        public UnifiedRoleManagementPolicy[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

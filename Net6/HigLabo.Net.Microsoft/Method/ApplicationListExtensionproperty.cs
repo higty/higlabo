@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ApplicationObjectId { get; set; }
+            public string? ApplicationObjectId { get; set; }
 
             public string GetApiPath()
             {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ApplicationListExtensionpropertyResponse : RestApiResponse
     {
-        public ExtensionProperty[] Value { get; set; }
+        public ExtensionProperty[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

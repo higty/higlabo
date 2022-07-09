@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.invite";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public string User_Ids { get; set; }
+        public string? Channel_Id { get; set; }
+        public string? User_Ids { get; set; }
     }
     public partial class AdminConversationsInviteResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.invite
         /// </summary>
-        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string channel_Id, string user_Ids)
+        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string? channel_Id, string? user_Ids)
         {
             var p = new AdminConversationsInviteParameter();
             p.Channel_Id = channel_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.invite
         /// </summary>
-        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string channel_Id, string user_Ids, CancellationToken cancellationToken)
+        public async Task<AdminConversationsInviteResponse> AdminConversationsInviteAsync(string? channel_Id, string? user_Ids, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsInviteParameter();
             p.Channel_Id = channel_Id;

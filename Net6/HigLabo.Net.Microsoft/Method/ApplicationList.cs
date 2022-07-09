@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ApplicationListResponse : RestApiResponse
     {
-        public Application[] Value { get; set; }
+        public Application[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

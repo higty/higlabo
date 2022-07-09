@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BookingcurrencyListResponse : RestApiResponse
     {
-        public BookingCurrency[] Value { get; set; }
+        public BookingCurrency[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "apps.manifest.delete";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string App_Id { get; set; }
+        public string? App_Id { get; set; }
     }
     public partial class AppsManifestDeleteResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.delete
         /// </summary>
-        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string app_Id)
+        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string? app_Id)
         {
             var p = new AppsManifestDeleteParameter();
             p.App_Id = app_Id;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.manifest.delete
         /// </summary>
-        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string app_Id, CancellationToken cancellationToken)
+        public async Task<AppsManifestDeleteResponse> AppsManifestDeleteAsync(string? app_Id, CancellationToken cancellationToken)
         {
             var p = new AppsManifestDeleteParameter();
             p.App_Id = app_Id;

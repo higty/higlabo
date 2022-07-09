@@ -36,7 +36,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CloudcommunicationsGetpresencesbyUseridResponse : RestApiResponse
     {
-        public Presence[] Value { get; set; }
+        public Presence[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

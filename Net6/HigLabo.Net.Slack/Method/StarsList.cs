@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "stars.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public int Count { get; set; }
-        public string Cursor { get; set; }
+        public int? Count { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -19,9 +19,9 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int Limit { get; set; }
-        public int Page { get; set; }
-        public string Team_Id { get; set; }
+        public int? Limit { get; set; }
+        public int? Page { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class StarsListResponse : RestApiResponse
     {

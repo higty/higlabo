@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ConditionalAccessRootListNamedLocationsResponse : RestApiResponse
     {
-        public NamedLocation[] Value { get; set; }
+        public NamedLocation[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
@@ -66,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public CallrecordsSession[] Value { get; set; }
+        public CallrecordsSession[]? Value { get; set; }
         public string? Id { get; set; }
         public CallrecordsEndpoint? Caller { get; set; }
         public CallrecordsEndpoint? Callee { get; set; }

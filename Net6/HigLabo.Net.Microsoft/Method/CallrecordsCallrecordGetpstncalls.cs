@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CallrecordsCallrecordGetpstncallsResponse : RestApiResponse
     {
-        public CallrecordsPstncalllogrow[] Value { get; set; }
+        public CallrecordsPstncalllogrow[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

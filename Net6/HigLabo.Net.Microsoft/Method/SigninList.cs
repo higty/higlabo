@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SigninListResponse : RestApiResponse
     {
-        public SignIn[] Value { get; set; }
+        public SignIn[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

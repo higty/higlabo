@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string TeamId { get; set; }
+            public string? TeamId { get; set; }
 
             public string GetApiPath()
             {
@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ScheduleListTimeoffreasonsResponse : RestApiResponse
     {
-        public TimeOffReason[] Value { get; set; }
+        public TimeOffReason[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

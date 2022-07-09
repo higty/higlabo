@@ -6,10 +6,10 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "stars.remove";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string File { get; set; }
-        public string File_Comment { get; set; }
-        public string Timestamp { get; set; }
+        public string? Channel { get; set; }
+        public string? File { get; set; }
+        public string? File_Comment { get; set; }
+        public string? Timestamp { get; set; }
     }
     public partial class StarsRemoveResponse : RestApiResponse
     {

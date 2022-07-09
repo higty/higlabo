@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.leave";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
+        public string? Channel { get; set; }
     }
     public partial class ConversationsLeaveResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.leave
         /// </summary>
-        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(string channel)
+        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(string? channel)
         {
             var p = new ConversationsLeaveParameter();
             p.Channel = channel;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.leave
         /// </summary>
-        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsLeaveResponse> ConversationsLeaveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsLeaveParameter();
             p.Channel = channel;

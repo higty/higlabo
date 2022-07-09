@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DirectoryListAdministrativeunitsResponse : RestApiResponse
     {
-        public AdministrativeUnit[] Value { get; set; }
+        public AdministrativeUnit[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

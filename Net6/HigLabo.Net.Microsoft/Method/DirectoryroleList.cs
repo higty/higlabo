@@ -52,7 +52,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DirectoryroleListResponse : RestApiResponse
     {
-        public DirectoryRole[] Value { get; set; }
+        public DirectoryRole[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

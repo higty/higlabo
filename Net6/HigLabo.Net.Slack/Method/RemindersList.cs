@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "reminders.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Team_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class RemindersListResponse : RestApiResponse
     {

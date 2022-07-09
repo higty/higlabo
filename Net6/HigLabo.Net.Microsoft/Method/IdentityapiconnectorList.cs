@@ -50,7 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentityapiConnectorListResponse : RestApiResponse
     {
-        public IdentityApiConnector[] Value { get; set; }
+        public IdentityApiConnector[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

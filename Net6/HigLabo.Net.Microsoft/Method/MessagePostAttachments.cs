@@ -7,13 +7,13 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string Id { get; set; }
-            public string IdOrUserPrincipalName { get; set; }
-            public string MailFoldersId { get; set; }
-            public string MessagesId { get; set; }
-            public string UsersIdOrUserPrincipalName { get; set; }
-            public string ChildFoldersId { get; set; }
-            public string AttachmentsId { get; set; }
+            public string? Id { get; set; }
+            public string? IdOrUserPrincipalName { get; set; }
+            public string? MailFoldersId { get; set; }
+            public string? MessagesId { get; set; }
+            public string? UsersIdOrUserPrincipalName { get; set; }
+            public string? ChildFoldersId { get; set; }
+            public string? AttachmentsId { get; set; }
 
             public string GetApiPath()
             {

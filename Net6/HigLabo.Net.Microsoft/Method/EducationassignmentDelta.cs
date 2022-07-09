@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string EducationClassId { get; set; }
-            public string EducationUserId { get; set; }
+            public string? EducationClassId { get; set; }
+            public string? EducationUserId { get; set; }
 
             public string GetApiPath()
             {
@@ -76,7 +76,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationAssignmentDeltaResponse : RestApiResponse
     {
-        public EducationAssignment[] Value { get; set; }
+        public EducationAssignment[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

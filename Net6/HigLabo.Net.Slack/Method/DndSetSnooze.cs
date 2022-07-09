@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "dnd.setSnooze";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Num_Minutes { get; set; }
+        public string? Num_Minutes { get; set; }
     }
     public partial class DndSetSnoozeResponse : RestApiResponse
     {

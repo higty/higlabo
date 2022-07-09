@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "dialog.open";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Dialog { get; set; }
-        public string Trigger_Id { get; set; }
+        public string? Dialog { get; set; }
+        public string? Trigger_Id { get; set; }
     }
     public partial class DialogOpenResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dialog.open
         /// </summary>
-        public async Task<DialogOpenResponse> DialogOpenAsync(string dialog, string trigger_Id)
+        public async Task<DialogOpenResponse> DialogOpenAsync(string? dialog, string? trigger_Id)
         {
             var p = new DialogOpenParameter();
             p.Dialog = dialog;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/dialog.open
         /// </summary>
-        public async Task<DialogOpenResponse> DialogOpenAsync(string dialog, string trigger_Id, CancellationToken cancellationToken)
+        public async Task<DialogOpenResponse> DialogOpenAsync(string? dialog, string? trigger_Id, CancellationToken cancellationToken)
         {
             var p = new DialogOpenParameter();
             p.Dialog = dialog;

@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.setPresence";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Presence { get; set; }
+        public string? Presence { get; set; }
     }
     public partial class UsersSetPresenceResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setPresence
         /// </summary>
-        public async Task<UsersSetPresenceResponse> UsersSetPresenceAsync(string presence)
+        public async Task<UsersSetPresenceResponse> UsersSetPresenceAsync(string? presence)
         {
             var p = new UsersSetPresenceParameter();
             p.Presence = presence;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.setPresence
         /// </summary>
-        public async Task<UsersSetPresenceResponse> UsersSetPresenceAsync(string presence, CancellationToken cancellationToken)
+        public async Task<UsersSetPresenceResponse> UsersSetPresenceAsync(string? presence, CancellationToken cancellationToken)
         {
             var p = new UsersSetPresenceParameter();
             p.Presence = presence;

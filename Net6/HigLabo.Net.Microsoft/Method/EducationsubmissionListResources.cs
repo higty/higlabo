@@ -46,7 +46,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationsubmissionListResourcesResponse : RestApiResponse
     {
-        public EducationSubmissionResource[] Value { get; set; }
+        public EducationSubmissionResource[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

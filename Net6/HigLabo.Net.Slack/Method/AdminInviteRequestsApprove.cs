@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.inviteRequests.approve";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Invite_Request_Id { get; set; }
-        public string Team_Id { get; set; }
+        public string? Invite_Request_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminInviteRequestsApproveResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.approve
         /// </summary>
-        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string invite_Request_Id)
+        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string? invite_Request_Id)
         {
             var p = new AdminInviteRequestsApproveParameter();
             p.Invite_Request_Id = invite_Request_Id;
@@ -26,7 +26,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.inviteRequests.approve
         /// </summary>
-        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string invite_Request_Id, CancellationToken cancellationToken)
+        public async Task<AdminInviteRequestsApproveResponse> AdminInviteRequestsApproveAsync(string? invite_Request_Id, CancellationToken cancellationToken)
         {
             var p = new AdminInviteRequestsApproveParameter();
             p.Invite_Request_Id = invite_Request_Id;

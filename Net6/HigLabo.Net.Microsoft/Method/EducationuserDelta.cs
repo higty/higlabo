@@ -83,7 +83,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationUserDeltaResponse : RestApiResponse
     {
-        public EducationUser[] Value { get; set; }
+        public EducationUser[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "chat.deleteScheduledMessage";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Scheduled_Message_Id { get; set; }
-        public bool As_User { get; set; }
+        public string? Channel { get; set; }
+        public string? Scheduled_Message_Id { get; set; }
+        public bool? As_User { get; set; }
     }
     public partial class ChatDeleteScheduledMessageResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.deleteScheduledMessage
         /// </summary>
-        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string channel, string scheduled_Message_Id)
+        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string? channel, string? scheduled_Message_Id)
         {
             var p = new ChatDeleteScheduledMessageParameter();
             p.Channel = channel;
@@ -28,7 +28,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.deleteScheduledMessage
         /// </summary>
-        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string channel, string scheduled_Message_Id, CancellationToken cancellationToken)
+        public async Task<ChatDeleteScheduledMessageResponse> ChatDeleteScheduledMessageAsync(string? channel, string? scheduled_Message_Id, CancellationToken cancellationToken)
         {
             var p = new ChatDeleteScheduledMessageParameter();
             p.Channel = channel;

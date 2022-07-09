@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.admins.list";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Team_Id { get; set; }
-        public string Cursor { get; set; }
+        public string? Team_Id { get; set; }
+        public string? Cursor { get; set; }
         string IRestApiPagingParameter.NextPageToken
         {
             get
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Slack
                 this.Cursor = value;
             }
         }
-        public int Limit { get; set; }
+        public int? Limit { get; set; }
     }
     public partial class AdminTeamsAdminsListResponse : RestApiResponse
     {
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string team_Id)
+        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string? team_Id)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminTeamsAdminsListResponse> AdminTeamsAdminsListAsync(string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -61,7 +61,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string team_Id, PagingContext<AdminTeamsAdminsListResponse> context)
+        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string? team_Id, PagingContext<AdminTeamsAdminsListResponse> context)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;
@@ -70,7 +70,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.admins.list
         /// </summary>
-        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string team_Id, PagingContext<AdminTeamsAdminsListResponse> context, CancellationToken cancellationToken)
+        public async Task<List<AdminTeamsAdminsListResponse>> AdminTeamsAdminsListAsync(string? team_Id, PagingContext<AdminTeamsAdminsListResponse> context, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsAdminsListParameter();
             p.Team_Id = team_Id;

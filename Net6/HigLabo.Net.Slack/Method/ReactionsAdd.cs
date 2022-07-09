@@ -6,9 +6,9 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "reactions.add";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Name { get; set; }
-        public string Timestamp { get; set; }
+        public string? Channel { get; set; }
+        public string? Name { get; set; }
+        public string? Timestamp { get; set; }
     }
     public partial class ReactionsAddResponse : RestApiResponse
     {
@@ -18,7 +18,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.add
         /// </summary>
-        public async Task<ReactionsAddResponse> ReactionsAddAsync(string channel, string name, string timestamp)
+        public async Task<ReactionsAddResponse> ReactionsAddAsync(string? channel, string? name, string? timestamp)
         {
             var p = new ReactionsAddParameter();
             p.Channel = channel;
@@ -29,7 +29,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/reactions.add
         /// </summary>
-        public async Task<ReactionsAddResponse> ReactionsAddAsync(string channel, string name, string timestamp, CancellationToken cancellationToken)
+        public async Task<ReactionsAddResponse> ReactionsAddAsync(string? channel, string? name, string? timestamp, CancellationToken cancellationToken)
         {
             var p = new ReactionsAddParameter();
             p.Channel = channel;

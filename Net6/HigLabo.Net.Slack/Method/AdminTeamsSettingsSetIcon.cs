@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.setIcon";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Image_Url { get; set; }
-        public string Team_Id { get; set; }
+        public string? Image_Url { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsSetIconResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setIcon
         /// </summary>
-        public async Task<AdminTeamsSettingsSetIconResponse> AdminTeamsSettingsSetIconAsync(string image_Url, string team_Id)
+        public async Task<AdminTeamsSettingsSetIconResponse> AdminTeamsSettingsSetIconAsync(string? image_Url, string? team_Id)
         {
             var p = new AdminTeamsSettingsSetIconParameter();
             p.Image_Url = image_Url;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.setIcon
         /// </summary>
-        public async Task<AdminTeamsSettingsSetIconResponse> AdminTeamsSettingsSetIconAsync(string image_Url, string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminTeamsSettingsSetIconResponse> AdminTeamsSettingsSetIconAsync(string? image_Url, string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsSetIconParameter();
             p.Image_Url = image_Url;

@@ -58,7 +58,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DirectoryauditListResponse : RestApiResponse
     {
-        public DirectoryAudit[] Value { get; set; }
+        public DirectoryAudit[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

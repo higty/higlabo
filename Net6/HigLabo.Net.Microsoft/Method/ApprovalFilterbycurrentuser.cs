@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ApprovalFilterbycurrentUserResponse : RestApiResponse
     {
-        public Approval[] Value { get; set; }
+        public Approval[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

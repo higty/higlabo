@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.unarchive";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
+        public string? Channel { get; set; }
     }
     public partial class ConversationsUnarchiveResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.unarchive
         /// </summary>
-        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string channel)
+        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string? channel)
         {
             var p = new ConversationsUnarchiveParameter();
             p.Channel = channel;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.unarchive
         /// </summary>
-        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsUnarchiveResponse> ConversationsUnarchiveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsUnarchiveParameter();
             p.Channel = channel;

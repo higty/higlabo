@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.setConversationPrefs";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel_Id { get; set; }
-        public string Prefs { get; set; }
+        public string? Channel_Id { get; set; }
+        public string? Prefs { get; set; }
     }
     public partial class AdminConversationsSetConversationPrefsResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string channel_Id, string prefs)
+        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string? channel_Id, string? prefs)
         {
             var p = new AdminConversationsSetConversationPrefsParameter();
             p.Channel_Id = channel_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.setConversationPrefs
         /// </summary>
-        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string channel_Id, string prefs, CancellationToken cancellationToken)
+        public async Task<AdminConversationsSetConversationPrefsResponse> AdminConversationsSetConversationPrefsAsync(string? channel_Id, string? prefs, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsSetConversationPrefsParameter();
             p.Channel_Id = channel_Id;

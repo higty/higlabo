@@ -54,7 +54,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class DirectoryDeleteditemsListResponse : RestApiResponse
     {
-        public DirectoryObject[] Value { get; set; }
+        public DirectoryObject[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

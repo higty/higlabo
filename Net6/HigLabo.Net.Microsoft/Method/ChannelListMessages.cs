@@ -7,8 +7,8 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string TeamId { get; set; }
-            public string ChannelId { get; set; }
+            public string? TeamId { get; set; }
+            public string? ChannelId { get; set; }
 
             public string GetApiPath()
             {
@@ -72,7 +72,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChannelListMessagesResponse : RestApiResponse
     {
-        public ChatMessage[] Value { get; set; }
+        public ChatMessage[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -57,7 +57,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class RbacapplicationListRoleAssignmentsResponse : RestApiResponse
     {
-        public UnifiedRoleAssignment[] Value { get; set; }
+        public UnifiedRoleAssignment[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string ServiceUpdateMessageId { get; set; }
+            public string? ServiceUpdateMessageId { get; set; }
 
             public string GetApiPath()
             {
@@ -53,7 +53,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ServiceupdatemessageListAttachmentsResponse : RestApiResponse
     {
-        public ServiceAnnouncementAttachment[] Value { get; set; }
+        public ServiceAnnouncementAttachment[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

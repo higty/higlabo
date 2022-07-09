@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class InformationProtectionListThreatassessmentrequestsResponse : RestApiResponse
     {
-        public ThreatAssessmentRequest[] Value { get; set; }
+        public ThreatAssessmentRequest[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

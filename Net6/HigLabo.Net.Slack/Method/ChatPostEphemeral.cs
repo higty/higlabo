@@ -6,18 +6,18 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "chat.postEphemeral";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Text { get; set; }
-        public string User { get; set; }
-        public bool As_User { get; set; }
-        public string Attachments { get; set; }
-        public string Blocks { get; set; }
-        public string Icon_Emoji { get; set; }
-        public string Icon_Url { get; set; }
-        public bool Link_Names { get; set; }
-        public string Parse { get; set; }
-        public string Thread_Ts { get; set; }
-        public string Username { get; set; }
+        public string? Channel { get; set; }
+        public string? Text { get; set; }
+        public string? User { get; set; }
+        public bool? As_User { get; set; }
+        public string? Attachments { get; set; }
+        public string? Blocks { get; set; }
+        public string? Icon_Emoji { get; set; }
+        public string? Icon_Url { get; set; }
+        public bool? Link_Names { get; set; }
+        public string? Parse { get; set; }
+        public string? Thread_Ts { get; set; }
+        public string? Username { get; set; }
     }
     public partial class ChatPostEphemeralResponse : RestApiResponse
     {
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string channel, string text, string user)
+        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user)
         {
             var p = new ChatPostEphemeralParameter();
             p.Channel = channel;
@@ -38,7 +38,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/chat.postEphemeral
         /// </summary>
-        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string channel, string text, string user, CancellationToken cancellationToken)
+        public async Task<ChatPostEphemeralResponse> ChatPostEphemeralAsync(string? channel, string? text, string? user, CancellationToken cancellationToken)
         {
             var p = new ChatPostEphemeralParameter();
             p.Channel = channel;

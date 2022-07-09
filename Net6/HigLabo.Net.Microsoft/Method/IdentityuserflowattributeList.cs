@@ -51,7 +51,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentityUserflowattributeListResponse : RestApiResponse
     {
-        public IdentityUserFlowAttribute[] Value { get; set; }
+        public IdentityUserFlowAttribute[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

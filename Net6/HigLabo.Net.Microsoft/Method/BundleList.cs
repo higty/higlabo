@@ -48,7 +48,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BundleListResponse : RestApiResponse
     {
-        public Bundle[] Value { get; set; }
+        public Bundle[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

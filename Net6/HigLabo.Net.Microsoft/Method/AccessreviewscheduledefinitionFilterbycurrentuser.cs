@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccessreviewscheduledefinitionFilterbycurrentUserResponse : RestApiResponse
     {
-        public AccessReviewScheduleDefinition[] Value { get; set; }
+        public AccessReviewScheduleDefinition[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

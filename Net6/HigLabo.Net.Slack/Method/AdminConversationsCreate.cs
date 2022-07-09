@@ -6,11 +6,11 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.conversations.create";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public bool Is_Private { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool Org_Wide { get; set; }
-        public string Team_Id { get; set; }
+        public bool? Is_Private { get; set; }
+        public string? Name { get; set; }
+        public string? Description { get; set; }
+        public bool? Org_Wide { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminConversationsCreateResponse : RestApiResponse
     {
@@ -20,7 +20,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.create
         /// </summary>
-        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool is_Private, string name)
+        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool? is_Private, string? name)
         {
             var p = new AdminConversationsCreateParameter();
             p.Is_Private = is_Private;
@@ -30,7 +30,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.conversations.create
         /// </summary>
-        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool is_Private, string name, CancellationToken cancellationToken)
+        public async Task<AdminConversationsCreateResponse> AdminConversationsCreateAsync(bool? is_Private, string? name, CancellationToken cancellationToken)
         {
             var p = new AdminConversationsCreateParameter();
             p.Is_Private = is_Private;

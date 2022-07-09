@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string SamlOrWsFedExternalDomainFederationID { get; set; }
+            public string? SamlOrWsFedExternalDomainFederationID { get; set; }
 
             public string GetApiPath()
             {
@@ -47,7 +47,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SamlorwsfedexternaldomainfederationListDomainsResponse : RestApiResponse
     {
-        public ExternalDomainName[] Value { get; set; }
+        public ExternalDomainName[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

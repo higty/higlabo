@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "apps.uninstall";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Client_Id { get; set; }
-        public string Client_Secret { get; set; }
+        public string? Client_Id { get; set; }
+        public string? Client_Secret { get; set; }
     }
     public partial class AppsUninstallResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.uninstall
         /// </summary>
-        public async Task<AppsUninstallResponse> AppsUninstallAsync(string client_Id, string client_Secret)
+        public async Task<AppsUninstallResponse> AppsUninstallAsync(string? client_Id, string? client_Secret)
         {
             var p = new AppsUninstallParameter();
             p.Client_Id = client_Id;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/apps.uninstall
         /// </summary>
-        public async Task<AppsUninstallResponse> AppsUninstallAsync(string client_Id, string client_Secret, CancellationToken cancellationToken)
+        public async Task<AppsUninstallResponse> AppsUninstallAsync(string? client_Id, string? client_Secret, CancellationToken cancellationToken)
         {
             var p = new AppsUninstallParameter();
             p.Client_Id = client_Id;

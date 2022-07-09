@@ -7,7 +7,7 @@ namespace HigLabo.Net.Microsoft
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string AccessReviewHistoryDefinitionId { get; set; }
+            public string? AccessReviewHistoryDefinitionId { get; set; }
 
             public string GetApiPath()
             {
@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AccessreviewhistorydefinitionListInstancesResponse : RestApiResponse
     {
-        public AccessReviewHistoryInstance[] Value { get; set; }
+        public AccessReviewHistoryInstance[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

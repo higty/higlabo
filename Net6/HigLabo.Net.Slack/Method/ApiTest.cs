@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "api.test";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Error { get; set; }
+        public string? Error { get; set; }
     }
     public partial class ApiTestResponse : RestApiResponse
     {

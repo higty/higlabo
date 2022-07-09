@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.join";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
+        public string? Channel { get; set; }
     }
     public partial class ConversationsJoinResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.join
         /// </summary>
-        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(string channel)
+        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(string? channel)
         {
             var p = new ConversationsJoinParameter();
             p.Channel = channel;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.join
         /// </summary>
-        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsJoinResponse> ConversationsJoinAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsJoinParameter();
             p.Channel = channel;

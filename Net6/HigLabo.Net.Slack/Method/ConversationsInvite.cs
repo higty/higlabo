@@ -6,8 +6,8 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.invite";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
-        public string Users { get; set; }
+        public string? Channel { get; set; }
+        public string? Users { get; set; }
     }
     public partial class ConversationsInviteResponse : RestApiResponse
     {
@@ -17,7 +17,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.invite
         /// </summary>
-        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string channel, string users)
+        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string? channel, string? users)
         {
             var p = new ConversationsInviteParameter();
             p.Channel = channel;
@@ -27,7 +27,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.invite
         /// </summary>
-        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string channel, string users, CancellationToken cancellationToken)
+        public async Task<ConversationsInviteResponse> ConversationsInviteAsync(string? channel, string? users, CancellationToken cancellationToken)
         {
             var p = new ConversationsInviteParameter();
             p.Channel = channel;

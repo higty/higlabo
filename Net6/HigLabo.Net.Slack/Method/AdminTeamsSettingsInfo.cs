@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "admin.teams.settings.info";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Team_Id { get; set; }
+        public string? Team_Id { get; set; }
     }
     public partial class AdminTeamsSettingsInfoResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.info
         /// </summary>
-        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string team_Id)
+        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string? team_Id)
         {
             var p = new AdminTeamsSettingsInfoParameter();
             p.Team_Id = team_Id;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/admin.teams.settings.info
         /// </summary>
-        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string team_Id, CancellationToken cancellationToken)
+        public async Task<AdminTeamsSettingsInfoResponse> AdminTeamsSettingsInfoAsync(string? team_Id, CancellationToken cancellationToken)
         {
             var p = new AdminTeamsSettingsInfoParameter();
             p.Team_Id = team_Id;

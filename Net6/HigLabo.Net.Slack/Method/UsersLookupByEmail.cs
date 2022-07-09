@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "users.lookupByEmail";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Email { get; set; }
+        public string? Email { get; set; }
     }
     public partial class UsersLookupByEmailResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.lookupByEmail
         /// </summary>
-        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string email)
+        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string? email)
         {
             var p = new UsersLookupByEmailParameter();
             p.Email = email;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/users.lookupByEmail
         /// </summary>
-        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string email, CancellationToken cancellationToken)
+        public async Task<UsersLookupByEmailResponse> UsersLookupByEmailAsync(string? email, CancellationToken cancellationToken)
         {
             var p = new UsersLookupByEmailParameter();
             p.Email = email;

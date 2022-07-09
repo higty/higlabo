@@ -61,7 +61,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintListSharesResponse : RestApiResponse
     {
-        public PrinterShare[] Value { get; set; }
+        public PrinterShare[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

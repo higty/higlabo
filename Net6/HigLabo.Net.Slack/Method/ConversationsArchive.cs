@@ -6,7 +6,7 @@ namespace HigLabo.Net.Slack
     {
         string IRestApiParameter.ApiPath { get; } = "conversations.archive";
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string Channel { get; set; }
+        public string? Channel { get; set; }
     }
     public partial class ConversationsArchiveResponse : RestApiResponse
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.archive
         /// </summary>
-        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string channel)
+        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string? channel)
         {
             var p = new ConversationsArchiveParameter();
             p.Channel = channel;
@@ -25,7 +25,7 @@ namespace HigLabo.Net.Slack
         /// <summary>
         /// https://api.slack.com/methods/conversations.archive
         /// </summary>
-        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string channel, CancellationToken cancellationToken)
+        public async Task<ConversationsArchiveResponse> ConversationsArchiveAsync(string? channel, CancellationToken cancellationToken)
         {
             var p = new ConversationsArchiveParameter();
             p.Channel = channel;

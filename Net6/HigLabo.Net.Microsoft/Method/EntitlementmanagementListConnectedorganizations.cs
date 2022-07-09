@@ -55,7 +55,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EntitlementManagementListConnectedorganizationsResponse : RestApiResponse
     {
-        public ConnectedOrganization[] Value { get; set; }
+        public ConnectedOrganization[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {

@@ -65,7 +65,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SubjectrightsrequestListResponse : RestApiResponse
     {
-        public SubjectRightsRequest[] Value { get; set; }
+        public SubjectRightsRequest[]? Value { get; set; }
     }
     public partial class MicrosoftClient
     {
