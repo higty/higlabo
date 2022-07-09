@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HigLabo.Net.Slack
 {
-    public class RequestCodeResponse : HigLabo.Net.OAuth.RequestCodeResponse
+    public class RequestCodeResponse : RestApiResponse
     {
         public class IdName
         {
@@ -21,8 +21,11 @@ namespace HigLabo.Net.Slack
             public string Refresh_Token { get; set; } = "";
             public string Token_Type { get; set; } = "";
         }
+        public string Access_Token { get; set; } = "";
+        public string Refresh_Token { get; set; } = "";
+        public int Expires_In { get; set; }
+        public string Token_Type { get; set; } = "";
 
-        public Boolean Ok { get; set; }
         public string Scope { get; set; } = "";
         public string Bot_User_Id { get; set; } = "";
         public string App_Id { get; set; } = "";

@@ -1,4 +1,5 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class OpenidConnectUserInfoParameter : IRestApiParameter
@@ -11,20 +12,32 @@ namespace HigLabo.Net.Slack
     }
     public partial class SlackClient
     {
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.userInfo
+        /// </summary>
         public async Task<OpenidConnectUserInfoResponse> OpenidConnectUserInfoAsync()
         {
             var p = new OpenidConnectUserInfoParameter();
             return await this.SendAsync<OpenidConnectUserInfoParameter, OpenidConnectUserInfoResponse>(p, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.userInfo
+        /// </summary>
         public async Task<OpenidConnectUserInfoResponse> OpenidConnectUserInfoAsync(CancellationToken cancellationToken)
         {
             var p = new OpenidConnectUserInfoParameter();
             return await this.SendAsync<OpenidConnectUserInfoParameter, OpenidConnectUserInfoResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.userInfo
+        /// </summary>
         public async Task<OpenidConnectUserInfoResponse> OpenidConnectUserInfoAsync(OpenidConnectUserInfoParameter parameter)
         {
             return await this.SendAsync<OpenidConnectUserInfoParameter, OpenidConnectUserInfoResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/openid.connect.userInfo
+        /// </summary>
         public async Task<OpenidConnectUserInfoResponse> OpenidConnectUserInfoAsync(OpenidConnectUserInfoParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<OpenidConnectUserInfoParameter, OpenidConnectUserInfoResponse>(parameter, cancellationToken);

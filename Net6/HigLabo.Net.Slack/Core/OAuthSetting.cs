@@ -14,7 +14,7 @@ namespace HigLabo.Net.Slack
         App,
         User,
     }
-    public class OAuthSetting : HigLabo.Net.OAuth.OAuthSetting, IAuthorizationUrlBuilder
+    public class OAuthSetting : HigLabo.Net.OAuth.OAuthSetting
     {
         public AuthorizationScopeType ScopeType { get; set; }
         public List<Scope> ScopeList { get; init; } = new();

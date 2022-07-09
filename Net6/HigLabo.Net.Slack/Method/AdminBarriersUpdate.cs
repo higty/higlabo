@@ -1,21 +1,25 @@
-﻿
+﻿using HigLabo.Net.OAuth;
+
 namespace HigLabo.Net.Slack
 {
     public partial class AdminBarriersUpdateParameter : IRestApiParameter
     {
         string IRestApiParameter.ApiPath { get; } = "admin.barriers.update";
         string IRestApiParameter.HttpMethod { get; } = "GET";
-        public string Barrier_Id { get; set; }
-        public string Barriered_From_Usergroup_Ids { get; set; }
-        public string Primary_Usergroup_Id { get; set; }
-        public string Restricted_Subjects { get; set; }
+        public string? Barrier_Id { get; set; }
+        public string? Barriered_From_Usergroup_Ids { get; set; }
+        public string? Primary_Usergroup_Id { get; set; }
+        public string? Restricted_Subjects { get; set; }
     }
     public partial class AdminBarriersUpdateResponse : RestApiResponse
     {
     }
     public partial class SlackClient
     {
-        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string barrier_Id, string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects)
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
+        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string? barrier_Id, string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects)
         {
             var p = new AdminBarriersUpdateParameter();
             p.Barrier_Id = barrier_Id;
@@ -24,7 +28,10 @@ namespace HigLabo.Net.Slack
             p.Restricted_Subjects = restricted_Subjects;
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(p, CancellationToken.None);
         }
-        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string barrier_Id, string barriered_From_Usergroup_Ids, string primary_Usergroup_Id, string restricted_Subjects, CancellationToken cancellationToken)
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
+        public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(string? barrier_Id, string? barriered_From_Usergroup_Ids, string? primary_Usergroup_Id, string? restricted_Subjects, CancellationToken cancellationToken)
         {
             var p = new AdminBarriersUpdateParameter();
             p.Barrier_Id = barrier_Id;
@@ -33,10 +40,16 @@ namespace HigLabo.Net.Slack
             p.Restricted_Subjects = restricted_Subjects;
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(p, cancellationToken);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
         public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter)
         {
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(parameter, CancellationToken.None);
         }
+        /// <summary>
+        /// https://api.slack.com/methods/admin.barriers.update
+        /// </summary>
         public async Task<AdminBarriersUpdateResponse> AdminBarriersUpdateAsync(AdminBarriersUpdateParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AdminBarriersUpdateParameter, AdminBarriersUpdateResponse>(parameter, cancellationToken);

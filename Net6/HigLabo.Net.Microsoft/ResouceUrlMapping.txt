@@ -1,0 +1,1378 @@
+[
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0",
+    "ClassName": "User"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/approleassignment?view=graph-rest-1.0",
+    "ClassName": "AppRoleAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0",
+    "ClassName": "Calendar"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/contact?view=graph-rest-1.0",
+    "ClassName": "Contact"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0",
+    "ClassName": "DirectoryObject"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0",
+    "ClassName": "Drive"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0",
+    "ClassName": "Group"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/officegraphinsights?view=graph-rest-1.0",
+    "ClassName": "OfficeGraphInsights"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/usersettings?view=graph-rest-1.0",
+    "ClassName": "UserSettings"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/message?view=graph-rest-1.0",
+    "ClassName": "Message"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onenote?view=graph-rest-1.0",
+    "ClassName": "Onenote"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/mailboxsettings?view=graph-rest-1.0",
+    "ClassName": "MailboxSettings"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/outlookuser?view=graph-rest-1.0",
+    "ClassName": "OutlookUser"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/person?view=graph-rest-1.0",
+    "ClassName": "Person"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/profilephoto?view=graph-rest-1.0",
+    "ClassName": "ProfilePhoto"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannertask?view=graph-rest-1.0",
+    "ClassName": "PlannerTask"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/teamsappinstallation?view=graph-rest-1.0",
+    "ClassName": "TeamsAppInstallation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/todotask?view=graph-rest-1.0",
+    "ClassName": "TodoTask"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/usersettings?view=graph-rest-1.0",
+    "ClassName": "UserSettings"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0",
+    "ClassName": "Group"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/groupsetting?view=graph-rest-1.0",
+    "ClassName": "GroupSetting"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/groupsettingtemplate?view=graph-rest-1.0",
+    "ClassName": "GroupSettingTemplate"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/grouplifecyclepolicy?view=graph-rest-1.0",
+    "ClassName": "GroupLifecyclePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/approleassignment?view=graph-rest-1.0",
+    "ClassName": "AppRoleAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/attachment?view=graph-rest-1.0",
+    "ClassName": "Attachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/fileattachment?view=graph-rest-1.0",
+    "ClassName": "FileAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/itemattachment?view=graph-rest-1.0",
+    "ClassName": "ItemAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/referenceattachment?view=graph-rest-1.0",
+    "ClassName": "ReferenceAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0",
+    "ClassName": "Calendar"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/conversation?view=graph-rest-1.0",
+    "ClassName": "Conversation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/conversationthread?view=graph-rest-1.0",
+    "ClassName": "ConversationThread"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0",
+    "ClassName": "DirectoryObject"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0",
+    "ClassName": "Drive"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/singlevaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "SingleValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/multivaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "MultiValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onenote?view=graph-rest-1.0",
+    "ClassName": "Onenote"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/profilephoto?view=graph-rest-1.0",
+    "ClassName": "ProfilePhoto"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerplan?view=graph-rest-1.0",
+    "ClassName": "PlannerPlan"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/post?view=graph-rest-1.0",
+    "ClassName": "Post"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/application?view=graph-rest-1.0",
+    "ClassName": "Application"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/applicationtemplate?view=graph-rest-1.0",
+    "ClassName": "ApplicationTemplate"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/tokenissuancepolicy?view=graph-rest-1.0",
+    "ClassName": "TokenIssuancePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/tokenlifetimepolicy?view=graph-rest-1.0",
+    "ClassName": "TokenLifetimePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0",
+    "ClassName": "ServicePrincipal"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/approleassignment?view=graph-rest-1.0",
+    "ClassName": "AppRoleAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/delegatedpermissionclassification?view=graph-rest-1.0",
+    "ClassName": "DelegatedPermissionClassification"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/claimsmappingpolicy?view=graph-rest-1.0",
+    "ClassName": "ClaimsMappingPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/homerealmdiscoverypolicy?view=graph-rest-1.0",
+    "ClassName": "HomeRealmDiscoveryPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/permissiongrantpolicy?view=graph-rest-1.0",
+    "ClassName": "PermissionGrantPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/permissiongrantconditionset?view=graph-rest-1.0",
+    "ClassName": "PermissionGrantConditionSet"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/tokenissuancepolicy?view=graph-rest-1.0",
+    "ClassName": "TokenIssuancePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/tokenlifetimepolicy?view=graph-rest-1.0",
+    "ClassName": "TokenLifetimePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0",
+    "ClassName": "Calendar"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0",
+    "ClassName": "Event"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/eventmessage?view=graph-rest-1.0",
+    "ClassName": "EventMessage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/attachment?view=graph-rest-1.0",
+    "ClassName": "Attachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/fileattachment?view=graph-rest-1.0",
+    "ClassName": "FileAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/itemattachment?view=graph-rest-1.0",
+    "ClassName": "ItemAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/referenceattachment?view=graph-rest-1.0",
+    "ClassName": "ReferenceAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/calendar?view=graph-rest-1.0",
+    "ClassName": "Calendar"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/calendargroup?view=graph-rest-1.0",
+    "ClassName": "CalendarGroup"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/calendarpermission?view=graph-rest-1.0",
+    "ClassName": "CalendarPermission"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/outlookcategory?view=graph-rest-1.0",
+    "ClassName": "OutlookCategory"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/singlevaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "SingleValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/multivaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "MultiValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/place?view=graph-rest-1.0",
+    "ClassName": "Place"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/room?view=graph-rest-1.0",
+    "ClassName": "Room"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/roomlist?view=graph-rest-1.0",
+    "ClassName": "RoomList"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/webhooks?view=graph-rest-1.0",
+    "ClassName": "Use"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/subscription?view=graph-rest-1.0",
+    "ClassName": "Subscription"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/call?view=graph-rest-1.0",
+    "ClassName": "Call"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/participant?view=graph-rest-1.0",
+    "ClassName": "Participant"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/callrecords-callrecord?view=graph-rest-1.0",
+    "ClassName": "CallrecordsCallrecord"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/callrecords-session?view=graph-rest-1.0",
+    "ClassName": "CallrecordsSession"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/callrecords-pstncalllogrow?view=graph-rest-1.0",
+    "ClassName": "CallrecordsPstncalllogrow"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/callrecords-directroutinglogrow?view=graph-rest-1.0",
+    "ClassName": "CallrecordsDirectroutinglogrow"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onlinemeeting?view=graph-rest-1.0",
+    "ClassName": "OnlineMeeting"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/meetingattendancereport?view=graph-rest-1.0",
+    "ClassName": "MeetingAttendanceReport"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/attendancerecord?view=graph-rest-1.0",
+    "ClassName": "AttendanceRecord"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-1.0",
+    "ClassName": "Presence"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/subjectrightsrequest?view=graph-rest-1.0",
+    "ClassName": "SubjectRightsRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/projectrome-activity?view=graph-rest-1.0",
+    "ClassName": "Activity"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/projectrome-historyitem?view=graph-rest-1.0",
+    "ClassName": "HistoryItem"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingbusiness?view=graph-rest-1.0",
+    "ClassName": "BookingBusiness"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingappointment?view=graph-rest-1.0",
+    "ClassName": "BookingAppointment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingcurrency?view=graph-rest-1.0",
+    "ClassName": "BookingCurrency"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingcustomquestion?view=graph-rest-1.0",
+    "ClassName": "BookingCustomQuestion"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingcustomer?view=graph-rest-1.0",
+    "ClassName": "BookingCustomer"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingservice?view=graph-rest-1.0",
+    "ClassName": "BookingService"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bookingstaffmember?view=graph-rest-1.0",
+    "ClassName": "BookingStaffMember"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/print?view=graph-rest-1.0",
+    "ClassName": "Print"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printconnector?view=graph-rest-1.0",
+    "ClassName": "PrintConnector"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printdocument?view=graph-rest-1.0",
+    "ClassName": "PrintDocument"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printjob?view=graph-rest-1.0",
+    "ClassName": "PrintJob"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printoperation?view=graph-rest-1.0",
+    "ClassName": "PrintOperation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printer?view=graph-rest-1.0",
+    "ClassName": "Printer"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printershare?view=graph-rest-1.0",
+    "ClassName": "PrinterShare"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printtaskdefinition?view=graph-rest-1.0",
+    "ClassName": "PrintTaskDefinition"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printservice?view=graph-rest-1.0",
+    "ClassName": "PrintService"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printserviceendpoint?view=graph-rest-1.0",
+    "ClassName": "PrintServiceEndpoint"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/printsettings?view=graph-rest-1.0",
+    "ClassName": "PrintSettings"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/serviceannouncement?view=graph-rest-1.0",
+    "ClassName": "ServiceAnnouncement"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/servicehealth?view=graph-rest-1.0",
+    "ClassName": "ServiceHealth"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/servicehealthissue?view=graph-rest-1.0",
+    "ClassName": "ServiceHealthIssue"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/serviceupdatemessage?view=graph-rest-1.0",
+    "ClassName": "ServiceUpdateMessage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/serviceannouncementattachment?view=graph-rest-1.0",
+    "ClassName": "ServiceAnnouncementAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationschool?view=graph-rest-1.0",
+    "ClassName": "EducationSchool"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationclass?view=graph-rest-1.0",
+    "ClassName": "EducationClass"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationuser?view=graph-rest-1.0",
+    "ClassName": "EducationUser"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationassignment?view=graph-rest-1.0",
+    "ClassName": "EducationAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationassignmentsettings?view=graph-rest-1.0",
+    "ClassName": "EducationAssignmentSettings"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationassignmentdefaults?view=graph-rest-1.0",
+    "ClassName": "EducationAssignmentDefaults"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationcategory?view=graph-rest-1.0",
+    "ClassName": "EducationCategory"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationrubric?view=graph-rest-1.0",
+    "ClassName": "EducationRubric"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationsubmission?view=graph-rest-1.0",
+    "ClassName": "EducationSubmission"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationoutcome?view=graph-rest-1.0",
+    "ClassName": "EducationOutcome"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationfeedbackoutcome?view=graph-rest-1.0",
+    "ClassName": "EducationFeedbackOutcome"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationpointsoutcome?view=graph-rest-1.0",
+    "ClassName": "EducationPointsOutcome"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/educationrubricoutcome?view=graph-rest-1.0",
+    "ClassName": "EducationRubricOutcome"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/extensionproperty?view=graph-rest-1.0",
+    "ClassName": "ExtensionProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/opentypeextension?view=graph-rest-1.0",
+    "ClassName": "OpenTypeExtension"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/schemaextension?view=graph-rest-1.0",
+    "ClassName": "SchemaExtension"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0",
+    "ClassName": "Drive"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/driveitem?view=graph-rest-1.0",
+    "ClassName": "DriveItem"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bundle?view=graph-rest-1.0",
+    "ClassName": "Bundle"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/permission?view=graph-rest-1.0",
+    "ClassName": "Permission"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/administrativeunit?view=graph-rest-1.0",
+    "ClassName": "AdministrativeUnit"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/bitlockerrecoverykey?view=graph-rest-1.0",
+    "ClassName": "BitlockerRecoveryKey"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/contract?view=graph-rest-1.0",
+    "ClassName": "Contract"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directory?view=graph-rest-1.0",
+    "ClassName": "Directory"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/device?view=graph-rest-1.0",
+    "ClassName": "Device"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directoryobject?view=graph-rest-1.0",
+    "ClassName": "DirectoryObject"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directoryrole?view=graph-rest-1.0",
+    "ClassName": "DirectoryRole"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directoryroletemplate?view=graph-rest-1.0",
+    "ClassName": "DirectoryRoleTemplate"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/domain?view=graph-rest-1.0",
+    "ClassName": "Domain"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/organization?view=graph-rest-1.0",
+    "ClassName": "Organization"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/orgcontact?view=graph-rest-1.0",
+    "ClassName": "OrgContact"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0",
+    "ClassName": "Group"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/subscribedsku?view=graph-rest-1.0",
+    "ClassName": "SubscribedSku"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/rolemanagement?view=graph-rest-1.0",
+    "ClassName": "RoleManagement"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroledefinition?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleDefinition"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignment?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignmentschedulerequest?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleAssignmentScheduleRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignmentschedule?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleAssignmentSchedule"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleassignmentscheduleinstance?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleAssignmentScheduleInstance"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleeligibilityschedulerequest?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleEligibilityScheduleRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleeligibilityschedule?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleEligibilitySchedule"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedroleeligibilityscheduleinstance?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleEligibilityScheduleInstance"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedrolemanagementpolicy?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleManagementPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/unifiedrolemanagementpolicyassignment?view=graph-rest-1.0",
+    "ClassName": "UnifiedRoleManagementPolicyAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/authenticationmethod?view=graph-rest-1.0",
+    "ClassName": "AuthenticationMethod"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/fido2authenticationmethod?view=graph-rest-1.0",
+    "ClassName": "Fido2AuthenticationMethod"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/microsoftauthenticatorauthenticationmethod?view=graph-rest-1.0",
+    "ClassName": "MicrosoftAuthenticatorAuthenticationMethod"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/windowshelloforbusinessauthenticationmethod?view=graph-rest-1.0",
+    "ClassName": "WindowsHelloForBusinessAuthenticationMethod"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/temporaryaccesspassauthenticationmethod?view=graph-rest-1.0",
+    "ClassName": "TemporaryAccessPassAuthenticationMethod"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/certificatebasedauthconfiguration?view=graph-rest-1.0",
+    "ClassName": "CertificateBasedAuthConfiguration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/conditionalaccesspolicy?view=graph-rest-1.0",
+    "ClassName": "ConditionalAccessPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/namedlocation?view=graph-rest-1.0",
+    "ClassName": "NamedLocation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/countrynamedlocation?view=graph-rest-1.0",
+    "ClassName": "CountryNamedLocation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/ipnamedlocation?view=graph-rest-1.0",
+    "ClassName": "IpNamedLocation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/crosstenantaccesspolicy?view=graph-rest-1.0",
+    "ClassName": "CrossTenantAccessPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/crosstenantaccesspolicyconfigurationdefault?view=graph-rest-1.0",
+    "ClassName": "CrossTenantAccessPolicyConfigurationDefault"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/crosstenantaccesspolicyconfigurationpartner?view=graph-rest-1.0",
+    "ClassName": "CrossTenantAccessPolicyConfigurationPartner"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/datapolicyoperation?view=graph-rest-1.0",
+    "ClassName": "DataPolicyOperation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/oauth2permissiongrant?view=graph-rest-1.0",
+    "ClassName": "OAuth2PermissionGrant"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/riskdetection?view=graph-rest-1.0",
+    "ClassName": "RiskDetection"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/riskyuser?view=graph-rest-1.0",
+    "ClassName": "RiskyUser"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/identityproviderbase?view=graph-rest-1.0",
+    "ClassName": "IdentityProviderBase"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/builtinidentityprovider?view=graph-rest-1.0",
+    "ClassName": "BuiltInIdentityProvider"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/socialidentityprovider?view=graph-rest-1.0",
+    "ClassName": "SocialIdentityProvider"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/applemanagedidentityprovider?view=graph-rest-1.0",
+    "ClassName": "AppleManagedIdentityProvider"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/samlorwsfedexternaldomainfederation?view=graph-rest-1.0",
+    "ClassName": "SamlOrWsFedExternalDomainFederation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/internaldomainfederation?view=graph-rest-1.0",
+    "ClassName": "InternalDomainFederation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/identityprovider?view=graph-rest-1.0",
+    "ClassName": "IdentityProvider"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/invitation?view=graph-rest-1.0",
+    "ClassName": "Invitation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/organizationalbranding?view=graph-rest-1.0",
+    "ClassName": "OrganizationalBranding"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/organizationalbrandinglocalization?view=graph-rest-1.0",
+    "ClassName": "OrganizationalBrandingLocalization"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/activitybasedtimeoutpolicy?view=graph-rest-1.0",
+    "ClassName": "ActivityBasedTimeoutPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/authenticationflowspolicy?view=graph-rest-1.0",
+    "ClassName": "AuthenticationFlowsPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/authenticationmethodspolicy?view=graph-rest-1.0",
+    "ClassName": "AuthenticationMethodsPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/fido2authenticationmethodconfiguration?view=graph-rest-1.0",
+    "ClassName": "Fido2AuthenticationMethodConfiguration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/microsoftauthenticatorauthenticationmethodconfiguration?view=graph-rest-1.0",
+    "ClassName": "MicrosoftAuthenticatorAuthenticationMethodConfiguration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/temporaryaccesspassauthenticationmethodconfiguration?view=graph-rest-1.0",
+    "ClassName": "TemporaryAccessPassAuthenticationMethodConfiguration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/emailauthenticationmethodconfiguration?view=graph-rest-1.0",
+    "ClassName": "EmailAuthenticationMethodConfiguration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/authorizationpolicy?view=graph-rest-1.0",
+    "ClassName": "AuthorizationPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/claimsmappingpolicy?view=graph-rest-1.0",
+    "ClassName": "ClaimsMappingPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/featurerolloutpolicy?view=graph-rest-1.0",
+    "ClassName": "FeatureRolloutPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/homerealmdiscoverypolicy?view=graph-rest-1.0",
+    "ClassName": "HomeRealmDiscoveryPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/tokenissuancepolicy?view=graph-rest-1.0",
+    "ClassName": "TokenIssuancePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/tokenlifetimepolicy?view=graph-rest-1.0",
+    "ClassName": "TokenLifetimePolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/identitysecuritydefaultsenforcementpolicy?view=graph-rest-1.0",
+    "ClassName": "IdentitySecurityDefaultsEnforcementPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/b2xidentityuserflow?view=graph-rest-1.0",
+    "ClassName": "B2xIdentityUserFlow"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/identityuserflowattribute?view=graph-rest-1.0",
+    "ClassName": "IdentityUserFlowAttribute"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/identityuserflowattributeassignment?view=graph-rest-1.0",
+    "ClassName": "IdentityUserFlowAttributeAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/userflowlanguageconfiguration?view=graph-rest-1.0",
+    "ClassName": "UserFlowLanguageConfiguration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/userflowlanguagepage?view=graph-rest-1.0",
+    "ClassName": "UserFlowLanguagePage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/identityapiconnector?view=graph-rest-1.0",
+    "ClassName": "IdentityApiConnector"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accessreviewscheduledefinition?view=graph-rest-1.0",
+    "ClassName": "AccessReviewScheduleDefinition"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accessreviewinstance?view=graph-rest-1.0",
+    "ClassName": "AccessReviewInstance"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accessreviewinstancedecisionitem?view=graph-rest-1.0",
+    "ClassName": "AccessReviewInstanceDecisionItem"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accessreviewhistorydefinition?view=graph-rest-1.0",
+    "ClassName": "AccessReviewHistoryDefinition"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accessreviewhistoryinstance?view=graph-rest-1.0",
+    "ClassName": "AccessReviewHistoryInstance"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/adminconsentrequestpolicy?view=graph-rest-1.0",
+    "ClassName": "AdminConsentRequestPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/appconsentrequest?view=graph-rest-1.0",
+    "ClassName": "AppConsentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/userconsentrequest?view=graph-rest-1.0",
+    "ClassName": "UserConsentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accesspackage?view=graph-rest-1.0",
+    "ClassName": "AccessPackage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignment?view=graph-rest-1.0",
+    "ClassName": "AccessPackageAssignment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/approval?view=graph-rest-1.0",
+    "ClassName": "Approval"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/approvalstage?view=graph-rest-1.0",
+    "ClassName": "ApprovalStage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequest?view=graph-rest-1.0",
+    "ClassName": "AccessPackageAssignmentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accesspackagecatalog?view=graph-rest-1.0",
+    "ClassName": "AccessPackageCatalog"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/connectedorganization?view=graph-rest-1.0",
+    "ClassName": "ConnectedOrganization"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/entitlementmanagementsettings?view=graph-rest-1.0",
+    "ClassName": "EntitlementManagementSettings"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0",
+    "ClassName": "AccessPackageAssignmentPolicy"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/agreement?view=graph-rest-1.0",
+    "ClassName": "Agreement"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/agreementacceptance?view=graph-rest-1.0",
+    "ClassName": "AgreementAcceptance"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/agreementfile?view=graph-rest-1.0",
+    "ClassName": "AgreementFile"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/agreementfilelocalization?view=graph-rest-1.0",
+    "ClassName": "AgreementFileLocalization"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/message?view=graph-rest-1.0",
+    "ClassName": "Message"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/attachment?view=graph-rest-1.0",
+    "ClassName": "Attachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/fileattachment?view=graph-rest-1.0",
+    "ClassName": "FileAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/itemattachment?view=graph-rest-1.0",
+    "ClassName": "ItemAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/referenceattachment?view=graph-rest-1.0",
+    "ClassName": "ReferenceAttachment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/outlookcategory?view=graph-rest-1.0",
+    "ClassName": "OutlookCategory"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/manage-focused-inbox?view=graph-rest-1.0",
+    "ClassName": "Manage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/mailfolder?view=graph-rest-1.0",
+    "ClassName": "MailFolder"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/mailsearchfolder?view=graph-rest-1.0",
+    "ClassName": "MailSearchFolder"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/messagerule?view=graph-rest-1.0",
+    "ClassName": "MessageRule"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/singlevaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "SingleValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/multivaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "MultiValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onenote?view=graph-rest-1.0",
+    "ClassName": "Onenote"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/notebook?view=graph-rest-1.0",
+    "ClassName": "Notebook"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/section?view=graph-rest-1.0",
+    "ClassName": "Section"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/sectiongroup?view=graph-rest-1.0",
+    "ClassName": "SectionGroup"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/page?view=graph-rest-1.0",
+    "ClassName": "Page"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/resource?view=graph-rest-1.0",
+    "ClassName": "OneNoteResource"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/person?view=graph-rest-1.0",
+    "ClassName": "Person"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/officegraphinsights?view=graph-rest-1.0",
+    "ClassName": "OfficeGraphInsights"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/insights-shared?view=graph-rest-1.0",
+    "ClassName": "SharedInsight"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/insights-trending?view=graph-rest-1.0",
+    "ClassName": "Trending"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/insights-used?view=graph-rest-1.0",
+    "ClassName": "UsedInsight"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/contact?view=graph-rest-1.0",
+    "ClassName": "Contact"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/contact?view=graph-rest-1.0",
+    "ClassName": "Contact"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/contactfolder?view=graph-rest-1.0",
+    "ClassName": "ContactFolder"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/outlookcategory?view=graph-rest-1.0",
+    "ClassName": "OutlookCategory"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/singlevaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "SingleValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/multivaluelegacyextendedproperty?view=graph-rest-1.0",
+    "ClassName": "MultiValueLegacyExtendedProperty"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/directoryaudit?view=graph-rest-1.0",
+    "ClassName": "DirectoryAudit"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/signin?view=graph-rest-1.0",
+    "ClassName": "SignIn"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/provisioningobjectsummary?view=graph-rest-1.0",
+    "ClassName": "ProvisioningObjectSummary"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/microsoft-teams-device-usage-reports?view=graph-rest-1.0",
+    "ClassName": "MicrosoftTeamsDeviceUsageReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/microsoft-teams-user-activity-reports?view=graph-rest-1.0",
+    "ClassName": "MicrosoftTeamsUserActivityReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/email-activity-reports?view=graph-rest-1.0",
+    "ClassName": "EmailActivityReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/email-app-usage-reports?view=graph-rest-1.0",
+    "ClassName": "EmailAppUsageReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/mailbox-usage-reports?view=graph-rest-1.0",
+    "ClassName": "Mailbox"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/office-365-activations-reports?view=graph-rest-1.0",
+    "ClassName": "Office365ActivationsReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/office-365-active-users-reports?view=graph-rest-1.0",
+    "ClassName": "Office365ActiveUsersReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/office-365-groups-activity-reports?view=graph-rest-1.0",
+    "ClassName": "Office365GroupsActivityReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onedrive-activity-reports?view=graph-rest-1.0",
+    "ClassName": "OnedriveActivityReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onedrive-usage-reports?view=graph-rest-1.0",
+    "ClassName": "OnedriveUsageReports"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/sharepoint-activity-reports?view=graph-rest-1.0",
+    "ClassName": "SharePoint"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/sharepoint-site-usage-reports?view=graph-rest-1.0",
+    "ClassName": "SharePoint"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-activity-reports?view=graph-rest-1.0",
+    "ClassName": "Skype"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-device-usage-reports?view=graph-rest-1.0",
+    "ClassName": "Skype"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-organizer-activity-reports?view=graph-rest-1.0",
+    "ClassName": "Skype"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-participant-activity-reports?view=graph-rest-1.0",
+    "ClassName": "Skype"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/skype-for-business-peer-to-peer-activity?view=graph-rest-1.0",
+    "ClassName": "Skype"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/yammer-activity-reports?view=graph-rest-1.0",
+    "ClassName": "Yammer"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/yammer-device-usage-reports?view=graph-rest-1.0",
+    "ClassName": "Yammer"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/yammer-groups-activity-reports?view=graph-rest-1.0",
+    "ClassName": "Yammer"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/searchrequest?view=graph-rest-1.0",
+    "ClassName": "SearchRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/searchresponse?view=graph-rest-1.0",
+    "ClassName": "SearchResponse"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-externalconnection?view=graph-rest-1.0",
+    "ClassName": "ExternalConnection"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-schema?view=graph-rest-1.0",
+    "ClassName": "Schema"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-externalitem?view=graph-rest-1.0",
+    "ClassName": "ExternalItem"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-externalgroup?view=graph-rest-1.0",
+    "ClassName": "ExternalGroup"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-identity?view=graph-rest-1.0",
+    "ClassName": "Identity"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/alert?view=graph-rest-1.0",
+    "ClassName": "Alert"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/threatassessmentrequest?view=graph-rest-1.0",
+    "ClassName": "ThreatAssessmentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/mailassessmentrequest?view=graph-rest-1.0",
+    "ClassName": "MailAssessmentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/emailfileassessmentrequest?view=graph-rest-1.0",
+    "ClassName": "EmailFileAssessmentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/fileassessmentrequest?view=graph-rest-1.0",
+    "ClassName": "FileAssessmentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/urlassessmentrequest?view=graph-rest-1.0",
+    "ClassName": "UrlAssessmentRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/securescore?view=graph-rest-1.0",
+    "ClassName": "SecureScore"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/securescorecontrolprofile?view=graph-rest-1.0",
+    "ClassName": "SecureScoreControlProfile"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/sharepoint?view=graph-rest-1.0",
+    "ClassName": "Working"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/site?view=graph-rest-1.0",
+    "ClassName": "Site"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/permission?view=graph-rest-1.0",
+    "ClassName": "Permission"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/list?view=graph-rest-1.0",
+    "ClassName": "SiteList"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/columndefinition?view=graph-rest-1.0",
+    "ClassName": "ColumnDefinition"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/contenttype?view=graph-rest-1.0",
+    "ClassName": "ContentType"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/listitem?view=graph-rest-1.0",
+    "ClassName": "ListItem"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/richlongrunningoperation?view=graph-rest-1.0",
+    "ClassName": "RichLongRunningOperation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/termstore-store?view=graph-rest-1.0",
+    "ClassName": "TermStoreStore"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/termstore-group?view=graph-rest-1.0",
+    "ClassName": "TermStoreGroup"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/termstore-set?view=graph-rest-1.0",
+    "ClassName": "TermStoreSet"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/termstore-term?view=graph-rest-1.0",
+    "ClassName": "TermStoreTerm"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/termstore-relation?view=graph-rest-1.0",
+    "ClassName": "TermStoreRelation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerplan?view=graph-rest-1.0",
+    "ClassName": "PlannerPlan"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannertask?view=graph-rest-1.0",
+    "ClassName": "PlannerTask"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannertaskdetails?view=graph-rest-1.0",
+    "ClassName": "PlannerTaskDetails"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerplandetails?view=graph-rest-1.0",
+    "ClassName": "PlannerPlanDetails"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerbucket?view=graph-rest-1.0",
+    "ClassName": "PlannerBucket"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerassignedtotaskboardtaskformat?view=graph-rest-1.0",
+    "ClassName": "PlannerAssignedToTaskBoardTaskFormat"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerbuckettaskboardtaskformat?view=graph-rest-1.0",
+    "ClassName": "PlannerBucketTaskBoardTaskFormat"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerprogresstaskboardtaskformat?view=graph-rest-1.0",
+    "ClassName": "PlannerProgressTaskBoardTaskFormat"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/team?view=graph-rest-1.0",
+    "ClassName": "Team"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/group?view=graph-rest-1.0",
+    "ClassName": "Group"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/channel?view=graph-rest-1.0",
+    "ClassName": "Channel"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/chat?view=graph-rest-1.0",
+    "ClassName": "Chat"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/chatmessage?view=graph-rest-1.0",
+    "ClassName": "ChatMessage"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/teamsapp?view=graph-rest-1.0",
+    "ClassName": "TeamsApp"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/teamsappinstallation?view=graph-rest-1.0",
+    "ClassName": "TeamsAppInstallation"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/teamstab?view=graph-rest-1.0",
+    "ClassName": "TeamsTab"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0",
+    "ClassName": "Event"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/shift?view=graph-rest-1.0",
+    "ClassName": "Shift"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/schedule?view=graph-rest-1.0",
+    "ClassName": "Schedule"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/schedulinggroup?view=graph-rest-1.0",
+    "ClassName": "SchedulingGroup"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/offershiftrequest?view=graph-rest-1.0",
+    "ClassName": "OfferShiftRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/openshift?view=graph-rest-1.0",
+    "ClassName": "OpenShift"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/openshiftchangerequest?view=graph-rest-1.0",
+    "ClassName": "OpenShiftChangeRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/shiftpreferences?view=graph-rest-1.0",
+    "ClassName": "ShiftPreferences"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/swapshiftschangerequest?view=graph-rest-1.0",
+    "ClassName": "SwapShiftsChangeRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/timeoff?view=graph-rest-1.0",
+    "ClassName": "TimeOff"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/timeoffreason?view=graph-rest-1.0",
+    "ClassName": "TimeOffReason"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/timeoffrequest?view=graph-rest-1.0",
+    "ClassName": "TimeOffRequest"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/workforceintegration?view=graph-rest-1.0",
+    "ClassName": "WorkforceIntegration"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0",
+    "ClassName": "Drive"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/plannerplan?view=graph-rest-1.0",
+    "ClassName": "PlannerPlan"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/onenote?view=graph-rest-1.0",
+    "ClassName": "Onenote"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/resourcespecificpermissiongrant?view=graph-rest-1.0",
+    "ClassName": "ResourceSpecificPermissionGrant"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/todotasklist?view=graph-rest-1.0",
+    "ClassName": "TodoTaskList"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/todotask?view=graph-rest-1.0",
+    "ClassName": "TodoTask"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/checklistitem?view=graph-rest-1.0",
+    "ClassName": "ChecklistItem"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/linkedresource?view=graph-rest-1.0",
+    "ClassName": "LinkedResource"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/excel?view=graph-rest-1.0",
+    "ClassName": "Working"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/workbook?view=graph-rest-1.0",
+    "ClassName": "Workbook"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/workbookapplication?view=graph-rest-1.0",
+    "ClassName": "WorkbookApplication"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/workbookcomment?view=graph-rest-1.0",
+    "ClassName": "WorkbookComment"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/worksheet?view=graph-rest-1.0",
+    "ClassName": "Worksheet"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/range?view=graph-rest-1.0",
+    "ClassName": "Range"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/table?view=graph-rest-1.0",
+    "ClassName": "Table"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/chart?view=graph-rest-1.0",
+    "ClassName": "Chart"
+  },
+  {
+    "Url": "https://docs.microsoft.com/en-us/graph/api/resources/nameditem?view=graph-rest-1.0",
+    "ClassName": "NamedItem"
+  }
+]

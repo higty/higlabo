@@ -8,6 +8,7 @@ namespace HigLabo.CodeGenerator
 {
     public class Enum
     {
+        public string Comment { get; set; }
         public ClassModifier Modifier { get; private set; }
         public String Name { get; set; }
         public String BaseClass { get; set; }
