@@ -72,8 +72,9 @@ namespace HigLabo.NugetManagementApplication
             sb.AppendLine("pause");
             var text = sb.ToString();
             var fileName = String.Format("UploadPackage{0}.cmd", DateTime.Now.ToString("yyyyMMdd_HHmmss"));
-            Console.WriteLine(fileName);
-            File.WriteAllText(Path.Combine(NugetPackageFolderPath, fileName), text);
+            var folderPath = Path.Combine(NugetPackageFolderPath, fileName);
+            Console.WriteLine(folderPath);
+            File.WriteAllText(folderPath, text);
         }
     }
 }
