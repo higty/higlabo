@@ -55,9 +55,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.OAuth", "HigLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.OAuth.NewtonsoftJson", "HigLabo.Net.OAuth.NewtonsoftJson\HigLabo.Net.OAuth.NewtonsoftJson.csproj", "{142C8D2F-5B4F-4CD9-A769-939B9B61C084}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.Microsoft", "HigLabo.Net.Microsoft\HigLabo.Net.Microsoft.csproj", "{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.Microsoft", "HigLabo.Net.Microsoft\HigLabo.Net.Microsoft.csproj", "{AF8BF565-3F74-41D8-B019-CCBD6C7377EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Net.OAuthClientCodeGenerator", "HigLabo.Net.OAuthClientCodeGenerator\HigLabo.Net.OAuthClientCodeGenerator.csproj", "{FC70D7CB-69D4-44D0-8F17-13A532C819CD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.OAuthClientCodeGenerator", "HigLabo.Net.OAuthClientCodeGenerator\HigLabo.Net.OAuthClientCodeGenerator.csproj", "{FC70D7CB-69D4-44D0-8F17-13A532C819CD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Html", "HigLabo.Html\HigLabo.Html.csproj", "{CE27B54D-97A5-4946-897E-73541766EB8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.ObjectModel", "HigLabo.ObjectModel\HigLabo.ObjectModel.csproj", "{6C45C5B7-06B9-4492-A698-7611617C3DD2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -177,6 +181,14 @@ Global
 		{FC70D7CB-69D4-44D0-8F17-13A532C819CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC70D7CB-69D4-44D0-8F17-13A532C819CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC70D7CB-69D4-44D0-8F17-13A532C819CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE27B54D-97A5-4946-897E-73541766EB8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE27B54D-97A5-4946-897E-73541766EB8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE27B54D-97A5-4946-897E-73541766EB8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE27B54D-97A5-4946-897E-73541766EB8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C45C5B7-06B9-4492-A698-7611617C3DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C45C5B7-06B9-4492-A698-7611617C3DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C45C5B7-06B9-4492-A698-7611617C3DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C45C5B7-06B9-4492-A698-7611617C3DD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

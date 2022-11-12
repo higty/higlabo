@@ -2,16 +2,22 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>6.3.2.0</Version>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Version>6.0.0.0</Version>
     <Authors>Higty</Authors>
     <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
     <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.ObjectModel" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HigLabo.Converter\HigLabo.Converter.csproj" />
+    <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,6 +12,11 @@ namespace HigLabo.Web
 {
     public class WebApiActionResult : WebApiResult, IActionResult
     {
+        [JsonIgnore]
+        public static readonly WebApiActionResultDefaultSettings Default = new WebApiActionResultDefaultSettings();
+        [JsonIgnore] 
+        public JsonSerializerSettings JsonSerializerSettings { get; set; } = Default.JsonSerializerSettings;
+
         public WebApiActionResult(Object data)
             : this(HttpStatusCode.OK, "", data)
         {
@@ -58,7 +63,7 @@ namespace HigLabo.Web
             var cx = context.HttpContext;
             cx.Response.ContentType = "application/json";
             cx.Response.StatusCode = (Int32)this.HttpStatusCode;
-            var json = JsonConvert.SerializeObject(this);
+            var json = JsonConvert.SerializeObject(this, this.JsonSerializerSettings);
             var bb = Encoding.UTF8.GetBytes(json);
             await cx.Response.Body.WriteAsync(bb, 0, bb.Length);
             await cx.Response.Body.FlushAsync();

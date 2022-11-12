@@ -35,6 +35,7 @@ namespace HigLabo.Service
                 Interlocked.Increment(ref _CommandCount);
                 lock (_LockObject)
                 {
+                    if (_CommandList.Contains(command)) { return; }
                     _CommandList.Add(command);
                     if (_CommandList.Count > this.MaxCommandCount)
                     {

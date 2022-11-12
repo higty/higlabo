@@ -417,7 +417,9 @@ export class InputPropertyPanel {
             rpl.appendChild(span);
             $(rpl).setFocus();
         }
-        pl.remove();
+        if (pl != null) {
+            pl.remove();
+        }
         const ipl = $(target).getFirstParent("[input-property-panel]").getFirstElement();
         this.recordChanged(ipl);
     }
@@ -824,7 +826,7 @@ export class InputPropertyPanel {
                     record[name] = textarea.richTextbox.getData();
                 }
                 else if (textarea.richTextbox instanceof TinyMceTextBox) {
-                    record[name] = textarea.richTextbox.getContent();
+                    record[name] = textarea.richTextbox.getInnerHtml();
                 }
                 else {
                     record[name] = $(textarea).getValue();
@@ -1045,7 +1047,7 @@ export class InputPropertyPanel {
                 }
                 var textarea = propertyPanel.find("textarea").getFirstElement();
                 if (textarea != null) {
-                    this.setTextArea(textarea, v);
+                    InputPropertyPanel.setTextArea(textarea, v);
                 }
                 else {
                     if (element.tagName.toLowerCase() == "input" && element.attributes["type"] != "file") {
@@ -1057,6 +1059,88 @@ export class InputPropertyPanel {
                             case "radio":
                             case "checkbox":
                                 $(input).setChecked(v);
+                                $(input).triggerEvent("change");
+                                break;
+                            default:
+                                $(input).setValue(v);
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    clearElementProperty(element) {
+        const zeroPad2Digits = new Intl.NumberFormat('ja', { minimumIntegerDigits: 2 });
+        const propertyPanelList = $(element).find("[input-property-panel][h-name],[input-property-panel][h-record],[input-property-panel][h-record-list]").getElementList();
+        const v = "";
+        for (var i = 0; i < propertyPanelList.length; i++) {
+            var propertyPanel = $(propertyPanelList[i]);
+            let name = "";
+            name = $(propertyPanel).getAttribute("h-name");
+            if (name == "") {
+                name = $(propertyPanel).getAttribute("h-record");
+            }
+            if (name == "") {
+                name = $(propertyPanel).getAttribute("h-record-list");
+            }
+            let elementType = propertyPanel.getAttribute("element-type");
+            if (elementType == "Color") {
+                propertyPanel.find("input").setValue(v);
+                propertyPanel.find("[color-panel]").setStyle("background-color", v);
+            }
+            else if (elementType == "CheckBox") {
+                propertyPanel.find("input").setChecked(false);
+            }
+            else if (elementType == "CheckBoxList") {
+                $(propertyPanel).find("input[type='checkbox']").setChecked(false);
+            }
+            else if (elementType == "SelectButton" || elementType == "RadioButtonList") {
+                propertyPanel.find("input[type=radio]").setChecked(false);
+            }
+            else if (elementType == "Date") {
+                $(propertyPanel).find("[date-picker]").setValue(v);
+            }
+            else if (elementType == "DateDropDownList") {
+            }
+            else if (elementType == "Time") {
+                $(propertyPanel).find("input").setValue(v);
+            }
+            else if (elementType == "DateTime" ||
+                elementType == "TimeDuration" ||
+                elementType == "DateDuration" ||
+                elementType == "DateTimeDuration") {
+                $(propertyPanel).find("[date-picker]").setValue(v);
+                $(propertyPanel).find("[time-picker]").setValue(v);
+            }
+            else if (elementType == "DropDownList") {
+                propertyPanel.find("select").setValue(v);
+            }
+            else if (elementType == "Record") {
+                this.deleteRecord(propertyPanel.find("[select-record-panel] [delete-link]").getFirstElement());
+            }
+            else if (elementType == "RecordList") {
+                propertyPanel.find("[select-record-list-panel]").setInnerHtml("");
+            }
+            else {
+                let element = propertyPanel.getFirstElement();
+                if (element == null) {
+                    continue;
+                }
+                var textarea = propertyPanel.find("textarea").getFirstElement();
+                if (textarea != null) {
+                    InputPropertyPanel.setTextArea(textarea, v);
+                }
+                else {
+                    if (element.tagName.toLowerCase() == "input" && element.attributes["type"] != "file") {
+                        $(element).setValue(v);
+                    }
+                    else {
+                        let input = propertyPanel.find("input").getFirstElement();
+                        switch ($(input).getAttribute("type").toLowerCase()) {
+                            case "radio":
+                            case "checkbox":
+                                $(input).setChecked(false);
                                 $(input).triggerEvent("change");
                                 break;
                             default:

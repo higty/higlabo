@@ -20,6 +20,16 @@ namespace HigLabo.Web.UI
             public String Hour { get; set; } = SelectTimePopupPanel.Default.Hour;
             public String Minute { get; set; } = SelectTimePopupPanel.Default.Minute;
         }
+        public class MinuteSetting
+        {
+            public Int32 Minute { get; set; }
+            public Boolean IsDisplay { get; set; }
+            public MinuteSetting(Int32 minute, Boolean isDisplay)
+            {
+                this.Minute = minute;
+                this.IsDisplay = isDisplay;
+            }
+        }
         public static Setting Default = new Setting();
  
         public TextSetting TextSettings { get; set; } = new TextSetting();
@@ -27,19 +37,19 @@ namespace HigLabo.Web.UI
         public Int32 EndHour { get; set; } = 18;
 
         public Int32 MaxHour { get; set; } = 30;
-        public List<Int32> MinuteList { get; private set; } = new List<int>();
-        public List<Int32> DurationList { get; private set; } = new List<int>();
+        public List<MinuteSetting> MinuteList { get; private set; } = new ();
+        public List<Int32> DurationList { get; private set; } = new ();
 
         public SelectTimePopupPanel()
         {
-            this.MinuteList.Add(0);
-            this.MinuteList.Add(10);
-            this.MinuteList.Add(15);
-            this.MinuteList.Add(20);
-            this.MinuteList.Add(30);
-            this.MinuteList.Add(40);
-            this.MinuteList.Add(45);
-            this.MinuteList.Add(50);
+            this.MinuteList.Add(new MinuteSetting(0, true));
+            this.MinuteList.Add(new MinuteSetting(10, false));
+            this.MinuteList.Add(new MinuteSetting(15, true));
+            this.MinuteList.Add(new MinuteSetting(20, false));
+            this.MinuteList.Add(new MinuteSetting(30, true));
+            this.MinuteList.Add(new MinuteSetting(40, false));
+            this.MinuteList.Add(new MinuteSetting(45, true));
+            this.MinuteList.Add(new MinuteSetting(50, false));
 
             this.DurationList.Add(15);
             this.DurationList.Add(30);

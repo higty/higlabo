@@ -199,7 +199,7 @@ namespace HigLabo.Mapper.Test
 
             var s1 = new ScheduleRecord();
             s1.Title = "s1";
-            s1.StartTime = new DateTimeOffset(2020, 1, 1, 9,0,0, TimeSpan.FromHours(9));
+            s1.StartTime = new DateTimeOffset(2020, 1, 1, 9, 0, 0, TimeSpan.FromHours(9));
             s1.EndTime = new DateTimeOffset(2020, 1, 1, 10, 0, 0, TimeSpan.FromHours(9));
             var s2 = new ScheduleRecordChild();
             mapper.Map(s1, s2);
@@ -436,7 +436,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual("N", u2.Name);
             Assert.AreEqual(46, u2.Int32);
             Assert.AreEqual(46.46m, u2.Decimal);
-            Assert.AreEqual(new DateTime(2014, 12,17), u2.DateTime);
+            Assert.AreEqual(new DateTime(2014, 12, 17), u2.DateTime);
             Assert.AreEqual(DayOfWeek.Friday, u2.DayOfWeek);
             Assert.AreEqual(new Guid("7195FBEF-B18C-BC29-E339-39DDC81FC90F"), u2.GuidNullable);
         }
@@ -503,7 +503,7 @@ namespace HigLabo.Mapper.Test
         {
             var mapper = new ObjectMapper();
             mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == "Int32" && p2.Name == "Decimal";
-            
+
             var u1 = new User();
             u1.Int32 = 23;
             var u2 = mapper.Map(u1, new User());
@@ -694,7 +694,7 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_List_NullableValueTypeList_MappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == p2.Name 
+            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => p1.Name == p2.Name
             || (p1.Name == "Vectors" && p2.Name == "NullableVectors");
 
             var l1 = new VectorInfo();
@@ -1064,6 +1064,7 @@ namespace HigLabo.Mapper.Test
             Assert.AreEqual(s.I2.UndefinedEnumMember, t.I2.UndefinedEnumMember);
             Assert.AreEqual(s.I2.EnumMember, t.I2.EnumMember);
         }
+
 
 
 

@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
-using Newtonsoft.Json;
 using System.Text;
-using Newtonsoft.Json.Converters;
 using HigLabo.Core;
 using System.Security.Cryptography;
 
