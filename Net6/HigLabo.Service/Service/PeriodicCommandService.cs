@@ -99,7 +99,7 @@ namespace HigLabo.Service
         {
             var now = DateTime.UtcNow;
             var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0).AddMinutes(1);
-            return scheduleTime - DateTime.UtcNow;
+            return scheduleTime - now;
         }
 
         public void AddCommand(PeriodicCommand command)

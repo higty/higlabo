@@ -16,11 +16,12 @@
             if (i < workStartHour || workEndHour < i) { inWorkHour = false; }
             <tr class="hour-minute-panel" @Html.Text(inWorkHour == false, "option-setting=\"true\"")>
                 <td class="hour-panel">@i.ToString("00")</td>
-                @foreach (var minute in Model.MinuteList)
+                @foreach (var minuteSetting in Model.MinuteList)
                 {
+                    var minute = minuteSetting.Minute;
                     <td class="minute-panel" minute-panel="true"
                         hour="@i.ToString("00")" minute="@minute.ToString("00")"
-                        @Html.Text(minute % 30 != 0, "option-setting=\"true\"")>
+                        @Html.Text(minuteSetting.IsDisplay == false, "option-setting=\"true\"")>
                         @minute.ToString("00")
                     </td>
                 }
@@ -67,11 +68,12 @@
             if (i < workStartHour || workEndHour < i) { inWorkHour = false; }
             <tr class="hour-minute-panel" @Html.Text(inWorkHour == false, "option-setting=\"true\"")>
                 <td class="hour-panel">@i.ToString("00")</td>
-                @foreach (var minute in Model.MinuteList)
+                @foreach (var minuteSetting in Model.MinuteList)
                 {
+                    var minute = minuteSetting.Minute;
                     <td class="minute-panel" minute-panel="true"
                         hour="@i.ToString("00")" minute="@minute.ToString("00")"
-                        @Html.Text(minute % 30 != 0, "option-setting=\"true\"")>
+                        @Html.Text(minuteSetting.IsDisplay == false, "option-setting=\"true\"")>
                         @minute.ToString("00")
                     </td>
                 }

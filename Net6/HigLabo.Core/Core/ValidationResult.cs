@@ -28,7 +28,14 @@ namespace HigLabo.Core
         }
         public override string ToString()
         {
-            return this.Message;
+            if (this.Value == null)
+            {
+                return $"{this.Name} {this.Message}";
+            }
+            else
+            {
+                return $"{this.Name} {this.Message}{Environment.NewLine}{this.Value}";
+            }
         }
     }
 }

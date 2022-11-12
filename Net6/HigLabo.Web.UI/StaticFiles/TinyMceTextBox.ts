@@ -74,6 +74,7 @@ export class TinyMceTextBox {
             fontsize_formats: "8px 10px 12px 14px 16px 18px 20px 24px 32px 36px 48px 64px 72px 96px",
 
             images_upload_handler: this.imageUpload.bind(this),
+            images_reuse_filename: true,
             image_caption: true,
             tinydrive_token_provider: "",
             tinydrive_dropbox_app_key: "",
@@ -220,7 +221,7 @@ export class TinyMceTextBox {
         for (var i = 0; i < f.files.length; i++) {
             formData.append(f.name, f.files[i]);
         }
-        HttpClient.postForm(this.fileUploadUrlPath, formData, this.fileUploadCallback.bind(this), this.fileUploadErrorCallback.bind(this));
+        HttpClient.postForm(this.fileUploadUrlPath, formData, this.fileUploadCallback.bind(this));
         $(f).setValue("");
     }
     private fileUploadCallback(response: HttpResponse) {
@@ -252,9 +253,6 @@ export class TinyMceTextBox {
             }
         }
         return html;
-    }
-    private fileUploadErrorCallback(response: HttpResponse) {
-
     }
     private imageUpload(blobInfo, success, failure, progress) {
         if (this.imageUploadUrlPath == "") { return; }
@@ -434,16 +432,16 @@ export class TinyMceTextBox {
         if (this.editor != null) {
             this.editor.setContent(value.replace("\r", ""));
         }
-    }
+    } 
     public getContent() {
-        let text = this.editor.getContent();
-        if (text == "") {
-            const iframe = $(this.textBox).getNearest("iframe").getFirstElement() as HTMLIFrameElement;
-            const body = $(iframe.contentWindow.document).find("body").getFirstElement();
-            text = $(body).getInnerHtml();
-            if (text == "<p><br data-mce-bogus=\"1\"></p>") {
-                text = "";
-            }
+        return this.editor.getContent();
+    }
+    public getInnerHtml() {
+        const iframe = $(this.textBox).getNearest("iframe").getFirstElement() as HTMLIFrameElement;
+        const body = $(iframe.contentWindow.document).find("body").getFirstElement();
+        var text = $(body).getInnerHtml();
+        if (text == "<p><br data-mce-bogus=\"1\"></p>") {
+            text = "";
         }
         return text;
     }

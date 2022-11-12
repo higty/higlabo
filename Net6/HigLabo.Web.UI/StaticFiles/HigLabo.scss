@@ -621,7 +621,7 @@ textarea:focus-visible {
             }
 
             .content-panel {
-                padding-left: 4px;
+                padding: 0 0 0 4px;
             }
 
             &[toggle-state='Expand'] .content-panel {
@@ -723,8 +723,6 @@ textarea:focus-visible {
         }
 
         .content-panel {
-            padding: 10px;
-
             .record-list-panel {
                 height: 0;
                 margin: 0;
@@ -832,7 +830,7 @@ textarea:focus-visible {
     position: absolute;
     z-index: 220;
     display: none;
-    width: 100px;
+    width: 160px;
     height: 364px;
     color: #111111;
     background-color: #ffffff;

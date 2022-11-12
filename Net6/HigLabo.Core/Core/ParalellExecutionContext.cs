@@ -12,6 +12,14 @@ namespace HigLabo.Core
 
         public Exception Execute()
         {
+            return this.Execute(null);
+        }
+        public Exception Execute(Int32 milliseconds)
+        {
+            return this.Execute(TimeSpan.FromMilliseconds(milliseconds));
+        }
+        public Exception Execute(TimeSpan? timeout)
+        {
             var tt = this.TaskList;
             foreach (var item in tt)
             {
@@ -23,12 +31,43 @@ namespace HigLabo.Core
             var allTask = Task.WhenAll(tt);
             try
             {
-                allTask.Wait();
+                if (timeout == null)
+                {
+                    allTask.Wait();
+                }
+                else
+                {
+                    allTask.Wait(timeout.Value);
+                }
             }
             catch { }
 
             return allTask.Exception;
         }
+        public async Task<Exception> ExecuteAsync(Int32 milliseconds)
+        {
+            return await this.ExecuteAsync(TimeSpan.FromMilliseconds(milliseconds));
+        }
+        public async Task<Exception> ExecuteAsync(TimeSpan timeout)
+        {
+            var tt = this.TaskList;
+            foreach (var item in tt)
+            {
+                if (item.Status == TaskStatus.Created)
+                {
+                    item.Start();
+                }
+            }
+            var allTask = Task.WhenAll(tt);
+            try
+            {
+                await allTask.WaitAsync(timeout);
+            }
+            catch { }
+
+            return allTask.Exception;
+        }
+
         public List<T> GetResults<T>()
         {
             var l = new List<T>();

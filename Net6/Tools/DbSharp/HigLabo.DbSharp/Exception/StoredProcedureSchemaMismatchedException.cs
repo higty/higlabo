@@ -16,5 +16,9 @@ namespace HigLabo.DbSharp
             this.StoredProcedure = storedProcedure;
             this.ColumnOrdinal = columnOrdinal;
         }
+        public override string ToString()
+        {
+            return $"ColumnOrdinal={this.ColumnOrdinal}{StoredProcedure.ToString()}{base.ToString()}";
+        }
     }
 }

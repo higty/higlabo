@@ -542,7 +542,7 @@ textarea:focus-visible {
   text-decoration: underline;
 }
 .input-property-panel .select-record-list-panel .edit-record-panel .content-panel {
-  padding-left: 4px;
+  padding: 0 0 0 4px;
 }
 .input-property-panel .select-record-list-panel .edit-record-panel[toggle-state=Expand] .content-panel {
   display: block;
@@ -649,9 +649,6 @@ textarea:focus-visible {
   width: 60px;
   margin-left: auto;
 }
-.input-property-panel .search-record-list-panel .content-panel {
-  padding: 10px;
-}
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel {
   height: 0;
   margin: 0;
@@ -740,7 +737,7 @@ textarea:focus-visible {
   position: absolute;
   z-index: 220;
   display: none;
-  width: 100px;
+  width: 160px;
   height: 364px;
   color: #111111;
   background-color: #ffffff;
