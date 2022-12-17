@@ -33,6 +33,12 @@ textarea:focus-visible {
   --color-button-back-color: #3388cc;
   --color-button-mouse-over-color: #33aacc;
   --color-button-focus-color: #33aacc;
+  --color-menu-text-color: #4d5156;
+  --color-menu-back-color: #f4f4f4;
+  --color-menu-mouse-over-color: #e0e0e0;
+  --color-menu-border-color: #888888;
+  --color-popup-panel-back-color: #ffffff;
+  --color-popup-panel-mouse-over-color: #dddddd;
 }
 
 .delete-link {
@@ -52,6 +58,28 @@ textarea:focus-visible {
   background-color: #ff0000;
 }
 
+.mention-list-popup-panel {
+  width: 200px;
+  max-height: 400px;
+}
+.mention-list-popup-panel .mention-record-panel {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  color: var(--color-menu-text-color);
+}
+.mention-list-popup-panel .mention-record-panel.current {
+  background-color: var(--color-menu-mouse-over-color);
+}
+.mention-list-popup-panel .mention-record-panel img {
+  width: 32px;
+  height: 32px;
+  margin-right: 6px;
+}
 .file-upload-panel {
   cursor: pointer;
   border: dotted 3px var(--color-input-element-border-color);
@@ -463,7 +491,6 @@ textarea:focus-visible {
 }
 .input-property-panel .select-record-list-panel .edit-record-panel[h-record] {
   padding: 0;
-  margin-bottom: 4px;
 }
 .input-property-panel .select-record-list-panel .edit-record-panel .title-panel {
   display: -webkit-flex;
@@ -515,7 +542,7 @@ textarea:focus-visible {
   text-decoration: underline;
 }
 .input-property-panel .select-record-list-panel .edit-record-panel .content-panel {
-  padding-left: 4px;
+  padding: 0 0 0 4px;
 }
 .input-property-panel .select-record-list-panel .edit-record-panel[toggle-state=Expand] .content-panel {
   display: block;
@@ -622,9 +649,6 @@ textarea:focus-visible {
   width: 60px;
   margin-left: auto;
 }
-.input-property-panel .search-record-list-panel .content-panel {
-  padding: 10px;
-}
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel {
   height: 0;
   margin: 0;
@@ -640,6 +664,15 @@ textarea:focus-visible {
 .input-property-panel .search-record-list-panel .content-panel .record-list-panel .delete-link {
   display: none;
 }
+.input-property-panel .search-record-list-panel .content-panel .record-list-panel {
+  height: 50vh;
+}
+.input-property-panel .search-record-list-panel .content-panel .create-record-panel {
+  min-height: 160px;
+  margin: 0;
+  overflow-y: auto;
+  border: solid 1px var(--color-border-color);
+}
 .input-property-panel .search-record-list-panel .content-panel .search-text-list-textbox {
   width: 100%;
   height: 400px;
@@ -647,12 +680,6 @@ textarea:focus-visible {
 .input-property-panel .search-record-list-panel.slide-down {
   display: block;
   height: auto;
-}
-.input-property-panel .search-record-list-panel.slide-down .record-list-panel {
-  height: 50vh;
-}
-.input-property-panel .search-record-list-panel.slide-down .create-record-panel {
-  height: 50vh;
 }
 
 .input-property-panel-message-panel,
@@ -710,7 +737,7 @@ textarea:focus-visible {
   position: absolute;
   z-index: 220;
   display: none;
-  width: 100px;
+  width: 160px;
   height: 364px;
   color: #111111;
   background-color: #ffffff;

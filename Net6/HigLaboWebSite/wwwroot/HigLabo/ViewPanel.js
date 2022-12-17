@@ -22,6 +22,7 @@ export class ViewPanel {
                 this.loadDataByHash();
             }
         }
+        $(this.viewPanel).on("click", "[h-record]", this.record_Click.bind(this));
     }
     window_HashChange(e) {
         this.loadDataByHash();
@@ -137,6 +138,9 @@ export class ViewPanel {
         if (r == null) {
             return;
         }
+        if (this.templateID == "") {
+            return;
+        }
         const l = new List();
         const elementList = $("body").find("[h-key='" + key + "']").getElementList();
         for (var i = 0; i < elementList.length; i++) {
@@ -170,6 +174,76 @@ export class ViewPanel {
             return record.ObjectCD;
         }
         return undefined;
+    }
+    getSelectedRecordList() {
+        return InputPropertyPanel.createRecord(this.viewPanel);
+    }
+    record_Click(target, e) {
+        var _a;
+        const key = $(target).getAttribute("h-key");
+        if (key == "") {
+            return;
+        }
+        const ch = this.getCurrentCheckbox(key);
+        if (e.shiftKey == true) {
+            if (target != ch) {
+                this.changeCheckboxChecked(key);
+                (_a = window.getSelection()) === null || _a === void 0 ? void 0 : _a.removeAllRanges();
+            }
+            this.setCheckboxListChecked(key);
+        }
+        else if (e.ctrlKey == true) {
+            if (e.srcElement != ch) {
+                this.toggleCheckboxChecked(key);
+            }
+            if ($(ch).isChecked() == true) {
+                this.setCurrentCheckbox(ch);
+            }
+        }
+        else {
+            if (e.srcElement != ch) {
+                this.changeCheckboxChecked(key);
+            }
+            this.setCurrentCheckbox(ch);
+        }
+    }
+    getCurrentCheckbox(key) {
+        return $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").getFirstElement();
+    }
+    setCurrentCheckbox(checkbox) {
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected']").removeAttribute("current");
+        $(checkbox).setAttribute("current", "true");
+    }
+    clearCheckbox() {
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected']").setChecked(false);
+    }
+    toggleCheckboxChecked(key) {
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").toggleChecked();
+    }
+    changeCheckboxChecked(key) {
+        this.clearCheckbox();
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").setChecked(true);
+    }
+    setCheckboxListChecked(key) {
+        const cc = $(this.viewPanel).find("input[type='checkbox'][h-name='Selected']").getElementList();
+        const activeCheckbox = $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][current='true']").getFirstElement();
+        const checkbox = $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").getFirstElement();
+        let intersect = false;
+        for (var i = 0; i < cc.length; i++) {
+            let ch = cc[i];
+            if (intersect == true) {
+                $(ch).setChecked(true);
+                if (checkbox == cc[i] || activeCheckbox == cc[i]) {
+                    break;
+                }
+            }
+            else {
+                if (checkbox == cc[i] || activeCheckbox == cc[i]) {
+                    intersect = true;
+                    $(ch).setChecked(true);
+                }
+            }
+        }
     }
 }
 //# sourceMappingURL=ViewPanel.js.map

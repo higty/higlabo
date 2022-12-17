@@ -25,6 +25,8 @@ export class ViewPanel {
                 this.loadDataByHash();
             }
         }
+
+        $(this.viewPanel).on("click", "[h-record]", this.record_Click.bind(this));
     }
     private window_HashChange(e: Event) {
         this.loadDataByHash();
@@ -145,6 +147,7 @@ export class ViewPanel {
     public replaceElement(key: string): List<Element> {
         const r = this.getRecord(key);
         if (r == null) { return; }
+        if (this.templateID == "") { return; }
         //Replace element on UI.
         const l = new List<Element>();
         const elementList = $("body").find("[h-key='" + key + "']").getElementList();
@@ -174,4 +177,72 @@ export class ViewPanel {
         return undefined;
     }
 
+    public getSelectedRecordList() {
+        return InputPropertyPanel.createRecord(this.viewPanel);
+    }
+    private record_Click(target: HTMLInputElement, e: MouseEvent) {
+        const key = $(target).getAttribute("h-key");
+        if (key == "") { return; }
+
+        const ch = this.getCurrentCheckbox(key);
+        if (e.shiftKey == true) {
+            if (target != ch) {
+                this.changeCheckboxChecked(key);
+                window.getSelection()?.removeAllRanges();
+            }
+            this.setCheckboxListChecked(key);
+        }
+        else if (e.ctrlKey == true) {
+            if (e.srcElement != ch) {
+                this.toggleCheckboxChecked(key);
+            }
+            if ($(ch).isChecked() == true) {
+                this.setCurrentCheckbox(ch);
+            }
+        }
+        else {
+            if (e.srcElement != ch) {
+                this.changeCheckboxChecked(key);
+            }
+            this.setCurrentCheckbox(ch);
+        }
+    }
+    private getCurrentCheckbox(key: string) {
+        return $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").getFirstElement();
+    }
+    private setCurrentCheckbox(checkbox: Element) {
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected']").removeAttribute("current");
+        $(checkbox).setAttribute("current", "true");
+    }
+    public clearCheckbox() {
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected']").setChecked(false);
+    }
+    public toggleCheckboxChecked(key: string) {
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").toggleChecked();
+    }
+    public changeCheckboxChecked(key: string) {
+        this.clearCheckbox();
+        $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").setChecked(true);
+    }
+    public setCheckboxListChecked(key: string) {
+        const cc = $(this.viewPanel).find("input[type='checkbox'][h-name='Selected']").getElementList();
+        const activeCheckbox = $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][current='true']").getFirstElement();
+        const checkbox = $(this.viewPanel).find("input[type='checkbox'][h-name='Selected'][h-key='" + key + "']").getFirstElement() as HTMLInputElement;
+
+        let intersect = false;
+
+        for (var i = 0; i < cc.length; i++) {
+            let ch = cc[i] as HTMLInputElement;
+            if (intersect == true) {
+                $(ch).setChecked(true);
+                if (checkbox == cc[i] || activeCheckbox == cc[i]) { break; }
+            }
+            else {
+                if (checkbox == cc[i] || activeCheckbox == cc[i]) {
+                    intersect = true;
+                    $(ch).setChecked(true);
+                }
+            }
+        }
+    }
 }

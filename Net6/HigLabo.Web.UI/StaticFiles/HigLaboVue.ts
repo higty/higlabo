@@ -63,15 +63,18 @@ export class HigLaboVue {
     }
     public static render(element: Element, templateID: string, data: any): Array<Element> {
         $(element).setInnerHtml("");
-        return this.processElement(element, null, templateID, data);
+        return this.processElement(element, templateID, data, "append");
     }
     public static append(element: Element, templateID: string, data: any): Array<Element> {
-        return this.processElement(element, null, templateID, data);
+        return this.processElement(element, templateID, data, "append");
     }
     public static insertBefore(targetElement: Element, templateID: string, data: any): Array<Element> {
-        return this.processElement(targetElement.parentElement, targetElement, templateID, data);
+        return this.processElement(targetElement.parentElement, templateID, data, "before", targetElement);
     }
-    private static processElement(element: Element, targetElement: Element, templateID: string, data: any): Array<Element> {
+    public static insertAfter(targetElement: Element, templateID: string, data: any): Array<Element> {
+        return this.processElement(targetElement.parentElement, templateID, data, "after", targetElement);
+    }
+    private static processElement(element: Element, templateID: string, data: any, insertType: "append" | "before" | "after", targetElement?: Element): Array<Element> {
         if (element == null) { throw new Error("element must not be null."); }
 
         const span = document.createElement("span") as HTMLElement;
@@ -87,11 +90,11 @@ export class HigLaboVue {
             var element = elementList[i];
             while (element.children.length > 0) {
                 var actualElement = element.children[0];
-                if (targetElement == null) {
-                    element.parentElement.append(actualElement);
-                }
-                else {
-                    element.parentElement.insertBefore(actualElement, targetElement);
+                switch (insertType) {
+                    case "append": element.parentElement.append(actualElement); break;
+                    case "before": element.parentElement.insertBefore(actualElement, targetElement); break;
+                    case "after": element.parentElement.insertBefore(actualElement, targetElement.nextSibling); break;
+                    default:
                 }
                 HigLaboVue.appendChild(actualElement, data);
                 createdElementList.push(actualElement);

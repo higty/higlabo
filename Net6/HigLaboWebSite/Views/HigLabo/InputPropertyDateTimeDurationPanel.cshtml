@@ -12,8 +12,10 @@
 </div>
 <div class="flex-panel"@Model.FlexPanel.Attributes.GetHtmlString()>
     <span class="duration-start-panel" @Model.FlexPanel.DurationStartPanel.Attributes.GetHtmlString()>
-        <input type="text" h-name="StartDate" date-picker="true" class="date"@Model.FlexPanel.DurationStartPanel.StartDate.Attributes.GetHtmlString() />
-        <input type="text" h-name="StartHourMinute" time-picker="true" class="hour-minute"@Model.FlexPanel.DurationStartPanel.StartHourMinute.Attributes.GetHtmlString() />
+        <input type="text" h-name="StartDate" date-picker="true" class="date" 
+        value="@Model.FlexPanel.DurationStartPanel.StartDate.Value"@Model.FlexPanel.DurationStartPanel.StartDate.Attributes.GetHtmlString() />
+        <input type="text" h-name="StartHourMinute" time-picker="true" class="hour-minute"
+        value="@Model.FlexPanel.DurationStartPanel.StartHourMinute.Value"@Model.FlexPanel.DurationStartPanel.StartHourMinute.Attributes.GetHtmlString() />
     </span>
     <span class="radio-button-list-panel duration-list-panel" duration-list-panel="true"@Model.FlexPanel.DurationListPanel.Attributes.GetHtmlString()>
         @for (int i = 0; i < Model.DurationList.Count; i++)
@@ -31,8 +33,10 @@
     <span class="duration-end-panel" duration-end-panel="true"@Model.FlexPanel.DurationEndPanel.Attributes.GetHtmlString()>
         <span class="flex-panel"@Model.FlexPanel.DurationEndPanel.FlexPanel.Attributes.GetHtmlString()>
             <span class="duration-separator">-</span>
-            <input type="text" h-name="EndDate" date-picker="true" class="date"@Model.FlexPanel.DurationEndPanel.FlexPanel.EndDate.Attributes.GetHtmlString() />
-            <input type="text" h-name="EndHourMinute" time-picker="true" class="hour-minute"@Model.FlexPanel.DurationEndPanel.FlexPanel.EndHourMinute.Attributes.GetHtmlString() />
+            <input type="text" h-name="EndDate" date-picker="true" class="date"
+            value="@Model.FlexPanel.DurationEndPanel.FlexPanel.EndDate.Value"@Model.FlexPanel.DurationEndPanel.FlexPanel.EndDate.Attributes.GetHtmlString() />
+            <input type="text" h-name="EndHourMinute" time-picker="true" class="hour-minute"
+            value="@Model.FlexPanel.DurationEndPanel.FlexPanel.EndHourMinute.Value"@Model.FlexPanel.DurationEndPanel.FlexPanel.EndHourMinute.Attributes.GetHtmlString() />
         </span>
     </span>
 </div>
