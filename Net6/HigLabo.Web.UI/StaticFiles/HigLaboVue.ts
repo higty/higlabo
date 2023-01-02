@@ -4,6 +4,7 @@ import { List } from "./linq/Linq.js";
 
 export class HigLaboVue {
     public static formatMethods = {
+        intlFormat: HigLaboVue.intlFormat,
         numberFormat: HigLaboVue.numberFormat,
         currencyFormat: HigLaboVue.currencyFormat,
         dateFormat: HigLaboVue.dateFormat,
@@ -63,15 +64,18 @@ export class HigLaboVue {
     }
     public static render(element: Element, templateID: string, data: any): Array<Element> {
         $(element).setInnerHtml("");
-        return this.processElement(element, null, templateID, data);
+        return this.processElement(element, templateID, data, "append");
     }
     public static append(element: Element, templateID: string, data: any): Array<Element> {
-        return this.processElement(element, null, templateID, data);
+        return this.processElement(element, templateID, data, "append");
     }
     public static insertBefore(targetElement: Element, templateID: string, data: any): Array<Element> {
-        return this.processElement(targetElement.parentElement, targetElement, templateID, data);
+        return this.processElement(targetElement.parentElement, templateID, data, "before", targetElement);
     }
-    private static processElement(element: Element, targetElement: Element, templateID: string, data: any): Array<Element> {
+    public static insertAfter(targetElement: Element, templateID: string, data: any): Array<Element> {
+        return this.processElement(targetElement.parentElement, templateID, data, "after", targetElement);
+    }
+    private static processElement(element: Element, templateID: string, data: any, insertType: "append" | "before" | "after", targetElement?: Element): Array<Element> {
         if (element == null) { throw new Error("element must not be null."); }
 
         const span = document.createElement("span") as HTMLElement;
@@ -87,11 +91,11 @@ export class HigLaboVue {
             var element = elementList[i];
             while (element.children.length > 0) {
                 var actualElement = element.children[0];
-                if (targetElement == null) {
-                    element.parentElement.append(actualElement);
-                }
-                else {
-                    element.parentElement.insertBefore(actualElement, targetElement);
+                switch (insertType) {
+                    case "append": element.parentElement.append(actualElement); break;
+                    case "before": element.parentElement.insertBefore(actualElement, targetElement); break;
+                    case "after": element.parentElement.insertBefore(actualElement, targetElement.nextSibling); break;
+                    default:
                 }
                 HigLaboVue.appendChild(actualElement, data);
                 createdElementList.push(actualElement);
@@ -127,19 +131,51 @@ export class HigLaboVue {
         }
     }
 
-    public static numberFormat(value, culture: string) {
+    public static intlFormat(value, formatType: "DateTime" | "Number", format: string) {
+        switch (formatType) {
+            case "DateTime": return Intl.DateTimeFormat(HigLaboVue.defaultSettings.culture, HigLaboVue.getIntlFormatOptions(format)).format(value);
+            case "Number": return Intl.NumberFormat(HigLaboVue.defaultSettings.culture, HigLaboVue.getIntlFormatOptions(format)).format(value);
+            default:
+        }
+    }
+    public static getIntlFormatOptions(key: string) {
+        return {};
+    }
+
+    public static numberFormat(value, format: string) {
         if (value == null) { return ""; }
-        if (culture == null) { culture = HigLaboVue.defaultSettings.culture; }
-        const f = new Intl.NumberFormat(culture);
+        if (format == null) {
+            format = "1.0";
+        }
+        const rx = /([0-9])[\\.]([0-9])/;
+        const m = rx.exec(format);
+        if (m == null) {
+            return new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {}).format(value);
+        }
+        const f = new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {
+            minimumIntegerDigits: parseInt(m[1]),
+            maximumFractionDigits: parseInt(m[2])
+        });
         return f.format(value);
     }
-    public static currencyFormat(value, culture: string, currency: string) {
+    public static currencyFormat(value, format: string, currency: string) {
         if (value == null) { return ""; }
-        if (culture == null) { culture = HigLaboVue.defaultSettings.culture; }
-        if (currency == null) { currency = HigLaboVue.defaultSettings.currency; }
-        const f = new Intl.NumberFormat(culture, {
+        if (format == null) {
+            format = "1.0";
+        }
+        if (currency == null) {
+            currency = HigLaboVue.defaultSettings.currency;
+        }
+        const rx = /([0-9])[\\.]([0-9])/;
+        const m = rx.exec(format);
+        if (m == null) {
+            return new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, { style: "currency", currency: currency }).format(value);
+        }
+        const f = new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {
             style: "currency",
-            currency: currency
+            currency: currency,
+            minimumIntegerDigits: parseInt(m[1]),
+            maximumFractionDigits: parseInt(m[2])
         });
         return f.format(value);
     }

@@ -11,7 +11,7 @@
         <div class="flex-left-panel">
             @if (spl.CanCreateRecord)
             {
-            <div class="tab-header-panel" tab-name="CreateRecord">@spl.TextSettings.Create</div>
+            <div class="tab-header-panel" tab-name="CreateRecord">@spl.TextSettings.New</div>
             }
             <div class="tab-header-panel selected" tab-name="Search">@spl.TextSettings.Search</div>
             @if(spl.ElementType == InputElementType.RecordList && spl.ApiPathSearchByText.IsNullOrEmpty() == false)
@@ -61,7 +61,7 @@
     {
     <div class="tab-panel" tab-panel="true" tab-name="CreateRecord">
         <div class="content-panel">
-            <div class="create-record-panel" create-record-panel="true" data-simplebar="true">
+            <div class="create-record-panel" create-record-panel="true">
             @foreach (var item in spl.InputList)
             {
                 await Html.RenderPartialAsync(item);

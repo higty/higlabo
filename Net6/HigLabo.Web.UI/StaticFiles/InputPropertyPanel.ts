@@ -890,6 +890,7 @@ export class InputPropertyPanel {
             const day = $(propertyPanel).find("[day]").getSelectedValue();
             if (year != "" && month != "" && day != "") {
                 record[name] = year + "/" + month + "/" + day;
+                return;
             }
         }
         if ($(propertyPanel).getAttribute("element-type") == "DropDownList") {

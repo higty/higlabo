@@ -2,8 +2,8 @@
 
 <div class="flex-panel" @Model.FlexPanel.Attributes.GetHtmlString()>
     <span class="duration-start-panel">
-        <input type="text" h-name="StartDate" date-picker="true" class="date" @Model.FlexPanel.StartDate.Attributes.GetHtmlString() />
+        <input type="text" h-name="StartDate" date-picker="true" class="date" value="@Model.FlexPanel.StartDate.Value"@Model.FlexPanel.StartDate.Attributes.GetHtmlString() />
         <span class="duration-separator">-</span>
-        <input type="text" h-name="EndDate" date-picker="true" class="date" @Model.FlexPanel.EndDate.Attributes.GetHtmlString() />
+        <input type="text" h-name="EndDate" date-picker="true" class="date" value="@Model.FlexPanel.EndDate.Value"@Model.FlexPanel.EndDate.Attributes.GetHtmlString() />
     </span>
 </div>

@@ -21,7 +21,7 @@
                     var minute = minuteSetting.Minute;
                     <td class="minute-panel" minute-panel="true"
                         hour="@i.ToString("00")" minute="@minute.ToString("00")"
-                        @Html.Text(minute % 30 != 0, "option-setting=\"true\"")>
+                        @Html.Text(minuteSetting.IsDisplay == false, "option-setting=\"true\"")>
                         @minute.ToString("00")
                     </td>
                 }
@@ -73,7 +73,7 @@
                     var minute = minuteSetting.Minute;
                     <td class="minute-panel" minute-panel="true"
                         hour="@i.ToString("00")" minute="@minute.ToString("00")"
-                        @Html.Text(minute % 30 != 0, "option-setting=\"true\"")>
+                        @Html.Text(minuteSetting.IsDisplay == false, "option-setting=\"true\"")>
                         @minute.ToString("00")
                     </td>
                 }

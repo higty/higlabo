@@ -163,6 +163,8 @@ $RECYCLE.BIN/
 /Net5/HigLabo.Test/.vs/HigLabo.Test/v16/TestStore/0
 /Net5/.vs/HigLabo.Net5/config
 /.vs
+/NetStandard/.vs
+/NetFramework/.vs
 /Net6/.vs
 /Net6/Tools/DbSharp/.vs
 /Net6/HigLabo.Test/.vs/HigLabo.Test

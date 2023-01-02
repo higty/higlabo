@@ -74,6 +74,12 @@ textarea:focus-visible {
     --color-button-back-color: #3388cc;
     --color-button-mouse-over-color: #33aacc;
     --color-button-focus-color: #33aacc;
+    --color-menu-text-color: #4d5156;
+    --color-menu-back-color: #f4f4f4;
+    --color-menu-mouse-over-color: #e0e0e0;
+    --color-menu-border-color: #888888;
+    --color-popup-panel-back-color: #ffffff;
+    --color-popup-panel-mouse-over-color: #dddddd;
 }
 
 .delete-link {
@@ -87,6 +93,31 @@ textarea:focus-visible {
     margin-left: auto;
     color: var(--color-text-color-dark-background);
     background-color: #ff0000;
+}
+
+.mention-list-popup-panel {
+    width: 200px;
+    max-height: 400px;
+
+    .mention-record-panel {
+        @include display__flex();
+        align-items: center;
+        padding: 4px;
+        color: var(--color-menu-text-color);
+
+        &.current {
+            background-color: var(--color-menu-mouse-over-color);
+        }
+
+        img {
+            width: 32px;
+            height: 32px;
+            margin-right: 6px;
+        }
+
+        .user-name-panel {
+        }
+    }
 }
 
 .file-upload-panel {
@@ -533,7 +564,6 @@ textarea:focus-visible {
         .edit-record-panel {
             &[h-record] {
                 padding: 0;
-                margin-bottom: 4px;
             }
 
             .title-panel {
@@ -591,7 +621,7 @@ textarea:focus-visible {
             }
 
             .content-panel {
-                padding-left: 4px;
+                padding: 0 0 0 4px;
             }
 
             &[toggle-state='Expand'] .content-panel {
@@ -693,8 +723,6 @@ textarea:focus-visible {
         }
 
         .content-panel {
-            padding: 10px;
-
             .record-list-panel {
                 height: 0;
                 margin: 0;
@@ -714,6 +742,17 @@ textarea:focus-visible {
                 }
             }
 
+            .record-list-panel {
+                height: 50vh;
+            }
+
+            .create-record-panel {
+                min-height: 160px;
+                margin: 0;
+                overflow-y: auto;
+                border: solid 1px var(--color-border-color);
+            }
+
             .search-text-list-textbox {
                 width: 100%;
                 height: 400px;
@@ -723,14 +762,6 @@ textarea:focus-visible {
         &.slide-down {
             display: block;
             height: auto;
-
-            .record-list-panel {
-                height: 50vh;
-            }
-
-            .create-record-panel {
-                height: 50vh;
-            }
         }
     }
 }
@@ -799,7 +830,7 @@ textarea:focus-visible {
     position: absolute;
     z-index: 220;
     display: none;
-    width: 100px;
+    width: 160px;
     height: 364px;
     color: #111111;
     background-color: #ffffff;

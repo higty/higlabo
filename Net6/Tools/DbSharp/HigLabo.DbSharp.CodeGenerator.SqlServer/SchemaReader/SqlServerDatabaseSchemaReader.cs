@@ -318,7 +318,7 @@ namespace HigLabo.DbSharp.MetaData
             var t = table;
             var sb = new StringBuilder();
 
-            sb.AppendFormat("Create Table {0}", t.Name).AppendLine();
+            sb.AppendFormat("create table {0}", t.Name).AppendLine();
             for (int i = 0; i < t.Columns.Count; i++)
             {
                 var c = t.Columns[i];
@@ -334,11 +334,11 @@ namespace HigLabo.DbSharp.MetaData
                 }
                 if (c.AllowNull == false)
                 {
-                    sb.Append(" Not Null");
+                    sb.Append(" not null");
                 }
                 if (c.DefaultCostraint != null)
                 {
-                    sb.AppendFormat(" Constraint {0} Default {1}"
+                    sb.AppendFormat(" constraint {0} default {1}"
                         , c.DefaultCostraint.Name, c.DefaultCostraint.Definition);
                 }
                 sb.AppendLine();
@@ -349,7 +349,7 @@ namespace HigLabo.DbSharp.MetaData
                 var cc = t.GetPrimaryKeyColumns().ToList();
                 if (cc.Count > 0)
                 {
-                    sb.AppendFormat(",Constraint {0}_PrimaryKey Primary Key {1}(", t.Name, cc[0].Clustered);
+                    sb.AppendFormat(",constraint {0}_PrimaryKey primary key {1}(", t.Name, cc[0].Clustered);
                     for (int i = 0; i < cc.Count; i++)
                     {
                         if (i > 0)
@@ -363,7 +363,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
             {
-                sb.AppendFormat(",Constraint {0}_Fk_{1} Foreign Key({1}) References {2}({3}) On Update {4} On Delete {5}"
+                sb.AppendFormat(",constraint {0}_Fk_{1} foreign key({1}) references {2}({3}) on update {4} on delete {5}"
                     , t.Name, c.Name, c.ForeignKey.ParentTableName, c.ForeignKey.ParentColumnName
                     , c.ForeignKey.OnUpdate.Replace("_", " ")
                     , c.ForeignKey.OnDelete.Replace("_", " "));
@@ -371,7 +371,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             foreach (var cc in t.CheckConstraintList)
             {
-                sb.AppendFormat(",Constraint {0} Check({1})", cc.Name, cc.Definition);
+                sb.AppendFormat(",constraint {0} check({1})", cc.Name, cc.Definition);
                 sb.AppendLine();
             }
             foreach (var ix in t.IndexList)
@@ -379,10 +379,10 @@ namespace HigLabo.DbSharp.MetaData
                 //Pass PrimaryKey
                 if (ix.IsUnique == true) { continue; }
                 //Index only
-                if (String.Equals(ix.IndexType, "Clustered", StringComparison.OrdinalIgnoreCase) == false &&
-                    String.Equals(ix.IndexType, "NonClustered", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+                if (String.Equals(ix.IndexType, "clustered", StringComparison.OrdinalIgnoreCase) == false &&
+                    String.Equals(ix.IndexType, "nonClustered", StringComparison.OrdinalIgnoreCase) == false) { continue; }
 
-                sb.AppendFormat(",Index {0} {1} ({2})"
+                sb.AppendFormat(",index {0} {1} ({2})"
                     , ix.Name
                     , ix.IndexType
                     , String.Join(',', ix.Columns.Select(el => el.Name)));

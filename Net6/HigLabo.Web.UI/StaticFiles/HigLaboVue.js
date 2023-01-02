@@ -47,15 +47,18 @@ export class HigLaboVue {
     }
     static render(element, templateID, data) {
         $(element).setInnerHtml("");
-        return this.processElement(element, null, templateID, data);
+        return this.processElement(element, templateID, data, "append");
     }
     static append(element, templateID, data) {
-        return this.processElement(element, null, templateID, data);
+        return this.processElement(element, templateID, data, "append");
     }
     static insertBefore(targetElement, templateID, data) {
-        return this.processElement(targetElement.parentElement, targetElement, templateID, data);
+        return this.processElement(targetElement.parentElement, templateID, data, "before", targetElement);
     }
-    static processElement(element, targetElement, templateID, data) {
+    static insertAfter(targetElement, templateID, data) {
+        return this.processElement(targetElement.parentElement, templateID, data, "after", targetElement);
+    }
+    static processElement(element, templateID, data, insertType, targetElement) {
         if (element == null) {
             throw new Error("element must not be null.");
         }
@@ -69,11 +72,17 @@ export class HigLaboVue {
             var element = elementList[i];
             while (element.children.length > 0) {
                 var actualElement = element.children[0];
-                if (targetElement == null) {
-                    element.parentElement.append(actualElement);
-                }
-                else {
-                    element.parentElement.insertBefore(actualElement, targetElement);
+                switch (insertType) {
+                    case "append":
+                        element.parentElement.append(actualElement);
+                        break;
+                    case "before":
+                        element.parentElement.insertBefore(actualElement, targetElement);
+                        break;
+                    case "after":
+                        element.parentElement.insertBefore(actualElement, targetElement.nextSibling);
+                        break;
+                    default:
                 }
                 HigLaboVue.appendChild(actualElement, data);
                 createdElementList.push(actualElement);
@@ -108,29 +117,54 @@ export class HigLaboVue {
             }
         }
     }
-    static numberFormat(value, culture) {
+    static intlFormat(value, formatType, format) {
+        switch (formatType) {
+            case "DateTime": return Intl.DateTimeFormat(HigLaboVue.defaultSettings.culture, HigLaboVue.getIntlFormatOptions(format)).format(value);
+            case "Number": return Intl.NumberFormat(HigLaboVue.defaultSettings.culture, HigLaboVue.getIntlFormatOptions(format)).format(value);
+            default:
+        }
+    }
+    static getIntlFormatOptions(key) {
+        return {};
+    }
+    static numberFormat(value, format) {
         if (value == null) {
             return "";
         }
-        if (culture == null) {
-            culture = HigLaboVue.defaultSettings.culture;
+        if (format == null) {
+            format = "1.0";
         }
-        const f = new Intl.NumberFormat(culture);
+        const rx = /([0-9])[\\.]([0-9])/;
+        const m = rx.exec(format);
+        if (m == null) {
+            return new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {}).format(value);
+        }
+        const f = new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {
+            minimumIntegerDigits: parseInt(m[1]),
+            maximumFractionDigits: parseInt(m[2])
+        });
         return f.format(value);
     }
-    static currencyFormat(value, culture, currency) {
+    static currencyFormat(value, format, currency) {
         if (value == null) {
             return "";
         }
-        if (culture == null) {
-            culture = HigLaboVue.defaultSettings.culture;
+        if (format == null) {
+            format = "1.0";
         }
         if (currency == null) {
             currency = HigLaboVue.defaultSettings.currency;
         }
-        const f = new Intl.NumberFormat(culture, {
+        const rx = /([0-9])[\\.]([0-9])/;
+        const m = rx.exec(format);
+        if (m == null) {
+            return new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, { style: "currency", currency: currency }).format(value);
+        }
+        const f = new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {
             style: "currency",
-            currency: currency
+            currency: currency,
+            minimumIntegerDigits: parseInt(m[1]),
+            maximumFractionDigits: parseInt(m[2])
         });
         return f.format(value);
     }
@@ -166,6 +200,7 @@ export class HigLaboVue {
     }
 }
 HigLaboVue.formatMethods = {
+    intlFormat: HigLaboVue.intlFormat,
     numberFormat: HigLaboVue.numberFormat,
     currencyFormat: HigLaboVue.currencyFormat,
     dateFormat: HigLaboVue.dateFormat,
