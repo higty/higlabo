@@ -10,16 +10,6 @@ namespace HigLabo.Core
     /// </summary>
     public static class DictionaryExtensions
     {
-        [Obsolete("Please use IDataRecordExtensions.SetToDisctionary static extension method instead.")]
-        public static void SetValues(this IDictionary<String, Object> dictionary, System.Data.IDataRecord record)
-        {
-            var fieldCount = record.FieldCount;
-            for (int i = 0; i < fieldCount; i++)
-            {
-                var key = record.GetName(i);
-                dictionary[key] = record[key];
-            }
-        }
         /// <summary>
         /// 
         /// </summary>

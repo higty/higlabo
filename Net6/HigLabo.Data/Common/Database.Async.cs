@@ -34,9 +34,13 @@ namespace HigLabo.Data
         }
         public async Task<DbDataReader> ExecuteReaderAsync(String query, CommandBehavior commandBehavior)
         {
+            return await ExecuteReaderAsync(query, commandBehavior, CancellationToken.None);
+        }
+        public async Task<DbDataReader> ExecuteReaderAsync(String query, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        {
             var cm = this.CreateCommand(query);
             cm.CommandType = CommandType.Text;
-            return await ExecuteReaderAsync(cm, commandBehavior).ConfigureAwait(false);
+            return await ExecuteReaderAsync(cm, commandBehavior, cancellationToken).ConfigureAwait(false);
         }
         public async Task<DbDataReader> ExecuteReaderAsync(DbCommand command)
         {

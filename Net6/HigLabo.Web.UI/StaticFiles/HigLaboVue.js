@@ -117,29 +117,54 @@ export class HigLaboVue {
             }
         }
     }
-    static numberFormat(value, culture) {
+    static intlFormat(value, formatType, format) {
+        switch (formatType) {
+            case "DateTime": return Intl.DateTimeFormat(HigLaboVue.defaultSettings.culture, HigLaboVue.getIntlFormatOptions(format)).format(value);
+            case "Number": return Intl.NumberFormat(HigLaboVue.defaultSettings.culture, HigLaboVue.getIntlFormatOptions(format)).format(value);
+            default:
+        }
+    }
+    static getIntlFormatOptions(key) {
+        return {};
+    }
+    static numberFormat(value, format) {
         if (value == null) {
             return "";
         }
-        if (culture == null) {
-            culture = HigLaboVue.defaultSettings.culture;
+        if (format == null) {
+            format = "1.0";
         }
-        const f = new Intl.NumberFormat(culture);
+        const rx = /([0-9])[\\.]([0-9])/;
+        const m = rx.exec(format);
+        if (m == null) {
+            return new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {}).format(value);
+        }
+        const f = new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {
+            minimumIntegerDigits: parseInt(m[1]),
+            maximumFractionDigits: parseInt(m[2])
+        });
         return f.format(value);
     }
-    static currencyFormat(value, culture, currency) {
+    static currencyFormat(value, format, currency) {
         if (value == null) {
             return "";
         }
-        if (culture == null) {
-            culture = HigLaboVue.defaultSettings.culture;
+        if (format == null) {
+            format = "1.0";
         }
         if (currency == null) {
             currency = HigLaboVue.defaultSettings.currency;
         }
-        const f = new Intl.NumberFormat(culture, {
+        const rx = /([0-9])[\\.]([0-9])/;
+        const m = rx.exec(format);
+        if (m == null) {
+            return new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, { style: "currency", currency: currency }).format(value);
+        }
+        const f = new Intl.NumberFormat(HigLaboVue.defaultSettings.culture, {
             style: "currency",
-            currency: currency
+            currency: currency,
+            minimumIntegerDigits: parseInt(m[1]),
+            maximumFractionDigits: parseInt(m[2])
         });
         return f.format(value);
     }
@@ -175,6 +200,7 @@ export class HigLaboVue {
     }
 }
 HigLaboVue.formatMethods = {
+    intlFormat: HigLaboVue.intlFormat,
     numberFormat: HigLaboVue.numberFormat,
     currencyFormat: HigLaboVue.currencyFormat,
     dateFormat: HigLaboVue.dateFormat,
