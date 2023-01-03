@@ -11,6 +11,7 @@ Copy "%path%StaticFiles\ckeditor\ckeditor-language-ja.js" "%targetPath%wwwroot\H
 Mkdir "%targetPath%wwwroot\HigLabo\linq\"
 Copy "%path%StaticFiles\linq" "%targetPath%wwwroot\HigLabo\linq"
 
+Mkdir "%targetPath%Views\HigLabo\"
 Copy "%path%Views" "%targetPath%Views\HigLabo"
 
 pause
