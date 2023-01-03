@@ -183,7 +183,7 @@ export class InputPropertyPanel {
             var hour = parseInt(text.substr(0, 2));
             var minute = parseInt(text.substr(3, 2));
         }
-        if (minute == NaN) {
+        if (isNaN(minute) == true) {
             minute = 0;
         }
         if (0 <= hour && hour < 30 &&
