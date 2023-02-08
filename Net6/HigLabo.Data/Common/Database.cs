@@ -173,7 +173,13 @@ namespace HigLabo.Data
         public abstract DbDataAdapter CreateDataAdapter();
         public DbParameter CreateParameter(string parameterName, Enum dbType)
         {
-            return this.CreateParameter(parameterName, dbType, 0, 0);
+            return this.CreateParameter(parameterName, dbType, null, null);
+        }
+        public DbParameter CreateParameter(string parameterName, Enum dbType, object value)
+        {
+            var p = this.CreateParameter(parameterName, dbType, null, null);
+            p.Value = value;
+            return p;
         }
         public abstract DbParameter CreateParameter(string parameterName, Enum dbType, byte? precision, byte? scale);
 

@@ -7,78 +7,36 @@ using System.Data.Common;
 
 namespace HigLabo.Data
 {
-    /// <summary>
-    /// MYSQLサーバーへの接続及びデータ操作の機能を提供します。
-    /// </summary>
     public partial class MySqlDatabase : Database
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="connectionString"></param>
         public MySqlDatabase(String connectionString)
         {
             this.ConnectionString = connectionString;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serverName"></param>
-        /// <param name="databaseName"></param>
         public MySqlDatabase(String serverName, String databaseName)
         {
             this.ConnectionString = MySqlDatabaseConnectionString.Create(serverName, databaseName, 100);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="serverName"></param>
-        /// <param name="databaseName"></param>
-        /// <param name="userID"></param>
-        /// <param name="password"></param>
         public MySqlDatabase(String serverName, String databaseName, String userID, String password)
         {
             this.ConnectionString = MySqlDatabaseConnectionString.Create(serverName, databaseName, userID, password, 100);
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="connectionString"></param>
         public MySqlDatabase(MySqlDatabaseConnectionString connectionString)
         {
             this.ConnectionString = connectionString.Create();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         protected override DbConnection CreateDbConnection()
         {
             return new MySqlConnection();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="commandText"></param>
-        /// <returns></returns>
         protected override DbCommand CreateDbCommand()
         {
             return new MySqlCommand();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public override DbDataAdapter CreateDataAdapter()
         {
             return new MySqlDataAdapter();
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="dbType"></param>
-        /// <returns></returns>
         public override DbParameter CreateParameter(string name, Enum dbType, byte? precision, byte? scale)
         {
             if (dbType is MySqlDbType)
@@ -90,11 +48,11 @@ namespace HigLabo.Data
             }
             throw new ArgumentException("dbType must be MySqlDbType.");
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="script"></param>
-        /// <returns></returns>
+        public MySqlParameter CreateParameter(string parameterName, MySqlDbType dbType, object value)
+        {
+            return (MySqlParameter)base.CreateParameter(parameterName, dbType, value);
+        }
+
         public Int32 ExecuteCommand(MySqlScript script)
         {
             var affectRecordNumber = Int32.MinValue;
