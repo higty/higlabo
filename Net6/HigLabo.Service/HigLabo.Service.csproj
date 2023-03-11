@@ -2,8 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <Version>6.1.0.0</Version>
+    <Version>6.1.0.1</Version>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>Higty</Authors>
+    <Copyright>Copyright © 2011- HigLabo All Rights Reserved</Copyright>
+    <RepositoryUrl>https://github.com/higty/higlabo</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

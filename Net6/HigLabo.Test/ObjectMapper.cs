@@ -317,7 +317,7 @@ namespace HigLabo.Core
             }
             [MapperMethod]
             public static T? Enum<T>(String value, T? defaultValue)
-                where T : struct
+                where T: struct
             {
                 if (System.Enum.TryParse<T>(value, out var v)) { return v; }
                 return defaultValue;
@@ -360,7 +360,6 @@ namespace HigLabo.Core
         {
             public Type SourceType { get; set; }
             public Type TargetType { get; set; }
-            public Expression ObjectMapper { get; set; }
             public Expression Source { get; set; }
             public Expression Target { get; set; }
         }
@@ -478,6 +477,15 @@ namespace HigLabo.Core
 
         }
 
+        private static Boolean DictionaryStringString_ContainsKey(Dictionary<String, String> dictionary, String key)
+        {
+            return dictionary.ContainsKey(key);
+        }
+        private static Boolean DictionaryStringObject_ContainsKey(Dictionary<String, Object> dictionary, String key)
+        {
+            return dictionary.ContainsKey(key);
+        }
+
         public TTarget Map<TSource, TTarget>(TSource source, TTarget target)
         {
             if (source == null || target == null) { return target; }
@@ -489,11 +497,11 @@ namespace HigLabo.Core
                 _MapActionList[key] = func;
             }
 #if DEBUG
-            return ((Func<ObjectMapper, Object, Object, TTarget>)func)(this, source, target);
+            return ((Func<Object, Object, TTarget>)func)(source, target);
 #else
             try
             {
-            return ((Func<ObjectMapper, Object, Object, TTarget>)func)(this, source, target);
+                return ((Func<Object, Object, TTarget>)func)(source, target);
             }
             catch (Exception ex)
             {
@@ -515,7 +523,7 @@ namespace HigLabo.Core
             return Map(source, func());
         }
         public TTarget MapOrNull<TSource, TTarget>(TSource source, TTarget target)
-            where TTarget : class
+            where TTarget: class
         {
             if (source == null) { return null; }
             return Map(source, target);
@@ -528,9 +536,9 @@ namespace HigLabo.Core
                 defaultMapFunc = CreateMapMethod(typeof(TSource), typeof(TTarget));
                 _MapActionList[key] = defaultMapFunc;
             }
-            Func<ObjectMapper, Object, Object, TTarget> newMapFunc = (objectMapper, source, target) =>
+            Func<Object, Object, TTarget> newMapFunc = (source, target) =>
             {
-                var t = ((Func<ObjectMapper, Object, Object, TTarget>)defaultMapFunc)(this, source, target);
+                var t = ((Func<Object, Object, TTarget>)defaultMapFunc)(source, target);
                 action((TSource)source, (TTarget)target);
                 return t;
             };
@@ -538,7 +546,7 @@ namespace HigLabo.Core
         }
         public void ReplaceMap<TSource, TTarget>(Func<TSource, TTarget, TTarget> func)
         {
-            Func<ObjectMapper, Object, Object, TTarget> newMapFunc = (objectMapper, source, target) =>
+            Func<Object, Object, TTarget> newMapFunc = (source, target) =>
             {
                 return func((TSource)source, (TTarget)target);
             };
@@ -560,9 +568,9 @@ namespace HigLabo.Core
         {
             switch (mode)
             {
-                case ThreadMode.Performance: _MapActionList = new Dictionary<ActionKey, Delegate>(100); break;
-                case ThreadMode.ThreadSafe: _MapActionList = new ConcurrentDictionary<ActionKey, Delegate>(); break;
-                default: throw new InvalidOperationException();
+                case ThreadMode.Performance:_MapActionList = new Dictionary<ActionKey, Delegate>(100); break;
+                case ThreadMode.ThreadSafe:_MapActionList = new ConcurrentDictionary<ActionKey, Delegate>();break;
+                default:throw new InvalidOperationException();
             }
         }
 
@@ -587,7 +595,7 @@ namespace HigLabo.Core
 
             var sourcePropertyList = new List<PropertyInfo>();
             var targetPropertyList = new List<PropertyInfo>();
-
+  
             foreach (var item in sourceTypes)
             {
                 if (item == typeof(Object)) { continue; }
@@ -603,7 +611,7 @@ namespace HigLabo.Core
                     if (sourcePropertyList.Exists(el => el.Name == p.Name)) { continue; }
                     //Exclude indexer. userList[2] of List<T> class.
                     if (p.Name == "Item" && p.GetMethod.GetParameters().Length > 0) { continue; }
-
+ 
                     //Add to list when this property declared on this class.
                     //Not Add when this property declared on parent class because it will added on declared class.
                     if (p.DeclaringType == item)
@@ -746,7 +754,7 @@ namespace HigLabo.Core
         private List<(PropertyInfo SourceProperty, PropertyInfo TargetProperty)> CreatePropertyFromDictionaryMapping(Type sourceType, Type targetType)
         {
             var pp = new List<(PropertyInfo, PropertyInfo)>();
-
+       
             var targetTypes = new List<Type>();
             targetTypes.Add(targetType);
             targetTypes.AddRange(targetType.GetBaseClasses());
@@ -783,18 +791,15 @@ namespace HigLabo.Core
         public LambdaExpression CreateFunctionExpression(Type sourceType, Type targetType)
         {
             var p = new MapParameter();
-            var objectMapperParameter = Expression.Parameter(typeof(ObjectMapper), "objectMapperParameter");
             var sourceParameter = Expression.Parameter(typeof(Object), "sourceParameter");
             var targetParameter = Expression.Parameter(typeof(Object), "targetParameter");
 
             var ee = new List<Expression>();
             p.SourceType = sourceType;
             p.TargetType = targetType;
-            p.ObjectMapper = Expression.Variable(typeof(ObjectMapper), "objectMapper");
             p.Source = Expression.Variable(sourceType, "source");
             p.Target = Expression.Variable(targetType, "target");
 
-            ee.Add(Expression.Assign(p.ObjectMapper, objectMapperParameter));
             if (sourceType.IsValueType)
             {
                 ee.Add(Expression.Assign(p.Source, Expression.Unbox(sourceParameter, sourceType)));
@@ -852,18 +857,8 @@ namespace HigLabo.Core
             //Return value
             ee.Add(p.Target);
 
-            BlockExpression block = Expression.Block(new[] 
-            {
-                p.ObjectMapper as ParameterExpression,
-                p.Source as ParameterExpression,
-                p.Target as ParameterExpression,
-            }, ee);
-            LambdaExpression lambda = Expression.Lambda(block, new[]
-            { 
-                objectMapperParameter, 
-                sourceParameter, 
-                targetParameter,
-            });
+            BlockExpression block = Expression.Block(new[] { p.Source as ParameterExpression, p.Target as ParameterExpression }, ee);
+            LambdaExpression lambda = Expression.Lambda(block, new[] { sourceParameter, targetParameter });
             return lambda;
         }
 
@@ -890,7 +885,7 @@ namespace HigLabo.Core
                 var sourceProperty = item.source;
                 var targetProperty = item.target;
                 if (sourceType.GetProperty(sourceProperty.Name) == null) { continue; }
-
+          
                 MemberExpression getMethod = Expression.Property(p.Source, sourceProperty);
                 var setMethod = targetProperty.GetSetMethod();
                 if (setMethod == null) { continue; }
@@ -946,7 +941,7 @@ namespace HigLabo.Core
                         if (ParseMethodList.HasParseMethod(targetNullableGenericType))
                         {
                             var targetGetMethod = targetProperty.GetGetMethod();
-                            var parseMethod = _ParseOrNullMethodList[targetNullableGenericType.Name];
+                            var parseMethod = _ParseMethodList[targetNullableGenericType.Name];
                             var parse = Expression.Call(parseMethod, getMethod, Expression.Call(p.Target, targetGetMethod));
                             var body = Expression.Call(p.Target, setMethod, parse);
                             ee.Add(body);
@@ -1159,7 +1154,7 @@ namespace HigLabo.Core
                     elementParameter.TargetType = targetElementType;
                     elementParameter.Source = sourceElement;
                     elementParameter.Target = targetElement;
-
+                    
                     var loopBlock = new List<Expression>();
                     var endLoop = Expression.Label("endLoop");
 
@@ -1217,7 +1212,7 @@ namespace HigLabo.Core
                                         loopBlock.Add(Expression.Assign(targetElement, sourceElement));
                                         loopBlock.AddRange(ValidateCompileStateAndCreateMapPropertyExpression(elementParameter, state));
                                     }
-                                    else
+                                    else 
                                     {
                                         var targetConstructor = targetElementType.GetConstructor(Type.EmptyTypes);
                                         if (targetConstructor != null)
@@ -1308,7 +1303,7 @@ namespace HigLabo.Core
                         elementParameter.TargetType = targetElementType;
                         elementParameter.Source = sourceElement;
                         elementParameter.Target = targetElement;
-
+                        
                         var loopBlock = new List<Expression>();
                         var endLoop = Expression.Label("endLoop");
                         if (sourceProperty.PropertyType.IsICollectionT())
@@ -1402,7 +1397,7 @@ namespace HigLabo.Core
                             loopBlock.Add(Expression.AddAssign(index, Expression.Constant(1, typeof(Int32))));
 
                             var endLabel = Expression.Label("end");
-
+                            
                             var body = Expression.Block(new[] { sourceElement, targetElement, index }
                             , index
                             , Expression.IfThen(Expression.Equal(sourceMember, Expression.Constant(null, typeof(Object)))
@@ -1526,33 +1521,32 @@ namespace HigLabo.Core
             return ee;
         }
 
-        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, MapParameter parameter)
+        private List<Expression> CreateMapFromDictionaryExpression(Type sourceType, Type targetType, MapParameter parameterList)
         {
             var ee = new List<Expression>();
-            var p = parameter;
+            var p = parameterList;
             var sourceTypeIDictionary = sourceType.GetInterface("IDictionary`2");
             var sourceDictionaryValueType = sourceTypeIDictionary.GetGenericArguments()[1];
 
-            var containsKeyMethod = sourceTypeIDictionary.GetMethod("ContainsKey", new Type[] { typeof(String) });
+            var dictionaryStringString_ContainsKeyMethod = typeof(ObjectMapper).GetMethod("DictionaryStringString_ContainsKey", BindingFlags.NonPublic | BindingFlags.Static);
+            var dictionaryStringObject_ContainsKeyMethod = typeof(ObjectMapper).GetMethod("DictionaryStringObject_ContainsKey", BindingFlags.NonPublic | BindingFlags.Static);
             var tryGetMethod = typeof(ObjectMapper).GetMethod("TryGetValue", BindingFlags.NonPublic | BindingFlags.Static)
                 .MakeGenericMethod(sourceDictionaryValueType);
             var tryGetStringMethod = typeof(ObjectMapper).GetMethod("TryGetStringValue", BindingFlags.NonPublic | BindingFlags.Static)
                 .MakeGenericMethod(sourceDictionaryValueType);
-            var getDictionaryKeyMethod = typeof(ObjectMapper).GetMethod("GetDictionaryKey", BindingFlags.NonPublic | BindingFlags.Instance);
 
             var pp = CreatePropertyFromDictionaryMapping(sourceType, targetType);
             foreach (var item in pp)
             {
                 var sourceProperty = item.SourceProperty;
                 var targetProperty = item.TargetProperty;
-                var getNewKeyMethod = Expression.Call(p.ObjectMapper, getDictionaryKeyMethod, Expression.Constant(targetProperty.Name));
-                var getMethod = Expression.Call(tryGetStringMethod, p.Source, getNewKeyMethod);
+                var getMethod = Expression.Call(tryGetStringMethod, p.Source, Expression.Constant(targetProperty.Name));
                 var setMethod = targetProperty.GetSetMethod();
                 if (setMethod == null) { continue; }
 
                 if (sourceDictionaryValueType == typeof(Object))
                 {
-                    getMethod = Expression.Call(tryGetStringMethod, p.Source, getNewKeyMethod);
+                    getMethod = Expression.Call(tryGetStringMethod, p.Source, Expression.Constant(targetProperty.Name));
                 }
                 var ifThenBlock = new List<Expression>();
                 if (targetProperty.PropertyType == typeof(String))
@@ -1608,20 +1602,20 @@ namespace HigLabo.Core
                 {
                     if (sourceDictionaryValueType == typeof(String))
                     {
-                        ee.Add(Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, getNewKeyMethod)
+                        ee.Add(Expression.IfThen(Expression.Call(dictionaryStringString_ContainsKeyMethod, p.Source, Expression.Constant(targetProperty.Name))
                             , Expression.Block(ifThenBlock)));
                     }
                     else if (sourceDictionaryValueType == typeof(Object))
                     {
+                        var sourceValue = Expression.Call(tryGetMethod, p.Source, Expression.Constant(targetProperty.Name));
                         if (targetProperty.PropertyType == typeof(String))
                         {
-                            ee.Add(Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, getNewKeyMethod)
+                            ee.Add(Expression.IfThen(Expression.Call(dictionaryStringObject_ContainsKeyMethod, p.Source, Expression.Constant(targetProperty.Name))
                                 , Expression.Block(ifThenBlock)));
                         }
                         else
                         {
-                            var sourceValue = Expression.Call(tryGetMethod, p.Source, getNewKeyMethod);
-                            ee.Add(Expression.IfThen(Expression.Call(p.Source, containsKeyMethod, getNewKeyMethod)
+                            ee.Add(Expression.IfThen(Expression.Call(dictionaryStringObject_ContainsKeyMethod, p.Source, Expression.Constant(targetProperty.Name))
                                 , Expression.IfThenElse(Expression.TypeIs(sourceValue, targetProperty.PropertyType)
                                 , Expression.Call(p.Target, setMethod, Expression.Convert(sourceValue, targetProperty.PropertyType))
                                 , Expression.Block(ifThenBlock))));
@@ -1637,10 +1631,6 @@ namespace HigLabo.Core
             ee.Add(block);
 
             return ee;
-        }
-        private String GetDictionaryKey(String propertyName)
-        {
-            return this.CompilerConfig.DictionaryKeyConvertRule(propertyName);
         }
 
         private static IDictionary<String, String> MapDictionary_String_String(IDictionary<String, String> source, IDictionary<String, String> target)

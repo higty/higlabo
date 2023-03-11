@@ -9,6 +9,7 @@ namespace HigLabo.Mapper.Test
     public class Sys_Database
     {
         public String Name { get; set; }
+        public String Name1 { get; set; }
         public Int32 Database_ID { get; set; }
         public DateTime Create_Date { get; set; }
         public Int32 Compatibility_Level { get; set; }

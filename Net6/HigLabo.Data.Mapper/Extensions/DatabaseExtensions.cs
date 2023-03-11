@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using HigLabo.Core;
 
@@ -12,26 +14,38 @@ namespace HigLabo.Data
         public static async Task<T?> GetRecordAsync<T>(this Database database, String query)
             where T : class, new()
         {
-            return await GetRecordAsync(database, query, () => new T(), CommandBehavior.Default, CancellationToken.None);
+            var cm = database.CreateCommand(query);
+            cm.CommandType = CommandType.Text;
+            return await GetRecordAsync(database, cm, () => new T(), CommandBehavior.Default, CancellationToken.None);
         }
         public static async Task<T?> GetRecordAsync<T>(this Database database, String query, Func<T> constructor)
             where T : class
         {
-            return await GetRecordAsync(database, query, constructor, CommandBehavior.Default, CancellationToken.None);
+            var cm = database.CreateCommand(query);
+            cm.CommandType = CommandType.Text;
+            return await GetRecordAsync(database, cm, constructor, CommandBehavior.Default, CancellationToken.None);
         }
-        public static async Task<T?> GetRecordAsync<T>(this Database database, String query
+        public static async Task<T?> GetRecordAsync<T>(this Database database, DbCommand command)
+           where T : class, new()
+        {
+            return await GetRecordAsync<T>(database, command, CommandBehavior.Default, CancellationToken.None);
+        }
+        public static async Task<T?> GetRecordAsync<T>(this Database database, DbCommand command, Func<T> constructor)
+            where T : class
+        {
+            return await GetRecordAsync<T>(database, command, constructor, CommandBehavior.Default, CancellationToken.None);
+        }
+        public static async Task<T?> GetRecordAsync<T>(this Database database, DbCommand command
             , CommandBehavior commandBehavior, CancellationToken cancellationToken)
             where T : class, new()
         {
-            return await GetRecordAsync(database, query, () => new T(), commandBehavior, cancellationToken);
+            return await GetRecordAsync(database, command, () => new T(), commandBehavior, cancellationToken);
         }
-        public static async Task<T?> GetRecordAsync<T>(this Database database, String query, Func<T> constructor
+        public static async Task<T?> GetRecordAsync<T>(this Database database, DbCommand command, Func<T> constructor
             , CommandBehavior commandBehavior, CancellationToken cancellationToken)
             where T: class
         {
-            var cm = database.CreateCommand(query);
-            cm.CommandType = CommandType.Text;
-            var l = await GetRecordListAsync(database, cm, constructor, commandBehavior, cancellationToken);
+            var l = await GetRecordListAsync(database, command, constructor, commandBehavior, cancellationToken);
             if (l.Count == 0) { return null; }
             return l[0];
         }
@@ -49,6 +63,16 @@ namespace HigLabo.Data
             cm.CommandType = CommandType.Text;
             return await GetRecordListAsync(database, cm, constructor, CommandBehavior.Default, CancellationToken.None);
         }
+        public static async Task<List<T>> GetRecordListAsync<T>(this Database database, DbCommand command)
+               where T : class, new()
+        {
+            return await GetRecordListAsync<T>(database, command, CommandBehavior.Default, CancellationToken.None);
+        }
+        public static async Task<List<T>> GetRecordListAsync<T>(this Database database, DbCommand command, Func<T> constructor)
+        {
+            return await GetRecordListAsync(database, command, constructor, CommandBehavior.Default, CancellationToken.None);
+        }
+
         public static async Task<List<T>> GetRecordListAsync<T>(this Database database, DbCommand command
             , CommandBehavior commandBehavior, CancellationToken cancellationToken)
             where T : class, new()
@@ -61,7 +85,7 @@ namespace HigLabo.Data
             var l = new List<T>();
             var db = database;
             var dr = await db.ExecuteReaderAsync(command, commandBehavior, cancellationToken);
-            var d = new Dictionary<String, Object>();
+            var d = new Dictionary<String, Object>(StringComparer.OrdinalIgnoreCase);
             while (dr.Read())
             {
                 d.Clear();

@@ -2,5 +2,22 @@
 
 <div class="file-upload-panel" file-upload-panel="true" api-path="@Model.ApiPath">
     <input name="file" type="file" select-file="true" multiple="multiple">
-    <div class="text-panel">@Model.Text</div>
+    @if (Model.AllowSelectFile)
+    {
+    <div class="text-panel" select-file-panel="true">@Model.SelectFileText</div>
+    }
+    @if (Model.AllowTakePhoto)
+    {
+    <div class="text-panel" launch-camera-panel="true">@Model.UseCameraText</div>
+    <div class="display-none" camera-panel="true">
+        <video video-panel="true" autoplay="autoplay" playsinline="true"></video>
+        <canvas canvas-panel="true"></canvas>
+        <div class="setting-panel">
+            <span class="image-size" image-size="true"></span>
+            <input type="range" class="image-size-slider" image-size-slider="true" min="64" max="3840" />
+        </div>
+        <div class="text-panel" take-photo-panel="true">@Model.TakePhotoText</div>
+    </div>
+    }
 </div>
+

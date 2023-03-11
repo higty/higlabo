@@ -121,22 +121,44 @@ textarea:focus-visible {
 }
 
 .file-upload-panel {
-    cursor: pointer;
-    border: dotted 3px var(--color-input-element-border-color);
-
-    &:hover {
-        background-color: var(--color-input-element-mouse-over-color);
-    }
-
     input[type=file] {
         display: none;
     }
 
     .text-panel {
-        width: 90%;
-        margin: 0 auto;
+        width: 100%;
+        margin: 0 auto 10px auto;
         padding: 10px;
         text-align: center;
+        cursor: pointer;
+        border: dotted 3px var(--color-input-element-border-color);
+
+        &:hover {
+            background-color: var(--color-input-element-mouse-over-color);
+        }
+    }
+
+    video {
+        width: 100%;
+    }
+
+    canvas {
+        display:none;
+        width: 100%;
+    }
+
+    .setting-panel {
+        @include display__flex();
+        align-items: center;
+
+        .image-size {
+            flex: 0 0 60px;
+            margin: 0 10px;
+        }
+
+        .image-size-slider {
+            @include prop_calc("width", "100vw - 200px");
+        }
     }
 }
 
