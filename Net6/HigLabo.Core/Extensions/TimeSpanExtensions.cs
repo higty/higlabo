@@ -10,7 +10,7 @@ namespace HigLabo.Core
     {
         public static TimeOnly GetTimeOnly(this TimeSpan value)
         {
-            return new TimeOnly(value.Ticks % (24 * 60 * 60));
+            return TimeOnly.FromTimeSpan(value);
         }
     }
 }

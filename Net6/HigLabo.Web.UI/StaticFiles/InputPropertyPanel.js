@@ -866,6 +866,13 @@ export class InputPropertyPanel {
             }
         }
         {
+            if (propertyPanel.tagName.toUpperCase() == "TEXTAREA") {
+                let v = $(propertyPanel).getValue();
+                if (v != null) {
+                    record[name] = v;
+                }
+                return;
+            }
             let element = $(propertyPanel).find("input").getFirstElement();
             if (element == null) {
                 if (propertyPanel.tagName.toUpperCase() == "INPUT") {
