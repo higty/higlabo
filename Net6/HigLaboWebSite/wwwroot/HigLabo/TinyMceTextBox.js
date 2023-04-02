@@ -42,11 +42,11 @@ export class TinyMceTextBox {
     initializeConfig() {
         this.config = {
             height: 600,
-            plugins: "print preview powerpaste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
+            plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
                 + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                 + "noneditable help formatpainter permanentpen pageembed charmap quickbars linkchecker emoticons advtable export autoresize",
             mobile: {
-                plugins: "print preview powerpaste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
+                plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
                     + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                     + "noneditable help formatpainter pageembed charmap quickbars linkchecker emoticons advtable autoresize"
             },

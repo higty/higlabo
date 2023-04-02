@@ -66,23 +66,25 @@ export class InputPropertyPanel {
         const flatpickr = window["flatpickr"];
         if (flatpickr == null) { return; }
 
-        flatpickr.l10ns.default.firstDayOfWeek = 1;
-        if (language == "ja-JP") {
-            flatpickr.localize(flatpickr.l10ns.ja);
+        try {
+            flatpickr.l10ns.default.firstDayOfWeek = 1;
+            if (language == "ja-JP") {
+                flatpickr.localize(flatpickr.l10ns.ja);
+            }
+            flatpickr("[date-picker]", {
+                dateFormat: "Y/m/d",
+                allowInput: true,
+                disableMobile: true
+            });
+            flatpickr("[inline-date-picker]", {
+                dateFormat: "Y/m/d",
+                allowInput: true,
+                disableMobile: true,
+                inline: true
+            });
         }
-        flatpickr("[date-picker]", {
-            dateFormat: "Y/m/d",
-            allowInput: true,
-            disableMobile: true
-        });
-        flatpickr("[inline-date-picker]", {
-            dateFormat: "Y/m/d",
-            allowInput: true,
-            disableMobile: true,
-            inline: true
-        });
-
-}
+        catch { }
+    }
     public registerEventHandler(hander: RecordChangedEventHandler) {
         this._eventHandlerList.push(hander);
     }
@@ -914,6 +916,13 @@ export class InputPropertyPanel {
             }
         }
         {
+            if (propertyPanel.tagName.toUpperCase() == "TEXTAREA") {
+                let v = $(propertyPanel).getValue();
+                if (v != null) {
+                    record[name] = v;
+                }
+                return;
+            }
             let element = $(propertyPanel).find("input").getFirstElement();
             if (element == null) {
                 if (propertyPanel.tagName.toUpperCase() == "INPUT") {
@@ -989,7 +998,10 @@ export class InputPropertyPanel {
         for (var i = 0; i < propertyList.length; i++) {
             var name = propertyList[i];
             let v = record[name];
-            let propertyPanel = $(recordElement).find("[h-name='" + name + "'],[h-record='" + name + "'],[h-record-list='" + name + "']");
+            let propertyPanel = $(recordElement).find("[input-property-panel][h-name='" + name + "'],[h-record='" + name + "'],[h-record-list='" + name + "']");
+            if (propertyPanel.getElementCount() == 0) {
+                propertyPanel = $(recordElement).find("[h-name='" + name + "'],[h-record='" + name + "'],[h-record-list='" + name + "']");
+            }
             let elementType = propertyPanel.getAttribute("element-type");
 
             if (elementType == "Color") {

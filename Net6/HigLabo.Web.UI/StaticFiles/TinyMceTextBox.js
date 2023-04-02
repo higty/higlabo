@@ -42,13 +42,15 @@ export class TinyMceTextBox {
     initializeConfig() {
         this.config = {
             height: 600,
-            plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
-                + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                + "noneditable help formatpainter permanentpen pageembed charmap quickbars linkchecker emoticons advtable export autoresize",
+            plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "advcode", "visualblocks", "visualchars", "fullscreen",
+                "image", "link", "media", "template", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor",
+                "insertdatetime", "advlist", "lists", "checklist", "wordcount", "a11ychecker",
+                "help", "formatpainter", "permanentpen", "pageembed", "charmap", "quickbars", "linkchecker", "emoticons", "advtable", "export", "autoresize"],
             mobile: {
-                plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
-                    + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                    + "noneditable help formatpainter pageembed charmap quickbars linkchecker emoticons advtable autoresize"
+                plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "advcode", "visualblocks", "visualchars", "fullscreen",
+                    "image", "link", "media", "template", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor",
+                    "insertdatetime", "advlist", "lists", "checklist", "wordcount", "a11ychecker",
+                    "help", "formatpainter", "permanentpen", "pageembed", "charmap", "quickbars", "linkchecker", "emoticons", "advtable", "export", "autoresize"]
             },
             menubar: "file edit view insert format tools table tc help",
             toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
@@ -217,15 +219,17 @@ export class TinyMceTextBox {
         }
         return html;
     }
-    imageUpload(blobInfo, success, failure, progress) {
-        if (this.imageUploadUrlPath == "") {
-            return;
-        }
-        var formData = new FormData();
-        formData.append('file', blobInfo.blob(), blobInfo.filename());
-        HttpClient.postForm(this.imageUploadUrlPath, formData, this.invokeImageUploadCallback.bind(this), this.invokeImageUploadCallback.bind(this), this.invokeImageUploadProgress.bind(this), {
-            success: success,
-            failure: failure
+    imageUpload(blobInfo, progress) {
+        return new Promise((resolve, reject) => {
+            if (this.imageUploadUrlPath == "") {
+                return;
+            }
+            var formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            HttpClient.postForm(this.imageUploadUrlPath, formData, this.invokeImageUploadCallback.bind(this), this.invokeImageUploadCallback.bind(this), this.invokeImageUploadProgress.bind(this), {
+                success: resolve,
+                failure: reject
+            });
         });
     }
     invokeImageUploadCallback(response, context) {

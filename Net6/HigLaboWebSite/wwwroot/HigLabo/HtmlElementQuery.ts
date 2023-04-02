@@ -372,6 +372,18 @@ export class HtmlElementQuery {
         }
         return this;
     }
+    public appendInnerText(value: string): HtmlElementQuery {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].textContent = this._elementList[i].textContent + value;
+        }
+        return this;
+    }
+    public appendInnerHtml(html: string): HtmlElementQuery {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
+        }
+        return this;
+    }
 
     public getStyle(name: string): string {
         if (this._elementList.length > 0) {

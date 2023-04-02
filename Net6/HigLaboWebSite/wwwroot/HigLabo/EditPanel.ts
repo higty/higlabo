@@ -49,11 +49,11 @@ export class EditPanel {
         this.save();
     }
     public save() {
-        const r = InputPropertyPanel.createRecord(document.getElementById("EditPanel"));
         const apiPath = $("#EditPanelParameter").getAttribute("api-path-save");
         if (apiPath == "") { return; }
-        HttpClient.postJson(apiPath, r, this.api_Callback.bind(this), this.api_ErrorCallback.bind(this));
         this.hideButton();
+        const r = InputPropertyPanel.createRecord(document.getElementById("EditPanel"));
+        HttpClient.postJson(apiPath, r, this.api_Callback.bind(this), this.api_ErrorCallback.bind(this));
     }
     private async deleteButton_Click(e: Event) {
         $("#SaveButton").hide();

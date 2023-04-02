@@ -8,7 +8,7 @@ import { List } from "./linq/Collections.js";
 export class TinyMceTextBox {
     private tinymce = window["tinymce"];
     private fileUploadElement: HTMLInputElement;
-    private initializeCompletedEventList = new List<(textbox: TinyMceTextBox) => void> ();
+    private initializeCompletedEventList = new List<(textbox: TinyMceTextBox) => void>();
 
     public textBox: Element;
     public createTime = new DateTime(new Date());
@@ -51,13 +51,15 @@ export class TinyMceTextBox {
     private initializeConfig() {
         this.config = {
             height: 600,
-            plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
-                + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                + "noneditable help formatpainter permanentpen pageembed charmap quickbars linkchecker emoticons advtable export autoresize",
+            plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "advcode", "visualblocks", "visualchars", "fullscreen"
+                , "image", "link", "media", "template", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor"
+                , "insertdatetime", "advlist", "lists", "checklist", "wordcount", "a11ychecker"
+                , "help", "formatpainter", "permanentpen", "pageembed", "charmap", "quickbars", "linkchecker", "emoticons", "advtable", "export", "autoresize"],
             mobile: {
-                plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
-                    + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
-                    + "noneditable help formatpainter pageembed charmap quickbars linkchecker emoticons advtable autoresize"
+                plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "advcode", "visualblocks", "visualchars", "fullscreen"
+                    , "image", "link", "media", "template", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor"
+                    , "insertdatetime", "advlist", "lists", "checklist", "wordcount", "a11ychecker"
+                    , "help", "formatpainter", "permanentpen", "pageembed", "charmap", "quickbars", "linkchecker", "emoticons", "advtable", "export", "autoresize"]
             },
             menubar: "file edit view insert format tools table tc help",
             toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
@@ -144,7 +146,7 @@ export class TinyMceTextBox {
             autolink_pattern: /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i,
             default_link_target: "_blank",
 
-            smart_paste : false,
+            smart_paste: false,
             indentation: "16px",
             indent_use_margin: true,
             noneditable_noneditable_class: 'mceNonEditable',
@@ -253,19 +255,21 @@ export class TinyMceTextBox {
         }
         return html;
     }
-    private imageUpload(blobInfo, success, failure, progress) {
-        if (this.imageUploadUrlPath == "") { return; }
-        var formData = new FormData();
-        formData.append('file', blobInfo.blob(), blobInfo.filename());
-        HttpClient.postForm(this.imageUploadUrlPath, formData
-            , this.invokeImageUploadCallback.bind(this)
-            , this.invokeImageUploadCallback.bind(this)
-            , this.invokeImageUploadProgress.bind(this)
-            , {
-                success: success,
-                failure: failure
-            }
-        );
+    private imageUpload(blobInfo, progress) {
+        return new Promise((resolve, reject) => {
+            if (this.imageUploadUrlPath == "") { return; }
+            var formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+            HttpClient.postForm(this.imageUploadUrlPath, formData
+                , this.invokeImageUploadCallback.bind(this)
+                , this.invokeImageUploadCallback.bind(this)
+                , this.invokeImageUploadProgress.bind(this)
+                , {
+                    success: resolve,
+                    failure: reject
+                }
+            );
+        });
     }
     private invokeImageUploadCallback(response: HttpResponse, context: any) {
         const result = response.getWebApiResult();
@@ -372,7 +376,7 @@ export class TinyMceTextBox {
         $(ppl).setStyle("left", (iframeRect.left + pRect.left) + "px");
         $(ppl).setStyle("top", (iframeRect.top + pRect.top + 28) + "px");
     }
-    public createLoadMentionListParameter() : any {
+    public createLoadMentionListParameter(): any {
         return {};
     }
     private searchMentionUserList(searchText) {
@@ -431,7 +435,7 @@ export class TinyMceTextBox {
         if (this.editor != null) {
             this.editor.setContent(value.replace("\r", ""));
         }
-    } 
+    }
     public getContent() {
         return this.editor.getContent();
     }
