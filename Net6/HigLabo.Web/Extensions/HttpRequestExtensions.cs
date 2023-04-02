@@ -38,7 +38,20 @@ namespace HigLabo.Web
         }
         public static async Task<String> GetRequestBodyTextAsync(this HttpRequest request)
         {
-            return await new StreamReader(request.Body).ReadToEndAsync();
+            var cx = request.HttpContext;
+            var text = cx.Items[ItemsKey.BodyText]?.ToString();
+
+            if (text.IsNullOrEmpty())
+            {
+                request.EnableBuffering();
+                request.Body.Position = 0;
+                var mm = new MemoryStream();
+                await request.Body.CopyToAsync(mm);
+                var bb = mm.ToArray();
+                cx.Items[ItemsKey.BodyText] = Encoding.UTF8.GetString(bb);
+                request.Body.Position = 0;
+            }
+            return cx.Items[ItemsKey.BodyText].ToString();
         }
 
         public static Dictionary<String, String> CreateDictionaryFromRequestFormAsync(this HttpRequest request)

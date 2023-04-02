@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,12 +14,14 @@ namespace HigLabo.Service
         private Thread _Thread = null;
 
         private Object _LockObject = new Object();
+        private DateTime _LatestExecuteTime = DateTime.MinValue;
         private List<PeriodicCommand> _CommandList = new List<PeriodicCommand>();
 
         public event EventHandler<ServiceCommandEventArgs> Error;
         public String Name { get; set; }
         public Boolean IsStarted { get; set; } = false;
         public Boolean Available { get; set; } = true;
+        public Int32 IntervalSeconds { get; set; } = 60;
 
         public PeriodicCommandService(String name)
         {
@@ -47,18 +50,19 @@ namespace HigLabo.Service
         }
         private void Start()
         {
+
             while (true)
             {
                 try
                 {
+                    var now = DateTime.UtcNow;
+                    _LatestExecuteTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
                     if (this.Available == false)
                     {
                         Thread.Sleep(this.GetNextExecuteTimeSpan());
                         continue;
                     }
-                    var now = DateTime.UtcNow;
                     Trace.WriteLine(String.Format("{0} {1} started.", now.ToString("yyyy/MM/dd HH:mm:ss"), this.Name));
-                    var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0, DateTimeKind.Utc);
 
                     var l = new List<PeriodicCommand>();
                     lock (this._LockObject)
@@ -72,7 +76,7 @@ namespace HigLabo.Service
                     {
                         try
                         {
-                            if (cm.IsExecute(scheduleTime))
+                            if (cm.IsExecute(_LatestExecuteTime))
                             {
                                 if (cm.Service != null)
                                 {
@@ -98,7 +102,7 @@ namespace HigLabo.Service
         private TimeSpan GetNextExecuteTimeSpan()
         {
             var now = DateTime.UtcNow;
-            var scheduleTime = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, 0).AddMinutes(1);
+            var scheduleTime = _LatestExecuteTime.AddSeconds(this.IntervalSeconds);
             return scheduleTime - now;
         }
 

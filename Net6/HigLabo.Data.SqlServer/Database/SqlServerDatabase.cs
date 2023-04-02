@@ -48,7 +48,11 @@ namespace HigLabo.Data
             }
             throw new ArgumentException("dbType must be SqlDbType.");
         }
-        
+        public SqlParameter CreateParameter(string parameterName, SqlDbType dbType, object value)
+        {
+            return (SqlParameter)base.CreateParameter(parameterName, dbType, value);
+        }
+
         protected override Exception CreateException(Exception exception)
         {
             var ex = exception as SqlException;

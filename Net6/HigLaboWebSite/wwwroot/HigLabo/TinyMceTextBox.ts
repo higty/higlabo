@@ -143,7 +143,6 @@ export class TinyMceTextBox {
 
             autolink_pattern: /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i,
             default_link_target: "_blank",
-            extended_valid_elements: "a[href|target=_blank],figure,div,span",
 
             smart_paste : false,
             indentation: "16px",

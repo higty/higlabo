@@ -183,7 +183,7 @@ export class InputPropertyPanel {
             var hour = parseInt(text.substr(0, 2));
             var minute = parseInt(text.substr(3, 2));
         }
-        if (minute == NaN) {
+        if (isNaN(minute) == true) {
             minute = 0;
         }
         if (0 <= hour && hour < 30 &&
@@ -839,6 +839,7 @@ export class InputPropertyPanel {
             const day = $(propertyPanel).find("[day]").getSelectedValue();
             if (year != "" && month != "" && day != "") {
                 record[name] = year + "/" + month + "/" + day;
+                return;
             }
         }
         if ($(propertyPanel).getAttribute("element-type") == "DropDownList") {
@@ -1053,7 +1054,7 @@ export class InputPropertyPanel {
                     if (element.tagName.toLowerCase() == "input" && element.attributes["type"] != "file") {
                         $(element).setValue(v);
                     }
-                    else if ($(propertyPanel).getAttribute("h-record-list") == "") {
+                    else {
                         let input = propertyPanel.find("input").getFirstElement();
                         switch ($(input).getAttribute("type").toLowerCase()) {
                             case "radio":

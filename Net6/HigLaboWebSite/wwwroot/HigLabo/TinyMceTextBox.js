@@ -113,7 +113,6 @@ export class TinyMceTextBox {
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
             autolink_pattern: /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i,
             default_link_target: "_blank",
-            extended_valid_elements: "a[href|target=_blank],figure,div,span",
             smart_paste: false,
             indentation: "16px",
             indent_use_margin: true,

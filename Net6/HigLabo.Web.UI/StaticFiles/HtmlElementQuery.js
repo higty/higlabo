@@ -372,6 +372,18 @@ export class HtmlElementQuery {
         }
         return this;
     }
+    appendInnerText(value) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].textContent = this._elementList[i].textContent + value;
+        }
+        return this;
+    }
+    appendInnerHtml(html) {
+        for (var i = 0; i < this._elementList.length; i++) {
+            this._elementList[i].innerHTML = this._elementList[i].innerHTML + html;
+        }
+        return this;
+    }
     getStyle(name) {
         if (this._elementList.length > 0) {
             const element = this._elementList[0];

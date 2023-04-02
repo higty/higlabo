@@ -42,11 +42,11 @@ export class TinyMceTextBox {
     initializeConfig() {
         this.config = {
             height: 600,
-            plugins: "print preview powerpaste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
+            plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
                 + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                 + "noneditable help formatpainter permanentpen pageembed charmap quickbars linkchecker emoticons advtable export autoresize",
             mobile: {
-                plugins: "print preview powerpaste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
+                plugins: "print preview paste casechange importcss tinydrive searchreplace save directionality advcode visualblocks visualchars fullscreen "
                     + "image link media template codesample table charmap hr pagebreak nonbreaking anchor insertdatetime advlist lists checklist wordcount a11ychecker textpattern "
                     + "noneditable help formatpainter pageembed charmap quickbars linkchecker emoticons advtable autoresize"
             },
@@ -113,7 +113,6 @@ export class TinyMceTextBox {
             template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
             autolink_pattern: /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i,
             default_link_target: "_blank",
-            extended_valid_elements: "a[href|target=_blank],figure,div,span",
             smart_paste: false,
             indentation: "16px",
             indent_use_margin: true,

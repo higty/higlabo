@@ -80,21 +80,43 @@ textarea:focus-visible {
   height: 32px;
   margin-right: 6px;
 }
-.file-upload-panel {
-  cursor: pointer;
-  border: dotted 3px var(--color-input-element-border-color);
-}
-.file-upload-panel:hover {
-  background-color: var(--color-input-element-mouse-over-color);
-}
 .file-upload-panel input[type=file] {
   display: none;
 }
 .file-upload-panel .text-panel {
-  width: 90%;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0 auto 10px auto;
   padding: 10px;
   text-align: center;
+  cursor: pointer;
+  border: dotted 3px var(--color-input-element-border-color);
+}
+.file-upload-panel .text-panel:hover {
+  background-color: var(--color-input-element-mouse-over-color);
+}
+.file-upload-panel video {
+  width: 100%;
+}
+.file-upload-panel canvas {
+  display: none;
+  width: 100%;
+}
+.file-upload-panel .setting-panel {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+}
+.file-upload-panel .setting-panel .image-size {
+  flex: 0 0 60px;
+  margin: 0 10px;
+}
+.file-upload-panel .setting-panel .image-size-slider {
+  width: -webkit-calc(100vw - 200px);
+  width: -moz-calc(100vw - 200px);
+  width: calc(100vw - 200px);
 }
 
 .input-property-panel {

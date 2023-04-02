@@ -604,7 +604,11 @@ namespace HigLabo.Mapper.Test
         public void ObjectMapper_Map_IDataReader_Object_With_DictionaryMappingRule()
         {
             var mapper = new ObjectMapper();
-            mapper.CompilerConfig.PropertyMatchRule = (c1, p1, c2, p2) => String.Equals(p1.Name, p2.Name, StringComparison.OrdinalIgnoreCase);
+            mapper.CompilerConfig.DictionaryKeyConvertRule = s =>
+            {
+                if (s == "Name1") { return "name"; }
+                return s;
+            };
 
             var connectionString = File.ReadAllText("C:\\GitHub\\ConnectionString.txt");
             using (SqlConnection cn = new SqlConnection(connectionString))
@@ -617,7 +621,7 @@ namespace HigLabo.Mapper.Test
                     var d = dr.CreateDisctionary(StringComparer.OrdinalIgnoreCase);
                     var s1 = mapper.Map(d, new Sys_Database());
                     //May be because we connect to database.
-                    Assert.AreEqual("master", s1.Name);
+                    Assert.AreEqual("master", s1.Name1);
                     Assert.AreEqual(1, s1.Database_ID);
                 }
             }
