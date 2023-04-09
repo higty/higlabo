@@ -51,23 +51,21 @@ export class TinyMceTextBox {
     private initializeConfig() {
         this.config = {
             height: 600,
-            plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "advcode", "visualblocks", "visualchars", "fullscreen"
-                , "image", "link", "media", "template", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor"
-                , "insertdatetime", "advlist", "lists", "checklist", "wordcount", "a11ychecker"
-                , "help", "formatpainter", "permanentpen", "pageembed", "charmap", "quickbars", "linkchecker", "emoticons", "advtable", "export", "autoresize"],
+            plugins: ["preview", "importcss", "tinydrive", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen"
+                , "image", "link", "media", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor"
+                , "insertdatetime", "advlist", "lists", "wordcount", "help", "charmap", "quickbars", "emoticons", "autoresize"],
             mobile: {
-                plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "advcode", "visualblocks", "visualchars", "fullscreen"
-                    , "image", "link", "media", "template", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor"
-                    , "insertdatetime", "advlist", "lists", "checklist", "wordcount", "a11ychecker"
-                    , "help", "formatpainter", "permanentpen", "pageembed", "charmap", "quickbars", "linkchecker", "emoticons", "advtable", "export", "autoresize"]
+                plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen"
+                    , "image", "link", "media", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor"
+                    , "insertdatetime", "advlist", "lists", "wordcount", "help", "charmap", "quickbars", "emoticons", "autoresize"]
             },
             menubar: "file edit view insert format tools table tc help",
             toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
-                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist checklist | uploadfile media template link codesample | "
-                + "casechange permanentpen removeformat | pagebreak fullscreen  preview print | showcomments addcomment",
+                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | uploadfile media link codesample | "
+                + "casechange removeformat | pagebreak fullscreen  preview print | showcomments addcomment",
             quickbars_insert_toolbar: "emoticons quickimage quicktable",
             quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote | forecolor backcolor | emoticons quickimage quicktable',
-            contextmenu: "link image table configurepermanentpen",
+            contextmenu: "link image table",
 
             font_formats: "Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;"
                 + "Book Antiqua=book antiqua, palatino; Comic Sans MS=comic sans ms, sans- serif;Courier New = courier new, courier; Georgia = georgia, palatino; "
@@ -140,8 +138,6 @@ export class TinyMceTextBox {
                 //    { title: 'Starting my story', description: 'A cure for writers block', content: 'Once upon a time...' },
                 //    { title: 'New list with dates', description: 'New List with dates', content: '<div class="mceTmpl"><span class="cdate">cdate</span><br /><span class="mdate">mdate</span><h2>My List</h2><ul><li></li><li></li></ul></div>' }
             ],
-            template_cdate_format: '[Created at: %m/%d/%Y : %H:%M:%S]',
-            template_mdate_format: '[Modified at: %m/%d/%Y : %H:%M:%S]',
 
             autolink_pattern: /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i,
             default_link_target: "_blank",
