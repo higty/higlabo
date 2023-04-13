@@ -7,6 +7,7 @@ import { List } from "./linq/Collections.js";
 export class TinyMceTextBox {
     constructor() {
         this.tinymce = window["tinymce"];
+        this.setupCompletedEventList = new List();
         this.initializeCompletedEventList = new List();
         this.createTime = new DateTime(new Date());
         this.fileUploadUrlPath = "";
@@ -29,33 +30,30 @@ export class TinyMceTextBox {
         this.textBox.richTextbox = this;
         this.config.target = textBox;
         if (this.apiPathMention != "") {
-            this.addInitializeCompletedEventHandler(this.registerShowMentionListPopupPanel.bind(this));
+            this.initializeCompletedEventList.push(this.registerShowMentionListPopupPanel.bind(this));
         }
         if (this.CustomCssFilePath != "") {
-            this.addInitializeCompletedEventHandler(this.addCustomeCssFileLinkElement.bind(this));
+            this.initializeCompletedEventList.push(this.addCustomeCssFileLinkElement.bind(this));
         }
         this.tinymce.init(this.config);
-    }
-    addInitializeCompletedEventHandler(func) {
-        this.initializeCompletedEventList.push(func);
     }
     initializeConfig() {
         this.config = {
             height: 600,
-            plugins: ["preview", "importcss", "tinydrive", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen",
+            plugins: ["preview", "importcss", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen",
                 "image", "link", "media", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor",
                 "insertdatetime", "advlist", "lists", "wordcount", "help", "charmap", "quickbars", "emoticons", "autoresize"],
             mobile: {
-                plugins: ["preview", "casechange", "importcss", "tinydrive", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen",
+                plugins: ["preview", "casechange", "importcss", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen",
                     "image", "link", "media", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor",
                     "insertdatetime", "advlist", "lists", "wordcount", "help", "charmap", "quickbars", "emoticons", "autoresize"]
             },
             menubar: "file edit view insert format tools table tc help",
-            toolbar: "undo redo | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontselect fontsizeselect formatselect | "
-                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | uploadfile media link codesample | "
+            toolbar: "undo redo | uploadfile media link | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontfamily fontsize styles | "
+                + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | "
                 + "casechange removeformat | pagebreak fullscreen  preview print | showcomments addcomment",
             quickbars_insert_toolbar: "emoticons quickimage quicktable",
-            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 blockquote | forecolor backcolor | emoticons quickimage quicktable',
+            quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 h5 h6 blockquote | forecolor backcolor | emoticons quickimage quicktable',
             contextmenu: "link image table",
             font_formats: "Andale Mono=andale mono,times;Arial=arial,helvetica,sans-serif;Arial Black=arial black,avant garde;"
                 + "Book Antiqua=book antiqua, palatino; Comic Sans MS=comic sans ms, sans- serif;Courier New = courier new, courier; Georgia = georgia, palatino; "
@@ -65,18 +63,7 @@ export class TinyMceTextBox {
             images_upload_handler: this.imageUpload.bind(this),
             images_reuse_filename: true,
             image_caption: true,
-            tinydrive_token_provider: "",
-            tinydrive_dropbox_app_key: "",
-            tinydrive_google_drive_key: "",
-            tinydrive_google_drive_client_id: "",
-            menu: {
-                tc: {
-                    title: 'Comments',
-                    items: 'addcomment showcomments deleteallconversations'
-                }
-            },
             autosave_ask_before_unload: false,
-            image_advtab: true,
             codesample_languages: [
                 { value: "plaintext", text: "Plain text" },
                 { value: "html", text: "HTML" },
@@ -104,11 +91,7 @@ export class TinyMceTextBox {
                 { value: "yaml", text: "YAML" },
                 { value: "diff", text: "Diff" },
             ],
-            link_list: [],
-            image_list: [],
-            image_class_list: [],
             importcss_append: true,
-            templates: [],
             autolink_pattern: /^(https?:\/\/|ssh:\/\/|ftp:\/\/|file:\/|www\.|(?:mailto:)?[A-Z0-9._%+\-]+@)(.+)$/i,
             default_link_target: "_blank",
             smart_paste: false,
@@ -123,6 +106,7 @@ export class TinyMceTextBox {
             a11y_advanced_options: true,
             skin: 'oxide',
             content_css: 'default',
+            color_cols: 10,
             mentions_selector: "",
             mentions_min_chars: 1,
             mentions_fetch: null,
@@ -133,6 +117,9 @@ export class TinyMceTextBox {
             setup: function (editor) {
                 this.editor = editor;
                 this.initializeFileUploadElement(editor);
+                editor.on('keyup', function (e) {
+                    this.savePreviousValue(e);
+                }.bind(this));
                 editor.ui.registry.addButton("uploadfile", {
                     tooltip: "File Upload",
                     icon: "upload",
@@ -140,15 +127,25 @@ export class TinyMceTextBox {
                         this.fileUploadElement.click();
                     }.bind(this)
                 });
+                this.setupCompletedEventList_Invoke();
             }.bind(this),
             init_instance_callback: function (editor) {
                 this.setContent($(this.textBox).getValue());
-                for (var i = 0; i < this.initializeCompletedEventList.count(); i++) {
-                    let f = this.initializeCompletedEventList.get(i);
-                    f(this);
-                }
+                this.initializeCompletedEventList_Invoke();
             }.bind(this)
         };
+    }
+    setupCompletedEventList_Invoke() {
+        for (var i = 0; i < this.setupCompletedEventList.count(); i++) {
+            let f = this.setupCompletedEventList.get(i);
+            f(this);
+        }
+    }
+    initializeCompletedEventList_Invoke() {
+        for (var i = 0; i < this.initializeCompletedEventList.count(); i++) {
+            let f = this.initializeCompletedEventList.get(i);
+            f(this);
+        }
     }
     initializeFileUploadElement(editor) {
         const pl = $(editor.getElement()).getParentElementList()[0];
@@ -408,6 +405,14 @@ export class TinyMceTextBox {
             text = "";
         }
         return text;
+    }
+    getPreviousInnerHtml() {
+        const iframe = $(this.textBox).getNearest("iframe").getFirstElement();
+        const body = $(iframe.contentWindow.document).find("body").getFirstElement();
+        return $(body).getAttribute("previous-value");
+    }
+    savePreviousValue(e) {
+        $(e.target).setAttribute("previous-value", this.getInnerHtml());
     }
     remove() {
         if (this.textBox != null) {

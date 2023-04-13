@@ -207,7 +207,12 @@ export class DateTime {
             else {
                 const f = match.slice(-1);
                 const v = z[match.slice(-1)];
-                return ((match.length > 1 ? "0" : "") + v).slice(-match.length);
+                if (f == 'f') {
+                    return ((match.length > 1 ? "0" : "") + v).slice(-match.length);
+                }
+                else {
+                    return ((match.length > 1 ? "0" : "") + v).slice(-2);
+                }
             }
         });
         const fullYear = this.year.toString();
