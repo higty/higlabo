@@ -74,20 +74,21 @@ export class ViewPanel {
         }
         this.setData(r.Data);
     }
+    public setPagingListPanel(pageCount: number) {
+        if (document.getElementById("PagingListPanel") != null) {
+            $("#PagingListPanel").setInnerHtml("");
+            for (var i = 0; i < pageCount; i++) {
+                HigLaboVue.append($("#PagingListPanel").getFirstElement(), "PageNumberPanelTemplate", { PageIndex: i, Text: (i + 1) });
+            }
+        }
+    }
     protected setData(data: any) {
         $(this.viewPanel).setInnerHtml("");
 
         let rr = data;
         if (data.PageCount != null) {
             rr = data.RecordList;
-
-            if (document.getElementById("PagingListPanel") != null) {
-                $("#PagingListPanel").setInnerHtml("");
-                const pageCount = data.PageCount;
-                for (var i = 0; i < pageCount; i++) {
-                    HigLaboVue.append($("#PagingListPanel").getFirstElement(), "PageNumberPanelTemplate", { PageIndex: i, Text: (i + 1) });
-                }
-            }
+            this.setPagingListPanel(data.PageCount as number);
         }
 
         let isTable = false;

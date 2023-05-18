@@ -147,6 +147,7 @@ namespace HigLabo.Net.CodeGenerator
             sc.Namespaces.Add(new Namespace($"HigLabo.Net.{this.ServiceName}"));
             sc.Namespaces[0].Classes.Add(c);
 
+            if (url != "https://learn.microsoft.com/en-us/graph/api/resources/team?view=graph-rest-1.0") { return; }
             if (_CreatedUrlList.Contains(url) == false)
             {
                 this.WriteFile(filePath, sc);

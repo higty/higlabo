@@ -22,6 +22,7 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            Id,
             DisplayName,
             Description,
             Classification,

@@ -30,8 +30,7 @@ export class HttpClient {
         }
         request.send(formData);
     }
-    private static setProperty(request: XMLHttpRequest, url: string, requestData: any
-        , callback?: HttpRequestCallback, errorCallback?: HttpRequestCallback, context?: any) {
+    public static setProperty(request: XMLHttpRequest, url: string, requestData: any, callback?: HttpRequestCallback, errorCallback?: HttpRequestCallback, context?: any) {
         const csrfToken = HttpClient.getCsrfToken();
         if (csrfToken != "") {
             request.setRequestHeader("CsrfToken", csrfToken);

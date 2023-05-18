@@ -44,14 +44,14 @@ export class TinyMceTextBox {
                 "image", "link", "media", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor",
                 "insertdatetime", "advlist", "lists", "wordcount", "help", "charmap", "quickbars", "emoticons", "autoresize"],
             mobile: {
-                plugins: ["preview", "casechange", "importcss", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen",
+                plugins: ["preview", "importcss", "searchreplace", "save", "directionality", "visualblocks", "visualchars", "fullscreen",
                     "image", "link", "media", "codesample", "table", "charmap", "pagebreak", "nonbreaking", "anchor",
                     "insertdatetime", "advlist", "lists", "wordcount", "help", "charmap", "quickbars", "emoticons", "autoresize"]
             },
             menubar: "file edit view insert format tools table tc help",
             toolbar: "undo redo | uploadfile media link | emoticons bold italic underline strikethrough forecolor backcolor charmap | fontfamily fontsize styles | "
                 + "alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | "
-                + "casechange removeformat | pagebreak fullscreen  preview print | showcomments addcomment",
+                + "removeformat | pagebreak fullscreen  preview print | showcomments addcomment",
             quickbars_insert_toolbar: "emoticons quickimage quicktable",
             quickbars_selection_toolbar: 'bold italic | quicklink h2 h3 h4 h5 h6 blockquote | forecolor backcolor | emoticons quickimage quicktable',
             contextmenu: "link image table",
@@ -394,8 +394,18 @@ export class TinyMceTextBox {
             this.editor.setContent(value.replace("\r", ""));
         }
     }
+    getBodyElement() {
+        const iframe = $(this.textBox).getNearest("iframe").getFirstElement();
+        return $(iframe.contentWindow.document).find("body").getFirstElement();
+    }
     getContent() {
         return this.editor.getContent();
+    }
+    getInnerText() {
+        const iframe = $(this.textBox).getNearest("iframe").getFirstElement();
+        const body = $(iframe.contentWindow.document).find("body").getFirstElement();
+        var text = $(body).getInnerText();
+        return text;
     }
     getInnerHtml() {
         const iframe = $(this.textBox).getNearest("iframe").getFirstElement();
