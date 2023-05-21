@@ -113,7 +113,7 @@ namespace HigLabo.Net.CodeGenerator
 
             //}
 
-            //await CreateScopeSourceCode();
+            await CreateScopeSourceCode();
 
             _CreatedUrlList.Clear();
             foreach (var url in this.GetEntiryUrlList())
@@ -148,7 +148,7 @@ namespace HigLabo.Net.CodeGenerator
         public void CreateEntitySourceCodeFile(string url, Class @class)
         {
             var c = @class;
-            var filePath = Path.Combine(FolderPath, "Entity", "Generated", c.Name + ".cs");
+            var filePath = Path.Combine(FolderPath, "Entity", c.Name + ".cs");
 
             var sc = new SourceCode();
             sc.UsingNamespaces.Add("HigLabo.Net.OAuth");

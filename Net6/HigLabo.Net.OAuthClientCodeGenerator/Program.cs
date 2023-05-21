@@ -25,14 +25,14 @@
             }
             if (true)
             {
-                var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\");
+                var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\Generated\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";
                 //await g.CreateResourceUrlMappingFile();
                 await g.LoadUrlClassNameMappingList();
 
                 //await g.CreateEntitySourceCodeFile("https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0", new CreateEntityClassContext());
-                await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0");
-                //await g.Execute();
+                //await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0");
+                await g.Execute();
             }
         }
     }

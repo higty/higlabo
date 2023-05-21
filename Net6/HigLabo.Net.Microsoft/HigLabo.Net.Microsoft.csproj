@@ -27,8 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Method\" />
-    <Folder Include="Response\" />
+    <Folder Include="Generated\Method\" />
   </ItemGroup>
 
   <ItemGroup>
