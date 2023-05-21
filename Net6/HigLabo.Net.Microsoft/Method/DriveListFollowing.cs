@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveListFollowingParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -93,10 +96,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DriveItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListFollowingResponse> DriveListFollowingAsync()
         {
@@ -104,7 +110,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListFollowingResponse> DriveListFollowingAsync(CancellationToken cancellationToken)
         {
@@ -112,14 +118,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter)
         {
             return await this.SendAsync<DriveListFollowingParameter, DriveListFollowingResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list-following?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListFollowingResponse> DriveListFollowingAsync(DriveListFollowingParameter parameter, CancellationToken cancellationToken)
         {

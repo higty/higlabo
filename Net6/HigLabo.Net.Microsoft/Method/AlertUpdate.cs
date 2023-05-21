@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
+    /// </summary>
     public partial class AlertUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     public partial class AlertUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AlertUpdateResponse> AlertUpdateAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AlertUpdateResponse> AlertUpdateAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AlertUpdateResponse> AlertUpdateAsync(AlertUpdateParameter parameter)
         {
             return await this.SendAsync<AlertUpdateParameter, AlertUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/alert-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AlertUpdateResponse> AlertUpdateAsync(AlertUpdateParameter parameter, CancellationToken cancellationToken)
         {

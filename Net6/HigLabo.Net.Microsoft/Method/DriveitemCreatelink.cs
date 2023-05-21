@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemCreatelinkParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -48,34 +51,38 @@ namespace HigLabo.Net.Microsoft
         public string? Type { get; set; }
         public string? Password { get; set; }
         public string? ExpirationDateTime { get; set; }
+        public bool? RetainInheritedPermissions { get; set; }
         public string? Scope { get; set; }
         public string? Id { get; set; }
-        public SharePointIdentitySet? GrantedToV2 { get; set; }
+        public bool? HasPassword { get; set; }
         public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
-        public SharingInvitation? Invitation { get; set; }
+        public SharePointIdentitySet? GrantedToV2 { get; set; }
         public ItemReference? InheritedFrom { get; set; }
+        public SharingInvitation? Invitation { get; set; }
         public SharingLink? Link { get; set; }
         public string[]? Roles { get; set; }
         public string? ShareId { get; set; }
-        public bool? HasPassword { get; set; }
     }
     public partial class DriveitemCreatelinkResponse : RestApiResponse
     {
+        public DateTimeOffset? ExpirationDateTime { get; set; }
         public string? Id { get; set; }
-        public SharePointIdentitySet? GrantedToV2 { get; set; }
+        public bool? HasPassword { get; set; }
         public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
-        public SharingInvitation? Invitation { get; set; }
+        public SharePointIdentitySet? GrantedToV2 { get; set; }
         public ItemReference? InheritedFrom { get; set; }
+        public SharingInvitation? Invitation { get; set; }
         public SharingLink? Link { get; set; }
         public string[]? Roles { get; set; }
         public string? ShareId { get; set; }
-        public DateTimeOffset? ExpirationDateTime { get; set; }
-        public bool? HasPassword { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync()
         {
@@ -83,7 +90,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +98,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter)
         {
             return await this.SendAsync<DriveitemCreatelinkParameter, DriveitemCreatelinkResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-createlink?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCreatelinkResponse> DriveitemCreatelinkAsync(DriveitemCreatelinkParameter parameter, CancellationToken cancellationToken)
         {

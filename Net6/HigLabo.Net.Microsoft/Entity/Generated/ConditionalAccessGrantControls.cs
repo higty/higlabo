@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/conditionalaccessgrantcontrols?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessgrantcontrols?view=graph-rest-1.0
     /// </summary>
     public partial class ConditionalAccessGrantControls
     {
@@ -19,9 +19,10 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public string? Operator { get; set; }
         public ConditionalAccessGrantControlsConditionalAccessGrantControl BuiltInControls { get; set; }
         public String[]? CustomAuthenticationFactors { get; set; }
+        public string? Operator { get; set; }
         public String[]? TermsOfUse { get; set; }
+        public AuthenticationStrengthPolicy? AuthenticationStrength { get; set; }
     }
 }

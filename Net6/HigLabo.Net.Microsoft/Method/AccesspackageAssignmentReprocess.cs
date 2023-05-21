@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackageAssignmentReprocessParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AccessPackageAssignments_Id_Reprocess: return $"/identityGovernance/entitlementManagement/accessPackageAssignments/{Id}/reprocess";
+                    case ApiPath.IdentityGovernance_EntitlementManagement_Assignments_Id_Reprocess: return $"/identityGovernance/entitlementManagement/assignments/{Id}/reprocess";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -27,10 +30,11 @@ namespace HigLabo.Net.Microsoft
             Expired,
             DeliveryFailed,
             UnknownFutureValue,
+            Eq,
         }
         public enum ApiPath
         {
-            IdentityGovernance_EntitlementManagement_AccessPackageAssignments_Id_Reprocess,
+            IdentityGovernance_EntitlementManagement_Assignments_Id_Reprocess,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -61,6 +65,7 @@ namespace HigLabo.Net.Microsoft
             Expired,
             DeliveryFailed,
             UnknownFutureValue,
+            Eq,
         }
 
         public DateTimeOffset? ExpiredDateTime { get; set; }
@@ -72,10 +77,13 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageSubject? Target { get; set; }
         public AccessPackageAssignmentPolicy? AssignmentPolicy { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync()
         {
@@ -83,7 +91,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +99,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentReprocessParameter, AccesspackageAssignmentReprocessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentReprocessResponse> AccesspackageAssignmentReprocessAsync(AccesspackageAssignmentReprocessParameter parameter, CancellationToken cancellationToken)
         {

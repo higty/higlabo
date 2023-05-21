@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,19 +24,21 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            CreatedDateTime,
             Description,
             DisplayName,
+            Email,
             Id,
             IsFavoriteByDefault,
-            Email,
-            WebUrl,
             MembershipType,
-            CreatedDateTime,
-            Messages,
-            Tabs,
-            Members,
+            TenantId,
+            WebUrl,
             FilesFolder,
+            Members,
+            Messages,
             Operations,
+            SharedWithTeams,
+            Tabs,
         }
         public enum ApiPath
         {
@@ -62,10 +67,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Channel[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListResponse> ChannelListAsync()
         {
@@ -73,7 +81,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListResponse> ChannelListAsync(CancellationToken cancellationToken)
         {
@@ -81,14 +89,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListResponse> ChannelListAsync(ChannelListParameter parameter)
         {
             return await this.SendAsync<ChannelListParameter, ChannelListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListResponse> ChannelListAsync(ChannelListParameter parameter, CancellationToken cancellationToken)
         {

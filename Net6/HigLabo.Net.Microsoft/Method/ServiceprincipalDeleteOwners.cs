@@ -2,19 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalDeleteOwnersParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string? ServicePrincipalsId { get; set; }
+            public string? ServiceprincipalsId { get; set; }
             public string? OwnersId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.ServicePrincipals_Id_Owners_Id_ref: return $"/servicePrincipals/{ServicePrincipalsId}/owners/{OwnersId}/$ref";
+                    case ApiPath.Serviceprincipals_Id_Owners_Id_ref: return $"/serviceprincipals/{ServiceprincipalsId}/owners/{OwnersId}/$ref";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,7 +26,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum ApiPath
         {
-            ServicePrincipals_Id_Owners_Id_ref,
+            Serviceprincipals_Id_Owners_Id_ref,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -38,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceprincipalDeleteOwnersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync()
         {
@@ -49,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteOwnersParameter, ServiceprincipalDeleteOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteOwnersResponse> ServiceprincipalDeleteOwnersAsync(ServiceprincipalDeleteOwnersParameter parameter, CancellationToken cancellationToken)
         {

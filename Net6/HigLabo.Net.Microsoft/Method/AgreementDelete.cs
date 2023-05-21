@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class AgreementDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class AgreementDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementDeleteResponse> AgreementDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementDeleteResponse> AgreementDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementDeleteResponse> AgreementDeleteAsync(AgreementDeleteParameter parameter)
         {
             return await this.SendAsync<AgreementDeleteParameter, AgreementDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementDeleteResponse> AgreementDeleteAsync(AgreementDeleteParameter parameter, CancellationToken cancellationToken)
         {

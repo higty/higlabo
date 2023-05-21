@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetskypeforbusinessactivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetskypeforbusinessactivityUserdetailResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetskypeforbusinessactivityUserdetailParameter, ReportRootGetskypeforbusinessactivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getskypeforbusinessactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetskypeforbusinessactivityUserdetailResponse> ReportRootGetskypeforbusinessactivityUserdetailAsync(ReportRootGetskypeforbusinessactivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+    /// </summary>
     public partial class Oauth2permissiongrantGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,17 +50,20 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class Oauth2permissiongrantGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? ClientId { get; set; }
         public string? ConsentType { get; set; }
+        public string? Id { get; set; }
         public string? PrincipalId { get; set; }
         public string? ResourceId { get; set; }
         public string? Scope { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantGetResponse> Oauth2permissiongrantGetAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantGetParameter, Oauth2permissiongrantGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantGetResponse> Oauth2permissiongrantGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantGetParameter, Oauth2permissiongrantGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantGetResponse> Oauth2permissiongrantGetAsync(Oauth2permissiongrantGetParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantGetParameter, Oauth2permissiongrantGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantGetResponse> Oauth2permissiongrantGetAsync(Oauth2permissiongrantGetParameter parameter, CancellationToken cancellationToken)
         {

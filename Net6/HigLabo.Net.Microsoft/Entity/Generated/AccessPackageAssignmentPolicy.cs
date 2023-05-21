@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/accesspackageassignmentpolicy?view=graph-rest-1.0
     /// </summary>
     public partial class AccessPackageAssignmentPolicy
     {
@@ -22,6 +22,7 @@ namespace HigLabo.Net.Microsoft
         }
 
         public AccessPackageAssignmentPolicyAllowedTargetScope AllowedTargetScope { get; set; }
+        public AccessPackageAutomaticRequestSettings? AutomaticRequestSettings { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -34,5 +35,6 @@ namespace HigLabo.Net.Microsoft
         public SubjectSet[]? SpecificAllowedTargets { get; set; }
         public AccessPackage? AccessPackage { get; set; }
         public AccessPackageCatalog? Catalog { get; set; }
+        public AccessPackageQuestion[]? Questions { get; set; }
     }
 }

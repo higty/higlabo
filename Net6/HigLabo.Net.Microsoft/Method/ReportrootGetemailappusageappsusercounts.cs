@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetemailappusageappsUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetemailappusageappsUsercountsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailappusageappsUsercountsResponse> ReportRootGetemailappusageappsUsercountsAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetemailappusageappsUsercountsParameter, ReportRootGetemailappusageappsUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailappusageappsUsercountsResponse> ReportRootGetemailappusageappsUsercountsAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetemailappusageappsUsercountsParameter, ReportRootGetemailappusageappsUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailappusageappsUsercountsResponse> ReportRootGetemailappusageappsUsercountsAsync(ReportRootGetemailappusageappsUsercountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetemailappusageappsUsercountsParameter, ReportRootGetemailappusageappsUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailappusageappsusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailappusageappsUsercountsResponse> ReportRootGetemailappusageappsUsercountsAsync(ReportRootGetemailappusageappsUsercountsParameter parameter, CancellationToken cancellationToken)
         {

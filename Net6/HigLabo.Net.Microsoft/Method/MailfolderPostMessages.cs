@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class MailfolderPostMessagesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -133,10 +136,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync()
         {
@@ -144,7 +150,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(CancellationToken cancellationToken)
         {
@@ -152,14 +158,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(MailfolderPostMessagesParameter parameter)
         {
             return await this.SendAsync<MailfolderPostMessagesParameter, MailfolderPostMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderPostMessagesResponse> MailfolderPostMessagesAsync(MailfolderPostMessagesParameter parameter, CancellationToken cancellationToken)
         {

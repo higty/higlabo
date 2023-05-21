@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ChecklistitemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsChecked { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter)
         {
             return await this.SendAsync<ChecklistitemGetParameter, ChecklistitemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemGetResponse> ChecklistitemGetAsync(ChecklistitemGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+    /// </summary>
     public partial class B2xidentityUserflowListLanguagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,9 +24,9 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            DisplayName,
             Id,
             IsEnabled,
-            DisplayName,
             DefaultPages,
             OverridesPages,
         }
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UserFlowLanguageConfiguration[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListLanguagesResponse> B2xidentityUserflowListLanguagesAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowListLanguagesParameter, B2xidentityUserflowListLanguagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListLanguagesResponse> B2xidentityUserflowListLanguagesAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowListLanguagesParameter, B2xidentityUserflowListLanguagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListLanguagesResponse> B2xidentityUserflowListLanguagesAsync(B2xidentityUserflowListLanguagesParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowListLanguagesParameter, B2xidentityUserflowListLanguagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-languages?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListLanguagesResponse> B2xidentityUserflowListLanguagesAsync(B2xidentityUserflowListLanguagesParameter parameter, CancellationToken cancellationToken)
         {

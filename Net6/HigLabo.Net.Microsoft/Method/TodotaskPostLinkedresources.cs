@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotaskPostLinkedResourcesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? WebUrl { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter)
         {
             return await this.SendAsync<TodotaskPostLinkedResourcesParameter, TodotaskPostLinkedResourcesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-post-linkedresources?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskPostLinkedResourcesResponse> TodotaskPostLinkedResourcesAsync(TodotaskPostLinkedResourcesParameter parameter, CancellationToken cancellationToken)
         {

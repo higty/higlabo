@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamListMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ConversationMember[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamListMembersResponse> TeamListMembersAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamListMembersResponse> TeamListMembersAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter)
         {
             return await this.SendAsync<TeamListMembersParameter, TeamListMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamListMembersResponse> TeamListMembersAsync(TeamListMembersParameter parameter, CancellationToken cancellationToken)
         {

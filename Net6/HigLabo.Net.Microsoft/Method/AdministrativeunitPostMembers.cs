@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class AdministrativeunitPostMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Directory_AdministrativeUnits_Id_Members_ref: return $"/directory/administrativeUnits/{Id}/members/$ref";
+                    case ApiPath.Directory_AdministrativeUnits_Id_Members: return $"/directory/administrativeUnits/{Id}/members";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Directory_AdministrativeUnits_Id_Members_ref,
+            Directory_AdministrativeUnits_Id_Members,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -33,14 +38,26 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public string? DisplayName { get; set; }
+        public string? Description { get; set; }
+        public bool? IsAssignableToRole { get; set; }
+        public bool? MailEnabled { get; set; }
+        public string? MailNickname { get; set; }
+        public bool? SecurityEnabled { get; set; }
+        public DirectoryObject[]? Owners { get; set; }
+        public DirectoryObject[]? Members { get; set; }
+        public string? Visibility { get; set; }
     }
     public partial class AdministrativeunitPostMembersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostMembersResponse> AdministrativeunitPostMembersAsync()
         {
@@ -48,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdministrativeunitPostMembersParameter, AdministrativeunitPostMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostMembersResponse> AdministrativeunitPostMembersAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdministrativeunitPostMembersParameter, AdministrativeunitPostMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostMembersResponse> AdministrativeunitPostMembersAsync(AdministrativeunitPostMembersParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitPostMembersParameter, AdministrativeunitPostMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostMembersResponse> AdministrativeunitPostMembersAsync(AdministrativeunitPostMembersParameter parameter, CancellationToken cancellationToken)
         {

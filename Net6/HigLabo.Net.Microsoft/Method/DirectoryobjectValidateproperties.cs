@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryobjectValidatepropertiesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DirectoryobjectValidatepropertiesResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync(DirectoryobjectValidatepropertiesParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectValidatepropertiesParameter, DirectoryobjectValidatepropertiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-validateproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectValidatepropertiesResponse> DirectoryobjectValidatepropertiesAsync(DirectoryobjectValidatepropertiesParameter parameter, CancellationToken cancellationToken)
         {

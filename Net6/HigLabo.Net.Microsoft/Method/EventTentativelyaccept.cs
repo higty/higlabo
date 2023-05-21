@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
+    /// </summary>
     public partial class EventTentativelyacceptParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -12,7 +15,7 @@ namespace HigLabo.Net.Microsoft
             public string? CalendarsId { get; set; }
             public string? EventsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -24,8 +27,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events_Id_TentativelyAccept: return $"/users/{IdOrUserPrincipalName}/calendar/events/{Id}/tentativelyAccept";
                     case ApiPath.Me_Calendars_Id_Events_Id_TentativelyAccept: return $"/me/calendars/{CalendarsId}/events/{EventsId}/tentativelyAccept";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_TentativelyAccept: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/tentativelyAccept";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_TentativelyAccept: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/tentativelyAccept";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_TentativelyAccept: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/tentativelyAccept";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_TentativelyAccept: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/tentativelyAccept";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_TentativelyAccept: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/tentativelyAccept";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -39,8 +42,8 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendar_Events_Id_TentativelyAccept,
             Me_Calendars_Id_Events_Id_TentativelyAccept,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_TentativelyAccept,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_TentativelyAccept,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_TentativelyAccept,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_TentativelyAccept,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_TentativelyAccept,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EventTentativelyacceptResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
         public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
         public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
         public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync(EventTentativelyacceptParameter parameter)
         {
             return await this.SendAsync<EventTentativelyacceptParameter, EventTentativelyacceptResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-tentativelyaccept?view=graph-rest-1.0
         /// </summary>
         public async Task<EventTentativelyacceptResponse> EventTentativelyacceptAsync(EventTentativelyacceptParameter parameter, CancellationToken cancellationToken)
         {

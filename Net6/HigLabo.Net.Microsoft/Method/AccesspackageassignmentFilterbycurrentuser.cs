@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackageAssignmentFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessPackageAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync(AccesspackageAssignmentFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentFilterbycurrentUserParameter, AccesspackageAssignmentFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignment-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentFilterbycurrentUserResponse> AccesspackageAssignmentFilterbycurrentUserAsync(AccesspackageAssignmentFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

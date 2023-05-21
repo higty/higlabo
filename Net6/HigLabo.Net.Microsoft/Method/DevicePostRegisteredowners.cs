@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
+    /// </summary>
     public partial class DevicePostRegisteredownersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Devices_Id_RegisteredOwners_ref: return $"/devices/{Id}/registeredOwners/$ref";
+                    case ApiPath.Devices: return $"/devices";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Devices_Id_RegisteredOwners_ref,
+            Devices,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -37,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DevicePostRegisteredownersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
         /// </summary>
         public async Task<DevicePostRegisteredownersResponse> DevicePostRegisteredownersAsync()
         {
@@ -48,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DevicePostRegisteredownersParameter, DevicePostRegisteredownersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
         /// </summary>
         public async Task<DevicePostRegisteredownersResponse> DevicePostRegisteredownersAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DevicePostRegisteredownersParameter, DevicePostRegisteredownersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
         /// </summary>
         public async Task<DevicePostRegisteredownersResponse> DevicePostRegisteredownersAsync(DevicePostRegisteredownersParameter parameter)
         {
             return await this.SendAsync<DevicePostRegisteredownersParameter, DevicePostRegisteredownersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-post-registeredowners?view=graph-rest-1.0
         /// </summary>
         public async Task<DevicePostRegisteredownersResponse> DevicePostRegisteredownersAsync(DevicePostRegisteredownersParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
+    /// </summary>
     public partial class TermsofusecontainerListAgreementsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Agreement[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
         /// </summary>
         public async Task<TermsofusecontainerListAgreementsResponse> TermsofusecontainerListAgreementsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermsofusecontainerListAgreementsParameter, TermsofusecontainerListAgreementsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
         /// </summary>
         public async Task<TermsofusecontainerListAgreementsResponse> TermsofusecontainerListAgreementsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermsofusecontainerListAgreementsParameter, TermsofusecontainerListAgreementsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
         /// </summary>
         public async Task<TermsofusecontainerListAgreementsResponse> TermsofusecontainerListAgreementsAsync(TermsofusecontainerListAgreementsParameter parameter)
         {
             return await this.SendAsync<TermsofusecontainerListAgreementsParameter, TermsofusecontainerListAgreementsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termsofusecontainer-list-agreements?view=graph-rest-1.0
         /// </summary>
         public async Task<TermsofusecontainerListAgreementsResponse> TermsofusecontainerListAgreementsAsync(TermsofusecontainerListAgreementsParameter parameter, CancellationToken cancellationToken)
         {

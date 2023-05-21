@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageReplyallParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
     public partial class MessageReplyallResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageReplyallResponse> MessageReplyallAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageReplyallResponse> MessageReplyallAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageReplyallResponse> MessageReplyallAsync(MessageReplyallParameter parameter)
         {
             return await this.SendAsync<MessageReplyallParameter, MessageReplyallResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-replyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageReplyallResponse> MessageReplyallAsync(MessageReplyallParameter parameter, CancellationToken cancellationToken)
         {

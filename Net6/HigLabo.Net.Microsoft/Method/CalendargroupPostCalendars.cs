@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarGroupPostCalendarsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -125,10 +128,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync()
         {
@@ -136,7 +142,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CancellationToken cancellationToken)
         {
@@ -144,14 +150,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CalendarGroupPostCalendarsParameter parameter)
         {
             return await this.SendAsync<CalendarGroupPostCalendarsParameter, CalendarGroupPostCalendarsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-post-calendars?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupPostCalendarsResponse> CalendarGroupPostCalendarsAsync(CalendarGroupPostCalendarsParameter parameter, CancellationToken cancellationToken)
         {

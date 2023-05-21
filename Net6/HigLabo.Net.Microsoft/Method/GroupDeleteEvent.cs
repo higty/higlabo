@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupDeleteEventParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupDeleteEventResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync(GroupDeleteEventParameter parameter)
         {
             return await this.SendAsync<GroupDeleteEventParameter, GroupDeleteEventResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-event?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteEventResponse> GroupDeleteEventAsync(GroupDeleteEventParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/teamworkuseridentity?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/teamworkuseridentity?view=graph-rest-1.0
     /// </summary>
     public partial class TeamworkUserIdentity
     {
@@ -23,5 +23,6 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public TeamworkUserIdentityTeamworkUserIdentityType UserIdentityType { get; set; }
+        public string? TenantId { get; set; }
     }
 }

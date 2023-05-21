@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteFollowParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SiteFollowResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteFollowResponse> SiteFollowAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteFollowResponse> SiteFollowAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteFollowResponse> SiteFollowAsync(SiteFollowParameter parameter)
         {
             return await this.SendAsync<SiteFollowParameter, SiteFollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-follow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteFollowResponse> SiteFollowAsync(SiteFollowParameter parameter, CancellationToken cancellationToken)
         {

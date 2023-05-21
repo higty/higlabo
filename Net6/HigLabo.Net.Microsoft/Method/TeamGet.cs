@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,25 +24,33 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Description,
+            Id,
             Classification,
-            Specialization,
-            Visibility,
+            ClassSettings,
+            CreatedDateTime,
+            Description,
+            DisplayName,
             FunSettings,
             GuestSettings,
             InternalId,
             IsArchived,
             MemberSettings,
             MessagingSettings,
+            Specialization,
+            Summary,
+            TenantId,
+            Visibility,
             WebUrl,
-            CreatedDateTime,
+            AllChannels,
             Channels,
+            IncomingChannels,
             InstalledApps,
             Members,
             Operations,
+            Photo,
             PrimaryChannel,
             Schedule,
+            Tags,
             Template,
         }
         public enum ApiPath
@@ -67,31 +78,42 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TeamGetResponse : RestApiResponse
     {
-        public string? DisplayName { get; set; }
-        public string? Description { get; set; }
+        public string? Id { get; set; }
         public string? Classification { get; set; }
-        public TeamSpecialization? Specialization { get; set; }
-        public TeamVisibilityType? Visibility { get; set; }
+        public TeamClassSettings? ClassSettings { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
         public TeamFunSettings? FunSettings { get; set; }
         public TeamGuestSettings? GuestSettings { get; set; }
         public string? InternalId { get; set; }
         public bool? IsArchived { get; set; }
         public TeamMemberSettings? MemberSettings { get; set; }
         public TeamMessagingSettings? MessagingSettings { get; set; }
+        public TeamSpecialization? Specialization { get; set; }
+        public TeamSummary? Summary { get; set; }
+        public string? TenantId { get; set; }
+        public TeamVisibilityType? Visibility { get; set; }
         public string? WebUrl { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
+        public Channel[]? AllChannels { get; set; }
         public Channel[]? Channels { get; set; }
+        public Channel[]? IncomingChannels { get; set; }
         public TeamsAppInstallation[]? InstalledApps { get; set; }
         public ConversationMember[]? Members { get; set; }
         public TeamsASyncOperation[]? Operations { get; set; }
+        public ProfilePhoto? Photo { get; set; }
         public Channel? PrimaryChannel { get; set; }
         public Schedule? Schedule { get; set; }
+        public TeamworkTag[]? Tags { get; set; }
         public TeamsTemplate? Template { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetResponse> TeamGetAsync()
         {
@@ -99,7 +121,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetResponse> TeamGetAsync(CancellationToken cancellationToken)
         {
@@ -107,14 +129,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetResponse> TeamGetAsync(TeamGetParameter parameter)
         {
             return await this.SendAsync<TeamGetParameter, TeamGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetResponse> TeamGetAsync(TeamGetParameter parameter, CancellationToken cancellationToken)
         {

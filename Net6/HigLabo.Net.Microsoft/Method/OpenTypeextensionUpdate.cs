@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenTypeextensionUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -69,10 +72,13 @@ namespace HigLabo.Net.Microsoft
         public string? ExtensionName { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync()
         {
@@ -80,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(CancellationToken cancellationToken)
         {
@@ -88,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(OpenTypeextensionUpdateParameter parameter)
         {
             return await this.SendAsync<OpenTypeextensionUpdateParameter, OpenTypeextensionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionUpdateResponse> OpenTypeextensionUpdateAsync(OpenTypeextensionUpdateParameter parameter, CancellationToken cancellationToken)
         {

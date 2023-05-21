@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListEventsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -98,10 +101,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Event[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListEventsResponse> GroupListEventsAsync()
         {
@@ -109,7 +115,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListEventsResponse> GroupListEventsAsync(CancellationToken cancellationToken)
         {
@@ -117,14 +123,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListEventsResponse> GroupListEventsAsync(GroupListEventsParameter parameter)
         {
             return await this.SendAsync<GroupListEventsParameter, GroupListEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListEventsResponse> GroupListEventsAsync(GroupListEventsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class EventDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             public string? EventsId { get; set; }
             public string? CalendarsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -27,8 +30,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Groups_Id_Calendar_Events_Id_: return $"/groups/{GroupsId}/calendar/events/{EventsId}/";
                     case ApiPath.Me_Calendars_Id_Events_Id: return $"/me/calendars/{CalendarsId}/events/{EventsId}";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -44,8 +47,8 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Calendar_Events_Id_,
             Me_Calendars_Id_Events_Id,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -61,10 +64,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EventDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EventDeleteResponse> EventDeleteAsync()
         {
@@ -72,7 +78,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EventDeleteResponse> EventDeleteAsync(CancellationToken cancellationToken)
         {
@@ -80,14 +86,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EventDeleteResponse> EventDeleteAsync(EventDeleteParameter parameter)
         {
             return await this.SendAsync<EventDeleteParameter, EventDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EventDeleteResponse> EventDeleteAsync(EventDeleteParameter parameter, CancellationToken cancellationToken)
         {

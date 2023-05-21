@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamGetMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,25 +25,33 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Description,
+            Id,
             Classification,
-            Specialization,
-            Visibility,
+            ClassSettings,
+            CreatedDateTime,
+            Description,
+            DisplayName,
             FunSettings,
             GuestSettings,
             InternalId,
             IsArchived,
             MemberSettings,
             MessagingSettings,
+            Specialization,
+            Summary,
+            TenantId,
+            Visibility,
             WebUrl,
-            CreatedDateTime,
+            AllChannels,
             Channels,
+            IncomingChannels,
             InstalledApps,
             Members,
             Operations,
+            Photo,
             PrimaryChannel,
             Schedule,
+            Tags,
             Template,
         }
         public enum ApiPath
@@ -68,15 +79,18 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TeamGetMembersResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public string[]? Roles { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetMembersResponse> TeamGetMembersAsync()
         {
@@ -84,7 +98,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetMembersResponse> TeamGetMembersAsync(CancellationToken cancellationToken)
         {
@@ -92,14 +106,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetMembersResponse> TeamGetMembersAsync(TeamGetMembersParameter parameter)
         {
             return await this.SendAsync<TeamGetMembersParameter, TeamGetMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetMembersResponse> TeamGetMembersAsync(TeamGetMembersParameter parameter, CancellationToken cancellationToken)
         {

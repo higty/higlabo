@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+    /// </summary>
     public partial class ScheduleListShiftsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,14 +24,14 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            CreatedDateTime,
+            DraftShift,
             Id,
-            UserId,
+            LastModifiedBy,
+            LastModifiedDateTime,
             SchedulingGroupId,
             SharedShift,
-            DraftShift,
-            CreatedDateTime,
-            LastModifiedDateTime,
-            LastModifiedBy,
+            UserId,
         }
         public enum ApiPath
         {
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Shift[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter)
         {
             return await this.SendAsync<ScheduleListShiftsParameter, ScheduleListShiftsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListShiftsResponse> ScheduleListShiftsAsync(ScheduleListShiftsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryListAdministrativeunitsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -24,8 +27,8 @@ namespace HigLabo.Net.Microsoft
             DisplayName,
             Id,
             Visibility,
-            Extensions,
             Members,
+            Extensions,
             ScopedRoleMembers,
         }
         public enum ApiPath
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AdministrativeUnit[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryListAdministrativeunitsResponse> DirectoryListAdministrativeunitsAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryListAdministrativeunitsParameter, DirectoryListAdministrativeunitsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryListAdministrativeunitsResponse> DirectoryListAdministrativeunitsAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryListAdministrativeunitsParameter, DirectoryListAdministrativeunitsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryListAdministrativeunitsResponse> DirectoryListAdministrativeunitsAsync(DirectoryListAdministrativeunitsParameter parameter)
         {
             return await this.SendAsync<DirectoryListAdministrativeunitsParameter, DirectoryListAdministrativeunitsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-list-administrativeunits?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryListAdministrativeunitsResponse> DirectoryListAdministrativeunitsAsync(DirectoryListAdministrativeunitsParameter parameter, CancellationToken cancellationToken)
         {

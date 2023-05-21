@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupPostMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupPostMembersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostMembersResponse> GroupPostMembersAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupPostMembersParameter, GroupPostMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostMembersResponse> GroupPostMembersAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupPostMembersParameter, GroupPostMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostMembersResponse> GroupPostMembersAsync(GroupPostMembersParameter parameter)
         {
             return await this.SendAsync<GroupPostMembersParameter, GroupPostMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostMembersResponse> GroupPostMembersAsync(GroupPostMembersParameter parameter, CancellationToken cancellationToken)
         {

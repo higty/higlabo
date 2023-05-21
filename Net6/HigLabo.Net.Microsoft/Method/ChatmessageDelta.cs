@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatmessageDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,30 +25,31 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ReplyToId,
-            From,
-            Etag,
-            MessageType,
-            CreatedDateTime,
-            LastModifiedDateTime,
-            LastEditedDateTime,
-            DeletedDateTime,
-            Subject,
-            Body,
-            Summary,
             Attachments,
-            Mentions,
-            Importance,
-            Reactions,
-            Locale,
-            PolicyViolation,
+            Body,
             ChatId,
             ChannelIdentity,
-            WebUrl,
+            CreatedDateTime,
+            DeletedDateTime,
+            Etag,
             EventDetail,
-            Replies,
+            From,
+            Id,
+            Importance,
+            LastModifiedDateTime,
+            LastEditedDateTime,
+            Locale,
+            Mentions,
+            MessageHistory,
+            MessageType,
+            PolicyViolation,
+            Reactions,
+            ReplyToId,
+            Subject,
+            Summary,
+            WebUrl,
             HostedContents,
+            Replies,
         }
         public enum ApiPath
         {
@@ -74,10 +78,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ChatMessage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync()
         {
@@ -85,7 +92,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +100,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync(ChatmessageDeltaParameter parameter)
         {
             return await this.SendAsync<ChatmessageDeltaParameter, ChatmessageDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageDeltaResponse> ChatmessageDeltaAsync(ChatmessageDeltaParameter parameter, CancellationToken cancellationToken)
         {

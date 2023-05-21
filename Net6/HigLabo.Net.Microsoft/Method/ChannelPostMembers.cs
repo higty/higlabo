@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelPostMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -36,21 +39,24 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string[]? Roles { get; set; }
         public User? User { get; set; }
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
     public partial class ChannelPostMembersResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public string[]? Roles { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostMembersResponse> ChannelPostMembersAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPostMembersParameter, ChannelPostMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostMembersResponse> ChannelPostMembersAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPostMembersParameter, ChannelPostMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostMembersResponse> ChannelPostMembersAsync(ChannelPostMembersParameter parameter)
         {
             return await this.SendAsync<ChannelPostMembersParameter, ChannelPostMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostMembersResponse> ChannelPostMembersAsync(ChannelPostMembersParameter parameter, CancellationToken cancellationToken)
         {

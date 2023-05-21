@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+    /// </summary>
     public partial class SubscribedskuListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public SubscribedSku[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscribedskuListResponse> SubscribedskuListAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscribedskuListResponse> SubscribedskuListAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter)
         {
             return await this.SendAsync<SubscribedskuListParameter, SubscribedskuListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscribedsku-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscribedskuListResponse> SubscribedskuListAsync(SubscribedskuListParameter parameter, CancellationToken cancellationToken)
         {

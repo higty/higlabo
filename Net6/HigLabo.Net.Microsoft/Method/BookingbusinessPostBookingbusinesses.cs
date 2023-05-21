@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingbusinessPostBookingbusinessesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,6 +43,7 @@ namespace HigLabo.Net.Microsoft
         public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsPublished { get; set; }
+        public string? LanguageTag { get; set; }
         public string? Phone { get; set; }
         public string? PublicUrl { get; set; }
         public BookingSchedulingPolicy? SchedulingPolicy { get; set; }
@@ -61,6 +65,7 @@ namespace HigLabo.Net.Microsoft
         public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsPublished { get; set; }
+        public string? LanguageTag { get; set; }
         public string? Phone { get; set; }
         public string? PublicUrl { get; set; }
         public BookingSchedulingPolicy? SchedulingPolicy { get; set; }
@@ -72,10 +77,13 @@ namespace HigLabo.Net.Microsoft
         public BookingService[]? Services { get; set; }
         public BookingStaffMember[]? StaffMembers { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostBookingbusinessesResponse> BookingbusinessPostBookingbusinessesAsync()
         {
@@ -83,7 +91,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessPostBookingbusinessesParameter, BookingbusinessPostBookingbusinessesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostBookingbusinessesResponse> BookingbusinessPostBookingbusinessesAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +99,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessPostBookingbusinessesParameter, BookingbusinessPostBookingbusinessesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostBookingbusinessesResponse> BookingbusinessPostBookingbusinessesAsync(BookingbusinessPostBookingbusinessesParameter parameter)
         {
             return await this.SendAsync<BookingbusinessPostBookingbusinessesParameter, BookingbusinessPostBookingbusinessesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-bookingbusinesses?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostBookingbusinessesResponse> BookingbusinessPostBookingbusinessesAsync(BookingbusinessPostBookingbusinessesParameter parameter, CancellationToken cancellationToken)
         {

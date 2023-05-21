@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,7 +25,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             AddedStudentAction,
             AddToCalendarAction,
             AllowLateSubmissions,
@@ -36,18 +38,20 @@ namespace HigLabo.Net.Microsoft
             CreatedDateTime,
             DisplayName,
             DueDateTime,
+            FeedbackResourcesFolderUrl,
             Grading,
+            Id,
             Instructions,
             LastModifiedBy,
             LastModifiedDateTime,
             NotificationChannelUrl,
+            ResourcesFolderUrl,
             Status,
             WebUrl,
-            ResourcesFolderUrl,
-            Resources,
-            Submissions,
             Categories,
+            Resources,
             Rubric,
+            Submissions,
         }
         public enum ApiPath
         {
@@ -90,7 +94,6 @@ namespace HigLabo.Net.Microsoft
             Assigned,
         }
 
-        public string? Id { get; set; }
         public string? AddedStudentAction { get; set; }
         public EducationAssignmentEducationAddToCalendarOptions AddToCalendarAction { get; set; }
         public bool? AllowLateSubmissions { get; set; }
@@ -104,23 +107,28 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public DateTimeOffset? DueDateTime { get; set; }
+        public string? FeedbackResourcesFolderUrl { get; set; }
         public EducationAssignmentGradeType? Grading { get; set; }
+        public string? Id { get; set; }
         public ItemBody? Instructions { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public string? NotificationChannelUrl { get; set; }
+        public string? ResourcesFolderUrl { get; set; }
         public EducationAssignmentstring Status { get; set; }
         public string? WebUrl { get; set; }
-        public string? ResourcesFolderUrl { get; set; }
-        public EducationAssignmentResource[]? Resources { get; set; }
-        public EducationSubmission[]? Submissions { get; set; }
         public EducationCategory[]? Categories { get; set; }
+        public EducationAssignmentResource[]? Resources { get; set; }
         public EducationRubric? Rubric { get; set; }
+        public EducationSubmission[]? Submissions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync()
         {
@@ -128,7 +136,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(CancellationToken cancellationToken)
         {
@@ -136,14 +144,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentGetParameter, EducationAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentGetResponse> EducationAssignmentGetAsync(EducationAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {

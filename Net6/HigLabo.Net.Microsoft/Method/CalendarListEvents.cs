@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarListEventsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -112,10 +115,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Event[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListEventsResponse> CalendarListEventsAsync()
         {
@@ -123,7 +129,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListEventsResponse> CalendarListEventsAsync(CancellationToken cancellationToken)
         {
@@ -131,14 +137,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListEventsResponse> CalendarListEventsAsync(CalendarListEventsParameter parameter)
         {
             return await this.SendAsync<CalendarListEventsParameter, CalendarListEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListEventsResponse> CalendarListEventsAsync(CalendarListEventsParameter parameter, CancellationToken cancellationToken)
         {

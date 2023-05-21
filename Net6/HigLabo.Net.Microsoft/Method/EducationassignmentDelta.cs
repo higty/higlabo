@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,7 +26,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             AddedStudentAction,
             AddToCalendarAction,
             AllowLateSubmissions,
@@ -37,18 +39,20 @@ namespace HigLabo.Net.Microsoft
             CreatedDateTime,
             DisplayName,
             DueDateTime,
+            FeedbackResourcesFolderUrl,
             Grading,
+            Id,
             Instructions,
             LastModifiedBy,
             LastModifiedDateTime,
             NotificationChannelUrl,
+            ResourcesFolderUrl,
             Status,
             WebUrl,
-            ResourcesFolderUrl,
-            Resources,
-            Submissions,
             Categories,
+            Resources,
             Rubric,
+            Submissions,
         }
         public enum ApiPath
         {
@@ -78,10 +82,13 @@ namespace HigLabo.Net.Microsoft
     {
         public EducationAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync()
         {
@@ -89,7 +96,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(CancellationToken cancellationToken)
         {
@@ -97,14 +104,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(EducationAssignmentDeltaParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentDeltaParameter, EducationAssignmentDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeltaResponse> EducationAssignmentDeltaAsync(EducationAssignmentDeltaParameter parameter, CancellationToken cancellationToken)
         {

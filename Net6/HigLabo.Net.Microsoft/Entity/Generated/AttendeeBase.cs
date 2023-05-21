@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/attendeebase?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/attendeebase?view=graph-rest-1.0
     /// </summary>
     public partial class AttendeeBase
     {
@@ -14,7 +14,7 @@ namespace HigLabo.Net.Microsoft
             Resource,
         }
 
-        public AttendeeBaseAttendeeType Type { get; set; }
         public EmailAddress? EmailAddress { get; set; }
+        public AttendeeBaseAttendeeType Type { get; set; }
     }
 }

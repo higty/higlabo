@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class Oauth2permissiongrantDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,9 +23,9 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             ClientId,
             ConsentType,
+            Id,
             PrincipalId,
             ResourceId,
             Scope,
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public OAuth2PermissionGrant[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(Oauth2permissiongrantDeltaParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantDeltaParameter, Oauth2permissiongrantDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantDeltaResponse> Oauth2permissiongrantDeltaAsync(Oauth2permissiongrantDeltaParameter parameter, CancellationToken cancellationToken)
         {

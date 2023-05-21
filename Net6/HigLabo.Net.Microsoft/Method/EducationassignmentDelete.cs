@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationAssignmentDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync(EducationAssignmentDeleteParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentDeleteParameter, EducationAssignmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteResponse> EducationAssignmentDeleteAsync(EducationAssignmentDeleteParameter parameter, CancellationToken cancellationToken)
         {

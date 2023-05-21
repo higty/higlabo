@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ExternalConnectorsExternalitemDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ExternalConnectorsExternalitemDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync(ExternalConnectorsExternalitemDeleteParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalitemDeleteParameter, ExternalConnectorsExternalitemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemDeleteResponse> ExternalConnectorsExternalitemDeleteAsync(ExternalConnectorsExternalitemDeleteParameter parameter, CancellationToken cancellationToken)
         {

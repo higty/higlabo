@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
+    /// </summary>
     public partial class TermStoreListGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ites_SiteId_TermStore_Groups: return $"/ites/{SiteId}/termStore/groups";
+                    case ApiPath.Sites_SiteId_TermStore_Groups: return $"/sites/{SiteId}/termStore/groups";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -23,15 +26,15 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedDateTime,
             Description,
-            Id,
             DisplayName,
-            Scope,
+            Id,
             ParentSiteId,
+            Scope,
             Sets,
         }
         public enum ApiPath
         {
-            Ites_SiteId_TermStore_Groups,
+            Sites_SiteId_TermStore_Groups,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TermStoreGroup[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync(TermStoreListGroupsParameter parameter)
         {
             return await this.SendAsync<TermStoreListGroupsParameter, TermStoreListGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-list-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreListGroupsResponse> TermStoreListGroupsAsync(TermStoreListGroupsParameter parameter, CancellationToken cancellationToken)
         {

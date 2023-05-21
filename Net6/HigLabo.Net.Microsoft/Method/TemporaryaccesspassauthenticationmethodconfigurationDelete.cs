@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -36,10 +39,13 @@ namespace HigLabo.Net.Microsoft
     public partial class TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync()
         {
@@ -47,7 +53,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(CancellationToken cancellationToken)
         {
@@ -55,14 +61,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter parameter)
         {
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter, TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationDeleteResponse> TemporaryAccesspassauthenticationmethodConfigurationDeleteAsync(TemporaryAccesspassauthenticationmethodConfigurationDeleteParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,18 +2,21 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryDeleteditemsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string? Id { get; set; }
+            public string? ObjectId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Directory_DeletedItems_Id: return $"/directory/deletedItems/{Id}";
+                    case ApiPath.Directory_DeletedItems_ObjectId: return $"/directory/deletedItems/{ObjectId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -24,7 +27,7 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Directory_DeletedItems_Id,
+            Directory_DeletedItems_ObjectId,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(DirectoryDeleteditemsGetParameter parameter)
         {
             return await this.SendAsync<DirectoryDeleteditemsGetParameter, DirectoryDeleteditemsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directory-deleteditems-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryDeleteditemsGetResponse> DirectoryDeleteditemsGetAsync(DirectoryDeleteditemsGetParameter parameter, CancellationToken cancellationToken)
         {

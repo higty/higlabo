@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/mailboxsettings?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/mailboxsettings?view=graph-rest-1.0
     /// </summary>
     public partial class MailboxSettings
     {
@@ -13,6 +13,16 @@ namespace HigLabo.Net.Microsoft
             SendToDelegateAndPrincipal,
             SendToDelegateOnly,
         }
+        public enum MailboxSettingsUserPurpose
+        {
+            User,
+            Linked,
+            Shared,
+            Room,
+            Equipment,
+            Others,
+            UnknownFutureValue,
+        }
 
         public string? ArchiveFolder { get; set; }
         public AutomaticRepliesSetting? AutomaticRepliesSetting { get; set; }
@@ -21,6 +31,7 @@ namespace HigLabo.Net.Microsoft
         public LocaleInfo? Language { get; set; }
         public string? TimeFormat { get; set; }
         public string? TimeZone { get; set; }
+        public MailboxSettingsUserPurpose UserPurpose { get; set; }
         public WorkingHours? WorkingHours { get; set; }
     }
 }

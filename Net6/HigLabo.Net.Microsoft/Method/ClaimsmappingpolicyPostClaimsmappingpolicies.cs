@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ClaimsmappingPolicyPostClaimsmappingpoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,26 +35,27 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
-        public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class ClaimsmappingPolicyPostClaimsmappingpoliciesResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
-        public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyPostClaimsmappingpoliciesResponse> ClaimsmappingPolicyPostClaimsmappingpoliciesAsync()
         {
@@ -59,7 +63,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ClaimsmappingPolicyPostClaimsmappingpoliciesParameter, ClaimsmappingPolicyPostClaimsmappingpoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyPostClaimsmappingpoliciesResponse> ClaimsmappingPolicyPostClaimsmappingpoliciesAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +71,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ClaimsmappingPolicyPostClaimsmappingpoliciesParameter, ClaimsmappingPolicyPostClaimsmappingpoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyPostClaimsmappingpoliciesResponse> ClaimsmappingPolicyPostClaimsmappingpoliciesAsync(ClaimsmappingPolicyPostClaimsmappingpoliciesParameter parameter)
         {
             return await this.SendAsync<ClaimsmappingPolicyPostClaimsmappingpoliciesParameter, ClaimsmappingPolicyPostClaimsmappingpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-post-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyPostClaimsmappingpoliciesResponse> ClaimsmappingPolicyPostClaimsmappingpoliciesAsync(ClaimsmappingPolicyPostClaimsmappingpoliciesParameter parameter, CancellationToken cancellationToken)
         {

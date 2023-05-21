@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationListTokenissuancepoliciesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,10 +24,10 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             Definition,
             Description,
             DisplayName,
+            Id,
             IsOrganizationDefault,
             AppliesTo,
         }
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TokenIssuancePolicy[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(ApplicationListTokenissuancepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationListTokenissuancepoliciesParameter, ApplicationListTokenissuancepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list-tokenissuancepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListTokenissuancepoliciesResponse> ApplicationListTokenissuancepoliciesAsync(ApplicationListTokenissuancepoliciesParameter parameter, CancellationToken cancellationToken)
         {

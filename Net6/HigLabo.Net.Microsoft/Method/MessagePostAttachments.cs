@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
+    /// </summary>
     public partial class MessagePostAttachmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public Int32? Size { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(MessagePostAttachmentsParameter parameter)
         {
             return await this.SendAsync<MessagePostAttachmentsParameter, MessagePostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<MessagePostAttachmentsResponse> MessagePostAttachmentsAsync(MessagePostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {

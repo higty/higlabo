@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
+    /// </summary>
     public partial class OnenotePostNotebooksParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,13 +52,13 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public bool? IsDefault { get; set; }
         public bool? IsShared { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public NotebookLinks? Links { get; set; }
-        public string? DisplayName { get; set; }
         public string? SectionGroupsUrl { get; set; }
         public string? SectionsUrl { get; set; }
         public string? Self { get; set; }
@@ -75,13 +78,13 @@ namespace HigLabo.Net.Microsoft
 
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public bool? IsDefault { get; set; }
         public bool? IsShared { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public NotebookLinks? Links { get; set; }
-        public string? DisplayName { get; set; }
         public string? SectionGroupsUrl { get; set; }
         public string? SectionsUrl { get; set; }
         public string? Self { get; set; }
@@ -89,10 +92,13 @@ namespace HigLabo.Net.Microsoft
         public SectionGroup[]? SectionGroups { get; set; }
         public Section[]? Sections { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostNotebooksResponse> OnenotePostNotebooksAsync()
         {
@@ -100,7 +106,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenotePostNotebooksParameter, OnenotePostNotebooksResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostNotebooksResponse> OnenotePostNotebooksAsync(CancellationToken cancellationToken)
         {
@@ -108,14 +114,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenotePostNotebooksParameter, OnenotePostNotebooksResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostNotebooksResponse> OnenotePostNotebooksAsync(OnenotePostNotebooksParameter parameter)
         {
             return await this.SendAsync<OnenotePostNotebooksParameter, OnenotePostNotebooksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostNotebooksResponse> OnenotePostNotebooksAsync(OnenotePostNotebooksParameter parameter, CancellationToken cancellationToken)
         {

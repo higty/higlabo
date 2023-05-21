@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
+    /// </summary>
     public partial class ContactfolderPostContactsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -128,10 +131,13 @@ namespace HigLabo.Net.Microsoft
         public ProfilePhoto? Photo { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync()
         {
@@ -139,7 +145,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync(CancellationToken cancellationToken)
         {
@@ -147,14 +153,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync(ContactfolderPostContactsParameter parameter)
         {
             return await this.SendAsync<ContactfolderPostContactsParameter, ContactfolderPostContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderPostContactsResponse> ContactfolderPostContactsAsync(ContactfolderPostContactsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListRegistereddevicesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(UserListRegistereddevicesParameter parameter)
         {
             return await this.SendAsync<UserListRegistereddevicesParameter, UserListRegistereddevicesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-registereddevices?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListRegistereddevicesResponse> UserListRegistereddevicesAsync(UserListRegistereddevicesParameter parameter, CancellationToken cancellationToken)
         {

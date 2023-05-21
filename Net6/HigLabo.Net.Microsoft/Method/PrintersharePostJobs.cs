@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintersharePostJobsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,34 +36,37 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public PrintJobStatus? Status { get; set; }
         public PrintJobConfiguration? Configuration { get; set; }
+        public UserIdentity? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
         public Boolean? IsFetchable { get; set; }
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
-        public UserIdentity? CreatedBy { get; set; }
+        public PrintJobStatus? Status { get; set; }
         public PrintDocument[]? Documents { get; set; }
         public PrintTask[]? Tasks { get; set; }
     }
     public partial class PrintersharePostJobsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public PrintJobStatus? Status { get; set; }
         public PrintJobConfiguration? Configuration { get; set; }
+        public UserIdentity? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
         public Boolean? IsFetchable { get; set; }
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
-        public UserIdentity? CreatedBy { get; set; }
+        public PrintJobStatus? Status { get; set; }
         public PrintDocument[]? Documents { get; set; }
         public PrintTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync(PrintersharePostJobsParameter parameter)
         {
             return await this.SendAsync<PrintersharePostJobsParameter, PrintersharePostJobsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-post-jobs?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintersharePostJobsResponse> PrintersharePostJobsAsync(PrintersharePostJobsParameter parameter, CancellationToken cancellationToken)
         {

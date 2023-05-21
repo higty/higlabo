@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
+    /// </summary>
     public partial class EventForwardParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             public string? EventsId { get; set; }
             public string? CalendarsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -27,8 +30,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Groups_Id_Calendar_Events_Id_Forward: return $"/groups/{GroupsId}/calendar/events/{EventsId}/forward";
                     case ApiPath.Me_Calendars_Id_Events_Id_Forward: return $"/me/calendars/{CalendarsId}/events/{EventsId}/forward";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Forward: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/forward";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Forward: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/forward";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Forward: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/forward";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Forward: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/forward";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Forward: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/forward";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -44,8 +47,8 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Calendar_Events_Id_Forward,
             Me_Calendars_Id_Events_Id_Forward,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Forward,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Forward,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Forward,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Forward,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Forward,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -63,10 +66,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EventForwardResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<EventForwardResponse> EventForwardAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<EventForwardResponse> EventForwardAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<EventForwardResponse> EventForwardAsync(EventForwardParameter parameter)
         {
             return await this.SendAsync<EventForwardParameter, EventForwardResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<EventForwardResponse> EventForwardAsync(EventForwardParameter parameter, CancellationToken cancellationToken)
         {

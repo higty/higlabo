@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AgreementGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -66,10 +69,13 @@ namespace HigLabo.Net.Microsoft
         public AgreementFile? File { get; set; }
         public AgreementFileLocalization[]? Files { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementGetResponse> AgreementGetAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementGetResponse> AgreementGetAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementGetResponse> AgreementGetAsync(AgreementGetParameter parameter)
         {
             return await this.SendAsync<AgreementGetParameter, AgreementGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementGetResponse> AgreementGetAsync(AgreementGetParameter parameter, CancellationToken cancellationToken)
         {

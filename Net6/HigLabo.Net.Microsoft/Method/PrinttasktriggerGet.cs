@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinttasktriggerGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -48,14 +51,17 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrinttasktriggerGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public PrintEvent? Event { get; set; }
+        public string? Id { get; set; }
         public PrintTaskDefinition? Definition { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(PrinttasktriggerGetParameter parameter)
         {
             return await this.SendAsync<PrinttasktriggerGetParameter, PrinttasktriggerGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtasktrigger-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttasktriggerGetResponse> PrinttasktriggerGetAsync(PrinttasktriggerGetParameter parameter, CancellationToken cancellationToken)
         {

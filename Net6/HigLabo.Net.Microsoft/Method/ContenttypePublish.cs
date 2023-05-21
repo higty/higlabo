@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
+    /// </summary>
     public partial class ContentTypePublishParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ContentTypePublishResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypePublishResponse> ContentTypePublishAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypePublishResponse> ContentTypePublishAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter)
         {
             return await this.SendAsync<ContentTypePublishParameter, ContentTypePublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypePublishResponse> ContentTypePublishAsync(ContentTypePublishParameter parameter, CancellationToken cancellationToken)
         {

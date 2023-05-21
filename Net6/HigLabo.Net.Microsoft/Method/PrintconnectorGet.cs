@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintConnectorGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,14 +24,14 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
+            AppVersion,
             DisplayName,
             FullyQualifiedDomainName,
-            OperatingSystem,
-            AppVersion,
+            Id,
             Location,
-            RegisteredDateTime,
+            OperatingSystem,
             RegisteredBy,
+            RegisteredDateTime,
         }
         public enum ApiPath
         {
@@ -55,19 +58,22 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintConnectorGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
+        public string? AppVersion { get; set; }
         public string? DisplayName { get; set; }
         public string? FullyQualifiedDomainName { get; set; }
-        public string? OperatingSystem { get; set; }
-        public string? AppVersion { get; set; }
+        public string? Id { get; set; }
         public PrinterLocation? Location { get; set; }
-        public DateTimeOffset? RegisteredDateTime { get; set; }
+        public string? OperatingSystem { get; set; }
         public UserIdentity? RegisteredBy { get; set; }
+        public DateTimeOffset? RegisteredDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync()
         {
@@ -75,7 +81,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync(CancellationToken cancellationToken)
         {
@@ -83,14 +89,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync(PrintConnectorGetParameter parameter)
         {
             return await this.SendAsync<PrintConnectorGetParameter, PrintConnectorGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printconnector-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintConnectorGetResponse> PrintConnectorGetAsync(PrintConnectorGetParameter parameter, CancellationToken cancellationToken)
         {

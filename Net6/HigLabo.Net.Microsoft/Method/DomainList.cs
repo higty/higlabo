@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+    /// </summary>
     public partial class DomainListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -30,8 +33,8 @@ namespace HigLabo.Net.Microsoft
             IsVerified,
             PasswordNotificationWindowInDays,
             PasswordValidityPeriodInDays,
-            SupportedServices,
             State,
+            SupportedServices,
             DomainNameReferences,
             ServiceConfigurationRecords,
             VerificationDnsRecords,
@@ -64,10 +67,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Domain[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainListResponse> DomainListAsync()
         {
@@ -75,7 +81,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DomainListParameter, DomainListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainListResponse> DomainListAsync(CancellationToken cancellationToken)
         {
@@ -83,14 +89,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DomainListParameter, DomainListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainListResponse> DomainListAsync(DomainListParameter parameter)
         {
             return await this.SendAsync<DomainListParameter, DomainListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainListResponse> DomainListAsync(DomainListParameter parameter, CancellationToken cancellationToken)
         {

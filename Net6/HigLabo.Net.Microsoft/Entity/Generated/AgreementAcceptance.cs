@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/agreementacceptance?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/agreementacceptance?view=graph-rest-1.0
     /// </summary>
     public partial class AgreementAcceptance
     {
@@ -11,6 +11,7 @@ namespace HigLabo.Net.Microsoft
         {
             Accepted,
             Declined,
+            Eq,
         }
 
         public string? AgreementFileId { get; set; }

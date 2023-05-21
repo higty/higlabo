@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+    /// </summary>
     public partial class NotebookListSectionGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -30,10 +33,10 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedBy,
             CreatedDateTime,
+            DisplayName,
             Id,
             LastModifiedBy,
             LastModifiedDateTime,
-            DisplayName,
             SectionGroupsUrl,
             SectionsUrl,
             Self,
@@ -72,10 +75,13 @@ namespace HigLabo.Net.Microsoft
     {
         public SectionGroup[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync()
         {
@@ -83,7 +89,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +97,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter)
         {
             return await this.SendAsync<NotebookListSectionGroupsParameter, NotebookListSectionGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookListSectionGroupsResponse> NotebookListSectionGroupsAsync(NotebookListSectionGroupsParameter parameter, CancellationToken cancellationToken)
         {

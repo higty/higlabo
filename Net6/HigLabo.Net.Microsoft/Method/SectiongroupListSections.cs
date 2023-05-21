@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+    /// </summary>
     public partial class SectionGroupListSectionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -30,12 +33,12 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedBy,
             CreatedDateTime,
+            DisplayName,
             Id,
             IsDefault,
             LastModifiedBy,
             LastModifiedDateTime,
             Links,
-            DisplayName,
             PagesUrl,
             Self,
             Pages,
@@ -72,10 +75,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Section[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupListSectionsResponse> SectionGroupListSectionsAsync()
         {
@@ -83,7 +89,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SectionGroupListSectionsParameter, SectionGroupListSectionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupListSectionsResponse> SectionGroupListSectionsAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +97,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SectionGroupListSectionsParameter, SectionGroupListSectionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupListSectionsResponse> SectionGroupListSectionsAsync(SectionGroupListSectionsParameter parameter)
         {
             return await this.SendAsync<SectionGroupListSectionsParameter, SectionGroupListSectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-list-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupListSectionsResponse> SectionGroupListSectionsAsync(SectionGroupListSectionsParameter parameter, CancellationToken cancellationToken)
         {

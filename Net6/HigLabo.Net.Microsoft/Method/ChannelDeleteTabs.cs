@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelDeleteTabsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChannelDeleteTabsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(ChannelDeleteTabsParameter parameter)
         {
             return await this.SendAsync<ChannelDeleteTabsParameter, ChannelDeleteTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelDeleteTabsResponse> ChannelDeleteTabsAsync(ChannelDeleteTabsParameter parameter, CancellationToken cancellationToken)
         {

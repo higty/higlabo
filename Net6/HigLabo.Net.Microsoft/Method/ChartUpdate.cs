@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
+    /// </summary>
     public partial class ChartUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -60,10 +63,13 @@ namespace HigLabo.Net.Microsoft
         public ChartTitle? Title { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartUpdateResponse> ChartUpdateAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartUpdateResponse> ChartUpdateAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartUpdateResponse> ChartUpdateAsync(ChartUpdateParameter parameter)
         {
             return await this.SendAsync<ChartUpdateParameter, ChartUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartUpdateResponse> ChartUpdateAsync(ChartUpdateParameter parameter, CancellationToken cancellationToken)
         {

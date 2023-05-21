@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/microsoftauthenticatorauthenticationmethodconfiguration?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/microsoftauthenticatorauthenticationmethodconfiguration?view=graph-rest-1.0
     /// </summary>
     public partial class MicrosoftAuthenticatorAuthenticationMethodConfiguration
     {
@@ -13,7 +13,9 @@ namespace HigLabo.Net.Microsoft
             Disabled,
         }
 
+        public ExcludeTarget[]? ExcludeTargets { get; set; }
         public string? Id { get; set; }
+        public MicrosoftAuthenticatorFeatureSettings? FeatureSettings { get; set; }
         public MicrosoftAuthenticatorAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
         public MicrosoftAuthenticatorAuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }

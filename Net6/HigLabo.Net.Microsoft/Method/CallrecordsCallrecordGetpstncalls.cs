@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
+    /// </summary>
     public partial class CallrecordsCallrecordGetpstncallsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -79,10 +82,13 @@ namespace HigLabo.Net.Microsoft
     {
         public CallrecordsPstncalllogrow[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetpstncallsResponse> CallrecordsCallrecordGetpstncallsAsync()
         {
@@ -90,7 +96,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallrecordsCallrecordGetpstncallsParameter, CallrecordsCallrecordGetpstncallsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetpstncallsResponse> CallrecordsCallrecordGetpstncallsAsync(CancellationToken cancellationToken)
         {
@@ -98,14 +104,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallrecordsCallrecordGetpstncallsParameter, CallrecordsCallrecordGetpstncallsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetpstncallsResponse> CallrecordsCallrecordGetpstncallsAsync(CallrecordsCallrecordGetpstncallsParameter parameter)
         {
             return await this.SendAsync<CallrecordsCallrecordGetpstncallsParameter, CallrecordsCallrecordGetpstncallsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-getpstncalls?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetpstncallsResponse> CallrecordsCallrecordGetpstncallsAsync(CallrecordsCallrecordGetpstncallsParameter parameter, CancellationToken cancellationToken)
         {

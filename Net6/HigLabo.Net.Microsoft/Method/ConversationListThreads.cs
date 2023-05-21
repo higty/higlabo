@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
+    /// </summary>
     public partial class ConversationListThreadsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,15 +25,15 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ToRecipients,
             CcRecipients,
-            Topic,
             HasAttachments,
-            LastDeliveredDateTime,
-            UniqueSenders,
-            Preview,
+            Id,
             IsLocked,
+            LastDeliveredDateTime,
+            Preview,
+            Topic,
+            ToRecipients,
+            UniqueSenders,
             Posts,
         }
         public enum ApiPath
@@ -60,10 +63,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ConversationThread[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationListThreadsResponse> ConversationListThreadsAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConversationListThreadsParameter, ConversationListThreadsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationListThreadsResponse> ConversationListThreadsAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConversationListThreadsParameter, ConversationListThreadsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationListThreadsResponse> ConversationListThreadsAsync(ConversationListThreadsParameter parameter)
         {
             return await this.SendAsync<ConversationListThreadsParameter, ConversationListThreadsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationListThreadsResponse> ConversationListThreadsAsync(ConversationListThreadsParameter parameter, CancellationToken cancellationToken)
         {

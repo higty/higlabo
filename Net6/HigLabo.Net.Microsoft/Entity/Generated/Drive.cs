@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/drive?view=graph-rest-1.0
     /// </summary>
     public partial class Drive
     {
@@ -23,8 +23,8 @@ namespace HigLabo.Net.Microsoft
         public DriveItem[]? Bundles { get; set; }
         public DriveItem[]? Following { get; set; }
         public DriveItem[]? Items { get; set; }
+        public SiteList? List { get; set; }
         public DriveItem? Root { get; set; }
         public DriveItem[]? Special { get; set; }
-        public SiteList? List { get; set; }
     }
 }

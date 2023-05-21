@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
+    /// </summary>
     public partial class UserUpdateMailboxSettingsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -57,6 +60,16 @@ namespace HigLabo.Net.Microsoft
             SendToDelegateAndPrincipal,
             SendToDelegateOnly,
         }
+        public enum MailboxSettingsUserPurpose
+        {
+            User,
+            Linked,
+            Shared,
+            Room,
+            Equipment,
+            Others,
+            UnknownFutureValue,
+        }
 
         public string? ArchiveFolder { get; set; }
         public AutomaticRepliesSetting? AutomaticRepliesSetting { get; set; }
@@ -65,12 +78,16 @@ namespace HigLabo.Net.Microsoft
         public LocaleInfo? Language { get; set; }
         public string? TimeFormat { get; set; }
         public string? TimeZone { get; set; }
+        public MailboxSettingsUserPurpose UserPurpose { get; set; }
         public WorkingHours? WorkingHours { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync()
         {
@@ -78,7 +95,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +103,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(UserUpdateMailboxSettingsParameter parameter)
         {
             return await this.SendAsync<UserUpdateMailboxSettingsParameter, UserUpdateMailboxSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateMailboxSettingsResponse> UserUpdateMailboxSettingsAsync(UserUpdateMailboxSettingsParameter parameter, CancellationToken cancellationToken)
         {

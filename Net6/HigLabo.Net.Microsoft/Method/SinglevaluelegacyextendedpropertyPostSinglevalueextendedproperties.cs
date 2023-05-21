@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
+    /// </summary>
     public partial class SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -114,10 +117,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse> SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesAsync()
         {
@@ -125,7 +131,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesParameter, SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse> SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesAsync(CancellationToken cancellationToken)
         {
@@ -133,14 +139,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesParameter, SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse> SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesAsync(SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesParameter parameter)
         {
             return await this.SendAsync<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesParameter, SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-post-singlevalueextendedproperties?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesResponse> SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesAsync(SinglevaluelegacyextendedpropertyPostSinglevalueextendedpropertiesParameter parameter, CancellationToken cancellationToken)
         {

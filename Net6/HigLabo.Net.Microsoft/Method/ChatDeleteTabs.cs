@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatDeleteTabsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatDeleteTabsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync(ChatDeleteTabsParameter parameter)
         {
             return await this.SendAsync<ChatDeleteTabsParameter, ChatDeleteTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-delete-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatDeleteTabsResponse> ChatDeleteTabsAsync(ChatDeleteTabsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
+    /// </summary>
     public partial class ParticipantInviteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
         public ResultInfo? ResultInfo { get; set; }
         public string? Status { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantInviteResponse> ParticipantInviteAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantInviteResponse> ParticipantInviteAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantInviteResponse> ParticipantInviteAsync(ParticipantInviteParameter parameter)
         {
             return await this.SendAsync<ParticipantInviteParameter, ParticipantInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantInviteResponse> ParticipantInviteAsync(ParticipantInviteParameter parameter, CancellationToken cancellationToken)
         {

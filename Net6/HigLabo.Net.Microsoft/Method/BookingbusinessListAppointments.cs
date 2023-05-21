@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingbusinessListAppointmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,6 +25,7 @@ namespace HigLabo.Net.Microsoft
         public enum Field
         {
             AdditionalInformation,
+            AnonymousJoinWebUrl,
             Customers,
             CustomerTimeZone,
             Duration,
@@ -73,10 +77,13 @@ namespace HigLabo.Net.Microsoft
     {
         public BookingAppointment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync()
         {
@@ -84,7 +91,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync(CancellationToken cancellationToken)
         {
@@ -92,14 +99,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync(BookingbusinessListAppointmentsParameter parameter)
         {
             return await this.SendAsync<BookingbusinessListAppointmentsParameter, BookingbusinessListAppointmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-appointments?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListAppointmentsResponse> BookingbusinessListAppointmentsAsync(BookingbusinessListAppointmentsParameter parameter, CancellationToken cancellationToken)
         {

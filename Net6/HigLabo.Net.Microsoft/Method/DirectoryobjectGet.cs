@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryobjectGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectGetParameter, DirectoryobjectGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetResponse> DirectoryobjectGetAsync(DirectoryobjectGetParameter parameter, CancellationToken cancellationToken)
         {

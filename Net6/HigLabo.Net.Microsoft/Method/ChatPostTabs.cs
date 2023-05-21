@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatPostTabsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,24 +36,27 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public string? WebUrl { get; set; }
         public TeamsTabConfiguration? Configuration { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? WebUrl { get; set; }
         public TeamsApp? TeamsApp { get; set; }
     }
     public partial class ChatPostTabsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public string? WebUrl { get; set; }
         public TeamsTabConfiguration? Configuration { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? WebUrl { get; set; }
         public TeamsApp? TeamsApp { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostTabsResponse> ChatPostTabsAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatPostTabsParameter, ChatPostTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostTabsResponse> ChatPostTabsAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatPostTabsParameter, ChatPostTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostTabsResponse> ChatPostTabsAsync(ChatPostTabsParameter parameter)
         {
             return await this.SendAsync<ChatPostTabsParameter, ChatPostTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostTabsResponse> ChatPostTabsAsync(ChatPostTabsParameter parameter, CancellationToken cancellationToken)
         {

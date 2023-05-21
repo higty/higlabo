@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
+    /// </summary>
     public partial class SectionGroupPostSectionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -45,12 +48,12 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public bool? IsDefault { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public SectionLinks? Links { get; set; }
-        public string? DisplayName { get; set; }
         public string? PagesUrl { get; set; }
         public string? Self { get; set; }
         public Page[]? Pages { get; set; }
@@ -61,22 +64,25 @@ namespace HigLabo.Net.Microsoft
     {
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public bool? IsDefault { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public SectionLinks? Links { get; set; }
-        public string? DisplayName { get; set; }
         public string? PagesUrl { get; set; }
         public string? Self { get; set; }
         public Page[]? Pages { get; set; }
         public Notebook? ParentNotebook { get; set; }
         public SectionGroup? ParentSectionGroup { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync()
         {
@@ -84,7 +90,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(CancellationToken cancellationToken)
         {
@@ -92,14 +98,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(SectionGroupPostSectionsParameter parameter)
         {
             return await this.SendAsync<SectionGroupPostSectionsParameter, SectionGroupPostSectionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sectiongroup-post-sections?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionGroupPostSectionsResponse> SectionGroupPostSectionsAsync(SectionGroupPostSectionsParameter parameter, CancellationToken cancellationToken)
         {

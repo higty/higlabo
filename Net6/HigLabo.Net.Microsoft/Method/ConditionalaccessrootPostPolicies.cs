@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
+    /// </summary>
     public partial class ConditionalAccessRootPostPoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
         public ConditionalAccessSessionControls? SessionControls { get; set; }
         public ConditionalAccessPolicyConditionalAccessPolicyState State { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootPostPoliciesResponse> ConditionalAccessRootPostPoliciesAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessRootPostPoliciesParameter, ConditionalAccessRootPostPoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootPostPoliciesResponse> ConditionalAccessRootPostPoliciesAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessRootPostPoliciesParameter, ConditionalAccessRootPostPoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootPostPoliciesResponse> ConditionalAccessRootPostPoliciesAsync(ConditionalAccessRootPostPoliciesParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessRootPostPoliciesParameter, ConditionalAccessRootPostPoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-post-policies?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootPostPoliciesResponse> ConditionalAccessRootPostPoliciesAsync(ConditionalAccessRootPostPoliciesParameter parameter, CancellationToken cancellationToken)
         {

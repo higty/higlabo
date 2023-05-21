@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class IpnamedLocationDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class IpnamedLocationDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationDeleteResponse> IpnamedLocationDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IpnamedLocationDeleteParameter, IpnamedLocationDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationDeleteResponse> IpnamedLocationDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IpnamedLocationDeleteParameter, IpnamedLocationDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationDeleteResponse> IpnamedLocationDeleteAsync(IpnamedLocationDeleteParameter parameter)
         {
             return await this.SendAsync<IpnamedLocationDeleteParameter, IpnamedLocationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationDeleteResponse> IpnamedLocationDeleteAsync(IpnamedLocationDeleteParameter parameter, CancellationToken cancellationToken)
         {

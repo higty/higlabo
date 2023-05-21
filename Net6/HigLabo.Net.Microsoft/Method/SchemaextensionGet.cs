@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
+    /// </summary>
     public partial class SchemaextensionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
         public string? Status { get; set; }
         public String[]? TargetTypes { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionGetResponse> SchemaextensionGetAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionGetResponse> SchemaextensionGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionGetResponse> SchemaextensionGetAsync(SchemaextensionGetParameter parameter)
         {
             return await this.SendAsync<SchemaextensionGetParameter, SchemaextensionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionGetResponse> SchemaextensionGetAsync(SchemaextensionGetParameter parameter, CancellationToken cancellationToken)
         {

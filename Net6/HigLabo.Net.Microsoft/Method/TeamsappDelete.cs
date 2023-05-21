@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamsappDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
     public partial class TeamsappDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync(TeamsappDeleteParameter parameter)
         {
             return await this.SendAsync<TeamsappDeleteParameter, TeamsappDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappDeleteResponse> TeamsappDeleteAsync(TeamsappDeleteParameter parameter, CancellationToken cancellationToken)
         {

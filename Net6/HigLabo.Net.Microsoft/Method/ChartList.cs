@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ChartListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -66,10 +69,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Chart[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartListResponse> ChartListAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartListParameter, ChartListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartListResponse> ChartListAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartListParameter, ChartListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartListResponse> ChartListAsync(ChartListParameter parameter)
         {
             return await this.SendAsync<ChartListParameter, ChartListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartListResponse> ChartListAsync(ChartListParameter parameter, CancellationToken cancellationToken)
         {

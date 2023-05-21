@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupPostGroupsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -18,13 +21,6 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum GroupString
-        {
-            AllowOnlyMembersToPost,
-            HideGroupInOutlook,
-            SubscribeNewGroupMembers,
-            WelcomeEmailDisabled,
-        }
         public enum Groupstring
         {
             Teal,
@@ -83,7 +79,7 @@ namespace HigLabo.Net.Microsoft
         public string? PreferredLanguage { get; set; }
         public String[]? ProxyAddresses { get; set; }
         public DateTimeOffset? RenewedDateTime { get; set; }
-        public GroupString ResourceBehaviorOptions { get; set; }
+        public String[]? ResourceBehaviorOptions { get; set; }
         public String[]? ResourceProvisioningOptions { get; set; }
         public string? SecurityIdentifier { get; set; }
         public Groupstring Theme { get; set; }
@@ -114,16 +110,11 @@ namespace HigLabo.Net.Microsoft
         public Site[]? Sites { get; set; }
         public Channel[]? Team { get; set; }
         public ConversationThread[]? Threads { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMembers { get; set; }
     }
     public partial class GroupPostGroupsResponse : RestApiResponse
     {
-        public enum GroupString
-        {
-            AllowOnlyMembersToPost,
-            HideGroupInOutlook,
-            SubscribeNewGroupMembers,
-            WelcomeEmailDisabled,
-        }
         public enum Groupstring
         {
             Teal,
@@ -168,7 +159,7 @@ namespace HigLabo.Net.Microsoft
         public string? PreferredLanguage { get; set; }
         public String[]? ProxyAddresses { get; set; }
         public DateTimeOffset? RenewedDateTime { get; set; }
-        public GroupString ResourceBehaviorOptions { get; set; }
+        public String[]? ResourceBehaviorOptions { get; set; }
         public String[]? ResourceProvisioningOptions { get; set; }
         public bool? SecurityEnabled { get; set; }
         public string? SecurityIdentifier { get; set; }
@@ -200,11 +191,16 @@ namespace HigLabo.Net.Microsoft
         public Site[]? Sites { get; set; }
         public Channel[]? Team { get; set; }
         public ConversationThread[]? Threads { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMembers { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostGroupsResponse> GroupPostGroupsAsync()
         {
@@ -212,7 +208,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupPostGroupsParameter, GroupPostGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostGroupsResponse> GroupPostGroupsAsync(CancellationToken cancellationToken)
         {
@@ -220,14 +216,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupPostGroupsParameter, GroupPostGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostGroupsResponse> GroupPostGroupsAsync(GroupPostGroupsParameter parameter)
         {
             return await this.SendAsync<GroupPostGroupsParameter, GroupPostGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-groups?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostGroupsResponse> GroupPostGroupsAsync(GroupPostGroupsParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/authenticationmethodtarget?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/authenticationmethodtarget?view=graph-rest-1.0
     /// </summary>
     public partial class AuthenticationMethodTarget
     {
@@ -16,6 +16,5 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsRegistrationRequired { get; set; }
         public AuthenticationMethodTargetAuthenticationMethodTargetType TargetType { get; set; }
-        public bool? UseForSignIn { get; set; }
     }
 }

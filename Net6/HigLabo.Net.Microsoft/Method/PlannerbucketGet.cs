@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannerbucketGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public string? PlanId { get; set; }
         public PlannerTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync(PlannerbucketGetParameter parameter)
         {
             return await this.SendAsync<PlannerbucketGetParameter, PlannerbucketGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerbucket-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerbucketGetResponse> PlannerbucketGetAsync(PlannerbucketGetParameter parameter, CancellationToken cancellationToken)
         {

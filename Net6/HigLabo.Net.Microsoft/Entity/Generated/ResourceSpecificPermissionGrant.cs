@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/resourcespecificpermissiongrant?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/resourcespecificpermissiongrant?view=graph-rest-1.0
     /// </summary>
     public partial class ResourceSpecificPermissionGrant
     {
@@ -13,10 +13,10 @@ namespace HigLabo.Net.Microsoft
             Delegated,
         }
 
-        public string? Id { get; set; }
-        public DateTimeOffset? DeletedDateTime { get; set; }
         public string? ClientId { get; set; }
         public string? ClientAppId { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public string? Id { get; set; }
         public string? ResourceAppId { get; set; }
         public ResourceSpecificPermissionGrantstring PermissionType { get; set; }
         public string? Permission { get; set; }

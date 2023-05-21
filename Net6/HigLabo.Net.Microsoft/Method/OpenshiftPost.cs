@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenshiftPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -43,10 +46,13 @@ namespace HigLabo.Net.Microsoft
         public string? SchedulingGroupId { get; set; }
         public OpenShiftItem? SharedOpenShift { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftPostResponse> OpenshiftPostAsync()
         {
@@ -54,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftPostResponse> OpenshiftPostAsync(CancellationToken cancellationToken)
         {
@@ -62,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftPostResponse> OpenshiftPostAsync(OpenshiftPostParameter parameter)
         {
             return await this.SendAsync<OpenshiftPostParameter, OpenshiftPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftPostResponse> OpenshiftPostAsync(OpenshiftPostParameter parameter, CancellationToken cancellationToken)
         {

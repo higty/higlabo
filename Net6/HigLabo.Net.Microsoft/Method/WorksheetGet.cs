@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
+    /// </summary>
     public partial class WorksheetGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -77,10 +80,13 @@ namespace HigLabo.Net.Microsoft
         public WorksheetProtection? Protection { get; set; }
         public Table[]? Tables { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetGetResponse> WorksheetGetAsync()
         {
@@ -88,7 +94,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetGetResponse> WorksheetGetAsync(CancellationToken cancellationToken)
         {
@@ -96,14 +102,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetGetResponse> WorksheetGetAsync(WorksheetGetParameter parameter)
         {
             return await this.SendAsync<WorksheetGetParameter, WorksheetGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-get?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetGetResponse> WorksheetGetAsync(WorksheetGetParameter parameter, CancellationToken cancellationToken)
         {

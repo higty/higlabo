@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
+    /// </summary>
     public partial class WorkforceintegrationUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -70,10 +73,13 @@ namespace HigLabo.Net.Microsoft
         public WorkforceIntegrationWorkforceIntegrationSupportedEntities SupportedEntities { get; set; }
         public string? Url { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync()
         {
@@ -81,7 +87,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(CancellationToken cancellationToken)
         {
@@ -89,14 +95,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(WorkforceintegrationUpdateParameter parameter)
         {
             return await this.SendAsync<WorkforceintegrationUpdateParameter, WorkforceintegrationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workforceintegration-update?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkforceintegrationUpdateResponse> WorkforceintegrationUpdateAsync(WorkforceintegrationUpdateParameter parameter, CancellationToken cancellationToken)
         {

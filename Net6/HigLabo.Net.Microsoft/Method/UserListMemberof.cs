@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListMemberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListMemberofResponse> UserListMemberofAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListMemberofParameter, UserListMemberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListMemberofResponse> UserListMemberofAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListMemberofParameter, UserListMemberofResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListMemberofResponse> UserListMemberofAsync(UserListMemberofParameter parameter)
         {
             return await this.SendAsync<UserListMemberofParameter, UserListMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListMemberofResponse> UserListMemberofAsync(UserListMemberofParameter parameter, CancellationToken cancellationToken)
         {

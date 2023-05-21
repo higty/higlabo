@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
+    /// </summary>
     public partial class EventPostAttachmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -12,7 +15,7 @@ namespace HigLabo.Net.Microsoft
             public string? CalendarsId { get; set; }
             public string? EventsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -24,8 +27,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events_Id_Attachments: return $"/users/{IdOrUserPrincipalName}/calendar/events/{Id}/attachments";
                     case ApiPath.Me_Calendars_Id_Events_Id_Attachments: return $"/me/calendars/{CalendarsId}/events/{EventsId}/attachments";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/attachments";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -39,8 +42,8 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendar_Events_Id_Attachments,
             Me_Calendars_Id_Events_Id_Attachments,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -68,10 +71,13 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public Int32? Size { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync()
         {
@@ -79,7 +85,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +93,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync(EventPostAttachmentsParameter parameter)
         {
             return await this.SendAsync<EventPostAttachmentsParameter, EventPostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventPostAttachmentsResponse> EventPostAttachmentsAsync(EventPostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {

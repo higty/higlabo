@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class UnifiedroleeligibilityschedulerequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -84,10 +87,13 @@ namespace HigLabo.Net.Microsoft
         public UnifiedRoleDefinition? RoleDefinition { get; set; }
         public UnifiedRoleEligibilitySchedule? TargetSchedule { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleeligibilityschedulerequestGetResponse> UnifiedroleeligibilityschedulerequestGetAsync()
         {
@@ -95,7 +101,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestGetParameter, UnifiedroleeligibilityschedulerequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleeligibilityschedulerequestGetResponse> UnifiedroleeligibilityschedulerequestGetAsync(CancellationToken cancellationToken)
         {
@@ -103,14 +109,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestGetParameter, UnifiedroleeligibilityschedulerequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleeligibilityschedulerequestGetResponse> UnifiedroleeligibilityschedulerequestGetAsync(UnifiedroleeligibilityschedulerequestGetParameter parameter)
         {
             return await this.SendAsync<UnifiedroleeligibilityschedulerequestGetParameter, UnifiedroleeligibilityschedulerequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleeligibilityschedulerequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleeligibilityschedulerequestGetResponse> UnifiedroleeligibilityschedulerequestGetAsync(UnifiedroleeligibilityschedulerequestGetParameter parameter, CancellationToken cancellationToken)
         {

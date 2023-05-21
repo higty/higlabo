@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotaskDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -30,14 +33,17 @@ namespace HigLabo.Net.Microsoft
             CompletedDateTime,
             CreatedDateTime,
             DueDateTime,
+            HasAttachments,
             Id,
             Importance,
             IsReminderOn,
             LastModifiedDateTime,
             Recurrence,
             ReminderDateTime,
+            StartDateTime,
             Status,
             Title,
+            Attachments,
             ChecklistItems,
             Extensions,
             LinkedResources,
@@ -70,10 +76,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TodoTask[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync()
         {
@@ -81,7 +90,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync(CancellationToken cancellationToken)
         {
@@ -89,14 +98,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync(TodotaskDeltaParameter parameter)
         {
             return await this.SendAsync<TodotaskDeltaParameter, TodotaskDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeltaResponse> TodotaskDeltaAsync(TodotaskDeltaParameter parameter, CancellationToken cancellationToken)
         {

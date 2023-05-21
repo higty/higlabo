@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
+    /// </summary>
     public partial class NotebookGetrecentnotebooksParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -24,13 +27,13 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedBy,
             CreatedDateTime,
+            DisplayName,
             Id,
             IsDefault,
             IsShared,
             LastModifiedBy,
             LastModifiedDateTime,
             Links,
-            DisplayName,
             SectionGroupsUrl,
             SectionsUrl,
             Self,
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
     public partial class NotebookGetrecentnotebooksResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(NotebookGetrecentnotebooksParameter parameter)
         {
             return await this.SendAsync<NotebookGetrecentnotebooksParameter, NotebookGetrecentnotebooksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-getrecentnotebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetrecentnotebooksResponse> NotebookGetrecentnotebooksAsync(NotebookGetrecentnotebooksParameter parameter, CancellationToken cancellationToken)
         {

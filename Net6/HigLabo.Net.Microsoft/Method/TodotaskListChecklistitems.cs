@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotaskListChecklistitemsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ChecklistItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync(TodotaskListChecklistitemsParameter parameter)
         {
             return await this.SendAsync<TodotaskListChecklistitemsParameter, TodotaskListChecklistitemsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-list-checklistitems?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskListChecklistitemsResponse> TodotaskListChecklistitemsAsync(TodotaskListChecklistitemsParameter parameter, CancellationToken cancellationToken)
         {

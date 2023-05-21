@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftauthenticatorauthenticationmethodListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,9 +26,9 @@ namespace HigLabo.Net.Microsoft
         public enum Field
         {
             CreatedDateTime,
+            DeviceTag,
             DisplayName,
             Id,
-            DeviceTag,
             PhoneAppVersion,
             Device,
         }
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public MicrosoftAuthenticatorAuthenticationMethod[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
         public async Task<MicrosoftauthenticatorauthenticationmethodListResponse> MicrosoftauthenticatorauthenticationmethodListAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodListParameter, MicrosoftauthenticatorauthenticationmethodListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
         public async Task<MicrosoftauthenticatorauthenticationmethodListResponse> MicrosoftauthenticatorauthenticationmethodListAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodListParameter, MicrosoftauthenticatorauthenticationmethodListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
         public async Task<MicrosoftauthenticatorauthenticationmethodListResponse> MicrosoftauthenticatorauthenticationmethodListAsync(MicrosoftauthenticatorauthenticationmethodListParameter parameter)
         {
             return await this.SendAsync<MicrosoftauthenticatorauthenticationmethodListParameter, MicrosoftauthenticatorauthenticationmethodListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/microsoftauthenticatorauthenticationmethod-list?view=graph-rest-1.0
         /// </summary>
         public async Task<MicrosoftauthenticatorauthenticationmethodListResponse> MicrosoftauthenticatorauthenticationmethodListAsync(MicrosoftauthenticatorauthenticationmethodListParameter parameter, CancellationToken cancellationToken)
         {

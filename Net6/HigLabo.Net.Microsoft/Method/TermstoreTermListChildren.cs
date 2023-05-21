@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+    /// </summary>
     public partial class TermStoreTermListChildrenParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -15,8 +18,8 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Children: return $"/ites/{SiteId}/termStore/sets/{SetId}/children";
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Children: return $"/ites/{SiteId}/termStore/sets/{SetId}/terms/{TermId}/children";
+                    case ApiPath.Sites_SiteId_TermStore_Sets_SetId_Children: return $"/sites/{SiteId}/termStore/sets/{SetId}/children";
+                    case ApiPath.Sites_SiteId_TermStore_Sets_SetId_Terms_TermId_Children: return $"/sites/{SiteId}/termStore/sets/{SetId}/terms/{TermId}/children";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -36,8 +39,8 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Ites_SiteId_TermStore_Sets_SetId_Children,
-            Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Children,
+            Sites_SiteId_TermStore_Sets_SetId_Children,
+            Sites_SiteId_TermStore_Sets_SetId_Terms_TermId_Children,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -62,10 +65,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TermStoreTerm[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync()
         {
@@ -73,7 +79,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(CancellationToken cancellationToken)
         {
@@ -81,14 +87,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter)
         {
             return await this.SendAsync<TermStoreTermListChildrenParameter, TermStoreTermListChildrenResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-children?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListChildrenResponse> TermStoreTermListChildrenAsync(TermStoreTermListChildrenParameter parameter, CancellationToken cancellationToken)
         {

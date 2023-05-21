@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
+    /// </summary>
     public partial class SectionPostPagesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -73,10 +76,13 @@ namespace HigLabo.Net.Microsoft
         public Notebook? ParentNotebook { get; set; }
         public Section? ParentSection { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionPostPagesResponse> SectionPostPagesAsync()
         {
@@ -84,7 +90,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionPostPagesResponse> SectionPostPagesAsync(CancellationToken cancellationToken)
         {
@@ -92,14 +98,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionPostPagesResponse> SectionPostPagesAsync(SectionPostPagesParameter parameter)
         {
             return await this.SendAsync<SectionPostPagesParameter, SectionPostPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/section-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<SectionPostPagesResponse> SectionPostPagesAsync(SectionPostPagesParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotasklistUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
         public Extension[]? Extensions { get; set; }
         public TodoTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistUpdateResponse> TodotasklistUpdateAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistUpdateParameter, TodotasklistUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistUpdateResponse> TodotasklistUpdateAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistUpdateParameter, TodotasklistUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistUpdateResponse> TodotasklistUpdateAsync(TodotasklistUpdateParameter parameter)
         {
             return await this.SendAsync<TodotasklistUpdateParameter, TodotasklistUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistUpdateResponse> TodotasklistUpdateAsync(TodotasklistUpdateParameter parameter, CancellationToken cancellationToken)
         {

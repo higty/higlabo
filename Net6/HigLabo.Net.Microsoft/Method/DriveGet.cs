@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -17,7 +20,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Me_Drive: return $"/me/drive";
-                    case ApiPath.Users_IdOrUserPrincipalName_Drive: return $"/users/{IdOrUserPrincipalName}/drive";
+                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Users_IdOrUserPrincipalName_Drive: return $"/ttps://graph.microsoft.com/v1.0/users/{IdOrUserPrincipalName}/drive";
                     case ApiPath.Groups_GroupId_Drive: return $"/groups/{GroupId}/drive";
                     case ApiPath.Sites_SiteId_Drive: return $"/sites/{SiteId}/drive";
                     case ApiPath.Drives_DriveId: return $"/drives/{DriveId}";
@@ -44,14 +47,14 @@ namespace HigLabo.Net.Microsoft
             Bundles,
             Following,
             Items,
+            List,
             Root,
             Special,
-            List,
         }
         public enum ApiPath
         {
             Me_Drive,
-            Users_IdOrUserPrincipalName_Drive,
+            Ttps__Graphmicrosoftcom_V10_Users_IdOrUserPrincipalName_Drive,
             Groups_GroupId_Drive,
             Sites_SiteId_Drive,
             Drives_DriveId,
@@ -93,14 +96,17 @@ namespace HigLabo.Net.Microsoft
         public DriveItem[]? Bundles { get; set; }
         public DriveItem[]? Following { get; set; }
         public DriveItem[]? Items { get; set; }
+        public SiteList? List { get; set; }
         public DriveItem? Root { get; set; }
         public DriveItem[]? Special { get; set; }
-        public SiteList? List { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetResponse> DriveGetAsync()
         {
@@ -108,7 +114,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetResponse> DriveGetAsync(CancellationToken cancellationToken)
         {
@@ -116,14 +122,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetResponse> DriveGetAsync(DriveGetParameter parameter)
         {
             return await this.SendAsync<DriveGetParameter, DriveGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetResponse> DriveGetAsync(DriveGetParameter parameter, CancellationToken cancellationToken)
         {

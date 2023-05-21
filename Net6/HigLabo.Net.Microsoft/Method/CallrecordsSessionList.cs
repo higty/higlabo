@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
+    /// </summary>
     public partial class CallrecordsSessionListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,13 +24,13 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            Caller,
             Callee,
+            Caller,
+            EndDateTime,
             FailureInfo,
+            Id,
             Modalities,
             StartDateTime,
-            EndDateTime,
             Segments,
         }
         public enum ApiPath
@@ -67,19 +70,22 @@ namespace HigLabo.Net.Microsoft
         }
 
         public CallrecordsSession[]? Value { get; set; }
-        public string? Id { get; set; }
-        public CallrecordsEndpoint? Caller { get; set; }
         public CallrecordsEndpoint? Callee { get; set; }
+        public CallrecordsEndpoint? Caller { get; set; }
+        public DateTimeOffset? EndDateTime { get; set; }
         public CallrecordsFailureinfo? FailureInfo { get; set; }
+        public string? Id { get; set; }
         public CallrecordsSessionCallRecordsModality Modalities { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
-        public DateTimeOffset? EndDateTime { get; set; }
         public CallrecordsSegment[]? Segments { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync()
         {
@@ -87,7 +93,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CancellationToken cancellationToken)
         {
@@ -95,14 +101,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CallrecordsSessionListParameter parameter)
         {
             return await this.SendAsync<CallrecordsSessionListParameter, CallrecordsSessionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-session-list?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsSessionListResponse> CallrecordsSessionListAsync(CallrecordsSessionListParameter parameter, CancellationToken cancellationToken)
         {

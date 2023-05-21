@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ExternalConnectorsExternalGroupDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ExternalConnectorsExternalGroupDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(ExternalConnectorsExternalGroupDeleteParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalGroupDeleteParameter, ExternalConnectorsExternalGroupDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalgroup-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalGroupDeleteResponse> ExternalConnectorsExternalGroupDeleteAsync(ExternalConnectorsExternalGroupDeleteParameter parameter, CancellationToken cancellationToken)
         {

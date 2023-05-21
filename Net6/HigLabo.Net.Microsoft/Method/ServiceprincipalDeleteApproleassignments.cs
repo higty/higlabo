@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalDeleteApproleAssignmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -15,6 +18,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_ServicePrincipalId_AppRoleAssignments_AppRoleAssignmentId: return $"/servicePrincipals/{ServicePrincipalId}/appRoleAssignments/{AppRoleAssignmentId}";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -23,6 +27,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_ServicePrincipalId_AppRoleAssignments_AppRoleAssignmentId,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -38,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceprincipalDeleteApproleAssignmentsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync()
         {
@@ -49,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync(ServiceprincipalDeleteApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteApproleAssignmentsParameter, ServiceprincipalDeleteApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleAssignmentsResponse> ServiceprincipalDeleteApproleAssignmentsAsync(ServiceprincipalDeleteApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

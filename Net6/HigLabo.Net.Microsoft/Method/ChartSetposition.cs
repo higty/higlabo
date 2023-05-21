@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
+    /// </summary>
     public partial class ChartSetpositionParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -44,10 +47,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChartSetpositionResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartSetpositionResponse> ChartSetpositionAsync()
         {
@@ -55,7 +61,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartSetpositionResponse> ChartSetpositionAsync(CancellationToken cancellationToken)
         {
@@ -63,14 +69,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartSetpositionResponse> ChartSetpositionAsync(ChartSetpositionParameter parameter)
         {
             return await this.SendAsync<ChartSetpositionParameter, ChartSetpositionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-setposition?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartSetpositionResponse> ChartSetpositionAsync(ChartSetpositionParameter parameter, CancellationToken cancellationToken)
         {

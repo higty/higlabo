@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationtemplateGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,14 +50,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ApplicationtemplateGetResponse : RestApiResponse
     {
-        public enum ApplicationTemplateString
-        {
-            Oidc,
-            Password,
-            Saml,
-            NotSupported,
-        }
-
         public String[]? Categories { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -63,12 +58,15 @@ namespace HigLabo.Net.Microsoft
         public string? LogoUrl { get; set; }
         public string? Publisher { get; set; }
         public String[]? SupportedProvisioningTypes { get; set; }
-        public ApplicationTemplateString SupportedSingleSignOnModes { get; set; }
+        public String[]? SupportedSingleSignOnModes { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync()
         {
@@ -76,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync(ApplicationtemplateGetParameter parameter)
         {
             return await this.SendAsync<ApplicationtemplateGetParameter, ApplicationtemplateGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/applicationtemplate-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationtemplateGetResponse> ApplicationtemplateGetAsync(ApplicationtemplateGetParameter parameter, CancellationToken cancellationToken)
         {

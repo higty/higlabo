@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteUnfollowParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SiteUnfollowResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteUnfollowResponse> SiteUnfollowAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteUnfollowResponse> SiteUnfollowAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteUnfollowResponse> SiteUnfollowAsync(SiteUnfollowParameter parameter)
         {
             return await this.SendAsync<SiteUnfollowParameter, SiteUnfollowResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-unfollow?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteUnfollowResponse> SiteUnfollowAsync(SiteUnfollowParameter parameter, CancellationToken cancellationToken)
         {

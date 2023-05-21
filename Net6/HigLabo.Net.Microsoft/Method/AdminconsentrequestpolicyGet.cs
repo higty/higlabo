@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AdminconsentrequestPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewReviewerScope[]? Reviewers { get; set; }
         public Int32? Version { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync(AdminconsentrequestPolicyGetParameter parameter)
         {
             return await this.SendAsync<AdminconsentrequestPolicyGetParameter, AdminconsentrequestPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/adminconsentrequestpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AdminconsentrequestPolicyGetResponse> AdminconsentrequestPolicyGetAsync(AdminconsentrequestPolicyGetParameter parameter, CancellationToken cancellationToken)
         {

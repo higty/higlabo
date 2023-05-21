@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamPostMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,22 +36,25 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public string[]? Roles { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
     public partial class TeamPostMembersResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public string[]? Roles { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostMembersResponse> TeamPostMembersAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamPostMembersParameter, TeamPostMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostMembersResponse> TeamPostMembersAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamPostMembersParameter, TeamPostMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostMembersResponse> TeamPostMembersAsync(TeamPostMembersParameter parameter)
         {
             return await this.SendAsync<TeamPostMembersParameter, TeamPostMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostMembersResponse> TeamPostMembersAsync(TeamPostMembersParameter parameter, CancellationToken cancellationToken)
         {

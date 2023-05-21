@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class PermissionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PermissionDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissionDeleteResponse> PermissionDeleteAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissionDeleteResponse> PermissionDeleteAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissionDeleteResponse> PermissionDeleteAsync(PermissionDeleteParameter parameter)
         {
             return await this.SendAsync<PermissionDeleteParameter, PermissionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permission-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissionDeleteResponse> PermissionDeleteAsync(PermissionDeleteParameter parameter, CancellationToken cancellationToken)
         {

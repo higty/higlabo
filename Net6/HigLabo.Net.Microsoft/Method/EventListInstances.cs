@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
+    /// </summary>
     public partial class EventListInstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             public string? EventsId { get; set; }
             public string? CalendarsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -27,8 +30,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Groups_Id_Calendar_Events_Id_Instances: return $"/groups/{GroupsId}/calendar/events/{EventsId}/instances";
                     case ApiPath.Me_Calendars_Id_Events_Id_Instances: return $"/me/calendars/{CalendarsId}/events/{EventsId}/instances";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Instances: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/instances";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Instances: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/instances";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Instances: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/instances";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Instances: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/instances";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Instances: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/instances";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -94,8 +97,8 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Calendar_Events_Id_Instances,
             Me_Calendars_Id_Events_Id_Instances,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Instances,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Instances,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Instances,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Instances,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Instances,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -120,10 +123,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Event[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<EventListInstancesResponse> EventListInstancesAsync()
         {
@@ -131,7 +137,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<EventListInstancesResponse> EventListInstancesAsync(CancellationToken cancellationToken)
         {
@@ -139,14 +145,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<EventListInstancesResponse> EventListInstancesAsync(EventListInstancesParameter parameter)
         {
             return await this.SendAsync<EventListInstancesParameter, EventListInstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<EventListInstancesResponse> EventListInstancesAsync(EventListInstancesParameter parameter, CancellationToken cancellationToken)
         {

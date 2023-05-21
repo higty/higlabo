@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupRemovefavoriteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupRemovefavoriteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(GroupRemovefavoriteParameter parameter)
         {
             return await this.SendAsync<GroupRemovefavoriteParameter, GroupRemovefavoriteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-removefavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRemovefavoriteResponse> GroupRemovefavoriteAsync(GroupRemovefavoriteParameter parameter, CancellationToken cancellationToken)
         {

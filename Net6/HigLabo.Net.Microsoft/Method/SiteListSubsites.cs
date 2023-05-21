@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteListSubsitesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,11 +24,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             CreatedDateTime,
             Description,
             DisplayName,
             ETag,
+            Id,
             LastModifiedDateTime,
             Name,
             Root,
@@ -73,10 +76,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Site[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync()
         {
@@ -84,7 +90,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync(CancellationToken cancellationToken)
         {
@@ -92,14 +98,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter)
         {
             return await this.SendAsync<SiteListSubsitesParameter, SiteListSubsitesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-subsites?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListSubsitesResponse> SiteListSubsitesAsync(SiteListSubsitesParameter parameter, CancellationToken cancellationToken)
         {

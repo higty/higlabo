@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+    /// </summary>
     public partial class SubscriptionPostSubscriptionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -66,10 +69,13 @@ namespace HigLabo.Net.Microsoft
         public string? NotificationUrlAppId { get; set; }
         public string? Resource { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(SubscriptionPostSubscriptionsParameter parameter)
         {
             return await this.SendAsync<SubscriptionPostSubscriptionsParameter, SubscriptionPostSubscriptionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-post-subscriptions?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionPostSubscriptionsResponse> SubscriptionPostSubscriptionsAsync(SubscriptionPostSubscriptionsParameter parameter, CancellationToken cancellationToken)
         {

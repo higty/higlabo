@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
+    /// </summary>
     public partial class IpnamedLocationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
         public bool? IsTrusted { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync(IpnamedLocationGetParameter parameter)
         {
             return await this.SendAsync<IpnamedLocationGetParameter, IpnamedLocationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/ipnamedlocation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IpnamedLocationGetResponse> IpnamedLocationGetAsync(IpnamedLocationGetParameter parameter, CancellationToken cancellationToken)
         {

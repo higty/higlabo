@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
+    /// </summary>
     public partial class RiskyUserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -103,10 +106,13 @@ namespace HigLabo.Net.Microsoft
         public string? UserPrincipalName { get; set; }
         public RiskyUserHistoryItem[]? History { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserGetResponse> RiskyUserGetAsync()
         {
@@ -114,7 +120,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserGetResponse> RiskyUserGetAsync(CancellationToken cancellationToken)
         {
@@ -122,14 +128,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserGetResponse> RiskyUserGetAsync(RiskyUserGetParameter parameter)
         {
             return await this.SendAsync<RiskyUserGetParameter, RiskyUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserGetResponse> RiskyUserGetAsync(RiskyUserGetParameter parameter, CancellationToken cancellationToken)
         {

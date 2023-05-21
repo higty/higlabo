@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationUserGetUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -92,6 +95,10 @@ namespace HigLabo.Net.Microsoft
             Minor,
             NotAdult,
             Adult,
+            Eq,
+            Ne,
+            Not,
+            In,
         }
         public enum UserConsentProvidedForMinor
         {
@@ -99,6 +106,10 @@ namespace HigLabo.Net.Microsoft
             Granted,
             Denied,
             NotRequired,
+            Eq,
+            Ne,
+            Not,
+            In,
         }
         public enum UserLegalAgeGroupClassification
         {
@@ -127,6 +138,7 @@ namespace HigLabo.Net.Microsoft
         public string? Department { get; set; }
         public string? DisplayName { get; set; }
         public DateTimeOffset? EmployeeHireDate { get; set; }
+        public DateTimeOffset? EmployeeLeaveDateTime { get; set; }
         public string? EmployeeId { get; set; }
         public EmployeeOrgData? EmployeeOrgData { get; set; }
         public string? EmployeeType { get; set; }
@@ -173,23 +185,25 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? RefreshTokensValidFromDateTime { get; set; }
         public String[]? Responsibilities { get; set; }
         public String[]? Schools { get; set; }
+        public string? SecurityIdentifier { get; set; }
         public bool? ShowInAddressList { get; set; }
-        public String[]? Skills { get; set; }
+        public SignInActivity? SignInActivity { get; set; }
         public DateTimeOffset? SignInSessionsValidFromDateTime { get; set; }
+        public String[]? Skills { get; set; }
         public string? State { get; set; }
         public string? StreetAddress { get; set; }
         public string? Surname { get; set; }
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
-        public AgreementAcceptance[]? AgreementAcceptances { get; set; }
         public Activity[]? Activities { get; set; }
+        public AgreementAcceptance[]? AgreementAcceptances { get; set; }
         public AppRoleAssignment[]? AppRoleAssignments { get; set; }
         public Authentication? Authentication { get; set; }
         public Calendar? Calendar { get; set; }
         public CalendarGroup[]? CalendarGroups { get; set; }
-        public Event[]? CalendarView { get; set; }
         public Calendar[]? Calendars { get; set; }
+        public Event[]? CalendarView { get; set; }
         public ContactFolder[]? ContactFolders { get; set; }
         public Contact[]? Contacts { get; set; }
         public DirectoryObject[]? CreatedObjects { get; set; }
@@ -214,11 +228,15 @@ namespace HigLabo.Net.Microsoft
         public PlannerUser? Planner { get; set; }
         public DirectoryObject[]? RegisteredDevices { get; set; }
         public Todo? Todo { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync()
         {
@@ -226,7 +244,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync(CancellationToken cancellationToken)
         {
@@ -234,14 +252,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync(EducationUserGetUserParameter parameter)
         {
             return await this.SendAsync<EducationUserGetUserParameter, EducationUserGetUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get-user?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetUserResponse> EducationUserGetUserAsync(EducationUserGetUserParameter parameter, CancellationToken cancellationToken)
         {

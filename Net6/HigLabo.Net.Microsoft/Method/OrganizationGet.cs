@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
+    /// </summary>
     public partial class OrganizationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -26,6 +29,7 @@ namespace HigLabo.Net.Microsoft
             Country,
             CountryLetterCode,
             CreatedDateTime,
+            DefaultUsageLocation,
             DeletedDateTime,
             DisplayName,
             Id,
@@ -33,6 +37,7 @@ namespace HigLabo.Net.Microsoft
             MarketingNotificationEmails,
             OnPremisesLastSyncDateTime,
             OnPremisesSyncEnabled,
+            PartnerTenantType,
             PostalCode,
             PreferredLanguage,
             PrivacyProfile,
@@ -42,6 +47,7 @@ namespace HigLabo.Net.Microsoft
             State,
             Street,
             TechnicalNotificationMails,
+            TenantType,
             VerifiedDomains,
             CertificateBasedAuthConfiguration,
             Extensions,
@@ -72,6 +78,17 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OrganizationGetResponse : RestApiResponse
     {
+        public enum OrganizationPartnerTenantType
+        {
+            MicrosoftSupport,
+            SyndicatePartner,
+            BreadthPartner,
+            BreadthPartnerDelegatedAdmin,
+            ResellerPartnerDelegatedAdmin,
+            ValueAddedResellerPartnerDelegatedAdmin,
+            UnknownFutureValue,
+        }
+
         public Organization[]? Value { get; set; }
         public AssignedPlan[]? AssignedPlans { get; set; }
         public String[]? BusinessPhones { get; set; }
@@ -79,6 +96,7 @@ namespace HigLabo.Net.Microsoft
         public string? Country { get; set; }
         public string? CountryLetterCode { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DefaultUsageLocation { get; set; }
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
@@ -86,6 +104,7 @@ namespace HigLabo.Net.Microsoft
         public String[]? MarketingNotificationEmails { get; set; }
         public DateTimeOffset? OnPremisesLastSyncDateTime { get; set; }
         public bool? OnPremisesSyncEnabled { get; set; }
+        public OrganizationPartnerTenantType PartnerTenantType { get; set; }
         public string? PostalCode { get; set; }
         public string? PreferredLanguage { get; set; }
         public PrivacyProfile? PrivacyProfile { get; set; }
@@ -95,15 +114,19 @@ namespace HigLabo.Net.Microsoft
         public string? State { get; set; }
         public string? Street { get; set; }
         public String[]? TechnicalNotificationMails { get; set; }
+        public string? TenantType { get; set; }
         public VerifiedDomain[]? VerifiedDomains { get; set; }
         public CertificateBasedAuthConfiguration[]? CertificateBasedAuthConfiguration { get; set; }
         public Extension[]? Extensions { get; set; }
         public OrganizationalBranding[]? Branding { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationGetResponse> OrganizationGetAsync()
         {
@@ -111,7 +134,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationGetResponse> OrganizationGetAsync(CancellationToken cancellationToken)
         {
@@ -119,14 +142,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationGetResponse> OrganizationGetAsync(OrganizationGetParameter parameter)
         {
             return await this.SendAsync<OrganizationGetParameter, OrganizationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationGetResponse> OrganizationGetAsync(OrganizationGetParameter parameter, CancellationToken cancellationToken)
         {

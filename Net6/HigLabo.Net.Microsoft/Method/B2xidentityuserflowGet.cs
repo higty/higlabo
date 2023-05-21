@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
+    /// </summary>
     public partial class B2xidentityUserflowGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,18 +50,21 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class B2xidentityUserflowGetResponse : RestApiResponse
     {
+        public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
         public string? Id { get; set; }
         public string? UserFlowType { get; set; }
         public Single? UserFlowTypeVersion { get; set; }
-        public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
         public IdentityProvider[]? IdentityProviders { get; set; }
-        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
         public UserFlowLanguageConfiguration[]? Languages { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowGetParameter, B2xidentityUserflowGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-get?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowGetResponse> B2xidentityUserflowGetAsync(B2xidentityUserflowGetParameter parameter, CancellationToken cancellationToken)
         {

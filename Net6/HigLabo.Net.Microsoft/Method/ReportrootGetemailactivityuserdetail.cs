@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetemailactivityUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetemailactivityUserdetailResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailactivityUserdetailResponse> ReportRootGetemailactivityUserdetailAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetemailactivityUserdetailParameter, ReportRootGetemailactivityUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailactivityUserdetailResponse> ReportRootGetemailactivityUserdetailAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetemailactivityUserdetailParameter, ReportRootGetemailactivityUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailactivityUserdetailResponse> ReportRootGetemailactivityUserdetailAsync(ReportRootGetemailactivityUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetemailactivityUserdetailParameter, ReportRootGetemailactivityUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getemailactivityuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetemailactivityUserdetailResponse> ReportRootGetemailactivityUserdetailAsync(ReportRootGetemailactivityUserdetailParameter parameter, CancellationToken cancellationToken)
         {

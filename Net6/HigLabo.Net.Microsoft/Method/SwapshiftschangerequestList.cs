@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
+    /// </summary>
     public partial class SwapshiftschangerequestListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     {
         public string? RecipientShiftId { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync(SwapshiftschangerequestListParameter parameter)
         {
             return await this.SendAsync<SwapshiftschangerequestListParameter, SwapshiftschangerequestListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/swapshiftschangerequest-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SwapshiftschangerequestListResponse> SwapshiftschangerequestListAsync(SwapshiftschangerequestListParameter parameter, CancellationToken cancellationToken)
         {

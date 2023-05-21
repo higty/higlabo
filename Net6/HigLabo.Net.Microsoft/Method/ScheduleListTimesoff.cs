@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
+    /// </summary>
     public partial class ScheduleListTimesoffParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,13 +24,13 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            UserId,
-            SharedTimeOff,
-            DraftTimeOff,
             CreatedDateTime,
-            LastModifiedDateTime,
+            DraftTimeOff,
+            Id,
             LastModifiedBy,
+            LastModifiedDateTime,
+            SharedTimeOff,
+            UserId,
         }
         public enum ApiPath
         {
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TimeOff[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(ScheduleListTimesoffParameter parameter)
         {
             return await this.SendAsync<ScheduleListTimesoffParameter, ScheduleListTimesoffResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-timesoff?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListTimesoffResponse> ScheduleListTimesoffAsync(ScheduleListTimesoffParameter parameter, CancellationToken cancellationToken)
         {

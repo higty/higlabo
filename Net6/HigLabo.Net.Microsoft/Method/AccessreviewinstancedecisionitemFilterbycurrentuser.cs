@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstancedecisionitemFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -9,12 +12,14 @@ namespace HigLabo.Net.Microsoft
             public ApiPath ApiPath { get; set; }
             public string? AccessReviewScheduleDefinitionId { get; set; }
             public string? AccessReviewInstanceId { get; set; }
+            public string? AccessReviewStageId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
                     case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions_FilterByCurrentUser: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/{AccessReviewInstanceId}/decisions/filterByCurrentUser";
+                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Stages_AccessReviewStageId_Decisions_FilterByCurrentUser: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/{AccessReviewInstanceId}/stages/{AccessReviewStageId}/decisions/filterByCurrentUser";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -40,6 +45,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions_FilterByCurrentUser,
+            IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Stages_AccessReviewStageId_Decisions_FilterByCurrentUser,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -64,10 +70,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessReviewInstanceDecisionItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync()
         {
@@ -75,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -83,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(AccessreviewinstancedecisionitemFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstancedecisionitemFilterbycurrentUserParameter, AccessreviewinstancedecisionitemFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemFilterbycurrentUserResponse> AccessreviewinstancedecisionitemFilterbycurrentUserAsync(AccessreviewinstancedecisionitemFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

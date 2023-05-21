@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/bookingstaffmember?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/bookingstaffmember?view=graph-rest-1.0
     /// </summary>
     public partial class BookingStaffMember
     {
@@ -14,12 +14,15 @@ namespace HigLabo.Net.Microsoft
             Viewer,
             ExternalGuest,
             UnknownFutureValue,
+            Scheduler,
+            TeamMember,
         }
 
         public bool? AvailabilityIsAffectedByPersonalCalendar { get; set; }
         public string? DisplayName { get; set; }
         public string? EmailAddress { get; set; }
         public string? Id { get; set; }
+        public bool? IsEmailNotificationEnabled { get; set; }
         public BookingStaffMemberBookingStaffRole Role { get; set; }
         public string? TimeZone { get; set; }
         public bool? UseBusinessHours { get; set; }

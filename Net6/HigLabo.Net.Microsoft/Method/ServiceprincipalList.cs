@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -45,6 +48,7 @@ namespace HigLabo.Net.Microsoft
             Oauth2PermissionScopes,
             PasswordCredentials,
             PreferredSingleSignOnMode,
+            PreferredTokenSigningKeyThumbprint,
             ReplyUrls,
             ResourceSpecificApplicationPermissions,
             SamlSingleSignOnSettings,
@@ -54,10 +58,12 @@ namespace HigLabo.Net.Microsoft
             Tags,
             TokenEncryptionKeyId,
             VerifiedPublisher,
+            AppManagementPolicies,
             AppRoleAssignedTo,
             AppRoleAssignments,
             ClaimsMappingPolicies,
             CreatedObjects,
+            FederatedIdentityCredentials,
             HomeRealmDiscoveryPolicies,
             MemberOf,
             Oauth2PermissionGrants,
@@ -93,10 +99,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ServicePrincipal[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListResponse> ServiceprincipalListAsync()
         {
@@ -104,7 +113,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListParameter, ServiceprincipalListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListResponse> ServiceprincipalListAsync(CancellationToken cancellationToken)
         {
@@ -112,14 +121,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListParameter, ServiceprincipalListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListResponse> ServiceprincipalListAsync(ServiceprincipalListParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListParameter, ServiceprincipalListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListResponse> ServiceprincipalListAsync(ServiceprincipalListParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/room?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/room?view=graph-rest-1.0
     /// </summary>
     public partial class Room
     {
@@ -18,8 +18,8 @@ namespace HigLabo.Net.Microsoft
         public RoomBookingType BookingType { get; set; }
         public string? Building { get; set; }
         public Int32? Capacity { get; set; }
-        public string? DisplayName { get; set; }
         public string? DisplayDeviceName { get; set; }
+        public string? DisplayName { get; set; }
         public string? EmailAddress { get; set; }
         public string? FloorLabel { get; set; }
         public Int32? FloorNumber { get; set; }

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,14 +36,20 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
+        public PrinterDefaults? Defaults { get; set; }
+        public PrinterLocation? Location { get; set; }
+        public string? DisplayName { get; set; }
     }
     public partial class PrinterUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterUpdateResponse> PrinterUpdateAsync()
         {
@@ -48,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterUpdateResponse> PrinterUpdateAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterUpdateResponse> PrinterUpdateAsync(PrinterUpdateParameter parameter)
         {
             return await this.SendAsync<PrinterUpdateParameter, PrinterUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterUpdateResponse> PrinterUpdateAsync(PrinterUpdateParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class UnifiedroleAssignmentschedulerequestFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UnifiedRoleAssignmentScheduleRequest[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse> UnifiedroleAssignmentschedulerequestFilterbycurrentUserAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestFilterbycurrentUserParameter, UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse> UnifiedroleAssignmentschedulerequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestFilterbycurrentUserParameter, UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse> UnifiedroleAssignmentschedulerequestFilterbycurrentUserAsync(UnifiedroleAssignmentschedulerequestFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<UnifiedroleAssignmentschedulerequestFilterbycurrentUserParameter, UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedulerequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentschedulerequestFilterbycurrentUserResponse> UnifiedroleAssignmentschedulerequestFilterbycurrentUserAsync(UnifiedroleAssignmentschedulerequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

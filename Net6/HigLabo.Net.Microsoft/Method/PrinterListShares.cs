@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterListSharesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,17 +24,17 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
+            AllowAllUsers,
+            Capabilities,
             CreatedDateTime,
+            Defaults,
+            DisplayName,
+            Id,
+            IsAcceptingJobs,
+            Location,
             Manufacturer,
             Model,
-            IsAcceptingJobs,
-            Defaults,
-            Capabilities,
-            Location,
             Status,
-            AllowAllUsers,
             Printer,
             AllowedUsers,
             AllowedGroups,
@@ -64,10 +67,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PrinterShare[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListSharesResponse> PrinterListSharesAsync()
         {
@@ -75,7 +81,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListSharesResponse> PrinterListSharesAsync(CancellationToken cancellationToken)
         {
@@ -83,14 +89,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListSharesResponse> PrinterListSharesAsync(PrinterListSharesParameter parameter)
         {
             return await this.SendAsync<PrinterListSharesParameter, PrinterListSharesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-shares?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListSharesResponse> PrinterListSharesAsync(PrinterListSharesParameter parameter, CancellationToken cancellationToken)
         {

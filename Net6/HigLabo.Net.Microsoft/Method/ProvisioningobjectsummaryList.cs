@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ProvisioningobjectSummaryListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,7 +23,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ProvisioningAction,
             ActivityDateTime,
             ChangeId,
             CycleId,
@@ -29,11 +31,12 @@ namespace HigLabo.Net.Microsoft
             InitiatedBy,
             JobId,
             ModifiedProperties,
+            ProvisioningAction,
+            ProvisioningStatusInfo,
             ProvisioningSteps,
             ServicePrincipal,
             SourceIdentity,
             SourceSystem,
-            ProvisioningStatusInfo,
             TargetIdentity,
             TargetSystem,
             TenantId,
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ProvisioningObjectSummary[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter)
         {
             return await this.SendAsync<ProvisioningobjectSummaryListParameter, ProvisioningobjectSummaryListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/provisioningobjectsummary-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ProvisioningobjectSummaryListResponse> ProvisioningobjectSummaryListAsync(ProvisioningobjectSummaryListParameter parameter, CancellationToken cancellationToken)
         {

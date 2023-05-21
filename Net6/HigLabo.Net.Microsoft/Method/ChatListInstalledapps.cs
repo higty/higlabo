@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatListInstalledappsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TeamsAppInstallation[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync(ChatListInstalledappsParameter parameter)
         {
             return await this.SendAsync<ChatListInstalledappsParameter, ChatListInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListInstalledappsResponse> ChatListInstalledappsAsync(ChatListInstalledappsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
+    /// </summary>
     public partial class InsightsListUsedParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -56,14 +59,17 @@ namespace HigLabo.Net.Microsoft
     {
         public string? Id { get; set; }
         public UsageDetails? LastUsed { get; set; }
-        public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
+        public ResourceVisualization? ResourceVisualization { get; set; }
         public Entity[]? Resource { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListUsedResponse> InsightsListUsedAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListUsedResponse> InsightsListUsedAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListUsedResponse> InsightsListUsedAsync(InsightsListUsedParameter parameter)
         {
             return await this.SendAsync<InsightsListUsedParameter, InsightsListUsedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-used?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListUsedResponse> InsightsListUsedAsync(InsightsListUsedParameter parameter, CancellationToken cancellationToken)
         {

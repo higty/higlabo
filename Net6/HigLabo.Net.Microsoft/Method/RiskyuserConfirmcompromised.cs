@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
+    /// </summary>
     public partial class RiskyUserConfirmcompromisedParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class RiskyUserConfirmcompromisedResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserConfirmcompromisedResponse> RiskyUserConfirmcompromisedAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskyUserConfirmcompromisedParameter, RiskyUserConfirmcompromisedResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserConfirmcompromisedResponse> RiskyUserConfirmcompromisedAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskyUserConfirmcompromisedParameter, RiskyUserConfirmcompromisedResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserConfirmcompromisedResponse> RiskyUserConfirmcompromisedAsync(RiskyUserConfirmcompromisedParameter parameter)
         {
             return await this.SendAsync<RiskyUserConfirmcompromisedParameter, RiskyUserConfirmcompromisedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-confirmcompromised?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserConfirmcompromisedResponse> RiskyUserConfirmcompromisedAsync(RiskyUserConfirmcompromisedParameter parameter, CancellationToken cancellationToken)
         {

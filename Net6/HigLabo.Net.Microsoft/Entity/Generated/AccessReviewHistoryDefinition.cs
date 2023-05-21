@@ -3,18 +3,10 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewhistorydefinition?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/accessreviewhistorydefinition?view=graph-rest-1.0
     /// </summary>
     public partial class AccessReviewHistoryDefinition
     {
-        public enum AccessReviewHistoryDefinitionString
-        {
-            Approve,
-            Deny,
-            DontKnow,
-            NotReviewed,
-            NotNotified,
-        }
         public enum AccessReviewHistoryDefinitionAccessReviewHistoryStatus
         {
             Done,
@@ -26,7 +18,7 @@ namespace HigLabo.Net.Microsoft
 
         public UserIdentity? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public AccessReviewHistoryDefinitionString Decisions { get; set; }
+        public String[]? Decisions { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? ReviewHistoryPeriodEndDateTime { get; set; }

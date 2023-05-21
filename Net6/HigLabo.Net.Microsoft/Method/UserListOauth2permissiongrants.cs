@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListOauth2permissiongrantsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,9 +25,9 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             ClientId,
             ConsentType,
+            Id,
             PrincipalId,
             ResourceId,
             Scope,
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public OAuth2PermissionGrant[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListOauth2permissiongrantsResponse> UserListOauth2permissiongrantsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListOauth2permissiongrantsParameter, UserListOauth2permissiongrantsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListOauth2permissiongrantsResponse> UserListOauth2permissiongrantsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListOauth2permissiongrantsParameter, UserListOauth2permissiongrantsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListOauth2permissiongrantsResponse> UserListOauth2permissiongrantsAsync(UserListOauth2permissiongrantsParameter parameter)
         {
             return await this.SendAsync<UserListOauth2permissiongrantsParameter, UserListOauth2permissiongrantsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListOauth2permissiongrantsResponse> UserListOauth2permissiongrantsAsync(UserListOauth2permissiongrantsParameter parameter, CancellationToken cancellationToken)
         {

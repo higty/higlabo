@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenshiftUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -44,10 +47,13 @@ namespace HigLabo.Net.Microsoft
         public string? SchedulingGroupId { get; set; }
         public OpenShiftItem? SharedOpenShift { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftUpdateResponse> OpenshiftUpdateAsync()
         {
@@ -55,7 +61,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftUpdateParameter, OpenshiftUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftUpdateResponse> OpenshiftUpdateAsync(CancellationToken cancellationToken)
         {
@@ -63,14 +69,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftUpdateParameter, OpenshiftUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftUpdateResponse> OpenshiftUpdateAsync(OpenshiftUpdateParameter parameter)
         {
             return await this.SendAsync<OpenshiftUpdateParameter, OpenshiftUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftUpdateResponse> OpenshiftUpdateAsync(OpenshiftUpdateParameter parameter, CancellationToken cancellationToken)
         {

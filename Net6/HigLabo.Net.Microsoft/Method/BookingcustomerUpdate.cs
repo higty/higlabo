@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingcustomerUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,16 +44,19 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BookingcustomerUpdateResponse : RestApiResponse
     {
+        public PhysicalAddress[]? Addresses { get; set; }
         public string? DisplayName { get; set; }
         public string? EmailAddress { get; set; }
         public string? Id { get; set; }
-        public PhysicalAddress[]? Addresses { get; set; }
         public Phone[]? Phones { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerUpdateResponse> BookingcustomerUpdateAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcustomerUpdateParameter, BookingcustomerUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerUpdateResponse> BookingcustomerUpdateAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcustomerUpdateParameter, BookingcustomerUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerUpdateResponse> BookingcustomerUpdateAsync(BookingcustomerUpdateParameter parameter)
         {
             return await this.SendAsync<BookingcustomerUpdateParameter, BookingcustomerUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerUpdateResponse> BookingcustomerUpdateAsync(BookingcustomerUpdateParameter parameter, CancellationToken cancellationToken)
         {

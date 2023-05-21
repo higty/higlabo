@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+    /// </summary>
     public partial class ConversationthreadListPostsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Post[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationthreadListPostsResponse> ConversationthreadListPostsAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConversationthreadListPostsParameter, ConversationthreadListPostsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationthreadListPostsResponse> ConversationthreadListPostsAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConversationthreadListPostsParameter, ConversationthreadListPostsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationthreadListPostsResponse> ConversationthreadListPostsAsync(ConversationthreadListPostsParameter parameter)
         {
             return await this.SendAsync<ConversationthreadListPostsParameter, ConversationthreadListPostsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversationthread-list-posts?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationthreadListPostsResponse> ConversationthreadListPostsAsync(ConversationthreadListPostsParameter parameter, CancellationToken cancellationToken)
         {

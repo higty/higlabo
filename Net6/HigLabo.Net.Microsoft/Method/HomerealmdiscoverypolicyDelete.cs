@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class HomerealmdiscoveryPolicyDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class HomerealmdiscoveryPolicyDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync(HomerealmdiscoveryPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyDeleteParameter, HomerealmdiscoveryPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyDeleteResponse> HomerealmdiscoveryPolicyDeleteAsync(HomerealmdiscoveryPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {

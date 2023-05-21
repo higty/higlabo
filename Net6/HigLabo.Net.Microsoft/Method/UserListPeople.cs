@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListPeopleParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -26,7 +29,6 @@ namespace HigLabo.Net.Microsoft
             CompanyName,
             Department,
             DisplayName,
-            ScoredEmailAddresses,
             GivenName,
             Id,
             ImAddress,
@@ -38,6 +40,7 @@ namespace HigLabo.Net.Microsoft
             Phones,
             PostalAddresses,
             Profession,
+            ScoredEmailAddresses,
             Surname,
             UserPrincipalName,
             Websites,
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Person[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListPeopleResponse> UserListPeopleAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListPeopleResponse> UserListPeopleAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter)
         {
             return await this.SendAsync<UserListPeopleParameter, UserListPeopleResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-people?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListPeopleResponse> UserListPeopleAsync(UserListPeopleParameter parameter, CancellationToken cancellationToken)
         {

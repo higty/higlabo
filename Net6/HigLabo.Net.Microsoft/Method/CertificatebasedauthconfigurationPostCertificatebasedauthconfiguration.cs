@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
+    /// </summary>
     public partial class CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
         public CertificateAuthority[]? CertificateAuthorities { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
         public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
         public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
         public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter parameter)
         {
             return await this.SendAsync<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter, CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/certificatebasedauthconfiguration-post-certificatebasedauthconfiguration?view=graph-rest-1.0
         /// </summary>
         public async Task<CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationResponse> CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationAsync(CertificatebasedauthConfigurationPostCertificatebasedauthConfigurationParameter parameter, CancellationToken cancellationToken)
         {

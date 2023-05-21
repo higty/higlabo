@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
+    /// </summary>
     public partial class ConnectedorganizationDeleteInternalsponsorsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ConnectedorganizationDeleteInternalsponsorsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteInternalsponsorsResponse> ConnectedorganizationDeleteInternalsponsorsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationDeleteInternalsponsorsParameter, ConnectedorganizationDeleteInternalsponsorsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteInternalsponsorsResponse> ConnectedorganizationDeleteInternalsponsorsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationDeleteInternalsponsorsParameter, ConnectedorganizationDeleteInternalsponsorsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteInternalsponsorsResponse> ConnectedorganizationDeleteInternalsponsorsAsync(ConnectedorganizationDeleteInternalsponsorsParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationDeleteInternalsponsorsParameter, ConnectedorganizationDeleteInternalsponsorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete-internalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteInternalsponsorsResponse> ConnectedorganizationDeleteInternalsponsorsAsync(ConnectedorganizationDeleteInternalsponsorsParameter parameter, CancellationToken cancellationToken)
         {

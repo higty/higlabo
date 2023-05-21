@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/participantinfo?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/participantinfo?view=graph-rest-1.0
     /// </summary>
     public partial class ParticipantInfo
     {
@@ -11,7 +11,7 @@ namespace HigLabo.Net.Microsoft
         public string? EndpointType { get; set; }
         public IdentitySet? Identity { get; set; }
         public string? LanguageId { get; set; }
-        public string? Region { get; set; }
         public string? ParticipantId { get; set; }
+        public string? Region { get; set; }
     }
 }

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+    /// </summary>
     public partial class ScheduleListSchedulingGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,13 +24,13 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
-            IsActive,
-            UserIds,
             CreatedDateTime,
-            LastModifiedDateTime,
+            DisplayName,
+            Id,
+            IsActive,
             LastModifiedBy,
+            LastModifiedDateTime,
+            UserIds,
         }
         public enum ApiPath
         {
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public SchedulingGroup[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(ScheduleListSchedulingGroupsParameter parameter)
         {
             return await this.SendAsync<ScheduleListSchedulingGroupsParameter, ScheduleListSchedulingGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-list-schedulinggroups?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleListSchedulingGroupsResponse> ScheduleListSchedulingGroupsAsync(ScheduleListSchedulingGroupsParameter parameter, CancellationToken cancellationToken)
         {

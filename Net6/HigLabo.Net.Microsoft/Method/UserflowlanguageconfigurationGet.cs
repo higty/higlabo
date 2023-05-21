@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
+    /// </summary>
     public partial class UserflowlanguageConfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -48,16 +51,19 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UserflowlanguageConfigurationGetResponse : RestApiResponse
     {
+        public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public bool? IsEnabled { get; set; }
-        public string? DisplayName { get; set; }
         public UserFlowLanguagePage[]? DefaultPages { get; set; }
         public UserFlowLanguagePage[]? OverridesPages { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(UserflowlanguageConfigurationGetParameter parameter)
         {
             return await this.SendAsync<UserflowlanguageConfigurationGetParameter, UserflowlanguageConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationGetResponse> UserflowlanguageConfigurationGetAsync(UserflowlanguageConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {

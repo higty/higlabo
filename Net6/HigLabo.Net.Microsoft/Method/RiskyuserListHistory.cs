@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+    /// </summary>
     public partial class RiskyUserListHistoryParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     {
         public RiskyUserHistoryItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter)
         {
             return await this.SendAsync<RiskyUserListHistoryParameter, RiskyUserListHistoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskyuser-list-history?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskyUserListHistoryResponse> RiskyUserListHistoryAsync(RiskyUserListHistoryParameter parameter, CancellationToken cancellationToken)
         {

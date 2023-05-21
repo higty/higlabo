@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
+    /// </summary>
     public partial class AuthenticationmethodsPolicyUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,14 +35,34 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
+        public RegistrationEnforcement? RegistrationEnforcement { get; set; }
     }
     public partial class AuthenticationmethodsPolicyUpdateResponse : RestApiResponse
     {
+        public enum AuthenticationMethodsPolicyAuthenticationMethodsPolicyMigrationState
+        {
+            Premigration,
+            MigrationInProgress,
+            MigrationComplete,
+            UnknownFutureValue,
+        }
+
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? PolicyVersion { get; set; }
+        public RegistrationEnforcement? RegistrationEnforcement { get; set; }
+        public AuthenticationMethodsPolicyAuthenticationMethodsPolicyMigrationState PolicyMigrationState { get; set; }
+        public AuthenticationMethodConfiguration[]? AuthenticationMethodConfigurations { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationmethodsPolicyUpdateResponse> AuthenticationmethodsPolicyUpdateAsync()
         {
@@ -47,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthenticationmethodsPolicyUpdateParameter, AuthenticationmethodsPolicyUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationmethodsPolicyUpdateResponse> AuthenticationmethodsPolicyUpdateAsync(CancellationToken cancellationToken)
         {
@@ -55,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthenticationmethodsPolicyUpdateParameter, AuthenticationmethodsPolicyUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationmethodsPolicyUpdateResponse> AuthenticationmethodsPolicyUpdateAsync(AuthenticationmethodsPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AuthenticationmethodsPolicyUpdateParameter, AuthenticationmethodsPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authenticationmethodspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationmethodsPolicyUpdateResponse> AuthenticationmethodsPolicyUpdateAsync(AuthenticationmethodsPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/conditionalaccessplatforms?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/conditionalaccessplatforms?view=graph-rest-1.0
     /// </summary>
     public partial class ConditionalAccessPlatforms
     {
@@ -19,7 +19,7 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public ConditionalAccessPlatformsConditionalAccessDevicePlatform IncludePlatforms { get; set; }
         public ConditionalAccessPlatformsConditionalAccessDevicePlatform ExcludePlatforms { get; set; }
+        public ConditionalAccessPlatformsConditionalAccessDevicePlatform IncludePlatforms { get; set; }
     }
 }

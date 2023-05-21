@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class TokenlifetimePolicyListAppliestoParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(TokenlifetimePolicyListAppliestoParameter parameter)
         {
             return await this.SendAsync<TokenlifetimePolicyListAppliestoParameter, TokenlifetimePolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tokenlifetimepolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<TokenlifetimePolicyListAppliestoResponse> TokenlifetimePolicyListAppliestoAsync(TokenlifetimePolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {

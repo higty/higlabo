@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryauditGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -62,16 +65,19 @@ namespace HigLabo.Net.Microsoft
         public Guid? CorrelationId { get; set; }
         public string? Id { get; set; }
         public AuditActivityInitiator? InitiatedBy { get; set; }
-        public string? OperationType { get; set; }
         public string? LoggedByService { get; set; }
+        public string? OperationType { get; set; }
         public DirectoryAuditOperationResult Result { get; set; }
         public string? ResultReason { get; set; }
         public TargetResource[]? TargetResources { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryauditGetResponse> DirectoryauditGetAsync()
         {
@@ -79,7 +85,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryauditGetResponse> DirectoryauditGetAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +93,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryauditGetResponse> DirectoryauditGetAsync(DirectoryauditGetParameter parameter)
         {
             return await this.SendAsync<DirectoryauditGetParameter, DirectoryauditGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryaudit-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryauditGetResponse> DirectoryauditGetAsync(DirectoryauditGetParameter parameter, CancellationToken cancellationToken)
         {

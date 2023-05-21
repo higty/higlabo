@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+    /// </summary>
     public partial class UserflowlanguagepageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguagepageGetResponse> UserflowlanguagepageGetAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserflowlanguagepageGetParameter, UserflowlanguagepageGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguagepageGetResponse> UserflowlanguagepageGetAsync(CancellationToken cancellationToken)
         {
@@ -73,21 +79,21 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserflowlanguagepageGetParameter, UserflowlanguagepageGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguagepageGetResponse> UserflowlanguagepageGetAsync(UserflowlanguagepageGetParameter parameter)
         {
             return await this.SendAsync<UserflowlanguagepageGetParameter, UserflowlanguagepageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguagepageGetResponse> UserflowlanguagepageGetAsync(UserflowlanguagepageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<UserflowlanguagepageGetParameter, UserflowlanguagepageGetResponse>(parameter, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguagepage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Stream> UserflowlanguagepageGetStreamAsync(UserflowlanguagepageGetParameter parameter, CancellationToken cancellationToken)
         {

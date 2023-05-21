@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+    /// </summary>
     public partial class OnenoteListNotebooksParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -27,13 +30,13 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedBy,
             CreatedDateTime,
+            DisplayName,
             Id,
             IsDefault,
             IsShared,
             LastModifiedBy,
             LastModifiedDateTime,
             Links,
-            DisplayName,
             SectionGroupsUrl,
             SectionsUrl,
             Self,
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Notebook[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter)
         {
             return await this.SendAsync<OnenoteListNotebooksParameter, OnenoteListNotebooksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-notebooks?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListNotebooksResponse> OnenoteListNotebooksAsync(OnenoteListNotebooksParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
+    /// </summary>
     public partial class UserPostEventsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -25,12 +28,6 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum EventImportance
-        {
-            Low,
-            Normal,
-            High,
-        }
         public enum EventOnlineMeetingProviderType
         {
             Unknown,
@@ -69,7 +66,7 @@ namespace HigLabo.Net.Microsoft
         public bool? HideAttendees { get; set; }
         public string? ICalUId { get; set; }
         public string? Id { get; set; }
-        public EventImportance Importance { get; set; }
+        public string? Importance { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }
@@ -107,12 +104,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UserPostEventsResponse : RestApiResponse
     {
-        public enum EventImportance
-        {
-            Low,
-            Normal,
-            High,
-        }
         public enum EventOnlineMeetingProviderType
         {
             Unknown,
@@ -133,7 +124,7 @@ namespace HigLabo.Net.Microsoft
         public bool? HideAttendees { get; set; }
         public string? ICalUId { get; set; }
         public string? Id { get; set; }
-        public EventImportance Importance { get; set; }
+        public string? Importance { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }
@@ -169,10 +160,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostEventsResponse> UserPostEventsAsync()
         {
@@ -180,7 +174,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostEventsParameter, UserPostEventsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostEventsResponse> UserPostEventsAsync(CancellationToken cancellationToken)
         {
@@ -188,14 +182,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostEventsParameter, UserPostEventsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostEventsResponse> UserPostEventsAsync(UserPostEventsParameter parameter)
         {
             return await this.SendAsync<UserPostEventsParameter, UserPostEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostEventsResponse> UserPostEventsAsync(UserPostEventsParameter parameter, CancellationToken cancellationToken)
         {

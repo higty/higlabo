@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalRemovepasswordParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_RemovePassword: return $"/servicePrincipals/{Id}/removePassword";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_RemovePassword,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -38,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceprincipalRemovepasswordResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync()
         {
@@ -49,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync(ServiceprincipalRemovepasswordParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalRemovepasswordParameter, ServiceprincipalRemovepasswordResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-removepassword?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalRemovepasswordResponse> ServiceprincipalRemovepasswordAsync(ServiceprincipalRemovepasswordParameter parameter, CancellationToken cancellationToken)
         {

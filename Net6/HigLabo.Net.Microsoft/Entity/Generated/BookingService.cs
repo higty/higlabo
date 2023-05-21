@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/bookingservice?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/bookingservice?view=graph-rest-1.0
     /// </summary>
     public partial class BookingService
     {
@@ -30,8 +30,10 @@ namespace HigLabo.Net.Microsoft
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
+        public bool? IsAnonymousJoinEnabled { get; set; }
         public bool? IsHiddenFromCustomers { get; set; }
         public bool? IsLocationOnline { get; set; }
+        public string? LanguageTag { get; set; }
         public Int32? MaximumAttendeesCount { get; set; }
         public string? Notes { get; set; }
         public string? PostBuffer { get; set; }

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+    /// </summary>
     public partial class SamlorwsfedexternaldomainfederationListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public SamlOrWsFedExternalDomainFederation[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationListParameter, SamlorwsfedexternaldomainfederationListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationListResponse> SamlorwsfedexternaldomainfederationListAsync(SamlorwsfedexternaldomainfederationListParameter parameter, CancellationToken cancellationToken)
         {

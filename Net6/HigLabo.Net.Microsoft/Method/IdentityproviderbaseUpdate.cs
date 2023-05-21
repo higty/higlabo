@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentityproviderbaseUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,14 +36,20 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
+        public string? ClientId { get; set; }
+        public string? ClientSecret { get; set; }
+        public string? DisplayName { get; set; }
     }
     public partial class IdentityproviderbaseUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync()
         {
@@ -48,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(IdentityproviderbaseUpdateParameter parameter)
         {
             return await this.SendAsync<IdentityproviderbaseUpdateParameter, IdentityproviderbaseUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityproviderbase-update?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderbaseUpdateResponse> IdentityproviderbaseUpdateAsync(IdentityproviderbaseUpdateParameter parameter, CancellationToken cancellationToken)
         {

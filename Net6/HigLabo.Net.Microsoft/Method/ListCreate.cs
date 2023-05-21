@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
+    /// </summary>
     public partial class ListCreateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists";
+                    case ApiPath.Sites_SiteId_Lists: return $"/sites/{SiteId}/lists";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -21,7 +24,7 @@ namespace HigLabo.Net.Microsoft
 
         public enum ApiPath
         {
-            Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists,
+            Sites_SiteId_Lists,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -36,10 +39,10 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public ListInfo? List { get; set; }
         public System? System { get; set; }
-        public Drive? Drive { get; set; }
-        public ListItem[]? Items { get; set; }
         public ColumnDefinition[]? Columns { get; set; }
         public ContentType[]? ContentTypes { get; set; }
+        public Drive? Drive { get; set; }
+        public ListItem[]? Items { get; set; }
         public RichLongRunningOperation[]? Operations { get; set; }
         public Subscription[]? Subscriptions { get; set; }
     }
@@ -48,17 +51,20 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public ListInfo? List { get; set; }
         public System? System { get; set; }
-        public Drive? Drive { get; set; }
-        public ListItem[]? Items { get; set; }
         public ColumnDefinition[]? Columns { get; set; }
         public ContentType[]? ContentTypes { get; set; }
+        public Drive? Drive { get; set; }
+        public ListItem[]? Items { get; set; }
         public RichLongRunningOperation[]? Operations { get; set; }
         public Subscription[]? Subscriptions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListCreateResponse> ListCreateAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListCreateResponse> ListCreateAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListCreateResponse> ListCreateAsync(ListCreateParameter parameter)
         {
             return await this.SendAsync<ListCreateParameter, ListCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListCreateResponse> ListCreateAsync(ListCreateParameter parameter, CancellationToken cancellationToken)
         {

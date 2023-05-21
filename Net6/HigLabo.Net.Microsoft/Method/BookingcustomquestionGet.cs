@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingcustomquestionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -60,10 +63,13 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(BookingcustomquestionGetParameter parameter)
         {
             return await this.SendAsync<BookingcustomquestionGetParameter, BookingcustomquestionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomquestion-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomquestionGetResponse> BookingcustomquestionGetAsync(BookingcustomquestionGetParameter parameter, CancellationToken cancellationToken)
         {

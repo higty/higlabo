@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryobjectGetbyidsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DirectoryobjectGetbyidsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(DirectoryobjectGetbyidsParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectGetbyidsParameter, DirectoryobjectGetbyidsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getbyids?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetbyidsResponse> DirectoryobjectGetbyidsAsync(DirectoryobjectGetbyidsParameter parameter, CancellationToken cancellationToken)
         {

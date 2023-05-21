@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceannouncementListMessagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ServiceUpdateMessage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListMessagesResponse> ServiceannouncementListMessagesAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceannouncementListMessagesParameter, ServiceannouncementListMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListMessagesResponse> ServiceannouncementListMessagesAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceannouncementListMessagesParameter, ServiceannouncementListMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListMessagesResponse> ServiceannouncementListMessagesAsync(ServiceannouncementListMessagesParameter parameter)
         {
             return await this.SendAsync<ServiceannouncementListMessagesParameter, ServiceannouncementListMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListMessagesResponse> ServiceannouncementListMessagesAsync(ServiceannouncementListMessagesParameter parameter, CancellationToken cancellationToken)
         {

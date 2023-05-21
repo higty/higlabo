@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetyammerdeviceusageUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetyammerdeviceusageUsercountsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(ReportRootGetyammerdeviceusageUsercountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetyammerdeviceusageUsercountsParameter, ReportRootGetyammerdeviceusageUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getyammerdeviceusageusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetyammerdeviceusageUsercountsResponse> ReportRootGetyammerdeviceusageUsercountsAsync(ReportRootGetyammerdeviceusageUsercountsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
+    /// </summary>
     public partial class TimeoffPutParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,18 +40,21 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TimeoffPutResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? UserId { get; set; }
-        public TimeOffItem? SharedTimeOff { get; set; }
-        public TimeOffItem? DraftTimeOff { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public TimeOffItem? DraftTimeOff { get; set; }
+        public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public TimeOffItem? SharedTimeOff { get; set; }
+        public string? UserId { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffPutResponse> TimeoffPutAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffPutResponse> TimeoffPutAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffPutResponse> TimeoffPutAsync(TimeoffPutParameter parameter)
         {
             return await this.SendAsync<TimeoffPutParameter, TimeoffPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoff-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffPutResponse> TimeoffPutAsync(TimeoffPutParameter parameter, CancellationToken cancellationToken)
         {

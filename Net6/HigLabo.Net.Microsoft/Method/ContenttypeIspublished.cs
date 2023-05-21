@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
+    /// </summary>
     public partial class ContentTypeIspublishedParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ContentTypeIspublishedResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(ContentTypeIspublishedParameter parameter)
         {
             return await this.SendAsync<ContentTypeIspublishedParameter, ContentTypeIspublishedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-ispublished?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeIspublishedResponse> ContentTypeIspublishedAsync(ContentTypeIspublishedParameter parameter, CancellationToken cancellationToken)
         {

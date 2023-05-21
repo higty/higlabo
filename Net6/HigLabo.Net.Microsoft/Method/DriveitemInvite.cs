@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemInviteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -52,14 +55,18 @@ namespace HigLabo.Net.Microsoft
         public String[]? Roles { get; set; }
         public DateTimeOffset? ExpirationDateTime { get; set; }
         public string? Password { get; set; }
+        public bool? RetainInheritedPermissions { get; set; }
     }
     public partial class DriveitemInviteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemInviteResponse> DriveitemInviteAsync()
         {
@@ -67,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemInviteResponse> DriveitemInviteAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter)
         {
             return await this.SendAsync<DriveitemInviteParameter, DriveitemInviteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-invite?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemInviteResponse> DriveitemInviteAsync(DriveitemInviteParameter parameter, CancellationToken cancellationToken)
         {

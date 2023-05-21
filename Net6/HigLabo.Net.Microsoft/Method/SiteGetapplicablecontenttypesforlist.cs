@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteGetapplicableContentTypesforlistParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,11 +24,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             CreatedDateTime,
             Description,
             DisplayName,
             ETag,
+            Id,
             LastModifiedDateTime,
             Name,
             Root,
@@ -89,10 +92,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ContentType[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync()
         {
@@ -100,7 +106,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(CancellationToken cancellationToken)
         {
@@ -108,14 +114,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(SiteGetapplicableContentTypesforlistParameter parameter)
         {
             return await this.SendAsync<SiteGetapplicableContentTypesforlistParameter, SiteGetapplicableContentTypesforlistResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-getapplicablecontenttypesforlist?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteGetapplicableContentTypesforlistResponse> SiteGetapplicableContentTypesforlistAsync(SiteGetapplicableContentTypesforlistParameter parameter, CancellationToken cancellationToken)
         {

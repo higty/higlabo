@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatSendactivitynotificationParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -43,10 +46,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatSendactivitynotificationResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync()
         {
@@ -54,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync(CancellationToken cancellationToken)
         {
@@ -62,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync(ChatSendactivitynotificationParameter parameter)
         {
             return await this.SendAsync<ChatSendactivitynotificationParameter, ChatSendactivitynotificationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-sendactivitynotification?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatSendactivitynotificationResponse> ChatSendactivitynotificationAsync(ChatSendactivitynotificationParameter parameter, CancellationToken cancellationToken)
         {

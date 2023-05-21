@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryrolePostMembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DirectoryrolePostMembersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostMembersResponse> DirectoryrolePostMembersAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryrolePostMembersParameter, DirectoryrolePostMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostMembersResponse> DirectoryrolePostMembersAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryrolePostMembersParameter, DirectoryrolePostMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostMembersResponse> DirectoryrolePostMembersAsync(DirectoryrolePostMembersParameter parameter)
         {
             return await this.SendAsync<DirectoryrolePostMembersParameter, DirectoryrolePostMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-members?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostMembersResponse> DirectoryrolePostMembersAsync(DirectoryrolePostMembersParameter parameter, CancellationToken cancellationToken)
         {

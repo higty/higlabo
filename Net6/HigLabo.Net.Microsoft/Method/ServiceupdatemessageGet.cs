@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceupdatemessageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -80,10 +83,13 @@ namespace HigLabo.Net.Microsoft
         public ServiceUpdateMessageViewpoint? ViewPoint { get; set; }
         public ServiceAnnouncementAttachment[]? Attachments { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync()
         {
@@ -91,7 +97,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(CancellationToken cancellationToken)
         {
@@ -99,14 +105,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(ServiceupdatemessageGetParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageGetParameter, ServiceupdatemessageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageGetResponse> ServiceupdatemessageGetAsync(ServiceupdatemessageGetParameter parameter, CancellationToken cancellationToken)
         {

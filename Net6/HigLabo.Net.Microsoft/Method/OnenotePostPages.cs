@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
+    /// </summary>
     public partial class OnenotePostPagesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -70,10 +73,13 @@ namespace HigLabo.Net.Microsoft
         public Notebook? ParentNotebook { get; set; }
         public Section? ParentSection { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync()
         {
@@ -81,7 +87,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync(CancellationToken cancellationToken)
         {
@@ -89,14 +95,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync(OnenotePostPagesParameter parameter)
         {
             return await this.SendAsync<OnenotePostPagesParameter, OnenotePostPagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-post-pages?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenotePostPagesResponse> OnenotePostPagesAsync(OnenotePostPagesParameter parameter, CancellationToken cancellationToken)
         {

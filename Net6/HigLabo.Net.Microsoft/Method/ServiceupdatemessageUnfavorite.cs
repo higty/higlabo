@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceupdatemessageUnfavoriteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceupdatemessageUnfavoriteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(ServiceupdatemessageUnfavoriteParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageUnfavoriteParameter, ServiceupdatemessageUnfavoriteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-unfavorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageUnfavoriteResponse> ServiceupdatemessageUnfavoriteAsync(ServiceupdatemessageUnfavoriteParameter parameter, CancellationToken cancellationToken)
         {

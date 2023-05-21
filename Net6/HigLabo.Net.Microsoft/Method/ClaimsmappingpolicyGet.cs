@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ClaimsmappingPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,17 +50,19 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ClaimsmappingPolicyGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
-        public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyGetResponse> ClaimsmappingPolicyGetAsync()
         {
@@ -65,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ClaimsmappingPolicyGetParameter, ClaimsmappingPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyGetResponse> ClaimsmappingPolicyGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ClaimsmappingPolicyGetParameter, ClaimsmappingPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyGetResponse> ClaimsmappingPolicyGetAsync(ClaimsmappingPolicyGetParameter parameter)
         {
             return await this.SendAsync<ClaimsmappingPolicyGetParameter, ClaimsmappingPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyGetResponse> ClaimsmappingPolicyGetAsync(ClaimsmappingPolicyGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,22 +25,22 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
+            Capabilities,
+            Defaults,
             DisplayName,
+            HasPhysicalDevice,
+            Id,
+            IsAcceptingJobs,
+            IsShared,
+            LastSeenDateTime,
+            Location,
             Manufacturer,
             Model,
             RegisteredDateTime,
             Status,
-            IsShared,
-            HasPhysicalDevice,
-            IsAcceptingJobs,
-            Location,
-            Defaults,
-            Capabilities,
-            LastSeenDateTime,
+            Connectors,
             Jobs,
             Shares,
-            Connectors,
             TaskTriggers,
         }
         public enum ApiPath
@@ -66,28 +69,31 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrinterGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
+        public PrinterCapabilities? Capabilities { get; set; }
+        public PrinterDefaults? Defaults { get; set; }
         public string? DisplayName { get; set; }
+        public bool? HasPhysicalDevice { get; set; }
+        public string? Id { get; set; }
+        public bool? IsAcceptingJobs { get; set; }
+        public bool? IsShared { get; set; }
+        public DateTimeOffset? LastSeenDateTime { get; set; }
+        public PrinterLocation? Location { get; set; }
         public string? Manufacturer { get; set; }
         public string? Model { get; set; }
         public DateTimeOffset? RegisteredDateTime { get; set; }
         public PrinterStatus? Status { get; set; }
-        public bool? IsShared { get; set; }
-        public bool? HasPhysicalDevice { get; set; }
-        public bool? IsAcceptingJobs { get; set; }
-        public PrinterLocation? Location { get; set; }
-        public PrinterDefaults? Defaults { get; set; }
-        public PrinterCapabilities? Capabilities { get; set; }
-        public DateTimeOffset? LastSeenDateTime { get; set; }
+        public PrintConnector? Connectors { get; set; }
         public PrintJob[]? Jobs { get; set; }
         public PrinterShare[]? Shares { get; set; }
-        public PrintConnector? Connectors { get; set; }
         public PrintTaskTrigger[]? TaskTriggers { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterGetResponse> PrinterGetAsync()
         {
@@ -95,7 +101,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterGetResponse> PrinterGetAsync(CancellationToken cancellationToken)
         {
@@ -103,14 +109,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterGetResponse> PrinterGetAsync(PrinterGetParameter parameter)
         {
             return await this.SendAsync<PrinterGetParameter, PrinterGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterGetResponse> PrinterGetAsync(PrinterGetParameter parameter, CancellationToken cancellationToken)
         {

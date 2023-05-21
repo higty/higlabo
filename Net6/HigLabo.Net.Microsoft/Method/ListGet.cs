@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ListGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -15,9 +18,8 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListId}";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListTitle: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListTitle}";
                     case ApiPath.Sites_SiteId_Lists_ListId: return $"/sites/{SiteId}/lists/{ListId}";
+                    case ApiPath.Sites_SiteId_Lists_ListTitle: return $"/sites/{SiteId}/lists/{ListTitle}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -28,9 +30,8 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId,
-            Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListTitle,
             Sites_SiteId_Lists_ListId,
+            Sites_SiteId_Lists_ListTitle,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -54,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ListGetResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ListGetResponse> ListGetAsync()
         {
@@ -65,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListGetParameter, ListGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ListGetResponse> ListGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListGetParameter, ListGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ListGetResponse> ListGetAsync(ListGetParameter parameter)
         {
             return await this.SendAsync<ListGetParameter, ListGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/list-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ListGetResponse> ListGetAsync(ListGetParameter parameter, CancellationToken cancellationToken)
         {

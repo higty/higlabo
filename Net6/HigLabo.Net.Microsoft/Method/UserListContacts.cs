@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListContactsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -107,10 +110,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Contact[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListContactsResponse> UserListContactsAsync()
         {
@@ -118,7 +124,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListContactsParameter, UserListContactsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListContactsResponse> UserListContactsAsync(CancellationToken cancellationToken)
         {
@@ -126,14 +132,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListContactsParameter, UserListContactsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListContactsResponse> UserListContactsAsync(UserListContactsParameter parameter)
         {
             return await this.SendAsync<UserListContactsParameter, UserListContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListContactsResponse> UserListContactsAsync(UserListContactsParameter parameter, CancellationToken cancellationToken)
         {

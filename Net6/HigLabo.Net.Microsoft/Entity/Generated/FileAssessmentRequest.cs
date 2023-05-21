@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/fileassessmentrequest?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/fileassessmentrequest?view=graph-rest-1.0
     /// </summary>
     public partial class FileAssessmentRequest
     {
@@ -34,13 +34,13 @@ namespace HigLabo.Net.Microsoft
             Completed,
         }
 
-        public string? ContentData { get; set; }
-        public string? FileName { get; set; }
         public FileAssessmentRequestThreatCategory Category { get; set; }
+        public string? ContentData { get; set; }
         public FileAssessmentRequestThreatAssessmentContentType ContentType { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public FileAssessmentRequestThreatExpectedAssessment ExpectedAssessment { get; set; }
+        public string? FileName { get; set; }
         public string? Id { get; set; }
         public FileAssessmentRequestThreatAssessmentRequestSource RequestSource { get; set; }
         public FileAssessmentRequestThreatAssessmentStatus Status { get; set; }

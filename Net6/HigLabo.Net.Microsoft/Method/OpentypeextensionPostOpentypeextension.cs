@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenTypeextensionPostOpenTypeextensionParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -80,10 +83,13 @@ namespace HigLabo.Net.Microsoft
     public partial class OpenTypeextensionPostOpenTypeextensionResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync()
         {
@@ -91,7 +97,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync(CancellationToken cancellationToken)
         {
@@ -99,14 +105,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync(OpenTypeextensionPostOpenTypeextensionParameter parameter)
         {
             return await this.SendAsync<OpenTypeextensionPostOpenTypeextensionParameter, OpenTypeextensionPostOpenTypeextensionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-post-opentypeextension?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionPostOpenTypeextensionResponse> OpenTypeextensionPostOpenTypeextensionAsync(OpenTypeextensionPostOpenTypeextensionParameter parameter, CancellationToken cancellationToken)
         {

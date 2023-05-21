@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/networkconnection?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/networkconnection?view=graph-rest-1.0
     /// </summary>
     public partial class NetworkConnection
     {
@@ -50,8 +50,8 @@ namespace HigLabo.Net.Microsoft
 
         public string? ApplicationName { get; set; }
         public string? DestinationAddress { get; set; }
-        public string? DestinationLocation { get; set; }
         public string? DestinationDomain { get; set; }
+        public string? DestinationLocation { get; set; }
         public string? DestinationPort { get; set; }
         public string? DestinationUrl { get; set; }
         public NetworkConnectionConnectionDirection Direction { get; set; }

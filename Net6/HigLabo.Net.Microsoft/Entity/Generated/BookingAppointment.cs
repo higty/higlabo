@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/bookingappointment?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/bookingappointment?view=graph-rest-1.0
     /// </summary>
     public partial class BookingAppointment
     {
@@ -21,6 +21,7 @@ namespace HigLabo.Net.Microsoft
         }
 
         public string? AdditionalInformation { get; set; }
+        public string? AnonymousJoinWebUrl { get; set; }
         public BookingCustomerInformation[]? Customers { get; set; }
         public string? CustomerTimeZone { get; set; }
         public string? Duration { get; set; }

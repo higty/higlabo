@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannerplanDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PlannerplanDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanDeleteResponse> PlannerplanDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerplanDeleteParameter, PlannerplanDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanDeleteResponse> PlannerplanDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerplanDeleteParameter, PlannerplanDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanDeleteResponse> PlannerplanDeleteAsync(PlannerplanDeleteParameter parameter)
         {
             return await this.SendAsync<PlannerplanDeleteParameter, PlannerplanDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanDeleteResponse> PlannerplanDeleteAsync(PlannerplanDeleteParameter parameter, CancellationToken cancellationToken)
         {

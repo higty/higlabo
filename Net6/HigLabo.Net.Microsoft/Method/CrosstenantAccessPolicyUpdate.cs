@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
+    /// </summary>
     public partial class CrosstenantAccessPolicyUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,14 +36,18 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public string? DisplayName { get; set; }
+        public String[]? AllowedCloudEndpoints { get; set; }
     }
     public partial class CrosstenantAccessPolicyUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync()
         {
@@ -48,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CrosstenantAccessPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyUpdateParameter, CrosstenantAccessPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyUpdateResponse> CrosstenantAccessPolicyUpdateAsync(CrosstenantAccessPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {

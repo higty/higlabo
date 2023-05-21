@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
+    /// </summary>
     public partial class OrgcontactGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -67,10 +70,13 @@ namespace HigLabo.Net.Microsoft
         public DirectoryObject[]? MemberOf { get; set; }
         public DirectoryObject[]? TransitiveMemberOf { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactGetResponse> OrgcontactGetAsync()
         {
@@ -78,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactGetResponse> OrgcontactGetAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactGetResponse> OrgcontactGetAsync(OrgcontactGetParameter parameter)
         {
             return await this.SendAsync<OrgcontactGetParameter, OrgcontactGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactGetResponse> OrgcontactGetAsync(OrgcontactGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,16 +3,10 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/identityuserflowattribute?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/identityuserflowattribute?view=graph-rest-1.0
     /// </summary>
     public partial class IdentityUserFlowAttribute
     {
-        public enum IdentityUserFlowAttributeIdentityUserFlowAttributeType
-        {
-            BuiltIn,
-            Custom,
-            Required,
-        }
         public enum IdentityUserFlowAttributeIdentityUserFlowAttributeDataType
         {
             String,
@@ -21,11 +15,17 @@ namespace HigLabo.Net.Microsoft
             StringCollection,
             DateTime,
         }
+        public enum IdentityUserFlowAttributeIdentityUserFlowAttributeType
+        {
+            BuiltIn,
+            Custom,
+            Required,
+        }
 
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public string? Description { get; set; }
-        public IdentityUserFlowAttributeIdentityUserFlowAttributeType UserFlowAttributeType { get; set; }
         public IdentityUserFlowAttributeIdentityUserFlowAttributeDataType DataType { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public IdentityUserFlowAttributeIdentityUserFlowAttributeType UserFlowAttributeType { get; set; }
     }
 }

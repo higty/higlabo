@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ConnectedorganizationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
         public DirectoryObject[]? ExternalSponsors { get; set; }
         public DirectoryObject[]? InternalSponsors { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(ConnectedorganizationGetParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationGetParameter, ConnectedorganizationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationGetResponse> ConnectedorganizationGetAsync(ConnectedorganizationGetParameter parameter, CancellationToken cancellationToken)
         {

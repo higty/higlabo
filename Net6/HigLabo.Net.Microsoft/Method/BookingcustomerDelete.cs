@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingcustomerDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class BookingcustomerDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerDeleteResponse> BookingcustomerDeleteAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcustomerDeleteParameter, BookingcustomerDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerDeleteResponse> BookingcustomerDeleteAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcustomerDeleteParameter, BookingcustomerDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerDeleteResponse> BookingcustomerDeleteAsync(BookingcustomerDeleteParameter parameter)
         {
             return await this.SendAsync<BookingcustomerDeleteParameter, BookingcustomerDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcustomer-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcustomerDeleteResponse> BookingcustomerDeleteAsync(BookingcustomerDeleteParameter parameter, CancellationToken cancellationToken)
         {

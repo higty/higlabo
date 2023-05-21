@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
+    /// </summary>
     public partial class AuthenticationListMethodsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AuthenticationMethod[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(AuthenticationListMethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListMethodsParameter, AuthenticationListMethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-methods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListMethodsResponse> AuthenticationListMethodsAsync(AuthenticationListMethodsParameter parameter, CancellationToken cancellationToken)
         {

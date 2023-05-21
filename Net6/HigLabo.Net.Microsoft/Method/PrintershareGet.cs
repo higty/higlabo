@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintershareGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,26 +56,29 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintershareGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
+        public bool? AllowAllUsers { get; set; }
+        public PrinterCapabilities? Capabilities { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public PrinterDefaults? Defaults { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsAcceptingJobs { get; set; }
+        public PrinterLocation? Location { get; set; }
         public string? Manufacturer { get; set; }
         public string? Model { get; set; }
-        public bool? IsAcceptingJobs { get; set; }
-        public PrinterDefaults? Defaults { get; set; }
-        public PrinterCapabilities? Capabilities { get; set; }
-        public PrinterLocation? Location { get; set; }
         public PrinterStatus? Status { get; set; }
-        public bool? AllowAllUsers { get; set; }
         public Printer? Printer { get; set; }
         public User[]? AllowedUsers { get; set; }
         public Group? AllowedGroups { get; set; }
         public PrintJob[]? Jobs { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareGetResponse> PrintershareGetAsync()
         {
@@ -80,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareGetResponse> PrintershareGetAsync(CancellationToken cancellationToken)
         {
@@ -88,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter)
         {
             return await this.SendAsync<PrintershareGetParameter, PrintershareGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareGetResponse> PrintershareGetAsync(PrintershareGetParameter parameter, CancellationToken cancellationToken)
         {

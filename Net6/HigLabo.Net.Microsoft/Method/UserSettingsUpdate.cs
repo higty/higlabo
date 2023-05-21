@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
+    /// </summary>
     public partial class UserSettingsUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -15,7 +18,6 @@ namespace HigLabo.Net.Microsoft
                 {
                     case ApiPath.Me_Settings: return $"/me/settings";
                     case ApiPath.Users_IdOrUserPrincipalName_Settings_: return $"/users/{IdOrUserPrincipalName}/settings/";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Me_Settings: return $"/ttps://graph.microsoft.com/v1.0/me/settings";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -25,7 +27,6 @@ namespace HigLabo.Net.Microsoft
         {
             Me_Settings,
             Users_IdOrUserPrincipalName_Settings_,
-            Ttps__Graphmicrosoftcom_V10_Me_Settings,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -42,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserSettingsUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync()
         {
@@ -53,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync(CancellationToken cancellationToken)
         {
@@ -61,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync(UserSettingsUpdateParameter parameter)
         {
             return await this.SendAsync<UserSettingsUpdateParameter, UserSettingsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsUpdateResponse> UserSettingsUpdateAsync(UserSettingsUpdateParameter parameter, CancellationToken cancellationToken)
         {

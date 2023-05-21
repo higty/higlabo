@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -148,10 +151,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageGetResponse> MessageGetAsync()
         {
@@ -159,7 +165,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageGetResponse> MessageGetAsync(CancellationToken cancellationToken)
         {
@@ -167,21 +173,21 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageGetResponse> MessageGetAsync(MessageGetParameter parameter)
         {
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageGetResponse> MessageGetAsync(MessageGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<MessageGetParameter, MessageGetResponse>(parameter, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Stream> MessageGetStreamAsync(MessageGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
+    /// </summary>
     public partial class OutlookcategoryGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,13 +53,16 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OutlookcategoryGetResponse : RestApiResponse
     {
-        public string? DisplayName { get; set; }
         public string? Color { get; set; }
+        public string? DisplayName { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter)
         {
             return await this.SendAsync<OutlookcategoryGetParameter, OutlookcategoryGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookcategory-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookcategoryGetResponse> OutlookcategoryGetAsync(OutlookcategoryGetParameter parameter, CancellationToken cancellationToken)
         {

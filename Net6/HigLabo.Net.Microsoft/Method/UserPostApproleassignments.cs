@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class UserPostApproleAssignmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -35,6 +38,7 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public Guid? AppRoleId { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
         public string? PrincipalDisplayName { get; set; }
         public Guid? PrincipalId { get; set; }
@@ -46,6 +50,7 @@ namespace HigLabo.Net.Microsoft
     {
         public Guid? AppRoleId { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
         public string? PrincipalDisplayName { get; set; }
         public Guid? PrincipalId { get; set; }
@@ -53,10 +58,13 @@ namespace HigLabo.Net.Microsoft
         public string? ResourceDisplayName { get; set; }
         public Guid? ResourceId { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostApproleAssignmentsResponse> UserPostApproleAssignmentsAsync()
         {
@@ -64,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostApproleAssignmentsParameter, UserPostApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostApproleAssignmentsResponse> UserPostApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostApproleAssignmentsParameter, UserPostApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostApproleAssignmentsResponse> UserPostApproleAssignmentsAsync(UserPostApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<UserPostApproleAssignmentsParameter, UserPostApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostApproleAssignmentsResponse> UserPostApproleAssignmentsAsync(UserPostApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
+    /// </summary>
     public partial class TermStoreSetGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,7 +17,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId: return $"/ites/{SiteId}/termStore/sets/{SetId}";
+                    case ApiPath.Sites_SiteId_TermStore_Sets_SetId: return $"/sites/{SiteId}/termStore/sets/{SetId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -34,7 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Ites_SiteId_TermStore_Sets_SetId,
+            Sites_SiteId_TermStore_Sets_SetId,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -67,10 +70,13 @@ namespace HigLabo.Net.Microsoft
         public TermStoreRelation[]? Relations { get; set; }
         public TermStoreTerm[]? Terms { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync()
         {
@@ -78,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync(TermStoreSetGetParameter parameter)
         {
             return await this.SendAsync<TermStoreSetGetParameter, TermStoreSetGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-set-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreSetGetResponse> TermStoreSetGetAsync(TermStoreSetGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
+    /// </summary>
     public partial class SubjectrightsrequestListNotesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AuthoredNote[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestListNotesResponse> SubjectrightsrequestListNotesAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubjectrightsrequestListNotesParameter, SubjectrightsrequestListNotesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestListNotesResponse> SubjectrightsrequestListNotesAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubjectrightsrequestListNotesParameter, SubjectrightsrequestListNotesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestListNotesResponse> SubjectrightsrequestListNotesAsync(SubjectrightsrequestListNotesParameter parameter)
         {
             return await this.SendAsync<SubjectrightsrequestListNotesParameter, SubjectrightsrequestListNotesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-list-notes?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestListNotesResponse> SubjectrightsrequestListNotesAsync(SubjectrightsrequestListNotesParameter parameter, CancellationToken cancellationToken)
         {

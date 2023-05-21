@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
+    /// </summary>
     public partial class RangeMergeParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     public partial class RangeMergeResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeMergeResponse> RangeMergeAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeMergeResponse> RangeMergeAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeMergeResponse> RangeMergeAsync(RangeMergeParameter parameter)
         {
             return await this.SendAsync<RangeMergeParameter, RangeMergeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-merge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeMergeResponse> RangeMergeAsync(RangeMergeParameter parameter, CancellationToken cancellationToken)
         {

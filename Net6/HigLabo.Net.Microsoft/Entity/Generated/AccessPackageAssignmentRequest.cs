@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequest?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequest?view=graph-rest-1.0
     /// </summary>
     public partial class AccessPackageAssignmentRequest
     {
@@ -11,6 +11,7 @@ namespace HigLabo.Net.Microsoft
         {
             NotSpecified,
             UserAdd,
+            UserExtend,
             UserUpdate,
             UserRemove,
             AdminAdd,
@@ -34,8 +35,10 @@ namespace HigLabo.Net.Microsoft
             Canceled,
             PartiallyDelivered,
             UnknownFutureValue,
+            Eq,
         }
 
+        public AccessPackageAnswer[]? Answers { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }

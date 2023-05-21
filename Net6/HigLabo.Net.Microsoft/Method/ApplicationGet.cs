@@ -2,18 +2,21 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string? Id { get; set; }
+            public string? ApplicationObjectId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Applications_Id: return $"/applications/{Id}";
+                    case ApiPath.Applications_ApplicationObjectId: return $"/applications/{ApplicationObjectId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -47,7 +50,9 @@ namespace HigLabo.Net.Microsoft
             PasswordCredentials,
             PublicClient,
             PublisherDomain,
+            RequestSignatureVerification,
             RequiredResourceAccess,
+            SamlMetadataUrl,
             ServiceManagementReference,
             SignInAudience,
             Spa,
@@ -55,13 +60,15 @@ namespace HigLabo.Net.Microsoft
             TokenEncryptionKeyId,
             VerifiedPublisher,
             Web,
+            AppManagementPolicies,
             CreatedOnBehalfOf,
             ExtensionProperties,
+            FederatedIdentityCredentials,
             Owners,
         }
         public enum ApiPath
         {
-            Applications_Id,
+            Applications_ApplicationObjectId,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -110,7 +117,9 @@ namespace HigLabo.Net.Microsoft
         public PasswordCredential[]? PasswordCredentials { get; set; }
         public PublicClientApplication? PublicClient { get; set; }
         public string? PublisherDomain { get; set; }
+        public RequestSignatureVerification? RequestSignatureVerification { get; set; }
         public RequiredResourceAccess[]? RequiredResourceAccess { get; set; }
+        public string? SamlMetadataUrl { get; set; }
         public string? ServiceManagementReference { get; set; }
         public string? SignInAudience { get; set; }
         public SpaApplication? Spa { get; set; }
@@ -118,14 +127,19 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public AppManagementPolicy[]? AppManagementPolicies { get; set; }
         public DirectoryObject? CreatedOnBehalfOf { get; set; }
         public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public FederatedIdentityCredential[]? FederatedIdentityCredentials { get; set; }
         public DirectoryObject[]? Owners { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationGetResponse> ApplicationGetAsync()
         {
@@ -133,7 +147,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationGetResponse> ApplicationGetAsync(CancellationToken cancellationToken)
         {
@@ -141,14 +155,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationGetResponse> ApplicationGetAsync(ApplicationGetParameter parameter)
         {
             return await this.SendAsync<ApplicationGetParameter, ApplicationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationGetResponse> ApplicationGetAsync(ApplicationGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentityproviderGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public string? Type { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter)
         {
             return await this.SendAsync<IdentityproviderGetParameter, IdentityproviderGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityprovider-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityproviderGetResponse> IdentityproviderGetAsync(IdentityproviderGetParameter parameter, CancellationToken cancellationToken)
         {

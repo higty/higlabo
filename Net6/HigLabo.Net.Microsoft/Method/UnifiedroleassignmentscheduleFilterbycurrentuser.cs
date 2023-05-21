@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class UnifiedroleAssignmentscheduleFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -65,10 +68,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UnifiedRoleAssignmentSchedule[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentscheduleFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleFilterbycurrentUserAsync()
         {
@@ -76,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleAssignmentscheduleFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentscheduleFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleAssignmentscheduleFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentscheduleFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleFilterbycurrentUserAsync(UnifiedroleAssignmentscheduleFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<UnifiedroleAssignmentscheduleFilterbycurrentUserParameter, UnifiedroleAssignmentscheduleFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedroleassignmentschedule-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleAssignmentscheduleFilterbycurrentUserResponse> UnifiedroleAssignmentscheduleFilterbycurrentUserAsync(UnifiedroleAssignmentscheduleFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

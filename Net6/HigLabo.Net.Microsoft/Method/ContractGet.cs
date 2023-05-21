@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ContractGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractGetResponse> ContractGetAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractGetResponse> ContractGetAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractGetResponse> ContractGetAsync(ContractGetParameter parameter)
         {
             return await this.SendAsync<ContractGetParameter, ContractGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractGetResponse> ContractGetAsync(ContractGetParameter parameter, CancellationToken cancellationToken)
         {

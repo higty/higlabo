@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatGetTabsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -29,10 +32,13 @@ namespace HigLabo.Net.Microsoft
             OnlineMeetingInfo,
             TenantId,
             Topic,
+            Viewpoint,
             WebUrl,
             InstalledApps,
+            LastMessagePreview,
             Members,
             Messages,
+            PinnedMessages,
             Tabs,
         }
         public enum ApiPath
@@ -60,16 +66,19 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChatGetTabsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public string? WebUrl { get; set; }
         public TeamsTabConfiguration? Configuration { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? WebUrl { get; set; }
         public TeamsApp? TeamsApp { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetTabsResponse> ChatGetTabsAsync()
         {
@@ -77,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetTabsResponse> ChatGetTabsAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetTabsResponse> ChatGetTabsAsync(ChatGetTabsParameter parameter)
         {
             return await this.SendAsync<ChatGetTabsParameter, ChatGetTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetTabsResponse> ChatGetTabsAsync(ChatGetTabsParameter parameter, CancellationToken cancellationToken)
         {

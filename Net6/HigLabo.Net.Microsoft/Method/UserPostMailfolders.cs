@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
+    /// </summary>
     public partial class UserPostMailfoldersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -63,10 +66,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter)
         {
             return await this.SendAsync<UserPostMailfoldersParameter, UserPostMailfoldersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-mailfolders?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMailfoldersResponse> UserPostMailfoldersAsync(UserPostMailfoldersParameter parameter, CancellationToken cancellationToken)
         {

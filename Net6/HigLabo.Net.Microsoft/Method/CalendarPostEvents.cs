@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarPostEventsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -29,12 +32,6 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum EventImportance
-        {
-            Low,
-            Normal,
-            High,
-        }
         public enum EventOnlineMeetingProviderType
         {
             Unknown,
@@ -74,7 +71,7 @@ namespace HigLabo.Net.Microsoft
         public bool? HideAttendees { get; set; }
         public string? ICalUId { get; set; }
         public string? Id { get; set; }
-        public EventImportance Importance { get; set; }
+        public string? Importance { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }
@@ -112,12 +109,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CalendarPostEventsResponse : RestApiResponse
     {
-        public enum EventImportance
-        {
-            Low,
-            Normal,
-            High,
-        }
         public enum EventOnlineMeetingProviderType
         {
             Unknown,
@@ -138,7 +129,7 @@ namespace HigLabo.Net.Microsoft
         public bool? HideAttendees { get; set; }
         public string? ICalUId { get; set; }
         public string? Id { get; set; }
-        public EventImportance Importance { get; set; }
+        public string? Importance { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }
@@ -174,10 +165,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarPostEventsResponse> CalendarPostEventsAsync()
         {
@@ -185,7 +179,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarPostEventsParameter, CalendarPostEventsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarPostEventsResponse> CalendarPostEventsAsync(CancellationToken cancellationToken)
         {
@@ -193,14 +187,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarPostEventsParameter, CalendarPostEventsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarPostEventsResponse> CalendarPostEventsAsync(CalendarPostEventsParameter parameter)
         {
             return await this.SendAsync<CalendarPostEventsParameter, CalendarPostEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-post-events?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarPostEventsResponse> CalendarPostEventsAsync(CalendarPostEventsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ExternalConnectorsSchemaGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,6 +24,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            BaseType,
+            Properties,
         }
         public enum ApiPath
         {
@@ -50,10 +55,13 @@ namespace HigLabo.Net.Microsoft
         public string? BaseType { get; set; }
         public ExternalConnectorsProperty[]? Properties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync()
         {
@@ -61,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsSchemaGetParameter, ExternalConnectorsSchemaGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-schema-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsSchemaGetResponse> ExternalConnectorsSchemaGetAsync(ExternalConnectorsSchemaGetParameter parameter, CancellationToken cancellationToken)
         {

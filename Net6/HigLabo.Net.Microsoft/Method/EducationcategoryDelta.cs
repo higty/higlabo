@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationcategoryDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,8 +26,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             DisplayName,
+            Id,
         }
         public enum ApiPath
         {
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public EducationCategory[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationcategoryDeltaResponse> EducationcategoryDeltaAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationcategoryDeltaParameter, EducationcategoryDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationcategoryDeltaResponse> EducationcategoryDeltaAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationcategoryDeltaParameter, EducationcategoryDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationcategoryDeltaResponse> EducationcategoryDeltaAsync(EducationcategoryDeltaParameter parameter)
         {
             return await this.SendAsync<EducationcategoryDeltaParameter, EducationcategoryDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationcategory-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationcategoryDeltaResponse> EducationcategoryDeltaAsync(EducationcategoryDeltaParameter parameter, CancellationToken cancellationToken)
         {

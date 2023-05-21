@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
+    /// </summary>
     public partial class TermStoreStoreUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -44,10 +47,13 @@ namespace HigLabo.Net.Microsoft
         public TermStoreGroup[]? Groups { get; set; }
         public TermStoreSet[]? Sets { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreStoreUpdateResponse> TermStoreStoreUpdateAsync()
         {
@@ -55,7 +61,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreStoreUpdateParameter, TermStoreStoreUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreStoreUpdateResponse> TermStoreStoreUpdateAsync(CancellationToken cancellationToken)
         {
@@ -63,14 +69,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreStoreUpdateParameter, TermStoreStoreUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreStoreUpdateResponse> TermStoreStoreUpdateAsync(TermStoreStoreUpdateParameter parameter)
         {
             return await this.SendAsync<TermStoreStoreUpdateParameter, TermStoreStoreUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-store-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreStoreUpdateResponse> TermStoreStoreUpdateAsync(TermStoreStoreUpdateParameter parameter, CancellationToken cancellationToken)
         {

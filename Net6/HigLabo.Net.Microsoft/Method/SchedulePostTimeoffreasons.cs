@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
+    /// </summary>
     public partial class SchedulePostTimeoffreasonsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,28 +36,31 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public TimeOffReasonIconType? IconType { get; set; }
+        public string? Id { get; set; }
         public bool? IsActive { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
     public partial class SchedulePostTimeoffreasonsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public TimeOffReasonIconType? IconType { get; set; }
+        public string? Id { get; set; }
         public bool? IsActive { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter)
         {
             return await this.SendAsync<SchedulePostTimeoffreasonsParameter, SchedulePostTimeoffreasonsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-timeoffreasons?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostTimeoffreasonsResponse> SchedulePostTimeoffreasonsAsync(SchedulePostTimeoffreasonsParameter parameter, CancellationToken cancellationToken)
         {

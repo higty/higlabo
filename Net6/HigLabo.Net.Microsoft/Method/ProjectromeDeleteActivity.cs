@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
+    /// </summary>
     public partial class ProjectromeDeleteActivityParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ProjectromeDeleteActivityResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromeDeleteActivityResponse> ProjectromeDeleteActivityAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProjectromeDeleteActivityParameter, ProjectromeDeleteActivityResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromeDeleteActivityResponse> ProjectromeDeleteActivityAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProjectromeDeleteActivityParameter, ProjectromeDeleteActivityResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromeDeleteActivityResponse> ProjectromeDeleteActivityAsync(ProjectromeDeleteActivityParameter parameter)
         {
             return await this.SendAsync<ProjectromeDeleteActivityParameter, ProjectromeDeleteActivityResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-delete-activity?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromeDeleteActivityResponse> ProjectromeDeleteActivityAsync(ProjectromeDeleteActivityParameter parameter, CancellationToken cancellationToken)
         {

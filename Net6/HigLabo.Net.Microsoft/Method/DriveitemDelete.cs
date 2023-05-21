@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DriveitemDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync(DriveitemDeleteParameter parameter)
         {
             return await this.SendAsync<DriveitemDeleteParameter, DriveitemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemDeleteResponse> DriveitemDeleteAsync(DriveitemDeleteParameter parameter, CancellationToken cancellationToken)
         {

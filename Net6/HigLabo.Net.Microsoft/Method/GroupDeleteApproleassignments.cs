@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupDeleteApproleAssignmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupDeleteApproleAssignmentsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync(GroupDeleteApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<GroupDeleteApproleAssignmentsParameter, GroupDeleteApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteApproleAssignmentsResponse> GroupDeleteApproleAssignmentsAsync(GroupDeleteApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

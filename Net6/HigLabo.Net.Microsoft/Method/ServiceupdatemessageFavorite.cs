@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceupdatemessageFavoriteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceupdatemessageFavoriteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageFavoriteResponse> ServiceupdatemessageFavoriteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageFavoriteParameter, ServiceupdatemessageFavoriteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageFavoriteResponse> ServiceupdatemessageFavoriteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageFavoriteParameter, ServiceupdatemessageFavoriteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageFavoriteResponse> ServiceupdatemessageFavoriteAsync(ServiceupdatemessageFavoriteParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageFavoriteParameter, ServiceupdatemessageFavoriteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-favorite?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageFavoriteResponse> ServiceupdatemessageFavoriteAsync(ServiceupdatemessageFavoriteParameter parameter, CancellationToken cancellationToken)
         {

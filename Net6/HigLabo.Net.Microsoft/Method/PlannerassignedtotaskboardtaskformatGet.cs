@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannerassignedtotaskboardtaskformatGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
         public PlannerOrderHintsByAssignee? OrderHintsByAssignee { get; set; }
         public string? UnassignedOrderHint { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(PlannerassignedtotaskboardtaskformatGetParameter parameter)
         {
             return await this.SendAsync<PlannerassignedtotaskboardtaskformatGetParameter, PlannerassignedtotaskboardtaskformatGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerassignedtotaskboardtaskformat-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerassignedtotaskboardtaskformatGetResponse> PlannerassignedtotaskboardtaskformatGetAsync(PlannerassignedtotaskboardtaskformatGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
+    /// </summary>
     public partial class WorkbookCreatesessionParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -44,10 +47,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? PersistChanges { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync()
         {
@@ -55,7 +61,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(CancellationToken cancellationToken)
         {
@@ -63,14 +69,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(WorkbookCreatesessionParameter parameter)
         {
             return await this.SendAsync<WorkbookCreatesessionParameter, WorkbookCreatesessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-createsession?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookCreatesessionResponse> WorkbookCreatesessionAsync(WorkbookCreatesessionParameter parameter, CancellationToken cancellationToken)
         {

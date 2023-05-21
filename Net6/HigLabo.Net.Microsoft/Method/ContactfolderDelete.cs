@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ContactfolderDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ContactfolderDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeleteResponse> ContactfolderDeleteAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactfolderDeleteParameter, ContactfolderDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeleteResponse> ContactfolderDeleteAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactfolderDeleteParameter, ContactfolderDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeleteResponse> ContactfolderDeleteAsync(ContactfolderDeleteParameter parameter)
         {
             return await this.SendAsync<ContactfolderDeleteParameter, ContactfolderDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeleteResponse> ContactfolderDeleteAsync(ContactfolderDeleteParameter parameter, CancellationToken cancellationToken)
         {

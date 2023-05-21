@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+    /// </summary>
     public partial class OrgcontactListMemberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactListMemberofResponse> OrgcontactListMemberofAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrgcontactListMemberofParameter, OrgcontactListMemberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactListMemberofResponse> OrgcontactListMemberofAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrgcontactListMemberofParameter, OrgcontactListMemberofResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactListMemberofResponse> OrgcontactListMemberofAsync(OrgcontactListMemberofParameter parameter)
         {
             return await this.SendAsync<OrgcontactListMemberofParameter, OrgcontactListMemberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/orgcontact-list-memberof?view=graph-rest-1.0
         /// </summary>
         public async Task<OrgcontactListMemberofResponse> OrgcontactListMemberofAsync(OrgcontactListMemberofParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MailfolderDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class MailfolderDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderDeleteResponse> MailfolderDeleteAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MailfolderDeleteParameter, MailfolderDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderDeleteResponse> MailfolderDeleteAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MailfolderDeleteParameter, MailfolderDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderDeleteResponse> MailfolderDeleteAsync(MailfolderDeleteParameter parameter)
         {
             return await this.SendAsync<MailfolderDeleteParameter, MailfolderDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderDeleteResponse> MailfolderDeleteAsync(MailfolderDeleteParameter parameter, CancellationToken cancellationToken)
         {

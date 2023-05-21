@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+    /// </summary>
     public partial class AuthorizationPolicyUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,11 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
-        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
-        public bool? AllowedToUseSSPR { get; set; }
         public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
         public AuthorizationPolicyUpdateParameterAllowInvitesFrom AllowInvitesFrom { get; set; }
+        public bool? AllowUserConsentForRiskyApps { get; set; }
+        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
+        public bool? AllowedToUseSSPR { get; set; }
         public bool? BlockMsolPowerShell { get; set; }
         public DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
         public string? Description { get; set; }
@@ -52,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     public partial class AuthorizationPolicyUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync()
         {
@@ -63,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter)
         {
             return await this.SendAsync<AuthorizationPolicyUpdateParameter, AuthorizationPolicyUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyUpdateResponse> AuthorizationPolicyUpdateAsync(AuthorizationPolicyUpdateParameter parameter, CancellationToken cancellationToken)
         {

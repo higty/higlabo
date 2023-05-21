@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MeetingattendancereportGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
         public Int32? TotalParticipantCount { get; set; }
         public AttendanceRecord[]? AttendanceRecords { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(MeetingattendancereportGetParameter parameter)
         {
             return await this.SendAsync<MeetingattendancereportGetParameter, MeetingattendancereportGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/meetingattendancereport-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MeetingattendancereportGetResponse> MeetingattendancereportGetAsync(MeetingattendancereportGetParameter parameter, CancellationToken cancellationToken)
         {

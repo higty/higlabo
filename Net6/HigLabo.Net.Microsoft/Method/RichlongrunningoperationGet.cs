@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
+    /// </summary>
     public partial class RichlongrunningOperationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
         public string? StatusDetail { get; set; }
         public string? Type { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(RichlongrunningOperationGetParameter parameter)
         {
             return await this.SendAsync<RichlongrunningOperationGetParameter, RichlongrunningOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/richlongrunningoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<RichlongrunningOperationGetResponse> RichlongrunningOperationGetAsync(RichlongrunningOperationGetParameter parameter, CancellationToken cancellationToken)
         {

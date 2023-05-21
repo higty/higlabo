@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
+    /// </summary>
     public partial class SecurescorecontrolprofileUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SecurescorecontrolprofileUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync(SecurescorecontrolprofileUpdateParameter parameter)
         {
             return await this.SendAsync<SecurescorecontrolprofileUpdateParameter, SecurescorecontrolprofileUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileUpdateResponse> SecurescorecontrolprofileUpdateAsync(SecurescorecontrolprofileUpdateParameter parameter, CancellationToken cancellationToken)
         {

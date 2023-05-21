@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
+    /// </summary>
     public partial class CallKeepaliveParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CallKeepaliveResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
         public async Task<CallKeepaliveResponse> CallKeepaliveAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
         public async Task<CallKeepaliveResponse> CallKeepaliveAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
         public async Task<CallKeepaliveResponse> CallKeepaliveAsync(CallKeepaliveParameter parameter)
         {
             return await this.SendAsync<CallKeepaliveParameter, CallKeepaliveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-keepalive?view=graph-rest-1.0
         /// </summary>
         public async Task<CallKeepaliveResponse> CallKeepaliveAsync(CallKeepaliveParameter parameter, CancellationToken cancellationToken)
         {

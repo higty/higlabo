@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelPatchTabsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChannelPatchTabsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync(ChannelPatchTabsParameter parameter)
         {
             return await this.SendAsync<ChannelPatchTabsParameter, ChannelPatchTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-patch-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPatchTabsResponse> ChannelPatchTabsAsync(ChannelPatchTabsParameter parameter, CancellationToken cancellationToken)
         {

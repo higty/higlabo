@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageCreatereplyallParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -140,10 +143,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync()
         {
@@ -151,7 +157,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync(CancellationToken cancellationToken)
         {
@@ -159,14 +165,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync(MessageCreatereplyallParameter parameter)
         {
             return await this.SendAsync<MessageCreatereplyallParameter, MessageCreatereplyallResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreplyall?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyallResponse> MessageCreatereplyallAsync(MessageCreatereplyallParameter parameter, CancellationToken cancellationToken)
         {

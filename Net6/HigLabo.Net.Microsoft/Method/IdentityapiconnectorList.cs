@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentityapiConnectorListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,10 +23,10 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
-            TargetUrl,
             AuthenticationConfiguration,
+            DisplayName,
+            Id,
+            TargetUrl,
         }
         public enum ApiPath
         {
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     {
         public IdentityApiConnector[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorListResponse> IdentityapiConnectorListAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityapiConnectorListParameter, IdentityapiConnectorListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorListResponse> IdentityapiConnectorListAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityapiConnectorListParameter, IdentityapiConnectorListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorListResponse> IdentityapiConnectorListAsync(IdentityapiConnectorListParameter parameter)
         {
             return await this.SendAsync<IdentityapiConnectorListParameter, IdentityapiConnectorListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-list?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorListResponse> IdentityapiConnectorListAsync(IdentityapiConnectorListParameter parameter, CancellationToken cancellationToken)
         {

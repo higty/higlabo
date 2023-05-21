@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootListDailyprintusagebyprinterParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PrintUsageByPrinter[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter)
         {
             return await this.SendAsync<ReportRootListDailyprintusagebyprinterParameter, ReportRootListDailyprintusagebyprinterResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-list-dailyprintusagebyprinter?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootListDailyprintusagebyprinterResponse> ReportRootListDailyprintusagebyprinterAsync(ReportRootListDailyprintusagebyprinterParameter parameter, CancellationToken cancellationToken)
         {

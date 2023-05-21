@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
+    /// </summary>
     public partial class WorksheetPostChartsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -67,10 +70,13 @@ namespace HigLabo.Net.Microsoft
         public ChartTitle? Title { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync()
         {
@@ -78,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync(WorksheetPostChartsParameter parameter)
         {
             return await this.SendAsync<WorksheetPostChartsParameter, WorksheetPostChartsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-post-charts?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetPostChartsResponse> WorksheetPostChartsAsync(WorksheetPostChartsParameter parameter, CancellationToken cancellationToken)
         {

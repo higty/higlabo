@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterListConnectorsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,14 +24,14 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
+            AppVersion,
             DisplayName,
             FullyQualifiedDomainName,
-            OperatingSystem,
-            AppVersion,
+            Id,
             Location,
-            RegisteredDateTime,
+            OperatingSystem,
             RegisteredBy,
+            RegisteredDateTime,
         }
         public enum ApiPath
         {
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PrintConnector[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListConnectorsResponse> PrinterListConnectorsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterListConnectorsParameter, PrinterListConnectorsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListConnectorsResponse> PrinterListConnectorsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterListConnectorsParameter, PrinterListConnectorsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListConnectorsResponse> PrinterListConnectorsAsync(PrinterListConnectorsParameter parameter)
         {
             return await this.SendAsync<PrinterListConnectorsParameter, PrinterListConnectorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterListConnectorsResponse> PrinterListConnectorsAsync(PrinterListConnectorsParameter parameter, CancellationToken cancellationToken)
         {

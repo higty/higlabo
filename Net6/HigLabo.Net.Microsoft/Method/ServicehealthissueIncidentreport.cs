@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
+    /// </summary>
     public partial class ServicehealthissueIncidentreportParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServicehealthissueIncidentreportResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(ServicehealthissueIncidentreportParameter parameter)
         {
             return await this.SendAsync<ServicehealthissueIncidentreportParameter, ServicehealthissueIncidentreportResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-incidentreport?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueIncidentreportResponse> ServicehealthissueIncidentreportAsync(ServicehealthissueIncidentreportParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackageGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,13 +56,19 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsHidden { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        public AccessPackage[]? AccessPackagesIncompatibleWith { get; set; }
         public AccessPackageAssignmentPolicy[]? AssignmentPolicies { get; set; }
         public AccessPackageCatalog? Catalog { get; set; }
+        public AccessPackage[]? IncompatibleAccessPackages { get; set; }
+        public Group[]? IncompatibleGroups { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageGetResponse> AccesspackageGetAsync()
         {
@@ -67,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageGetResponse> AccesspackageGetAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter)
         {
             return await this.SendAsync<AccesspackageGetParameter, AccesspackageGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageGetResponse> AccesspackageGetAsync(AccesspackageGetParameter parameter, CancellationToken cancellationToken)
         {

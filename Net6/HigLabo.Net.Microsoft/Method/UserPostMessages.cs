@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class UserPostMessagesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -137,10 +140,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMessagesResponse> UserPostMessagesAsync()
         {
@@ -148,7 +154,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMessagesResponse> UserPostMessagesAsync(CancellationToken cancellationToken)
         {
@@ -156,14 +162,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMessagesResponse> UserPostMessagesAsync(UserPostMessagesParameter parameter)
         {
             return await this.SendAsync<UserPostMessagesParameter, UserPostMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostMessagesResponse> UserPostMessagesAsync(UserPostMessagesParameter parameter, CancellationToken cancellationToken)
         {

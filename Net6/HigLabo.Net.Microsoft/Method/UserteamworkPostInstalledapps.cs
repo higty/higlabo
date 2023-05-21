@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class UserteamworkPostInstalledappsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserteamworkPostInstalledappsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkPostInstalledappsResponse> UserteamworkPostInstalledappsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserteamworkPostInstalledappsParameter, UserteamworkPostInstalledappsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkPostInstalledappsResponse> UserteamworkPostInstalledappsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserteamworkPostInstalledappsParameter, UserteamworkPostInstalledappsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkPostInstalledappsResponse> UserteamworkPostInstalledappsAsync(UserteamworkPostInstalledappsParameter parameter)
         {
             return await this.SendAsync<UserteamworkPostInstalledappsParameter, UserteamworkPostInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkPostInstalledappsResponse> UserteamworkPostInstalledappsAsync(UserteamworkPostInstalledappsParameter parameter, CancellationToken cancellationToken)
         {

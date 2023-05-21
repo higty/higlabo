@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
+    /// </summary>
     public partial class CallChangescreensharingroleParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CallChangescreensharingroleResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
         /// </summary>
         public async Task<CallChangescreensharingroleResponse> CallChangescreensharingroleAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallChangescreensharingroleParameter, CallChangescreensharingroleResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
         /// </summary>
         public async Task<CallChangescreensharingroleResponse> CallChangescreensharingroleAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallChangescreensharingroleParameter, CallChangescreensharingroleResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
         /// </summary>
         public async Task<CallChangescreensharingroleResponse> CallChangescreensharingroleAsync(CallChangescreensharingroleParameter parameter)
         {
             return await this.SendAsync<CallChangescreensharingroleParameter, CallChangescreensharingroleResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-changescreensharingrole?view=graph-rest-1.0
         /// </summary>
         public async Task<CallChangescreensharingroleResponse> CallChangescreensharingroleAsync(CallChangescreensharingroleParameter parameter, CancellationToken cancellationToken)
         {

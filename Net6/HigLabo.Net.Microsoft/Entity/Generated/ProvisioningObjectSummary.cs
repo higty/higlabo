@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/provisioningobjectsummary?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/provisioningobjectsummary?view=graph-rest-1.0
     /// </summary>
     public partial class ProvisioningObjectSummary
     {
@@ -18,7 +18,6 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public ProvisioningObjectSummaryProvisioningAction ProvisioningAction { get; set; }
         public DateTimeOffset? ActivityDateTime { get; set; }
         public string? ChangeId { get; set; }
         public string? CycleId { get; set; }
@@ -27,11 +26,12 @@ namespace HigLabo.Net.Microsoft
         public Initiator? InitiatedBy { get; set; }
         public string? JobId { get; set; }
         public ModifiedProperty[]? ModifiedProperties { get; set; }
+        public ProvisioningObjectSummaryProvisioningAction ProvisioningAction { get; set; }
+        public ProvisioningStatusInfo? ProvisioningStatusInfo { get; set; }
         public ProvisioningStep[]? ProvisioningSteps { get; set; }
         public ProvisioningServicePrincipal[]? ServicePrincipal { get; set; }
         public ProvisionedIdentity? SourceIdentity { get; set; }
         public ProvisioningSystem? SourceSystem { get; set; }
-        public ProvisioningStatusInfo? ProvisioningStatusInfo { get; set; }
         public ProvisionedIdentity? TargetIdentity { get; set; }
         public ProvisioningSystem? TargetSystem { get; set; }
         public string? TenantId { get; set; }

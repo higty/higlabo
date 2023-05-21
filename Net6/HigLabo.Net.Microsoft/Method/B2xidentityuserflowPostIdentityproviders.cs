@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
+    /// </summary>
     public partial class B2xidentityUserflowPostIdentityprovidersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class B2xidentityUserflowPostIdentityprovidersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync(B2xidentityUserflowPostIdentityprovidersParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowPostIdentityprovidersParameter, B2xidentityUserflowPostIdentityprovidersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-post-identityproviders?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowPostIdentityprovidersResponse> B2xidentityUserflowPostIdentityprovidersAsync(B2xidentityUserflowPostIdentityprovidersParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatPostInstalledappsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatPostInstalledappsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostInstalledappsResponse> ChatPostInstalledappsAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatPostInstalledappsParameter, ChatPostInstalledappsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostInstalledappsResponse> ChatPostInstalledappsAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatPostInstalledappsParameter, ChatPostInstalledappsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostInstalledappsResponse> ChatPostInstalledappsAsync(ChatPostInstalledappsParameter parameter)
         {
             return await this.SendAsync<ChatPostInstalledappsParameter, ChatPostInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-post-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPostInstalledappsResponse> ChatPostInstalledappsAsync(ChatPostInstalledappsParameter parameter, CancellationToken cancellationToken)
         {

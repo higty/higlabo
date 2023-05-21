@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
+    /// </summary>
     public partial class CrosstenantAccessPolicyConfigurationdefaultUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,19 +35,22 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
-        public CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationInbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationOutbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectOutbound { get; set; }
+        public CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
     }
     public partial class CrosstenantAccessPolicyConfigurationdefaultUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CrosstenantAccessPolicyConfigurationdefaultUpdateParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationdefaultUpdateParameter, CrosstenantAccessPolicyConfigurationdefaultUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationdefault-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationdefaultUpdateResponse> CrosstenantAccessPolicyConfigurationdefaultUpdateAsync(CrosstenantAccessPolicyConfigurationdefaultUpdateParameter parameter, CancellationToken cancellationToken)
         {

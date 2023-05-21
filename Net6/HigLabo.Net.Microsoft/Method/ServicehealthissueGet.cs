@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ServicehealthissueGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -98,10 +101,13 @@ namespace HigLabo.Net.Microsoft
         public ServiceHealthIssueServiceHealthStatus Status { get; set; }
         public string? Title { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueGetResponse> ServicehealthissueGetAsync()
         {
@@ -109,7 +115,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServicehealthissueGetParameter, ServicehealthissueGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueGetResponse> ServicehealthissueGetAsync(CancellationToken cancellationToken)
         {
@@ -117,14 +123,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServicehealthissueGetParameter, ServicehealthissueGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueGetResponse> ServicehealthissueGetAsync(ServicehealthissueGetParameter parameter)
         {
             return await this.SendAsync<ServicehealthissueGetParameter, ServicehealthissueGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/servicehealthissue-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ServicehealthissueGetResponse> ServicehealthissueGetAsync(ServicehealthissueGetParameter parameter, CancellationToken cancellationToken)
         {

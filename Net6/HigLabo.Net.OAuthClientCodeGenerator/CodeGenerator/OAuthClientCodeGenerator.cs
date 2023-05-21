@@ -12,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace HigLabo.Net.CodeGenerator
 {
@@ -104,6 +105,13 @@ namespace HigLabo.Net.CodeGenerator
         public async Task Execute()
         {
             var random = new Random();
+            //var text = File.ReadAllText(Environment.CurrentDirectory + "v1.0_metadata.xml");
+            //var xml = XElement.Parse(text);
+
+            //foreach (var item in xml.Elements("DataSource"))
+            //{
+
+            //}
 
             //await CreateScopeSourceCode();
 
@@ -147,7 +155,6 @@ namespace HigLabo.Net.CodeGenerator
             sc.Namespaces.Add(new Namespace($"HigLabo.Net.{this.ServiceName}"));
             sc.Namespaces[0].Classes.Add(c);
 
-            if (url != "https://learn.microsoft.com/en-us/graph/api/resources/team?view=graph-rest-1.0") { return; }
             if (_CreatedUrlList.Contains(url) == false)
             {
                 this.WriteFile(filePath, sc);
@@ -226,6 +233,7 @@ namespace HigLabo.Net.CodeGenerator
             sc.Namespaces[0].Classes.Add(CreateResponseClass(document, cName + "Response", context));
 
             var cClient = new Class(AccessModifier.Public, this.ServiceName + "Client");
+            cClient.Comment = url;
             cClient.Modifier.Partial = true;
             sc.Namespaces[0].Classes.Add(cClient);
             {

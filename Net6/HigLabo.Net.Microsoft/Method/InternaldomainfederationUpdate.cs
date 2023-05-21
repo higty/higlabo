@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
+    /// </summary>
     public partial class InternaldomainfederationUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -106,10 +109,13 @@ namespace HigLabo.Net.Microsoft
         public SigningCertificateUpdateStatus? SigningCertificateUpdateStatus { get; set; }
         public string? SignOutUri { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync()
         {
@@ -117,7 +123,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(CancellationToken cancellationToken)
         {
@@ -125,14 +131,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(InternaldomainfederationUpdateParameter parameter)
         {
             return await this.SendAsync<InternaldomainfederationUpdateParameter, InternaldomainfederationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/internaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<InternaldomainfederationUpdateResponse> InternaldomainfederationUpdateAsync(InternaldomainfederationUpdateParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupRenewParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupRenewResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRenewResponse> GroupRenewAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRenewResponse> GroupRenewAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRenewResponse> GroupRenewAsync(GroupRenewParameter parameter)
         {
             return await this.SendAsync<GroupRenewParameter, GroupRenewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-renew?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupRenewResponse> GroupRenewAsync(GroupRenewParameter parameter, CancellationToken cancellationToken)
         {

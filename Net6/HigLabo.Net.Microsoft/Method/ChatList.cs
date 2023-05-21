@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -13,9 +16,9 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
+                    case ApiPath.Chats: return $"/chats";
                     case ApiPath.Me_Chats: return $"/me/chats";
                     case ApiPath.Users_UserIdOrUserPrincipalName_Chats: return $"/users/{UserIdOrUserPrincipalName}/chats";
-                    case ApiPath.Chats: return $"/chats";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -30,17 +33,20 @@ namespace HigLabo.Net.Microsoft
             OnlineMeetingInfo,
             TenantId,
             Topic,
+            Viewpoint,
             WebUrl,
             InstalledApps,
+            LastMessagePreview,
             Members,
             Messages,
+            PinnedMessages,
             Tabs,
         }
         public enum ApiPath
         {
+            Chats,
             Me_Chats,
             Users_UserIdOrUserPrincipalName_Chats,
-            Chats,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -65,10 +71,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Chat[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListResponse> ChatListAsync()
         {
@@ -76,7 +85,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListParameter, ChatListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListResponse> ChatListAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +93,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListParameter, ChatListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListResponse> ChatListAsync(ChatListParameter parameter)
         {
             return await this.SendAsync<ChatListParameter, ChatListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListResponse> ChatListAsync(ChatListParameter parameter, CancellationToken cancellationToken)
         {

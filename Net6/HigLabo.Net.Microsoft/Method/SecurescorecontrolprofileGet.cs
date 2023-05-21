@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
+    /// </summary>
     public partial class SecurescorecontrolprofileGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Security_Securescorecontrolprofiles_Id: return $"/security/securescorecontrolprofiles/{Id}";
+                    case ApiPath.Security_SecureScoreControlProfiles_Id: return $"/security/secureScoreControlProfiles/{Id}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -24,7 +27,7 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Security_Securescorecontrolprofiles_Id,
+            Security_SecureScoreControlProfiles_Id,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SecurescorecontrolprofileGetResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter)
         {
             return await this.SendAsync<SecurescorecontrolprofileGetParameter, SecurescorecontrolprofileGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/securescorecontrolprofile-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SecurescorecontrolprofileGetResponse> SecurescorecontrolprofileGetAsync(SecurescorecontrolprofileGetParameter parameter, CancellationToken cancellationToken)
         {

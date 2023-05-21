@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
+    /// </summary>
     public partial class CallMuteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -45,10 +48,13 @@ namespace HigLabo.Net.Microsoft
         public ResultInfo? ResultInfo { get; set; }
         public string? Status { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallMuteResponse> CallMuteAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallMuteResponse> CallMuteAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallMuteResponse> CallMuteAsync(CallMuteParameter parameter)
         {
             return await this.SendAsync<CallMuteParameter, CallMuteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-mute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallMuteResponse> CallMuteAsync(CallMuteParameter parameter, CancellationToken cancellationToken)
         {

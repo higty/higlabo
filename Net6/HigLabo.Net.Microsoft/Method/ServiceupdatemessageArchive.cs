@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceupdatemessageArchiveParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceupdatemessageArchiveResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(ServiceupdatemessageArchiveParameter parameter)
         {
             return await this.SendAsync<ServiceupdatemessageArchiveParameter, ServiceupdatemessageArchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceupdatemessage-archive?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceupdatemessageArchiveResponse> ServiceupdatemessageArchiveAsync(ServiceupdatemessageArchiveParameter parameter, CancellationToken cancellationToken)
         {

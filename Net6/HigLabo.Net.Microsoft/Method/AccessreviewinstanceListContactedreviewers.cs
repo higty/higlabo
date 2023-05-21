@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstanceListContactedreviewersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessReviewReviewer[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceListContactedreviewersParameter, AccessreviewinstanceListContactedreviewersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-contactedreviewers?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListContactedreviewersResponse> AccessreviewinstanceListContactedreviewersAsync(AccessreviewinstanceListContactedreviewersParameter parameter, CancellationToken cancellationToken)
         {

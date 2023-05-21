@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupSubscribebymailParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupSubscribebymailResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync(GroupSubscribebymailParameter parameter)
         {
             return await this.SendAsync<GroupSubscribebymailParameter, GroupSubscribebymailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-subscribebymail?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupSubscribebymailResponse> GroupSubscribebymailAsync(GroupSubscribebymailParameter parameter, CancellationToken cancellationToken)
         {

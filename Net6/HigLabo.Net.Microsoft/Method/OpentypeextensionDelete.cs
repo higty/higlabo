@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenTypeextensionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -17,6 +20,7 @@ namespace HigLabo.Net.Microsoft
             public string? PostsId { get; set; }
             public string? TodoTaskListId { get; set; }
             public string? TaskId { get; set; }
+            public string? UserId { get; set; }
 
             public string GetApiPath()
             {
@@ -31,8 +35,11 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Organization_Id_Extensions_ExtensionId: return $"/organization/{Id}/extensions/{ExtensionId}";
                     case ApiPath.Users_IdOruserPrincipalName_Contacts_Id_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/extensions/{ExtensionId}";
                     case ApiPath.Users_IdOruserPrincipalName_Extensions_ExtensionId: return $"/users/{IdOrUserPrincipalName}/extensions/{ExtensionId}";
-                    case ApiPath.Users_Me_Todo_Lists_TodoTaskListId_Extensions_ExtensionId: return $"/users/me/todo/lists/{TodoTaskListId}/extensions/{ExtensionId}";
-                    case ApiPath.Users_Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId: return $"/users/me/todo/lists/{TodoTaskListId}/tasks/{TaskId}/extensions/{ExtensionId}";
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Extensions_ExtensionId: return $"/me/todo/lists/{TodoTaskListId}/extensions/{ExtensionId}";
+                    case ApiPath.Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId: return $"/me/todo/lists/{TodoTaskListId}/tasks/{TaskId}/extensions/{ExtensionId}";
+                    case ApiPath.Users_UserId_Todo_Lists_TodoTaskListId_Extensions_ExtensionId: return $"/users/{UserId}/todo/lists/{TodoTaskListId}/extensions/{ExtensionId}";
+                    case ApiPath.Users_UserId_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId: return $"/users/{UserId}/todo/lists/{TodoTaskListId}/tasks/{TaskId}/extensions/{ExtensionId}";
+                    case ApiPath.Me_Extensions_ExtensionId: return $"/me/extensions/{ExtensionId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -49,8 +56,11 @@ namespace HigLabo.Net.Microsoft
             Organization_Id_Extensions_ExtensionId,
             Users_IdOruserPrincipalName_Contacts_Id_Extensions_ExtensionId,
             Users_IdOruserPrincipalName_Extensions_ExtensionId,
-            Users_Me_Todo_Lists_TodoTaskListId_Extensions_ExtensionId,
-            Users_Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId,
+            Me_Todo_Lists_TodoTaskListId_Extensions_ExtensionId,
+            Me_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId,
+            Users_UserId_Todo_Lists_TodoTaskListId_Extensions_ExtensionId,
+            Users_UserId_Todo_Lists_TodoTaskListId_Tasks_TaskId_Extensions_ExtensionId,
+            Me_Extensions_ExtensionId,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -66,10 +76,13 @@ namespace HigLabo.Net.Microsoft
     public partial class OpenTypeextensionDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync()
         {
@@ -77,7 +90,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +98,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter)
         {
             return await this.SendAsync<OpenTypeextensionDeleteParameter, OpenTypeextensionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/opentypeextension-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenTypeextensionDeleteResponse> OpenTypeextensionDeleteAsync(OpenTypeextensionDeleteParameter parameter, CancellationToken cancellationToken)
         {

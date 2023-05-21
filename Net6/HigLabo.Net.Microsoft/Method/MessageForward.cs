@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageForwardParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     public partial class MessageForwardResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageForwardResponse> MessageForwardAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageForwardResponse> MessageForwardAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageForwardResponse> MessageForwardAsync(MessageForwardParameter parameter)
         {
             return await this.SendAsync<MessageForwardParameter, MessageForwardResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-forward?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageForwardResponse> MessageForwardAsync(MessageForwardParameter parameter, CancellationToken cancellationToken)
         {

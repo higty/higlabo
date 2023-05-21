@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
+    /// </summary>
     public partial class UserPostManagerParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserPostManagerResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostManagerResponse> UserPostManagerAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostManagerResponse> UserPostManagerAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostManagerResponse> UserPostManagerAsync(UserPostManagerParameter parameter)
         {
             return await this.SendAsync<UserPostManagerParameter, UserPostManagerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-manager?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostManagerResponse> UserPostManagerAsync(UserPostManagerParameter parameter, CancellationToken cancellationToken)
         {

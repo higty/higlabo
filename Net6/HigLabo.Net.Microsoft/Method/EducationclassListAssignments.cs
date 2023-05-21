@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationclassListAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,7 +24,6 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             AddedStudentAction,
             AddToCalendarAction,
             AllowLateSubmissions,
@@ -35,18 +37,20 @@ namespace HigLabo.Net.Microsoft
             CreatedDateTime,
             DisplayName,
             DueDateTime,
+            FeedbackResourcesFolderUrl,
             Grading,
+            Id,
             Instructions,
             LastModifiedBy,
             LastModifiedDateTime,
             NotificationChannelUrl,
+            ResourcesFolderUrl,
             Status,
             WebUrl,
-            ResourcesFolderUrl,
-            Resources,
-            Submissions,
             Categories,
+            Resources,
             Rubric,
+            Submissions,
         }
         public enum ApiPath
         {
@@ -75,10 +79,13 @@ namespace HigLabo.Net.Microsoft
     {
         public EducationAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListAssignmentsResponse> EducationclassListAssignmentsAsync()
         {
@@ -86,7 +93,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationclassListAssignmentsParameter, EducationclassListAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListAssignmentsResponse> EducationclassListAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -94,14 +101,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationclassListAssignmentsParameter, EducationclassListAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListAssignmentsResponse> EducationclassListAssignmentsAsync(EducationclassListAssignmentsParameter parameter)
         {
             return await this.SendAsync<EducationclassListAssignmentsParameter, EducationclassListAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-assignments?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListAssignmentsResponse> EducationclassListAssignmentsAsync(EducationclassListAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

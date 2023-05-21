@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class ApprovalFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Approval[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<ApprovalFilterbycurrentUserParameter, ApprovalFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalFilterbycurrentUserResponse> ApprovalFilterbycurrentUserAsync(ApprovalFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

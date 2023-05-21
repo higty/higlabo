@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannerplanGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
         public PlannerPlanDetails? Details { get; set; }
         public PlannerTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanGetResponse> PlannerplanGetAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanGetResponse> PlannerplanGetAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanGetResponse> PlannerplanGetAsync(PlannerplanGetParameter parameter)
         {
             return await this.SendAsync<PlannerplanGetParameter, PlannerplanGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannerplan-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerplanGetResponse> PlannerplanGetAsync(PlannerplanGetParameter parameter, CancellationToken cancellationToken)
         {

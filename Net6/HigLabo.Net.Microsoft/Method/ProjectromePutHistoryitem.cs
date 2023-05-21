@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
+    /// </summary>
     public partial class ProjectromePutHistoryitemParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ProjectromePutHistoryitemResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromePutHistoryitemResponse> ProjectromePutHistoryitemAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProjectromePutHistoryitemParameter, ProjectromePutHistoryitemResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromePutHistoryitemResponse> ProjectromePutHistoryitemAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProjectromePutHistoryitemParameter, ProjectromePutHistoryitemResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromePutHistoryitemResponse> ProjectromePutHistoryitemAsync(ProjectromePutHistoryitemParameter parameter)
         {
             return await this.SendAsync<ProjectromePutHistoryitemParameter, ProjectromePutHistoryitemResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/projectrome-put-historyitem?view=graph-rest-1.0
         /// </summary>
         public async Task<ProjectromePutHistoryitemResponse> ProjectromePutHistoryitemAsync(ProjectromePutHistoryitemParameter parameter, CancellationToken cancellationToken)
         {

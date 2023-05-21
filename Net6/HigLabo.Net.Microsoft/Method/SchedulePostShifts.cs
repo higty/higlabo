@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
+    /// </summary>
     public partial class SchedulePostShiftsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,30 +36,33 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public ShiftItem? DraftShift { get; set; }
         public string? Id { get; set; }
-        public string? UserId { get; set; }
+        public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public string? SchedulingGroupId { get; set; }
         public ShiftItem? SharedShift { get; set; }
-        public ShiftItem? DraftShift { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public IdentitySet? LastModifiedBy { get; set; }
+        public string? UserId { get; set; }
     }
     public partial class SchedulePostShiftsResponse : RestApiResponse
     {
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public ShiftItem? DraftShift { get; set; }
         public string? Id { get; set; }
-        public string? UserId { get; set; }
+        public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public string? SchedulingGroupId { get; set; }
         public ShiftItem? SharedShift { get; set; }
-        public ShiftItem? DraftShift { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
-        public IdentitySet? LastModifiedBy { get; set; }
+        public string? UserId { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync(SchedulePostShiftsParameter parameter)
         {
             return await this.SendAsync<SchedulePostShiftsParameter, SchedulePostShiftsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-post-shifts?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulePostShiftsResponse> SchedulePostShiftsAsync(SchedulePostShiftsParameter parameter, CancellationToken cancellationToken)
         {

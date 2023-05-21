@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/serviceprincipal?view=graph-rest-1.0
     /// </summary>
     public partial class ServicePrincipal
     {
@@ -40,6 +40,7 @@ namespace HigLabo.Net.Microsoft
         public PermissionScope[]? Oauth2PermissionScopes { get; set; }
         public PasswordCredential[]? PasswordCredentials { get; set; }
         public ServicePrincipalstring PreferredSingleSignOnMode { get; set; }
+        public string? PreferredTokenSigningKeyThumbprint { get; set; }
         public String[]? ReplyUrls { get; set; }
         public ResourceSpecificPermission[]? ResourceSpecificApplicationPermissions { get; set; }
         public SamlSingleSignOnSettings? SamlSingleSignOnSettings { get; set; }
@@ -49,10 +50,12 @@ namespace HigLabo.Net.Microsoft
         public String[]? Tags { get; set; }
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
+        public AppManagementPolicy[]? AppManagementPolicies { get; set; }
         public AppRoleAssignment? AppRoleAssignedTo { get; set; }
         public AppRoleAssignment[]? AppRoleAssignments { get; set; }
         public ClaimsMappingPolicy[]? ClaimsMappingPolicies { get; set; }
         public DirectoryObject[]? CreatedObjects { get; set; }
+        public FederatedIdentityCredential[]? FederatedIdentityCredentials { get; set; }
         public HomeRealmDiscoveryPolicy[]? HomeRealmDiscoveryPolicies { get; set; }
         public DirectoryObject[]? MemberOf { get; set; }
         public OAuth2PermissionGrant[]? Oauth2PermissionGrants { get; set; }

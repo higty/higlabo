@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarGroupUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -46,10 +49,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public Calendar[]? Calendars { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync()
         {
@@ -57,7 +63,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CancellationToken cancellationToken)
         {
@@ -65,14 +71,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CalendarGroupUpdateParameter parameter)
         {
             return await this.SendAsync<CalendarGroupUpdateParameter, CalendarGroupUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendargroup-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarGroupUpdateResponse> CalendarGroupUpdateAsync(CalendarGroupUpdateParameter parameter, CancellationToken cancellationToken)
         {

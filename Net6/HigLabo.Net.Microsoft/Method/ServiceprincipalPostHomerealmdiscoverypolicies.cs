@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalPostHomerealmdiscoverypoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_HomeRealmDiscoveryPolicies_ref: return $"/servicePrincipals/{Id}/homeRealmDiscoveryPolicies/$ref";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_HomeRealmDiscoveryPolicies_ref,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -37,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceprincipalPostHomerealmdiscoverypoliciesResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync()
         {
@@ -48,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync(ServiceprincipalPostHomerealmdiscoverypoliciesParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalPostHomerealmdiscoverypoliciesParameter, ServiceprincipalPostHomerealmdiscoverypoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostHomerealmdiscoverypoliciesResponse> ServiceprincipalPostHomerealmdiscoverypoliciesAsync(ServiceprincipalPostHomerealmdiscoverypoliciesParameter parameter, CancellationToken cancellationToken)
         {

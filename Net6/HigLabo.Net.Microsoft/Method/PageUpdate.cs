@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
+    /// </summary>
     public partial class PageUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PageUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PageUpdateResponse> PageUpdateAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PageUpdateResponse> PageUpdateAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PageUpdateResponse> PageUpdateAsync(PageUpdateParameter parameter)
         {
             return await this.SendAsync<PageUpdateParameter, PageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/page-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PageUpdateResponse> PageUpdateAsync(PageUpdateParameter parameter, CancellationToken cancellationToken)
         {

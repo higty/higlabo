@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemGetContentParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
             public string? ShareIdOrEncodedSharingUrl { get; set; }
             public string? SiteId { get; set; }
             public string? UserId { get; set; }
+            public string? ItemID { get; set; }
 
             public string GetApiPath()
             {
@@ -26,6 +30,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Shares_ShareIdOrEncodedSharingUrl_DriveItem_Content: return $"/shares/{ShareIdOrEncodedSharingUrl}/driveItem/content";
                     case ApiPath.Sites_SiteId_Drive_Items_ItemId_Content: return $"/sites/{SiteId}/drive/items/{ItemId}/content";
                     case ApiPath.Users_UserId_Drive_Items_ItemId_Content: return $"/users/{UserId}/drive/items/{ItemId}/content";
+                    case ApiPath.Drive_Items_ItemID: return $"/drive/items/{ItemID}";
+                    case ApiPath.Ttps__B0mpuaBy3301files1drvcom_Y23vmag: return $"/ttps://b0mpua-by3301.files.1drv.com/y23vmag";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -43,6 +49,8 @@ namespace HigLabo.Net.Microsoft
             Shares_ShareIdOrEncodedSharingUrl_DriveItem_Content,
             Sites_SiteId_Drive_Items_ItemId_Content,
             Users_UserId_Drive_Items_ItemId_Content,
+            Drive_Items_ItemID,
+            Ttps__B0mpuaBy3301files1drvcom_Y23vmag,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -66,10 +74,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DriveitemGetContentResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemGetContentResponse> DriveitemGetContentAsync()
         {
@@ -77,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemGetContentResponse> DriveitemGetContentAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemGetContentResponse> DriveitemGetContentAsync(DriveitemGetContentParameter parameter)
         {
             return await this.SendAsync<DriveitemGetContentParameter, DriveitemGetContentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-get-content?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemGetContentResponse> DriveitemGetContentAsync(DriveitemGetContentParameter parameter, CancellationToken cancellationToken)
         {

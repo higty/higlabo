@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupPostAcceptedsendersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupPostAcceptedsendersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostAcceptedsendersResponse> GroupPostAcceptedsendersAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupPostAcceptedsendersParameter, GroupPostAcceptedsendersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostAcceptedsendersResponse> GroupPostAcceptedsendersAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupPostAcceptedsendersParameter, GroupPostAcceptedsendersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostAcceptedsendersResponse> GroupPostAcceptedsendersAsync(GroupPostAcceptedsendersParameter parameter)
         {
             return await this.SendAsync<GroupPostAcceptedsendersParameter, GroupPostAcceptedsendersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-post-acceptedsenders?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupPostAcceptedsendersResponse> GroupPostAcceptedsendersAsync(GroupPostAcceptedsendersParameter parameter, CancellationToken cancellationToken)
         {

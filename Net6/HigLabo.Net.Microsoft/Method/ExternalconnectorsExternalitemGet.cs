@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ExternalConnectorsExternalitemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,6 +25,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            Acl,
+            Content,
+            Id,
+            Properties,
+            Activities,
         }
         public enum ApiPath
         {
@@ -52,11 +60,15 @@ namespace HigLabo.Net.Microsoft
         public ExternalConnectorsExternalitemContent? Content { get; set; }
         public string? Id { get; set; }
         public ExternalConnectorsProperties? Properties { get; set; }
+        public ExternalConnectorsExternalactivity[]? Activities { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync()
         {
@@ -64,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync(ExternalConnectorsExternalitemGetParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalitemGetParameter, ExternalConnectorsExternalitemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalitemGetResponse> ExternalConnectorsExternalitemGetAsync(ExternalConnectorsExternalitemGetParameter parameter, CancellationToken cancellationToken)
         {

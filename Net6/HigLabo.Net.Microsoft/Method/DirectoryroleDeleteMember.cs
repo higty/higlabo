@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryroleDeleteMemberParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -15,7 +18,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.DirectoryRoles_RoleId_Members_Id_ref: return $"/directoryRoles/{RoleId}/members/{Id}/$ref";
-                    case ApiPath.DirectoryRoles_RoleTemplateId: return $"/directoryRoles/roleTemplateId";
+                    case ApiPath.DirectoryRoles: return $"/directoryRoles";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -24,7 +27,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             DirectoryRoles_RoleId_Members_Id_ref,
-            DirectoryRoles_RoleTemplateId,
+            DirectoryRoles,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DirectoryroleDeleteMemberResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(DirectoryroleDeleteMemberParameter parameter)
         {
             return await this.SendAsync<DirectoryroleDeleteMemberParameter, DirectoryroleDeleteMemberResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-delete-member?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleDeleteMemberResponse> DirectoryroleDeleteMemberAsync(DirectoryroleDeleteMemberParameter parameter, CancellationToken cancellationToken)
         {

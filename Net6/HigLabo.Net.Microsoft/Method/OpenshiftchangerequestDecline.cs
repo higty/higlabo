@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenshiftchangerequestDeclineParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class OpenshiftchangerequestDeclineResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync(OpenshiftchangerequestDeclineParameter parameter)
         {
             return await this.SendAsync<OpenshiftchangerequestDeclineParameter, OpenshiftchangerequestDeclineResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshiftchangerequest-decline?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftchangerequestDeclineResponse> OpenshiftchangerequestDeclineAsync(OpenshiftchangerequestDeclineParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageCreatereplyParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -140,10 +143,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync()
         {
@@ -151,7 +157,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync(CancellationToken cancellationToken)
         {
@@ -159,14 +165,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter)
         {
             return await this.SendAsync<MessageCreatereplyParameter, MessageCreatereplyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-createreply?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCreatereplyResponse> MessageCreatereplyAsync(MessageCreatereplyParameter parameter, CancellationToken cancellationToken)
         {

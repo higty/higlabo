@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/identityuserflowattributeassignment?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/identityuserflowattributeassignment?view=graph-rest-1.0
     /// </summary>
     public partial class IdentityUserFlowAttributeAssignment
     {
@@ -17,8 +17,8 @@ namespace HigLabo.Net.Microsoft
             CheckboxMultiSelect,
         }
 
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOptional { get; set; }
         public bool? RequiresVerification { get; set; }
         public UserAttributeValuesItem[]? UserAttributeValues { get; set; }

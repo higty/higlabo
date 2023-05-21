@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterDeleteTasktriggerParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PrinterDeleteTasktriggerResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterDeleteTasktriggerResponse> PrinterDeleteTasktriggerAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterDeleteTasktriggerParameter, PrinterDeleteTasktriggerResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterDeleteTasktriggerResponse> PrinterDeleteTasktriggerAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterDeleteTasktriggerParameter, PrinterDeleteTasktriggerResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterDeleteTasktriggerResponse> PrinterDeleteTasktriggerAsync(PrinterDeleteTasktriggerParameter parameter)
         {
             return await this.SendAsync<PrinterDeleteTasktriggerParameter, PrinterDeleteTasktriggerResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-delete-tasktrigger?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterDeleteTasktriggerResponse> PrinterDeleteTasktriggerAsync(PrinterDeleteTasktriggerParameter parameter, CancellationToken cancellationToken)
         {

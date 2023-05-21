@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemCheckoutParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DriveitemCheckoutResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter)
         {
             return await this.SendAsync<DriveitemCheckoutParameter, DriveitemCheckoutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-checkout?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCheckoutResponse> DriveitemCheckoutAsync(DriveitemCheckoutParameter parameter, CancellationToken cancellationToken)
         {

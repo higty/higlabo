@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
+    /// </summary>
     public partial class DeviceListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -24,10 +27,13 @@ namespace HigLabo.Net.Microsoft
             AlternativeSecurityIds,
             ApproximateLastSignInDateTime,
             ComplianceExpirationDateTime,
+            DeviceCategory,
             DeviceId,
             DeviceMetadata,
+            DeviceOwnership,
             DeviceVersion,
             DisplayName,
+            EnrollmentProfileName,
             ExtensionAttributes,
             Id,
             IsCompliant,
@@ -41,13 +47,14 @@ namespace HigLabo.Net.Microsoft
             OperatingSystemVersion,
             PhysicalIds,
             ProfileType,
+            RegistrationDateTime,
             SystemLabels,
             TrustType,
             Extensions,
             MemberOf,
-            TransitiveMemberOf,
             RegisteredOwners,
             RegisteredUsers,
+            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -76,10 +83,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Device[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListResponse> DeviceListAsync()
         {
@@ -87,7 +97,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListResponse> DeviceListAsync(CancellationToken cancellationToken)
         {
@@ -95,14 +105,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListResponse> DeviceListAsync(DeviceListParameter parameter)
         {
             return await this.SendAsync<DeviceListParameter, DeviceListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListResponse> DeviceListAsync(DeviceListParameter parameter, CancellationToken cancellationToken)
         {

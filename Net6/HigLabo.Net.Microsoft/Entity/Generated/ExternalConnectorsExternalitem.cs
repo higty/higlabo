@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-externalitem?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/externalconnectors-externalitem?view=graph-rest-1.0
     /// </summary>
     public partial class ExternalConnectorsExternalitem
     {
@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public ExternalConnectorsExternalitemContent? Content { get; set; }
         public string? Id { get; set; }
         public ExternalConnectorsProperties? Properties { get; set; }
+        public ExternalConnectorsExternalactivity[]? Activities { get; set; }
     }
 }

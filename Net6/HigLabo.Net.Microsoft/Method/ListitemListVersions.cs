@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
+    /// </summary>
     public partial class ListitemListVersionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ListItemVersion[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync(ListitemListVersionsParameter parameter)
         {
             return await this.SendAsync<ListitemListVersionsParameter, ListitemListVersionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-list-versions?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemListVersionsResponse> ListitemListVersionsAsync(ListitemListVersionsParameter parameter, CancellationToken cancellationToken)
         {

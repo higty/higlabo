@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
+    /// </summary>
     public partial class ContentTypeListColumnsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -24,38 +27,38 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ColumnGroup,
-            Description,
-            DisplayName,
-            EnforceUniqueValues,
-            Hidden,
-            Id,
-            Indexed,
-            Name,
-            ReadOnly,
-            Required,
             Boolean,
             Calculated,
             Choice,
+            ColumnGroup,
+            ContentApprovalStatus,
             Currency,
             DateTime,
             DefaultValue,
+            Description,
+            DisplayName,
+            EnforceUniqueValues,
             Geolocation,
+            Hidden,
+            HyperlinkOrPicture,
+            IsDeletable,
+            IsReorderable,
+            Id,
+            Indexed,
+            IsSealed,
             Lookup,
+            Name,
             Number,
             PersonOrGroup,
-            Text,
-            IsDeletable,
             PropagateChanges,
-            IsReorderable,
-            IsSealed,
-            Validation,
-            HyperlinkOrPicture,
-            Term,
+            ReadOnly,
+            Required,
             SourceContentType,
+            Term,
+            Text,
             Thumbnail,
             Type,
-            ContentApprovalStatus,
+            Validation,
             SourceColumn,
         }
         public enum ApiPath
@@ -86,10 +89,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ColumnDefinition[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync()
         {
@@ -97,7 +103,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(CancellationToken cancellationToken)
         {
@@ -105,14 +111,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter)
         {
             return await this.SendAsync<ContentTypeListColumnsParameter, ContentTypeListColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contenttype-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<ContentTypeListColumnsResponse> ContentTypeListColumnsAsync(ContentTypeListColumnsParameter parameter, CancellationToken cancellationToken)
         {

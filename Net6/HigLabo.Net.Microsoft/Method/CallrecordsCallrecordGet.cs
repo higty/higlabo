@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
+    /// </summary>
     public partial class CallrecordsCallrecordGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -88,10 +91,13 @@ namespace HigLabo.Net.Microsoft
         public Int64? Version { get; set; }
         public CallrecordsSession[]? Sessions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync()
         {
@@ -99,7 +105,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CancellationToken cancellationToken)
         {
@@ -107,14 +113,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CallrecordsCallrecordGetParameter parameter)
         {
             return await this.SendAsync<CallrecordsCallrecordGetParameter, CallrecordsCallrecordGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/callrecords-callrecord-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CallrecordsCallrecordGetResponse> CallrecordsCallrecordGetAsync(CallrecordsCallrecordGetParameter parameter, CancellationToken cancellationToken)
         {

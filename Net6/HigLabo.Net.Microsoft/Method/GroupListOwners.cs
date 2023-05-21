@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListOwnersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -38,6 +41,7 @@ namespace HigLabo.Net.Microsoft
             Department,
             DisplayName,
             EmployeeHireDate,
+            EmployeeLeaveDateTime,
             EmployeeId,
             EmployeeOrgData,
             EmployeeType,
@@ -84,23 +88,25 @@ namespace HigLabo.Net.Microsoft
             RefreshTokensValidFromDateTime,
             Responsibilities,
             Schools,
+            SecurityIdentifier,
             ShowInAddressList,
-            Skills,
+            SignInActivity,
             SignInSessionsValidFromDateTime,
+            Skills,
             State,
             StreetAddress,
             Surname,
             UsageLocation,
             UserPrincipalName,
             UserType,
-            AgreementAcceptances,
             Activities,
+            AgreementAcceptances,
             AppRoleAssignments,
             Authentication,
             Calendar,
             CalendarGroups,
-            CalendarView,
             Calendars,
+            CalendarView,
             ContactFolders,
             Contacts,
             CreatedObjects,
@@ -125,6 +131,7 @@ namespace HigLabo.Net.Microsoft
             Planner,
             RegisteredDevices,
             Todo,
+            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -153,10 +160,13 @@ namespace HigLabo.Net.Microsoft
     {
         public User[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListOwnersResponse> GroupListOwnersAsync()
         {
@@ -164,7 +174,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListOwnersResponse> GroupListOwnersAsync(CancellationToken cancellationToken)
         {
@@ -172,14 +182,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListOwnersResponse> GroupListOwnersAsync(GroupListOwnersParameter parameter)
         {
             return await this.SendAsync<GroupListOwnersParameter, GroupListOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListOwnersResponse> GroupListOwnersAsync(GroupListOwnersParameter parameter, CancellationToken cancellationToken)
         {

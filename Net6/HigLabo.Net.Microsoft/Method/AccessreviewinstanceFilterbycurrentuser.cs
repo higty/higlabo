@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstanceFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -24,12 +27,13 @@ namespace HigLabo.Net.Microsoft
             EndDateTime,
             FallbackReviewers,
             Id,
+            Reviewers,
             Scope,
             StartDateTime,
             Status,
-            Reviewers,
-            Decisions,
             ContactedReviewers,
+            Decisions,
+            Stages,
         }
         public enum ApiPath
         {
@@ -58,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessReviewInstance[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync()
         {
@@ -69,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(AccessreviewinstanceFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceFilterbycurrentUserParameter, AccessreviewinstanceFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceFilterbycurrentUserResponse> AccessreviewinstanceFilterbycurrentUserAsync(AccessreviewinstanceFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

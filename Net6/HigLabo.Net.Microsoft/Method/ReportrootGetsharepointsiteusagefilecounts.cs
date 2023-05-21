@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetsharepointsiteusagefilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetsharepointsiteusagefilecountsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagefilecountsResponse> ReportRootGetsharepointsiteusagefilecountsAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetsharepointsiteusagefilecountsParameter, ReportRootGetsharepointsiteusagefilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagefilecountsResponse> ReportRootGetsharepointsiteusagefilecountsAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetsharepointsiteusagefilecountsParameter, ReportRootGetsharepointsiteusagefilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagefilecountsResponse> ReportRootGetsharepointsiteusagefilecountsAsync(ReportRootGetsharepointsiteusagefilecountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetsharepointsiteusagefilecountsParameter, ReportRootGetsharepointsiteusagefilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagefilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagefilecountsResponse> ReportRootGetsharepointsiteusagefilecountsAsync(ReportRootGetsharepointsiteusagefilecountsParameter parameter, CancellationToken cancellationToken)
         {

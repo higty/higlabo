@@ -3,14 +3,14 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/tokenlifetimepolicy?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/tokenlifetimepolicy?view=graph-rest-1.0
     /// </summary>
     public partial class TokenLifetimePolicy
     {
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }

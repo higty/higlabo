@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinttaskdefinitionListTasksParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PrintTask[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttaskdefinitionListTasksResponse> PrinttaskdefinitionListTasksAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinttaskdefinitionListTasksParameter, PrinttaskdefinitionListTasksResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttaskdefinitionListTasksResponse> PrinttaskdefinitionListTasksAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinttaskdefinitionListTasksParameter, PrinttaskdefinitionListTasksResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttaskdefinitionListTasksResponse> PrinttaskdefinitionListTasksAsync(PrinttaskdefinitionListTasksParameter parameter)
         {
             return await this.SendAsync<PrinttaskdefinitionListTasksParameter, PrinttaskdefinitionListTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printtaskdefinition-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinttaskdefinitionListTasksResponse> PrinttaskdefinitionListTasksAsync(PrinttaskdefinitionListTasksParameter parameter, CancellationToken cancellationToken)
         {

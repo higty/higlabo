@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelListMessagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,30 +25,31 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ReplyToId,
-            From,
-            Etag,
-            MessageType,
-            CreatedDateTime,
-            LastModifiedDateTime,
-            LastEditedDateTime,
-            DeletedDateTime,
-            Subject,
-            Body,
-            Summary,
             Attachments,
-            Mentions,
-            Importance,
-            Reactions,
-            Locale,
-            PolicyViolation,
+            Body,
             ChatId,
             ChannelIdentity,
-            WebUrl,
+            CreatedDateTime,
+            DeletedDateTime,
+            Etag,
             EventDetail,
-            Replies,
+            From,
+            Id,
+            Importance,
+            LastModifiedDateTime,
+            LastEditedDateTime,
+            Locale,
+            Mentions,
+            MessageHistory,
+            MessageType,
+            PolicyViolation,
+            Reactions,
+            ReplyToId,
+            Subject,
+            Summary,
+            WebUrl,
             HostedContents,
+            Replies,
         }
         public enum ApiPath
         {
@@ -74,10 +78,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ChatMessage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListMessagesResponse> ChannelListMessagesAsync()
         {
@@ -85,7 +92,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelListMessagesParameter, ChannelListMessagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListMessagesResponse> ChannelListMessagesAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +100,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelListMessagesParameter, ChannelListMessagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListMessagesResponse> ChannelListMessagesAsync(ChannelListMessagesParameter parameter)
         {
             return await this.SendAsync<ChannelListMessagesParameter, ChannelListMessagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-list-messages?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelListMessagesResponse> ChannelListMessagesAsync(ChannelListMessagesParameter parameter, CancellationToken cancellationToken)
         {

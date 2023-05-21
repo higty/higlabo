@@ -2,18 +2,22 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string? Id { get; set; }
+            public string? ApplicationObjectId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Applications_Id: return $"/applications/{Id}";
+                    case ApiPath.Applications_ApplicationObjectId: return $"/applications/{ApplicationObjectId}";
+                    case ApiPath.Applications_ApplicationObjectId_Logo: return $"/applications/{ApplicationObjectId}/logo";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -21,7 +25,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum ApiPath
         {
-            Applications_Id,
+            Applications_ApplicationObjectId,
+            Applications_ApplicationObjectId_Logo,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -46,6 +51,7 @@ namespace HigLabo.Net.Microsoft
         public ParentalControlSettings? ParentalControlSettings { get; set; }
         public PublicClientApplication? PublicClient { get; set; }
         public RequiredResourceAccess[]? RequiredResourceAccess { get; set; }
+        public string? SamlMetadataUrl { get; set; }
         public string? SignInAudience { get; set; }
         public SpaApplication? Spa { get; set; }
         public String[]? Tags { get; set; }
@@ -55,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ApplicationUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync()
         {
@@ -66,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync(ApplicationUpdateParameter parameter)
         {
             return await this.SendAsync<ApplicationUpdateParameter, ApplicationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationUpdateResponse> ApplicationUpdateAsync(ApplicationUpdateParameter parameter, CancellationToken cancellationToken)
         {

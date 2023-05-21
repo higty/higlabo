@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListApproleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         {
             AppRoleId,
             CreatedDateTime,
+            DeletedDateTime,
             Id,
             PrincipalDisplayName,
             PrincipalId,
@@ -57,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AppRoleAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync()
         {
@@ -68,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<UserListApproleAssignmentsParameter, UserListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListApproleAssignmentsResponse> UserListApproleAssignmentsAsync(UserListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
+    /// </summary>
     public partial class UserSettingsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,8 +25,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ContributionToContentDiscoveryDisabled,
             ContributionToContentDiscoveryAsOrganizationDisabled,
+            ContributionToContentDiscoveryDisabled,
             Id,
         }
         public enum ApiPath
@@ -52,14 +55,17 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class UserSettingsGetResponse : RestApiResponse
     {
-        public bool? ContributionToContentDiscoveryDisabled { get; set; }
         public bool? ContributionToContentDiscoveryAsOrganizationDisabled { get; set; }
+        public bool? ContributionToContentDiscoveryDisabled { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsGetResponse> UserSettingsGetAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsGetResponse> UserSettingsGetAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter)
         {
             return await this.SendAsync<UserSettingsGetParameter, UserSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/usersettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSettingsGetResponse> UserSettingsGetAsync(UserSettingsGetParameter parameter, CancellationToken cancellationToken)
         {

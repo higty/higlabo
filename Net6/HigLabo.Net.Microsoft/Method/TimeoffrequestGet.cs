@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class TimeoffrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? StartDateTime { get; set; }
         public string? TimeOffReasonId { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync(TimeoffrequestGetParameter parameter)
         {
             return await this.SendAsync<TimeoffrequestGetParameter, TimeoffrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffrequestGetResponse> TimeoffrequestGetAsync(TimeoffrequestGetParameter parameter, CancellationToken cancellationToken)
         {

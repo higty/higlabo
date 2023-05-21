@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,32 +35,35 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public TeamsASyncOperationType? OperationType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public TeamsASyncOperationStatus? Status { get; set; }
-        public DateTimeOffset? LastActionDateTime { get; set; }
         public Int32? AttemptsCount { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public OperationError? Error { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastActionDateTime { get; set; }
+        public TeamsASyncOperationType? OperationType { get; set; }
+        public TeamsASyncOperationStatus? Status { get; set; }
         public Guid? TargetResourceId { get; set; }
         public string? TargetResourceLocation { get; set; }
-        public OperationError? Error { get; set; }
     }
     public partial class TeamPostResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public TeamsASyncOperationType? OperationType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public TeamsASyncOperationStatus? Status { get; set; }
-        public DateTimeOffset? LastActionDateTime { get; set; }
         public Int32? AttemptsCount { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public OperationError? Error { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastActionDateTime { get; set; }
+        public TeamsASyncOperationType? OperationType { get; set; }
+        public TeamsASyncOperationStatus? Status { get; set; }
         public Guid? TargetResourceId { get; set; }
         public string? TargetResourceLocation { get; set; }
-        public OperationError? Error { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostResponse> TeamPostAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostResponse> TeamPostAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostResponse> TeamPostAsync(TeamPostParameter parameter)
         {
             return await this.SendAsync<TeamPostParameter, TeamPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-post?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamPostResponse> TeamPostAsync(TeamPostParameter parameter, CancellationToken cancellationToken)
         {

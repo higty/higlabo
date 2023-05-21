@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/directory?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/directory?view=graph-rest-1.0
     /// </summary>
     public partial class Directory
     {
@@ -11,5 +11,6 @@ namespace HigLabo.Net.Microsoft
         public AdministrativeUnit[]? AdministrativeUnits { get; set; }
         public DirectoryObject[]? DeletedItems { get; set; }
         public IdentityProviderBase[]? FederationConfigurations { get; set; }
+        public OnPremisesDirectorySynchronization? OnPremisesSynchronization { get; set; }
     }
 }

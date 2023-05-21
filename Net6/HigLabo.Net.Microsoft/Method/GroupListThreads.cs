@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListThreadsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,15 +24,15 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ToRecipients,
             CcRecipients,
-            Topic,
             HasAttachments,
-            LastDeliveredDateTime,
-            UniqueSenders,
-            Preview,
+            Id,
             IsLocked,
+            LastDeliveredDateTime,
+            Preview,
+            Topic,
+            ToRecipients,
+            UniqueSenders,
             Posts,
         }
         public enum ApiPath
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ConversationThread[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListThreadsResponse> GroupListThreadsAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListThreadsResponse> GroupListThreadsAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter)
         {
             return await this.SendAsync<GroupListThreadsParameter, GroupListThreadsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListThreadsResponse> GroupListThreadsAsync(GroupListThreadsParameter parameter, CancellationToken cancellationToken)
         {

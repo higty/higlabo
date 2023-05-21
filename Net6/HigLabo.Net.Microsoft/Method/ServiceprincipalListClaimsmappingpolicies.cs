@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalListClaimsmappingpoliciesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_ClaimsMappingPolicies: return $"/servicePrincipals/{Id}/claimsMappingPolicies";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -21,16 +25,16 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             Definition,
-            Description,
             DisplayName,
+            Id,
             IsOrganizationDefault,
             AppliesTo,
         }
         public enum ApiPath
         {
             ServicePrincipals_Id_ClaimsMappingPolicies,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -55,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ClaimsMappingPolicy[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListClaimsmappingpoliciesResponse> ServiceprincipalListClaimsmappingpoliciesAsync()
         {
@@ -66,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListClaimsmappingpoliciesParameter, ServiceprincipalListClaimsmappingpoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListClaimsmappingpoliciesResponse> ServiceprincipalListClaimsmappingpoliciesAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListClaimsmappingpoliciesParameter, ServiceprincipalListClaimsmappingpoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListClaimsmappingpoliciesResponse> ServiceprincipalListClaimsmappingpoliciesAsync(ServiceprincipalListClaimsmappingpoliciesParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListClaimsmappingpoliciesParameter, ServiceprincipalListClaimsmappingpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-claimsmappingpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListClaimsmappingpoliciesResponse> ServiceprincipalListClaimsmappingpoliciesAsync(ServiceprincipalListClaimsmappingpoliciesParameter parameter, CancellationToken cancellationToken)
         {

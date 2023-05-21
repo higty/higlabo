@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationUserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -137,10 +140,13 @@ namespace HigLabo.Net.Microsoft
         public User? User { get; set; }
         public EducationRubric[]? Rubrics { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetResponse> EducationUserGetAsync()
         {
@@ -148,7 +154,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetResponse> EducationUserGetAsync(CancellationToken cancellationToken)
         {
@@ -156,14 +162,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter)
         {
             return await this.SendAsync<EducationUserGetParameter, EducationUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserGetResponse> EducationUserGetAsync(EducationUserGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class DeviceDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Devices_Id: return $"/devices/{Id}";
+                    case ApiPath.Devices: return $"/devices";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Devices_Id,
+            Devices,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -37,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DeviceDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteResponse> DeviceDeleteAsync()
         {
@@ -48,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteResponse> DeviceDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteResponse> DeviceDeleteAsync(DeviceDeleteParameter parameter)
         {
             return await this.SendAsync<DeviceDeleteParameter, DeviceDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteResponse> DeviceDeleteAsync(DeviceDeleteParameter parameter, CancellationToken cancellationToken)
         {

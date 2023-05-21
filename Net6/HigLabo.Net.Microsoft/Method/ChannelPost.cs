@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -23,6 +26,8 @@ namespace HigLabo.Net.Microsoft
         {
             Standard,
             Private,
+            UnknownFutureValue,
+            Shared,
         }
         public enum ApiPath
         {
@@ -38,19 +43,21 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsFavoriteByDefault { get; set; }
-        public string? Email { get; set; }
+        public Channel? MembershipType { get; set; }
+        public string? TenantId { get; set; }
         public string? WebUrl { get; set; }
-        public ChannelChannelMembershipType MembershipType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public ChatMessage[]? Messages { get; set; }
-        public TeamsTab[]? Tabs { get; set; }
-        public ConversationMember[]? Members { get; set; }
         public DriveItem? FilesFolder { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public ChatMessage[]? Messages { get; set; }
         public TeamsASyncOperation[]? Operations { get; set; }
+        public SharedWithChannelTeamInfo[]? SharedWithTeams { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
     }
     public partial class ChannelPostResponse : RestApiResponse
     {
@@ -58,26 +65,33 @@ namespace HigLabo.Net.Microsoft
         {
             Standard,
             Private,
+            UnknownFutureValue,
+            Shared,
         }
 
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsFavoriteByDefault { get; set; }
-        public string? Email { get; set; }
+        public Channel? MembershipType { get; set; }
+        public string? TenantId { get; set; }
         public string? WebUrl { get; set; }
-        public ChannelChannelMembershipType MembershipType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public ChatMessage[]? Messages { get; set; }
-        public TeamsTab[]? Tabs { get; set; }
-        public ConversationMember[]? Members { get; set; }
         public DriveItem? FilesFolder { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public ChatMessage[]? Messages { get; set; }
         public TeamsASyncOperation[]? Operations { get; set; }
+        public SharedWithChannelTeamInfo[]? SharedWithTeams { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostResponse> ChannelPostAsync()
         {
@@ -85,7 +99,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostResponse> ChannelPostAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +107,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostResponse> ChannelPostAsync(ChannelPostParameter parameter)
         {
             return await this.SendAsync<ChannelPostParameter, ChannelPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostResponse> ChannelPostAsync(ChannelPostParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class FeaturerolloutPolicyPostAppliestoParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(FeaturerolloutPolicyPostAppliestoParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutPolicyPostAppliestoParameter, FeaturerolloutPolicyPostAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-post-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyPostAppliestoResponse> FeaturerolloutPolicyPostAppliestoAsync(FeaturerolloutPolicyPostAppliestoParameter parameter, CancellationToken cancellationToken)
         {

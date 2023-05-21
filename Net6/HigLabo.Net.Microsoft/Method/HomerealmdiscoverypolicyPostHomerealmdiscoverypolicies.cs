@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,26 +35,29 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }
     public partial class HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse> HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesParameter, HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse> HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesParameter, HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse> HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesAsync(HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesParameter parameter)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesParameter, HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-post-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesResponse> HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesAsync(HomerealmdiscoveryPolicyPostHomerealmdiscoverypoliciesParameter parameter, CancellationToken cancellationToken)
         {

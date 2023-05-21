@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentdefaultsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -61,16 +64,19 @@ namespace HigLabo.Net.Microsoft
             StudentsOnly,
         }
 
-        public string? Id { get; set; }
         public EducationAssignmentDefaultsEducationAddedStudentAction AddedStudentAction { get; set; }
         public EducationAssignmentDefaultsEducationAddToCalendarOptions AddToCalendarAction { get; set; }
         public TimeOnly? DueTime { get; set; }
+        public string? Id { get; set; }
         public string? NotificationChannelUrl { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync()
         {
@@ -78,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync(EducationAssignmentdefaultsGetParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentdefaultsGetParameter, EducationAssignmentdefaultsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentdefaults-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentdefaultsGetResponse> EducationAssignmentdefaultsGetAsync(EducationAssignmentdefaultsGetParameter parameter, CancellationToken cancellationToken)
         {

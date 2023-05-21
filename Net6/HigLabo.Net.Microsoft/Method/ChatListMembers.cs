@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatListMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,15 +53,18 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChatListMembersResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public string[]? Roles { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListMembersResponse> ChatListMembersAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListMembersResponse> ChatListMembersAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListMembersResponse> ChatListMembersAsync(ChatListMembersParameter parameter)
         {
             return await this.SendAsync<ChatListMembersParameter, ChatListMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListMembersResponse> ChatListMembersAsync(ChatListMembersParameter parameter, CancellationToken cancellationToken)
         {

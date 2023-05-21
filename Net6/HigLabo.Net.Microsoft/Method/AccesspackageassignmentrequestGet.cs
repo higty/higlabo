@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackageAssignmentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,6 +54,7 @@ namespace HigLabo.Net.Microsoft
         {
             NotSpecified,
             UserAdd,
+            UserExtend,
             UserUpdate,
             UserRemove,
             AdminAdd,
@@ -74,8 +78,10 @@ namespace HigLabo.Net.Microsoft
             Canceled,
             PartiallyDelivered,
             UnknownFutureValue,
+            Eq,
         }
 
+        public AccessPackageAnswer[]? Answers { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
@@ -87,10 +93,13 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageAssignment? Assignment { get; set; }
         public AccessPackageSubject? Requestor { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync()
         {
@@ -98,7 +107,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync(CancellationToken cancellationToken)
         {
@@ -106,14 +115,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync(AccesspackageAssignmentrequestGetParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentrequestGetParameter, AccesspackageAssignmentrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestGetResponse> AccesspackageAssignmentrequestGetAsync(AccesspackageAssignmentrequestGetParameter parameter, CancellationToken cancellationToken)
         {

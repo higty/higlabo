@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentitycontainerListB2xUserflowsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,13 +23,13 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            ApiConnectorConfiguration,
             Id,
             UserFlowType,
             UserFlowTypeVersion,
-            ApiConnectorConfiguration,
             IdentityProviders,
-            UserAttributeAssignments,
             Languages,
+            UserAttributeAssignments,
         }
         public enum ApiPath
         {
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     {
         public B2xIdentityUserFlow[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter)
         {
             return await this.SendAsync<IdentitycontainerListB2xUserflowsParameter, IdentitycontainerListB2xUserflowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-list-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerListB2xUserflowsResponse> IdentitycontainerListB2xUserflowsAsync(IdentitycontainerListB2xUserflowsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
+    /// </summary>
     public partial class UserSendmailParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserSendmailResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSendmailResponse> UserSendmailAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSendmailResponse> UserSendmailAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSendmailResponse> UserSendmailAsync(UserSendmailParameter parameter)
         {
             return await this.SendAsync<UserSendmailParameter, UserSendmailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-sendmail?view=graph-rest-1.0
         /// </summary>
         public async Task<UserSendmailResponse> UserSendmailAsync(UserSendmailParameter parameter, CancellationToken cancellationToken)
         {

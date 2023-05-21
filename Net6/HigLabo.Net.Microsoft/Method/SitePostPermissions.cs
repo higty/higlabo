@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
+    /// </summary>
     public partial class SitePostPermissionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,34 +36,37 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public DateTimeOffset? ExpirationDateTime { get; set; }
         public string? Id { get; set; }
-        public SharePointIdentitySet? GrantedToV2 { get; set; }
+        public bool? HasPassword { get; set; }
         public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
-        public SharingInvitation? Invitation { get; set; }
+        public SharePointIdentitySet? GrantedToV2 { get; set; }
         public ItemReference? InheritedFrom { get; set; }
+        public SharingInvitation? Invitation { get; set; }
         public SharingLink? Link { get; set; }
         public string[]? Roles { get; set; }
         public string? ShareId { get; set; }
-        public DateTimeOffset? ExpirationDateTime { get; set; }
-        public bool? HasPassword { get; set; }
     }
     public partial class SitePostPermissionsResponse : RestApiResponse
     {
+        public DateTimeOffset? ExpirationDateTime { get; set; }
         public string? Id { get; set; }
-        public SharePointIdentitySet? GrantedToV2 { get; set; }
+        public bool? HasPassword { get; set; }
         public SharePointIdentitySet[]? GrantedToIdentitiesV2 { get; set; }
-        public SharingInvitation? Invitation { get; set; }
+        public SharePointIdentitySet? GrantedToV2 { get; set; }
         public ItemReference? InheritedFrom { get; set; }
+        public SharingInvitation? Invitation { get; set; }
         public SharingLink? Link { get; set; }
         public string[]? Roles { get; set; }
         public string? ShareId { get; set; }
-        public DateTimeOffset? ExpirationDateTime { get; set; }
-        public bool? HasPassword { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync(SitePostPermissionsParameter parameter)
         {
             return await this.SendAsync<SitePostPermissionsParameter, SitePostPermissionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-post-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<SitePostPermissionsResponse> SitePostPermissionsAsync(SitePostPermissionsParameter parameter, CancellationToken cancellationToken)
         {

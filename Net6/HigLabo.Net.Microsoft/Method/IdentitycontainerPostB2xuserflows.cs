@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentitycontainerPostB2xUserflowsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,23 +40,26 @@ namespace HigLabo.Net.Microsoft
         public float? UserFlowTypeVersion { get; set; }
         public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
         public IdentityProvider[]? IdentityProviders { get; set; }
-        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
         public UserFlowLanguageConfiguration[]? Languages { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
     }
     public partial class IdentitycontainerPostB2xUserflowsResponse : RestApiResponse
     {
+        public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
         public string? Id { get; set; }
         public string? UserFlowType { get; set; }
         public Single? UserFlowTypeVersion { get; set; }
-        public UserFlowApiConnectorConfiguration? ApiConnectorConfiguration { get; set; }
         public IdentityProvider[]? IdentityProviders { get; set; }
-        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
         public UserFlowLanguageConfiguration[]? Languages { get; set; }
+        public IdentityUserFlowAttributeAssignment[]? UserAttributeAssignments { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync(IdentitycontainerPostB2xUserflowsParameter parameter)
         {
             return await this.SendAsync<IdentitycontainerPostB2xUserflowsParameter, IdentitycontainerPostB2xUserflowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identitycontainer-post-b2xuserflows?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentitycontainerPostB2xUserflowsResponse> IdentitycontainerPostB2xUserflowsAsync(IdentitycontainerPostB2xUserflowsParameter parameter, CancellationToken cancellationToken)
         {

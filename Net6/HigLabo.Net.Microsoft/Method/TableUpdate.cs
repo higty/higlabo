@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
+    /// </summary>
     public partial class TableUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -61,26 +64,29 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TableUpdateResponse : RestApiResponse
     {
+        public bool? HighlightFirstColumn { get; set; }
+        public bool? HighlightLastColumn { get; set; }
         public string? Id { get; set; }
+        public string? LegacyId { get; set; }
         public string? Name { get; set; }
+        public bool? ShowBandedRows { get; set; }
+        public bool? ShowBandedColumns { get; set; }
+        public bool? ShowFilterButton { get; set; }
         public bool? ShowHeaders { get; set; }
         public bool? ShowTotals { get; set; }
         public string? Style { get; set; }
-        public bool? HighlightFirstColumn { get; set; }
-        public bool? HighlightLastColumn { get; set; }
-        public bool? ShowBandedColumns { get; set; }
-        public bool? ShowBandedRows { get; set; }
-        public bool? ShowFilterButton { get; set; }
-        public string? LegacyId { get; set; }
         public WorkbookTableColumn[]? Columns { get; set; }
         public WorkbookTableRow[]? Rows { get; set; }
         public TableSort? Sort { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TableUpdateResponse> TableUpdateAsync()
         {
@@ -88,7 +94,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TableUpdateResponse> TableUpdateAsync(CancellationToken cancellationToken)
         {
@@ -96,14 +102,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TableUpdateResponse> TableUpdateAsync(TableUpdateParameter parameter)
         {
             return await this.SendAsync<TableUpdateParameter, TableUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TableUpdateResponse> TableUpdateAsync(TableUpdateParameter parameter, CancellationToken cancellationToken)
         {

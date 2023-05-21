@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintDeleteTaskdefinitionParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintDeleteTaskdefinitionResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(PrintDeleteTaskdefinitionParameter parameter)
         {
             return await this.SendAsync<PrintDeleteTaskdefinitionParameter, PrintDeleteTaskdefinitionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-delete-taskdefinition?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintDeleteTaskdefinitionResponse> PrintDeleteTaskdefinitionAsync(PrintDeleteTaskdefinitionParameter parameter, CancellationToken cancellationToken)
         {

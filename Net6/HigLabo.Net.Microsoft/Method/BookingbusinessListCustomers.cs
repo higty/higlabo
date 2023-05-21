@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingbusinessListCustomersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,10 +24,10 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            Addresses,
             DisplayName,
             EmailAddress,
             Id,
-            Addresses,
             Phones,
         }
         public enum ApiPath
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public BookingCustomer[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListCustomersResponse> BookingbusinessListCustomersAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessListCustomersParameter, BookingbusinessListCustomersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListCustomersResponse> BookingbusinessListCustomersAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessListCustomersParameter, BookingbusinessListCustomersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListCustomersResponse> BookingbusinessListCustomersAsync(BookingbusinessListCustomersParameter parameter)
         {
             return await this.SendAsync<BookingbusinessListCustomersParameter, BookingbusinessListCustomersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-list-customers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessListCustomersResponse> BookingbusinessListCustomersAsync(BookingbusinessListCustomersParameter parameter, CancellationToken cancellationToken)
         {

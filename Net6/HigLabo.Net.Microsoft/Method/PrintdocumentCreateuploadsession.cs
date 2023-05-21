@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintdocumentCreateuploadsessionParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
         public String[]? NextExpectedRanges { get; set; }
         public string? UploadUrl { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentCreateuploadsessionResponse> PrintdocumentCreateuploadsessionAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintdocumentCreateuploadsessionParameter, PrintdocumentCreateuploadsessionResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentCreateuploadsessionResponse> PrintdocumentCreateuploadsessionAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintdocumentCreateuploadsessionParameter, PrintdocumentCreateuploadsessionResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentCreateuploadsessionResponse> PrintdocumentCreateuploadsessionAsync(PrintdocumentCreateuploadsessionParameter parameter)
         {
             return await this.SendAsync<PrintdocumentCreateuploadsessionParameter, PrintdocumentCreateuploadsessionResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-createuploadsession?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentCreateuploadsessionResponse> PrintdocumentCreateuploadsessionAsync(PrintdocumentCreateuploadsessionParameter parameter, CancellationToken cancellationToken)
         {

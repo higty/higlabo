@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstanceUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -43,17 +46,21 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? EndDateTime { get; set; }
         public AccessReviewReviewerScope[]? FallbackReviewers { get; set; }
         public string? Id { get; set; }
+        public AccessReviewReviewerScope[]? Reviewers { get; set; }
         public AccessReviewScope? Scope { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
         public string? Status { get; set; }
-        public AccessReviewReviewerScope[]? Reviewers { get; set; }
-        public AccessReviewInstanceDecisionItem[]? Decisions { get; set; }
         public AccessReviewReviewer[]? ContactedReviewers { get; set; }
+        public AccessReviewInstanceDecisionItem[]? Decisions { get; set; }
+        public AccessReviewStage[]? Stages { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync()
         {
@@ -61,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceUpdateParameter, AccessreviewinstanceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-update?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceUpdateResponse> AccessreviewinstanceUpdateAsync(AccessreviewinstanceUpdateParameter parameter, CancellationToken cancellationToken)
         {

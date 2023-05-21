@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
+    /// </summary>
     public partial class OnlinemeetingCreateorgetParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,9 +43,9 @@ namespace HigLabo.Net.Microsoft
         public MeetingParticipants? Participants { get; set; }
         public DateTime? StartDateTime { get; set; }
         public string? Subject { get; set; }
-        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         public bool? AllowAttendeeToEnableCamera { get; set; }
         public bool? AllowAttendeeToEnableMic { get; set; }
+        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         public MeetingChatMode? AllowMeetingChat { get; set; }
         public bool? AllowTeamworkReactions { get; set; }
         public Stream? AttendeeReport { get; set; }
@@ -54,17 +57,19 @@ namespace HigLabo.Net.Microsoft
         public bool? IsBroadcast { get; set; }
         public bool? IsEntryExitAnnounced { get; set; }
         public ItemBody? JoinInformation { get; set; }
+        public JoinMeetingIdSettings? JoinMeetingIdSettings { get; set; }
         public string? JoinWebUrl { get; set; }
         public LobbyBypassSettings? LobbyBypassSettings { get; set; }
         public bool? RecordAutomatically { get; set; }
         public string? VideoTeleconferenceId { get; set; }
+        public WatermarkProtectionValues? WatermarkProtection { get; set; }
         public MeetingAttendanceReport[]? AttendanceReports { get; set; }
     }
     public partial class OnlinemeetingCreateorgetResponse : RestApiResponse
     {
-        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         public bool? AllowAttendeeToEnableCamera { get; set; }
         public bool? AllowAttendeeToEnableMic { get; set; }
+        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         public MeetingChatMode? AllowMeetingChat { get; set; }
         public bool? AllowTeamworkReactions { get; set; }
         public Stream? AttendeeReport { get; set; }
@@ -77,6 +82,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsBroadcast { get; set; }
         public bool? IsEntryExitAnnounced { get; set; }
         public ItemBody? JoinInformation { get; set; }
+        public JoinMeetingIdSettings? JoinMeetingIdSettings { get; set; }
         public string? JoinWebUrl { get; set; }
         public LobbyBypassSettings? LobbyBypassSettings { get; set; }
         public MeetingParticipants? Participants { get; set; }
@@ -84,12 +90,16 @@ namespace HigLabo.Net.Microsoft
         public DateTime? StartDateTime { get; set; }
         public string? Subject { get; set; }
         public string? VideoTeleconferenceId { get; set; }
+        public WatermarkProtectionValues? WatermarkProtection { get; set; }
         public MeetingAttendanceReport[]? AttendanceReports { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync()
         {
@@ -97,7 +107,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(CancellationToken cancellationToken)
         {
@@ -105,14 +115,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(OnlinemeetingCreateorgetParameter parameter)
         {
             return await this.SendAsync<OnlinemeetingCreateorgetParameter, OnlinemeetingCreateorgetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-createorget?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingCreateorgetResponse> OnlinemeetingCreateorgetAsync(OnlinemeetingCreateorgetParameter parameter, CancellationToken cancellationToken)
         {

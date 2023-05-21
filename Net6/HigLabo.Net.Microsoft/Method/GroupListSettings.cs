@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListSettingsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     {
         public GroupSetting[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListSettingsResponse> GroupListSettingsAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListSettingsResponse> GroupListSettingsAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter)
         {
             return await this.SendAsync<GroupListSettingsParameter, GroupListSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListSettingsResponse> GroupListSettingsAsync(GroupListSettingsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class B2xidentityUserflowDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class B2xidentityUserflowDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(B2xidentityUserflowDeleteParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowDeleteParameter, B2xidentityUserflowDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowDeleteResponse> B2xidentityUserflowDeleteAsync(B2xidentityUserflowDeleteParameter parameter, CancellationToken cancellationToken)
         {

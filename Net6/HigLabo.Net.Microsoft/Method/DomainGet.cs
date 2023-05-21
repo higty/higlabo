@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DomainGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -31,8 +34,8 @@ namespace HigLabo.Net.Microsoft
             IsVerified,
             PasswordNotificationWindowInDays,
             PasswordValidityPeriodInDays,
-            SupportedServices,
             State,
+            SupportedServices,
             DomainNameReferences,
             ServiceConfigurationRecords,
             VerificationDnsRecords,
@@ -73,17 +76,20 @@ namespace HigLabo.Net.Microsoft
         public bool? IsVerified { get; set; }
         public Int32? PasswordNotificationWindowInDays { get; set; }
         public Int32? PasswordValidityPeriodInDays { get; set; }
-        public String[]? SupportedServices { get; set; }
         public DomainState? State { get; set; }
+        public String[]? SupportedServices { get; set; }
         public DirectoryObject[]? DomainNameReferences { get; set; }
         public DomainDnsRecord[]? ServiceConfigurationRecords { get; set; }
         public DomainDnsRecord[]? VerificationDnsRecords { get; set; }
         public InternalDomainFederation? FederationConfiguration { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainGetResponse> DomainGetAsync()
         {
@@ -91,7 +97,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainGetResponse> DomainGetAsync(CancellationToken cancellationToken)
         {
@@ -99,14 +105,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainGetResponse> DomainGetAsync(DomainGetParameter parameter)
         {
             return await this.SendAsync<DomainGetParameter, DomainGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainGetResponse> DomainGetAsync(DomainGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AttachmentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -11,7 +14,7 @@ namespace HigLabo.Net.Microsoft
             public string? AttachmentsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
             public string? CalendarsId { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
             public string? MessagesId { get; set; }
             public string? MailFoldersId { get; set; }
             public string? ChildFoldersId { get; set; }
@@ -32,10 +35,10 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
                     case ApiPath.Me_Calendars_Id_Events_Id_Attachments_Id_value: return $"/me/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}/$value";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments_Id_value: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}/$value";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id_value: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}/$value";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id_value: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}/$value";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id_value: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}/$value";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id_value: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}/$value";
                     case ApiPath.Me_Messages_Id_Attachments_Id: return $"/me/messages/{MessagesId}/attachments/{AttachmentsId}";
                     case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/messages/{MessagesId}/attachments/{AttachmentsId}";
                     case ApiPath.Me_Messages_Id_Attachments_Id_value: return $"/me/messages/{MessagesId}/attachments/{AttachmentsId}/$value";
@@ -76,10 +79,10 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments_Id,
             Me_Calendars_Id_Events_Id_Attachments_Id_value,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments_Id_value,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id_value,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id_value,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id_value,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id_value,
             Me_Messages_Id_Attachments_Id,
             Users_IdOrUserPrincipalName_Messages_Id_Attachments_Id,
             Me_Messages_Id_Attachments_Id_value,
@@ -125,10 +128,13 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public Int32? Size { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentGetResponse> AttachmentGetAsync()
         {
@@ -136,7 +142,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentGetResponse> AttachmentGetAsync(CancellationToken cancellationToken)
         {
@@ -144,21 +150,21 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentGetResponse> AttachmentGetAsync(AttachmentGetParameter parameter)
         {
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentGetResponse> AttachmentGetAsync(AttachmentGetParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<AttachmentGetParameter, AttachmentGetResponse>(parameter, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Stream> AttachmentGetStreamAsync(AttachmentGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackageAssignmentrequestReprocessParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.IdentityGovernance_EntitlementManagement_AccessPackageAssignmentRequests_Id_Reprocess: return $"/identityGovernance/entitlementManagement/accessPackageAssignmentRequests/{Id}/reprocess";
+                    case ApiPath.IdentityGovernance_EntitlementManagement_AssignmentRequests_Id_Reprocess: return $"/identityGovernance/entitlementManagement/assignmentRequests/{Id}/reprocess";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -23,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         {
             NotSpecified,
             UserAdd,
+            UserExtend,
             UserUpdate,
             UserRemove,
             AdminAdd,
@@ -46,10 +50,11 @@ namespace HigLabo.Net.Microsoft
             Canceled,
             PartiallyDelivered,
             UnknownFutureValue,
+            Eq,
         }
         public enum ApiPath
         {
-            IdentityGovernance_EntitlementManagement_AccessPackageAssignmentRequests_Id_Reprocess,
+            IdentityGovernance_EntitlementManagement_AssignmentRequests_Id_Reprocess,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -61,6 +66,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public AccessPackageAnswer[]? Answers { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
@@ -78,6 +84,7 @@ namespace HigLabo.Net.Microsoft
         {
             NotSpecified,
             UserAdd,
+            UserExtend,
             UserUpdate,
             UserRemove,
             AdminAdd,
@@ -101,8 +108,10 @@ namespace HigLabo.Net.Microsoft
             Canceled,
             PartiallyDelivered,
             UnknownFutureValue,
+            Eq,
         }
 
+        public AccessPackageAnswer[]? Answers { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
@@ -114,10 +123,13 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageAssignment? Assignment { get; set; }
         public AccessPackageSubject? Requestor { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync()
         {
@@ -125,7 +137,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(CancellationToken cancellationToken)
         {
@@ -133,14 +145,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(AccesspackageAssignmentrequestReprocessParameter parameter)
         {
             return await this.SendAsync<AccesspackageAssignmentrequestReprocessParameter, AccesspackageAssignmentrequestReprocessResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackageassignmentrequest-reprocess?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageAssignmentrequestReprocessResponse> AccesspackageAssignmentrequestReprocessAsync(AccesspackageAssignmentrequestReprocessParameter parameter, CancellationToken cancellationToken)
         {

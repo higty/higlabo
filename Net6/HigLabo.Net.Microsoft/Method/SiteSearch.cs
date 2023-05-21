@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteSearchParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,11 +23,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             CreatedDateTime,
             Description,
             DisplayName,
             ETag,
+            Id,
             LastModifiedDateTime,
             Name,
             Root,
@@ -72,10 +75,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Site[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteSearchResponse> SiteSearchAsync()
         {
@@ -83,7 +89,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteSearchParameter, SiteSearchResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteSearchResponse> SiteSearchAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +97,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteSearchParameter, SiteSearchResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteSearchResponse> SiteSearchAsync(SiteSearchParameter parameter)
         {
             return await this.SendAsync<SiteSearchParameter, SiteSearchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-search?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteSearchResponse> SiteSearchAsync(SiteSearchParameter parameter, CancellationToken cancellationToken)
         {

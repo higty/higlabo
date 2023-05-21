@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupDeleteConversationParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupDeleteConversationResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync(GroupDeleteConversationParameter parameter)
         {
             return await this.SendAsync<GroupDeleteConversationParameter, GroupDeleteConversationResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-conversation?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteConversationResponse> GroupDeleteConversationAsync(GroupDeleteConversationParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
+    /// </summary>
     public partial class TableRangeParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -91,10 +94,13 @@ namespace HigLabo.Net.Microsoft
         public RangeSort? Sort { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
         public async Task<TableRangeResponse> TableRangeAsync()
         {
@@ -102,7 +108,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
         public async Task<TableRangeResponse> TableRangeAsync(CancellationToken cancellationToken)
         {
@@ -110,14 +116,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
         public async Task<TableRangeResponse> TableRangeAsync(TableRangeParameter parameter)
         {
             return await this.SendAsync<TableRangeParameter, TableRangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-range?view=graph-rest-1.0
         /// </summary>
         public async Task<TableRangeResponse> TableRangeAsync(TableRangeParameter parameter, CancellationToken cancellationToken)
         {

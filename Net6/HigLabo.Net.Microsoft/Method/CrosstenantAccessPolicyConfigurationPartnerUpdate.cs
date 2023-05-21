@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
+    /// </summary>
     public partial class CrosstenantAccessPolicyConfigurationPartnerUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,6 +36,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
+        public InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationInbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationOutbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
@@ -42,10 +46,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CrosstenantAccessPolicyConfigurationPartnerUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerUpdateResponse> CrosstenantAccessPolicyConfigurationPartnerUpdateAsync()
         {
@@ -53,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerUpdateParameter, CrosstenantAccessPolicyConfigurationPartnerUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerUpdateResponse> CrosstenantAccessPolicyConfigurationPartnerUpdateAsync(CancellationToken cancellationToken)
         {
@@ -61,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerUpdateParameter, CrosstenantAccessPolicyConfigurationPartnerUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerUpdateResponse> CrosstenantAccessPolicyConfigurationPartnerUpdateAsync(CrosstenantAccessPolicyConfigurationPartnerUpdateParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerUpdateParameter, CrosstenantAccessPolicyConfigurationPartnerUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerUpdateResponse> CrosstenantAccessPolicyConfigurationPartnerUpdateAsync(CrosstenantAccessPolicyConfigurationPartnerUpdateParameter parameter, CancellationToken cancellationToken)
         {

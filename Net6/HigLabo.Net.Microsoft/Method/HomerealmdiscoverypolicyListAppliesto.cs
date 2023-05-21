@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class HomerealmdiscoveryPolicyListAppliestoParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync(HomerealmdiscoveryPolicyListAppliestoParameter parameter)
         {
             return await this.SendAsync<HomerealmdiscoveryPolicyListAppliestoParameter, HomerealmdiscoveryPolicyListAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/homerealmdiscoverypolicy-list-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<HomerealmdiscoveryPolicyListAppliestoResponse> HomerealmdiscoveryPolicyListAppliestoAsync(HomerealmdiscoveryPolicyListAppliestoParameter parameter, CancellationToken cancellationToken)
         {

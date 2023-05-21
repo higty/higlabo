@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
+    /// </summary>
     public partial class ConversationPostThreadsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -34,34 +37,37 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public Recipient[]? ToRecipients { get; set; }
         public Recipient[]? CcRecipients { get; set; }
-        public string? Topic { get; set; }
         public bool? HasAttachments { get; set; }
-        public DateTimeOffset? LastDeliveredDateTime { get; set; }
-        public String[]? UniqueSenders { get; set; }
-        public string? Preview { get; set; }
+        public string? Id { get; set; }
         public bool? IsLocked { get; set; }
+        public DateTimeOffset? LastDeliveredDateTime { get; set; }
+        public string? Preview { get; set; }
+        public string? Topic { get; set; }
+        public Recipient[]? ToRecipients { get; set; }
+        public String[]? UniqueSenders { get; set; }
         public Post[]? Posts { get; set; }
     }
     public partial class ConversationPostThreadsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public Recipient[]? ToRecipients { get; set; }
         public Recipient[]? CcRecipients { get; set; }
-        public string? Topic { get; set; }
         public bool? HasAttachments { get; set; }
-        public DateTimeOffset? LastDeliveredDateTime { get; set; }
-        public String[]? UniqueSenders { get; set; }
-        public string? Preview { get; set; }
+        public string? Id { get; set; }
         public bool? IsLocked { get; set; }
+        public DateTimeOffset? LastDeliveredDateTime { get; set; }
+        public string? Preview { get; set; }
+        public string? Topic { get; set; }
+        public Recipient[]? ToRecipients { get; set; }
+        public String[]? UniqueSenders { get; set; }
         public Post[]? Posts { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationPostThreadsResponse> ConversationPostThreadsAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConversationPostThreadsParameter, ConversationPostThreadsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationPostThreadsResponse> ConversationPostThreadsAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConversationPostThreadsParameter, ConversationPostThreadsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationPostThreadsResponse> ConversationPostThreadsAsync(ConversationPostThreadsParameter parameter)
         {
             return await this.SendAsync<ConversationPostThreadsParameter, ConversationPostThreadsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conversation-post-threads?view=graph-rest-1.0
         /// </summary>
         public async Task<ConversationPostThreadsResponse> ConversationPostThreadsAsync(ConversationPostThreadsParameter parameter, CancellationToken cancellationToken)
         {

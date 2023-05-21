@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+    /// </summary>
     public partial class Oauth2permissiongrantUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class Oauth2permissiongrantUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantUpdateResponse> Oauth2permissiongrantUpdateAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantUpdateParameter, Oauth2permissiongrantUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantUpdateResponse> Oauth2permissiongrantUpdateAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantUpdateParameter, Oauth2permissiongrantUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantUpdateResponse> Oauth2permissiongrantUpdateAsync(Oauth2permissiongrantUpdateParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantUpdateParameter, Oauth2permissiongrantUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-update?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantUpdateResponse> Oauth2permissiongrantUpdateAsync(Oauth2permissiongrantUpdateParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentResourceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public EducationResource? Resource { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync(EducationAssignmentResourceGetParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentResourceGetParameter, EducationAssignmentResourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignmentresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentResourceGetResponse> EducationAssignmentResourceGetAsync(EducationAssignmentResourceGetParameter parameter, CancellationToken cancellationToken)
         {

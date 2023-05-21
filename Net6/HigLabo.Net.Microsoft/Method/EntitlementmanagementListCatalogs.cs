@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementListCatalogsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessPackageCatalog[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListCatalogsResponse> EntitlementManagementListCatalogsAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementListCatalogsParameter, EntitlementManagementListCatalogsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListCatalogsResponse> EntitlementManagementListCatalogsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementListCatalogsParameter, EntitlementManagementListCatalogsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListCatalogsResponse> EntitlementManagementListCatalogsAsync(EntitlementManagementListCatalogsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementListCatalogsParameter, EntitlementManagementListCatalogsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListCatalogsResponse> EntitlementManagementListCatalogsAsync(EntitlementManagementListCatalogsParameter parameter, CancellationToken cancellationToken)
         {

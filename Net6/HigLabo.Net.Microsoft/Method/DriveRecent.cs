@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveRecentParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -93,10 +96,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DriveItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveRecentResponse> DriveRecentAsync()
         {
@@ -104,7 +110,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveRecentResponse> DriveRecentAsync(CancellationToken cancellationToken)
         {
@@ -112,14 +118,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveRecentResponse> DriveRecentAsync(DriveRecentParameter parameter)
         {
             return await this.SendAsync<DriveRecentParameter, DriveRecentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-recent?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveRecentResponse> DriveRecentAsync(DriveRecentParameter parameter, CancellationToken cancellationToken)
         {

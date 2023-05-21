@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
+    /// </summary>
     public partial class SchedulingGroupGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,13 +25,13 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
-            IsActive,
-            UserIds,
             CreatedDateTime,
-            LastModifiedDateTime,
+            DisplayName,
+            Id,
+            IsActive,
             LastModifiedBy,
+            LastModifiedDateTime,
+            UserIds,
         }
         public enum ApiPath
         {
@@ -55,18 +58,21 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class SchedulingGroupGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public bool? IsActive { get; set; }
-        public string[]? UserIds { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public bool? IsActive { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public string[]? UserIds { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulingGroupGetResponse> SchedulingGroupGetAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchedulingGroupGetParameter, SchedulingGroupGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulingGroupGetResponse> SchedulingGroupGetAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchedulingGroupGetParameter, SchedulingGroupGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulingGroupGetResponse> SchedulingGroupGetAsync(SchedulingGroupGetParameter parameter)
         {
             return await this.SendAsync<SchedulingGroupGetParameter, SchedulingGroupGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedulinggroup-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SchedulingGroupGetResponse> SchedulingGroupGetAsync(SchedulingGroupGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentityUserflowattributeAssignmentGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,18 +61,21 @@ namespace HigLabo.Net.Microsoft
             CheckboxMultiSelect,
         }
 
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOptional { get; set; }
         public bool? RequiresVerification { get; set; }
         public UserAttributeValuesItem[]? UserAttributeValues { get; set; }
         public IdentityUserFlowAttributeAssignmentIdentityUserFlowAttributeInputType UserInputType { get; set; }
         public IdentityUserFlowAttribute? UserAttribute { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter)
         {
             return await this.SendAsync<IdentityUserflowattributeAssignmentGetParameter, IdentityUserflowattributeAssignmentGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattributeassignment-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeAssignmentGetResponse> IdentityUserflowattributeAssignmentGetAsync(IdentityUserflowattributeAssignmentGetParameter parameter, CancellationToken cancellationToken)
         {

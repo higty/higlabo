@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationSchoolDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -66,10 +69,13 @@ namespace HigLabo.Net.Microsoft
     {
         public EducationSchool[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter)
         {
             return await this.SendAsync<EducationSchoolDeltaParameter, EducationSchoolDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeltaResponse> EducationSchoolDeltaAsync(EducationSchoolDeltaParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterCreateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,24 +42,27 @@ namespace HigLabo.Net.Microsoft
         public bool? HasPhysicalDevice { get; set; }
         public PrintCertificateSigningRequest? CertificateSigningRequest { get; set; }
         public string? ConnectorId { get; set; }
+        public string? Certificate { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
         public PrintOperationStatus? Status { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public string? Certificate { get; set; }
         public Printer? Printer { get; set; }
     }
     public partial class PrinterCreateResponse : RestApiResponse
     {
+        public string? Certificate { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
         public PrintOperationStatus? Status { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public string? Certificate { get; set; }
         public Printer? Printer { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterCreateResponse> PrinterCreateAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterCreateResponse> PrinterCreateAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterCreateResponse> PrinterCreateAsync(PrinterCreateParameter parameter)
         {
             return await this.SendAsync<PrinterCreateParameter, PrinterCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-create?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterCreateResponse> PrinterCreateAsync(PrinterCreateParameter parameter, CancellationToken cancellationToken)
         {

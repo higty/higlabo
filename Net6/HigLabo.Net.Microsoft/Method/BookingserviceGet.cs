@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingserviceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,8 +74,10 @@ namespace HigLabo.Net.Microsoft
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
+        public bool? IsAnonymousJoinEnabled { get; set; }
         public bool? IsHiddenFromCustomers { get; set; }
         public bool? IsLocationOnline { get; set; }
+        public string? LanguageTag { get; set; }
         public Int32? MaximumAttendeesCount { get; set; }
         public string? Notes { get; set; }
         public string? PostBuffer { get; set; }
@@ -82,10 +87,13 @@ namespace HigLabo.Net.Microsoft
         public String[]? StaffMemberIds { get; set; }
         public string? WebUrl { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceGetResponse> BookingserviceGetAsync()
         {
@@ -93,7 +101,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingserviceGetParameter, BookingserviceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceGetResponse> BookingserviceGetAsync(CancellationToken cancellationToken)
         {
@@ -101,14 +109,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingserviceGetParameter, BookingserviceGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceGetResponse> BookingserviceGetAsync(BookingserviceGetParameter parameter)
         {
             return await this.SendAsync<BookingserviceGetParameter, BookingserviceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceGetResponse> BookingserviceGetAsync(BookingserviceGetParameter parameter, CancellationToken cancellationToken)
         {

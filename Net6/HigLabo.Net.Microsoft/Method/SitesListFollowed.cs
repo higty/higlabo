@@ -2,19 +2,20 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
+    /// </summary>
     public partial class SitesListFollowedParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string? UserId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
                     case ApiPath.Me_FollowedSites: return $"/me/followedSites";
-                    case ApiPath.Users_UserId_FollowedSites: return $"/users/{UserId}/followedSites";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,11 +23,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             CreatedDateTime,
             Description,
             DisplayName,
             ETag,
+            Id,
             LastModifiedDateTime,
             Name,
             Root,
@@ -50,7 +51,6 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Me_FollowedSites,
-            Users_UserId_FollowedSites,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -75,10 +75,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Site[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
         public async Task<SitesListFollowedResponse> SitesListFollowedAsync()
         {
@@ -86,7 +89,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
         public async Task<SitesListFollowedResponse> SitesListFollowedAsync(CancellationToken cancellationToken)
         {
@@ -94,14 +97,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
         public async Task<SitesListFollowedResponse> SitesListFollowedAsync(SitesListFollowedParameter parameter)
         {
             return await this.SendAsync<SitesListFollowedParameter, SitesListFollowedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/sites-list-followed?view=graph-rest-1.0
         /// </summary>
         public async Task<SitesListFollowedResponse> SitesListFollowedAsync(SitesListFollowedParameter parameter, CancellationToken cancellationToken)
         {

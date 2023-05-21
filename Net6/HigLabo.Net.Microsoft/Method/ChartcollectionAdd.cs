@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
+    /// </summary>
     public partial class ChartCollectionAddParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -86,10 +89,13 @@ namespace HigLabo.Net.Microsoft
         public ChartTitle? Title { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync()
         {
@@ -97,7 +103,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync(CancellationToken cancellationToken)
         {
@@ -105,14 +111,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync(ChartCollectionAddParameter parameter)
         {
             return await this.SendAsync<ChartCollectionAddParameter, ChartCollectionAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chartcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartCollectionAddResponse> ChartCollectionAddAsync(ChartCollectionAddParameter parameter, CancellationToken cancellationToken)
         {

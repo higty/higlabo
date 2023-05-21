@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
+    /// </summary>
     public partial class ScheduleShareParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ScheduleShareResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleShareResponse> ScheduleShareAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleShareResponse> ScheduleShareAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleShareResponse> ScheduleShareAsync(ScheduleShareParameter parameter)
         {
             return await this.SendAsync<ScheduleShareParameter, ScheduleShareResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schedule-share?view=graph-rest-1.0
         /// </summary>
         public async Task<ScheduleShareResponse> ScheduleShareAsync(ScheduleShareParameter parameter, CancellationToken cancellationToken)
         {

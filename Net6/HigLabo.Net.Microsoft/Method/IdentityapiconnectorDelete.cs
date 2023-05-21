@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentityapiConnectorDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class IdentityapiConnectorDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorDeleteResponse> IdentityapiConnectorDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityapiConnectorDeleteParameter, IdentityapiConnectorDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorDeleteResponse> IdentityapiConnectorDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityapiConnectorDeleteParameter, IdentityapiConnectorDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorDeleteResponse> IdentityapiConnectorDeleteAsync(IdentityapiConnectorDeleteParameter parameter)
         {
             return await this.SendAsync<IdentityapiConnectorDeleteParameter, IdentityapiConnectorDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityapiconnector-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityapiConnectorDeleteResponse> IdentityapiConnectorDeleteAsync(IdentityapiConnectorDeleteParameter parameter, CancellationToken cancellationToken)
         {

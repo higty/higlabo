@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
+    /// </summary>
     public partial class NotebookGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -30,13 +33,13 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedBy,
             CreatedDateTime,
+            DisplayName,
             Id,
             IsDefault,
             IsShared,
             LastModifiedBy,
             LastModifiedDateTime,
             Links,
-            DisplayName,
             SectionGroupsUrl,
             SectionsUrl,
             Self,
@@ -82,13 +85,13 @@ namespace HigLabo.Net.Microsoft
 
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? DisplayName { get; set; }
         public string? Id { get; set; }
         public bool? IsDefault { get; set; }
         public bool? IsShared { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public NotebookLinks? Links { get; set; }
-        public string? DisplayName { get; set; }
         public string? SectionGroupsUrl { get; set; }
         public string? SectionsUrl { get; set; }
         public string? Self { get; set; }
@@ -96,10 +99,13 @@ namespace HigLabo.Net.Microsoft
         public SectionGroup[]? SectionGroups { get; set; }
         public Section[]? Sections { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetResponse> NotebookGetAsync()
         {
@@ -107,7 +113,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetResponse> NotebookGetAsync(CancellationToken cancellationToken)
         {
@@ -115,14 +121,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetResponse> NotebookGetAsync(NotebookGetParameter parameter)
         {
             return await this.SendAsync<NotebookGetParameter, NotebookGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/notebook-get?view=graph-rest-1.0
         /// </summary>
         public async Task<NotebookGetResponse> NotebookGetAsync(NotebookGetParameter parameter, CancellationToken cancellationToken)
         {

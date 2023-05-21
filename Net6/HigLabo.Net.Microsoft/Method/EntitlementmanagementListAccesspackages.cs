@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementListAccesspackagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -26,8 +29,11 @@ namespace HigLabo.Net.Microsoft
             Id,
             IsHidden,
             ModifiedDateTime,
+            AccessPackagesIncompatibleWith,
             AssignmentPolicies,
             Catalog,
+            IncompatibleAccessPackages,
+            IncompatibleGroups,
         }
         public enum ApiPath
         {
@@ -56,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessPackage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync()
         {
@@ -67,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementListAccesspackagesParameter, EntitlementManagementListAccesspackagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAccesspackagesResponse> EntitlementManagementListAccesspackagesAsync(EntitlementManagementListAccesspackagesParameter parameter, CancellationToken cancellationToken)
         {

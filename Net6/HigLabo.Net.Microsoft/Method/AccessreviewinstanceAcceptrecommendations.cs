@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstanceAcceptrecommendationsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class AccessreviewinstanceAcceptrecommendationsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(AccessreviewinstanceAcceptrecommendationsParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceAcceptrecommendationsParameter, AccessreviewinstanceAcceptrecommendationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-acceptrecommendations?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceAcceptrecommendationsResponse> AccessreviewinstanceAcceptrecommendationsAsync(AccessreviewinstanceAcceptrecommendationsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatListTabsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,10 +24,10 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
-            WebUrl,
             Configuration,
+            DisplayName,
+            Id,
+            WebUrl,
             TeamsApp,
         }
         public enum ApiPath
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TeamsTab[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListTabsResponse> ChatListTabsAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListTabsResponse> ChatListTabsAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter)
         {
             return await this.SendAsync<ChatListTabsParameter, ChatListTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-list-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatListTabsResponse> ChatListTabsAsync(ChatListTabsParameter parameter, CancellationToken cancellationToken)
         {

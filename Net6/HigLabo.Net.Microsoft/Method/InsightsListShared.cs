@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
+    /// </summary>
     public partial class InsightsListSharedParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,14 +57,17 @@ namespace HigLabo.Net.Microsoft
     {
         public string? Id { get; set; }
         public SharingDetail? LastShared { get; set; }
-        public ResourceVisualization? ResourceVisualization { get; set; }
         public ResourceReference? ResourceReference { get; set; }
+        public ResourceVisualization? ResourceVisualization { get; set; }
         public Entity[]? Resource { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListSharedResponse> InsightsListSharedAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListSharedResponse> InsightsListSharedAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListSharedResponse> InsightsListSharedAsync(InsightsListSharedParameter parameter)
         {
             return await this.SendAsync<InsightsListSharedParameter, InsightsListSharedResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-shared?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListSharedResponse> InsightsListSharedAsync(InsightsListSharedParameter parameter, CancellationToken cancellationToken)
         {

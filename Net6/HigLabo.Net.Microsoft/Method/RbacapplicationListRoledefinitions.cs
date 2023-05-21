@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+    /// </summary>
     public partial class RbacapplicationListRoledefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -60,10 +63,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UnifiedRoleDefinition[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync(RbacapplicationListRoledefinitionsParameter parameter)
         {
             return await this.SendAsync<RbacapplicationListRoledefinitionsParameter, RbacapplicationListRoledefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roledefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoledefinitionsResponse> RbacapplicationListRoledefinitionsAsync(RbacapplicationListRoledefinitionsParameter parameter, CancellationToken cancellationToken)
         {

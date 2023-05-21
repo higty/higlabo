@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
+    /// </summary>
     public partial class CrosstenantAccessPolicyConfigurationPartnerGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,6 +50,7 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class CrosstenantAccessPolicyConfigurationPartnerGetResponse : RestApiResponse
     {
+        public InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationInbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationOutbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
@@ -54,11 +58,15 @@ namespace HigLabo.Net.Microsoft
         public CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
         public bool? IsServiceProvider { get; set; }
         public string? TenantId { get; set; }
+        public CrossTenantIdentitySyncPolicyPartner? IdentitySynchronization { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerGetResponse> CrosstenantAccessPolicyConfigurationPartnerGetAsync()
         {
@@ -66,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerGetParameter, CrosstenantAccessPolicyConfigurationPartnerGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerGetResponse> CrosstenantAccessPolicyConfigurationPartnerGetAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerGetParameter, CrosstenantAccessPolicyConfigurationPartnerGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerGetResponse> CrosstenantAccessPolicyConfigurationPartnerGetAsync(CrosstenantAccessPolicyConfigurationPartnerGetParameter parameter)
         {
             return await this.SendAsync<CrosstenantAccessPolicyConfigurationPartnerGetParameter, CrosstenantAccessPolicyConfigurationPartnerGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/crosstenantaccesspolicyconfigurationpartner-get?view=graph-rest-1.0
         /// </summary>
         public async Task<CrosstenantAccessPolicyConfigurationPartnerGetResponse> CrosstenantAccessPolicyConfigurationPartnerGetAsync(CrosstenantAccessPolicyConfigurationPartnerGetParameter parameter, CancellationToken cancellationToken)
         {

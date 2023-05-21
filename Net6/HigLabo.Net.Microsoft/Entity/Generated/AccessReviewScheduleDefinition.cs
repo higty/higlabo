@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/accessreviewscheduledefinition?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/accessreviewscheduledefinition?view=graph-rest-1.0
     /// </summary>
     public partial class AccessReviewScheduleDefinition
     {
@@ -20,6 +20,7 @@ namespace HigLabo.Net.Microsoft
         public AccessReviewReviewerScope[]? Reviewers { get; set; }
         public AccessReviewScope? Scope { get; set; }
         public AccessReviewScheduleSettings? Settings { get; set; }
+        public AccessReviewStageSettings[]? StageSettings { get; set; }
         public string? Status { get; set; }
         public AccessReviewInstance[]? Instances { get; set; }
     }

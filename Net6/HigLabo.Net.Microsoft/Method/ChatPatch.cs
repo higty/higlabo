@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatPatchParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatPatchResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPatchResponse> ChatPatchAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPatchResponse> ChatPatchAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPatchResponse> ChatPatchAsync(ChatPatchParameter parameter)
         {
             return await this.SendAsync<ChatPatchParameter, ChatPatchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-patch?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatPatchResponse> ChatPatchAsync(ChatPatchParameter parameter, CancellationToken cancellationToken)
         {

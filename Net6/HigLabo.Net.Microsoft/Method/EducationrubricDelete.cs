@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationrubricDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -36,10 +39,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationrubricDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync()
         {
@@ -47,7 +53,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync(CancellationToken cancellationToken)
         {
@@ -55,14 +61,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync(EducationrubricDeleteParameter parameter)
         {
             return await this.SendAsync<EducationrubricDeleteParameter, EducationrubricDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricDeleteResponse> EducationrubricDeleteAsync(EducationrubricDeleteParameter parameter, CancellationToken cancellationToken)
         {

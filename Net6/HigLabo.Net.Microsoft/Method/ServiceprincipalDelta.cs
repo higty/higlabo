@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -45,6 +48,7 @@ namespace HigLabo.Net.Microsoft
             Oauth2PermissionScopes,
             PasswordCredentials,
             PreferredSingleSignOnMode,
+            PreferredTokenSigningKeyThumbprint,
             ReplyUrls,
             ResourceSpecificApplicationPermissions,
             SamlSingleSignOnSettings,
@@ -54,10 +58,12 @@ namespace HigLabo.Net.Microsoft
             Tags,
             TokenEncryptionKeyId,
             VerifiedPublisher,
+            AppManagementPolicies,
             AppRoleAssignedTo,
             AppRoleAssignments,
             ClaimsMappingPolicies,
             CreatedObjects,
+            FederatedIdentityCredentials,
             HomeRealmDiscoveryPolicies,
             MemberOf,
             Oauth2PermissionGrants,
@@ -93,10 +99,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ServicePrincipal[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync()
         {
@@ -104,7 +113,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(CancellationToken cancellationToken)
         {
@@ -112,14 +121,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeltaParameter, ServiceprincipalDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeltaResponse> ServiceprincipalDeltaAsync(ServiceprincipalDeltaParameter parameter, CancellationToken cancellationToken)
         {

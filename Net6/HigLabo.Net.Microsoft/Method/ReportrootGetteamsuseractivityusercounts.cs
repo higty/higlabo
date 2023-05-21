@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetteamsUseractivityUsercountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetteamsUseractivityUsercountsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsUseractivityUsercountsResponse> ReportRootGetteamsUseractivityUsercountsAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetteamsUseractivityUsercountsParameter, ReportRootGetteamsUseractivityUsercountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsUseractivityUsercountsResponse> ReportRootGetteamsUseractivityUsercountsAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetteamsUseractivityUsercountsParameter, ReportRootGetteamsUseractivityUsercountsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsUseractivityUsercountsResponse> ReportRootGetteamsUseractivityUsercountsAsync(ReportRootGetteamsUseractivityUsercountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetteamsUseractivityUsercountsParameter, ReportRootGetteamsUseractivityUsercountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsuseractivityusercounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsUseractivityUsercountsResponse> ReportRootGetteamsUseractivityUsercountsAsync(ReportRootGetteamsUseractivityUsercountsParameter parameter, CancellationToken cancellationToken)
         {

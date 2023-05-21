@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -46,7 +49,9 @@ namespace HigLabo.Net.Microsoft
             PasswordCredentials,
             PublicClient,
             PublisherDomain,
+            RequestSignatureVerification,
             RequiredResourceAccess,
+            SamlMetadataUrl,
             ServiceManagementReference,
             SignInAudience,
             Spa,
@@ -54,8 +59,10 @@ namespace HigLabo.Net.Microsoft
             TokenEncryptionKeyId,
             VerifiedPublisher,
             Web,
+            AppManagementPolicies,
             CreatedOnBehalfOf,
             ExtensionProperties,
+            FederatedIdentityCredentials,
             Owners,
         }
         public enum ApiPath
@@ -85,10 +92,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Application[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListResponse> ApplicationListAsync()
         {
@@ -96,7 +106,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListResponse> ApplicationListAsync(CancellationToken cancellationToken)
         {
@@ -104,14 +114,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter)
         {
             return await this.SendAsync<ApplicationListParameter, ApplicationListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationListResponse> ApplicationListAsync(ApplicationListParameter parameter, CancellationToken cancellationToken)
         {

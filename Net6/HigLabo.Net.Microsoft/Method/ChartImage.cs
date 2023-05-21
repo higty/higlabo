@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
+    /// </summary>
     public partial class ChartImageParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChartImageResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartImageResponse> ChartImageAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartImageResponse> ChartImageAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartImageResponse> ChartImageAsync(ChartImageParameter parameter)
         {
             return await this.SendAsync<ChartImageParameter, ChartImageResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chart-image?view=graph-rest-1.0
         /// </summary>
         public async Task<ChartImageResponse> ChartImageAsync(ChartImageParameter parameter, CancellationToken cancellationToken)
         {

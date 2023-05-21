@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalListTransitivememberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_TransitiveMemberOf: return $"/servicePrincipals/{Id}/transitiveMemberOf";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -27,6 +31,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_TransitiveMemberOf,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -51,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync()
         {
@@ -62,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync(ServiceprincipalListTransitivememberofParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListTransitivememberofParameter, ServiceprincipalListTransitivememberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListTransitivememberofResponse> ServiceprincipalListTransitivememberofAsync(ServiceprincipalListTransitivememberofParameter parameter, CancellationToken cancellationToken)
         {

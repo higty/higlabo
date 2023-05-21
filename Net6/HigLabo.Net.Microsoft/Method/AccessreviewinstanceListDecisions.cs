@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstanceListDecisionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -64,10 +67,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessReviewInstanceDecisionItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync()
         {
@@ -75,7 +81,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(CancellationToken cancellationToken)
         {
@@ -83,14 +89,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstanceListDecisionsParameter, AccessreviewinstanceListDecisionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstance-list-decisions?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstanceListDecisionsResponse> AccessreviewinstanceListDecisionsAsync(AccessreviewinstanceListDecisionsParameter parameter, CancellationToken cancellationToken)
         {

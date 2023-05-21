@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintusagebyUserGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,17 +52,20 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintusagebyUserGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? UserPrincipalName { get; set; }
-        public DateOnly? UsageDate { get; set; }
         public Int64? CompletedBlackAndWhiteJobCount { get; set; }
         public Int64? CompletedColorJobCount { get; set; }
+        public string? Id { get; set; }
         public Int64? IncompleteJobCount { get; set; }
+        public DateOnly? UsageDate { get; set; }
+        public string? UserPrincipalName { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter)
         {
             return await this.SendAsync<PrintusagebyUserGetParameter, PrintusagebyUserGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyuser-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyUserGetResponse> PrintusagebyUserGetAsync(PrintusagebyUserGetParameter parameter, CancellationToken cancellationToken)
         {

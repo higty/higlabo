@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
+    /// </summary>
     public partial class InvitationPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -35,10 +38,11 @@ namespace HigLabo.Net.Microsoft
         public string? InvitedUserEmailAddress { get; set; }
         public string? InviteRedirectUrl { get; set; }
         public string? InvitedUserDisplayName { get; set; }
-        public Configuring? InvitedUserMessageInfo { get; set; }
-        public bool? SendInvitationMessage { get; set; }
-        public string? InviteRedeemUrl { get; set; }
+        public InvitedUserMessageInfo? InvitedUserMessageInfo { get; set; }
         public string? InvitedUserType { get; set; }
+        public string? InviteRedeemUrl { get; set; }
+        public bool? ResetRedemption { get; set; }
+        public bool? SendInvitationMessage { get; set; }
         public string? Status { get; set; }
         public User? InvitedUser { get; set; }
     }
@@ -46,18 +50,22 @@ namespace HigLabo.Net.Microsoft
     {
         public string? InvitedUserDisplayName { get; set; }
         public string? InvitedUserEmailAddress { get; set; }
-        public Configuring? InvitedUserMessageInfo { get; set; }
-        public bool? SendInvitationMessage { get; set; }
+        public InvitedUserMessageInfo? InvitedUserMessageInfo { get; set; }
+        public string? InvitedUserType { get; set; }
         public string? InviteRedirectUrl { get; set; }
         public string? InviteRedeemUrl { get; set; }
-        public string? InvitedUserType { get; set; }
+        public bool? ResetRedemption { get; set; }
+        public bool? SendInvitationMessage { get; set; }
         public string? Status { get; set; }
         public User? InvitedUser { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<InvitationPostResponse> InvitationPostAsync()
         {
@@ -65,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<InvitationPostResponse> InvitationPostAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<InvitationPostResponse> InvitationPostAsync(InvitationPostParameter parameter)
         {
             return await this.SendAsync<InvitationPostParameter, InvitationPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/invitation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<InvitationPostResponse> InvitationPostAsync(InvitationPostParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ExternalConnectorsExternalconnectionGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,6 +24,16 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            ActivitySettings,
+            Configuration,
+            Description,
+            Id,
+            Name,
+            SearchSettings,
+            State,
+            Items,
+            Operations,
+            Schema,
         }
         public enum ApiPath
         {
@@ -56,19 +69,24 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
+        public ExternalConnectorsActivitySettings? ActivitySettings { get; set; }
         public ExternalConnectorsConfiguration? Configuration { get; set; }
         public string? Description { get; set; }
         public string? Id { get; set; }
         public string? Name { get; set; }
+        public ExternalConnectorsSearchSettings? SearchSettings { get; set; }
         public ExternalConnectorsExternalconnectionExternalConnectorsConnectionState State { get; set; }
         public ExternalConnectorsExternalitem[]? Items { get; set; }
         public ExternalConnectorsConnectionOperation[]? Operations { get; set; }
         public ExternalConnectorsSchema? Schema { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionGetResponse> ExternalConnectorsExternalconnectionGetAsync()
         {
@@ -76,7 +94,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalconnectionGetParameter, ExternalConnectorsExternalconnectionGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionGetResponse> ExternalConnectorsExternalconnectionGetAsync(CancellationToken cancellationToken)
         {
@@ -84,14 +102,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalconnectionGetParameter, ExternalConnectorsExternalconnectionGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionGetResponse> ExternalConnectorsExternalconnectionGetAsync(ExternalConnectorsExternalconnectionGetParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionGetParameter, ExternalConnectorsExternalconnectionGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionGetResponse> ExternalConnectorsExternalconnectionGetAsync(ExternalConnectorsExternalconnectionGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
+    /// </summary>
     public partial class CallRejectParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CallRejectResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRejectResponse> CallRejectAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRejectResponse> CallRejectAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRejectResponse> CallRejectAsync(CallRejectParameter parameter)
         {
             return await this.SendAsync<CallRejectParameter, CallRejectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-reject?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRejectResponse> CallRejectAsync(CallRejectParameter parameter, CancellationToken cancellationToken)
         {

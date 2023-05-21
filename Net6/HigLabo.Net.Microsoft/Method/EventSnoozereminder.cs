@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
+    /// </summary>
     public partial class EventSnoozereminderParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -12,7 +15,7 @@ namespace HigLabo.Net.Microsoft
             public string? CalendarsId { get; set; }
             public string? EventsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -24,8 +27,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events_Id_SnoozeReminder: return $"/users/{IdOrUserPrincipalName}/calendar/events/{Id}/snoozeReminder";
                     case ApiPath.Me_Calendars_Id_Events_Id_SnoozeReminder: return $"/me/calendars/{CalendarsId}/events/{EventsId}/snoozeReminder";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_SnoozeReminder: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/snoozeReminder";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_SnoozeReminder: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/snoozeReminder";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_SnoozeReminder: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/snoozeReminder";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_SnoozeReminder: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/snoozeReminder";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_SnoozeReminder: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/snoozeReminder";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -39,8 +42,8 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendar_Events_Id_SnoozeReminder,
             Me_Calendars_Id_Events_Id_SnoozeReminder,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_SnoozeReminder,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_SnoozeReminder,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_SnoozeReminder,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_SnoozeReminder,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_SnoozeReminder,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EventSnoozereminderResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
         public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
         public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
         public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync(EventSnoozereminderParameter parameter)
         {
             return await this.SendAsync<EventSnoozereminderParameter, EventSnoozereminderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-snoozereminder?view=graph-rest-1.0
         /// </summary>
         public async Task<EventSnoozereminderResponse> EventSnoozereminderAsync(EventSnoozereminderParameter parameter, CancellationToken cancellationToken)
         {

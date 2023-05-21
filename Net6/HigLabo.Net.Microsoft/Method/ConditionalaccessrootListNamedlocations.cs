@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+    /// </summary>
     public partial class ConditionalAccessRootListNamedLocationsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     {
         public NamedLocation[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootListNamedLocationsResponse> ConditionalAccessRootListNamedLocationsAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessRootListNamedLocationsParameter, ConditionalAccessRootListNamedLocationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootListNamedLocationsResponse> ConditionalAccessRootListNamedLocationsAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessRootListNamedLocationsParameter, ConditionalAccessRootListNamedLocationsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootListNamedLocationsResponse> ConditionalAccessRootListNamedLocationsAsync(ConditionalAccessRootListNamedLocationsParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessRootListNamedLocationsParameter, ConditionalAccessRootListNamedLocationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccessroot-list-namedlocations?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessRootListNamedLocationsResponse> ConditionalAccessRootListNamedLocationsAsync(ConditionalAccessRootListNamedLocationsParameter parameter, CancellationToken cancellationToken)
         {

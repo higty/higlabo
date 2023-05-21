@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class TableDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     public partial class TableDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TableDeleteResponse> TableDeleteAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TableDeleteResponse> TableDeleteAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TableDeleteResponse> TableDeleteAsync(TableDeleteParameter parameter)
         {
             return await this.SendAsync<TableDeleteParameter, TableDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TableDeleteResponse> TableDeleteAsync(TableDeleteParameter parameter, CancellationToken cancellationToken)
         {

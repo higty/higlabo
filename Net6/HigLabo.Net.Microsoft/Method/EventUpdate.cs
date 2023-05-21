@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
+    /// </summary>
     public partial class EventUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             public string? EventsId { get; set; }
             public string? CalendarsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -27,8 +30,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Groups_Id_Calendar_Events_Id: return $"/groups/{GroupsId}/calendar/events/{EventsId}";
                     case ApiPath.Me_Calendars_Id_Events_Id: return $"/me/calendars/{CalendarsId}/events/{EventsId}";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -50,8 +53,8 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Calendar_Events_Id,
             Me_Calendars_Id_Events_Id,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -85,12 +88,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EventUpdateResponse : RestApiResponse
     {
-        public enum EventImportance
-        {
-            Low,
-            Normal,
-            High,
-        }
         public enum EventOnlineMeetingProviderType
         {
             Unknown,
@@ -111,7 +108,7 @@ namespace HigLabo.Net.Microsoft
         public bool? HideAttendees { get; set; }
         public string? ICalUId { get; set; }
         public string? Id { get; set; }
-        public EventImportance Importance { get; set; }
+        public string? Importance { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }
@@ -147,10 +144,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EventUpdateResponse> EventUpdateAsync()
         {
@@ -158,7 +158,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventUpdateParameter, EventUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EventUpdateResponse> EventUpdateAsync(CancellationToken cancellationToken)
         {
@@ -166,14 +166,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventUpdateParameter, EventUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EventUpdateResponse> EventUpdateAsync(EventUpdateParameter parameter)
         {
             return await this.SendAsync<EventUpdateParameter, EventUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EventUpdateResponse> EventUpdateAsync(EventUpdateParameter parameter, CancellationToken cancellationToken)
         {

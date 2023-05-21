@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
+    /// </summary>
     public partial class DomainUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DomainUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainUpdateResponse> DomainUpdateAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainUpdateResponse> DomainUpdateAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainUpdateResponse> DomainUpdateAsync(DomainUpdateParameter parameter)
         {
             return await this.SendAsync<DomainUpdateParameter, DomainUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/domain-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DomainUpdateResponse> DomainUpdateAsync(DomainUpdateParameter parameter, CancellationToken cancellationToken)
         {

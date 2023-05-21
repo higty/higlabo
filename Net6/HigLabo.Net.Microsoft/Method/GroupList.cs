@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -86,6 +89,8 @@ namespace HigLabo.Net.Microsoft
             Sites,
             Team,
             Threads,
+            TransitiveMemberOf,
+            TransitiveMembers,
         }
         public enum ApiPath
         {
@@ -115,10 +120,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Group[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListResponse> GroupListAsync()
         {
@@ -126,7 +134,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListParameter, GroupListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListResponse> GroupListAsync(CancellationToken cancellationToken)
         {
@@ -134,14 +142,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListParameter, GroupListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListResponse> GroupListAsync(GroupListParameter parameter)
         {
             return await this.SendAsync<GroupListParameter, GroupListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListResponse> GroupListAsync(GroupListParameter parameter, CancellationToken cancellationToken)
         {

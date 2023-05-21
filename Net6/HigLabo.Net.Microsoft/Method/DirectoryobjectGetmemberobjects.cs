@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryobjectGetmemberobjectsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DirectoryobjectGetmemberobjectsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberobjectsResponse> DirectoryobjectGetmemberobjectsAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetmemberobjectsParameter, DirectoryobjectGetmemberobjectsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberobjectsResponse> DirectoryobjectGetmemberobjectsAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetmemberobjectsParameter, DirectoryobjectGetmemberobjectsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberobjectsResponse> DirectoryobjectGetmemberobjectsAsync(DirectoryobjectGetmemberobjectsParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectGetmemberobjectsParameter, DirectoryobjectGetmemberobjectsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmemberobjects?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberobjectsResponse> DirectoryobjectGetmemberobjectsAsync(DirectoryobjectGetmemberobjectsParameter parameter, CancellationToken cancellationToken)
         {

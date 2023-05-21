@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class UserconsentrequestFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UserConsentRequest[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(UserconsentrequestFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<UserconsentrequestFilterbycurrentUserParameter, UserconsentrequestFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userconsentrequest-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<UserconsentrequestFilterbycurrentUserResponse> UserconsentrequestFilterbycurrentUserAsync(UserconsentrequestFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

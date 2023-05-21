@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryobjectGetmemberGroupsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DirectoryobjectGetmemberGroupsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync(DirectoryobjectGetmemberGroupsParameter parameter)
         {
             return await this.SendAsync<DirectoryobjectGetmemberGroupsParameter, DirectoryobjectGetmemberGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryobject-getmembergroups?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryobjectGetmemberGroupsResponse> DirectoryobjectGetmemberGroupsAsync(DirectoryobjectGetmemberGroupsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class WorksheetDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
     public partial class WorksheetDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync(WorksheetDeleteParameter parameter)
         {
             return await this.SendAsync<WorksheetDeleteParameter, WorksheetDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetDeleteResponse> WorksheetDeleteAsync(WorksheetDeleteParameter parameter, CancellationToken cancellationToken)
         {

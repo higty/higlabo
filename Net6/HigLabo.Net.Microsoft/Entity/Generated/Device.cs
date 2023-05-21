@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/device?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/device?view=graph-rest-1.0
     /// </summary>
     public partial class Device
     {
@@ -20,10 +20,13 @@ namespace HigLabo.Net.Microsoft
         public AlternativeSecurityId[]? AlternativeSecurityIds { get; set; }
         public DateTimeOffset? ApproximateLastSignInDateTime { get; set; }
         public DateTimeOffset? ComplianceExpirationDateTime { get; set; }
+        public string? DeviceCategory { get; set; }
         public string? DeviceId { get; set; }
         public string? DeviceMetadata { get; set; }
+        public string? DeviceOwnership { get; set; }
         public Int32? DeviceVersion { get; set; }
         public string? DisplayName { get; set; }
+        public string? EnrollmentProfileName { get; set; }
         public OnPremisesExtensionAttributes? ExtensionAttributes { get; set; }
         public string? Id { get; set; }
         public bool? IsCompliant { get; set; }
@@ -37,12 +40,13 @@ namespace HigLabo.Net.Microsoft
         public string? OperatingSystemVersion { get; set; }
         public String[]? PhysicalIds { get; set; }
         public DeviceDeviceProfileType ProfileType { get; set; }
+        public DateTimeOffset? RegistrationDateTime { get; set; }
         public String[]? SystemLabels { get; set; }
         public string? TrustType { get; set; }
         public Extension[]? Extensions { get; set; }
         public DirectoryObject[]? MemberOf { get; set; }
-        public DirectoryObject[]? TransitiveMemberOf { get; set; }
         public DirectoryObject[]? RegisteredOwners { get; set; }
         public DirectoryObject[]? RegisteredUsers { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
     }
 }

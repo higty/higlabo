@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
+    /// </summary>
     public partial class UserFindmeetingtimesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
         public string? EmptySuggestionsReason { get; set; }
         public MeetingTimeSuggestion[]? MeetingTimeSuggestions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
         /// </summary>
         public async Task<UserFindmeetingtimesResponse> UserFindmeetingtimesAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserFindmeetingtimesParameter, UserFindmeetingtimesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
         /// </summary>
         public async Task<UserFindmeetingtimesResponse> UserFindmeetingtimesAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserFindmeetingtimesParameter, UserFindmeetingtimesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
         /// </summary>
         public async Task<UserFindmeetingtimesResponse> UserFindmeetingtimesAsync(UserFindmeetingtimesParameter parameter)
         {
             return await this.SendAsync<UserFindmeetingtimesParameter, UserFindmeetingtimesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-findmeetingtimes?view=graph-rest-1.0
         /// </summary>
         public async Task<UserFindmeetingtimesResponse> UserFindmeetingtimesAsync(UserFindmeetingtimesParameter parameter, CancellationToken cancellationToken)
         {

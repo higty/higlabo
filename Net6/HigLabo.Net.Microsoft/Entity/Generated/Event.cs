@@ -3,16 +3,10 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/event?view=graph-rest-1.0
     /// </summary>
     public partial class Event
     {
-        public enum EventImportance
-        {
-            Low,
-            Normal,
-            High,
-        }
         public enum EventOnlineMeetingProviderType
         {
             Unknown,
@@ -33,7 +27,7 @@ namespace HigLabo.Net.Microsoft
         public bool? HideAttendees { get; set; }
         public string? ICalUId { get; set; }
         public string? Id { get; set; }
-        public EventImportance Importance { get; set; }
+        public string? Importance { get; set; }
         public bool? IsAllDay { get; set; }
         public bool? IsCancelled { get; set; }
         public bool? IsDraft { get; set; }

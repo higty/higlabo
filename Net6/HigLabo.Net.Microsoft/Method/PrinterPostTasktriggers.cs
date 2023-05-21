@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
+    /// </summary>
     public partial class PrinterPostTasktriggersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,20 +36,23 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public PrintEvent? Event { get; set; }
+        public string? Id { get; set; }
         public PrintTaskDefinition? Definition { get; set; }
     }
     public partial class PrinterPostTasktriggersResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public PrintEvent? Event { get; set; }
+        public string? Id { get; set; }
         public PrintTaskDefinition? Definition { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync()
         {
@@ -54,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(CancellationToken cancellationToken)
         {
@@ -62,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(PrinterPostTasktriggersParameter parameter)
         {
             return await this.SendAsync<PrinterPostTasktriggersParameter, PrinterPostTasktriggersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printer-post-tasktriggers?view=graph-rest-1.0
         /// </summary>
         public async Task<PrinterPostTasktriggersResponse> PrinterPostTasktriggersAsync(PrinterPostTasktriggersParameter parameter, CancellationToken cancellationToken)
         {

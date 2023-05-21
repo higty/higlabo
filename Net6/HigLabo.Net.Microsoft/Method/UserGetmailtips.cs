@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
+    /// </summary>
     public partial class UserGetmailtipsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -42,10 +45,13 @@ namespace HigLabo.Net.Microsoft
     {
         public MailTips[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetmailtipsResponse> UserGetmailtipsAsync()
         {
@@ -53,7 +59,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserGetmailtipsParameter, UserGetmailtipsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetmailtipsResponse> UserGetmailtipsAsync(CancellationToken cancellationToken)
         {
@@ -61,14 +67,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserGetmailtipsParameter, UserGetmailtipsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetmailtipsResponse> UserGetmailtipsAsync(UserGetmailtipsParameter parameter)
         {
             return await this.SendAsync<UserGetmailtipsParameter, UserGetmailtipsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-getmailtips?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetmailtipsResponse> UserGetmailtipsAsync(UserGetmailtipsParameter parameter, CancellationToken cancellationToken)
         {

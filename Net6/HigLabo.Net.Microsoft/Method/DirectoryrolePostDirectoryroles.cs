@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryrolePostDirectoryrolesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
         public DirectoryObject[]? Members { get; set; }
         public ScopedRoleMembership[]? ScopedMembers { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostDirectoryrolesResponse> DirectoryrolePostDirectoryrolesAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryrolePostDirectoryrolesParameter, DirectoryrolePostDirectoryrolesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostDirectoryrolesResponse> DirectoryrolePostDirectoryrolesAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryrolePostDirectoryrolesParameter, DirectoryrolePostDirectoryrolesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostDirectoryrolesResponse> DirectoryrolePostDirectoryrolesAsync(DirectoryrolePostDirectoryrolesParameter parameter)
         {
             return await this.SendAsync<DirectoryrolePostDirectoryrolesParameter, DirectoryrolePostDirectoryrolesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-post-directoryroles?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryrolePostDirectoryrolesResponse> DirectoryrolePostDirectoryrolesAsync(DirectoryrolePostDirectoryrolesParameter parameter, CancellationToken cancellationToken)
         {

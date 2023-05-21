@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
+    /// </summary>
     public partial class TablePostRowsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public Int32? Index { get; set; }
         public Json? Values { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
         public async Task<TablePostRowsResponse> TablePostRowsAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
         public async Task<TablePostRowsResponse> TablePostRowsAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
         public async Task<TablePostRowsResponse> TablePostRowsAsync(TablePostRowsParameter parameter)
         {
             return await this.SendAsync<TablePostRowsParameter, TablePostRowsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/table-post-rows?view=graph-rest-1.0
         /// </summary>
         public async Task<TablePostRowsResponse> TablePostRowsAsync(TablePostRowsParameter parameter, CancellationToken cancellationToken)
         {

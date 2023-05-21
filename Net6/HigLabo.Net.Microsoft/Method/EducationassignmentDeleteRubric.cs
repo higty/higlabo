@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentDeleteRubricParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -36,10 +39,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationAssignmentDeleteRubricResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteRubricResponse> EducationAssignmentDeleteRubricAsync()
         {
@@ -47,7 +53,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentDeleteRubricParameter, EducationAssignmentDeleteRubricResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteRubricResponse> EducationAssignmentDeleteRubricAsync(CancellationToken cancellationToken)
         {
@@ -55,14 +61,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentDeleteRubricParameter, EducationAssignmentDeleteRubricResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteRubricResponse> EducationAssignmentDeleteRubricAsync(EducationAssignmentDeleteRubricParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentDeleteRubricParameter, EducationAssignmentDeleteRubricResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-delete-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentDeleteRubricResponse> EducationAssignmentDeleteRubricAsync(EducationAssignmentDeleteRubricParameter parameter, CancellationToken cancellationToken)
         {

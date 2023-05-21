@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -97,10 +100,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarUpdateResponse> CalendarUpdateAsync()
         {
@@ -108,7 +114,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarUpdateResponse> CalendarUpdateAsync(CancellationToken cancellationToken)
         {
@@ -116,14 +122,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarUpdateResponse> CalendarUpdateAsync(CalendarUpdateParameter parameter)
         {
             return await this.SendAsync<CalendarUpdateParameter, CalendarUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarUpdateResponse> CalendarUpdateAsync(CalendarUpdateParameter parameter, CancellationToken cancellationToken)
         {

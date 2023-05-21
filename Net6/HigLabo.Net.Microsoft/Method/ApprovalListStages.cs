@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
+    /// </summary>
     public partial class ApprovalListStagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ApprovalStage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalListStagesResponse> ApprovalListStagesAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApprovalListStagesParameter, ApprovalListStagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalListStagesResponse> ApprovalListStagesAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApprovalListStagesParameter, ApprovalListStagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalListStagesResponse> ApprovalListStagesAsync(ApprovalListStagesParameter parameter)
         {
             return await this.SendAsync<ApprovalListStagesParameter, ApprovalListStagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/approval-list-stages?view=graph-rest-1.0
         /// </summary>
         public async Task<ApprovalListStagesResponse> ApprovalListStagesAsync(ApprovalListStagesParameter parameter, CancellationToken cancellationToken)
         {

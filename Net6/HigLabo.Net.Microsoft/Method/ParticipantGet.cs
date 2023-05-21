@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ParticipantGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -29,6 +32,7 @@ namespace HigLabo.Net.Microsoft
             MediaStreams,
             Metadata,
             RecordingInfo,
+            RestrictedExperience,
         }
         public enum ApiPath
         {
@@ -62,11 +66,15 @@ namespace HigLabo.Net.Microsoft
         public MediaStream[]? MediaStreams { get; set; }
         public string? Metadata { get; set; }
         public RecordingInfo? RecordingInfo { get; set; }
+        public OnlineMeetingRestricted? RestrictedExperience { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantGetResponse> ParticipantGetAsync()
         {
@@ -74,7 +82,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantGetResponse> ParticipantGetAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +90,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantGetResponse> ParticipantGetAsync(ParticipantGetParameter parameter)
         {
             return await this.SendAsync<ParticipantGetParameter, ParticipantGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/participant-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ParticipantGetResponse> ParticipantGetAsync(ParticipantGetParameter parameter, CancellationToken cancellationToken)
         {

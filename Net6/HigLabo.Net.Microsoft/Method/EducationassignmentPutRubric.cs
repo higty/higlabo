@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentPutRubricParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -36,10 +39,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationAssignmentPutRubricResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync()
         {
@@ -47,7 +53,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(CancellationToken cancellationToken)
         {
@@ -55,14 +61,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(EducationAssignmentPutRubricParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentPutRubricParameter, EducationAssignmentPutRubricResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-put-rubric?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentPutRubricResponse> EducationAssignmentPutRubricAsync(EducationAssignmentPutRubricParameter parameter, CancellationToken cancellationToken)
         {

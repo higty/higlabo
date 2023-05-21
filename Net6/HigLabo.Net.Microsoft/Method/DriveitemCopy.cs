@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemCopyParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DriveitemCopyResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCopyResponse> DriveitemCopyAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCopyResponse> DriveitemCopyAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter)
         {
             return await this.SendAsync<DriveitemCopyParameter, DriveitemCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemCopyResponse> DriveitemCopyAsync(DriveitemCopyParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#consentprovidedforminor-values
+    /// https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
     /// </summary>
     public partial class User
     {
@@ -13,6 +13,10 @@ namespace HigLabo.Net.Microsoft
             Minor,
             NotAdult,
             Adult,
+            Eq,
+            Ne,
+            Not,
+            In,
         }
         public enum UserConsentProvidedForMinor
         {
@@ -20,6 +24,10 @@ namespace HigLabo.Net.Microsoft
             Granted,
             Denied,
             NotRequired,
+            Eq,
+            Ne,
+            Not,
+            In,
         }
         public enum UserLegalAgeGroupClassification
         {
@@ -48,6 +56,7 @@ namespace HigLabo.Net.Microsoft
         public string? Department { get; set; }
         public string? DisplayName { get; set; }
         public DateTimeOffset? EmployeeHireDate { get; set; }
+        public DateTimeOffset? EmployeeLeaveDateTime { get; set; }
         public string? EmployeeId { get; set; }
         public EmployeeOrgData? EmployeeOrgData { get; set; }
         public string? EmployeeType { get; set; }
@@ -83,7 +92,7 @@ namespace HigLabo.Net.Microsoft
         public string? OnPremisesUserPrincipalName { get; set; }
         public String[]? OtherMails { get; set; }
         public string? PasswordPolicies { get; set; }
-        public PasswordProfile PasswordProfile { get; set; }
+        public PasswordProfile? PasswordProfile { get; set; }
         public String[]? PastProjects { get; set; }
         public string? PostalCode { get; set; }
         public string? PreferredDataLocation { get; set; }
@@ -94,23 +103,25 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? RefreshTokensValidFromDateTime { get; set; }
         public String[]? Responsibilities { get; set; }
         public String[]? Schools { get; set; }
+        public string? SecurityIdentifier { get; set; }
         public bool? ShowInAddressList { get; set; }
-        public String[]? Skills { get; set; }
+        public SignInActivity? SignInActivity { get; set; }
         public DateTimeOffset? SignInSessionsValidFromDateTime { get; set; }
+        public String[]? Skills { get; set; }
         public string? State { get; set; }
         public string? StreetAddress { get; set; }
         public string? Surname { get; set; }
         public string? UsageLocation { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? UserType { get; set; }
-        public AgreementAcceptance[]? AgreementAcceptances { get; set; }
         public Activity[]? Activities { get; set; }
+        public AgreementAcceptance[]? AgreementAcceptances { get; set; }
         public AppRoleAssignment[]? AppRoleAssignments { get; set; }
         public Authentication? Authentication { get; set; }
         public Calendar? Calendar { get; set; }
         public CalendarGroup[]? CalendarGroups { get; set; }
-        public Event[]? CalendarView { get; set; }
         public Calendar[]? Calendars { get; set; }
+        public Event[]? CalendarView { get; set; }
         public ContactFolder[]? ContactFolders { get; set; }
         public Contact[]? Contacts { get; set; }
         public DirectoryObject[]? CreatedObjects { get; set; }

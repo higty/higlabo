@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -34,6 +37,7 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "PATCH";
         public bool? AllowExternalSenders { get; set; }
+        public AssignedLabel[]? AssignedLabels { get; set; }
         public bool? AutoSubscribeNewMembers { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -45,10 +49,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupUpdateResponse> GroupUpdateAsync()
         {
@@ -56,7 +63,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupUpdateResponse> GroupUpdateAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +71,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupUpdateResponse> GroupUpdateAsync(GroupUpdateParameter parameter)
         {
             return await this.SendAsync<GroupUpdateParameter, GroupUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-update?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupUpdateResponse> GroupUpdateAsync(GroupUpdateParameter parameter, CancellationToken cancellationToken)
         {

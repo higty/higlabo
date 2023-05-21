@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
+    /// </summary>
     public partial class DeviceDeleteRegisteredUsersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DeviceDeleteRegisteredUsersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteRegisteredUsersResponse> DeviceDeleteRegisteredUsersAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceDeleteRegisteredUsersParameter, DeviceDeleteRegisteredUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteRegisteredUsersResponse> DeviceDeleteRegisteredUsersAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceDeleteRegisteredUsersParameter, DeviceDeleteRegisteredUsersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteRegisteredUsersResponse> DeviceDeleteRegisteredUsersAsync(DeviceDeleteRegisteredUsersParameter parameter)
         {
             return await this.SendAsync<DeviceDeleteRegisteredUsersParameter, DeviceDeleteRegisteredUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-delete-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceDeleteRegisteredUsersResponse> DeviceDeleteRegisteredUsersAsync(DeviceDeleteRegisteredUsersParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/bookingbusiness?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/bookingbusiness?view=graph-rest-1.0
     /// </summary>
     public partial class BookingBusiness
     {
@@ -15,6 +15,7 @@ namespace HigLabo.Net.Microsoft
         public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsPublished { get; set; }
+        public string? LanguageTag { get; set; }
         public string? Phone { get; set; }
         public string? PublicUrl { get; set; }
         public BookingSchedulingPolicy? SchedulingPolicy { get; set; }

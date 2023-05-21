@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryroleListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryRole[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListResponse> DirectoryroleListAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListResponse> DirectoryroleListAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListResponse> DirectoryroleListAsync(DirectoryroleListParameter parameter)
         {
             return await this.SendAsync<DirectoryroleListParameter, DirectoryroleListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListResponse> DirectoryroleListAsync(DirectoryroleListParameter parameter, CancellationToken cancellationToken)
         {

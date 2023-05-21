@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationAssignmentRemoveCategoryParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationAssignmentRemoveCategoryResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter)
         {
             return await this.SendAsync<EducationAssignmentRemoveCategoryParameter, EducationAssignmentRemoveCategoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationassignment-remove-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationAssignmentRemoveCategoryResponse> EducationAssignmentRemoveCategoryAsync(EducationAssignmentRemoveCategoryParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/sharepointidentityset?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/sharepointidentityset?view=graph-rest-1.0
     /// </summary>
     public partial class SharePointIdentitySet
     {
@@ -11,7 +11,7 @@ namespace HigLabo.Net.Microsoft
         public Identity? Device { get; set; }
         public Identity? Group { get; set; }
         public Identity? User { get; set; }
-        public SharePointIdentity? SiteUser { get; set; }
         public SharePointIdentity? SiteGroup { get; set; }
+        public SharePointIdentity? SiteUser { get; set; }
     }
 }

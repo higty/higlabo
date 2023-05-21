@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemSearchParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,6 +24,7 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Me_Drive_Root_Search: return $"/me/drive/root/search";
                     case ApiPath.Sites_SiteId_Drive_Root_Search: return $"/sites/{SiteId}/drive/root/search";
                     case ApiPath.Users_UserId_Drive_Root_Search: return $"/users/{UserId}/drive/root/search";
+                    case ApiPath.Me_Drive_Search: return $"/me/drive/search";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -81,6 +85,7 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_Search,
             Sites_SiteId_Drive_Root_Search,
             Users_UserId_Drive_Root_Search,
+            Me_Drive_Search,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -105,10 +110,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DriveItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemSearchResponse> DriveitemSearchAsync()
         {
@@ -116,7 +124,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemSearchResponse> DriveitemSearchAsync(CancellationToken cancellationToken)
         {
@@ -124,14 +132,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter)
         {
             return await this.SendAsync<DriveitemSearchParameter, DriveitemSearchResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-search?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemSearchResponse> DriveitemSearchAsync(DriveitemSearchParameter parameter, CancellationToken cancellationToken)
         {

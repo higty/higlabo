@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
+    /// </summary>
     public partial class NameditemAddParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -69,18 +72,21 @@ namespace HigLabo.Net.Microsoft
             Range,
         }
 
-        public string? Name { get; set; }
         public string? Comment { get; set; }
+        public string? Name { get; set; }
         public string? Scope { get; set; }
         public NamedItemstring Type { get; set; }
         public Json? Value { get; set; }
         public bool? Visible { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemAddResponse> NameditemAddAsync()
         {
@@ -88,7 +94,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemAddResponse> NameditemAddAsync(CancellationToken cancellationToken)
         {
@@ -96,14 +102,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemAddResponse> NameditemAddAsync(NameditemAddParameter parameter)
         {
             return await this.SendAsync<NameditemAddParameter, NameditemAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-add?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemAddResponse> NameditemAddAsync(NameditemAddParameter parameter, CancellationToken cancellationToken)
         {

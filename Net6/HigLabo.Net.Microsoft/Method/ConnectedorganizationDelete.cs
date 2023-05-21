@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ConnectedorganizationDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ConnectedorganizationDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteResponse> ConnectedorganizationDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationDeleteParameter, ConnectedorganizationDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteResponse> ConnectedorganizationDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationDeleteParameter, ConnectedorganizationDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteResponse> ConnectedorganizationDeleteAsync(ConnectedorganizationDeleteParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationDeleteParameter, ConnectedorganizationDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationDeleteResponse> ConnectedorganizationDeleteAsync(ConnectedorganizationDeleteParameter parameter, CancellationToken cancellationToken)
         {

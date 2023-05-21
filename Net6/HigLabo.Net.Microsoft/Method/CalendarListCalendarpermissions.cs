@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarListCalendarpermissionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CalendarListCalendarpermissionsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarpermissionsResponse> CalendarListCalendarpermissionsAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarListCalendarpermissionsParameter, CalendarListCalendarpermissionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarpermissionsResponse> CalendarListCalendarpermissionsAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarListCalendarpermissionsParameter, CalendarListCalendarpermissionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarpermissionsResponse> CalendarListCalendarpermissionsAsync(CalendarListCalendarpermissionsParameter parameter)
         {
             return await this.SendAsync<CalendarListCalendarpermissionsParameter, CalendarListCalendarpermissionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarpermissions?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarpermissionsResponse> CalendarListCalendarpermissionsAsync(CalendarListCalendarpermissionsParameter parameter, CancellationToken cancellationToken)
         {

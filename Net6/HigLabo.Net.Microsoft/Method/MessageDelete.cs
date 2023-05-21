@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class MessageDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeleteResponse> MessageDeleteAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeleteResponse> MessageDeleteAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter)
         {
             return await this.SendAsync<MessageDeleteParameter, MessageDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeleteResponse> MessageDeleteAsync(MessageDeleteParameter parameter, CancellationToken cancellationToken)
         {

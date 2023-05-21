@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ShiftDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ShiftDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ShiftDeleteResponse> ShiftDeleteAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ShiftDeleteResponse> ShiftDeleteAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ShiftDeleteResponse> ShiftDeleteAsync(ShiftDeleteParameter parameter)
         {
             return await this.SendAsync<ShiftDeleteParameter, ShiftDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/shift-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ShiftDeleteResponse> ShiftDeleteAsync(ShiftDeleteParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,19 +2,23 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalDeleteApproleassignedtoParameter : IRestApiParameter
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
-            public string? ResourceSPId { get; set; }
+            public string? Id { get; set; }
             public string? AppRoleAssignmentId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.ServicePrincipals_ResourceSPId_AppRoleAssignedTo_AppRoleAssignmentId: return $"/servicePrincipals/{ResourceSPId}/appRoleAssignedTo/{AppRoleAssignmentId}";
+                    case ApiPath.ServicePrincipals_Id_AppRoleAssignedTo_AppRoleAssignmentId: return $"/servicePrincipals/{Id}/appRoleAssignedTo/{AppRoleAssignmentId}";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,7 +26,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum ApiPath
         {
-            ServicePrincipals_ResourceSPId_AppRoleAssignedTo_AppRoleAssignmentId,
+            ServicePrincipals_Id_AppRoleAssignedTo_AppRoleAssignmentId,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -38,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceprincipalDeleteApproleassignedtoResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync()
         {
@@ -49,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync(ServiceprincipalDeleteApproleassignedtoParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteApproleassignedtoParameter, ServiceprincipalDeleteApproleassignedtoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-approleassignedto?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteApproleassignedtoResponse> ServiceprincipalDeleteApproleassignedtoAsync(ServiceprincipalDeleteApproleassignedtoParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+    /// </summary>
     public partial class UserPostContactsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -128,10 +131,13 @@ namespace HigLabo.Net.Microsoft
         public ProfilePhoto? Photo { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostContactsResponse> UserPostContactsAsync()
         {
@@ -139,7 +145,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostContactsResponse> UserPostContactsAsync(CancellationToken cancellationToken)
         {
@@ -147,14 +153,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostContactsResponse> UserPostContactsAsync(UserPostContactsParameter parameter)
         {
             return await this.SendAsync<UserPostContactsParameter, UserPostContactsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-post-contacts?view=graph-rest-1.0
         /// </summary>
         public async Task<UserPostContactsResponse> UserPostContactsAsync(UserPostContactsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
+    /// </summary>
     public partial class SubscriptionUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public string? NotificationUrlAppId { get; set; }
         public string? Resource { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionUpdateResponse> SubscriptionUpdateAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscriptionUpdateParameter, SubscriptionUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionUpdateResponse> SubscriptionUpdateAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscriptionUpdateParameter, SubscriptionUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionUpdateResponse> SubscriptionUpdateAsync(SubscriptionUpdateParameter parameter)
         {
             return await this.SendAsync<SubscriptionUpdateParameter, SubscriptionUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionUpdateResponse> SubscriptionUpdateAsync(SubscriptionUpdateParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,19 +25,21 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            CreatedDateTime,
             Description,
             DisplayName,
+            Email,
             Id,
             IsFavoriteByDefault,
-            Email,
-            WebUrl,
             MembershipType,
-            CreatedDateTime,
-            Messages,
-            Tabs,
-            Members,
+            TenantId,
+            WebUrl,
             FilesFolder,
+            Members,
+            Messages,
             Operations,
+            SharedWithTeams,
+            Tabs,
         }
         public enum ApiPath
         {
@@ -65,26 +70,33 @@ namespace HigLabo.Net.Microsoft
         {
             Standard,
             Private,
+            UnknownFutureValue,
+            Shared,
         }
 
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsFavoriteByDefault { get; set; }
-        public string? Email { get; set; }
+        public Channel? MembershipType { get; set; }
+        public string? TenantId { get; set; }
         public string? WebUrl { get; set; }
-        public ChannelChannelMembershipType MembershipType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public ChatMessage[]? Messages { get; set; }
-        public TeamsTab[]? Tabs { get; set; }
-        public ConversationMember[]? Members { get; set; }
         public DriveItem? FilesFolder { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public ChatMessage[]? Messages { get; set; }
         public TeamsASyncOperation[]? Operations { get; set; }
+        public SharedWithChannelTeamInfo[]? SharedWithTeams { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetResponse> ChannelGetAsync()
         {
@@ -92,7 +104,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetResponse> ChannelGetAsync(CancellationToken cancellationToken)
         {
@@ -100,14 +112,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetResponse> ChannelGetAsync(ChannelGetParameter parameter)
         {
             return await this.SendAsync<ChannelGetParameter, ChannelGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetResponse> ChannelGetAsync(ChannelGetParameter parameter, CancellationToken cancellationToken)
         {

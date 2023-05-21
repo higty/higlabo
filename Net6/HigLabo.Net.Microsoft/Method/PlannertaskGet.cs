@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannertaskGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -63,9 +66,9 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? OrderHint { get; set; }
         public Int32? PercentComplete { get; set; }
-        public Int32? Priority { get; set; }
         public string? PlanId { get; set; }
         public string? PreviewType { get; set; }
+        public Int32? Priority { get; set; }
         public Int32? ReferenceCount { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
         public string? Title { get; set; }
@@ -74,10 +77,13 @@ namespace HigLabo.Net.Microsoft
         public PlannerTaskDetails? Details { get; set; }
         public PlannerProgressTaskBoardTaskFormat? ProgressTaskBoardFormat { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskGetResponse> PlannertaskGetAsync()
         {
@@ -85,7 +91,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannertaskGetParameter, PlannertaskGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskGetResponse> PlannertaskGetAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +99,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannertaskGetParameter, PlannertaskGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskGetResponse> PlannertaskGetAsync(PlannertaskGetParameter parameter)
         {
             return await this.SendAsync<PlannertaskGetParameter, PlannertaskGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertask-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskGetResponse> PlannertaskGetAsync(PlannertaskGetParameter parameter, CancellationToken cancellationToken)
         {

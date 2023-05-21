@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewinstancedecisionitemGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -10,12 +13,14 @@ namespace HigLabo.Net.Microsoft
             public string? AccessReviewScheduleDefinitionId { get; set; }
             public string? AccessReviewInstanceId { get; set; }
             public string? AccessReviewInstanceDecisionItemId { get; set; }
+            public string? AccessReviewStageId { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
                     case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions_AccessReviewInstanceDecisionItemId: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/{AccessReviewInstanceId}/decisions/{AccessReviewInstanceDecisionItemId}";
+                    case ApiPath.IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Stages_AccessReviewStageId_Decisions_AccessReviewInstanceDecisionItemId: return $"/identityGovernance/accessReviews/definitions/{AccessReviewScheduleDefinitionId}/instances/{AccessReviewInstanceId}/stages/{AccessReviewStageId}/decisions/{AccessReviewInstanceDecisionItemId}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -27,6 +32,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Decisions_AccessReviewInstanceDecisionItemId,
+            IdentityGovernance_AccessReviews_Definitions_AccessReviewScheduleDefinitionId_Instances_AccessReviewInstanceId_Stages_AccessReviewStageId_Decisions_AccessReviewInstanceDecisionItemId,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -64,10 +70,13 @@ namespace HigLabo.Net.Microsoft
         public UserIdentity? ReviewedBy { get; set; }
         public DateTimeOffset? ReviewedDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync()
         {
@@ -75,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync(CancellationToken cancellationToken)
         {
@@ -83,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync(AccessreviewinstancedecisionitemGetParameter parameter)
         {
             return await this.SendAsync<AccessreviewinstancedecisionitemGetParameter, AccessreviewinstancedecisionitemGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewinstancedecisionitem-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewinstancedecisionitemGetResponse> AccessreviewinstancedecisionitemGetAsync(AccessreviewinstancedecisionitemGetParameter parameter, CancellationToken cancellationToken)
         {

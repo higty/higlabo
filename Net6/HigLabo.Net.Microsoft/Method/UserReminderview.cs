@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+    /// </summary>
     public partial class UserReminderviewParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Reminder[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
         public async Task<UserReminderviewResponse> UserReminderviewAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
         public async Task<UserReminderviewResponse> UserReminderviewAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
         public async Task<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter)
         {
             return await this.SendAsync<UserReminderviewParameter, UserReminderviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0
         /// </summary>
         public async Task<UserReminderviewResponse> UserReminderviewAsync(UserReminderviewParameter parameter, CancellationToken cancellationToken)
         {

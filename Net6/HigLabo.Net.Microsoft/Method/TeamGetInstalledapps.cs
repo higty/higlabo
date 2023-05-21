@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamGetInstalledappsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,25 +25,33 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Description,
+            Id,
             Classification,
-            Specialization,
-            Visibility,
+            ClassSettings,
+            CreatedDateTime,
+            Description,
+            DisplayName,
             FunSettings,
             GuestSettings,
             InternalId,
             IsArchived,
             MemberSettings,
             MessagingSettings,
+            Specialization,
+            Summary,
+            TenantId,
+            Visibility,
             WebUrl,
-            CreatedDateTime,
+            AllChannels,
             Channels,
+            IncomingChannels,
             InstalledApps,
             Members,
             Operations,
+            Photo,
             PrimaryChannel,
             Schedule,
+            Tags,
             Template,
         }
         public enum ApiPath
@@ -72,10 +83,13 @@ namespace HigLabo.Net.Microsoft
         public TeamsApp? TeamsApp { get; set; }
         public TeamsAppDefinition? TeamsAppDefinition { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync()
         {
@@ -83,7 +97,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +105,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(TeamGetInstalledappsParameter parameter)
         {
             return await this.SendAsync<TeamGetInstalledappsParameter, TeamGetInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetInstalledappsResponse> TeamGetInstalledappsAsync(TeamGetInstalledappsParameter parameter, CancellationToken cancellationToken)
         {

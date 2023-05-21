@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
+    /// </summary>
     public partial class EventCancelParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             public string? EventsId { get; set; }
             public string? CalendarsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
 
             public string GetApiPath()
             {
@@ -27,8 +30,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Groups_Id_Calendar_Events_Id_Cancel: return $"/groups/{GroupsId}/calendar/events/{EventsId}/cancel";
                     case ApiPath.Me_Calendars_Id_Events_Id_Cancel: return $"/me/calendars/{CalendarsId}/events/{EventsId}/cancel";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Cancel: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/cancel";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Cancel: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/cancel";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Cancel: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/cancel";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Cancel: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/cancel";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Cancel: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/cancel";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -44,8 +47,8 @@ namespace HigLabo.Net.Microsoft
             Groups_Id_Calendar_Events_Id_Cancel,
             Me_Calendars_Id_Events_Id_Cancel,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Cancel,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Cancel,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Cancel,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Cancel,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Cancel,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -62,10 +65,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EventCancelResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
         public async Task<EventCancelResponse> EventCancelAsync()
         {
@@ -73,7 +79,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
         public async Task<EventCancelResponse> EventCancelAsync(CancellationToken cancellationToken)
         {
@@ -81,14 +87,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
         public async Task<EventCancelResponse> EventCancelAsync(EventCancelParameter parameter)
         {
             return await this.SendAsync<EventCancelParameter, EventCancelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/event-cancel?view=graph-rest-1.0
         /// </summary>
         public async Task<EventCancelResponse> EventCancelAsync(EventCancelParameter parameter, CancellationToken cancellationToken)
         {

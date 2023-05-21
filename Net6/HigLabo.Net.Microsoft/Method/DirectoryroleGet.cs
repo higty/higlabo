@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryroleGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,7 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.DirectoryRoles_RoleId: return $"/directoryRoles/{RoleId}";
-                    case ApiPath.DirectoryRoles_RoleTemplateId: return $"/directoryRoles/roleTemplateId";
+                    case ApiPath.DirectoryRoles: return $"/directoryRoles";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -26,7 +29,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             DirectoryRoles_RoleId,
-            DirectoryRoles_RoleTemplateId,
+            DirectoryRoles,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
         public DirectoryObject[]? Members { get; set; }
         public ScopedRoleMembership[]? ScopedMembers { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync(DirectoryroleGetParameter parameter)
         {
             return await this.SendAsync<DirectoryroleGetParameter, DirectoryroleGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleGetResponse> DirectoryroleGetAsync(DirectoryroleGetParameter parameter, CancellationToken cancellationToken)
         {

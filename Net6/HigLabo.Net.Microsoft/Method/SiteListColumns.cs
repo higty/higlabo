@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteListColumnsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,38 +24,38 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ColumnGroup,
-            Description,
-            DisplayName,
-            EnforceUniqueValues,
-            Hidden,
-            Id,
-            Indexed,
-            Name,
-            ReadOnly,
-            Required,
             Boolean,
             Calculated,
             Choice,
+            ColumnGroup,
+            ContentApprovalStatus,
             Currency,
             DateTime,
             DefaultValue,
+            Description,
+            DisplayName,
+            EnforceUniqueValues,
             Geolocation,
+            Hidden,
+            HyperlinkOrPicture,
+            IsDeletable,
+            IsReorderable,
+            Id,
+            Indexed,
+            IsSealed,
             Lookup,
+            Name,
             Number,
             PersonOrGroup,
-            Text,
-            IsDeletable,
             PropagateChanges,
-            IsReorderable,
-            IsSealed,
-            Validation,
-            HyperlinkOrPicture,
-            Term,
+            ReadOnly,
+            Required,
             SourceContentType,
+            Term,
+            Text,
             Thumbnail,
             Type,
-            ContentApprovalStatus,
+            Validation,
             SourceColumn,
         }
         public enum ApiPath
@@ -82,10 +85,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ColumnDefinition[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListColumnsResponse> SiteListColumnsAsync()
         {
@@ -93,7 +99,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListColumnsParameter, SiteListColumnsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListColumnsResponse> SiteListColumnsAsync(CancellationToken cancellationToken)
         {
@@ -101,14 +107,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListColumnsParameter, SiteListColumnsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListColumnsResponse> SiteListColumnsAsync(SiteListColumnsParameter parameter)
         {
             return await this.SendAsync<SiteListColumnsParameter, SiteListColumnsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-columns?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListColumnsResponse> SiteListColumnsAsync(SiteListColumnsParameter parameter, CancellationToken cancellationToken)
         {

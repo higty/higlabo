@@ -2,17 +2,21 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationrubricGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
         {
             public ApiPath ApiPath { get; set; }
+            public string? Id { get; set; }
 
             public string GetApiPath()
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Education_Me_Rubrics_Ceb3863e69124ea9Ac413c2bb7b6672d: return $"/education/me/rubrics/ceb3863e-6912-4ea9-ac41-3c2bb7b6672d";
+                    case ApiPath.Education_Me_Rubrics_Id: return $"/education/me/rubrics/{Id}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -23,7 +27,7 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Education_Me_Rubrics_Ceb3863e69124ea9Ac413c2bb7b6672d,
+            Education_Me_Rubrics_Id,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -46,21 +50,24 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationrubricGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public ItemBody? Description { get; set; }
         public string? DisplayName { get; set; }
         public EducationAssignmentGradeType? Grading { get; set; }
+        public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public RubricLevel[]? Levels { get; set; }
         public RubricQuality[]? Qualities { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricGetResponse> EducationrubricGetAsync()
         {
@@ -68,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricGetResponse> EducationrubricGetAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricGetResponse> EducationrubricGetAsync(EducationrubricGetParameter parameter)
         {
             return await this.SendAsync<EducationrubricGetParameter, EducationrubricGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationrubric-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationrubricGetResponse> EducationrubricGetAsync(EducationrubricGetParameter parameter, CancellationToken cancellationToken)
         {

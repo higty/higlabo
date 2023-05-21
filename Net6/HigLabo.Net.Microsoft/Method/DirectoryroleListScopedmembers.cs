@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
+    /// </summary>
     public partial class DirectoryroleListScopedmembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,7 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Directoryroles_RoleId_ScopedMembers: return $"/directoryroles/{RoleId}/scopedMembers";
-                    case ApiPath.Directoryroles_RoleTemplateId: return $"/directoryroles/roleTemplateId";
+                    case ApiPath.DirectoryRoles: return $"/directoryRoles";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -26,7 +29,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Directoryroles_RoleId_ScopedMembers,
-            Directoryroles_RoleTemplateId,
+            DirectoryRoles,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ScopedRoleMembership[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(DirectoryroleListScopedmembersParameter parameter)
         {
             return await this.SendAsync<DirectoryroleListScopedmembersParameter, DirectoryroleListScopedmembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/directoryrole-list-scopedmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<DirectoryroleListScopedmembersResponse> DirectoryroleListScopedmembersAsync(DirectoryroleListScopedmembersParameter parameter, CancellationToken cancellationToken)
         {

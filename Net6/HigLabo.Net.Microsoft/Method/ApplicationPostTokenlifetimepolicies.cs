@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationPostTokenlifetimepoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ApplicationPostTokenlifetimepoliciesResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostTokenlifetimepoliciesResponse> ApplicationPostTokenlifetimepoliciesAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostTokenlifetimepoliciesParameter, ApplicationPostTokenlifetimepoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostTokenlifetimepoliciesResponse> ApplicationPostTokenlifetimepoliciesAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostTokenlifetimepoliciesParameter, ApplicationPostTokenlifetimepoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostTokenlifetimepoliciesResponse> ApplicationPostTokenlifetimepoliciesAsync(ApplicationPostTokenlifetimepoliciesParameter parameter)
         {
             return await this.SendAsync<ApplicationPostTokenlifetimepoliciesParameter, ApplicationPostTokenlifetimepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-tokenlifetimepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostTokenlifetimepoliciesResponse> ApplicationPostTokenlifetimepoliciesAsync(ApplicationPostTokenlifetimepoliciesParameter parameter, CancellationToken cancellationToken)
         {

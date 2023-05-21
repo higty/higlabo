@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
+    /// </summary>
     public partial class CallTransferParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CallTransferResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
         public async Task<CallTransferResponse> CallTransferAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
         public async Task<CallTransferResponse> CallTransferAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
         public async Task<CallTransferResponse> CallTransferAsync(CallTransferParameter parameter)
         {
             return await this.SendAsync<CallTransferParameter, CallTransferResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-transfer?view=graph-rest-1.0
         /// </summary>
         public async Task<CallTransferResponse> CallTransferAsync(CallTransferParameter parameter, CancellationToken cancellationToken)
         {

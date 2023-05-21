@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
+    /// </summary>
     public partial class BundleUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -82,10 +85,13 @@ namespace HigLabo.Net.Microsoft
         public DriveItemVersion[]? Versions { get; set; }
         public Workbook? Workbook { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleUpdateResponse> BundleUpdateAsync()
         {
@@ -93,7 +99,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleUpdateResponse> BundleUpdateAsync(CancellationToken cancellationToken)
         {
@@ -101,14 +107,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleUpdateResponse> BundleUpdateAsync(BundleUpdateParameter parameter)
         {
             return await this.SendAsync<BundleUpdateParameter, BundleUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleUpdateResponse> BundleUpdateAsync(BundleUpdateParameter parameter, CancellationToken cancellationToken)
         {

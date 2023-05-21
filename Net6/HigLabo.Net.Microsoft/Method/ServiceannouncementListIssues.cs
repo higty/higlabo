@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceannouncementListIssuesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -63,10 +66,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ServiceHealthIssue[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter)
         {
             return await this.SendAsync<ServiceannouncementListIssuesParameter, ServiceannouncementListIssuesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceannouncement-list-issues?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceannouncementListIssuesResponse> ServiceannouncementListIssuesAsync(ServiceannouncementListIssuesParameter parameter, CancellationToken cancellationToken)
         {

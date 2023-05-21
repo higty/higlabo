@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ConditionalAccessPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
         public ConditionalAccessSessionControls? SessionControls { get; set; }
         public ConditionalAccessPolicyConditionalAccessPolicyState State { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessPolicyGetParameter, ConditionalAccessPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyGetResponse> ConditionalAccessPolicyGetAsync(ConditionalAccessPolicyGetParameter parameter, CancellationToken cancellationToken)
         {

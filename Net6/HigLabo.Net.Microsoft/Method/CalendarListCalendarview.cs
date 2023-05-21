@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarListCalendarviewParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -110,10 +113,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Event[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarviewResponse> CalendarListCalendarviewAsync()
         {
@@ -121,7 +127,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarListCalendarviewParameter, CalendarListCalendarviewResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarviewResponse> CalendarListCalendarviewAsync(CancellationToken cancellationToken)
         {
@@ -129,14 +135,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarListCalendarviewParameter, CalendarListCalendarviewResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarviewResponse> CalendarListCalendarviewAsync(CalendarListCalendarviewParameter parameter)
         {
             return await this.SendAsync<CalendarListCalendarviewParameter, CalendarListCalendarviewResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-list-calendarview?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarListCalendarviewResponse> CalendarListCalendarviewAsync(CalendarListCalendarviewParameter parameter, CancellationToken cancellationToken)
         {

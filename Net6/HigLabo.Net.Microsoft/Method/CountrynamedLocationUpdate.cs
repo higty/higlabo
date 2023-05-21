@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
+    /// </summary>
     public partial class CountrynamedLocationUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CountrynamedLocationUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CountrynamedLocationUpdateResponse> CountrynamedLocationUpdateAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CountrynamedLocationUpdateParameter, CountrynamedLocationUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CountrynamedLocationUpdateResponse> CountrynamedLocationUpdateAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CountrynamedLocationUpdateParameter, CountrynamedLocationUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CountrynamedLocationUpdateResponse> CountrynamedLocationUpdateAsync(CountrynamedLocationUpdateParameter parameter)
         {
             return await this.SendAsync<CountrynamedLocationUpdateParameter, CountrynamedLocationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/countrynamedlocation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<CountrynamedLocationUpdateResponse> CountrynamedLocationUpdateAsync(CountrynamedLocationUpdateParameter parameter, CancellationToken cancellationToken)
         {

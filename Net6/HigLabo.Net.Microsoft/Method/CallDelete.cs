@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class CallDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CallDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CallDeleteResponse> CallDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallDeleteParameter, CallDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CallDeleteResponse> CallDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallDeleteParameter, CallDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CallDeleteResponse> CallDeleteAsync(CallDeleteParameter parameter)
         {
             return await this.SendAsync<CallDeleteParameter, CallDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CallDeleteResponse> CallDeleteAsync(CallDeleteParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelPostTabsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChannelPostTabsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync(ChannelPostTabsParameter parameter)
         {
             return await this.SendAsync<ChannelPostTabsParameter, ChannelPostTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-post-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelPostTabsResponse> ChannelPostTabsAsync(ChannelPostTabsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelGetTabsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,19 +26,21 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            CreatedDateTime,
             Description,
             DisplayName,
+            Email,
             Id,
             IsFavoriteByDefault,
-            Email,
-            WebUrl,
             MembershipType,
-            CreatedDateTime,
-            Messages,
-            Tabs,
-            Members,
+            TenantId,
+            WebUrl,
             FilesFolder,
+            Members,
+            Messages,
             Operations,
+            SharedWithTeams,
+            Tabs,
         }
         public enum ApiPath
         {
@@ -62,16 +67,19 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChannelGetTabsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public string? WebUrl { get; set; }
         public TeamsTabConfiguration? Configuration { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public string? WebUrl { get; set; }
         public TeamsApp? TeamsApp { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync()
         {
@@ -79,7 +87,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +95,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync(ChannelGetTabsParameter parameter)
         {
             return await this.SendAsync<ChannelGetTabsParameter, ChannelGetTabsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-tabs?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetTabsResponse> ChannelGetTabsAsync(ChannelGetTabsParameter parameter, CancellationToken cancellationToken)
         {

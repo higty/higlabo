@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/application?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/application?view=graph-rest-1.0
     /// </summary>
     public partial class Application
     {
@@ -33,7 +33,9 @@ namespace HigLabo.Net.Microsoft
         public PasswordCredential[]? PasswordCredentials { get; set; }
         public PublicClientApplication? PublicClient { get; set; }
         public string? PublisherDomain { get; set; }
+        public RequestSignatureVerification? RequestSignatureVerification { get; set; }
         public RequiredResourceAccess[]? RequiredResourceAccess { get; set; }
+        public string? SamlMetadataUrl { get; set; }
         public string? ServiceManagementReference { get; set; }
         public string? SignInAudience { get; set; }
         public SpaApplication? Spa { get; set; }
@@ -41,8 +43,10 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public AppManagementPolicy[]? AppManagementPolicies { get; set; }
         public DirectoryObject? CreatedOnBehalfOf { get; set; }
         public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public FederatedIdentityCredential[]? FederatedIdentityCredentials { get; set; }
         public DirectoryObject[]? Owners { get; set; }
     }
 }

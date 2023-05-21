@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
+    /// </summary>
     public partial class OrganizationalBrandingPostLocalizationsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
         public string? SquareLogoRelativeUrl { get; set; }
         public string? UsernameHintText { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(OrganizationalBrandingPostLocalizationsParameter parameter)
         {
             return await this.SendAsync<OrganizationalBrandingPostLocalizationsParameter, OrganizationalBrandingPostLocalizationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/organizationalbranding-post-localizations?view=graph-rest-1.0
         /// </summary>
         public async Task<OrganizationalBrandingPostLocalizationsResponse> OrganizationalBrandingPostLocalizationsAsync(OrganizationalBrandingPostLocalizationsParameter parameter, CancellationToken cancellationToken)
         {

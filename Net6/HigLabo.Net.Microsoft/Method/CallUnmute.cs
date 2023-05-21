@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
+    /// </summary>
     public partial class CallUnmuteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -45,10 +48,13 @@ namespace HigLabo.Net.Microsoft
         public ResultInfo? ResultInfo { get; set; }
         public string? Status { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallUnmuteResponse> CallUnmuteAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallUnmuteResponse> CallUnmuteAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallUnmuteResponse> CallUnmuteAsync(CallUnmuteParameter parameter)
         {
             return await this.SendAsync<CallUnmuteParameter, CallUnmuteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-unmute?view=graph-rest-1.0
         /// </summary>
         public async Task<CallUnmuteResponse> CallUnmuteAsync(CallUnmuteParameter parameter, CancellationToken cancellationToken)
         {

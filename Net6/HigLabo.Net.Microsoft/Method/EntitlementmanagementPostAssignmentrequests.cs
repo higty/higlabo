@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementPostAssignmentrequestsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -22,6 +25,7 @@ namespace HigLabo.Net.Microsoft
         {
             NotSpecified,
             UserAdd,
+            UserExtend,
             UserUpdate,
             UserRemove,
             AdminAdd,
@@ -45,6 +49,7 @@ namespace HigLabo.Net.Microsoft
             Canceled,
             PartiallyDelivered,
             UnknownFutureValue,
+            Eq,
         }
         public enum ApiPath
         {
@@ -60,6 +65,7 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public AccessPackageAnswer[]? Answers { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
@@ -77,6 +83,7 @@ namespace HigLabo.Net.Microsoft
         {
             NotSpecified,
             UserAdd,
+            UserExtend,
             UserUpdate,
             UserRemove,
             AdminAdd,
@@ -100,8 +107,10 @@ namespace HigLabo.Net.Microsoft
             Canceled,
             PartiallyDelivered,
             UnknownFutureValue,
+            Eq,
         }
 
+        public AccessPackageAnswer[]? Answers { get; set; }
         public DateTimeOffset? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
@@ -113,10 +122,13 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageAssignment? Assignment { get; set; }
         public AccessPackageSubject? Requestor { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync()
         {
@@ -124,7 +136,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(CancellationToken cancellationToken)
         {
@@ -132,14 +144,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(EntitlementManagementPostAssignmentrequestsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostAssignmentrequestsParameter, EntitlementManagementPostAssignmentrequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentrequestsResponse> EntitlementManagementPostAssignmentrequestsAsync(EntitlementManagementPostAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
         {

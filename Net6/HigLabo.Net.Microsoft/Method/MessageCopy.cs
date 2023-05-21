@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageCopyParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -141,10 +144,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCopyResponse> MessageCopyAsync()
         {
@@ -152,7 +158,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCopyResponse> MessageCopyAsync(CancellationToken cancellationToken)
         {
@@ -160,14 +166,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCopyResponse> MessageCopyAsync(MessageCopyParameter parameter)
         {
             return await this.SendAsync<MessageCopyParameter, MessageCopyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-copy?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageCopyResponse> MessageCopyAsync(MessageCopyParameter parameter, CancellationToken cancellationToken)
         {

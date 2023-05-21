@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
+    /// </summary>
     public partial class DeviceListRegisteredUsersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Devices_Id_RegisteredUsers: return $"/devices/{Id}/registeredUsers";
+                    case ApiPath.Devices: return $"/devices";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -27,6 +31,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Devices_Id_RegisteredUsers,
+            Devices,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -51,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync()
         {
@@ -62,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync(DeviceListRegisteredUsersParameter parameter)
         {
             return await this.SendAsync<DeviceListRegisteredUsersParameter, DeviceListRegisteredUsersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-list-registeredusers?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceListRegisteredUsersResponse> DeviceListRegisteredUsersAsync(DeviceListRegisteredUsersParameter parameter, CancellationToken cancellationToken)
         {

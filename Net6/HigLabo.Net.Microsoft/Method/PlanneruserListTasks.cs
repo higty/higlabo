@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannerUserListTasksParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -39,9 +42,9 @@ namespace HigLabo.Net.Microsoft
             Id,
             OrderHint,
             PercentComplete,
-            Priority,
             PlanId,
             PreviewType,
+            Priority,
             ReferenceCount,
             StartDateTime,
             Title,
@@ -79,10 +82,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PlannerTask[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync()
         {
@@ -90,7 +96,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(CancellationToken cancellationToken)
         {
@@ -98,14 +104,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter)
         {
             return await this.SendAsync<PlannerUserListTasksParameter, PlannerUserListTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planneruser-list-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerUserListTasksResponse> PlannerUserListTasksAsync(PlannerUserListTasksParameter parameter, CancellationToken cancellationToken)
         {

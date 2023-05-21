@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
+    /// </summary>
     public partial class OnlinemeetingUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -50,9 +53,9 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class OnlinemeetingUpdateResponse : RestApiResponse
     {
-        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         public bool? AllowAttendeeToEnableCamera { get; set; }
         public bool? AllowAttendeeToEnableMic { get; set; }
+        public OnlineMeetingPresenters? AllowedPresenters { get; set; }
         public MeetingChatMode? AllowMeetingChat { get; set; }
         public bool? AllowTeamworkReactions { get; set; }
         public Stream? AttendeeReport { get; set; }
@@ -65,6 +68,7 @@ namespace HigLabo.Net.Microsoft
         public bool? IsBroadcast { get; set; }
         public bool? IsEntryExitAnnounced { get; set; }
         public ItemBody? JoinInformation { get; set; }
+        public JoinMeetingIdSettings? JoinMeetingIdSettings { get; set; }
         public string? JoinWebUrl { get; set; }
         public LobbyBypassSettings? LobbyBypassSettings { get; set; }
         public MeetingParticipants? Participants { get; set; }
@@ -72,12 +76,16 @@ namespace HigLabo.Net.Microsoft
         public DateTime? StartDateTime { get; set; }
         public string? Subject { get; set; }
         public string? VideoTeleconferenceId { get; set; }
+        public WatermarkProtectionValues? WatermarkProtection { get; set; }
         public MeetingAttendanceReport[]? AttendanceReports { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync()
         {
@@ -85,7 +93,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +101,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(OnlinemeetingUpdateParameter parameter)
         {
             return await this.SendAsync<OnlinemeetingUpdateParameter, OnlinemeetingUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onlinemeeting-update?view=graph-rest-1.0
         /// </summary>
         public async Task<OnlinemeetingUpdateResponse> OnlinemeetingUpdateAsync(OnlinemeetingUpdateParameter parameter, CancellationToken cancellationToken)
         {

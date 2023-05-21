@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupDeleteOwnersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class GroupDeleteOwnersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteOwnersResponse> GroupDeleteOwnersAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteOwnersParameter, GroupDeleteOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteOwnersResponse> GroupDeleteOwnersAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeleteOwnersParameter, GroupDeleteOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteOwnersResponse> GroupDeleteOwnersAsync(GroupDeleteOwnersParameter parameter)
         {
             return await this.SendAsync<GroupDeleteOwnersParameter, GroupDeleteOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delete-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeleteOwnersResponse> GroupDeleteOwnersAsync(GroupDeleteOwnersParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/directoryaudit?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/directoryaudit?view=graph-rest-1.0
     /// </summary>
     public partial class DirectoryAudit
     {
@@ -22,8 +22,8 @@ namespace HigLabo.Net.Microsoft
         public Guid? CorrelationId { get; set; }
         public string? Id { get; set; }
         public AuditActivityInitiator? InitiatedBy { get; set; }
-        public string? OperationType { get; set; }
         public string? LoggedByService { get; set; }
+        public string? OperationType { get; set; }
         public DirectoryAuditOperationResult Result { get; set; }
         public string? ResultReason { get; set; }
         public TargetResource[]? TargetResources { get; set; }

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
+    /// </summary>
     public partial class UserGetMailboxSettingsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -29,6 +32,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_TimeZone: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/timeZone";
                     case ApiPath.Me_MailboxSettings_WorkingHours: return $"/me/mailboxSettings/workingHours";
                     case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_WorkingHours: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/workingHours";
+                    case ApiPath.Me_MailboxSettings_UserPurpose: return $"/me/mailboxSettings/userPurpose";
+                    case ApiPath.Users_IdOruserPrincipalName_MailboxSettings_UserPurpose: return $"/users/{IdOrUserPrincipalName}/mailboxSettings/userPurpose";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -53,6 +58,7 @@ namespace HigLabo.Net.Microsoft
             Department,
             DisplayName,
             EmployeeHireDate,
+            EmployeeLeaveDateTime,
             EmployeeId,
             EmployeeOrgData,
             EmployeeType,
@@ -99,23 +105,25 @@ namespace HigLabo.Net.Microsoft
             RefreshTokensValidFromDateTime,
             Responsibilities,
             Schools,
+            SecurityIdentifier,
             ShowInAddressList,
-            Skills,
+            SignInActivity,
             SignInSessionsValidFromDateTime,
+            Skills,
             State,
             StreetAddress,
             Surname,
             UsageLocation,
             UserPrincipalName,
             UserType,
-            AgreementAcceptances,
             Activities,
+            AgreementAcceptances,
             AppRoleAssignments,
             Authentication,
             Calendar,
             CalendarGroups,
-            CalendarView,
             Calendars,
+            CalendarView,
             ContactFolders,
             Contacts,
             CreatedObjects,
@@ -140,6 +148,7 @@ namespace HigLabo.Net.Microsoft
             Planner,
             RegisteredDevices,
             Todo,
+            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -159,6 +168,8 @@ namespace HigLabo.Net.Microsoft
             Users_IdOruserPrincipalName_MailboxSettings_TimeZone,
             Me_MailboxSettings_WorkingHours,
             Users_IdOruserPrincipalName_MailboxSettings_WorkingHours,
+            Me_MailboxSettings_UserPurpose,
+            Users_IdOruserPrincipalName_MailboxSettings_UserPurpose,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -182,10 +193,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserGetMailboxSettingsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync()
         {
@@ -193,7 +207,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(CancellationToken cancellationToken)
         {
@@ -201,14 +215,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter)
         {
             return await this.SendAsync<UserGetMailboxSettingsParameter, UserGetMailboxSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-get-mailboxsettings?view=graph-rest-1.0
         /// </summary>
         public async Task<UserGetMailboxSettingsResponse> UserGetMailboxSettingsAsync(UserGetMailboxSettingsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
+    /// </summary>
     public partial class PresenceSetpresenceParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PresenceSetpresenceResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
         public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
         public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
         public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync(PresenceSetpresenceParameter parameter)
         {
             return await this.SendAsync<PresenceSetpresenceParameter, PresenceSetpresenceResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/presence-setpresence?view=graph-rest-1.0
         /// </summary>
         public async Task<PresenceSetpresenceResponse> PresenceSetpresenceAsync(PresenceSetpresenceParameter parameter, CancellationToken cancellationToken)
         {

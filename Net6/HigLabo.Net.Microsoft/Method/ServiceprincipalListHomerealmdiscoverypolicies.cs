@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalListHomerealmdiscoverypoliciesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_HomeRealmDiscoveryPolicies: return $"/servicePrincipals/{Id}/homeRealmDiscoveryPolicies";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -21,16 +25,17 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             Definition,
             Description,
             DisplayName,
+            Id,
             IsOrganizationDefault,
             AppliesTo,
         }
         public enum ApiPath
         {
             ServicePrincipals_Id_HomeRealmDiscoveryPolicies,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -55,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public HomeRealmDiscoveryPolicy[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListHomerealmdiscoverypoliciesResponse> ServiceprincipalListHomerealmdiscoverypoliciesAsync()
         {
@@ -66,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListHomerealmdiscoverypoliciesParameter, ServiceprincipalListHomerealmdiscoverypoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListHomerealmdiscoverypoliciesResponse> ServiceprincipalListHomerealmdiscoverypoliciesAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListHomerealmdiscoverypoliciesParameter, ServiceprincipalListHomerealmdiscoverypoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListHomerealmdiscoverypoliciesResponse> ServiceprincipalListHomerealmdiscoverypoliciesAsync(ServiceprincipalListHomerealmdiscoverypoliciesParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListHomerealmdiscoverypoliciesParameter, ServiceprincipalListHomerealmdiscoverypoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListHomerealmdiscoverypoliciesResponse> ServiceprincipalListHomerealmdiscoverypoliciesAsync(ServiceprincipalListHomerealmdiscoverypoliciesParameter parameter, CancellationToken cancellationToken)
         {

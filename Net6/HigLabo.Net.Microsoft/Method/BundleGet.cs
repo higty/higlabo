@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
+    /// </summary>
     public partial class BundleGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -22,8 +25,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ChildCount,
             Album,
+            ChildCount,
         }
         public enum ApiPath
         {
@@ -51,13 +54,16 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class BundleGetResponse : RestApiResponse
     {
-        public Int32? ChildCount { get; set; }
         public Album? Album { get; set; }
+        public Int32? ChildCount { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleGetResponse> BundleGetAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BundleGetParameter, BundleGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleGetResponse> BundleGetAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BundleGetParameter, BundleGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleGetResponse> BundleGetAsync(BundleGetParameter parameter)
         {
             return await this.SendAsync<BundleGetParameter, BundleGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bundle-get?view=graph-rest-1.0
         /// </summary>
         public async Task<BundleGetResponse> BundleGetAsync(BundleGetParameter parameter, CancellationToken cancellationToken)
         {

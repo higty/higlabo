@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+    /// </summary>
     public partial class AuthenticationListTemporaryAccesspassmethodsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -24,8 +27,8 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedDateTime,
             Id,
-            IsUsableOnce,
             IsUsable,
+            IsUsableOnce,
             LifetimeInMinutes,
             MethodUsabilityReason,
             StartDateTime,
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TemporaryAccessPassAuthenticationMethod[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListTemporaryAccesspassmethodsResponse> AuthenticationListTemporaryAccesspassmethodsAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthenticationListTemporaryAccesspassmethodsParameter, AuthenticationListTemporaryAccesspassmethodsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListTemporaryAccesspassmethodsResponse> AuthenticationListTemporaryAccesspassmethodsAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthenticationListTemporaryAccesspassmethodsParameter, AuthenticationListTemporaryAccesspassmethodsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListTemporaryAccesspassmethodsResponse> AuthenticationListTemporaryAccesspassmethodsAsync(AuthenticationListTemporaryAccesspassmethodsParameter parameter)
         {
             return await this.SendAsync<AuthenticationListTemporaryAccesspassmethodsParameter, AuthenticationListTemporaryAccesspassmethodsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authentication-list-temporaryaccesspassmethods?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthenticationListTemporaryAccesspassmethodsResponse> AuthenticationListTemporaryAccesspassmethodsAsync(AuthenticationListTemporaryAccesspassmethodsParameter parameter, CancellationToken cancellationToken)
         {

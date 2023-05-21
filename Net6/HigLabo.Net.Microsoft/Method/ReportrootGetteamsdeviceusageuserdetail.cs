@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetteamsdeviceusageUserdetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetteamsdeviceusageUserdetailResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync(ReportRootGetteamsdeviceusageUserdetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetteamsdeviceusageUserdetailParameter, ReportRootGetteamsdeviceusageUserdetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getteamsdeviceusageuserdetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetteamsdeviceusageUserdetailResponse> ReportRootGetteamsdeviceusageUserdetailAsync(ReportRootGetteamsdeviceusageUserdetailParameter parameter, CancellationToken cancellationToken)
         {

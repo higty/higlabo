@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
+    /// </summary>
     public partial class TimeoffreasonPutParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,18 +40,21 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class TimeoffreasonPutResponse : RestApiResponse
     {
-        public string? Id { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? DisplayName { get; set; }
         public TimeOffReasonIconType? IconType { get; set; }
+        public string? Id { get; set; }
         public bool? IsActive { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public DateTimeOffset? LastModifiedDateTime { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffreasonPutResponse> TimeoffreasonPutAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffreasonPutResponse> TimeoffreasonPutAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffreasonPutResponse> TimeoffreasonPutAsync(TimeoffreasonPutParameter parameter)
         {
             return await this.SendAsync<TimeoffreasonPutParameter, TimeoffreasonPutResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/timeoffreason-put?view=graph-rest-1.0
         /// </summary>
         public async Task<TimeoffreasonPutResponse> TimeoffreasonPutAsync(TimeoffreasonPutParameter parameter, CancellationToken cancellationToken)
         {

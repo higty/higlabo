@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ItemanalyticsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -62,10 +65,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ItemAnalytics[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync()
         {
@@ -73,7 +79,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync(CancellationToken cancellationToken)
         {
@@ -81,14 +87,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter)
         {
             return await this.SendAsync<ItemanalyticsGetParameter, ItemanalyticsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/itemanalytics-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ItemanalyticsGetResponse> ItemanalyticsGetAsync(ItemanalyticsGetParameter parameter, CancellationToken cancellationToken)
         {

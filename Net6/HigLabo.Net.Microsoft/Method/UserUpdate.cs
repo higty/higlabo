@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
+    /// </summary>
     public partial class UserUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -62,6 +65,7 @@ namespace HigLabo.Net.Microsoft
         public string? EmployeeType { get; set; }
         public string? GivenName { get; set; }
         public DateTimeOffset? EmployeeHireDate { get; set; }
+        public DateTimeOffset? EmployeeLeaveDateTime { get; set; }
         public String[]? Interests { get; set; }
         public string? JobTitle { get; set; }
         public string? Mail { get; set; }
@@ -90,10 +94,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateResponse> UserUpdateAsync()
         {
@@ -101,7 +108,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateResponse> UserUpdateAsync(CancellationToken cancellationToken)
         {
@@ -109,14 +116,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateResponse> UserUpdateAsync(UserUpdateParameter parameter)
         {
             return await this.SendAsync<UserUpdateParameter, UserUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UserUpdateResponse> UserUpdateAsync(UserUpdateParameter parameter, CancellationToken cancellationToken)
         {

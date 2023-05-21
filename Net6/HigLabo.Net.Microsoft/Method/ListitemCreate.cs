@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
+    /// </summary>
     public partial class ListitemCreateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,7 +17,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId_Items: return $"/ttps://graph.microsoft.com/v1.0/sites/{SiteId}/lists/{ListId}/items";
+                    case ApiPath.Sites_SiteId_Lists_ListId_Items: return $"/sites/{SiteId}/lists/{ListId}/items";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,7 +25,7 @@ namespace HigLabo.Net.Microsoft
 
         public enum ApiPath
         {
-            Ttps__Graphmicrosoftcom_V10_Sites_SiteId_Lists_ListId_Items,
+            Sites_SiteId_Lists_ListId_Items,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -37,6 +40,7 @@ namespace HigLabo.Net.Microsoft
         public ContentTypeInfo? ContentType { get; set; }
         public ItemActivity[]? Activities { get; set; }
         public ItemAnalytics? Analytics { get; set; }
+        public DocumentSetVersion[]? DocumentSetVersions { get; set; }
         public DriveItem? DriveItem { get; set; }
         public FieldValueSet? Fields { get; set; }
         public ListItemVersion[]? Versions { get; set; }
@@ -46,14 +50,18 @@ namespace HigLabo.Net.Microsoft
         public ContentTypeInfo? ContentType { get; set; }
         public ItemActivity[]? Activities { get; set; }
         public ItemAnalytics? Analytics { get; set; }
+        public DocumentSetVersion[]? DocumentSetVersions { get; set; }
         public DriveItem? DriveItem { get; set; }
         public FieldValueSet? Fields { get; set; }
         public ListItemVersion[]? Versions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemCreateResponse> ListitemCreateAsync()
         {
@@ -61,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemCreateResponse> ListitemCreateAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter)
         {
             return await this.SendAsync<ListitemCreateParameter, ListitemCreateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/listitem-create?view=graph-rest-1.0
         /// </summary>
         public async Task<ListitemCreateResponse> ListitemCreateAsync(ListitemCreateParameter parameter, CancellationToken cancellationToken)
         {

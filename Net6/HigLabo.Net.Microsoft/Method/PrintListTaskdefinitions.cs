@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintListTaskdefinitionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,9 +23,9 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            DisplayName,
             CreatedBy,
+            DisplayName,
+            Id,
             Tasks,
         }
         public enum ApiPath
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PrintTaskDefinition[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync(PrintListTaskdefinitionsParameter parameter)
         {
             return await this.SendAsync<PrintListTaskdefinitionsParameter, PrintListTaskdefinitionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-taskdefinitions?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListTaskdefinitionsResponse> PrintListTaskdefinitionsAsync(PrintListTaskdefinitionsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
+    /// </summary>
     public partial class UserteamworkTeamsappinstallationUpgradeParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserteamworkTeamsappinstallationUpgradeResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkTeamsappinstallationUpgradeResponse> UserteamworkTeamsappinstallationUpgradeAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserteamworkTeamsappinstallationUpgradeParameter, UserteamworkTeamsappinstallationUpgradeResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkTeamsappinstallationUpgradeResponse> UserteamworkTeamsappinstallationUpgradeAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserteamworkTeamsappinstallationUpgradeParameter, UserteamworkTeamsappinstallationUpgradeResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkTeamsappinstallationUpgradeResponse> UserteamworkTeamsappinstallationUpgradeAsync(UserteamworkTeamsappinstallationUpgradeParameter parameter)
         {
             return await this.SendAsync<UserteamworkTeamsappinstallationUpgradeParameter, UserteamworkTeamsappinstallationUpgradeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userteamwork-teamsappinstallation-upgrade?view=graph-rest-1.0
         /// </summary>
         public async Task<UserteamworkTeamsappinstallationUpgradeResponse> UserteamworkTeamsappinstallationUpgradeAsync(UserteamworkTeamsappinstallationUpgradeParameter parameter, CancellationToken cancellationToken)
         {

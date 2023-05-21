@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationoutcomeUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(EducationoutcomeUpdateParameter parameter)
         {
             return await this.SendAsync<EducationoutcomeUpdateParameter, EducationoutcomeUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationoutcome-update?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationoutcomeUpdateResponse> EducationoutcomeUpdateAsync(EducationoutcomeUpdateParameter parameter, CancellationToken cancellationToken)
         {

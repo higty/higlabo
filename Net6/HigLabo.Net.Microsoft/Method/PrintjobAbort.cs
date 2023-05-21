@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintjobAbortParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintjobAbortResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobAbortResponse> PrintjobAbortAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintjobAbortParameter, PrintjobAbortResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobAbortResponse> PrintjobAbortAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintjobAbortParameter, PrintjobAbortResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobAbortResponse> PrintjobAbortAsync(PrintjobAbortParameter parameter)
         {
             return await this.SendAsync<PrintjobAbortParameter, PrintjobAbortResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-abort?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobAbortResponse> PrintjobAbortAsync(PrintjobAbortParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/authorizationpolicy?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/authorizationpolicy?view=graph-rest-1.0
     /// </summary>
     public partial class AuthorizationPolicy
     {
@@ -15,10 +15,11 @@ namespace HigLabo.Net.Microsoft
             Everyone,
         }
 
-        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
-        public bool? AllowedToUseSSPR { get; set; }
         public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
         public AuthorizationPolicyAllowInvitesFrom AllowInvitesFrom { get; set; }
+        public bool? AllowUserConsentForRiskyApps { get; set; }
+        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
+        public bool? AllowedToUseSSPR { get; set; }
         public bool? BlockMsolPowerShell { get; set; }
         public DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
         public string? Description { get; set; }

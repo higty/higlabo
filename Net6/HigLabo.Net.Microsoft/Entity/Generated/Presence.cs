@@ -3,25 +3,31 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/presence?view=graph-rest-1.0
     /// </summary>
     public partial class Presence
     {
         public enum Presencestring
         {
             Available,
-            AvailableIdle,
             Away,
             BeRightBack,
             Busy,
-            BusyIdle,
             DoNotDisturb,
+            InACall,
+            InAConferenceCall,
+            Inactive,
+            InAMeeting,
             Offline,
+            OffWork,
+            OutOfOffice,
             PresenceUnknown,
+            Presenting,
+            UrgentInterruptionsOnly,
         }
 
-        public string? Id { get; set; }
-        public Presencestring Availability { get; set; }
         public Presencestring Activity { get; set; }
+        public Presencestring Availability { get; set; }
+        public string? Id { get; set; }
     }
 }

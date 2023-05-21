@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteListContentTypesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -69,10 +72,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ContentType[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync()
         {
@@ -80,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync(CancellationToken cancellationToken)
         {
@@ -88,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync(SiteListContentTypesParameter parameter)
         {
             return await this.SendAsync<SiteListContentTypesParameter, SiteListContentTypesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list-contenttypes?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListContentTypesResponse> SiteListContentTypesAsync(SiteListContentTypesParameter parameter, CancellationToken cancellationToken)
         {

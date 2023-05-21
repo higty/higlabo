@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
+    /// </summary>
     public partial class IdentityUserflowattributeGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,12 +50,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class IdentityUserflowattributeGetResponse : RestApiResponse
     {
-        public enum IdentityUserFlowAttributeIdentityUserFlowAttributeType
-        {
-            BuiltIn,
-            Custom,
-            Required,
-        }
         public enum IdentityUserFlowAttributeIdentityUserFlowAttributeDataType
         {
             String,
@@ -61,17 +58,26 @@ namespace HigLabo.Net.Microsoft
             StringCollection,
             DateTime,
         }
+        public enum IdentityUserFlowAttributeIdentityUserFlowAttributeType
+        {
+            BuiltIn,
+            Custom,
+            Required,
+        }
 
-        public string? Id { get; set; }
-        public string? DisplayName { get; set; }
-        public string? Description { get; set; }
-        public IdentityUserFlowAttributeIdentityUserFlowAttributeType UserFlowAttributeType { get; set; }
         public IdentityUserFlowAttributeIdentityUserFlowAttributeDataType DataType { get; set; }
+        public string? Description { get; set; }
+        public string? DisplayName { get; set; }
+        public string? Id { get; set; }
+        public IdentityUserFlowAttributeIdentityUserFlowAttributeType UserFlowAttributeType { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync()
         {
@@ -79,7 +85,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +93,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync(IdentityUserflowattributeGetParameter parameter)
         {
             return await this.SendAsync<IdentityUserflowattributeGetParameter, IdentityUserflowattributeGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/identityuserflowattribute-get?view=graph-rest-1.0
         /// </summary>
         public async Task<IdentityUserflowattributeGetResponse> IdentityUserflowattributeGetAsync(IdentityUserflowattributeGetParameter parameter, CancellationToken cancellationToken)
         {

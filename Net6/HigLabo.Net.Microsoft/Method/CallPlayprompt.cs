@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
+    /// </summary>
     public partial class CallPlaypromptParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -46,10 +49,13 @@ namespace HigLabo.Net.Microsoft
         public ResultInfo? ResultInfo { get; set; }
         public string? Status { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
         public async Task<CallPlaypromptResponse> CallPlaypromptAsync()
         {
@@ -57,7 +63,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
         public async Task<CallPlaypromptResponse> CallPlaypromptAsync(CancellationToken cancellationToken)
         {
@@ -65,14 +71,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
         public async Task<CallPlaypromptResponse> CallPlaypromptAsync(CallPlaypromptParameter parameter)
         {
             return await this.SendAsync<CallPlaypromptParameter, CallPlaypromptResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-playprompt?view=graph-rest-1.0
         /// </summary>
         public async Task<CallPlaypromptResponse> CallPlaypromptAsync(CallPlaypromptParameter parameter, CancellationToken cancellationToken)
         {

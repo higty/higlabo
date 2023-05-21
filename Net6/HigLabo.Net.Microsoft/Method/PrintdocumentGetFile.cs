@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintdocumentGetFileParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintdocumentGetFileResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentGetFileResponse> PrintdocumentGetFileAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintdocumentGetFileParameter, PrintdocumentGetFileResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentGetFileResponse> PrintdocumentGetFileAsync(CancellationToken cancellationToken)
         {
@@ -69,21 +75,21 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintdocumentGetFileParameter, PrintdocumentGetFileResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentGetFileResponse> PrintdocumentGetFileAsync(PrintdocumentGetFileParameter parameter)
         {
             return await this.SendAsync<PrintdocumentGetFileParameter, PrintdocumentGetFileResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintdocumentGetFileResponse> PrintdocumentGetFileAsync(PrintdocumentGetFileParameter parameter, CancellationToken cancellationToken)
         {
             return await this.SendAsync<PrintdocumentGetFileParameter, PrintdocumentGetFileResponse>(parameter, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printdocument-get-file?view=graph-rest-1.0
         /// </summary>
         public async Task<Stream> PrintdocumentGetFileStreamAsync(PrintdocumentGetFileParameter parameter, CancellationToken cancellationToken)
         {

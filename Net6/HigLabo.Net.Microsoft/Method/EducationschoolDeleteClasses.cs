@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationSchoolDeleteClassesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationSchoolDeleteClassesResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeleteClassesResponse> EducationSchoolDeleteClassesAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolDeleteClassesParameter, EducationSchoolDeleteClassesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeleteClassesResponse> EducationSchoolDeleteClassesAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolDeleteClassesParameter, EducationSchoolDeleteClassesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeleteClassesResponse> EducationSchoolDeleteClassesAsync(EducationSchoolDeleteClassesParameter parameter)
         {
             return await this.SendAsync<EducationSchoolDeleteClassesParameter, EducationSchoolDeleteClassesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-delete-classes?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolDeleteClassesResponse> EducationSchoolDeleteClassesAsync(EducationSchoolDeleteClassesParameter parameter, CancellationToken cancellationToken)
         {

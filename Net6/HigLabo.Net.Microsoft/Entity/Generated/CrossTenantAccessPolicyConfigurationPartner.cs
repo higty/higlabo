@@ -3,10 +3,11 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/crosstenantaccesspolicyconfigurationpartner?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/crosstenantaccesspolicyconfigurationpartner?view=graph-rest-1.0
     /// </summary>
     public partial class CrossTenantAccessPolicyConfigurationPartner
     {
+        public InboundOutboundPolicyConfiguration? AutomaticUserConsentSettings { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationInbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bCollaborationOutbound { get; set; }
         public CrossTenantAccessPolicyB2BSetting? B2bDirectConnectInbound { get; set; }
@@ -14,5 +15,6 @@ namespace HigLabo.Net.Microsoft
         public CrossTenantAccessPolicyInboundTrust? InboundTrust { get; set; }
         public bool? IsServiceProvider { get; set; }
         public string? TenantId { get; set; }
+        public CrossTenantIdentitySyncPolicyPartner? IdentitySynchronization { get; set; }
     }
 }

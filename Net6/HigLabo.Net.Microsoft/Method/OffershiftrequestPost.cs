@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
+    /// </summary>
     public partial class OffershiftrequestPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -45,10 +48,13 @@ namespace HigLabo.Net.Microsoft
         public string? RecipientUserId { get; set; }
         public string? SenderShiftId { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OffershiftrequestPostResponse> OffershiftrequestPostAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OffershiftrequestPostParameter, OffershiftrequestPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OffershiftrequestPostResponse> OffershiftrequestPostAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OffershiftrequestPostParameter, OffershiftrequestPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OffershiftrequestPostResponse> OffershiftrequestPostAsync(OffershiftrequestPostParameter parameter)
         {
             return await this.SendAsync<OffershiftrequestPostParameter, OffershiftrequestPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/offershiftrequest-post?view=graph-rest-1.0
         /// </summary>
         public async Task<OffershiftrequestPostResponse> OffershiftrequestPostAsync(OffershiftrequestPostParameter parameter, CancellationToken cancellationToken)
         {

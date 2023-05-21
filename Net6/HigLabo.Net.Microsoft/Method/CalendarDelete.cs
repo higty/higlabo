@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class CalendarDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CalendarDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarDeleteResponse> CalendarDeleteAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarDeleteResponse> CalendarDeleteAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarDeleteResponse> CalendarDeleteAsync(CalendarDeleteParameter parameter)
         {
             return await this.SendAsync<CalendarDeleteParameter, CalendarDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/calendar-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<CalendarDeleteResponse> CalendarDeleteAsync(CalendarDeleteParameter parameter, CancellationToken cancellationToken)
         {

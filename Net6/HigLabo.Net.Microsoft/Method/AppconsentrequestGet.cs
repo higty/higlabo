@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AppconsentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
         public AppConsentRequestScope[]? PendingScopes { get; set; }
         public UserConsentRequest[]? UserConsentRequests { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter)
         {
             return await this.SendAsync<AppconsentrequestGetParameter, AppconsentrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/appconsentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AppconsentrequestGetResponse> AppconsentrequestGetAsync(AppconsentrequestGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListGrouplifecyclepoliciesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public GroupLifecyclePolicy[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListGrouplifecyclepoliciesResponse> GroupListGrouplifecyclepoliciesAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListGrouplifecyclepoliciesParameter, GroupListGrouplifecyclepoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListGrouplifecyclepoliciesResponse> GroupListGrouplifecyclepoliciesAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListGrouplifecyclepoliciesParameter, GroupListGrouplifecyclepoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListGrouplifecyclepoliciesResponse> GroupListGrouplifecyclepoliciesAsync(GroupListGrouplifecyclepoliciesParameter parameter)
         {
             return await this.SendAsync<GroupListGrouplifecyclepoliciesParameter, GroupListGrouplifecyclepoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-grouplifecyclepolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListGrouplifecyclepoliciesResponse> GroupListGrouplifecyclepoliciesAsync(GroupListGrouplifecyclepoliciesParameter parameter, CancellationToken cancellationToken)
         {

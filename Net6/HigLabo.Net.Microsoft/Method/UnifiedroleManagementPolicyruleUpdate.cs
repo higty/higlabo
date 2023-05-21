@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
+    /// </summary>
     public partial class UnifiedroleManagementPolicyruleUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UnifiedroleManagementPolicyruleUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(UnifiedroleManagementPolicyruleUpdateParameter parameter)
         {
             return await this.SendAsync<UnifiedroleManagementPolicyruleUpdateParameter, UnifiedroleManagementPolicyruleUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/unifiedrolemanagementpolicyrule-update?view=graph-rest-1.0
         /// </summary>
         public async Task<UnifiedroleManagementPolicyruleUpdateResponse> UnifiedroleManagementPolicyruleUpdateAsync(UnifiedroleManagementPolicyruleUpdateParameter parameter, CancellationToken cancellationToken)
         {

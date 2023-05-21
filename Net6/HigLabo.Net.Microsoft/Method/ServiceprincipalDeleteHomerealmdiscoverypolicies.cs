@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalDeleteHomerealmdiscoverypoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -15,6 +18,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_HomeRealmDiscoveryPolicies_Id_ref: return $"/servicePrincipals/{ServicePrincipalsId}/homeRealmDiscoveryPolicies/{HomeRealmDiscoveryPoliciesId}/$ref";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -23,6 +27,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_HomeRealmDiscoveryPolicies_Id_ref,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -38,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse> ServiceprincipalDeleteHomerealmdiscoverypoliciesAsync()
         {
@@ -49,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteHomerealmdiscoverypoliciesParameter, ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse> ServiceprincipalDeleteHomerealmdiscoverypoliciesAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalDeleteHomerealmdiscoverypoliciesParameter, ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse> ServiceprincipalDeleteHomerealmdiscoverypoliciesAsync(ServiceprincipalDeleteHomerealmdiscoverypoliciesParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalDeleteHomerealmdiscoverypoliciesParameter, ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-delete-homerealmdiscoverypolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalDeleteHomerealmdiscoverypoliciesResponse> ServiceprincipalDeleteHomerealmdiscoverypoliciesAsync(ServiceprincipalDeleteHomerealmdiscoverypoliciesParameter parameter, CancellationToken cancellationToken)
         {

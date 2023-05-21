@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -37,6 +40,7 @@ namespace HigLabo.Net.Microsoft
             Department,
             DisplayName,
             EmployeeHireDate,
+            EmployeeLeaveDateTime,
             EmployeeId,
             EmployeeOrgData,
             EmployeeType,
@@ -83,23 +87,25 @@ namespace HigLabo.Net.Microsoft
             RefreshTokensValidFromDateTime,
             Responsibilities,
             Schools,
+            SecurityIdentifier,
             ShowInAddressList,
-            Skills,
+            SignInActivity,
             SignInSessionsValidFromDateTime,
+            Skills,
             State,
             StreetAddress,
             Surname,
             UsageLocation,
             UserPrincipalName,
             UserType,
-            AgreementAcceptances,
             Activities,
+            AgreementAcceptances,
             AppRoleAssignments,
             Authentication,
             Calendar,
             CalendarGroups,
-            CalendarView,
             Calendars,
+            CalendarView,
             ContactFolders,
             Contacts,
             CreatedObjects,
@@ -124,6 +130,7 @@ namespace HigLabo.Net.Microsoft
             Planner,
             RegisteredDevices,
             Todo,
+            TransitiveMemberOf,
         }
         public enum ApiPath
         {
@@ -152,10 +159,13 @@ namespace HigLabo.Net.Microsoft
     {
         public User[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListResponse> UserListAsync()
         {
@@ -163,7 +173,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListParameter, UserListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListResponse> UserListAsync(CancellationToken cancellationToken)
         {
@@ -171,14 +181,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListParameter, UserListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListResponse> UserListAsync(UserListParameter parameter)
         {
             return await this.SendAsync<UserListParameter, UserListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListResponse> UserListAsync(UserListParameter parameter, CancellationToken cancellationToken)
         {

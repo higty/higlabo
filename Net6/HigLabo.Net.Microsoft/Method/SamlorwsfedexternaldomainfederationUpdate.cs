@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
+    /// </summary>
     public partial class SamlorwsfedexternaldomainfederationUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -63,10 +66,13 @@ namespace HigLabo.Net.Microsoft
         public string? SigningCertificate { get; set; }
         public ExternalDomainName[]? Domains { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationUpdateResponse> SamlorwsfedexternaldomainfederationUpdateAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SamlorwsfedexternaldomainfederationUpdateParameter, SamlorwsfedexternaldomainfederationUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationUpdateResponse> SamlorwsfedexternaldomainfederationUpdateAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SamlorwsfedexternaldomainfederationUpdateParameter, SamlorwsfedexternaldomainfederationUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationUpdateResponse> SamlorwsfedexternaldomainfederationUpdateAsync(SamlorwsfedexternaldomainfederationUpdateParameter parameter)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationUpdateParameter, SamlorwsfedexternaldomainfederationUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-update?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationUpdateResponse> SamlorwsfedexternaldomainfederationUpdateAsync(SamlorwsfedexternaldomainfederationUpdateParameter parameter, CancellationToken cancellationToken)
         {

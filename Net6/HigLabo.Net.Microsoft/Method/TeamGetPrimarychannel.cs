@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamGetPrimarychannelParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,25 +24,33 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            DisplayName,
-            Description,
+            Id,
             Classification,
-            Specialization,
-            Visibility,
+            ClassSettings,
+            CreatedDateTime,
+            Description,
+            DisplayName,
             FunSettings,
             GuestSettings,
             InternalId,
             IsArchived,
             MemberSettings,
             MessagingSettings,
+            Specialization,
+            Summary,
+            TenantId,
+            Visibility,
             WebUrl,
-            CreatedDateTime,
+            AllChannels,
             Channels,
+            IncomingChannels,
             InstalledApps,
             Members,
             Operations,
+            Photo,
             PrimaryChannel,
             Schedule,
+            Tags,
             Template,
         }
         public enum ApiPath
@@ -71,26 +82,33 @@ namespace HigLabo.Net.Microsoft
         {
             Standard,
             Private,
+            UnknownFutureValue,
+            Shared,
         }
 
+        public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Email { get; set; }
         public string? Id { get; set; }
         public bool? IsFavoriteByDefault { get; set; }
-        public string? Email { get; set; }
+        public Channel? MembershipType { get; set; }
+        public string? TenantId { get; set; }
         public string? WebUrl { get; set; }
-        public ChannelChannelMembershipType MembershipType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public ChatMessage[]? Messages { get; set; }
-        public TeamsTab[]? Tabs { get; set; }
-        public ConversationMember[]? Members { get; set; }
         public DriveItem? FilesFolder { get; set; }
+        public ConversationMember[]? Members { get; set; }
+        public ChatMessage[]? Messages { get; set; }
         public TeamsASyncOperation[]? Operations { get; set; }
+        public SharedWithChannelTeamInfo[]? SharedWithTeams { get; set; }
+        public TeamsTab[]? Tabs { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync()
         {
@@ -98,7 +116,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(CancellationToken cancellationToken)
         {
@@ -106,14 +124,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(TeamGetPrimarychannelParameter parameter)
         {
             return await this.SendAsync<TeamGetPrimarychannelParameter, TeamGetPrimarychannelResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-get-primarychannel?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamGetPrimarychannelResponse> TeamGetPrimarychannelAsync(TeamGetPrimarychannelParameter parameter, CancellationToken cancellationToken)
         {

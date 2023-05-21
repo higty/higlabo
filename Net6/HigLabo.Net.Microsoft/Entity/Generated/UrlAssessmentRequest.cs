@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/urlassessmentrequest?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/urlassessmentrequest?view=graph-rest-1.0
     /// </summary>
     public partial class UrlAssessmentRequest
     {
@@ -34,7 +34,6 @@ namespace HigLabo.Net.Microsoft
             Completed,
         }
 
-        public string? Url { get; set; }
         public UrlAssessmentRequestThreatCategory Category { get; set; }
         public UrlAssessmentRequestThreatAssessmentContentType ContentType { get; set; }
         public IdentitySet? CreatedBy { get; set; }
@@ -43,6 +42,7 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public UrlAssessmentRequestThreatAssessmentRequestSource RequestSource { get; set; }
         public UrlAssessmentRequestThreatAssessmentStatus Status { get; set; }
+        public string? Url { get; set; }
         public ThreatAssessmentResult[]? Results { get; set; }
     }
 }

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class B2xidentityUserflowListUserattributeAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,8 +24,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             DisplayName,
+            Id,
             IsOptional,
             RequiresVerification,
             UserAttributeValues,
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public IdentityUserFlowAttributeAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(B2xidentityUserflowListUserattributeAssignmentsParameter parameter)
         {
             return await this.SendAsync<B2xidentityUserflowListUserattributeAssignmentsParameter, B2xidentityUserflowListUserattributeAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/b2xidentityuserflow-list-userattributeassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<B2xidentityUserflowListUserattributeAssignmentsResponse> B2xidentityUserflowListUserattributeAssignmentsAsync(B2xidentityUserflowListUserattributeAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatmessageUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChatmessageUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync(ChatmessageUpdateParameter parameter)
         {
             return await this.SendAsync<ChatmessageUpdateParameter, ChatmessageUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-update?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageUpdateResponse> ChatmessageUpdateAsync(ChatmessageUpdateParameter parameter, CancellationToken cancellationToken)
         {

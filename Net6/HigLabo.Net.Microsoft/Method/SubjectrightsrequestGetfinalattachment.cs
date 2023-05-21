@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
+    /// </summary>
     public partial class SubjectrightsrequestGetfinalattachmentParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SubjectrightsrequestGetfinalattachmentResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(SubjectrightsrequestGetfinalattachmentParameter parameter)
         {
             return await this.SendAsync<SubjectrightsrequestGetfinalattachmentParameter, SubjectrightsrequestGetfinalattachmentResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subjectrightsrequest-getfinalattachment?view=graph-rest-1.0
         /// </summary>
         public async Task<SubjectrightsrequestGetfinalattachmentResponse> SubjectrightsrequestGetfinalattachmentAsync(SubjectrightsrequestGetfinalattachmentParameter parameter, CancellationToken cancellationToken)
         {

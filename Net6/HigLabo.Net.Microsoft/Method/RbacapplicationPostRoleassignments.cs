@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class RbacapplicationPostRoleAssignmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,27 +42,30 @@ namespace HigLabo.Net.Microsoft
         public string? DirectoryScopeId { get; set; }
         public string? AppScopeId { get; set; }
         public string? Id { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
         public DirectoryObject? Principal { get; set; }
         public UnifiedRoleDefinition? RoleDefinition { get; set; }
-        public DirectoryObject? DirectoryScope { get; set; }
-        public AppScope? AppScope { get; set; }
     }
     public partial class RbacapplicationPostRoleAssignmentsResponse : RestApiResponse
     {
+        public string? AppScopeId { get; set; }
+        public string? DirectoryScopeId { get; set; }
         public string? Id { get; set; }
         public string? RoleDefinitionId { get; set; }
         public string? PrincipalId { get; set; }
-        public string? DirectoryScopeId { get; set; }
-        public string? AppScopeId { get; set; }
+        public AppScope? AppScope { get; set; }
+        public DirectoryObject? DirectoryScope { get; set; }
         public DirectoryObject? Principal { get; set; }
         public UnifiedRoleDefinition? RoleDefinition { get; set; }
-        public DirectoryObject? DirectoryScope { get; set; }
-        public AppScope? AppScope { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentsResponse> RbacapplicationPostRoleAssignmentsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationPostRoleAssignmentsParameter, RbacapplicationPostRoleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentsResponse> RbacapplicationPostRoleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationPostRoleAssignmentsParameter, RbacapplicationPostRoleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentsResponse> RbacapplicationPostRoleAssignmentsAsync(RbacapplicationPostRoleAssignmentsParameter parameter)
         {
             return await this.SendAsync<RbacapplicationPostRoleAssignmentsParameter, RbacapplicationPostRoleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentsResponse> RbacapplicationPostRoleAssignmentsAsync(RbacapplicationPostRoleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

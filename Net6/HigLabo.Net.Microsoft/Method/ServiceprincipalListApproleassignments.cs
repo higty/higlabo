@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalListApproleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_AppRoleAssignments: return $"/servicePrincipals/{Id}/appRoleAssignments";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -23,6 +27,7 @@ namespace HigLabo.Net.Microsoft
         {
             AppRoleId,
             CreatedDateTime,
+            DeletedDateTime,
             Id,
             PrincipalDisplayName,
             PrincipalId,
@@ -33,6 +38,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_AppRoleAssignments,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -57,10 +63,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AppRoleAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync()
         {
@@ -68,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync(ServiceprincipalListApproleAssignmentsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListApproleAssignmentsParameter, ServiceprincipalListApproleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-approleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListApproleAssignmentsResponse> ServiceprincipalListApproleAssignmentsAsync(ServiceprincipalListApproleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

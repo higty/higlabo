@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationPostOwnersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ApplicationPostOwnersResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(ApplicationPostOwnersParameter parameter)
         {
             return await this.SendAsync<ApplicationPostOwnersParameter, ApplicationPostOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostOwnersResponse> ApplicationPostOwnersAsync(ApplicationPostOwnersParameter parameter, CancellationToken cancellationToken)
         {

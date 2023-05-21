@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationclassPostCategoryParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,18 +36,21 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
     }
     public partial class EducationclassPostCategoryResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter)
         {
             return await this.SendAsync<EducationclassPostCategoryParameter, EducationclassPostCategoryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-post-category?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassPostCategoryResponse> EducationclassPostCategoryAsync(EducationclassPostCategoryParameter parameter, CancellationToken cancellationToken)
         {

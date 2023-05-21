@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/domain?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/domain?view=graph-rest-1.0
     /// </summary>
     public partial class Domain
     {
@@ -17,8 +17,8 @@ namespace HigLabo.Net.Microsoft
         public bool? IsVerified { get; set; }
         public Int32? PasswordNotificationWindowInDays { get; set; }
         public Int32? PasswordValidityPeriodInDays { get; set; }
-        public String[]? SupportedServices { get; set; }
         public DomainState? State { get; set; }
+        public String[]? SupportedServices { get; set; }
         public DirectoryObject[]? DomainNameReferences { get; set; }
         public DomainDnsRecord[]? ServiceConfigurationRecords { get; set; }
         public DomainDnsRecord[]? VerificationDnsRecords { get; set; }

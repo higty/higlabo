@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
+    /// </summary>
     public partial class OutlookUserPostMastercategoriesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -35,18 +38,21 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? DisplayName { get; set; }
         public string? Color { get; set; }
+        public string? DisplayName { get; set; }
     }
     public partial class OutlookUserPostMastercategoriesResponse : RestApiResponse
     {
-        public string? DisplayName { get; set; }
         public string? Color { get; set; }
+        public string? DisplayName { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync()
         {
@@ -54,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync(CancellationToken cancellationToken)
         {
@@ -62,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync(OutlookUserPostMastercategoriesParameter parameter)
         {
             return await this.SendAsync<OutlookUserPostMastercategoriesParameter, OutlookUserPostMastercategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/outlookuser-post-mastercategories?view=graph-rest-1.0
         /// </summary>
         public async Task<OutlookUserPostMastercategoriesResponse> OutlookUserPostMastercategoriesAsync(OutlookUserPostMastercategoriesParameter parameter, CancellationToken cancellationToken)
         {

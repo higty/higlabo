@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelProvisionemailParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     {
         public string? Email { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync(ChannelProvisionemailParameter parameter)
         {
             return await this.SendAsync<ChannelProvisionemailParameter, ChannelProvisionemailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-provisionemail?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelProvisionemailResponse> ChannelProvisionemailAsync(ChannelProvisionemailParameter parameter, CancellationToken cancellationToken)
         {

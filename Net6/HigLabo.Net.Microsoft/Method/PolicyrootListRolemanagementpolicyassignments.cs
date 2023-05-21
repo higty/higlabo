@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class PolicyRootListRoleManagementPolicyAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UnifiedRoleManagementPolicyAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(PolicyRootListRoleManagementPolicyAssignmentsParameter parameter)
         {
             return await this.SendAsync<PolicyRootListRoleManagementPolicyAssignmentsParameter, PolicyRootListRoleManagementPolicyAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/policyroot-list-rolemanagementpolicyassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<PolicyRootListRoleManagementPolicyAssignmentsResponse> PolicyRootListRoleManagementPolicyAssignmentsAsync(PolicyRootListRoleManagementPolicyAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannertaskdetailsUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -63,10 +66,13 @@ namespace HigLabo.Net.Microsoft
         public PlannerTaskDetailsstring PreviewType { get; set; }
         public PlannerExternalReferences? References { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskdetailsUpdateResponse> PlannertaskdetailsUpdateAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannertaskdetailsUpdateParameter, PlannertaskdetailsUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskdetailsUpdateResponse> PlannertaskdetailsUpdateAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannertaskdetailsUpdateParameter, PlannertaskdetailsUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskdetailsUpdateResponse> PlannertaskdetailsUpdateAsync(PlannertaskdetailsUpdateParameter parameter)
         {
             return await this.SendAsync<PlannertaskdetailsUpdateParameter, PlannertaskdetailsUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/plannertaskdetails-update?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannertaskdetailsUpdateResponse> PlannertaskdetailsUpdateAsync(PlannertaskdetailsUpdateParameter parameter, CancellationToken cancellationToken)
         {

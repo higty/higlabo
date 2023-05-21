@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/nameditem?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/nameditem?view=graph-rest-1.0
     /// </summary>
     public partial class NamedItem
     {
@@ -16,8 +16,8 @@ namespace HigLabo.Net.Microsoft
             Range,
         }
 
-        public string? Name { get; set; }
         public string? Comment { get; set; }
+        public string? Name { get; set; }
         public string? Scope { get; set; }
         public NamedItemstring Type { get; set; }
         public Json? Value { get; set; }

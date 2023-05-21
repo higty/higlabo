@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListEventsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -9,7 +12,7 @@ namespace HigLabo.Net.Microsoft
             public ApiPath ApiPath { get; set; }
             public string? IdOrUserPrincipalName { get; set; }
             public string? Id { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
             public string? CalendarsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
 
@@ -23,8 +26,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events: return $"/users/{IdOrUserPrincipalName}/calendar/events";
                     case ApiPath.Me_Calendars_Id_Events: return $"/me/calendars/{Id}/events";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events: return $"/users/{IdOrUserPrincipalName}/calendars/{Id}/events";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -88,8 +91,8 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendar_Events,
             Me_Calendars_Id_Events,
             Users_IdOrUserPrincipalName_Calendars_Id_Events,
-            Me_Calendargroups_Id_Calendars_Id_Events,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events,
+            Me_CalendarGroups_Id_Calendars_Id_Events,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -114,10 +117,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Event[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListEventsResponse> UserListEventsAsync()
         {
@@ -125,7 +131,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListEventsResponse> UserListEventsAsync(CancellationToken cancellationToken)
         {
@@ -133,14 +139,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListEventsResponse> UserListEventsAsync(UserListEventsParameter parameter)
         {
             return await this.SendAsync<UserListEventsParameter, UserListEventsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-events?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListEventsResponse> UserListEventsAsync(UserListEventsParameter parameter, CancellationToken cancellationToken)
         {

@@ -247,6 +247,8 @@ namespace HigLabo.Net.CodeGenerator
                 {
                     div = div.NextElementSibling;
                     if (div == null) { break; }
+                    if (div.QuerySelector("#methods") != null) { break; }
+
                     tbl = div.QuerySelector($"table[aria-label]");
                     if (tbl != null)
                     {
@@ -276,7 +278,7 @@ namespace HigLabo.Net.CodeGenerator
         public async Task LoadUrlClassNameMappingList()
         {
             var json = await File.ReadAllTextAsync(this.GetResouceUrlMappingFilePath());
-            _UrlClassNameMappingList = JsonConvert.DeserializeObject<List<UrlClassNameMapping>>(json);
+            _UrlClassNameMappingList = JsonConvert.DeserializeObject<List<UrlClassNameMapping>>(json)!;
         }
 
         protected override IEnumerable<string> GetMethodUrlList()
@@ -321,7 +323,18 @@ namespace HigLabo.Net.CodeGenerator
         {
             var doc = document;
             var l = new List<ApiParameter>();
-            var tbl = doc.QuerySelector("table[aria-label='Request body']");
+            var h2 = doc.QuerySelector("#request-body");
+            if (h2 == null) { return Task.FromResult(l); }
+            var node = h2.ParentElement.NextElementSibling;
+            IElement? tbl = null;
+
+            while (node != null)
+            {
+                tbl = node.QuerySelector("table[aria-label]");
+                if (tbl != null) { break; }
+                if (node.QuerySelector("#response") != null) { return Task.FromResult(l); }
+                node = node.NextElementSibling;
+            }
             if (tbl == null) { return Task.FromResult(l); }
 
             return this.GetParameterList(document, tbl);
@@ -332,6 +345,7 @@ namespace HigLabo.Net.CodeGenerator
             var context = new CreateEntityClassContext();
 
             var cParameter = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Parameter");
+            cParameter.Comment = url;
             var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response");
             var rx = new Regex("{[^}]*}");
 
@@ -551,7 +565,9 @@ namespace HigLabo.Net.CodeGenerator
 
                 if (p.Name == "elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).") { continue; }
                 if (p.Name.Contains("(deprecated)")) { continue; }
-                if (p.Name == "@odata.etag" || p.Name == "@odata.type") { continue; }
+                if (p.Name.Equals("If-match", StringComparison.OrdinalIgnoreCase)) { continue; }
+                if (p.Name.Equals("Group@odata.bind", StringComparison.OrdinalIgnoreCase)) { continue; }
+                if (p.Name == "@odata.id" || p.Name == "@odata.etag" || p.Name == "@odata.type") { continue; }
 
                 var td2 = row.QuerySelector("> td:nth-child(2)");
                 p.TypeName = td2.TextContent.Trim();
@@ -574,11 +590,11 @@ namespace HigLabo.Net.CodeGenerator
                 }
 
                 var td3 = row.QuerySelector("td:nth-child(3)");
-                if (td3 != null && p.TypeName != "String" && p.TypeName != "DateTimeOffset" && p.TypeName != "Boolean")
+                if (td3 != null && p.TypeName != "String" && p.TypeName != "String collection" && p.TypeName != "DateTimeOffset" && p.TypeName != "Boolean")
                 {
                     if (td3.TextContent.Contains("The possible values are: ") ||
                         td3.TextContent.Contains("The supported values") ||
-                        td3.TextContent.Contains("Supported values are:") ||
+                        td3.TextContent.Contains("Supported values are") ||
                         td3.TextContent.Contains("Possible values are") ||
                         td3.TextContent.Contains("Possible value: ") ||
                         td3.TextContent.Contains("Possible values:") ||
@@ -599,7 +615,7 @@ namespace HigLabo.Net.CodeGenerator
                             var eValue = code.TextContent.Replace(".", "");
                             if (eValue == "Prefer: include-unknown-enum-members") { continue; }
                             if (eValue == "Prefer: include - unknown -enum-members") { continue; }
-                            if (eValue.StartsWith("$")) { break; }
+                            if (eValue.StartsWith("$")) { continue; }
 
                             p.IsEnum = true;
                             if (eValue.ToInt32().HasValue) { continue; }
@@ -615,6 +631,10 @@ namespace HigLabo.Net.CodeGenerator
         {
             var doc = document;
 
+            if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/security-alert?view=graph-rest-1.0"))
+            {
+                return "SecurityAlert";
+            }
             if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
             {
                 if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/callrecords-") ||
@@ -680,6 +700,7 @@ namespace HigLabo.Net.CodeGenerator
             var type = parameter.TypeName;
 
             if (type == "string collection" || type == "collection(string)" || type.ToLower() == "collection of string") { type = "string[]"; }
+            else if (type.Equals("GUID collection", StringComparison.OrdinalIgnoreCase)) { type = "Guid[]"; }
             else if (type.ToLower() == "string (url)" || type == "string (readonly)") { type = "string"; }
             else if (type == "string (enum)") { type = "string"; }
             else if (type.Equals("String (optional)", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
@@ -689,6 +710,7 @@ namespace HigLabo.Net.CodeGenerator
             else if (type.Equals("url", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
             else if (type.Equals("Boolean", StringComparison.OrdinalIgnoreCase) || type.ToLower() == "bool") { type = "bool"; }
             else if (type.Equals("int", StringComparison.OrdinalIgnoreCase)) { type = "int"; }
+            else if (type.Equals("Integer", StringComparison.OrdinalIgnoreCase)) { type = "int"; }
             else if (type.Equals("float", StringComparison.OrdinalIgnoreCase)) { type = "float"; }
             else if (type.Equals("DateTimeOffSet", StringComparison.OrdinalIgnoreCase)) { type = "DateTimeOffset"; }
             else if (type.Equals("Edm.Duration", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
@@ -739,6 +761,10 @@ namespace HigLabo.Net.CodeGenerator
             {
                 type = type.Replace("microsoft.graph.", "", StringComparison.OrdinalIgnoreCase);
                 type = type.ExtractString('(', ')').ToPascalCase() + "[]";
+                if (type == "Edm.String[]")
+                {
+                    type = "string[]";
+                }
             }
             else
             {
@@ -800,7 +826,7 @@ namespace HigLabo.Net.CodeGenerator
             var l = new List<ApiRequestPath>();
             var h2 = doc.QuerySelector("[id='http-request']");
             if (h2 == null) { return new ApiRequestPath[0]; }
-            IElement node = h2.NextElementSibling;
+            IElement node = h2.ParentElement.NextElementSibling;
             while (true)
             {
                 foreach (var code in node.QuerySelectorAll("[data-author-content]"))
@@ -818,16 +844,20 @@ namespace HigLabo.Net.CodeGenerator
                             //https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0&tabs=http
                             apiPath = apiPath.ExtractString(null, '?');
                             apiPath = apiPath.ExtractString(null, '=');
+                            apiPath = apiPath.ExtractString(null, '[');
                             //https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0&tabs=http
                             apiPath = apiPath.ExtractString(null, '(');
+                            if (apiPath.IsNullOrEmpty()) { continue; }
                             l.Add(new ApiRequestPath(httpMethod, apiPath));
                         }
                     }
                 }
                 node = node.NextElementSibling;
                 if (node == null) { break; }
-                if (node.GetAttribute("id") != null &&
-                    node.GetAttribute("id").StartsWith("response")) { break; }
+                var requestBodyNode = node.QuerySelector("h2#request-body");
+                if (requestBodyNode != null) { break; }
+                var responseNode = node.QuerySelector("h2#response");
+                if (responseNode != null) { break; }
             }
             return l.ToArray();
         }
@@ -841,7 +871,7 @@ namespace HigLabo.Net.CodeGenerator
             var node = document.QuerySelector("[id='response']");
             if (node != null)
             {
-                var pNode = node.NextElementSibling;
+                var pNode = node.ParentElement.NextElementSibling;
                 if (pNode != null)
                 {
                     var hp = pNode.QuerySelector("a");

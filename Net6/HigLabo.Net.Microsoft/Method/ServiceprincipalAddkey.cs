@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalAddkeyParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -13,7 +16,8 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.ServicePrincipals_Id_AddKey: return $"/servicePrincipals/{Id}/addKey";
+                    case ApiPath.Serviceprincipals_Id_AddKey: return $"/serviceprincipals/{Id}/addKey";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -21,7 +25,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum ApiPath
         {
-            ServicePrincipals_Id_AddKey,
+            Serviceprincipals_Id_AddKey,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -56,10 +61,13 @@ namespace HigLabo.Net.Microsoft
         public string? Type { get; set; }
         public string? Usage { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync()
         {
@@ -67,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync(ServiceprincipalAddkeyParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalAddkeyParameter, ServiceprincipalAddkeyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-addkey?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalAddkeyResponse> ServiceprincipalAddkeyAsync(ServiceprincipalAddkeyParameter parameter, CancellationToken cancellationToken)
         {

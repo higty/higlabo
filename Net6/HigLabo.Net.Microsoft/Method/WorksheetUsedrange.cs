@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
+    /// </summary>
     public partial class WorksheetUsedrangeParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -83,10 +86,13 @@ namespace HigLabo.Net.Microsoft
         public RangeSort? Sort { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync()
         {
@@ -94,7 +100,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(CancellationToken cancellationToken)
         {
@@ -102,14 +108,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(WorksheetUsedrangeParameter parameter)
         {
             return await this.SendAsync<WorksheetUsedrangeParameter, WorksheetUsedrangeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheet-usedrange?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetUsedrangeResponse> WorksheetUsedrangeAsync(WorksheetUsedrangeParameter parameter, CancellationToken cancellationToken)
         {

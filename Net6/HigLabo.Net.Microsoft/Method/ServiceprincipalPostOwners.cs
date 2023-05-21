@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalPostOwnersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_Owners_ref: return $"/servicePrincipals/{Id}/owners/$ref";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_Owners_ref,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -41,10 +46,13 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? DeletedDateTime { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync()
         {
@@ -52,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalPostOwnersParameter, ServiceprincipalPostOwnersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-post-owners?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalPostOwnersResponse> ServiceprincipalPostOwnersAsync(ServiceprincipalPostOwnersParameter parameter, CancellationToken cancellationToken)
         {

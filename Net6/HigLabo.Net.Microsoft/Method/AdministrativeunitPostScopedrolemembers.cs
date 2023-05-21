@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
+    /// </summary>
     public partial class AdministrativeunitPostScopedrolemembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -45,10 +48,13 @@ namespace HigLabo.Net.Microsoft
         public string? RoleId { get; set; }
         public Identity? RoleMemberInfo { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostScopedrolemembersResponse> AdministrativeunitPostScopedrolemembersAsync()
         {
@@ -56,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdministrativeunitPostScopedrolemembersParameter, AdministrativeunitPostScopedrolemembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostScopedrolemembersResponse> AdministrativeunitPostScopedrolemembersAsync(CancellationToken cancellationToken)
         {
@@ -64,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdministrativeunitPostScopedrolemembersParameter, AdministrativeunitPostScopedrolemembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostScopedrolemembersResponse> AdministrativeunitPostScopedrolemembersAsync(AdministrativeunitPostScopedrolemembersParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitPostScopedrolemembersParameter, AdministrativeunitPostScopedrolemembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-post-scopedrolemembers?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitPostScopedrolemembersResponse> AdministrativeunitPostScopedrolemembersAsync(AdministrativeunitPostScopedrolemembersParameter parameter, CancellationToken cancellationToken)
         {

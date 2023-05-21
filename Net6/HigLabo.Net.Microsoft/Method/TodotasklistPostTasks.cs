@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotasklistPostTasksParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -73,11 +76,14 @@ namespace HigLabo.Net.Microsoft
         public bool? IsReminderOn { get; set; }
         public PatternedRecurrence? Recurrence { get; set; }
         public DateTimeTimeZone? ReminderDateTime { get; set; }
+        public DateTimeTimeZone? StartDateTime { get; set; }
         public TodotasklistPostTasksParameterTaskStatus Status { get; set; }
         public string? Title { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public DateTimeOffset? BodyLastModifiedDateTime { get; set; }
+        public bool? HasAttachments { get; set; }
+        public TaskFileAttachment[]? Attachments { get; set; }
         public ChecklistItem[]? ChecklistItems { get; set; }
         public Extension[]? Extensions { get; set; }
         public LinkedResource[]? LinkedResources { get; set; }
@@ -105,22 +111,28 @@ namespace HigLabo.Net.Microsoft
         public DateTimeTimeZone? CompletedDateTime { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public DateTimeTimeZone? DueDateTime { get; set; }
+        public bool? HasAttachments { get; set; }
         public string? Id { get; set; }
         public TodoTaskImportance Importance { get; set; }
         public bool? IsReminderOn { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public PatternedRecurrence? Recurrence { get; set; }
         public DateTimeTimeZone? ReminderDateTime { get; set; }
+        public DateTimeTimeZone? StartDateTime { get; set; }
         public TodoTaskTaskStatus Status { get; set; }
         public string? Title { get; set; }
+        public TaskFileAttachment[]? Attachments { get; set; }
         public ChecklistItem[]? ChecklistItems { get; set; }
         public Extension[]? Extensions { get; set; }
         public LinkedResource[]? LinkedResources { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync()
         {
@@ -128,7 +140,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(CancellationToken cancellationToken)
         {
@@ -136,14 +148,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(TodotasklistPostTasksParameter parameter)
         {
             return await this.SendAsync<TodotasklistPostTasksParameter, TodotasklistPostTasksResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-post-tasks?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistPostTasksResponse> TodotasklistPostTasksAsync(TodotasklistPostTasksParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class AdministrativeunitDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class AdministrativeunitDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(AdministrativeunitDeleteParameter parameter)
         {
             return await this.SendAsync<AdministrativeunitDeleteParameter, AdministrativeunitDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/administrativeunit-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AdministrativeunitDeleteResponse> AdministrativeunitDeleteAsync(AdministrativeunitDeleteParameter parameter, CancellationToken cancellationToken)
         {

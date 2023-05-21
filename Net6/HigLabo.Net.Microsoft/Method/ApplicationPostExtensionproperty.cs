@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationPostExtensionpropertyParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -49,10 +52,13 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public String[]? TargetObjects { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostExtensionpropertyResponse> ApplicationPostExtensionpropertyAsync()
         {
@@ -60,7 +66,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostExtensionpropertyParameter, ApplicationPostExtensionpropertyResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostExtensionpropertyResponse> ApplicationPostExtensionpropertyAsync(CancellationToken cancellationToken)
         {
@@ -68,14 +74,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostExtensionpropertyParameter, ApplicationPostExtensionpropertyResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostExtensionpropertyResponse> ApplicationPostExtensionpropertyAsync(ApplicationPostExtensionpropertyParameter parameter)
         {
             return await this.SendAsync<ApplicationPostExtensionpropertyParameter, ApplicationPostExtensionpropertyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-extensionproperty?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostExtensionpropertyResponse> ApplicationPostExtensionpropertyAsync(ApplicationPostExtensionpropertyParameter parameter, CancellationToken cancellationToken)
         {

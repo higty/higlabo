@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementPostAssignmentpoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -66,7 +69,9 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageAssignmentRequestorSettings? RequestorSettings { get; set; }
         public AccessPackageAssignmentReviewSettings? ReviewSettings { get; set; }
         public SubjectSet[]? SpecificAllowedTargets { get; set; }
+        public AccessPackageAutomaticRequestSettings? AutomaticRequestSettings { get; set; }
         public AccessPackage? AccessPackage { get; set; }
+        public AccessPackageQuestion[]? Questions { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
@@ -89,6 +94,7 @@ namespace HigLabo.Net.Microsoft
         }
 
         public AccessPackageAssignmentPolicyAllowedTargetScope AllowedTargetScope { get; set; }
+        public AccessPackageAutomaticRequestSettings? AutomaticRequestSettings { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
@@ -101,11 +107,15 @@ namespace HigLabo.Net.Microsoft
         public SubjectSet[]? SpecificAllowedTargets { get; set; }
         public AccessPackage? AccessPackage { get; set; }
         public AccessPackageCatalog? Catalog { get; set; }
+        public AccessPackageQuestion[]? Questions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentpoliciesResponse> EntitlementManagementPostAssignmentpoliciesAsync()
         {
@@ -113,7 +123,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostAssignmentpoliciesParameter, EntitlementManagementPostAssignmentpoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentpoliciesResponse> EntitlementManagementPostAssignmentpoliciesAsync(CancellationToken cancellationToken)
         {
@@ -121,14 +131,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostAssignmentpoliciesParameter, EntitlementManagementPostAssignmentpoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentpoliciesResponse> EntitlementManagementPostAssignmentpoliciesAsync(EntitlementManagementPostAssignmentpoliciesParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostAssignmentpoliciesParameter, EntitlementManagementPostAssignmentpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAssignmentpoliciesResponse> EntitlementManagementPostAssignmentpoliciesAsync(EntitlementManagementPostAssignmentpoliciesParameter parameter, CancellationToken cancellationToken)
         {

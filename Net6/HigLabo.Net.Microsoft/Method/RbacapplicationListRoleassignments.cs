@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class RbacapplicationListRoleAssignmentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,15 +24,15 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            AppScopeId,
+            DirectoryScopeId,
             Id,
             RoleDefinitionId,
             PrincipalId,
-            DirectoryScopeId,
-            AppScopeId,
+            AppScope,
+            DirectoryScope,
             Principal,
             RoleDefinition,
-            DirectoryScope,
-            AppScope,
         }
         public enum ApiPath
         {
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UnifiedRoleAssignment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter)
         {
             return await this.SendAsync<RbacapplicationListRoleAssignmentsParameter, RbacapplicationListRoleAssignmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-list-roleassignments?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationListRoleAssignmentsResponse> RbacapplicationListRoleAssignmentsAsync(RbacapplicationListRoleAssignmentsParameter parameter, CancellationToken cancellationToken)
         {

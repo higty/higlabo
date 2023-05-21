@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
+    /// </summary>
     public partial class SearchQueryParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     {
         public SearchResponse[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
         public async Task<SearchQueryResponse> SearchQueryAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
         public async Task<SearchQueryResponse> SearchQueryAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
         public async Task<SearchQueryResponse> SearchQueryAsync(SearchQueryParameter parameter)
         {
             return await this.SendAsync<SearchQueryParameter, SearchQueryResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/search-query?view=graph-rest-1.0
         /// </summary>
         public async Task<SearchQueryResponse> SearchQueryAsync(SearchQueryParameter parameter, CancellationToken cancellationToken)
         {

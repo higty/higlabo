@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+    /// </summary>
     public partial class MailfolderListMessagerulesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -60,10 +63,13 @@ namespace HigLabo.Net.Microsoft
     {
         public MessageRule[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync(MailfolderListMessagerulesParameter parameter)
         {
             return await this.SendAsync<MailfolderListMessagerulesParameter, MailfolderListMessagerulesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/mailfolder-list-messagerules?view=graph-rest-1.0
         /// </summary>
         public async Task<MailfolderListMessagerulesResponse> MailfolderListMessagerulesAsync(MailfolderListMessagerulesParameter parameter, CancellationToken cancellationToken)
         {

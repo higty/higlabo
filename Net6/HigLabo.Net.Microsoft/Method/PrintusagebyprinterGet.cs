@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintusagebyprinterGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -49,17 +52,20 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintusagebyprinterGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? PrinterID { get; set; }
-        public DateOnly? UsageDate { get; set; }
         public Int64? CompletedBlackAndWhiteJobCount { get; set; }
         public Int64? CompletedColorJobCount { get; set; }
+        public string? Id { get; set; }
         public Int64? IncompleteJobCount { get; set; }
+        public string? PrinterID { get; set; }
+        public DateOnly? UsageDate { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyprinterGetResponse> PrintusagebyprinterGetAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintusagebyprinterGetParameter, PrintusagebyprinterGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyprinterGetResponse> PrintusagebyprinterGetAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintusagebyprinterGetParameter, PrintusagebyprinterGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyprinterGetResponse> PrintusagebyprinterGetAsync(PrintusagebyprinterGetParameter parameter)
         {
             return await this.SendAsync<PrintusagebyprinterGetParameter, PrintusagebyprinterGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printusagebyprinter-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintusagebyprinterGetResponse> PrintusagebyprinterGetAsync(PrintusagebyprinterGetParameter parameter, CancellationToken cancellationToken)
         {

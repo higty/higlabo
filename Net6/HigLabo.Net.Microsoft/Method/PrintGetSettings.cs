@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintGetSettingsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,11 +24,11 @@ namespace HigLabo.Net.Microsoft
         public enum Field
         {
             Settings,
-            Services,
-            Printers,
-            Shares,
             Connectors,
             Operations,
+            Printers,
+            Services,
+            Shares,
             TaskDefinitions,
         }
         public enum ApiPath
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     {
         public bool? DocumentConversionEnabled { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync(PrintGetSettingsParameter parameter)
         {
             return await this.SendAsync<PrintGetSettingsParameter, PrintGetSettingsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-get-settings?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintGetSettingsResponse> PrintGetSettingsAsync(PrintGetSettingsParameter parameter, CancellationToken cancellationToken)
         {

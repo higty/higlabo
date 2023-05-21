@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AuthorizationPolicyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,10 +23,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            AllowedToSignUpEmailBasedSubscriptions,
-            AllowedToUseSSPR,
             AllowEmailVerifiedUsersToJoinOrganization,
             AllowInvitesFrom,
+            AllowUserConsentForRiskyApps,
+            AllowedToSignUpEmailBasedSubscriptions,
+            AllowedToUseSSPR,
             BlockMsolPowerShell,
             DefaultUserRolePermissions,
             Description,
@@ -64,10 +68,11 @@ namespace HigLabo.Net.Microsoft
             Everyone,
         }
 
-        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
-        public bool? AllowedToUseSSPR { get; set; }
         public bool? AllowEmailVerifiedUsersToJoinOrganization { get; set; }
         public AuthorizationPolicyAllowInvitesFrom AllowInvitesFrom { get; set; }
+        public bool? AllowUserConsentForRiskyApps { get; set; }
+        public bool? AllowedToSignUpEmailBasedSubscriptions { get; set; }
+        public bool? AllowedToUseSSPR { get; set; }
         public bool? BlockMsolPowerShell { get; set; }
         public DefaultUserRolePermissions? DefaultUserRolePermissions { get; set; }
         public string? Description { get; set; }
@@ -75,10 +80,13 @@ namespace HigLabo.Net.Microsoft
         public Guid? GuestUserRoleId { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync()
         {
@@ -86,7 +94,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(CancellationToken cancellationToken)
         {
@@ -94,14 +102,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter)
         {
             return await this.SendAsync<AuthorizationPolicyGetParameter, AuthorizationPolicyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/authorizationpolicy-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AuthorizationPolicyGetResponse> AuthorizationPolicyGetAsync(AuthorizationPolicyGetParameter parameter, CancellationToken cancellationToken)
         {

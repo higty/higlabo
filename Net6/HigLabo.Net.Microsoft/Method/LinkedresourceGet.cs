@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
+    /// </summary>
     public partial class LinkedResourceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -63,10 +66,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? WebUrl { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync()
         {
@@ -74,7 +80,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync(CancellationToken cancellationToken)
         {
@@ -82,14 +88,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync(LinkedResourceGetParameter parameter)
         {
             return await this.SendAsync<LinkedResourceGetParameter, LinkedResourceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/linkedresource-get?view=graph-rest-1.0
         /// </summary>
         public async Task<LinkedResourceGetResponse> LinkedResourceGetAsync(LinkedResourceGetParameter parameter, CancellationToken cancellationToken)
         {

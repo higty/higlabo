@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementSettingsGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -61,10 +64,13 @@ namespace HigLabo.Net.Microsoft
         public EntitlementManagementSettingsAccessPackageExternalUserLifecycleAction ExternalUserLifecycleAction { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementSettingsGetResponse> EntitlementManagementSettingsGetAsync()
         {
@@ -72,7 +78,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementSettingsGetParameter, EntitlementManagementSettingsGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementSettingsGetResponse> EntitlementManagementSettingsGetAsync(CancellationToken cancellationToken)
         {
@@ -80,14 +86,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementSettingsGetParameter, EntitlementManagementSettingsGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementSettingsGetResponse> EntitlementManagementSettingsGetAsync(EntitlementManagementSettingsGetParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementSettingsGetParameter, EntitlementManagementSettingsGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagementsettings-get?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementSettingsGetResponse> EntitlementManagementSettingsGetAsync(EntitlementManagementSettingsGetParameter parameter, CancellationToken cancellationToken)
         {

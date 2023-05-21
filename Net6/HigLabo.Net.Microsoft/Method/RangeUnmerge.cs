@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
+    /// </summary>
     public partial class RangeUnmergeParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -54,10 +57,13 @@ namespace HigLabo.Net.Microsoft
     public partial class RangeUnmergeResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeUnmergeResponse> RangeUnmergeAsync()
         {
@@ -65,7 +71,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeUnmergeResponse> RangeUnmergeAsync(CancellationToken cancellationToken)
         {
@@ -73,14 +79,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeUnmergeResponse> RangeUnmergeAsync(RangeUnmergeParameter parameter)
         {
             return await this.SendAsync<RangeUnmergeParameter, RangeUnmergeResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/range-unmerge?view=graph-rest-1.0
         /// </summary>
         public async Task<RangeUnmergeResponse> RangeUnmergeAsync(RangeUnmergeParameter parameter, CancellationToken cancellationToken)
         {

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/educationassignmentdefaults?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/educationassignmentdefaults?view=graph-rest-1.0
     /// </summary>
     public partial class EducationAssignmentDefaults
     {
@@ -21,10 +21,10 @@ namespace HigLabo.Net.Microsoft
             StudentsOnly,
         }
 
-        public string? Id { get; set; }
         public EducationAssignmentDefaultsEducationAddedStudentAction AddedStudentAction { get; set; }
         public EducationAssignmentDefaultsEducationAddToCalendarOptions AddToCalendarAction { get; set; }
         public TimeOnly? DueTime { get; set; }
+        public string? Id { get; set; }
         public string? NotificationChannelUrl { get; set; }
     }
 }

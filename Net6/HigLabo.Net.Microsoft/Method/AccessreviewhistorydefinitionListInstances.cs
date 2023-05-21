@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+    /// </summary>
     public partial class AccessreviewhistorydefinitionListInstancesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -57,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessReviewHistoryInstance[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync()
         {
@@ -68,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync(CancellationToken cancellationToken)
         {
@@ -76,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync(AccessreviewhistorydefinitionListInstancesParameter parameter)
         {
             return await this.SendAsync<AccessreviewhistorydefinitionListInstancesParameter, AccessreviewhistorydefinitionListInstancesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accessreviewhistorydefinition-list-instances?view=graph-rest-1.0
         /// </summary>
         public async Task<AccessreviewhistorydefinitionListInstancesResponse> AccessreviewhistorydefinitionListInstancesAsync(AccessreviewhistorydefinitionListInstancesParameter parameter, CancellationToken cancellationToken)
         {

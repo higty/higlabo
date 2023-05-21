@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
+    /// </summary>
     public partial class PostReplyParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -43,10 +46,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PostReplyResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
         /// </summary>
         public async Task<PostReplyResponse> PostReplyAsync()
         {
@@ -54,7 +60,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PostReplyParameter, PostReplyResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
         /// </summary>
         public async Task<PostReplyResponse> PostReplyAsync(CancellationToken cancellationToken)
         {
@@ -62,14 +68,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PostReplyParameter, PostReplyResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
         /// </summary>
         public async Task<PostReplyResponse> PostReplyAsync(PostReplyParameter parameter)
         {
             return await this.SendAsync<PostReplyParameter, PostReplyResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/post-reply?view=graph-rest-1.0
         /// </summary>
         public async Task<PostReplyResponse> PostReplyAsync(PostReplyParameter parameter, CancellationToken cancellationToken)
         {

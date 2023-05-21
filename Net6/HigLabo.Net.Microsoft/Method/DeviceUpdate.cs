@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
+    /// </summary>
     public partial class DeviceUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Devices_Id: return $"/devices/{Id}";
+                    case ApiPath.Devices: return $"/devices";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -22,6 +26,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Devices_Id,
+            Devices,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -43,10 +48,13 @@ namespace HigLabo.Net.Microsoft
     public partial class DeviceUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceUpdateResponse> DeviceUpdateAsync()
         {
@@ -54,7 +62,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceUpdateResponse> DeviceUpdateAsync(CancellationToken cancellationToken)
         {
@@ -62,14 +70,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceUpdateResponse> DeviceUpdateAsync(DeviceUpdateParameter parameter)
         {
             return await this.SendAsync<DeviceUpdateParameter, DeviceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/device-update?view=graph-rest-1.0
         /// </summary>
         public async Task<DeviceUpdateResponse> DeviceUpdateAsync(DeviceUpdateParameter parameter, CancellationToken cancellationToken)
         {

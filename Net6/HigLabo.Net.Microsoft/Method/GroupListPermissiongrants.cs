@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListPermissiongrantsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,18 +56,21 @@ namespace HigLabo.Net.Microsoft
             Delegated,
         }
 
-        public string? Id { get; set; }
-        public DateTimeOffset? DeletedDateTime { get; set; }
         public string? ClientId { get; set; }
         public string? ClientAppId { get; set; }
+        public DateTimeOffset? DeletedDateTime { get; set; }
+        public string? Id { get; set; }
         public string? ResourceAppId { get; set; }
         public ResourceSpecificPermissionGrantstring PermissionType { get; set; }
         public string? Permission { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync()
         {
@@ -72,7 +78,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(CancellationToken cancellationToken)
         {
@@ -80,14 +86,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter)
         {
             return await this.SendAsync<GroupListPermissiongrantsParameter, GroupListPermissiongrantsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPermissiongrantsResponse> GroupListPermissiongrantsAsync(GroupListPermissiongrantsParameter parameter, CancellationToken cancellationToken)
         {

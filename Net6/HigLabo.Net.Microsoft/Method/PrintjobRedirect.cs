@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintjobRedirectParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -36,33 +39,36 @@ namespace HigLabo.Net.Microsoft
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? DestinationPrinterId { get; set; }
         public PrintJobConfiguration? Configuration { get; set; }
-        public string? Id { get; set; }
+        public UserIdentity? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
-        public PrintJobStatus? Status { get; set; }
+        public string? Id { get; set; }
         public Boolean? IsFetchable { get; set; }
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
-        public UserIdentity? CreatedBy { get; set; }
+        public PrintJobStatus? Status { get; set; }
         public PrintDocument[]? Documents { get; set; }
         public PrintTask[]? Tasks { get; set; }
     }
     public partial class PrintjobRedirectResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public PrintJobStatus? Status { get; set; }
         public PrintJobConfiguration? Configuration { get; set; }
+        public UserIdentity? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
         public Boolean? IsFetchable { get; set; }
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
-        public UserIdentity? CreatedBy { get; set; }
+        public PrintJobStatus? Status { get; set; }
         public PrintDocument[]? Documents { get; set; }
         public PrintTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter)
         {
             return await this.SendAsync<PrintjobRedirectParameter, PrintjobRedirectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobRedirectResponse> PrintjobRedirectAsync(PrintjobRedirectParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
+    /// </summary>
     public partial class WorkbookListTablesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,17 +26,17 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            HighlightFirstColumn,
+            HighlightLastColumn,
             Id,
+            LegacyId,
             Name,
+            ShowBandedRows,
+            ShowBandedColumns,
+            ShowFilterButton,
             ShowHeaders,
             ShowTotals,
             Style,
-            HighlightFirstColumn,
-            HighlightLastColumn,
-            ShowBandedColumns,
-            ShowBandedRows,
-            ShowFilterButton,
-            LegacyId,
             Columns,
             Rows,
             Sort,
@@ -67,10 +70,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Table[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListTablesResponse> WorkbookListTablesAsync()
         {
@@ -78,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookListTablesParameter, WorkbookListTablesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListTablesResponse> WorkbookListTablesAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookListTablesParameter, WorkbookListTablesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListTablesResponse> WorkbookListTablesAsync(WorkbookListTablesParameter parameter)
         {
             return await this.SendAsync<WorkbookListTablesParameter, WorkbookListTablesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-tables?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListTablesResponse> WorkbookListTablesAsync(WorkbookListTablesParameter parameter, CancellationToken cancellationToken)
         {

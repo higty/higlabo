@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/fido2authenticationmethodconfiguration?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/fido2authenticationmethodconfiguration?view=graph-rest-1.0
     /// </summary>
     public partial class Fido2AuthenticationMethodConfiguration
     {
@@ -13,6 +13,7 @@ namespace HigLabo.Net.Microsoft
             Disabled,
         }
 
+        public ExcludeTarget[]? ExcludeTargets { get; set; }
         public string? Id { get; set; }
         public bool? IsAttestationEnforced { get; set; }
         public bool? IsSelfServiceRegistrationAllowed { get; set; }

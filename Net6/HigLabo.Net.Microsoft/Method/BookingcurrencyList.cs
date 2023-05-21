@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingcurrencyListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -50,10 +53,13 @@ namespace HigLabo.Net.Microsoft
     {
         public BookingCurrency[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcurrencyListResponse> BookingcurrencyListAsync()
         {
@@ -61,7 +67,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcurrencyListResponse> BookingcurrencyListAsync(CancellationToken cancellationToken)
         {
@@ -69,14 +75,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcurrencyListResponse> BookingcurrencyListAsync(BookingcurrencyListParameter parameter)
         {
             return await this.SendAsync<BookingcurrencyListParameter, BookingcurrencyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingcurrency-list?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingcurrencyListResponse> BookingcurrencyListAsync(BookingcurrencyListParameter parameter, CancellationToken cancellationToken)
         {

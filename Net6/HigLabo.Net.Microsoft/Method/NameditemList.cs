@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+    /// </summary>
     public partial class NameditemListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,8 +26,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Name,
             Comment,
+            Name,
             Scope,
             Type,
             Value,
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public NamedItem[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemListResponse> NameditemListAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NameditemListParameter, NameditemListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemListResponse> NameditemListAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NameditemListParameter, NameditemListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemListResponse> NameditemListAsync(NameditemListParameter parameter)
         {
             return await this.SendAsync<NameditemListParameter, NameditemListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-list?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemListResponse> NameditemListAsync(NameditemListParameter parameter, CancellationToken cancellationToken)
         {

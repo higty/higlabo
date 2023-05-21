@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveitemListPermissionsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -31,16 +34,16 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            ExpirationDateTime,
             Id,
-            GrantedToV2,
+            HasPassword,
             GrantedToIdentitiesV2,
-            Invitation,
+            GrantedToV2,
             InheritedFrom,
+            Invitation,
             Link,
             Roles,
             ShareId,
-            ExpirationDateTime,
-            HasPassword,
         }
         public enum ApiPath
         {
@@ -74,10 +77,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Permission[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync()
         {
@@ -85,7 +91,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +99,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync(DriveitemListPermissionsParameter parameter)
         {
             return await this.SendAsync<DriveitemListPermissionsParameter, DriveitemListPermissionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/driveitem-list-permissions?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveitemListPermissionsResponse> DriveitemListPermissionsAsync(DriveitemListPermissionsParameter parameter, CancellationToken cancellationToken)
         {

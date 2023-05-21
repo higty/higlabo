@@ -3,12 +3,12 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/driverecipient?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/driverecipient?view=graph-rest-1.0
     /// </summary>
     public partial class DriveRecipient
     {
-        public string? Email { get; set; }
         public string? Alias { get; set; }
+        public string? Email { get; set; }
         public string? ObjectId { get; set; }
     }
 }

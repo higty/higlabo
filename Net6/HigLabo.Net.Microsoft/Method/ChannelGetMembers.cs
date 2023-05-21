@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
+    /// </summary>
     public partial class ChannelGetMembersParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,19 +26,21 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            CreatedDateTime,
             Description,
             DisplayName,
+            Email,
             Id,
             IsFavoriteByDefault,
-            Email,
-            WebUrl,
             MembershipType,
-            CreatedDateTime,
-            Messages,
-            Tabs,
-            Members,
+            TenantId,
+            WebUrl,
             FilesFolder,
+            Members,
+            Messages,
             Operations,
+            SharedWithTeams,
+            Tabs,
         }
         public enum ApiPath
         {
@@ -62,15 +67,18 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChannelGetMembersResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public string[]? Roles { get; set; }
         public DateTimeOffset? VisibleHistoryStartDateTime { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetMembersResponse> ChannelGetMembersAsync()
         {
@@ -78,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelGetMembersParameter, ChannelGetMembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetMembersResponse> ChannelGetMembersAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChannelGetMembersParameter, ChannelGetMembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetMembersResponse> ChannelGetMembersAsync(ChannelGetMembersParameter parameter)
         {
             return await this.SendAsync<ChannelGetMembersParameter, ChannelGetMembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/channel-get-members?view=graph-rest-1.0
         /// </summary>
         public async Task<ChannelGetMembersResponse> ChannelGetMembersAsync(ChannelGetMembersParameter parameter, CancellationToken cancellationToken)
         {

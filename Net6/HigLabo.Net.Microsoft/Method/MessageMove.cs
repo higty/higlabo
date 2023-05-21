@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageMoveParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -141,10 +144,13 @@ namespace HigLabo.Net.Microsoft
         public MultiValueLegacyExtendedProperty[]? MultiValueExtendedProperties { get; set; }
         public SingleValueLegacyExtendedProperty[]? SingleValueExtendedProperties { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageMoveResponse> MessageMoveAsync()
         {
@@ -152,7 +158,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageMoveResponse> MessageMoveAsync(CancellationToken cancellationToken)
         {
@@ -160,14 +166,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageMoveResponse> MessageMoveAsync(MessageMoveParameter parameter)
         {
             return await this.SendAsync<MessageMoveParameter, MessageMoveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-move?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageMoveResponse> MessageMoveAsync(MessageMoveParameter parameter, CancellationToken cancellationToken)
         {

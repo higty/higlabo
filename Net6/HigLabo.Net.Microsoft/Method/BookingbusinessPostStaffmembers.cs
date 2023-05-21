@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingbusinessPostStaffmembersParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -26,6 +29,8 @@ namespace HigLabo.Net.Microsoft
             Viewer,
             ExternalGuest,
             UnknownFutureValue,
+            Scheduler,
+            TeamMember,
         }
         public enum ApiPath
         {
@@ -45,6 +50,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? EmailAddress { get; set; }
         public string? Id { get; set; }
+        public bool? IsEmailNotificationEnabled { get; set; }
         public BookingStaffMemberBookingStaffRole Role { get; set; }
         public string? TimeZone { get; set; }
         public bool? UseBusinessHours { get; set; }
@@ -59,21 +65,27 @@ namespace HigLabo.Net.Microsoft
             Viewer,
             ExternalGuest,
             UnknownFutureValue,
+            Scheduler,
+            TeamMember,
         }
 
         public bool? AvailabilityIsAffectedByPersonalCalendar { get; set; }
         public string? DisplayName { get; set; }
         public string? EmailAddress { get; set; }
         public string? Id { get; set; }
+        public bool? IsEmailNotificationEnabled { get; set; }
         public BookingStaffMemberBookingStaffRole Role { get; set; }
         public string? TimeZone { get; set; }
         public bool? UseBusinessHours { get; set; }
         public BookingWorkHours[]? WorkingHours { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync()
         {
@@ -81,7 +93,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync(CancellationToken cancellationToken)
         {
@@ -89,14 +101,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync(BookingbusinessPostStaffmembersParameter parameter)
         {
             return await this.SendAsync<BookingbusinessPostStaffmembersParameter, BookingbusinessPostStaffmembersResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingbusiness-post-staffmembers?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingbusinessPostStaffmembersResponse> BookingbusinessPostStaffmembersAsync(BookingbusinessPostStaffmembersParameter parameter, CancellationToken cancellationToken)
         {

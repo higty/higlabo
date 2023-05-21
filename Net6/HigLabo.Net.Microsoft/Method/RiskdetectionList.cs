@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
+    /// </summary>
     public partial class RiskdetectionListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -68,10 +71,13 @@ namespace HigLabo.Net.Microsoft
     {
         public RiskDetection[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskdetectionListResponse> RiskdetectionListAsync()
         {
@@ -79,7 +85,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskdetectionListResponse> RiskdetectionListAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +93,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskdetectionListResponse> RiskdetectionListAsync(RiskdetectionListParameter parameter)
         {
             return await this.SendAsync<RiskdetectionListParameter, RiskdetectionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/riskdetection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<RiskdetectionListResponse> RiskdetectionListAsync(RiskdetectionListParameter parameter, CancellationToken cancellationToken)
         {

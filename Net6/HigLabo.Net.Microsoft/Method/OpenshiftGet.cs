@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
+    /// </summary>
     public partial class OpenshiftGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
         public string? SchedulingGroupId { get; set; }
         public OpenShiftItem? SharedOpenShift { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftGetResponse> OpenshiftGetAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftGetResponse> OpenshiftGetAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftGetResponse> OpenshiftGetAsync(OpenshiftGetParameter parameter)
         {
             return await this.SendAsync<OpenshiftGetParameter, OpenshiftGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/openshift-get?view=graph-rest-1.0
         /// </summary>
         public async Task<OpenshiftGetResponse> OpenshiftGetAsync(OpenshiftGetParameter parameter, CancellationToken cancellationToken)
         {

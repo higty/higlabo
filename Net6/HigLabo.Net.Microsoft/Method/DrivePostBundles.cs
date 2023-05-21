@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
+    /// </summary>
     public partial class DrivePostBundlesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -126,10 +129,13 @@ namespace HigLabo.Net.Microsoft
         public DriveItemVersion[]? Versions { get; set; }
         public Workbook? Workbook { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
         public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync()
         {
@@ -137,7 +143,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
         public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync(CancellationToken cancellationToken)
         {
@@ -145,14 +151,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
         public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync(DrivePostBundlesParameter parameter)
         {
             return await this.SendAsync<DrivePostBundlesParameter, DrivePostBundlesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-post-bundles?view=graph-rest-1.0
         /// </summary>
         public async Task<DrivePostBundlesResponse> DrivePostBundlesAsync(DrivePostBundlesParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintershareDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class PrintershareDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter)
         {
             return await this.SendAsync<PrintershareDeleteParameter, PrintershareDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printershare-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintershareDeleteResponse> PrintershareDeleteAsync(PrintershareDeleteParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,24 +35,27 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
     }
     public partial class ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public String[]? Definition { get; set; }
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
+        public string? Id { get; set; }
         public bool? IsOrganizationDefault { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse> ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesAsync()
         {
@@ -57,7 +63,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesParameter, ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse> ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesAsync(CancellationToken cancellationToken)
         {
@@ -65,14 +71,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesParameter, ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse> ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesAsync(ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesParameter parameter)
         {
             return await this.SendAsync<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesParameter, ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/activitybasedtimeoutpolicy-post-activitybasedtimeoutpolicies?view=graph-rest-1.0
         /// </summary>
         public async Task<ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesResponse> ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesAsync(ActivitybasedtimeoutPolicyPostActivitybasedtimeoutpoliciesParameter parameter, CancellationToken cancellationToken)
         {

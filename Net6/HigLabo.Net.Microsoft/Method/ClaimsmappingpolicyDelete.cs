@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ClaimsmappingPolicyDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ClaimsmappingPolicyDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(ClaimsmappingPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<ClaimsmappingPolicyDeleteParameter, ClaimsmappingPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/claimsmappingpolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ClaimsmappingPolicyDeleteResponse> ClaimsmappingPolicyDeleteAsync(ClaimsmappingPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {

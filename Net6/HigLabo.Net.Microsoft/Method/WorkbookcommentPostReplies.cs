@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
+    /// </summary>
     public partial class WorkbookcommentPostRepliesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
         public string? ContentType { get; set; }
         public string? Id { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync(WorkbookcommentPostRepliesParameter parameter)
         {
             return await this.SendAsync<WorkbookcommentPostRepliesParameter, WorkbookcommentPostRepliesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbookcomment-post-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookcommentPostRepliesResponse> WorkbookcommentPostRepliesAsync(WorkbookcommentPostRepliesParameter parameter, CancellationToken cancellationToken)
         {

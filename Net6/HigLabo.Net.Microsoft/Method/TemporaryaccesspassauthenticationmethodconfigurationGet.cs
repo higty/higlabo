@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
+    /// </summary>
     public partial class TemporaryAccesspassauthenticationmethodConfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -54,17 +57,21 @@ namespace HigLabo.Net.Microsoft
 
         public int? DefaultLength { get; set; }
         public int? DefaultLifetimeInMinutes { get; set; }
+        public ExcludeTarget[]? ExcludeTargets { get; set; }
         public string? Id { get; set; }
         public bool? IsUsableOnce { get; set; }
-        public int? MinimumLifetimeInMinutes { get; set; }
         public int? MaximumLifetimeInMinutes { get; set; }
+        public int? MinimumLifetimeInMinutes { get; set; }
         public TemporaryAccessPassAuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
         public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync()
         {
@@ -72,7 +79,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync(CancellationToken cancellationToken)
         {
@@ -80,14 +87,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync(TemporaryAccesspassauthenticationmethodConfigurationGetParameter parameter)
         {
             return await this.SendAsync<TemporaryAccesspassauthenticationmethodConfigurationGetParameter, TemporaryAccesspassauthenticationmethodConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/temporaryaccesspassauthenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TemporaryAccesspassauthenticationmethodConfigurationGetResponse> TemporaryAccesspassauthenticationmethodConfigurationGetAsync(TemporaryAccesspassauthenticationmethodConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {

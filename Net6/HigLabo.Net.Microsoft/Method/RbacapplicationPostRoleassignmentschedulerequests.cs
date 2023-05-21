@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
+    /// </summary>
     public partial class RbacapplicationPostRoleAssignmentschedulerequestsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -95,10 +98,13 @@ namespace HigLabo.Net.Microsoft
         public UnifiedRoleDefinition? RoleDefinition { get; set; }
         public UnifiedRoleAssignmentSchedule? TargetSchedule { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentschedulerequestsResponse> RbacapplicationPostRoleAssignmentschedulerequestsAsync()
         {
@@ -106,7 +112,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationPostRoleAssignmentschedulerequestsParameter, RbacapplicationPostRoleAssignmentschedulerequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentschedulerequestsResponse> RbacapplicationPostRoleAssignmentschedulerequestsAsync(CancellationToken cancellationToken)
         {
@@ -114,14 +120,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<RbacapplicationPostRoleAssignmentschedulerequestsParameter, RbacapplicationPostRoleAssignmentschedulerequestsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentschedulerequestsResponse> RbacapplicationPostRoleAssignmentschedulerequestsAsync(RbacapplicationPostRoleAssignmentschedulerequestsParameter parameter)
         {
             return await this.SendAsync<RbacapplicationPostRoleAssignmentschedulerequestsParameter, RbacapplicationPostRoleAssignmentschedulerequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/rbacapplication-post-roleassignmentschedulerequests?view=graph-rest-1.0
         /// </summary>
         public async Task<RbacapplicationPostRoleAssignmentschedulerequestsResponse> RbacapplicationPostRoleAssignmentschedulerequestsAsync(RbacapplicationPostRoleAssignmentschedulerequestsParameter parameter, CancellationToken cancellationToken)
         {

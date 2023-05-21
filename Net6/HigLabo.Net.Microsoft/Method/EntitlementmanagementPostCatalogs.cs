@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementPostCatalogsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -86,10 +89,13 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageCatalogAccessPackageCatalogState State { get; set; }
         public AccessPackage[]? AccessPackages { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync()
         {
@@ -97,7 +103,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(CancellationToken cancellationToken)
         {
@@ -105,14 +111,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(EntitlementManagementPostCatalogsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostCatalogsParameter, EntitlementManagementPostCatalogsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-catalogs?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostCatalogsResponse> EntitlementManagementPostCatalogsAsync(EntitlementManagementPostCatalogsParameter parameter, CancellationToken cancellationToken)
         {

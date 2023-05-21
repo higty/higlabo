@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationUserPostRubricsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,12 +35,12 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public ItemBody? Description { get; set; }
         public string? DisplayName { get; set; }
         public EducationAssignmentGradeType? Grading { get; set; }
+        public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public RubricLevel[]? Levels { get; set; }
@@ -45,21 +48,24 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class EducationUserPostRubricsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public ItemBody? Description { get; set; }
         public string? DisplayName { get; set; }
         public EducationAssignmentGradeType? Grading { get; set; }
+        public string? Id { get; set; }
         public IdentitySet? LastModifiedBy { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
         public RubricLevel[]? Levels { get; set; }
         public RubricQuality[]? Qualities { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(EducationUserPostRubricsParameter parameter)
         {
             return await this.SendAsync<EducationUserPostRubricsParameter, EducationUserPostRubricsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationuser-post-rubrics?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationUserPostRubricsResponse> EducationUserPostRubricsAsync(EducationUserPostRubricsParameter parameter, CancellationToken cancellationToken)
         {

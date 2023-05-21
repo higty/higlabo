@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
+    /// </summary>
     public partial class SinglevaluelegacyextendedpropertyGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -129,10 +132,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SinglevaluelegacyextendedpropertyGetResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyGetResponse> SinglevaluelegacyextendedpropertyGetAsync()
         {
@@ -140,7 +146,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SinglevaluelegacyextendedpropertyGetParameter, SinglevaluelegacyextendedpropertyGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyGetResponse> SinglevaluelegacyextendedpropertyGetAsync(CancellationToken cancellationToken)
         {
@@ -148,14 +154,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SinglevaluelegacyextendedpropertyGetParameter, SinglevaluelegacyextendedpropertyGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyGetResponse> SinglevaluelegacyextendedpropertyGetAsync(SinglevaluelegacyextendedpropertyGetParameter parameter)
         {
             return await this.SendAsync<SinglevaluelegacyextendedpropertyGetParameter, SinglevaluelegacyextendedpropertyGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/singlevaluelegacyextendedproperty-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SinglevaluelegacyextendedpropertyGetResponse> SinglevaluelegacyextendedpropertyGetAsync(SinglevaluelegacyextendedpropertyGetParameter parameter, CancellationToken cancellationToken)
         {

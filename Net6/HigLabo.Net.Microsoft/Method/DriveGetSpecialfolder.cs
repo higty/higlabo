@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveGetSpecialfolderParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -37,9 +40,9 @@ namespace HigLabo.Net.Microsoft
             Bundles,
             Following,
             Items,
+            List,
             Root,
             Special,
-            List,
         }
         public enum ApiPath
         {
@@ -112,10 +115,13 @@ namespace HigLabo.Net.Microsoft
         public DriveItemVersion[]? Versions { get; set; }
         public Workbook? Workbook { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync()
         {
@@ -123,7 +129,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(CancellationToken cancellationToken)
         {
@@ -131,14 +137,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(DriveGetSpecialfolderParameter parameter)
         {
             return await this.SendAsync<DriveGetSpecialfolderParameter, DriveGetSpecialfolderResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-get-specialfolder?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveGetSpecialfolderResponse> DriveGetSpecialfolderAsync(DriveGetSpecialfolderParameter parameter, CancellationToken cancellationToken)
         {

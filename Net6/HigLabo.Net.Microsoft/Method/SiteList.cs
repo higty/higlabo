@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
+    /// </summary>
     public partial class SiteListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,11 +24,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             CreatedDateTime,
             Description,
             DisplayName,
             ETag,
+            Id,
             LastModifiedDateTime,
             Name,
             Root,
@@ -74,10 +77,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Site[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListResponse> SiteListAsync()
         {
@@ -85,7 +91,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListParameter, SiteListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListResponse> SiteListAsync(CancellationToken cancellationToken)
         {
@@ -93,14 +99,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SiteListParameter, SiteListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListResponse> SiteListAsync(SiteListParameter parameter)
         {
             return await this.SendAsync<SiteListParameter, SiteListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/site-list?view=graph-rest-1.0
         /// </summary>
         public async Task<SiteListResponse> SiteListAsync(SiteListParameter parameter, CancellationToken cancellationToken)
         {

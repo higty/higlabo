@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/plannertask?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/plannertask?view=graph-rest-1.0
     /// </summary>
     public partial class PlannerTask
     {
@@ -23,9 +23,9 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? OrderHint { get; set; }
         public Int32? PercentComplete { get; set; }
-        public Int32? Priority { get; set; }
         public string? PlanId { get; set; }
         public string? PreviewType { get; set; }
+        public Int32? Priority { get; set; }
         public Int32? ReferenceCount { get; set; }
         public DateTimeOffset? StartDateTime { get; set; }
         public string? Title { get; set; }

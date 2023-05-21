@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ConditionalAccessPolicyDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ConditionalAccessPolicyDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync(ConditionalAccessPolicyDeleteParameter parameter)
         {
             return await this.SendAsync<ConditionalAccessPolicyDeleteParameter, ConditionalAccessPolicyDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/conditionalaccesspolicy-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ConditionalAccessPolicyDeleteResponse> ConditionalAccessPolicyDeleteAsync(ConditionalAccessPolicyDeleteParameter parameter, CancellationToken cancellationToken)
         {

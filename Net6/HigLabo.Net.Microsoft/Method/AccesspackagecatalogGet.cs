@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackagecatalogGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
         public AccessPackageCatalogAccessPackageCatalogState State { get; set; }
         public AccessPackage[]? AccessPackages { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter)
         {
             return await this.SendAsync<AccesspackagecatalogGetParameter, AccesspackagecatalogGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackagecatalog-get?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackagecatalogGetResponse> AccesspackagecatalogGetAsync(AccesspackagecatalogGetParameter parameter, CancellationToken cancellationToken)
         {

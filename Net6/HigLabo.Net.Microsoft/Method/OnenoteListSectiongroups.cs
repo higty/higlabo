@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
+    /// </summary>
     public partial class OnenoteListSectionGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -27,10 +30,10 @@ namespace HigLabo.Net.Microsoft
         {
             CreatedBy,
             CreatedDateTime,
+            DisplayName,
             Id,
             LastModifiedBy,
             LastModifiedDateTime,
-            DisplayName,
             SectionGroupsUrl,
             SectionsUrl,
             Self,
@@ -69,10 +72,13 @@ namespace HigLabo.Net.Microsoft
     {
         public SectionGroup[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync()
         {
@@ -80,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(CancellationToken cancellationToken)
         {
@@ -88,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(OnenoteListSectionGroupsParameter parameter)
         {
             return await this.SendAsync<OnenoteListSectionGroupsParameter, OnenoteListSectionGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/onenote-list-sectiongroups?view=graph-rest-1.0
         /// </summary>
         public async Task<OnenoteListSectionGroupsResponse> OnenoteListSectionGroupsAsync(OnenoteListSectionGroupsParameter parameter, CancellationToken cancellationToken)
         {

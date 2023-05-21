@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/provisioningstatusinfo?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/provisioningstatusinfo?view=graph-rest-1.0
     /// </summary>
     public partial class ProvisioningStatusInfo
     {
@@ -16,7 +16,7 @@ namespace HigLabo.Net.Microsoft
             UnknownFutureValue,
         }
 
-        public ProvisioningStatusInfoProvisioningResult Status { get; set; }
         public ProvisioningErrorInfo? ErrorInfo { get; set; }
+        public ProvisioningStatusInfoProvisioningResult Status { get; set; }
     }
 }

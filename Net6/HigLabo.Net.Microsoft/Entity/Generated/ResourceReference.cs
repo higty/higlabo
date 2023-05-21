@@ -3,12 +3,12 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/insights-resourcereference?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/insights-resourcereference?view=graph-rest-1.0
     /// </summary>
     public partial class ResourceReference
     {
-        public string? WebUrl { get; set; }
         public string? Id { get; set; }
         public string? Type { get; set; }
+        public string? WebUrl { get; set; }
     }
 }

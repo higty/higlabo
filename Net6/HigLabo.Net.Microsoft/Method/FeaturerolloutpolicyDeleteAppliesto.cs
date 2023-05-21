@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class FeaturerolloutPolicyDeleteAppliestoParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,10 +41,13 @@ namespace HigLabo.Net.Microsoft
     public partial class FeaturerolloutPolicyDeleteAppliestoResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync()
         {
@@ -49,7 +55,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(CancellationToken cancellationToken)
         {
@@ -57,14 +63,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(FeaturerolloutPolicyDeleteAppliestoParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutPolicyDeleteAppliestoParameter, FeaturerolloutPolicyDeleteAppliestoResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicy-delete-appliesto?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutPolicyDeleteAppliestoResponse> FeaturerolloutPolicyDeleteAppliestoAsync(FeaturerolloutPolicyDeleteAppliestoParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationclassListCategoriesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -21,8 +24,8 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             DisplayName,
+            Id,
         }
         public enum ApiPath
         {
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public EducationCategory[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(EducationclassListCategoriesParameter parameter)
         {
             return await this.SendAsync<EducationclassListCategoriesParameter, EducationclassListCategoriesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationclass-list-categories?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationclassListCategoriesResponse> EducationclassListCategoriesAsync(EducationclassListCategoriesParameter parameter, CancellationToken cancellationToken)
         {

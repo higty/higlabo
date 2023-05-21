@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class SubscriptionDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class SubscriptionDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync(SubscriptionDeleteParameter parameter)
         {
             return await this.SendAsync<SubscriptionDeleteParameter, SubscriptionDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/subscription-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<SubscriptionDeleteResponse> SubscriptionDeleteAsync(SubscriptionDeleteParameter parameter, CancellationToken cancellationToken)
         {

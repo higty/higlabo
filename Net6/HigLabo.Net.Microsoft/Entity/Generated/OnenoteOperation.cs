@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/onenoteoperation?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/onenoteoperation?view=graph-rest-1.0
     /// </summary>
     public partial class OnenoteOperation
     {
@@ -19,9 +19,9 @@ namespace HigLabo.Net.Microsoft
         public OnenoteOperationError? Error { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? LastActionDateTime { get; set; }
+        public string? PercentComplete { get; set; }
         public string? ResourceId { get; set; }
         public string? ResourceLocation { get; set; }
         public OnenoteOperationOperationStatus Status { get; set; }
-        public string? PercentComplete { get; set; }
     }
 }

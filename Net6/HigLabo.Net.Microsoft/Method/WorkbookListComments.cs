@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
+    /// </summary>
     public partial class WorkbookListCommentsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public WorkbookComment[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync(WorkbookListCommentsParameter parameter)
         {
             return await this.SendAsync<WorkbookListCommentsParameter, WorkbookListCommentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/workbook-list-comments?view=graph-rest-1.0
         /// </summary>
         public async Task<WorkbookListCommentsResponse> WorkbookListCommentsAsync(WorkbookListCommentsParameter parameter, CancellationToken cancellationToken)
         {

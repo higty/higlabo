@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+    /// </summary>
     public partial class UserflowlanguageConfigurationListDefaultpagesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public UserFlowLanguagePage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter)
         {
             return await this.SendAsync<UserflowlanguageConfigurationListDefaultpagesParameter, UserflowlanguageConfigurationListDefaultpagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/userflowlanguageconfiguration-list-defaultpages?view=graph-rest-1.0
         /// </summary>
         public async Task<UserflowlanguageConfigurationListDefaultpagesResponse> UserflowlanguageConfigurationListDefaultpagesAsync(UserflowlanguageConfigurationListDefaultpagesParameter parameter, CancellationToken cancellationToken)
         {

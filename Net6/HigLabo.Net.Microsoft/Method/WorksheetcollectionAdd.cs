@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
+    /// </summary>
     public partial class WorksheetCollectionAddParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -14,8 +17,8 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets_: return $"/me/drive/items/{Id}/workbook/worksheets/";
-                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets_: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets/";
+                    case ApiPath.Me_Drive_Items_Id_Workbook_Worksheets: return $"/me/drive/items/{Id}/workbook/worksheets";
+                    case ApiPath.Me_Drive_Root_ItemPath_Workbook_Worksheets: return $"/me/drive/root:/{ItemPath}:/workbook/worksheets";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -29,8 +32,8 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Me_Drive_Items_Id_Workbook_Worksheets_,
-            Me_Drive_Root_ItemPath_Workbook_Worksheets_,
+            Me_Drive_Items_Id_Workbook_Worksheets,
+            Me_Drive_Root_ItemPath_Workbook_Worksheets,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
         public WorksheetProtection? Protection { get; set; }
         public Table[]? Tables { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(WorksheetCollectionAddParameter parameter)
         {
             return await this.SendAsync<WorksheetCollectionAddParameter, WorksheetCollectionAddResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/worksheetcollection-add?view=graph-rest-1.0
         /// </summary>
         public async Task<WorksheetCollectionAddResponse> WorksheetCollectionAddAsync(WorksheetCollectionAddParameter parameter, CancellationToken cancellationToken)
         {

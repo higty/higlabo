@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
+    /// </summary>
     public partial class ServiceprincipalListOauth2permissiongrantsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -14,6 +17,7 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.ServicePrincipals_Id_Oauth2PermissionGrants: return $"/servicePrincipals/{Id}/oauth2PermissionGrants";
+                    case ApiPath.ServicePrincipals: return $"/servicePrincipals";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -21,9 +25,9 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             ClientId,
             ConsentType,
+            Id,
             PrincipalId,
             ResourceId,
             Scope,
@@ -31,6 +35,7 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             ServicePrincipals_Id_Oauth2PermissionGrants,
+            ServicePrincipals,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -55,10 +60,13 @@ namespace HigLabo.Net.Microsoft
     {
         public OAuth2PermissionGrant[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListOauth2permissiongrantsResponse> ServiceprincipalListOauth2permissiongrantsAsync()
         {
@@ -66,7 +74,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListOauth2permissiongrantsParameter, ServiceprincipalListOauth2permissiongrantsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListOauth2permissiongrantsResponse> ServiceprincipalListOauth2permissiongrantsAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +82,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ServiceprincipalListOauth2permissiongrantsParameter, ServiceprincipalListOauth2permissiongrantsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListOauth2permissiongrantsResponse> ServiceprincipalListOauth2permissiongrantsAsync(ServiceprincipalListOauth2permissiongrantsParameter parameter)
         {
             return await this.SendAsync<ServiceprincipalListOauth2permissiongrantsParameter, ServiceprincipalListOauth2permissiongrantsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/serviceprincipal-list-oauth2permissiongrants?view=graph-rest-1.0
         /// </summary>
         public async Task<ServiceprincipalListOauth2permissiongrantsResponse> ServiceprincipalListOauth2permissiongrantsAsync(ServiceprincipalListOauth2permissiongrantsParameter parameter, CancellationToken cancellationToken)
         {

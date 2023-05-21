@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotaskDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -41,10 +44,13 @@ namespace HigLabo.Net.Microsoft
     public partial class TodotaskDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync()
         {
@@ -52,7 +58,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync(CancellationToken cancellationToken)
         {
@@ -60,14 +66,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync(TodotaskDeleteParameter parameter)
         {
             return await this.SendAsync<TodotaskDeleteParameter, TodotaskDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotask-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotaskDeleteResponse> TodotaskDeleteAsync(TodotaskDeleteParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
+    /// </summary>
     public partial class TermStoreTermListRelationsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -15,8 +18,8 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Relations: return $"/ites/{SiteId}/termStore/sets/{SetId}/relations";
-                    case ApiPath.Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations: return $"/ites/{SiteId}/termStore/sets/{SetId}/terms/{TermId}/relations";
+                    case ApiPath.Sites_SiteId_TermStore_Sets_SetId_Relations: return $"/sites/{SiteId}/termStore/sets/{SetId}/relations";
+                    case ApiPath.Sites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations: return $"/sites/{SiteId}/termStore/sets/{SetId}/terms/{TermId}/relations";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -32,8 +35,8 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Ites_SiteId_TermStore_Sets_SetId_Relations,
-            Ites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations,
+            Sites_SiteId_TermStore_Sets_SetId_Relations,
+            Sites_SiteId_TermStore_Sets_SetId_Terms_TermId_Relations,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TermStoreRelation[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter)
         {
             return await this.SendAsync<TermStoreTermListRelationsParameter, TermStoreTermListRelationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-term-list-relations?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreTermListRelationsResponse> TermStoreTermListRelationsAsync(TermStoreTermListRelationsParameter parameter, CancellationToken cancellationToken)
         {

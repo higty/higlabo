@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotasklistDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TodoTaskList[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistDeltaResponse> TodotasklistDeltaAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistDeltaParameter, TodotasklistDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistDeltaResponse> TodotasklistDeltaAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistDeltaParameter, TodotasklistDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistDeltaResponse> TodotasklistDeltaAsync(TodotasklistDeltaParameter parameter)
         {
             return await this.SendAsync<TodotasklistDeltaParameter, TodotasklistDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistDeltaResponse> TodotasklistDeltaAsync(TodotasklistDeltaParameter parameter, CancellationToken cancellationToken)
         {

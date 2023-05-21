@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetonedriveactivityfilecountsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetonedriveactivityfilecountsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync(ReportRootGetonedriveactivityfilecountsParameter parameter)
         {
             return await this.SendAsync<ReportRootGetonedriveactivityfilecountsParameter, ReportRootGetonedriveactivityfilecountsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getonedriveactivityfilecounts?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetonedriveactivityfilecountsResponse> ReportRootGetonedriveactivityfilecountsAsync(ReportRootGetonedriveactivityfilecountsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
+    /// </summary>
     public partial class PermissiongrantPolicyListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,11 +23,11 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
             DisplayName,
             Description,
-            Includes,
             Excludes,
+            Id,
+            Includes,
         }
         public enum ApiPath
         {
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PermissionGrantPolicy[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(PermissiongrantPolicyListParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyListParameter, PermissiongrantPolicyListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-list?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyListResponse> PermissiongrantPolicyListAsync(PermissiongrantPolicyListParameter parameter, CancellationToken cancellationToken)
         {

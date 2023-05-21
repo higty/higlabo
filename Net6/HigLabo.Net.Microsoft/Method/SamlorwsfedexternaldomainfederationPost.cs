@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
+    /// </summary>
     public partial class SamlorwsfedexternaldomainfederationPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -12,7 +15,7 @@ namespace HigLabo.Net.Microsoft
             {
                 switch (this.ApiPath)
                 {
-                    case ApiPath.Directory_FederationConfigurations: return $"/directory/federationConfigurations";
+                    case ApiPath.Directory_FederationConfigurations_MicrosoftgraphsamlOrWsFedExternalDomainFederation: return $"/directory/federationConfigurations/microsoft.graph.samlOrWsFedExternalDomainFederation";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -31,7 +34,7 @@ namespace HigLabo.Net.Microsoft
         }
         public enum ApiPath
         {
-            Directory_FederationConfigurations,
+            Directory_FederationConfigurations_MicrosoftgraphsamlOrWsFedExternalDomainFederation,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -70,10 +73,13 @@ namespace HigLabo.Net.Microsoft
         public string? SigningCertificate { get; set; }
         public ExternalDomainName[]? Domains { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationPostResponse> SamlorwsfedexternaldomainfederationPostAsync()
         {
@@ -81,7 +87,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SamlorwsfedexternaldomainfederationPostParameter, SamlorwsfedexternaldomainfederationPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationPostResponse> SamlorwsfedexternaldomainfederationPostAsync(CancellationToken cancellationToken)
         {
@@ -89,14 +95,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SamlorwsfedexternaldomainfederationPostParameter, SamlorwsfedexternaldomainfederationPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationPostResponse> SamlorwsfedexternaldomainfederationPostAsync(SamlorwsfedexternaldomainfederationPostParameter parameter)
         {
             return await this.SendAsync<SamlorwsfedexternaldomainfederationPostParameter, SamlorwsfedexternaldomainfederationPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/samlorwsfedexternaldomainfederation-post?view=graph-rest-1.0
         /// </summary>
         public async Task<SamlorwsfedexternaldomainfederationPostResponse> SamlorwsfedexternaldomainfederationPostAsync(SamlorwsfedexternaldomainfederationPostParameter parameter, CancellationToken cancellationToken)
         {

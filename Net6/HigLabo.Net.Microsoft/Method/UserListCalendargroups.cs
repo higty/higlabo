@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListCalendarGroupsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public CalendarGroup[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(UserListCalendarGroupsParameter parameter)
         {
             return await this.SendAsync<UserListCalendarGroupsParameter, UserListCalendarGroupsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-calendargroups?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListCalendarGroupsResponse> UserListCalendarGroupsAsync(UserListCalendarGroupsParameter parameter, CancellationToken cancellationToken)
         {

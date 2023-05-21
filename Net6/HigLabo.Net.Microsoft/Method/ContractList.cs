@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ContractListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Contract[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractListResponse> ContractListAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContractListParameter, ContractListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractListResponse> ContractListAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContractListParameter, ContractListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractListResponse> ContractListAsync(ContractListParameter parameter)
         {
             return await this.SendAsync<ContractListParameter, ContractListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contract-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ContractListResponse> ContractListAsync(ContractListParameter parameter, CancellationToken cancellationToken)
         {

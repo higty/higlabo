@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+    /// </summary>
     public partial class UserListJoinedteamsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,25 +26,32 @@ namespace HigLabo.Net.Microsoft
         public enum Field
         {
             Id,
-            DisplayName,
-            Description,
             Classification,
-            Specialization,
-            Visibility,
+            ClassSettings,
+            CreatedDateTime,
+            Description,
+            DisplayName,
             FunSettings,
             GuestSettings,
             InternalId,
             IsArchived,
             MemberSettings,
             MessagingSettings,
+            Specialization,
+            Summary,
+            TenantId,
+            Visibility,
             WebUrl,
-            CreatedDateTime,
+            AllChannels,
             Channels,
+            IncomingChannels,
             InstalledApps,
             Members,
             Operations,
+            Photo,
             PrimaryChannel,
             Schedule,
+            Tags,
             Template,
         }
         public enum ApiPath
@@ -72,10 +82,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Team[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync()
         {
@@ -83,7 +96,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync(CancellationToken cancellationToken)
         {
@@ -91,14 +104,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter)
         {
             return await this.SendAsync<UserListJoinedteamsParameter, UserListJoinedteamsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-list-joinedteams?view=graph-rest-1.0
         /// </summary>
         public async Task<UserListJoinedteamsResponse> UserListJoinedteamsAsync(UserListJoinedteamsParameter parameter, CancellationToken cancellationToken)
         {

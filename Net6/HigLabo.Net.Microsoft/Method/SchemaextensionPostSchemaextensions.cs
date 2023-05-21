@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+    /// </summary>
     public partial class SchemaextensionPostSchemaextensionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -48,10 +51,13 @@ namespace HigLabo.Net.Microsoft
         public string? Status { get; set; }
         public String[]? TargetTypes { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionPostSchemaextensionsResponse> SchemaextensionPostSchemaextensionsAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchemaextensionPostSchemaextensionsParameter, SchemaextensionPostSchemaextensionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionPostSchemaextensionsResponse> SchemaextensionPostSchemaextensionsAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SchemaextensionPostSchemaextensionsParameter, SchemaextensionPostSchemaextensionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionPostSchemaextensionsResponse> SchemaextensionPostSchemaextensionsAsync(SchemaextensionPostSchemaextensionsParameter parameter)
         {
             return await this.SendAsync<SchemaextensionPostSchemaextensionsParameter, SchemaextensionPostSchemaextensionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/schemaextension-post-schemaextensions?view=graph-rest-1.0
         /// </summary>
         public async Task<SchemaextensionPostSchemaextensionsResponse> SchemaextensionPostSchemaextensionsAsync(SchemaextensionPostSchemaextensionsParameter parameter, CancellationToken cancellationToken)
         {

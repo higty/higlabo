@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
+    /// </summary>
     public partial class CallRedirectParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class CallRedirectResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRedirectResponse> CallRedirectAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRedirectResponse> CallRedirectAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRedirectResponse> CallRedirectAsync(CallRedirectParameter parameter)
         {
             return await this.SendAsync<CallRedirectParameter, CallRedirectResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/call-redirect?view=graph-rest-1.0
         /// </summary>
         public async Task<CallRedirectResponse> CallRedirectAsync(CallRedirectParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class AccesspackageFilterbycurrentUserParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -26,8 +29,11 @@ namespace HigLabo.Net.Microsoft
             Id,
             IsHidden,
             ModifiedDateTime,
+            AccessPackagesIncompatibleWith,
             AssignmentPolicies,
             Catalog,
+            IncompatibleAccessPackages,
+            IncompatibleGroups,
         }
         public enum ApiPath
         {
@@ -56,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessPackage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync()
         {
@@ -67,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter)
         {
             return await this.SendAsync<AccesspackageFilterbycurrentUserParameter, AccesspackageFilterbycurrentUserResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/accesspackage-filterbycurrentuser?view=graph-rest-1.0
         /// </summary>
         public async Task<AccesspackageFilterbycurrentUserResponse> AccesspackageFilterbycurrentUserAsync(AccesspackageFilterbycurrentUserParameter parameter, CancellationToken cancellationToken)
         {

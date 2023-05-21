@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
+    /// </summary>
     public partial class EventmessagePostAttachmentsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
         public string? Name { get; set; }
         public Int32? Size { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(EventmessagePostAttachmentsParameter parameter)
         {
             return await this.SendAsync<EventmessagePostAttachmentsParameter, EventmessagePostAttachmentsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/eventmessage-post-attachments?view=graph-rest-1.0
         /// </summary>
         public async Task<EventmessagePostAttachmentsResponse> EventmessagePostAttachmentsAsync(EventmessagePostAttachmentsParameter parameter, CancellationToken cancellationToken)
         {

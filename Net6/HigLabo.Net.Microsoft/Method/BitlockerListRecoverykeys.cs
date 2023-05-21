@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
+    /// </summary>
     public partial class BitlockerListRecoverykeysParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,10 +56,13 @@ namespace HigLabo.Net.Microsoft
     {
         public BitlockerRecoveryKey[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
         public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync()
         {
@@ -64,7 +70,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
         public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(CancellationToken cancellationToken)
         {
@@ -72,14 +78,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
         public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(BitlockerListRecoverykeysParameter parameter)
         {
             return await this.SendAsync<BitlockerListRecoverykeysParameter, BitlockerListRecoverykeysResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bitlocker-list-recoverykeys?view=graph-rest-1.0
         /// </summary>
         public async Task<BitlockerListRecoverykeysResponse> BitlockerListRecoverykeysAsync(BitlockerListRecoverykeysParameter parameter, CancellationToken cancellationToken)
         {

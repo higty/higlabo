@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageruleGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -60,10 +63,13 @@ namespace HigLabo.Net.Microsoft
         public bool? IsReadOnly { get; set; }
         public Int32? Sequence { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageruleGetResponse> MessageruleGetAsync()
         {
@@ -71,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageruleGetResponse> MessageruleGetAsync(CancellationToken cancellationToken)
         {
@@ -79,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageruleGetResponse> MessageruleGetAsync(MessageruleGetParameter parameter)
         {
             return await this.SendAsync<MessageruleGetParameter, MessageruleGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/messagerule-get?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageruleGetResponse> MessageruleGetAsync(MessageruleGetParameter parameter, CancellationToken cancellationToken)
         {

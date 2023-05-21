@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListPhotosParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -55,10 +58,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ProfilePhoto[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPhotosResponse> GroupListPhotosAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPhotosResponse> GroupListPhotosAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPhotosResponse> GroupListPhotosAsync(GroupListPhotosParameter parameter)
         {
             return await this.SendAsync<GroupListPhotosParameter, GroupListPhotosResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-photos?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListPhotosResponse> GroupListPhotosAsync(GroupListPhotosParameter parameter, CancellationToken cancellationToken)
         {

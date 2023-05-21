@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementListAssignmentrequestsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,6 +23,7 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            Answers,
             CompletedDateTime,
             CreatedDateTime,
             Id,
@@ -58,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AccessPackageAssignmentRequest[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync()
         {
@@ -69,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(EntitlementManagementListAssignmentrequestsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementListAssignmentrequestsParameter, EntitlementManagementListAssignmentrequestsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-list-assignmentrequests?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementListAssignmentrequestsResponse> EntitlementManagementListAssignmentrequestsAsync(EntitlementManagementListAssignmentrequestsParameter parameter, CancellationToken cancellationToken)
         {

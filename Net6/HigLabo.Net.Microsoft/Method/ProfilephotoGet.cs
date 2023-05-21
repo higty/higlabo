@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ProfilephotoGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,6 +26,7 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Contacts_Id_Photo_value: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/photo/$value";
                     case ApiPath.Me_Contactfolders_ContactFolderId_Contacts_Id_Photo_value: return $"/me/contactfolders/{ContactFolderId}/contacts/{Id}/photo/$value";
                     case ApiPath.Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo_value: return $"/users/{IdOrUserPrincipalName}/contactfolders/{ContactFolderId}/contacts/{Id}/photo/$value";
+                    case ApiPath.Team_Id_Photo_value: return $"/team/{Id}/photo/$value";
                     case ApiPath.Me_Photo: return $"/me/photo";
                     case ApiPath.Me_Photos: return $"/me/photos";
                     case ApiPath.Users_IdOrUserPrincipalName_Photo: return $"/users/{IdOrUserPrincipalName}/photo";
@@ -31,6 +35,7 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Contacts_Id_Photo: return $"/users/{IdOrUserPrincipalName}/contacts/{Id}/photo";
                     case ApiPath.Me_Contactfolders_ContactFolderId_Contacts_Id_Photo: return $"/me/contactfolders/{ContactFolderId}/contacts/{Id}/photo";
                     case ApiPath.Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo: return $"/users/{IdOrUserPrincipalName}/contactfolders/{ContactFolderId}/contacts/{Id}/photo";
+                    case ApiPath.Team_Id_Photo: return $"/team/{Id}/photo";
                     case ApiPath.Me_Photos_Size: return $"/me/photos/{Size}";
                     case ApiPath.Users_IdOrUserPrincipalName_Photos_Size: return $"/users/{IdOrUserPrincipalName}/photos/{Size}";
                     case ApiPath.Groups_Id_Photos_Size: return $"/groups/{Id}/photos/{Size}";
@@ -51,6 +56,7 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Contacts_Id_Photo_value,
             Me_Contactfolders_ContactFolderId_Contacts_Id_Photo_value,
             Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo_value,
+            Team_Id_Photo_value,
             Me_Photo,
             Me_Photos,
             Users_IdOrUserPrincipalName_Photo,
@@ -59,6 +65,7 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Contacts_Id_Photo,
             Me_Contactfolders_ContactFolderId_Contacts_Id_Photo,
             Users_IdOrUserPrincipalName_Contactfolders_ContactFolderId_Contacts_Id_Photo,
+            Team_Id_Photo,
             Me_Photos_Size,
             Users_IdOrUserPrincipalName_Photos_Size,
             Groups_Id_Photos_Size,
@@ -85,10 +92,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ProfilephotoGetResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync()
         {
@@ -96,7 +106,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync(CancellationToken cancellationToken)
         {
@@ -104,14 +114,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter)
         {
             return await this.SendAsync<ProfilephotoGetParameter, ProfilephotoGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/profilephoto-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ProfilephotoGetResponse> ProfilephotoGetAsync(ProfilephotoGetParameter parameter, CancellationToken cancellationToken)
         {

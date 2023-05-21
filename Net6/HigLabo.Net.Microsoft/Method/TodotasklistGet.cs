@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
+    /// </summary>
     public partial class TodotasklistGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -66,10 +69,13 @@ namespace HigLabo.Net.Microsoft
         public Extension[]? Extensions { get; set; }
         public TodoTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistGetResponse> TodotasklistGetAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistGetResponse> TodotasklistGetAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistGetResponse> TodotasklistGetAsync(TodotasklistGetParameter parameter)
         {
             return await this.SendAsync<TodotasklistGetParameter, TodotasklistGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/todotasklist-get?view=graph-rest-1.0
         /// </summary>
         public async Task<TodotasklistGetResponse> TodotasklistGetAsync(TodotasklistGetParameter parameter, CancellationToken cancellationToken)
         {

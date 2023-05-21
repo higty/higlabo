@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class ChecklistitemDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -42,10 +45,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ChecklistitemDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemDeleteResponse> ChecklistitemDeleteAsync()
         {
@@ -53,7 +59,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChecklistitemDeleteParameter, ChecklistitemDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemDeleteResponse> ChecklistitemDeleteAsync(CancellationToken cancellationToken)
         {
@@ -61,14 +67,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChecklistitemDeleteParameter, ChecklistitemDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemDeleteResponse> ChecklistitemDeleteAsync(ChecklistitemDeleteParameter parameter)
         {
             return await this.SendAsync<ChecklistitemDeleteParameter, ChecklistitemDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/checklistitem-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<ChecklistitemDeleteResponse> ChecklistitemDeleteAsync(ChecklistitemDeleteParameter parameter, CancellationToken cancellationToken)
         {

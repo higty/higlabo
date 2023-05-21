@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class ContactDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -95,10 +98,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Contact[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactDeltaResponse> ContactDeltaAsync()
         {
@@ -106,7 +112,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactDeltaResponse> ContactDeltaAsync(CancellationToken cancellationToken)
         {
@@ -114,14 +120,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter)
         {
             return await this.SendAsync<ContactDeltaParameter, ContactDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contact-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactDeltaResponse> ContactDeltaAsync(ContactDeltaParameter parameter, CancellationToken cancellationToken)
         {

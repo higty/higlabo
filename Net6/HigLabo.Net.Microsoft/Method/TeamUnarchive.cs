@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamUnarchiveParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,32 +36,35 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public TeamsASyncOperationType? OperationType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public TeamsASyncOperationStatus? Status { get; set; }
-        public DateTimeOffset? LastActionDateTime { get; set; }
         public Int32? AttemptsCount { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public OperationError? Error { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastActionDateTime { get; set; }
+        public TeamsASyncOperationType? OperationType { get; set; }
+        public TeamsASyncOperationStatus? Status { get; set; }
         public Guid? TargetResourceId { get; set; }
         public string? TargetResourceLocation { get; set; }
-        public OperationError? Error { get; set; }
     }
     public partial class TeamUnarchiveResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public TeamsASyncOperationType? OperationType { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public TeamsASyncOperationStatus? Status { get; set; }
-        public DateTimeOffset? LastActionDateTime { get; set; }
         public Int32? AttemptsCount { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public OperationError? Error { get; set; }
+        public string? Id { get; set; }
+        public DateTimeOffset? LastActionDateTime { get; set; }
+        public TeamsASyncOperationType? OperationType { get; set; }
+        public TeamsASyncOperationStatus? Status { get; set; }
         public Guid? TargetResourceId { get; set; }
         public string? TargetResourceLocation { get; set; }
-        public OperationError? Error { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUnarchiveResponse> TeamUnarchiveAsync()
         {
@@ -66,7 +72,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUnarchiveResponse> TeamUnarchiveAsync(CancellationToken cancellationToken)
         {
@@ -74,14 +80,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUnarchiveResponse> TeamUnarchiveAsync(TeamUnarchiveParameter parameter)
         {
             return await this.SendAsync<TeamUnarchiveParameter, TeamUnarchiveResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-unarchive?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUnarchiveResponse> TeamUnarchiveAsync(TeamUnarchiveParameter parameter, CancellationToken cancellationToken)
         {

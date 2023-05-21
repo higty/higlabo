@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementPostConnectedorganizationsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -75,10 +78,13 @@ namespace HigLabo.Net.Microsoft
         public DirectoryObject[]? ExternalSponsors { get; set; }
         public DirectoryObject[]? InternalSponsors { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync()
         {
@@ -86,7 +92,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(CancellationToken cancellationToken)
         {
@@ -94,14 +100,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(EntitlementManagementPostConnectedorganizationsParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostConnectedorganizationsParameter, EntitlementManagementPostConnectedorganizationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-connectedorganizations?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostConnectedorganizationsResponse> EntitlementManagementPostConnectedorganizationsAsync(EntitlementManagementPostConnectedorganizationsParameter parameter, CancellationToken cancellationToken)
         {

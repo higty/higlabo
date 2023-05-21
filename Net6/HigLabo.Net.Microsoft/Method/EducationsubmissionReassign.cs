@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationsubmissionReassignParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -44,20 +47,20 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public string? Id { get; set; }
+        public IdentitySet? ReassignedBy { get; set; }
+        public DateTimeOffset? ReassignedDateTime { get; set; }
         public EducationSubmissionRecipient? Recipient { get; set; }
+        public string? ResourcesFolderUrl { get; set; }
         public IdentitySet? ReturnedBy { get; set; }
         public DateTimeOffset? ReturnedDateTime { get; set; }
-        public string? ResourcesFolderUrl { get; set; }
         public EducationSubmissionstring Status { get; set; }
         public IdentitySet? SubmittedBy { get; set; }
         public DateTimeOffset? SubmittedDateTime { get; set; }
         public IdentitySet? UnsubmittedBy { get; set; }
         public DateTimeOffset? UnsubmittedDateTime { get; set; }
-        public IdentitySet? ReassignedBy { get; set; }
-        public DateTimeOffset? ReassignedDateTime { get; set; }
+        public EducationOutcome? Outcomes { get; set; }
         public EducationSubmissionResource[]? Resources { get; set; }
         public EducationSubmissionResource[]? SubmittedResources { get; set; }
-        public EducationOutcome? Outcomes { get; set; }
     }
     public partial class EducationsubmissionReassignResponse : RestApiResponse
     {
@@ -71,25 +74,28 @@ namespace HigLabo.Net.Microsoft
         }
 
         public string? Id { get; set; }
+        public IdentitySet? ReassignedBy { get; set; }
+        public DateTimeOffset? ReassignedDateTime { get; set; }
         public EducationSubmissionRecipient? Recipient { get; set; }
+        public string? ResourcesFolderUrl { get; set; }
         public IdentitySet? ReturnedBy { get; set; }
         public DateTimeOffset? ReturnedDateTime { get; set; }
-        public string? ResourcesFolderUrl { get; set; }
         public EducationSubmissionstring Status { get; set; }
         public IdentitySet? SubmittedBy { get; set; }
         public DateTimeOffset? SubmittedDateTime { get; set; }
         public IdentitySet? UnsubmittedBy { get; set; }
         public DateTimeOffset? UnsubmittedDateTime { get; set; }
-        public IdentitySet? ReassignedBy { get; set; }
-        public DateTimeOffset? ReassignedDateTime { get; set; }
+        public EducationOutcome? Outcomes { get; set; }
         public EducationSubmissionResource[]? Resources { get; set; }
         public EducationSubmissionResource[]? SubmittedResources { get; set; }
-        public EducationOutcome? Outcomes { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync()
         {
@@ -97,7 +103,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(CancellationToken cancellationToken)
         {
@@ -105,14 +111,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(EducationsubmissionReassignParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionReassignParameter, EducationsubmissionReassignResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmission-reassign?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionReassignResponse> EducationsubmissionReassignAsync(EducationsubmissionReassignParameter parameter, CancellationToken cancellationToken)
         {

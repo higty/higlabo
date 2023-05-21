@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatGetInstalledappsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -29,10 +32,13 @@ namespace HigLabo.Net.Microsoft
             OnlineMeetingInfo,
             TenantId,
             Topic,
+            Viewpoint,
             WebUrl,
             InstalledApps,
+            LastMessagePreview,
             Members,
             Messages,
+            PinnedMessages,
             Tabs,
         }
         public enum ApiPath
@@ -60,16 +66,19 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class ChatGetInstalledappsResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? ExternalId { get; set; }
         public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
+        public string? ExternalId { get; set; }
+        public string? Id { get; set; }
         public TeamsAppDefinition[]? AppDefinitions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync()
         {
@@ -77,7 +86,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +94,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(ChatGetInstalledappsParameter parameter)
         {
             return await this.SendAsync<ChatGetInstalledappsParameter, ChatGetInstalledappsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chat-get-installedapps?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatGetInstalledappsResponse> ChatGetInstalledappsAsync(ChatGetInstalledappsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintjobGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,21 +54,24 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class PrintjobGetResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public DateTimeOffset? CreatedDateTime { get; set; }
-        public PrintJobStatus? Status { get; set; }
         public PrintJobConfiguration? Configuration { get; set; }
+        public UserIdentity? CreatedBy { get; set; }
+        public DateTimeOffset? CreatedDateTime { get; set; }
+        public string? Id { get; set; }
         public Boolean? IsFetchable { get; set; }
         public String? RedirectedFrom { get; set; }
         public String? RedirectedTo { get; set; }
-        public UserIdentity? CreatedBy { get; set; }
+        public PrintJobStatus? Status { get; set; }
         public PrintDocument[]? Documents { get; set; }
         public PrintTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobGetResponse> PrintjobGetAsync()
         {
@@ -73,7 +79,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobGetResponse> PrintjobGetAsync(CancellationToken cancellationToken)
         {
@@ -81,14 +87,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobGetResponse> PrintjobGetAsync(PrintjobGetParameter parameter)
         {
             return await this.SendAsync<PrintjobGetParameter, PrintjobGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/printjob-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintjobGetResponse> PrintjobGetAsync(PrintjobGetParameter parameter, CancellationToken cancellationToken)
         {

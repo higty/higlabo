@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
+    /// </summary>
     public partial class PlannerPostPlansParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -33,10 +36,10 @@ namespace HigLabo.Net.Microsoft
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
         public PlannerPlanContainer? Container { get; set; }
+        public string? Title { get; set; }
         public IdentitySet? CreatedBy { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
-        public string? Title { get; set; }
         public PlannerBucket[]? Buckets { get; set; }
         public PlannerPlanDetails? Details { get; set; }
         public PlannerTask[]? Tasks { get; set; }
@@ -52,10 +55,13 @@ namespace HigLabo.Net.Microsoft
         public PlannerPlanDetails? Details { get; set; }
         public PlannerTask[]? Tasks { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerPostPlansResponse> PlannerPostPlansAsync()
         {
@@ -63,7 +69,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerPostPlansParameter, PlannerPostPlansResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerPostPlansResponse> PlannerPostPlansAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +77,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlannerPostPlansParameter, PlannerPostPlansResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerPostPlansResponse> PlannerPostPlansAsync(PlannerPostPlansParameter parameter)
         {
             return await this.SendAsync<PlannerPostPlansParameter, PlannerPostPlansResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/planner-post-plans?view=graph-rest-1.0
         /// </summary>
         public async Task<PlannerPostPlansResponse> PlannerPostPlansAsync(PlannerPostPlansParameter parameter, CancellationToken cancellationToken)
         {

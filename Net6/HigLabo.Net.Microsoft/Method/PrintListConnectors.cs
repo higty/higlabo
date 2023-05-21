@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
+    /// </summary>
     public partial class PrintListConnectorsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,14 +23,14 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
+            AppVersion,
             DisplayName,
             FullyQualifiedDomainName,
-            OperatingSystem,
-            AppVersion,
+            Id,
             Location,
-            RegisteredDateTime,
+            OperatingSystem,
             RegisteredBy,
+            RegisteredDateTime,
         }
         public enum ApiPath
         {
@@ -56,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     {
         public PrintConnector[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync()
         {
@@ -67,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync(CancellationToken cancellationToken)
         {
@@ -75,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync(PrintListConnectorsParameter parameter)
         {
             return await this.SendAsync<PrintListConnectorsParameter, PrintListConnectorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/print-list-connectors?view=graph-rest-1.0
         /// </summary>
         public async Task<PrintListConnectorsResponse> PrintListConnectorsAsync(PrintListConnectorsParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupListTransitivememberofParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     {
         public DirectoryObject[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(GroupListTransitivememberofParameter parameter)
         {
             return await this.SendAsync<GroupListTransitivememberofParameter, GroupListTransitivememberofResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-list-transitivememberof?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupListTransitivememberofResponse> GroupListTransitivememberofAsync(GroupListTransitivememberofParameter parameter, CancellationToken cancellationToken)
         {

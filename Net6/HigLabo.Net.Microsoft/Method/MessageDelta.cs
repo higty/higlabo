@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -10,6 +13,7 @@ namespace HigLabo.Net.Microsoft
             public string? Id { get; set; }
             public string? UsersId { get; set; }
             public string? MailFoldersId { get; set; }
+            public string? MailfoldersId { get; set; }
 
             public string GetApiPath()
             {
@@ -17,6 +21,7 @@ namespace HigLabo.Net.Microsoft
                 {
                     case ApiPath.Me_MailFolders_Id_Messages_Delta: return $"/me/mailFolders/{Id}/messages/delta";
                     case ApiPath.Users_Id_MailFolders_Id_Messages_Delta: return $"/users/{UsersId}/mailFolders/{MailFoldersId}/messages/delta";
+                    case ApiPath.Users_Id_Mailfolders_Id_Messages_Delta: return $"/users/{UsersId}/mailfolders/{MailfoldersId}/messages/delta";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -64,6 +69,7 @@ namespace HigLabo.Net.Microsoft
         {
             Me_MailFolders_Id_Messages_Delta,
             Users_Id_MailFolders_Id_Messages_Delta,
+            Users_Id_Mailfolders_Id_Messages_Delta,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();
@@ -88,10 +94,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Message[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeltaResponse> MessageDeltaAsync()
         {
@@ -99,7 +108,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageDeltaParameter, MessageDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeltaResponse> MessageDeltaAsync(CancellationToken cancellationToken)
         {
@@ -107,14 +116,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageDeltaParameter, MessageDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeltaResponse> MessageDeltaAsync(MessageDeltaParameter parameter)
         {
             return await this.SendAsync<MessageDeltaParameter, MessageDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageDeltaResponse> MessageDeltaAsync(MessageDeltaParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationSchoolListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -66,10 +69,13 @@ namespace HigLabo.Net.Microsoft
     {
         public EducationSchool[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolListResponse> EducationSchoolListAsync()
         {
@@ -77,7 +83,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolListParameter, EducationSchoolListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolListResponse> EducationSchoolListAsync(CancellationToken cancellationToken)
         {
@@ -85,14 +91,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolListParameter, EducationSchoolListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolListResponse> EducationSchoolListAsync(EducationSchoolListParameter parameter)
         {
             return await this.SendAsync<EducationSchoolListParameter, EducationSchoolListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-list?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolListResponse> EducationSchoolListAsync(EducationSchoolListParameter parameter, CancellationToken cancellationToken)
         {

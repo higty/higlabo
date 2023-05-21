@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+    /// </summary>
     public partial class AgreementListFilesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public AgreementFileLocalization[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementListFilesResponse> AgreementListFilesAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementListFilesResponse> AgreementListFilesAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter)
         {
             return await this.SendAsync<AgreementListFilesParameter, AgreementListFilesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/agreement-list-files?view=graph-rest-1.0
         /// </summary>
         public async Task<AgreementListFilesResponse> AgreementListFilesAsync(AgreementListFilesParameter parameter, CancellationToken cancellationToken)
         {

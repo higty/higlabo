@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
+    /// </summary>
     public partial class UserRevokesigninsessionsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,10 +42,13 @@ namespace HigLabo.Net.Microsoft
     public partial class UserRevokesigninsessionsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
         public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync()
         {
@@ -50,7 +56,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
         public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(CancellationToken cancellationToken)
         {
@@ -58,14 +64,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
         public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(UserRevokesigninsessionsParameter parameter)
         {
             return await this.SendAsync<UserRevokesigninsessionsParameter, UserRevokesigninsessionsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/user-revokesigninsessions?view=graph-rest-1.0
         /// </summary>
         public async Task<UserRevokesigninsessionsResponse> UserRevokesigninsessionsAsync(UserRevokesigninsessionsParameter parameter, CancellationToken cancellationToken)
         {

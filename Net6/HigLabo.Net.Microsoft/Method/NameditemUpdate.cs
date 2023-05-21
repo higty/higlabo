@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
+    /// </summary>
     public partial class NameditemUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,18 +54,21 @@ namespace HigLabo.Net.Microsoft
             Range,
         }
 
-        public string? Name { get; set; }
         public string? Comment { get; set; }
+        public string? Name { get; set; }
         public string? Scope { get; set; }
         public NamedItemstring Type { get; set; }
         public Json? Value { get; set; }
         public bool? Visible { get; set; }
         public Worksheet? Worksheet { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemUpdateResponse> NameditemUpdateAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemUpdateResponse> NameditemUpdateAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter)
         {
             return await this.SendAsync<NameditemUpdateParameter, NameditemUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/nameditem-update?view=graph-rest-1.0
         /// </summary>
         public async Task<NameditemUpdateResponse> NameditemUpdateAsync(NameditemUpdateParameter parameter, CancellationToken cancellationToken)
         {

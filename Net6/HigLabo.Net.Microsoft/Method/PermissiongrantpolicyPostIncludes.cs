@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
+    /// </summary>
     public partial class PermissiongrantPolicyPostIncludesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -39,15 +42,15 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
+        public bool? ClientApplicationsFromVerifiedPublisherOnly { get; set; }
+        public String[]? ClientApplicationIds { get; set; }
+        public String[]? ClientApplicationPublisherIds { get; set; }
+        public String[]? ClientApplicationTenantIds { get; set; }
         public string? Id { get; set; }
         public string? PermissionClassification { get; set; }
+        public String[]? Permissions { get; set; }
         public PermissionGrantConditionSetPermissionType PermissionType { get; set; }
         public string? ResourceApplication { get; set; }
-        public String[]? Permissions { get; set; }
-        public String[]? ClientApplicationIds { get; set; }
-        public String[]? ClientApplicationTenantIds { get; set; }
-        public String[]? ClientApplicationPublisherIds { get; set; }
-        public bool? ClientApplicationsFromVerifiedPublisherOnly { get; set; }
     }
     public partial class PermissiongrantPolicyPostIncludesResponse : RestApiResponse
     {
@@ -58,20 +61,23 @@ namespace HigLabo.Net.Microsoft
             DelegatedUserConsentable,
         }
 
+        public bool? ClientApplicationsFromVerifiedPublisherOnly { get; set; }
+        public String[]? ClientApplicationIds { get; set; }
+        public String[]? ClientApplicationPublisherIds { get; set; }
+        public String[]? ClientApplicationTenantIds { get; set; }
         public string? Id { get; set; }
         public string? PermissionClassification { get; set; }
+        public String[]? Permissions { get; set; }
         public PermissionGrantConditionSetPermissionType PermissionType { get; set; }
         public string? ResourceApplication { get; set; }
-        public String[]? Permissions { get; set; }
-        public String[]? ClientApplicationIds { get; set; }
-        public String[]? ClientApplicationTenantIds { get; set; }
-        public String[]? ClientApplicationPublisherIds { get; set; }
-        public bool? ClientApplicationsFromVerifiedPublisherOnly { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyPostIncludesResponse> PermissiongrantPolicyPostIncludesAsync()
         {
@@ -79,7 +85,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PermissiongrantPolicyPostIncludesParameter, PermissiongrantPolicyPostIncludesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyPostIncludesResponse> PermissiongrantPolicyPostIncludesAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +93,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PermissiongrantPolicyPostIncludesParameter, PermissiongrantPolicyPostIncludesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyPostIncludesResponse> PermissiongrantPolicyPostIncludesAsync(PermissiongrantPolicyPostIncludesParameter parameter)
         {
             return await this.SendAsync<PermissiongrantPolicyPostIncludesParameter, PermissiongrantPolicyPostIncludesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/permissiongrantpolicy-post-includes?view=graph-rest-1.0
         /// </summary>
         public async Task<PermissiongrantPolicyPostIncludesResponse> PermissiongrantPolicyPostIncludesAsync(PermissiongrantPolicyPostIncludesParameter parameter, CancellationToken cancellationToken)
         {

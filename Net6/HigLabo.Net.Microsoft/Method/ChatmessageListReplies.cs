@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+    /// </summary>
     public partial class ChatmessageListRepliesParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -23,30 +26,31 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            Id,
-            ReplyToId,
-            From,
-            Etag,
-            MessageType,
-            CreatedDateTime,
-            LastModifiedDateTime,
-            LastEditedDateTime,
-            DeletedDateTime,
-            Subject,
-            Body,
-            Summary,
             Attachments,
-            Mentions,
-            Importance,
-            Reactions,
-            Locale,
-            PolicyViolation,
+            Body,
             ChatId,
             ChannelIdentity,
-            WebUrl,
+            CreatedDateTime,
+            DeletedDateTime,
+            Etag,
             EventDetail,
-            Replies,
+            From,
+            Id,
+            Importance,
+            LastModifiedDateTime,
+            LastEditedDateTime,
+            Locale,
+            Mentions,
+            MessageHistory,
+            MessageType,
+            PolicyViolation,
+            Reactions,
+            ReplyToId,
+            Subject,
+            Summary,
+            WebUrl,
             HostedContents,
+            Replies,
         }
         public enum ApiPath
         {
@@ -75,10 +79,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ChatMessage[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync()
         {
@@ -86,7 +93,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(CancellationToken cancellationToken)
         {
@@ -94,14 +101,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter)
         {
             return await this.SendAsync<ChatmessageListRepliesParameter, ChatmessageListRepliesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/chatmessage-list-replies?view=graph-rest-1.0
         /// </summary>
         public async Task<ChatmessageListRepliesResponse> ChatmessageListRepliesAsync(ChatmessageListRepliesParameter parameter, CancellationToken cancellationToken)
         {

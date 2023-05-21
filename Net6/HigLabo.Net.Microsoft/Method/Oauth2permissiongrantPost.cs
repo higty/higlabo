@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+    /// </summary>
     public partial class Oauth2permissiongrantPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,26 +35,29 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
         public string? ClientId { get; set; }
         public string? ConsentType { get; set; }
+        public string? Id { get; set; }
         public string? PrincipalId { get; set; }
         public string? ResourceId { get; set; }
         public string? Scope { get; set; }
     }
     public partial class Oauth2permissiongrantPostResponse : RestApiResponse
     {
-        public string? Id { get; set; }
         public string? ClientId { get; set; }
         public string? ConsentType { get; set; }
+        public string? Id { get; set; }
         public string? PrincipalId { get; set; }
         public string? ResourceId { get; set; }
         public string? Scope { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync()
         {
@@ -59,7 +65,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +73,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync(Oauth2permissiongrantPostParameter parameter)
         {
             return await this.SendAsync<Oauth2permissiongrantPostParameter, Oauth2permissiongrantPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/oauth2permissiongrant-post?view=graph-rest-1.0
         /// </summary>
         public async Task<Oauth2permissiongrantPostResponse> Oauth2permissiongrantPostAsync(Oauth2permissiongrantPostParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -86,6 +89,8 @@ namespace HigLabo.Net.Microsoft
             Sites,
             Team,
             Threads,
+            TransitiveMemberOf,
+            TransitiveMembers,
         }
         public enum ApiPath
         {
@@ -112,13 +117,6 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class GroupGetResponse : RestApiResponse
     {
-        public enum GroupString
-        {
-            AllowOnlyMembersToPost,
-            HideGroupInOutlook,
-            SubscribeNewGroupMembers,
-            WelcomeEmailDisabled,
-        }
         public enum Groupstring
         {
             Teal,
@@ -163,7 +161,7 @@ namespace HigLabo.Net.Microsoft
         public string? PreferredLanguage { get; set; }
         public String[]? ProxyAddresses { get; set; }
         public DateTimeOffset? RenewedDateTime { get; set; }
-        public GroupString ResourceBehaviorOptions { get; set; }
+        public String[]? ResourceBehaviorOptions { get; set; }
         public String[]? ResourceProvisioningOptions { get; set; }
         public bool? SecurityEnabled { get; set; }
         public string? SecurityIdentifier { get; set; }
@@ -195,11 +193,16 @@ namespace HigLabo.Net.Microsoft
         public Site[]? Sites { get; set; }
         public Channel[]? Team { get; set; }
         public ConversationThread[]? Threads { get; set; }
+        public DirectoryObject[]? TransitiveMemberOf { get; set; }
+        public DirectoryObject[]? TransitiveMembers { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupGetResponse> GroupGetAsync()
         {
@@ -207,7 +210,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupGetResponse> GroupGetAsync(CancellationToken cancellationToken)
         {
@@ -215,14 +218,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupGetResponse> GroupGetAsync(GroupGetParameter parameter)
         {
             return await this.SendAsync<GroupGetParameter, GroupGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-get?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupGetResponse> GroupGetAsync(GroupGetParameter parameter, CancellationToken cancellationToken)
         {

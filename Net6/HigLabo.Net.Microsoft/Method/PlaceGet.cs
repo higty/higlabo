@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
+    /// </summary>
     public partial class PlaceGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public string? Phone { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlaceGetResponse> PlaceGetAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlaceGetResponse> PlaceGetAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlaceGetResponse> PlaceGetAsync(PlaceGetParameter parameter)
         {
             return await this.SendAsync<PlaceGetParameter, PlaceGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/place-get?view=graph-rest-1.0
         /// </summary>
         public async Task<PlaceGetResponse> PlaceGetAsync(PlaceGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class TablerowDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -51,10 +54,13 @@ namespace HigLabo.Net.Microsoft
     public partial class TablerowDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TablerowDeleteResponse> TablerowDeleteAsync()
         {
@@ -62,7 +68,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TablerowDeleteResponse> TablerowDeleteAsync(CancellationToken cancellationToken)
         {
@@ -70,14 +76,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TablerowDeleteResponse> TablerowDeleteAsync(TablerowDeleteParameter parameter)
         {
             return await this.SendAsync<TablerowDeleteParameter, TablerowDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/tablerow-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<TablerowDeleteResponse> TablerowDeleteAsync(TablerowDeleteParameter parameter, CancellationToken cancellationToken)
         {

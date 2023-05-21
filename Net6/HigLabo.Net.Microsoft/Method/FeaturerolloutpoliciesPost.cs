@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
+    /// </summary>
     public partial class FeaturerolloutpoliciesPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -67,10 +70,13 @@ namespace HigLabo.Net.Microsoft
         public bool? IsEnabled { get; set; }
         public DirectoryObject[]? AppliesTo { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutpoliciesPostResponse> FeaturerolloutpoliciesPostAsync()
         {
@@ -78,7 +84,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<FeaturerolloutpoliciesPostParameter, FeaturerolloutpoliciesPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutpoliciesPostResponse> FeaturerolloutpoliciesPostAsync(CancellationToken cancellationToken)
         {
@@ -86,14 +92,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<FeaturerolloutpoliciesPostParameter, FeaturerolloutpoliciesPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutpoliciesPostResponse> FeaturerolloutpoliciesPostAsync(FeaturerolloutpoliciesPostParameter parameter)
         {
             return await this.SendAsync<FeaturerolloutpoliciesPostParameter, FeaturerolloutpoliciesPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/featurerolloutpolicies-post?view=graph-rest-1.0
         /// </summary>
         public async Task<FeaturerolloutpoliciesPostResponse> FeaturerolloutpoliciesPostAsync(FeaturerolloutpoliciesPostParameter parameter, CancellationToken cancellationToken)
         {

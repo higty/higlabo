@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamsappPublishParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -32,24 +35,27 @@ namespace HigLabo.Net.Microsoft
             }
         }
         string IRestApiParameter.HttpMethod { get; } = "POST";
-        public string? Id { get; set; }
-        public string? ExternalId { get; set; }
         public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
+        public string? ExternalId { get; set; }
+        public string? Id { get; set; }
         public TeamsAppDefinition[]? AppDefinitions { get; set; }
     }
     public partial class TeamsappPublishResponse : RestApiResponse
     {
-        public string? Id { get; set; }
-        public string? ExternalId { get; set; }
         public string? DisplayName { get; set; }
         public TeamsAppDistributionMethod? DistributionMethod { get; set; }
+        public string? ExternalId { get; set; }
+        public string? Id { get; set; }
         public TeamsAppDefinition[]? AppDefinitions { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappPublishResponse> TeamsappPublishAsync()
         {
@@ -57,7 +63,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappPublishResponse> TeamsappPublishAsync(CancellationToken cancellationToken)
         {
@@ -65,14 +71,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappPublishResponse> TeamsappPublishAsync(TeamsappPublishParameter parameter)
         {
             return await this.SendAsync<TeamsappPublishParameter, TeamsappPublishResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/teamsapp-publish?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamsappPublishResponse> TeamsappPublishAsync(TeamsappPublishParameter parameter, CancellationToken cancellationToken)
         {

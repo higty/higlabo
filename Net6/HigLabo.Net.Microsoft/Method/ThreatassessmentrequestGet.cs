@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class ThreatassessmentrequestGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -84,10 +87,13 @@ namespace HigLabo.Net.Microsoft
         public ThreatAssessmentRequestThreatAssessmentStatus Status { get; set; }
         public ThreatAssessmentResult[]? Results { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync()
         {
@@ -95,7 +101,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(CancellationToken cancellationToken)
         {
@@ -103,14 +109,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter)
         {
             return await this.SendAsync<ThreatassessmentrequestGetParameter, ThreatassessmentrequestGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/threatassessmentrequest-get?view=graph-rest-1.0
         /// </summary>
         public async Task<ThreatassessmentrequestGetResponse> ThreatassessmentrequestGetAsync(ThreatassessmentrequestGetParameter parameter, CancellationToken cancellationToken)
         {

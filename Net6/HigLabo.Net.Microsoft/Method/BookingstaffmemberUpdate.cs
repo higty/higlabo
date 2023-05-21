@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingstaffmemberUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -20,12 +23,15 @@ namespace HigLabo.Net.Microsoft
             }
         }
 
-        public enum BookingstaffmemberUpdateParameterstring
+        public enum BookingstaffmemberUpdateParameterBookingStaffRole
         {
             Guest,
             Administrator,
             Viewer,
             ExternalGuest,
+            UnknownFutureValue,
+            Scheduler,
+            TeamMember,
         }
         public enum ApiPath
         {
@@ -44,7 +50,8 @@ namespace HigLabo.Net.Microsoft
         public bool? AvailabilityIsAffectedByPersonalCalendar { get; set; }
         public string? DisplayName { get; set; }
         public string? EmailAddress { get; set; }
-        public BookingstaffmemberUpdateParameterstring Role { get; set; }
+        public bool? IsEmailNotificationEnabled { get; set; }
+        public BookingstaffmemberUpdateParameterBookingStaffRole Role { get; set; }
         public string? TimeZone { get; set; }
         public bool? UseBusinessHours { get; set; }
         public BookingWorkHours[]? WorkingHours { get; set; }
@@ -52,10 +59,13 @@ namespace HigLabo.Net.Microsoft
     public partial class BookingstaffmemberUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingstaffmemberUpdateResponse> BookingstaffmemberUpdateAsync()
         {
@@ -63,7 +73,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingstaffmemberUpdateParameter, BookingstaffmemberUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingstaffmemberUpdateResponse> BookingstaffmemberUpdateAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +81,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingstaffmemberUpdateParameter, BookingstaffmemberUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingstaffmemberUpdateResponse> BookingstaffmemberUpdateAsync(BookingstaffmemberUpdateParameter parameter)
         {
             return await this.SendAsync<BookingstaffmemberUpdateParameter, BookingstaffmemberUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingstaffmember-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingstaffmemberUpdateResponse> BookingstaffmemberUpdateAsync(BookingstaffmemberUpdateParameter parameter, CancellationToken cancellationToken)
         {

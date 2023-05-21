@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://docs.microsoft.com/en-us/graph/api/resources/person?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/person?view=graph-rest-1.0
     /// </summary>
     public partial class Person
     {
@@ -11,7 +11,6 @@ namespace HigLabo.Net.Microsoft
         public string? CompanyName { get; set; }
         public string? Department { get; set; }
         public string? DisplayName { get; set; }
-        public ScoredEmailAddress[]? ScoredEmailAddresses { get; set; }
         public string? GivenName { get; set; }
         public string? Id { get; set; }
         public string? ImAddress { get; set; }
@@ -23,6 +22,7 @@ namespace HigLabo.Net.Microsoft
         public Phone[]? Phones { get; set; }
         public Location[]? PostalAddresses { get; set; }
         public string? Profession { get; set; }
+        public ScoredEmailAddress[]? ScoredEmailAddresses { get; set; }
         public string? Surname { get; set; }
         public string? UserPrincipalName { get; set; }
         public Website[]? Websites { get; set; }

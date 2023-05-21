@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationSchoolPostParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -88,10 +91,13 @@ namespace HigLabo.Net.Microsoft
         public EducationClass[]? Classes { get; set; }
         public EducationUser[]? Users { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync()
         {
@@ -99,7 +105,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync(CancellationToken cancellationToken)
         {
@@ -107,14 +113,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync(EducationSchoolPostParameter parameter)
         {
             return await this.SendAsync<EducationSchoolPostParameter, EducationSchoolPostResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationschool-post?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationSchoolPostResponse> EducationSchoolPostAsync(EducationSchoolPostParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class EducationsubmissionResourceDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class EducationsubmissionResourceDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionResourceDeleteResponse> EducationsubmissionResourceDeleteAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationsubmissionResourceDeleteParameter, EducationsubmissionResourceDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionResourceDeleteResponse> EducationsubmissionResourceDeleteAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EducationsubmissionResourceDeleteParameter, EducationsubmissionResourceDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionResourceDeleteResponse> EducationsubmissionResourceDeleteAsync(EducationsubmissionResourceDeleteParameter parameter)
         {
             return await this.SendAsync<EducationsubmissionResourceDeleteParameter, EducationsubmissionResourceDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/educationsubmissionresource-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<EducationsubmissionResourceDeleteResponse> EducationsubmissionResourceDeleteAsync(EducationsubmissionResourceDeleteParameter parameter, CancellationToken cancellationToken)
         {

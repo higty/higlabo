@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
+    /// </summary>
     public partial class ApplicationPostApplicationsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -58,7 +61,9 @@ namespace HigLabo.Net.Microsoft
         public PasswordCredential[]? PasswordCredentials { get; set; }
         public PublicClientApplication? PublicClient { get; set; }
         public string? PublisherDomain { get; set; }
+        public RequestSignatureVerification? RequestSignatureVerification { get; set; }
         public RequiredResourceAccess[]? RequiredResourceAccess { get; set; }
+        public string? SamlMetadataUrl { get; set; }
         public string? ServiceManagementReference { get; set; }
         public string? SignInAudience { get; set; }
         public SpaApplication? Spa { get; set; }
@@ -66,8 +71,10 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public AppManagementPolicy[]? AppManagementPolicies { get; set; }
         public DirectoryObject? CreatedOnBehalfOf { get; set; }
         public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public FederatedIdentityCredential[]? FederatedIdentityCredentials { get; set; }
         public DirectoryObject[]? Owners { get; set; }
     }
     public partial class ApplicationPostApplicationsResponse : RestApiResponse
@@ -98,7 +105,9 @@ namespace HigLabo.Net.Microsoft
         public PasswordCredential[]? PasswordCredentials { get; set; }
         public PublicClientApplication? PublicClient { get; set; }
         public string? PublisherDomain { get; set; }
+        public RequestSignatureVerification? RequestSignatureVerification { get; set; }
         public RequiredResourceAccess[]? RequiredResourceAccess { get; set; }
+        public string? SamlMetadataUrl { get; set; }
         public string? ServiceManagementReference { get; set; }
         public string? SignInAudience { get; set; }
         public SpaApplication? Spa { get; set; }
@@ -106,14 +115,19 @@ namespace HigLabo.Net.Microsoft
         public string? TokenEncryptionKeyId { get; set; }
         public VerifiedPublisher? VerifiedPublisher { get; set; }
         public WebApplication? Web { get; set; }
+        public AppManagementPolicy[]? AppManagementPolicies { get; set; }
         public DirectoryObject? CreatedOnBehalfOf { get; set; }
         public ExtensionProperty[]? ExtensionProperties { get; set; }
+        public FederatedIdentityCredential[]? FederatedIdentityCredentials { get; set; }
         public DirectoryObject[]? Owners { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync()
         {
@@ -121,7 +135,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(CancellationToken cancellationToken)
         {
@@ -129,14 +143,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(ApplicationPostApplicationsParameter parameter)
         {
             return await this.SendAsync<ApplicationPostApplicationsParameter, ApplicationPostApplicationsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/application-post-applications?view=graph-rest-1.0
         /// </summary>
         public async Task<ApplicationPostApplicationsResponse> ApplicationPostApplicationsAsync(ApplicationPostApplicationsParameter parameter, CancellationToken cancellationToken)
         {

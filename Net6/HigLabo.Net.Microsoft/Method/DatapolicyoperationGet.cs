@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
+    /// </summary>
     public partial class DataPolicyOperationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -71,10 +74,13 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? SubmittedDateTime { get; set; }
         public string? Progress { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync()
         {
@@ -82,7 +88,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(CancellationToken cancellationToken)
         {
@@ -90,14 +96,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(DataPolicyOperationGetParameter parameter)
         {
             return await this.SendAsync<DataPolicyOperationGetParameter, DataPolicyOperationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/datapolicyoperation-get?view=graph-rest-1.0
         /// </summary>
         public async Task<DataPolicyOperationGetResponse> DataPolicyOperationGetAsync(DataPolicyOperationGetParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class AttachmentDeleteParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -11,7 +14,7 @@ namespace HigLabo.Net.Microsoft
             public string? AttachmentsId { get; set; }
             public string? UsersIdOrUserPrincipalName { get; set; }
             public string? CalendarsId { get; set; }
-            public string? CalendargroupsId { get; set; }
+            public string? CalendarGroupsId { get; set; }
             public string? MessagesId { get; set; }
             public string? MailFoldersId { get; set; }
             public string? ChildFoldersId { get; set; }
@@ -30,8 +33,8 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Users_IdOrUserPrincipalName_Calendar_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendar/events/{EventsId}/attachments/{AttachmentsId}";
                     case ApiPath.Me_Calendars_Id_Events_Id_Attachments_Id: return $"/me/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
                     case ApiPath.Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
-                    case ApiPath.Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/me/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
-                    case ApiPath.Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendargroups/{CalendargroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
+                    case ApiPath.Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/me/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
+                    case ApiPath.Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/calendarGroups/{CalendarGroupsId}/calendars/{CalendarsId}/events/{EventsId}/attachments/{AttachmentsId}";
                     case ApiPath.Me_Messages_Id_Attachments_Id: return $"/me/messages/{MessagesId}/attachments/{AttachmentsId}";
                     case ApiPath.Users_IdOrUserPrincipalName_Messages_Id_Attachments_Id: return $"/users/{UsersIdOrUserPrincipalName}/messages/{MessagesId}/attachments/{AttachmentsId}";
                     case ApiPath.Me_MailFolders_Id_Messages_Id_Attachments_Id: return $"/me/mailFolders/{MailFoldersId}/messages/{MessagesId}/attachments/{AttachmentsId}";
@@ -53,8 +56,8 @@ namespace HigLabo.Net.Microsoft
             Users_IdOrUserPrincipalName_Calendar_Events_Id_Attachments_Id,
             Me_Calendars_Id_Events_Id_Attachments_Id,
             Users_IdOrUserPrincipalName_Calendars_Id_Events_Id_Attachments_Id,
-            Me_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id,
-            Users_IdOrUserPrincipalName_Calendargroups_Id_Calendars_Id_Events_Id_Attachments_Id,
+            Me_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id,
+            Users_IdOrUserPrincipalName_CalendarGroups_Id_Calendars_Id_Events_Id_Attachments_Id,
             Me_Messages_Id_Attachments_Id,
             Users_IdOrUserPrincipalName_Messages_Id_Attachments_Id,
             Me_MailFolders_Id_Messages_Id_Attachments_Id,
@@ -78,10 +81,13 @@ namespace HigLabo.Net.Microsoft
     public partial class AttachmentDeleteResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync()
         {
@@ -89,7 +95,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync(CancellationToken cancellationToken)
         {
@@ -97,14 +103,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync(AttachmentDeleteParameter parameter)
         {
             return await this.SendAsync<AttachmentDeleteParameter, AttachmentDeleteResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/attachment-delete?view=graph-rest-1.0
         /// </summary>
         public async Task<AttachmentDeleteResponse> AttachmentDeleteAsync(AttachmentDeleteParameter parameter, CancellationToken cancellationToken)
         {

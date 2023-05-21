@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
+    /// </summary>
     public partial class InsightsListTrendingParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -55,16 +58,19 @@ namespace HigLabo.Net.Microsoft
     public partial class InsightsListTrendingResponse : RestApiResponse
     {
         public string? Id { get; set; }
-        public Double? Weight { get; set; }
-        public ResourceVisualization? ResourceVisualization { get; set; }
-        public ResourceReference? ResourceReference { get; set; }
         public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public ResourceReference? ResourceReference { get; set; }
+        public ResourceVisualization? ResourceVisualization { get; set; }
+        public Double? Weight { get; set; }
         public Entity? Resource { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync()
         {
@@ -72,7 +78,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync(CancellationToken cancellationToken)
         {
@@ -80,14 +86,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync(InsightsListTrendingParameter parameter)
         {
             return await this.SendAsync<InsightsListTrendingParameter, InsightsListTrendingResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/insights-list-trending?view=graph-rest-1.0
         /// </summary>
         public async Task<InsightsListTrendingResponse> InsightsListTrendingAsync(InsightsListTrendingParameter parameter, CancellationToken cancellationToken)
         {

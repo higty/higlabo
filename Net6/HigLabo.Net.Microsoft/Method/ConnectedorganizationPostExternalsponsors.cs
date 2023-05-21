@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
+    /// </summary>
     public partial class ConnectedorganizationPostExternalsponsorsParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ConnectedorganizationPostExternalsponsorsResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync(ConnectedorganizationPostExternalsponsorsParameter parameter)
         {
             return await this.SendAsync<ConnectedorganizationPostExternalsponsorsParameter, ConnectedorganizationPostExternalsponsorsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/connectedorganization-post-externalsponsors?view=graph-rest-1.0
         /// </summary>
         public async Task<ConnectedorganizationPostExternalsponsorsResponse> ConnectedorganizationPostExternalsponsorsAsync(ConnectedorganizationPostExternalsponsorsParameter parameter, CancellationToken cancellationToken)
         {

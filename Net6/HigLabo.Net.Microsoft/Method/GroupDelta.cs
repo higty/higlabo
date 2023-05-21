@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class GroupDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -85,6 +88,8 @@ namespace HigLabo.Net.Microsoft
             Sites,
             Team,
             Threads,
+            TransitiveMemberOf,
+            TransitiveMembers,
         }
         public enum ApiPath
         {
@@ -113,10 +118,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Group[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeltaResponse> GroupDeltaAsync()
         {
@@ -124,7 +132,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeltaResponse> GroupDeltaAsync(CancellationToken cancellationToken)
         {
@@ -132,14 +140,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter)
         {
             return await this.SendAsync<GroupDeltaParameter, GroupDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/group-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<GroupDeltaResponse> GroupDeltaAsync(GroupDeltaParameter parameter, CancellationToken cancellationToken)
         {

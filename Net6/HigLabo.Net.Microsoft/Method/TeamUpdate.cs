@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
+    /// </summary>
     public partial class TeamUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -37,10 +40,13 @@ namespace HigLabo.Net.Microsoft
     public partial class TeamUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUpdateResponse> TeamUpdateAsync()
         {
@@ -48,7 +54,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamUpdateParameter, TeamUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUpdateResponse> TeamUpdateAsync(CancellationToken cancellationToken)
         {
@@ -56,14 +62,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TeamUpdateParameter, TeamUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUpdateResponse> TeamUpdateAsync(TeamUpdateParameter parameter)
         {
             return await this.SendAsync<TeamUpdateParameter, TeamUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/team-update?view=graph-rest-1.0
         /// </summary>
         public async Task<TeamUpdateResponse> TeamUpdateAsync(TeamUpdateParameter parameter, CancellationToken cancellationToken)
         {

@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+    /// </summary>
     public partial class ExternalConnectorsExternalconnectionListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -20,6 +23,16 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            ActivitySettings,
+            Configuration,
+            Description,
+            Id,
+            Name,
+            SearchSettings,
+            State,
+            Items,
+            Operations,
+            Schema,
         }
         public enum ApiPath
         {
@@ -48,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ExternalConnectorsExternalconnection[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync()
         {
@@ -59,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(CancellationToken cancellationToken)
         {
@@ -67,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter)
         {
             return await this.SendAsync<ExternalConnectorsExternalconnectionListParameter, ExternalConnectorsExternalconnectionListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/externalconnectors-externalconnection-list?view=graph-rest-1.0
         /// </summary>
         public async Task<ExternalConnectorsExternalconnectionListResponse> ExternalConnectorsExternalconnectionListAsync(ExternalConnectorsExternalconnectionListParameter parameter, CancellationToken cancellationToken)
         {

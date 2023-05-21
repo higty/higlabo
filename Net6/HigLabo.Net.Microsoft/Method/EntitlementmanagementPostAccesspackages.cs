@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
+    /// </summary>
     public partial class EntitlementManagementPostAccesspackagesParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -38,8 +41,11 @@ namespace HigLabo.Net.Microsoft
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Id { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        public AccessPackage[]? AccessPackagesIncompatibleWith { get; set; }
         public AccessPackageAssignmentPolicy[]? AssignmentPolicies { get; set; }
         public AccessPackageCatalog? Catalog { get; set; }
+        public AccessPackage[]? IncompatibleAccessPackages { get; set; }
+        public Group[]? IncompatibleGroups { get; set; }
     }
     public partial class EntitlementManagementPostAccesspackagesResponse : RestApiResponse
     {
@@ -49,13 +55,19 @@ namespace HigLabo.Net.Microsoft
         public string? Id { get; set; }
         public bool? IsHidden { get; set; }
         public DateTimeOffset? ModifiedDateTime { get; set; }
+        public AccessPackage[]? AccessPackagesIncompatibleWith { get; set; }
         public AccessPackageAssignmentPolicy[]? AssignmentPolicies { get; set; }
         public AccessPackageCatalog? Catalog { get; set; }
+        public AccessPackage[]? IncompatibleAccessPackages { get; set; }
+        public Group[]? IncompatibleGroups { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync()
         {
@@ -63,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync(CancellationToken cancellationToken)
         {
@@ -71,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync(EntitlementManagementPostAccesspackagesParameter parameter)
         {
             return await this.SendAsync<EntitlementManagementPostAccesspackagesParameter, EntitlementManagementPostAccesspackagesResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/entitlementmanagement-post-accesspackages?view=graph-rest-1.0
         /// </summary>
         public async Task<EntitlementManagementPostAccesspackagesResponse> EntitlementManagementPostAccesspackagesAsync(EntitlementManagementPostAccesspackagesParameter parameter, CancellationToken cancellationToken)
         {

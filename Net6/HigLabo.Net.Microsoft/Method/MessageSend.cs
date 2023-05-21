@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
+    /// </summary>
     public partial class MessageSendParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -40,10 +43,13 @@ namespace HigLabo.Net.Microsoft
     public partial class MessageSendResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageSendResponse> MessageSendAsync()
         {
@@ -51,7 +57,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageSendResponse> MessageSendAsync(CancellationToken cancellationToken)
         {
@@ -59,14 +65,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageSendResponse> MessageSendAsync(MessageSendParameter parameter)
         {
             return await this.SendAsync<MessageSendParameter, MessageSendResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/message-send?view=graph-rest-1.0
         /// </summary>
         public async Task<MessageSendResponse> MessageSendAsync(MessageSendParameter parameter, CancellationToken cancellationToken)
         {

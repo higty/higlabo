@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
+    /// </summary>
     public partial class DriveListParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -42,9 +45,9 @@ namespace HigLabo.Net.Microsoft
             Bundles,
             Following,
             Items,
+            List,
             Root,
             Special,
-            List,
         }
         public enum ApiPath
         {
@@ -76,10 +79,13 @@ namespace HigLabo.Net.Microsoft
     {
         public Drive[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListResponse> DriveListAsync()
         {
@@ -87,7 +93,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveListParameter, DriveListResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListResponse> DriveListAsync(CancellationToken cancellationToken)
         {
@@ -95,14 +101,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<DriveListParameter, DriveListResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListResponse> DriveListAsync(DriveListParameter parameter)
         {
             return await this.SendAsync<DriveListParameter, DriveListResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/drive-list?view=graph-rest-1.0
         /// </summary>
         public async Task<DriveListResponse> DriveListAsync(DriveListParameter parameter, CancellationToken cancellationToken)
         {

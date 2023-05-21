@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
+    /// </summary>
     public partial class Fido2authenticationmethodConfigurationGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -52,6 +55,7 @@ namespace HigLabo.Net.Microsoft
             Disabled,
         }
 
+        public ExcludeTarget[]? ExcludeTargets { get; set; }
         public string? Id { get; set; }
         public bool? IsAttestationEnforced { get; set; }
         public bool? IsSelfServiceRegistrationAllowed { get; set; }
@@ -59,10 +63,13 @@ namespace HigLabo.Net.Microsoft
         public Fido2AuthenticationMethodConfigurationAuthenticationMethodState State { get; set; }
         public AuthenticationMethodTarget[]? IncludeTargets { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Fido2authenticationmethodConfigurationGetResponse> Fido2authenticationmethodConfigurationGetAsync()
         {
@@ -70,7 +77,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Fido2authenticationmethodConfigurationGetParameter, Fido2authenticationmethodConfigurationGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Fido2authenticationmethodConfigurationGetResponse> Fido2authenticationmethodConfigurationGetAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +85,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<Fido2authenticationmethodConfigurationGetParameter, Fido2authenticationmethodConfigurationGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Fido2authenticationmethodConfigurationGetResponse> Fido2authenticationmethodConfigurationGetAsync(Fido2authenticationmethodConfigurationGetParameter parameter)
         {
             return await this.SendAsync<Fido2authenticationmethodConfigurationGetParameter, Fido2authenticationmethodConfigurationGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/fido2authenticationmethodconfiguration-get?view=graph-rest-1.0
         /// </summary>
         public async Task<Fido2authenticationmethodConfigurationGetResponse> Fido2authenticationmethodConfigurationGetAsync(Fido2authenticationmethodConfigurationGetParameter parameter, CancellationToken cancellationToken)
         {

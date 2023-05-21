@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+    /// </summary>
     public partial class TermStoreGroupListSetsParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -59,10 +62,13 @@ namespace HigLabo.Net.Microsoft
     {
         public TermStoreSet[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreGroupListSetsResponse> TermStoreGroupListSetsAsync()
         {
@@ -70,7 +76,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreGroupListSetsParameter, TermStoreGroupListSetsResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreGroupListSetsResponse> TermStoreGroupListSetsAsync(CancellationToken cancellationToken)
         {
@@ -78,14 +84,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<TermStoreGroupListSetsParameter, TermStoreGroupListSetsResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreGroupListSetsResponse> TermStoreGroupListSetsAsync(TermStoreGroupListSetsParameter parameter)
         {
             return await this.SendAsync<TermStoreGroupListSetsParameter, TermStoreGroupListSetsResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/termstore-group-list-sets?view=graph-rest-1.0
         /// </summary>
         public async Task<TermStoreGroupListSetsResponse> TermStoreGroupListSetsAsync(TermStoreGroupListSetsParameter parameter, CancellationToken cancellationToken)
         {

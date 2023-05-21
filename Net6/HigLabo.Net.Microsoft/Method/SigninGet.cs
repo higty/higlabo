@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
+    /// </summary>
     public partial class SigninGetParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -53,6 +56,7 @@ namespace HigLabo.Net.Microsoft
             Failure,
             NotApplied,
             UnknownFutureValue,
+            Eq,
         }
         public enum SignInRiskDetail
         {
@@ -66,6 +70,8 @@ namespace HigLabo.Net.Microsoft
             AdminDismissedAllRiskForUser,
             AdminConfirmedSigninCompromised,
             UnknownFutureValue,
+            Eq,
+            Hidden,
         }
         public enum SignInRiskEventType
         {
@@ -79,19 +85,7 @@ namespace HigLabo.Net.Microsoft
             InvestigationsThreatIntelligence,
             Generic,
             UnknownFutureValue,
-        }
-        public enum SignInString
-        {
-            UnlikelyTravel,
-            AnonymizedIPAddress,
-            MaliciousIPAddress,
-            UnfamiliarFeatures,
-            MalwareInfectedIPAddress,
-            SuspiciousIPAddress,
-            LeakedCredentials,
-            InvestigationsThreatIntelligence,
-            Generic,
-            UnknownFutureValue,
+            Eq,
         }
         public enum SignInRiskLevel
         {
@@ -101,6 +95,7 @@ namespace HigLabo.Net.Microsoft
             High,
             Hidden,
             UnknownFutureValue,
+            Eq,
         }
         public enum SignInRiskState
         {
@@ -111,11 +106,12 @@ namespace HigLabo.Net.Microsoft
             AtRisk,
             ConfirmedCompromised,
             UnknownFutureValue,
+            Eq,
         }
 
         public string? AppDisplayName { get; set; }
         public string? AppId { get; set; }
-        public AppliedConditionalAccessPolicy[]? AppliedConditionalAccessPolicy { get; set; }
+        public AppliedConditionalAccessPolicy[]? AppliedConditionalAccessPolicies { get; set; }
         public string? ClientAppUsed { get; set; }
         public SignInConditionalAccessStatus ConditionalAccessStatus { get; set; }
         public string? CorrelationId { get; set; }
@@ -129,7 +125,7 @@ namespace HigLabo.Net.Microsoft
         public string? ResourceId { get; set; }
         public SignInRiskDetail RiskDetail { get; set; }
         public SignInRiskEventType RiskEventTypes { get; set; }
-        public SignInString RiskEventTypes_v2 { get; set; }
+        public String[]? RiskEventTypes_v2 { get; set; }
         public SignInRiskLevel RiskLevelAggregated { get; set; }
         public SignInRiskLevel RiskLevelDuringSignIn { get; set; }
         public SignInRiskState RiskState { get; set; }
@@ -138,10 +134,13 @@ namespace HigLabo.Net.Microsoft
         public string? UserId { get; set; }
         public string? UserPrincipalName { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SigninGetResponse> SigninGetAsync()
         {
@@ -149,7 +148,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SigninGetResponse> SigninGetAsync(CancellationToken cancellationToken)
         {
@@ -157,14 +156,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SigninGetResponse> SigninGetAsync(SigninGetParameter parameter)
         {
             return await this.SendAsync<SigninGetParameter, SigninGetResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/signin-get?view=graph-rest-1.0
         /// </summary>
         public async Task<SigninGetResponse> SigninGetAsync(SigninGetParameter parameter, CancellationToken cancellationToken)
         {

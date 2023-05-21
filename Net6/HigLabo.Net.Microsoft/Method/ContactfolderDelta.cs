@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class ContactfolderDeltaParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -58,10 +61,13 @@ namespace HigLabo.Net.Microsoft
     {
         public ContactFolder[]? Value { get; set; }
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync()
         {
@@ -69,7 +75,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync(CancellationToken cancellationToken)
         {
@@ -77,14 +83,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync(ContactfolderDeltaParameter parameter)
         {
             return await this.SendAsync<ContactfolderDeltaParameter, ContactfolderDeltaResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/contactfolder-delta?view=graph-rest-1.0
         /// </summary>
         public async Task<ContactfolderDeltaResponse> ContactfolderDeltaAsync(ContactfolderDeltaParameter parameter, CancellationToken cancellationToken)
         {

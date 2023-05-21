@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
+    /// </summary>
     public partial class BookingserviceUpdateParameter : IRestApiParameter
     {
         public class ApiPathSettings
@@ -55,8 +58,10 @@ namespace HigLabo.Net.Microsoft
         public string? Description { get; set; }
         public string? DisplayName { get; set; }
         public string? Id { get; set; }
+        public bool? IsAnonymousJoinEnabled { get; set; }
         public bool? IsHiddenFromCustomers { get; set; }
         public bool? IsLocationOnline { get; set; }
+        public string? LanguageTag { get; set; }
         public Int32? MaximumAttendeesCount { get; set; }
         public string? Notes { get; set; }
         public string? PostBuffer { get; set; }
@@ -68,10 +73,13 @@ namespace HigLabo.Net.Microsoft
     public partial class BookingserviceUpdateResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync()
         {
@@ -79,7 +87,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync(CancellationToken cancellationToken)
         {
@@ -87,14 +95,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync(BookingserviceUpdateParameter parameter)
         {
             return await this.SendAsync<BookingserviceUpdateParameter, BookingserviceUpdateResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/bookingservice-update?view=graph-rest-1.0
         /// </summary>
         public async Task<BookingserviceUpdateResponse> BookingserviceUpdateAsync(BookingserviceUpdateParameter parameter, CancellationToken cancellationToken)
         {

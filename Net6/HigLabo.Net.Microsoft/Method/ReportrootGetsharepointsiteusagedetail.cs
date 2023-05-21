@@ -2,6 +2,9 @@
 
 namespace HigLabo.Net.Microsoft
 {
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
+    /// </summary>
     public partial class ReportRootGetsharepointsiteusagedetailParameter : IRestApiParameter, IQueryParameterProperty
     {
         public class ApiPathSettings
@@ -47,10 +50,13 @@ namespace HigLabo.Net.Microsoft
     public partial class ReportRootGetsharepointsiteusagedetailResponse : RestApiResponse
     {
     }
+    /// <summary>
+    /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
+    /// </summary>
     public partial class MicrosoftClient
     {
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync()
         {
@@ -58,7 +64,7 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(p, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync(CancellationToken cancellationToken)
         {
@@ -66,14 +72,14 @@ namespace HigLabo.Net.Microsoft
             return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(p, cancellationToken);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync(ReportRootGetsharepointsiteusagedetailParameter parameter)
         {
             return await this.SendAsync<ReportRootGetsharepointsiteusagedetailParameter, ReportRootGetsharepointsiteusagedetailResponse>(parameter, CancellationToken.None);
         }
         /// <summary>
-        /// https://docs.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
+        /// https://learn.microsoft.com/en-us/graph/api/reportroot-getsharepointsiteusagedetail?view=graph-rest-1.0
         /// </summary>
         public async Task<ReportRootGetsharepointsiteusagedetailResponse> ReportRootGetsharepointsiteusagedetailAsync(ReportRootGetsharepointsiteusagedetailParameter parameter, CancellationToken cancellationToken)
         {
