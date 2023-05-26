@@ -19,13 +19,13 @@
         {
             if (false)
             {
-                var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Slack\\");
+                var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Slack\\");
                 //await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/views.open");
                 await g.Execute();
             }
             if (true)
             {
-                var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\Generated\\");
+                var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Microsoft\\Generated\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";
                 //await g.CreateResourceUrlMappingFile();
                 await g.LoadUrlClassNameMappingList();
