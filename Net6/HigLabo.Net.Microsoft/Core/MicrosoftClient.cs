@@ -12,7 +12,21 @@ namespace HigLabo.Net.Microsoft
 {
     public partial class MicrosoftClient : OAuthClient
     {
-        public static String ApiUrl = "https://graph.microsoft.com/v1.0";
+        public RestApiDomainName DomainName { get; set; } = RestApiDomainName.Graph;
+        public String TenantName { get; set; } = "";
+
+        public String ApiDomain
+        {
+            get
+            {
+                switch (this.DomainName)
+                {
+                    case RestApiDomainName.Graph: return "https://graph.microsoft.com/v1.0";
+                    case RestApiDomainName.Sharepoint: return $"https://{this.TenantName}.sharepoint.com/_api/v2.0";
+                    default: throw SwitchStatementNotImplementException.Create(this.DomainName);
+                }
+            }
+        }
 
         public MicrosoftClient(IJsonConverter jsonConverter, string accessToken)
                : base(jsonConverter)
@@ -48,11 +62,11 @@ namespace HigLabo.Net.Microsoft
                 {
                     queryString = q.Query.GetQueryString();
                 }
-                f = () => this.SendAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath + "?" + queryString, new HttpMethod(parameter.HttpMethod)), cancellationToken);
+                f = () => this.SendAsync<TResponse>(this.CreateHttpRequestMessage(this.ApiDomain + parameter.ApiPath + "?" + queryString, new HttpMethod(parameter.HttpMethod)), cancellationToken);
             }
             else
             {
-                f = () => this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(ApiUrl + parameter.ApiPath, new HttpMethod(parameter.HttpMethod)), parameter, cancellationToken);
+                f = () => this.SendJsonAsync<TResponse>(this.CreateHttpRequestMessage(this.ApiDomain + parameter.ApiPath, new HttpMethod(parameter.HttpMethod)), parameter, cancellationToken);
             }
             return await this.ProcessRequest(f);
         }
@@ -64,7 +78,7 @@ namespace HigLabo.Net.Microsoft
             {
                 queryString = q.Query.GetQueryString();
             }
-            var f = () => this.DownloadStreamAsync(this.CreateHttpRequestMessage(ApiUrl + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
+            var f = () => this.DownloadStreamAsync(this.CreateHttpRequestMessage(this.ApiDomain + p.ApiPath + "?" + queryString, new HttpMethod(p.HttpMethod)), cancellationToken);
             return await this.ProcessRequest(f);
         }
 

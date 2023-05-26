@@ -4,6 +4,7 @@
     {
         static async Task Main(string[] args)
         {
+            var startTime = DateTime.Now;
             try
             {
                 await Execute();
@@ -12,6 +13,7 @@
             {
                 Console.WriteLine(ex.ToString());
             }
+            Console.WriteLine($"{startTime.ToString("HH:mm:ss")}-{DateTime.Now.ToString("HH:mm:ss")} executed!");
         }
         private static async Task Execute()
         {
@@ -23,18 +25,13 @@
             }
             if (true)
             {
-                var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\");
+                var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net6\\HigLabo.Net.Microsoft\\Generated\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";
                 //await g.CreateResourceUrlMappingFile();
                 await g.LoadUrlClassNameMappingList();
 
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-session?view=graph-rest-1.0");
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/driveitem?view=graph-rest-1.0", new CreateEntityClassContext());
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0");
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/columnvalidation?view=graph-rest-1.0", new CreateEntityClassContext());
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-identity?view=graph-rest-1.0", new CreateEntityClassContext());
-                await g.CreateMethodSourceCodeFile("https://docs.microsoft.com/en-us/graph/api/mailfolder-list-messages?view=graph-rest-1.0");
-                //await g.CreateEntitySourceCodeFile("https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0", new CreateEntityClassContext());
+                //await g.CreateEntitySourceCodeFile("https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0", new CreateEntityClassContext());
+                //await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0");
                 await g.Execute();
             }
         }

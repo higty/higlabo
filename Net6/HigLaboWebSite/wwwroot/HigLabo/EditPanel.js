@@ -56,13 +56,13 @@ export class EditPanel {
         });
     }
     save() {
-        const r = InputPropertyPanel.createRecord(document.getElementById("EditPanel"));
         const apiPath = $("#EditPanelParameter").getAttribute("api-path-save");
         if (apiPath == "") {
             return;
         }
-        HttpClient.postJson(apiPath, r, this.api_Callback.bind(this), this.api_ErrorCallback.bind(this));
         this.hideButton();
+        const r = InputPropertyPanel.createRecord(document.getElementById("EditPanel"));
+        HttpClient.postJson(apiPath, r, this.api_Callback.bind(this), this.api_ErrorCallback.bind(this));
     }
     deleteButton_Click(e) {
         return __awaiter(this, void 0, void 0, function* () {

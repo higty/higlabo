@@ -99,7 +99,7 @@ namespace HigLabo.Net.CodeGenerator
 
         public override Task CreateScopeSourceCode()
         {
-            var html = this.GetHtml("https://docs.microsoft.com/en-us/graph/permissions-reference");
+            var html = this.GetHtml("https://learn.microsoft.com/en-us/graph/permissions-reference");
             var parser = new HtmlParser();
             var doc = parser.ParseDocument(html);
 
@@ -172,21 +172,21 @@ namespace HigLabo.Net.CodeGenerator
             if (url.Contains("overview?") ||
                 url.Contains("-overview?") ||
                 url.Contains("-conceptual?") ||
-                url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/enums?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-US/graph/api/resources/parentalcontrolsettings", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/security-error-codes?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/report?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/excel?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
-                url.Equals("https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase))
+                url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/enums?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://learn.microsoft.com/en-US/graph/api/resources/parentalcontrolsettings", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://learn.microsoft.com/en-us/graph/api/resources/users?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://learn.microsoft.com/en-us/graph/api/resources/security-error-codes?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://learn.microsoft.com/en-us/graph/api/resources/report?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://learn.microsoft.com/en-us/graph/api/resources/excel?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase) ||
+                url.Equals("https://learn.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0", StringComparison.OrdinalIgnoreCase))
             { return false; }
-            if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/intune-", StringComparison.OrdinalIgnoreCase) == true) { return false; }
+            if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/intune-", StringComparison.OrdinalIgnoreCase) == true) { return false; }
             return true;
         }
 
         protected override IEnumerable<string> GetEntiryUrlList()
         {
-            var html = this.GetHtml("https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0", false);
+            var html = this.GetHtml("https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0", false);
 
             while (true)
             {
@@ -212,13 +212,13 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var url = item.GetAttribute("href").ToString();
                 if (this.IsAvailabelUrl(url) == false) { continue; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/"))
+                if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
                 {
                     yield return url;
                 }
             }
-            yield return "https://docs.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0";
-            yield return "https://docs.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0";
+            yield return "https://learn.microsoft.com/en-us/graph/api/resources/actionresultpart?view=graph-rest-1.0";
+            yield return "https://learn.microsoft.com/en-us/graph/api/resources/accesspackageassignmentrequestrequirements?view=graph-rest-1.0";
         }
         protected override async Task<List<ApiParameter>> GetEntityParameterList(IDocument document)
         {
@@ -228,14 +228,14 @@ namespace HigLabo.Net.CodeGenerator
                 var div = document.QuerySelector("[id='properties']");
                 if (div != null)
                 {
-                    divList.Add(div);
+                    divList.Add(div.ParentElement);
                 }
             }
             {
                 var div = document.QuerySelector("[id='relationships']");
                 if (div != null)
                 {
-                    divList.Add(div);
+                    divList.Add(div.ParentElement);
                 }
             }
 
@@ -247,11 +247,9 @@ namespace HigLabo.Net.CodeGenerator
                 {
                     div = div.NextElementSibling;
                     if (div == null) { break; }
-                    tbl = div.QuerySelector($"table[aria-label='Properties']");
-                    if (tbl == null)
-                    {
-                        tbl = div.QuerySelector($"table[aria-label='Relationships']");
-                    }
+                    if (div.QuerySelector("#methods") != null) { break; }
+
+                    tbl = div.QuerySelector($"table[aria-label]");
                     if (tbl != null)
                     {
                         foreach (var parameter in await this.GetParameterList(document, tbl))
@@ -280,12 +278,12 @@ namespace HigLabo.Net.CodeGenerator
         public async Task LoadUrlClassNameMappingList()
         {
             var json = await File.ReadAllTextAsync(this.GetResouceUrlMappingFilePath());
-            _UrlClassNameMappingList = JsonConvert.DeserializeObject<List<UrlClassNameMapping>>(json);
+            _UrlClassNameMappingList = JsonConvert.DeserializeObject<List<UrlClassNameMapping>>(json)!;
         }
 
         protected override IEnumerable<string> GetMethodUrlList()
         {
-            var html = this.GetHtml("https://docs.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0", false);
+            var html = this.GetHtml("https://learn.microsoft.com/en-us/graph/api/overview?view=graph-rest-1.0", false);
 
             while (true)
             {
@@ -312,9 +310,9 @@ namespace HigLabo.Net.CodeGenerator
             {
                 var url = item.GetAttribute("href").ToString();
                 if (this.IsAvailabelUrl(url) == false) { continue; }
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/intune-", StringComparison.OrdinalIgnoreCase) == true) { continue; }
+                if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/intune-", StringComparison.OrdinalIgnoreCase) == true) { continue; }
 
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/", StringComparison.OrdinalIgnoreCase) == false) { continue; }
+                if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/", StringComparison.OrdinalIgnoreCase) == false) { continue; }
                 var pDoc = this.GetDocumentAsync(url).GetAwaiter().GetResult();
                 var mm = this.GetApiRequestPathList(pDoc);
                 if (mm.Length == 0) { continue; }
@@ -325,7 +323,18 @@ namespace HigLabo.Net.CodeGenerator
         {
             var doc = document;
             var l = new List<ApiParameter>();
-            var tbl = doc.QuerySelector("table[aria-label='Request body']");
+            var h2 = doc.QuerySelector("#request-body");
+            if (h2 == null) { return Task.FromResult(l); }
+            var node = h2.ParentElement.NextElementSibling;
+            IElement? tbl = null;
+
+            while (node != null)
+            {
+                tbl = node.QuerySelector("table[aria-label]");
+                if (tbl != null) { break; }
+                if (node.QuerySelector("#response") != null) { return Task.FromResult(l); }
+                node = node.NextElementSibling;
+            }
             if (tbl == null) { return Task.FromResult(l); }
 
             return this.GetParameterList(document, tbl);
@@ -336,6 +345,7 @@ namespace HigLabo.Net.CodeGenerator
             var context = new CreateEntityClassContext();
 
             var cParameter = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Parameter");
+            cParameter.Comment = url;
             var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response");
             var rx = new Regex("{[^}]*}");
 
@@ -555,7 +565,9 @@ namespace HigLabo.Net.CodeGenerator
 
                 if (p.Name == "elevationOfPrivilege,maliciousInsider,passwordCracking,phishingOrWhaling,spoofing).") { continue; }
                 if (p.Name.Contains("(deprecated)")) { continue; }
-                if (p.Name == "@odata.etag" || p.Name == "@odata.type") { continue; }
+                if (p.Name.Equals("If-match", StringComparison.OrdinalIgnoreCase)) { continue; }
+                if (p.Name.Equals("Group@odata.bind", StringComparison.OrdinalIgnoreCase)) { continue; }
+                if (p.Name == "@odata.id" || p.Name == "@odata.etag" || p.Name == "@odata.type") { continue; }
 
                 var td2 = row.QuerySelector("> td:nth-child(2)");
                 p.TypeName = td2.TextContent.Trim();
@@ -568,7 +580,7 @@ namespace HigLabo.Net.CodeGenerator
                 if (p.TypeName.Contains("Default. Enforces the legal minimum. This means parental consent is required for minors in the European Union and Korea")) { break; }
 
                 var hp = td2.QuerySelector("a");
-                if (hp != null && hp.GetAttribute("href").StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/"))
+                if (hp != null && hp.GetAttribute("href").StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
                 {
                     var url = hp.GetAttribute("href");
                     if (this.IsAvailabelUrl(url))
@@ -578,11 +590,11 @@ namespace HigLabo.Net.CodeGenerator
                 }
 
                 var td3 = row.QuerySelector("td:nth-child(3)");
-                if (td3 != null && p.TypeName != "String" && p.TypeName != "DateTimeOffset" && p.TypeName != "Boolean")
+                if (td3 != null && p.TypeName != "String" && p.TypeName != "String collection" && p.TypeName != "DateTimeOffset" && p.TypeName != "Boolean")
                 {
                     if (td3.TextContent.Contains("The possible values are: ") ||
                         td3.TextContent.Contains("The supported values") ||
-                        td3.TextContent.Contains("Supported values are:") ||
+                        td3.TextContent.Contains("Supported values are") ||
                         td3.TextContent.Contains("Possible values are") ||
                         td3.TextContent.Contains("Possible value: ") ||
                         td3.TextContent.Contains("Possible values:") ||
@@ -603,7 +615,7 @@ namespace HigLabo.Net.CodeGenerator
                             var eValue = code.TextContent.Replace(".", "");
                             if (eValue == "Prefer: include-unknown-enum-members") { continue; }
                             if (eValue == "Prefer: include - unknown -enum-members") { continue; }
-                            if (eValue.StartsWith("$")) { break; }
+                            if (eValue.StartsWith("$")) { continue; }
 
                             p.IsEnum = true;
                             if (eValue.ToInt32().HasValue) { continue; }
@@ -619,18 +631,22 @@ namespace HigLabo.Net.CodeGenerator
         {
             var doc = document;
 
-            if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/"))
+            if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/security-alert?view=graph-rest-1.0"))
             {
-                if (url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/callrecords-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/intune-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/microsoft-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/email-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/office-365-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/onedrive-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/externalconnectors-") ||
-                    url.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/termstore-"))
+                return "SecurityAlert";
+            }
+            if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
+            {
+                if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/callrecords-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/intune-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/microsoft-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/email-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/office-365-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/onedrive-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/externalconnectors-") ||
+                    url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/termstore-"))
                 {
-                    var path = url.Replace("https://docs.microsoft.com/en-us/graph/api/resources/", "").ExtractString(null, '?');
+                    var path = url.Replace("https://learn.microsoft.com/en-us/graph/api/resources/", "").ExtractString(null, '?');
                     return CreateClassName(path);
                 }
                 var h1 = doc.QuerySelector("[id='main'] > div > h1");
@@ -644,7 +660,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             else
             {
-                var apiPath = url.Replace("https://docs.microsoft.com/en-us/graph/api/", "").ExtractString(null, '?');
+                var apiPath = url.Replace("https://learn.microsoft.com/en-us/graph/api/", "").ExtractString(null, '?');
                 return CreateClassName(apiPath);
             }
         }
@@ -684,6 +700,7 @@ namespace HigLabo.Net.CodeGenerator
             var type = parameter.TypeName;
 
             if (type == "string collection" || type == "collection(string)" || type.ToLower() == "collection of string") { type = "string[]"; }
+            else if (type.Equals("GUID collection", StringComparison.OrdinalIgnoreCase)) { type = "Guid[]"; }
             else if (type.ToLower() == "string (url)" || type == "string (readonly)") { type = "string"; }
             else if (type == "string (enum)") { type = "string"; }
             else if (type.Equals("String (optional)", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
@@ -693,6 +710,7 @@ namespace HigLabo.Net.CodeGenerator
             else if (type.Equals("url", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
             else if (type.Equals("Boolean", StringComparison.OrdinalIgnoreCase) || type.ToLower() == "bool") { type = "bool"; }
             else if (type.Equals("int", StringComparison.OrdinalIgnoreCase)) { type = "int"; }
+            else if (type.Equals("Integer", StringComparison.OrdinalIgnoreCase)) { type = "int"; }
             else if (type.Equals("float", StringComparison.OrdinalIgnoreCase)) { type = "float"; }
             else if (type.Equals("DateTimeOffSet", StringComparison.OrdinalIgnoreCase)) { type = "DateTimeOffset"; }
             else if (type.Equals("Edm.Duration", StringComparison.OrdinalIgnoreCase)) { type = "string"; }
@@ -743,6 +761,10 @@ namespace HigLabo.Net.CodeGenerator
             {
                 type = type.Replace("microsoft.graph.", "", StringComparison.OrdinalIgnoreCase);
                 type = type.ExtractString('(', ')').ToPascalCase() + "[]";
+                if (type == "Edm.String[]")
+                {
+                    type = "string[]";
+                }
             }
             else
             {
@@ -804,7 +826,7 @@ namespace HigLabo.Net.CodeGenerator
             var l = new List<ApiRequestPath>();
             var h2 = doc.QuerySelector("[id='http-request']");
             if (h2 == null) { return new ApiRequestPath[0]; }
-            IElement node = h2.NextElementSibling;
+            IElement node = h2.ParentElement.NextElementSibling;
             while (true)
             {
                 foreach (var code in node.QuerySelectorAll("[data-author-content]"))
@@ -819,19 +841,23 @@ namespace HigLabo.Net.CodeGenerator
                             var httpMethod = line.ExtractString(null, ' ');
                             if (httpMethod.ToEnum<HigLabo.Net.HttpMethodName>().HasValue == false) { continue; }
                             var apiPath = line.Replace(httpMethod, "").Trim();
-                            //https://docs.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0&tabs=http
+                            //https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0&tabs=http
                             apiPath = apiPath.ExtractString(null, '?');
                             apiPath = apiPath.ExtractString(null, '=');
-                            //https://docs.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0&tabs=http
+                            apiPath = apiPath.ExtractString(null, '[');
+                            //https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0&tabs=http
                             apiPath = apiPath.ExtractString(null, '(');
+                            if (apiPath.IsNullOrEmpty()) { continue; }
                             l.Add(new ApiRequestPath(httpMethod, apiPath));
                         }
                     }
                 }
                 node = node.NextElementSibling;
                 if (node == null) { break; }
-                if (node.GetAttribute("id") != null &&
-                    node.GetAttribute("id").StartsWith("response")) { break; }
+                var requestBodyNode = node.QuerySelector("h2#request-body");
+                if (requestBodyNode != null) { break; }
+                var responseNode = node.QuerySelector("h2#response");
+                if (responseNode != null) { break; }
             }
             return l.ToArray();
         }
@@ -845,14 +871,14 @@ namespace HigLabo.Net.CodeGenerator
             var node = document.QuerySelector("[id='response']");
             if (node != null)
             {
-                var pNode = node.NextElementSibling;
+                var pNode = node.ParentElement.NextElementSibling;
                 if (pNode != null)
                 {
                     var hp = pNode.QuerySelector("a");
                     if (hp != null)
                     {
                         var href = hp.GetAttribute("href").ToString();
-                        if (href.StartsWith("https://docs.microsoft.com/en-us/graph/api/resources/", StringComparison.OrdinalIgnoreCase))
+                        if (href.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/", StringComparison.OrdinalIgnoreCase))
                         {
                             if (pNode.TextContent.Contains("collection of") ||
                                 pNode.TextContent.Contains(" collection"))

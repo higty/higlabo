@@ -83,7 +83,8 @@ export class FileUploadPanel {
 
         videoPanel.pause();
         setTimeout(async () => {
-            await videoPanel.play();
+            $(pl).find("[camera-panel]").addClass("display-none");
+            //await videoPanel.play();
         }, 500);
 
         const ctx = canvasPanel.getContext("2d");

@@ -81,7 +81,7 @@ export class FileUploadPanel {
         const canvasPanel = $(pl).find("[canvas-panel]").getFirstElement();
         videoPanel.pause();
         setTimeout(() => __awaiter(this, void 0, void 0, function* () {
-            yield videoPanel.play();
+            $(pl).find("[camera-panel]").addClass("display-none");
         }), 500);
         const ctx = canvasPanel.getContext("2d");
         ctx.drawImage(videoPanel, 0, 0, canvasPanel.width, canvasPanel.height);

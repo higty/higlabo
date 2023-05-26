@@ -205,11 +205,10 @@ export class DateTime {
                 return z["ddd"];
             }
             else {
-                const length = match.length;
                 const f = match.slice(-1);
                 const v = z[match.slice(-1)];
                 if (f == 'f') {
-                    return v;
+                    return ((match.length > 1 ? "0" : "") + v).slice(-match.length);
                 }
                 else {
                     return ((match.length > 1 ? "0" : "") + v).slice(-2);
