@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Threading.Tasks;
+
+namespace LanguageTextApplication.Core
+{
+    public class ConfigData
+    {
+        public class FolderSetting
+        {
+            public String SourceFolderPath { get; set; } = "";
+            public String CSharpFileName { get; set; } = "";
+            public String RootNamespaceName { get; init; } = "";
+            public String ClassName { get; init; } = "";
+        }
+
+        public static ConfigData Current { get; set; } = new ConfigData();
+
+        public List<FolderSetting> FolderList { get; init; } = new();
+
+        public ConfigData() { }
+
+        public void Save()
+        {
+            var path = System.IO.Path.Combine(Environment.CurrentDirectory + "Config.json");
+            File.WriteAllText(path, JsonSerializer.Serialize(this));
+        }
+        public static ConfigData Load()
+        {
+            var path = System.IO.Path.Combine(Environment.CurrentDirectory + "Config.json");
+            if (File.Exists(path) == false)
+            {
+                var data = new ConfigData();
+                File.WriteAllText(path, JsonSerializer.Serialize(data));
+                return data;
+            }
+            var json = File.ReadAllText(path);
+            return JsonSerializer.Deserialize<ConfigData>(json)!;
+        }
+    }
+}

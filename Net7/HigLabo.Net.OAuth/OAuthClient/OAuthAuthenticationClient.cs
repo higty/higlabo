@@ -65,6 +65,5 @@ namespace HigLabo.Net.OAuth
             var token = JsonConvert.DeserializeObject<T>(bodyText)!;
             return token;
         }
-
     }
 }

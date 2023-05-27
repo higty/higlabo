@@ -25,7 +25,8 @@ namespace HigLabo.Service
         {
             this.Title = title;
         }
-        public abstract void Execute();
+        public abstract Task ExecuteAsync();
+
         public override string ToString()
         {
             var ts = this.EndTime - this.StartTime;

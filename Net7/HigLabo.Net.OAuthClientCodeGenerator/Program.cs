@@ -4,6 +4,8 @@
     {
         static async Task Main(string[] args)
         {
+            var text = T.Text.ActualTime;
+
             var startTime = DateTime.Now;
             try
             {

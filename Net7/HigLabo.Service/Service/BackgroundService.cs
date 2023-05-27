@@ -130,7 +130,7 @@ namespace HigLabo.Service
             _Thread.Start();
             _IsStarted = true;
         }
-        private void Start()
+        private async void Start()
         {
             var l = new List<ServiceCommand>();
             var skipCommandList = new List<ServiceCommand>();
@@ -182,7 +182,7 @@ namespace HigLabo.Service
                         var sw = Stopwatch.StartNew();
                         cm.StartTime = DateTimeOffset.Now;
                         _CurrentCommand = cm;
-                        cm.Execute();
+                        await cm.ExecuteAsync();
                         cm.EndTime = DateTimeOffset.Now;
                         sw.Stop();
 
