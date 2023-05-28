@@ -12,6 +12,7 @@ namespace DbSharpApplication
 {
     public class ConfigData
     {
+        public static LanguageText<HigLaboText> Text { get; set; } = new();
         public static ConfigData Current = new ConfigData();
 
         public static String SettingFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\HigLabo\\DbSharpApplication";

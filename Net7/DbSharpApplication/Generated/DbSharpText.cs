@@ -1,9 +1,9 @@
 using System;
 using HigLabo.Core;
 
-namespace HigLabo.Core
+namespace DbSharpApplication
 {
-    public class HigLaboText : LanguageText
+    public class DbSharpText : LanguageText
     {
         protected override string[] LanguageList
         {
@@ -4068,6 +4068,136 @@ namespace HigLabo.Core
                 }
             }
         }
+        public string OpenOutputFolder
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Open output folder";
+                    case "ja-JP": return "出力先フォルダを開く";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string LoadStoredProcedure
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Load stored procedure";
+                    case "ja-JP": return "ストアドのロード";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string LoadUserDefinedType
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Load user defined type";
+                    case "ja-JP": return "ユーザー定義型のロード";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ConnectionList
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Connection list";
+                    case "ja-JP": return "接続先の一覧";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string ConnectionString
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Connection string";
+                    case "ja-JP": return "接続文字列";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string Namespace
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Namespace";
+                    case "ja-JP": return "名前空間";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string DatabaseKey
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Database key";
+                    case "ja-JP": return "データベースキー";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string OutputFolder
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Output folder";
+                    case "ja-JP": return "出力先フォルダ";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string LoadResultSet
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Load result set";
+                    case "ja-JP": return "結果セットのロード";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
+        public string LoadResultSetFailed
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Result set loading failed. The result set may not exist or the argument may be invalid. You may get result set by setting the appropriate value in the Value column of the argument.";
+                    case "ja-JP": return "結果セットのロードに失敗しました。結果セットが存在しないか、引数が不正な可能性があります。引数のValue列に適切な値をセットすると結果セットが取得できる可能性があります。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
 
         public override string GetText(string key)
         {
@@ -4385,6 +4515,16 @@ namespace HigLabo.Core
                 case "YouDontHavePermissionToEdit": return this.YouDontHavePermissionToEdit;
                 case "YouDontHavePermissionToManage": return this.YouDontHavePermissionToManage;
                 case "YouMustAgreeToTermsOfUse": return this.YouMustAgreeToTermsOfUse;
+                case "OpenOutputFolder": return this.OpenOutputFolder;
+                case "LoadStoredProcedure": return this.LoadStoredProcedure;
+                case "LoadUserDefinedType": return this.LoadUserDefinedType;
+                case "ConnectionList": return this.ConnectionList;
+                case "ConnectionString": return this.ConnectionString;
+                case "Namespace": return this.Namespace;
+                case "DatabaseKey": return this.DatabaseKey;
+                case "OutputFolder": return this.OutputFolder;
+                case "LoadResultSet": return this.LoadResultSet;
+                case "LoadResultSetFailed": return this.LoadResultSetFailed;
                 default: return "";
             }
         }

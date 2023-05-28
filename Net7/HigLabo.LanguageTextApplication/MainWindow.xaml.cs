@@ -37,13 +37,13 @@ namespace LanguageTextApplication
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.EditPanel.DataContext = new ConfigData.FolderSetting();
+            this.EditPanel.DataContext = new FolderSetting();
             this.EditPanel.Visibility = Visibility.Visible;
             this.FolderListPanel.Visibility = Visibility.Hidden;
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            var c = this.FolderListView.SelectedItem as ConfigData.FolderSetting;
+            var c = this.FolderListView.SelectedItem as FolderSetting;
             if (c == null)
             {
                 MessageBox.Show(T.Text.PleaseSelect);
@@ -58,7 +58,7 @@ namespace LanguageTextApplication
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            var c = this.EditPanel.DataContext as ConfigData.FolderSetting;
+            var c = this.EditPanel.DataContext as FolderSetting;
             if (c == null) { return; }
             ConfigData.Current.FolderList.Add(c);
             this.UpdateFolderListView();
@@ -74,7 +74,7 @@ namespace LanguageTextApplication
 
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
         {
-            var c = this.FolderListView.SelectedItem as ConfigData.FolderSetting;
+            var c = this.FolderListView.SelectedItem as FolderSetting;
             if (c == null)
             {
                 MessageBox.Show(T.Text.PleaseSelect);
@@ -89,7 +89,7 @@ namespace LanguageTextApplication
             }
 
             this.LogList.Clear();
-            var cm = new ClassGenerateCommand(c.SourceFolderPath, c.CSharpFileName, c.RootNamespaceName, c.ClassName);
+            var cm = new ClassGenerateCommand(c);
             cm.Executed += ClassGenerateCommand_Executed;
             App.BackgroundService.AddCommand(cm);
         }

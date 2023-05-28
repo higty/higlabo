@@ -1,0 +1,74 @@
+﻿<Window x:Class="DbSharpApplication.UserDefinedTableTypeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DbSharpApplication"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="User defined table type"
+        Height="800" Width="1000">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid DataContext="{Binding Path=UserDefinedTableType}">
+            <TextBlock Text="{Binding Path=Name}" FontSize="16px" FontWeight="Bold"
+                                           Padding="2" Height="30" VerticalAlignment="Top"/>
+            <DataGrid Name="UserDefinedTableTypeColumnListBox" 
+                  ItemsSource="{Binding Path=Columns}"
+                  AutoGenerateColumns="False" FrozenColumnCount="2" Margin="0,30,0,0">
+                <DataGrid.Columns>
+                    <StaticResource ResourceKey="DataTypeOrdinal"/>
+                    <StaticResource ResourceKey="DataTypeColumnName"/>
+                    <StaticResource ResourceKey="DataTypeDbType"/>
+                    <StaticResource ResourceKey="DataTypeLength"/>
+                    <StaticResource ResourceKey="DataTypePrecision"/>
+                    <StaticResource ResourceKey="DataTypeScale"/>
+                    <StaticResource ResourceKey="DataTypeAllowNull"/>
+                    <StaticResource ResourceKey="DataTypeUdtTypeName"/>
+                    <StaticResource ResourceKey="DataTypeEnumName"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <Grid Grid.Row="1" DataContext="{Binding Path=GenerateSetting}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="200"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" VerticalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                    <RowDefinition Height="30"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+                    <Label x:Name="OutputFolderPathLabel" Content="Output folder path"></Label>
+                    <TextBox Text="{Binding OutputFolderPath}" Height="28" Margin="150,0,0,0" VerticalContentAlignment="Center" />
+                </Grid>
+                <Grid Grid.Row="1">
+                    <Label x:Name="NamespaceNameLabel" Content="NamespaceName"></Label>
+                    <TextBox Text="{Binding NamespaceName}" Height="28" Margin="150,0,0,0" VerticalContentAlignment="Center" />
+                </Grid>
+                <Grid Grid.Row="2">
+                    <Label x:Name="DatabaseKeyLabel" Content="DatabaseKey"></Label>
+                    <TextBox Text="{Binding DatabaseKey}" Height="28" Margin="150,0,0,0" VerticalContentAlignment="Center" />
+                </Grid>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Button Name="GenerateButton" Click="GenerateButton_Click" 
+                        Content="Generate" HorizontalAlignment="Left"
+                    Width="100" Height="88" FontSize="20"></Button>
+                <Button Name="CloseButton" Click="CloseButton_Click" Content="Close" HorizontalAlignment="Right"
+                    Width="100" Height="88" FontSize="20"></Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

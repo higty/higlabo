@@ -38,10 +38,21 @@ namespace DbSharpApplication
         {
             InitializeComponent();
 
+            this.SetText();
+
             this.ViewModel = viewModel;
             this.DataContext = viewModel;
 
             this.SetParameterProperty();
+        }
+        private void SetText()
+        {
+            this.OutputFolderPathLabel.Content = T.Text.OutputFolder;
+            this.NamespaceNameLabel.Content = T.Text.Namespace;
+            this.DatabaseKeyLabel.Content = T.Text.DatabaseKey;
+            this.LoadResultSetButton.Content = T.Text.LoadResultSet;
+            this.GenerateButton.Content = T.Text.Generate;
+            this.CloseButton.Content = T.Text.Close;
         }
         private void SetParameterProperty()
         {
@@ -62,6 +73,17 @@ namespace DbSharpApplication
 
         private async void LoadResultSetButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                await this.LoadResultSet();
+            }
+            catch
+            {
+                MessageBox.Show(T.Text.LoadResultSetFailed);
+            }
+        }
+        private async ValueTask LoadResultSet()
+        {
             var reader = this.ViewModel.GenerateSetting.CreateDatabaseSchemaReader();
             var d = this.StoredProcedure.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
                 .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
@@ -73,6 +95,7 @@ namespace DbSharpApplication
 
             this.LoadButtonPanel.Visibility = Visibility.Hidden;
             this.ResultSetPanel.Visibility = Visibility.Visible;
+
         }
         private void SetResultSetProperty()
         {
@@ -159,9 +182,14 @@ namespace DbSharpApplication
                 var cs = new CSharpSourceCodeGenerator(stm);
                 cs.Write(sc.SourceCode);
             }
+            setting.StoredProcedureList.RemoveAll(el => el.Name == sp.Name);
             setting.StoredProcedureList.Add(sp);
             ConfigData.Current.Save();
 
+            this.Close();
+        }
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

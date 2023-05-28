@@ -1,4 +1,4 @@
-﻿using HigLabo.DbSharp;
+﻿using HigLabo.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

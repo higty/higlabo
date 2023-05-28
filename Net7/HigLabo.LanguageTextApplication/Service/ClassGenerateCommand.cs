@@ -2,6 +2,7 @@
 using HigLabo.CodeGenerator;
 using HigLabo.Core;
 using HigLabo.Service;
+using LanguageTextApplication.Core;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -37,25 +38,11 @@ namespace HigLabo.LanguageTextApplication
         public record ExecutedEventArgs(String Text) { }
         public event EventHandler<ExecutedEventArgs>? Executed;
 
-        public String SourceFolderPath { get; init; }
-        public String CSharpFileName { get; init; }
-        public String RootNamespaceName { get; init; }
-        public String ClassName { get; init; }
+        public FolderSetting FolderSetting { get; set; } 
 
-        public ClassGenerateCommand(String sourceFolderPath, String targetFilePath, String rootNamespaceName, String className)
+        public ClassGenerateCommand(FolderSetting folderSetting)
         {
-            this.SourceFolderPath = sourceFolderPath;
-            this.CSharpFileName = targetFilePath;
-            this.RootNamespaceName = rootNamespaceName;
-            if (this.RootNamespaceName.IsNullOrEmpty())
-            {
-                this.RootNamespaceName = "HigLabo.Core";
-            }
-            this.ClassName = className;
-            if (this.ClassName.IsNullOrEmpty())
-            {
-                this.ClassName = "HigLaboText";
-            }
+            this.FolderSetting = folderSetting;
         }
 
         public override async Task ExecuteAsync()
@@ -64,7 +51,7 @@ namespace HigLabo.LanguageTextApplication
 
             var copyFolderPath = this.EnsureFolder();
 
-            foreach (var filePath in System.IO.Directory.EnumerateFiles(this.SourceFolderPath).OrderBy(el => el))
+            foreach (var filePath in System.IO.Directory.EnumerateFiles(this.FolderSetting.SourceFolderPath).OrderBy(el => el))
             {
                 if (Path.GetExtension(filePath).ToLower() != ".csv") { continue; }
 
@@ -115,13 +102,13 @@ namespace HigLabo.LanguageTextApplication
         private string EnsureFolder()
         {
             var now = DateTime.Now;
-            var generatedFolderPath = Path.Combine(this.SourceFolderPath, "Generated");
+            var generatedFolderPath = Path.Combine(this.FolderSetting.SourceFolderPath, "Generated");
             if (File.Exists(generatedFolderPath) == false)
             {
                 Directory.CreateDirectory(generatedFolderPath);
                 this.Executed?.Invoke(this, new ExecutedEventArgs(generatedFolderPath));
             }
-            var copyFolderPath = Path.Combine(this.SourceFolderPath, "Generated", now.ToString("yyyyMMdd_HHmmss"));
+            var copyFolderPath = Path.Combine(this.FolderSetting.SourceFolderPath, "Generated", now.ToString("yyyyMMdd_HHmmss"));
             if (File.Exists(copyFolderPath) == false)
             {
                 Directory.CreateDirectory(copyFolderPath);
@@ -140,10 +127,10 @@ namespace HigLabo.LanguageTextApplication
             sc.UsingNamespaces.Add("System");
             sc.UsingNamespaces.Add("HigLabo.Core");
 
-            var ns = new Namespace(this.RootNamespaceName);
+            var ns = new Namespace(this.FolderSetting.RootNamespaceName);
             sc.Namespaces.Add(ns);
 
-            var cText = new Class(AccessModifier.Public, this.ClassName);
+            var cText = new Class(AccessModifier.Public, this.FolderSetting.ClassName);
             ns.Classes.Add(cText);
             cText.BaseClass = new TypeName("LanguageText");
 
@@ -197,7 +184,7 @@ namespace HigLabo.LanguageTextApplication
                 cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"default: return \"\";"));
             }
 
-            var filePath = Path.Combine(copyFolderPath, this.CSharpFileName);
+            var filePath = Path.Combine(copyFolderPath, this.FolderSetting.CSharpFileName);
             using (var writer = new StreamWriter(filePath))
             {
                 var g = new CSharpSourceCodeGenerator(writer);
@@ -206,6 +193,15 @@ namespace HigLabo.LanguageTextApplication
 
                 writer.Close();
             }
+            if (this.FolderSetting.CopyFilePath.IsNullOrEmpty() == false)
+            {
+                try
+                {
+                    File.Copy(filePath, this.FolderSetting.CopyFilePath, true);
+                }
+                catch { }
+            }
+
             this.Executed?.Invoke(this, new ExecutedEventArgs(filePath));
 
             this.Executed?.Invoke(this, new ExecutedEventArgs("Output folder: " + copyFolderPath));

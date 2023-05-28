@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -68,6 +69,26 @@ namespace HigLabo.Core
             {
                 if (this.Items.Remove(item))
                 {
+                    isChanged = true;
+                }
+            }
+
+            if (isChanged)
+            {
+                this.OnPropertyChanged(new PropertyChangedEventArgs("Count"));
+                this.OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+                this.OnCollectionChanged(new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            }
+        }
+
+        public virtual void RemoveAll(Func<T, Boolean> predicate)
+        {
+            Boolean isChanged = false;
+            foreach (T item in this.ToArray())
+            {
+                if (predicate(item))
+                {
+                    this.Remove(item);
                     isChanged = true;
                 }
             }

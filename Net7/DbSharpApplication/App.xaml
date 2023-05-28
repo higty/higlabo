@@ -13,7 +13,7 @@
             <hig:DateConverter x:Key="DateHHmmssConverter" Format="yyyy/MM/dd HH:mm:ss" />
             <hig:DateConverter x:Key="ExecutedTimeConverter" Format="yyyy/MM/dd HH:mm:ss.fffffff" />
             <hig:DateConverter x:Key="UpdateTimeConverter" Format="MM/dd HH:mm:ss" />
-            <hig:DateConverter x:Key="LastAlteredTimeConverter" Format="MM/dd HH:mm:ss" />
+            <hig:DateConverter x:Key="LastAlteredTimeConverter" Format="yyyy/MM/dd HH:mm:ss" />
             <hig:BooleanTextConverter x:Key="DataTypeBooleanTextConverter" ValueWhenTrue="Yes" ValueWhenFalse="" />
             <hig:RecentFilePathConverter x:Key="RecentFilePathConverter" />
             <hig:StringBrushConverter x:Key="ProcessTypeBackgroundConverter" />

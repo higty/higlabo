@@ -5,30 +5,40 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DbSharpApplication"
         mc:Ignorable="d"
-        Title="DbSharpApplication" Height="900" MinHeight="700" Width="600" MinWidth="400"
+        Title="DbSharpApplication" Height="900" MinHeight="700" Width="700" MinWidth="640"
         WindowStartupLocation="CenterScreen"
         FontSize="16"
         Icon="/Icon/DbSharp.ico">
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="150"></RowDefinition>
+            <RowDefinition Height="200"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="40"></RowDefinition>
                 <RowDefinition Height="30"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" VerticalAlignment="Top">
+            <ComboBox Grid.Row="0" x:Name="LanguageListComboBox" VerticalAlignment="Top" Height="30">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            <Grid Grid.Row="1" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="60"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Content="Connection list"></Label>
+                <Label Grid.Column="0" x:Name="ConnectionListLabel" Content="Connection list"></Label>
                 <Button Grid.Column="1" x:Name="AddConnectionButton" Content="Add" 
                         Click="AddConnectionButton_Click" Height="28" VerticalAlignment="Top" />
             </Grid>
-            <ListView Grid.Row="1" x:Name="GenerateSettingListView" VerticalAlignment="Top" Height="120">
+            <ListView Grid.Row="2" x:Name="GenerateSettingListView" VerticalAlignment="Top" Height="120">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -41,10 +51,10 @@
         <Grid Grid.Row="1">
             <Grid Visibility="{Binding AddPanelVisible}">
                 <StackPanel x:Name="AddPanel" Orientation="Vertical">
-                    <Label Content="Name"></Label>
+                    <Label x:Name="AddPanelGenerateSettingNameLabel" Content="Name"></Label>
                     <TextBox Text="{Binding Name}" VerticalContentAlignment="Center" Height="30"></TextBox>
 
-                    <Label Content="Connection string"></Label>
+                    <Label x:Name="AddPanelConnectionStringLabel" Content="Connection string"></Label>
                     <TextBox Text="{Binding ConnectionString}" VerticalContentAlignment="Center" Height="30"></TextBox>
 
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,0">
@@ -64,17 +74,19 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="40"></RowDefinition>
-                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition Height="48"></RowDefinition>
+                            <RowDefinition Height="32"></RowDefinition>
                             <RowDefinition Height="40"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBlock Grid.Row="0" Text="{Binding Name}" FontWeight="Bold" FontSize="28" TextWrapping="Wrap" Height="40" HorizontalAlignment="Stretch"></TextBlock>
-                        <TextBlock Grid.Row="1" Text="{Binding ConnectionString}" TextWrapping="Wrap" FontSize="12" HorizontalAlignment="Stretch"></TextBlock>
+                        <TextBox Grid.Row="0" Text="{Binding Name}" FontWeight="Bold" FontSize="32" TextWrapping="Wrap" Height="48" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
+                        <TextBox Grid.Row="1" Text="{Binding ConnectionString}" FontSize="16" HorizontalAlignment="Stretch" VerticalContentAlignment="Center"></TextBox>
                         <StackPanel Grid.Row="2" Orientation="Horizontal">
                             <Button x:Name="LoadStoredProcedureButton" Content="Load stored procedure" 
                                     Click="LoadStoredProcedureButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
                             <Button x:Name="LoadUserDefinedTypeButton" Content="Load user defined type" 
                                     Click="LoadUserDefinedTypeButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
+                            <Button x:Name="OpenOutputFolderButton" Content="Open output folder" Visibility="{Binding OpenOutputFolderButtonVisible}"
+                                    Click="OpenOutputFolderButton_Click" Width="200" Height="40" HorizontalAlignment="Right" />
                         </StackPanel>
                     </Grid>
                     <Grid Grid.Row="1">
@@ -82,14 +94,16 @@
                         <ListView x:Name="DatabaseObjectListView" Height="500" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0,30,0,0">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Margin="0">
+                                    <StackPanel Orientation="Horizontal" Margin="0">
+                                        <!--<TextBlock Text="{Binding LastAlteredTime,Converter={StaticResource LastAlteredTimeConverter}}" Margin="0,0,10,0"></TextBlock>-->
                                         <TextBlock Text="{Binding Name}"></TextBlock>
-                                    </Grid>
+                                    </StackPanel>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </Grid>
-                    <Button Grid.Row="2" x:Name="GenerateButton" Click="GenerateButton_Click" Content="Generate" FontSize="32" Height="60" />
+                    <Button Grid.Row="2" x:Name="GenerateButton" Click="GenerateButton_Click" 
+                            Content="Generate" FontSize="32" Height="60" />
                 </Grid>
             </Grid>
 
