@@ -9,7 +9,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class StoredProcedure : DatabaseObject, INotifyPropertyChanged
     {
-        public override event PropertyChangedEventHandler PropertyChanged;
+        public override event PropertyChangedEventHandler? PropertyChanged;
 
         private DatabaseServer _DatabaseServer = DatabaseServer.SqlServer;
         private String _TableName = "";
