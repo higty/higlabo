@@ -30,6 +30,7 @@ namespace DbSharpApplication
             }
         }
         public ObservableCollection<LanguageSetting> LanguageList { get; init; } = new();
+        public ObservableCollection<DatabaseServer> DatabaseServerList { get; init; } = new();
         public ObservableCollection<DatabaseObject> DatabaseObjectList { get; init; } = new();
 
         [ObservableProperty]
@@ -43,6 +44,9 @@ namespace DbSharpApplication
         {
             this.LanguageList.Add(new LanguageSetting("en-US"));
             this.LanguageList.Add(new LanguageSetting("ja-JP"));
+
+            this.DatabaseServerList.Add(DatabaseServer.SqlServer);
+            this.DatabaseServerList.Add(DatabaseServer.MySql);
         }
 
         public void SetDisplayMode(MainWindowDisplayMode displayMode)

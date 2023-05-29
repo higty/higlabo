@@ -152,7 +152,7 @@ namespace HigLabo.DbSharp
         {
             return value ?? DBNull.Value;
         }
-        protected static T? ToEnum<T>(Object value)
+        protected static T? ToEnum<T>(Object? value)
             where T : struct
         {
             return TypeConverter.ToEnum<T>(value);

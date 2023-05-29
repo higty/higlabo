@@ -936,11 +936,11 @@ namespace HigLabo.Core
             return new DateTimeOffset(dtime.DateTime, ts);
         }
 
-        public virtual T? ToEnum<T>(Object value) where T : struct
+        public virtual T? ToEnum<T>(Object? value) where T : struct
         {
             return ToEnum<T>(value, true);
         }
-        public virtual T? ToEnum<T>(Object value, Boolean ignoreCase) where T : struct
+        public virtual T? ToEnum<T>(Object? value, Boolean ignoreCase) where T : struct
         {
             if (value == null) return null;
             var TP = typeof(T);

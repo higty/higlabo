@@ -18,7 +18,7 @@ namespace DbSharpApplication
         public static String SettingFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\HigLabo\\DbSharpApplication";
         public static String SettingFilePath
         {
-            get { return SettingFolderPath + "\\VisualStudioToolWindowSetting.xml"; }
+            get { return SettingFolderPath + "\\ConfigData.xml"; }
         }
 
         public ObservableCollection<GenerateSetting> GenerateSettingList { get; init; } = new();

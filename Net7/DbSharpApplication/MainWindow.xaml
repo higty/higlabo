@@ -51,6 +51,8 @@
         <Grid Grid.Row="1">
             <Grid Visibility="{Binding AddPanelVisible}">
                 <StackPanel x:Name="AddPanel" Orientation="Vertical">
+                    <ComboBox Grid.Row="0" x:Name="DatabaseServerComboBox" VerticalAlignment="Top" Height="30"></ComboBox>
+
                     <Label x:Name="AddPanelGenerateSettingNameLabel" Content="Name"></Label>
                     <TextBox Text="{Binding Name}" VerticalContentAlignment="Center" Height="30"></TextBox>
 

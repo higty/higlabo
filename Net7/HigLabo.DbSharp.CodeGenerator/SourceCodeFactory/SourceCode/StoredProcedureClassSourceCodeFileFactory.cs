@@ -209,7 +209,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             if (sp.Parameters.Count > 0)
             {
                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "");
-                yield return new CodeBlock(SourceCodeLanguage.CSharp, "DbParameter p = null;"); 
+                yield return new CodeBlock(SourceCodeLanguage.CSharp, "DbParameter? p = null;"); 
                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "");
                 
                 foreach (var parameter in sp.Parameters)
@@ -320,7 +320,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 if (addedInitializeCodeBlcok == false)
                 {
                     yield return new CodeBlock(SourceCodeLanguage.CSharp, "var cm = command;");
-                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "DbParameter p = null;");
+                    yield return new CodeBlock(SourceCodeLanguage.CSharp, "DbParameter? p = null;");
                     addedInitializeCodeBlcok = true;
                 }
                 yield return new CodeBlock(SourceCodeLanguage.CSharp, "p = cm.Parameters[{0}] as DbParameter;", parameter.Ordinal);

@@ -4198,6 +4198,19 @@ namespace DbSharpApplication
                 }
             }
         }
+        public string ConnectionFailed
+        {
+            get
+            {
+                var language = this.GetLanguage();
+                switch (language)
+                {
+                    case "en-US": return "Connection failed.";
+                    case "ja-JP": return "接続に失敗しました。";
+                    default:throw SwitchStatementNotImplementException.Create(language);
+                }
+            }
+        }
 
         public override string GetText(string key)
         {
@@ -4525,6 +4538,7 @@ namespace DbSharpApplication
                 case "OutputFolder": return this.OutputFolder;
                 case "LoadResultSet": return this.LoadResultSet;
                 case "LoadResultSetFailed": return this.LoadResultSetFailed;
+                case "ConnectionFailed": return this.ConnectionFailed;
                 default: return "";
             }
         }

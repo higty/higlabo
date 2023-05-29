@@ -35,7 +35,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             Method md = new Method(MethodAccessModifier.Public, "GetValues");
 
             md.Modifier.Polymophism = MethodPolymophism.Override;
-            md.ReturnTypeName = new TypeName("Object[]");
+            md.ReturnTypeName = new TypeName("Object?[]");
             md.Body.AddRange(this.CreateGetValuesMethodBody());
 
             return md;
@@ -43,7 +43,7 @@ namespace HigLabo.DbSharp.CodeGenerator
         private IEnumerable<CodeBlock> CreateGetValuesMethodBody()
         {
             var t = this.UserDefinedTableType;
-            yield return new CodeBlock(SourceCodeLanguage.CSharp, "Object[] oo = new Object[{0}];", t.Columns.Count);
+            yield return new CodeBlock(SourceCodeLanguage.CSharp, "Object?[] oo = new Object[{0}];", t.Columns.Count);
             for (int i = 0; i < t.Columns.Count; i++)
             {
                 var column = t.Columns[i];

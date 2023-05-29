@@ -9,6 +9,6 @@ namespace HigLabo.DbSharp
 {
     public abstract class UserDefinedTableTypeRecord : DatabaseRecord
     {
-        public abstract Object[] GetValues();
+        public abstract Object?[] GetValues();
     }
 }

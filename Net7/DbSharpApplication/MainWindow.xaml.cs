@@ -44,6 +44,9 @@ namespace DbSharpApplication
             this.LanguageListComboBox.SelectedItem = this.ViewModel.LanguageList.FirstOrDefault(el => el.Name == CultureInfo.CurrentCulture.Name);
             this.LanguageListComboBox.SelectionChanged += LanguageListComboBox_SelectionChanged;
 
+            this.DatabaseServerComboBox.ItemsSource = this.ViewModel.DatabaseServerList;
+            this.DatabaseServerComboBox.SelectedItem = this.ViewModel.DatabaseServerList[0];
+
             this.GenerateSettingListView.SelectionChanged += GenerateSettingListView_SelectionChanged;
             this.GenerateSettingListView.ItemsSource = ConfigData.Current.GenerateSettingList;
      
@@ -107,6 +110,8 @@ namespace DbSharpApplication
         {
             var c = this.AddPanel.DataContext as GenerateSetting;
             if (c == null) { return; }
+
+            c.DatabaseServer = (DatabaseServer)this.DatabaseServerComboBox.SelectedItem;
             ConfigData.Current.GenerateSettingList.Add(c);
 
             this.ViewModel.SetDisplayMode(MainWindowDisplayMode.Initialized);
@@ -129,10 +134,17 @@ namespace DbSharpApplication
             if (reader == null) { return; }
             this.ViewModel.DatabaseObjectList.Clear();
 
-            var l = await reader.GetStoredProceduresAsync();
-            foreach (var item in l.OrderByDescending(el => el.LastAlteredTime))
+            try
             {
-                this.ViewModel.DatabaseObjectList.Add(item);
+                var l = await reader.GetStoredProceduresAsync();
+                foreach (var item in l.OrderByDescending(el => el.LastAlteredTime))
+                {
+                    this.ViewModel.DatabaseObjectList.Add(item);
+                }
+            }
+            catch
+            {
+                MessageBox.Show(T.Text.ConnectionFailed);
             }
         }
         private async void LoadUserDefinedTypeButton_Click(object sender, RoutedEventArgs e)
@@ -140,13 +152,19 @@ namespace DbSharpApplication
             var setting = this.GetSelectedGenerateSetting();
             if (setting == null) { return; }
 
-            var db = setting.CreateDatabaseSchemaReader();
-
             this.ViewModel.DatabaseObjectList.Clear();
-            var l = await db.GetUserDefinedTableTypesAsync();
-            foreach (var item in l.OrderByDescending(el => el.LastAlteredTime))
+            try
             {
-                this.ViewModel.DatabaseObjectList.Add(item);
+                var reader = setting.CreateDatabaseSchemaReader();
+                var l = await reader.GetUserDefinedTableTypesAsync();
+                foreach (var item in l.OrderByDescending(el => el.LastAlteredTime))
+                {
+                    this.ViewModel.DatabaseObjectList.Add(item);
+                }
+            }
+            catch
+            {
+                MessageBox.Show(T.Text.ConnectionFailed);
             }
         }
         private void OpenOutputFolderButton_Click(object sender, RoutedEventArgs e)
