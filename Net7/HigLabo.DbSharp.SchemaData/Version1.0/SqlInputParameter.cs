@@ -46,20 +46,20 @@ namespace HigLabo.DbSharp.MetaData
         }
         protected override string GetDeclareTypeName()
         {
-            switch (this.DbType.DatabaseServer)
+            switch (this.DbType!.DatabaseServer)
             {
                 case DatabaseServer.SqlServer:
                     {
-                        var tp = this.DbType.SqlServerDbType.Value;
+                        var tp = this.DbType.SqlServerDbType!.Value;
                         if (tp == SqlServer2022DbType.Structured)
                         {
                             return this.UserTableTypeName;
                         }
                     }
                     break;
-                case DatabaseServer.Oracle: return this.DbType.OracleServerDbType.ToString();
-                case DatabaseServer.MySql: return this.DbType.MySqlServerDbType.ToString();
-                case DatabaseServer.PostgreSql: return this.DbType.PostgreSqlServerDbType.ToString();
+                case DatabaseServer.Oracle: return this.DbType.OracleServerDbType.ToString()!;
+                case DatabaseServer.MySql: return this.DbType.MySqlServerDbType.ToString()!;
+                case DatabaseServer.PostgreSql: return this.DbType.PostgreSqlServerDbType.ToString()!;
                 default: throw new InvalidOperationException();
             }
             return base.GetDeclareTypeName();

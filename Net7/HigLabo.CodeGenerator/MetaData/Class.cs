@@ -40,9 +40,9 @@ namespace HigLabo.CodeGenerator
             this.Fields.Add(f);
 
             var p = new Property(typeName, name);
-            p.Get.Body.Add(SourceCodeLanguage.CSharp, "return _" + name + ";");
-            p.Get.IsAutomaticProperty = true;
-            p.Set.Body.Add(SourceCodeLanguage.CSharp, "_" + name + " = value;");
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return _" + name + ";");
+            p.Get!.IsAutomaticProperty = true;
+            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "_" + name + " = value;");
             p.Set.IsAutomaticProperty = true;
             this.Properties.Add(p);
         }

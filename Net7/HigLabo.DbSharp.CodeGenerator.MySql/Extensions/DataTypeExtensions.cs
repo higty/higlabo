@@ -15,7 +15,7 @@ namespace HigLabo.DbSharp
     {
         public static MySql.Data.MySqlClient.MySqlDbType GetMySqlDbType(this HigLabo.DbSharp.MetaData.MySqlDbType type)
         {
-            return type.ToStringFromEnum().ToEnum<MySql.Data.MySqlClient.MySqlDbType>().Value;
+            return type.ToStringFromEnum().ToEnum<MySql.Data.MySqlClient.MySqlDbType>()!.Value;
         }
     }
 }

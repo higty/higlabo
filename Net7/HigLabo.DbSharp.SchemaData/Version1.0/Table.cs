@@ -55,7 +55,7 @@ namespace HigLabo.DbSharp.MetaData
         public IEnumerable<Column> GetColumns(Boolean? primaryKey, Boolean? isTimestamp, Boolean? IsIdentity, Boolean? IsRowGuidCol)
         {
             return this.Columns.Where(el => (primaryKey == null || el.IsPrimaryKey == primaryKey.Value) &&
-                (isTimestamp == null || el.DbType.IsTimestamp() == isTimestamp) &&
+                (isTimestamp == null || el.DbType!.IsTimestamp() == isTimestamp) &&
                 (IsIdentity == null || el.IsIdentity == IsIdentity) &&
                 (IsRowGuidCol == null || el.IsRowGuidCol == IsRowGuidCol));
         }
@@ -65,7 +65,7 @@ namespace HigLabo.DbSharp.MetaData
         }
         public IEnumerable<Column> GetPrimaryKeyOrTimestampColumns()
         {
-            return this.Columns.Where(el => el.IsPrimaryKey == true || el.DbType.IsTimestamp() == true);
+            return this.Columns.Where(el => el.IsPrimaryKey == true || el.DbType!.IsTimestamp() == true);
         }
         public Boolean HasPrimaryKeyColumn()
         {

@@ -62,8 +62,9 @@ namespace DbSharpApplication
         private void LanguageListComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var language = this.LanguageListComboBox.SelectedItem as MainWindowViewModel.LanguageSetting;
-            CultureInfo.CurrentCulture = new CultureInfo(language.Name);
+            if (language == null) { return; }
 
+            CultureInfo.CurrentCulture = new CultureInfo(language.Name);
             this.SetText();
         }
 

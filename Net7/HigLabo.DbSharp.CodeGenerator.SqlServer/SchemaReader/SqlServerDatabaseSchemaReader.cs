@@ -15,6 +15,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class SqlServerDatabaseSchemaReader : DatabaseSchemaReader
     {
+        public override DatabaseSchemaQueryBuilder QueryBuilder => new SqlServerDatabaseSchemaQueryBuilder();
         public override DatabaseServer DatabaseServer
         {
             get { return DatabaseServer.SqlServer; }
@@ -23,9 +24,9 @@ namespace HigLabo.DbSharp.MetaData
         {
             get { return true; }
         }
+
         public SqlServerDatabaseSchemaReader(String connectionString)
         {
-            this.QueryBuilder = new SqlServerDatabaseSchemaQueryBuilder();
             this.ConnectionString = connectionString;
         }
     
@@ -37,25 +38,23 @@ namespace HigLabo.DbSharp.MetaData
         public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
         {
             List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
-            StoredProcedureResultSetColumn resultSets = null;
             List<DataTable> schemaDataTableList = new List<DataTable>();
-            DataType c = null;
             var cm = CreateTestSqlCommand<SqlCommand>(sp, values);
 
             //UserDefinedTableType
-            foreach (var item in sp.Parameters.Where(el => el.DbType.SqlServerDbType == SqlServer2022DbType.Structured))
+            foreach (var item in sp.Parameters.Where(el => el.DbType!.SqlServerDbType == SqlServer2022DbType.Structured))
             {
-                var dt = cm.Parameters[item.Name].Value as DataTable;
+                var dt = (DataTable)cm.Parameters[item.Name].Value;
                 var udt = await this.GetUserDefinedTableTypeAsync(item.UserTableTypeName);
                 foreach (var column in udt.Columns)
                 {
                     dt.Columns.Add(new DataColumn(column.Name, column.GetClassNameType().ToType()));
                 }
-                var oo = new Object[udt.Columns.Count];
+                var oo = new Object?[udt.Columns.Count];
                 for (int i = 0; i < udt.Columns.Count; i++)
                 {
-                    c = udt.Columns[i];
-                    oo[i] = this.GetParameterValue(c, c.DbType.SqlServerDbType.Value);
+                    var c = udt.Columns[i];
+                    oo[i] = this.GetParameterValue(c, c.DbType!.SqlServerDbType!.Value);
                 }
                 dt.Rows.Add(oo);
             }
@@ -67,7 +66,7 @@ namespace HigLabo.DbSharp.MetaData
                     db.Open();
                     db.BeginTransaction(IsolationLevel.ReadUncommitted);
 
-                    using (IDataReader r = db.ExecuteReader(cm))
+                    using (IDataReader r = db.ExecuteReader(cm)!)
                     {
                         var schemaDataTable = r.GetSchemaTable();
                         if (schemaDataTable == null) return;
@@ -78,7 +77,7 @@ namespace HigLabo.DbSharp.MetaData
                         {
                             while (r.NextResult())
                             {
-                                schemaDataTableList.Add(r.GetSchemaTable());
+                                schemaDataTableList.Add(r.GetSchemaTable()!);
                             }
                         }
                     }
@@ -103,20 +102,17 @@ namespace HigLabo.DbSharp.MetaData
             Int32 index = 0;
             foreach (var schemaDataTable in schemaDataTableList)
             {
-                if (index == 0)
+                var resultSets = index switch
                 {
-                    resultSets = new StoredProcedureResultSetColumn("ResultSet");
-                }
-                else
-                {
-                    resultSets = new StoredProcedureResultSetColumn("ResultSet" + index);
-                }
+                    0 => new StoredProcedureResultSetColumn("ResultSet"),
+                    _ => new StoredProcedureResultSetColumn("ResultSet" + index),
+                };
                 for (var i = 0; i < schemaDataTable.Rows.Count; i++)
                 {
                     var row = schemaDataTable.Rows[i];
 
-                    c = new DataType();
-                    c.Name = row["ColumnName"].ToString();
+                    var c = new DataType();
+                    c.Name = row["ColumnName"].ToString()!;
                     c.Ordinal = resultSets.Columns.Count;
                     c.DbType = this.CreateDbType(row["ProviderType"]);
                     if (c.DbType.IsUdt() == true)
@@ -125,7 +121,7 @@ namespace HigLabo.DbSharp.MetaData
                         var typeName = "";
                         if (tp == null)
                         {
-                            typeName = row["UdtAssemblyQualifiedName"].ToString().ExtractString(null, ',');
+                            typeName = row["UdtAssemblyQualifiedName"].ToString()!.ExtractString(null, ',');
                         }
                         else
                         {
@@ -166,7 +162,7 @@ namespace HigLabo.DbSharp.MetaData
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypes());
 
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.UserDefinedTableType);
                     o.Name = reader.GetString(0);
@@ -189,15 +185,13 @@ namespace HigLabo.DbSharp.MetaData
         public override async Task<List<DataType>> GetUserDefinedTableTypeColumnsAsync(String name)
         {
             List<DataType> l = new List<DataType>();
-            DataType c = null;
 
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetUserDefinedTypeColumns(name));
-
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
-                    c = new DataType();
+                    var c = new DataType();
                     c.Name = reader.GetString(0);
                     c.Ordinal = l.Count;
                     c.DbType = this.CreateDbType(reader["ColumnType"]);
@@ -221,7 +215,7 @@ namespace HigLabo.DbSharp.MetaData
         }
         protected override IDbDataParameter CreateParameter(String name, DataType dataType)
         {
-            var sqlDbType = dataType.DbType.SqlServerDbType.ToString().ToEnum<SqlDbType>().Value;
+            var sqlDbType = dataType.DbType!.SqlServerDbType.ToString()!.ToEnum<SqlDbType>()!.Value;
             var p = new Microsoft.Data.SqlClient.SqlParameter(name, sqlDbType);
             if (dataType is SqlInputParameter dType)
             {
@@ -236,12 +230,12 @@ namespace HigLabo.DbSharp.MetaData
                 }
                 else
                 {
-                    p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType.Value);
+                    p.Value = this.GetParameterValue(dataType, dataType.DbType.SqlServerDbType!.Value);
                 }
             }
             return p;
         }
-        protected override Object GetParameterValue(DataType dataType, Object sqlDbType)
+        protected override Object? GetParameterValue(DataType dataType, Object sqlDbType)
         {
             switch ((SqlServer2022DbType)sqlDbType)
             {
@@ -364,7 +358,7 @@ namespace HigLabo.DbSharp.MetaData
             foreach (var c in t.Columns.FindAll(el => el.ForeignKey != null))
             {
                 sb.AppendFormat(",constraint {0}_Fk_{1} foreign key({1}) references {2}({3}) on update {4} on delete {5}"
-                    , t.Name, c.Name, c.ForeignKey.ParentTableName, c.ForeignKey.ParentColumnName
+                    , t.Name, c.Name, c.ForeignKey!.ParentTableName, c.ForeignKey.ParentColumnName
                     , c.ForeignKey.OnUpdate.Replace("_", " ")
                     , c.ForeignKey.OnDelete.Replace("_", " "));
                 sb.AppendLine();

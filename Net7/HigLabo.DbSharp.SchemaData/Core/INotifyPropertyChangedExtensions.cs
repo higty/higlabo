@@ -10,7 +10,7 @@ namespace System.ComponentModel
     internal static class INotifyPropertyChangedExtensions
     {
         public static void SetPropertyValue<T, TProperty>(this T obj, ref TProperty field, TProperty value
-            , PropertyChangedEventHandler onPropertyChanged, [CallerMemberName]  String propertyName = "")
+            , PropertyChangedEventHandler? onPropertyChanged, [CallerMemberName]  String propertyName = "")
             where T : INotifyPropertyChanged
         {
             if (Object.Equals(field, value) == true) return;

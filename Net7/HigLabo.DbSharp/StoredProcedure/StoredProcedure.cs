@@ -16,17 +16,17 @@ namespace HigLabo.DbSharp
 {
     public abstract class StoredProcedure : IDatabaseContext
     {
-        public static event EventHandler<StoredProcedureExecutingEventArgs> Executing;
-        public static event EventHandler<StoredProcedureExecutedEventArgs> Executed;
+        public static event EventHandler<StoredProcedureExecutingEventArgs>? Executing;
+        public static event EventHandler<StoredProcedureExecutedEventArgs>? Executed;
         public static HigLabo.Core.TypeConverter TypeConverter { get; set; }
 
         static StoredProcedure()
         {
             TypeConverter = new HigLabo.Core.TypeConverter();
         }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
-        String IDatabaseContext.DatabaseKey { get; set; }
+        String IDatabaseContext.DatabaseKey { get; set; } = "";
 
         protected StoredProcedure()
         {
@@ -158,7 +158,7 @@ namespace HigLabo.DbSharp
             return TypeConverter.ToEnum<T>(value);
         }
 
-        protected PropertyChangedEventHandler GetPropertyChangedEventHandler()
+        protected PropertyChangedEventHandler? GetPropertyChangedEventHandler()
         {
             return this.PropertyChanged;
         }

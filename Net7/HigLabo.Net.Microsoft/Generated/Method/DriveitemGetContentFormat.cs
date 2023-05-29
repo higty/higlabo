@@ -19,7 +19,6 @@ namespace HigLabo.Net.Microsoft
                 {
                     case ApiPath.Drive_Items_ItemId_Content: return $"/drive/items/{ItemId}/content";
                     case ApiPath.Drive_Root_PathAndFilename_Content: return $"/drive/root:/{PathAndFilename}:/content";
-                    case ApiPath.Me_Drive_Items_ItemId_Content: return $"/me/drive/items/{ItemId}/content";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -32,7 +31,6 @@ namespace HigLabo.Net.Microsoft
         {
             Drive_Items_ItemId_Content,
             Drive_Root_PathAndFilename_Content,
-            Me_Drive_Items_ItemId_Content,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

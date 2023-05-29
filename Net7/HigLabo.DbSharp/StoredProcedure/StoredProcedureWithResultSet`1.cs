@@ -25,36 +25,36 @@ namespace HigLabo.DbSharp
             return rs;
         }
 
-        public new T GetFirstResultSet()
+        public new T? GetFirstResultSet()
         {
             return base.GetFirstResultSet() as T;
         }
-        public new T GetFirstResultSet(Database database)
+        public new T? GetFirstResultSet(Database database)
         {
             return base.GetFirstResultSet(database) as T;
         }
-        public new T GetFirstResultSet(IEnumerable<Database> databases)
+        public new T? GetFirstResultSet(IEnumerable<Database> databases)
         {
             var results = this.GetResultSets(databases);
             return results.FirstOrDefault() as T;
         }
-        public new async Task<T> GetFirstResultSetAsync()
+        public new async Task<T?> GetFirstResultSetAsync()
         {
             return await this.GetFirstResultSetAsync(this.GetDatabase()).ConfigureAwait(false);
         }
-        public new async Task<T> GetFirstResultSetAsync(Database database)
+        public new async Task<T?> GetFirstResultSetAsync(Database database)
         {
             return await this.GetFirstResultSetAsync(database, CancellationToken.None);
         }
-        public new async Task<T> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
+        public new async Task<T?> GetFirstResultSetAsync(Database database, CancellationToken cancellationToken)
         {
             return (await this.GetResultSetsAsync(database, cancellationToken)).FirstOrDefault() as T;
         }
-        public new async Task<T> GetFirstResultSetAsync(IEnumerable<Database> databases)
+        public new async Task<T?> GetFirstResultSetAsync(IEnumerable<Database> databases)
         {
             return await this.GetFirstResultSetAsync(databases, CancellationToken.None);
         }
-        public new async Task<T> GetFirstResultSetAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        public new async Task<T?> GetFirstResultSetAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             var results = await this.GetResultSetsAsync(databases, cancellationToken).ConfigureAwait(false);
             return results.FirstOrDefault() as T;
@@ -101,7 +101,7 @@ namespace HigLabo.DbSharp
             var l = new List<T>();
             foreach (var item in await base.GetResultSetsAsync(database, commandBehavior, cancellationToken))
             {
-                l.Add(item as T);
+                l.Add((T)item);
             }
             return l;
         }
@@ -122,7 +122,7 @@ namespace HigLabo.DbSharp
             var l = new List<T>();
             foreach (var item in await base.GetResultSetsAsync(databases, commandBehavior, cancellationToken))
             {
-                l.Add(item as T);
+                l.Add((T)item);
             }
             return l;
         }

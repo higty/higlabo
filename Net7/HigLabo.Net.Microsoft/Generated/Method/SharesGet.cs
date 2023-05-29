@@ -17,6 +17,9 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Shares_ShareIdOrEncodedSharingUrl: return $"/shares/{ShareIdOrEncodedSharingUrl}";
+                    case ApiPath.HaringUrl: return $"/haringUrl ";
+                    case ApiPath.Ase64Value: return $"/ase64Value ";
+                    case ApiPath.NcodedUrl: return $"/ncodedUrl ";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -28,6 +31,9 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Shares_ShareIdOrEncodedSharingUrl,
+            HaringUrl,
+            Ase64Value,
+            NcodedUrl,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

@@ -53,17 +53,17 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Timestamp;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType!.Value == SqlServer2022DbType.Timestamp;
                 case DatabaseServer.Oracle:
                     {
-                        return this.OracleServerDbType.Value == OracleDbType.TimeStamp ||
+                        return this.OracleServerDbType!.Value == OracleDbType.TimeStamp ||
                         this.OracleServerDbType.Value == OracleDbType.TimeStampLTZ ||
                         this.OracleServerDbType.Value == OracleDbType.TimeStampTZ;
                     }
-                case DatabaseServer.MySql: return this.MySqlServerDbType.Value == MySqlDbType.Timestamp;
+                case DatabaseServer.MySql: return this.MySqlServerDbType!.Value == MySqlDbType.Timestamp;
                 case DatabaseServer.PostgreSql:
                     {
-                        return this.PostgreSqlServerDbType.Value == NpgsqlDbType.Timestamp ||
+                        return this.PostgreSqlServerDbType!.Value == NpgsqlDbType.Timestamp ||
                          this.PostgreSqlServerDbType.Value == NpgsqlDbType.TimestampTZ;
                     }
                 default: throw new InvalidOperationException();
@@ -75,7 +75,7 @@ namespace HigLabo.DbSharp.MetaData
             {
                 case DatabaseServer.SqlServer:
                     {
-                        var type = this.SqlServerDbType.Value;
+                        var type = this.SqlServerDbType!.Value;
                         return type == SqlServer2022DbType.Char ||
                             type == SqlServer2022DbType.NChar ||
                             type == SqlServer2022DbType.VarChar ||
@@ -86,7 +86,7 @@ namespace HigLabo.DbSharp.MetaData
                     }
                 case DatabaseServer.MySql:
                     {
-                        var type = this.MySqlServerDbType.Value;
+                        var type = this.MySqlServerDbType!.Value;
                         return type == MySqlDbType.String ||
                             type == MySqlDbType.Text ||
                             type == MySqlDbType.Blob ||
@@ -106,7 +106,7 @@ namespace HigLabo.DbSharp.MetaData
             {
                 case DatabaseServer.SqlServer:
                     {
-                        var type = this.SqlServerDbType.Value;
+                        var type = this.SqlServerDbType!.Value;
                         return type == SqlServer2022DbType.Decimal ||
                             type == SqlServer2022DbType.Float;
                     }
@@ -129,14 +129,14 @@ namespace HigLabo.DbSharp.MetaData
             {
                 case DatabaseServer.SqlServer:
                     {
-                        var type = this.SqlServerDbType.Value;
+                        var type = this.SqlServerDbType!.Value;
                         return type == SqlServer2022DbType.Time ||
                             type == SqlServer2022DbType.DateTime2 ||
                             type == SqlServer2022DbType.DateTimeOffset;
                     }
                 case DatabaseServer.MySql:
                     {
-                        var type = this.MySqlServerDbType.Value;
+                        var type = this.MySqlServerDbType!.Value;
                         return type == MySqlDbType.Date ||
                             type == MySqlDbType.Newdate ||
                             type == MySqlDbType.DateTime ||
@@ -171,7 +171,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Structured;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType!.Value == SqlServer2022DbType.Structured;
                 case DatabaseServer.Oracle: return false;
                 case DatabaseServer.MySql: return false;
                 case DatabaseServer.PostgreSql: return false;
@@ -182,7 +182,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Udt;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType!.Value == SqlServer2022DbType.Udt;
                 case DatabaseServer.Oracle: return false;
                 case DatabaseServer.MySql: return false;
                 case DatabaseServer.PostgreSql: return false;
@@ -193,7 +193,7 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.Value == SqlServer2022DbType.Structured;
+                case DatabaseServer.SqlServer: return this.SqlServerDbType!.Value == SqlServer2022DbType.Structured;
                 case DatabaseServer.Oracle: return false;
                 case DatabaseServer.MySql: return false;
                 case DatabaseServer.PostgreSql: return false;
@@ -205,10 +205,10 @@ namespace HigLabo.DbSharp.MetaData
         {
             switch (this.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return this.SqlServerDbType.ToString();
-                case DatabaseServer.Oracle: return this.OracleServerDbType.ToString();
-                case DatabaseServer.MySql: return this.MySqlServerDbType.ToString();
-                case DatabaseServer.PostgreSql: return this.PostgreSqlServerDbType.ToString();
+                case DatabaseServer.SqlServer: return this.SqlServerDbType.ToString()!;
+                case DatabaseServer.Oracle: return this.OracleServerDbType.ToString()!;
+                case DatabaseServer.MySql: return this.MySqlServerDbType.ToString()!;
+                case DatabaseServer.PostgreSql: return this.PostgreSqlServerDbType.ToString()!;
                 default: throw new InvalidOperationException();
             }
         }

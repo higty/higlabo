@@ -8,7 +8,7 @@ namespace HigLabo.Net.Microsoft
 {
     public class MeetingInfo
     {
-        public IdentitySet Organizer { get; set; }
-        public string Token { get; set; }
+        public IdentitySet? Organizer { get; set; }
+        public string? Token { get; set; }
     }
 }

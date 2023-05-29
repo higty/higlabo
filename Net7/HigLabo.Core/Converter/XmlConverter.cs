@@ -30,7 +30,7 @@ namespace HigLabo.Core
             sl.Serialize(sw, obj);
             return SanitizeXml(sb.ToString());
         }
-        public T Deserialize<T>(String text)
+        public T? Deserialize<T>(String text)
         {
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(T));
             var xmlText = text;
@@ -38,11 +38,13 @@ namespace HigLabo.Core
             {
                 xmlText = this.SanitizeXml(text);
             }
-            return (T)serializer.Deserialize(new StringReader(xmlText));
+            var o = serializer.Deserialize(new StringReader(xmlText));
+            if (o == null) { return default(T?); }
+            return (T)o;
         }
         public String SanitizeXml(String text)
         {
-            if (text == null) { return null; }
+            if (text == null) { return ""; }
 
             var sanitised = RegexList.Sanitize.Replace(text, new MatchEvaluator(match =>
             {

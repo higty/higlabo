@@ -9,8 +9,9 @@ namespace HigLabo.Net.Slack
 {
     public static class StringExtensions
     {
-        public static DateTimeOffset? GetDateTimeOffsetFromTs(this String value)
+        public static DateTimeOffset? GetDateTimeOffsetFromTs(this String? value)
         {
+            if (value == null) { return null; }
             if (value.IsNullOrEmpty()) { return null; }
             var xx = value.Split('.').Select(el => Int32.Parse(el)).ToArray();
             if (xx.Length > 0)

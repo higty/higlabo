@@ -14,6 +14,6 @@ namespace HigLabo.Net.OAuth
     }
     public interface IRestApiPagingParameter
     {
-        string NextPageToken { get; set; }
+        string? NextPageToken { get; set; }
     }
 }

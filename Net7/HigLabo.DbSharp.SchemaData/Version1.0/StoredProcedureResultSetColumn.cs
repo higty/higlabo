@@ -9,7 +9,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class StoredProcedureResultSetColumn : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private String _Name = "";
         private String _TableName = "";

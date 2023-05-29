@@ -24,6 +24,35 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
+            ActorDisplayName,
+            AlertWebUrl,
+            AssignedTo,
+            Category,
+            Classification,
+            Comments,
+            CreatedDateTime,
+            Description,
+            DetectionSource,
+            DetectorId,
+            Determination,
+            Evidence,
+            FirstActivityDateTime,
+            Id,
+            IncidentId,
+            IncidentWebUrl,
+            LastActivityDateTime,
+            LastUpdateDateTime,
+            MitreTechniques,
+            ProviderAlertId,
+            RecommendedActions,
+            ResolvedDateTime,
+            ServiceSource,
+            Severity,
+            Status,
+            TenantId,
+            ThreatDisplayName,
+            ThreatFamilyName,
+            Title,
         }
         public enum ApiPath
         {

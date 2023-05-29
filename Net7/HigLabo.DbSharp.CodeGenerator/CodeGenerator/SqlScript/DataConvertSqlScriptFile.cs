@@ -67,7 +67,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 var firstColumn = true;
                 foreach (var column in table.Columns)
                 {
-                    if (column.DbType.SqlServerDbType == SqlServer2022DbType.Timestamp) { continue; }
+                    if (column.DbType!.SqlServerDbType == SqlServer2022DbType.Timestamp) { continue; }
                     if (firstColumn == false)
                     {
                         sb.Append(",");
@@ -79,7 +79,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 firstColumn = true;
                 foreach (var column in table.Columns)
                 {
-                    if (column.DbType.SqlServerDbType == SqlServer2022DbType.Timestamp) { continue; }
+                    if (column.DbType!.SqlServerDbType == SqlServer2022DbType.Timestamp) { continue; }
                     if (firstColumn == false)
                     {
                         sb.Append(",");

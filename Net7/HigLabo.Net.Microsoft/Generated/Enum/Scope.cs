@@ -25,10 +25,14 @@ namespace HigLabo.Net.Microsoft
         BookingsAppointmentReadWriteAll,
         BookingsReadWriteAll,
         BookingsManageAll,
+        BrowserSiteListsReadAll,
+        BrowserSiteListsReadWriteAll,
         CalendarsRead,
         CalendarsReadShared,
         CalendarsReadWrite,
         CalendarsReadWriteShared,
+        CalendarsReadBasic,
+        CalendarsReadBasicAll,
         CallsInitiateAll,
         CallsInitiateGroupCallAll,
         CallsJoinGroupCallAll,
@@ -51,9 +55,20 @@ namespace HigLabo.Net.Microsoft
         ChatRead,
         ChatReadBasic,
         ChatReadWrite,
+        ChatManageDeletionAll,
+        ChatReadWhereInstalled,
         ChatReadAll,
+        ChatReadBasicWhereInstalled,
         ChatReadBasicAll,
         ChatUpdatePolicyViolationAll,
+        ChatReadWriteWhereInstalled,
+        ChatReadWriteAll,
+        ChatMemberRead,
+        ChatMemberReadWrite,
+        ChatMemberReadWhereInstalled,
+        ChatMemberReadAll,
+        ChatMemberReadWriteWhereInstalled,
+        ChatMemberReadWriteAll,
         ChatSettingsReadChat,
         ChatSettingsReadWriteChat,
         ChatMessageReadChat,
@@ -73,6 +88,10 @@ namespace HigLabo.Net.Microsoft
         CloudPCReadWriteAll,
         ConsentRequestReadAll,
         ConsentRequestReadWriteAll,
+        CrossTenantUserProfileSharingRead,
+        CrossTenantUserProfileSharingReadAll,
+        CrossTenantUserProfileSharingReadWrite,
+        CrossTenantUserProfileSharingReadWriteAll,
         ContactsRead,
         ContactsReadShared,
         ContactsReadWrite,
@@ -81,6 +100,8 @@ namespace HigLabo.Net.Microsoft
         CustomSecAttributeAssignmentReadWriteAll,
         CustomSecAttributeDefinitionReadAll,
         CustomSecAttributeDefinitionReadWriteAll,
+        DeviceLocalCredentialReadBasicAll,
+        DeviceLocalCredentialReadAll,
         DelegatedAdminRelationshipReadAll,
         DelegatedAdminRelationshipReadWriteAll,
         DeviceRead,
@@ -90,6 +111,8 @@ namespace HigLabo.Net.Microsoft
         DirectoryReadAll,
         DirectoryReadWriteAll,
         DirectoryAccessAsUserAll,
+        DirectoryRecommendationsReadAll,
+        DirectoryRecommendationsReadWriteAll,
         DomainReadAll,
         DomainReadWriteAll,
         EDiscoveryReadAll,
@@ -112,6 +135,16 @@ namespace HigLabo.Net.Microsoft
         EduRosterReadBasicAll,
         EduRosterReadAll,
         EduRosterReadWriteAll,
+        LearningContentReadAll,
+        LearningContentReadWriteAll,
+        LearningProviderRead,
+        LearningProviderReadWrite,
+        LearningAssignedCourseRead,
+        LearningSelfInitiatedCourseRead,
+        LearningAssignedCourseReadAll,
+        LearningSelfInitiatedCourseReadAll,
+        LearningAssignedCourseReadWriteAll,
+        LearningSelfInitiatedCourseReadWriteAll,
         EntitlementManagementReadWriteAll,
         EntitlementManagementReadAll,
         FilesRead,
@@ -127,7 +160,6 @@ namespace HigLabo.Net.Microsoft
         GroupMemberReadAll,
         GroupMemberReadWriteAll,
         UnifiedGroupMemberReadAsGuest,
-        GroupSelected,
         GroupCreate,
         IdentityProviderReadAll,
         IdentityProviderReadWriteAll,
@@ -138,6 +170,20 @@ namespace HigLabo.Net.Microsoft
         IdentityRiskyServicePrincipalReadWriteAll,
         IdentityUserFlowReadAll,
         IdentityUserFlowReadWriteAll,
+        SecurityIncidentReadAll,
+        SecurityIncidentReadWriteAll,
+        IndustryDataReadBasicAll,
+        IndustryDataDataConnectorReadAll,
+        IndustryDataDataConnectorReadWriteAll,
+        IndustryDataDataConnectorUpload,
+        IndustryDataInboundFlowReadAll,
+        IndustryDataInboundFlowReadWriteAll,
+        IndustryDataReferenceDefinitionReadAll,
+        IndustryDataRunReadAll,
+        IndustryDataSourceSystemReadAll,
+        IndustryDataSourceSystemReadWriteAll,
+        IndustryDataTimePeriodReadAll,
+        IndustryDataTimePeriodReadWriteAll,
         InformationProtectionPolicyRead,
         InformationProtectionPolicyReadAll,
         DeviceManagementAppsReadAll,
@@ -151,6 +197,8 @@ namespace HigLabo.Net.Microsoft
         DeviceManagementRBACReadWriteAll,
         DeviceManagementServiceConfigReadAll,
         DeviceManagementServiceConfigReadWriteAll,
+        LifecycleWorkflowsReadAll,
+        LifecycleWorkflowsReadWriteAll,
         MailRead,
         MailReadBasic,
         MailReadWrite,
@@ -177,6 +225,7 @@ namespace HigLabo.Net.Microsoft
         OnlineMeetingsRead,
         OnlineMeetingsReadWrite,
         OnlineMeetingArtifactReadAll,
+        OnlineMeetingTranscriptReadAll,
         OnlineMeetingsReadAll,
         OnlineMeetingsReadWriteAll,
         Email,
@@ -191,6 +240,10 @@ namespace HigLabo.Net.Microsoft
         PrivilegedAccessReadWriteAzureAD,
         PrivilegedAccessReadWriteAzureADGroup,
         PrivilegedAccessReadWriteAzureResources,
+        PrivilegedAssignmentScheduleReadAzureADGroup,
+        PrivilegedEligibilityScheduleReadAzureADGroup,
+        PrivilegedAssignmentScheduleReadWriteAzureADGroup,
+        PrivilegedEligibilityScheduleReadWriteAzureADGroup,
         PrivilegedAccessReadAzureAD,
         PrivilegedAccessReadAzureADGroup,
         PrivilegedAccessReadAzureResources,
@@ -217,16 +270,20 @@ namespace HigLabo.Net.Microsoft
         PresenceReadWriteAll,
         ProgramControlReadAll,
         ProgramControlReadWriteAll,
+        RecordsManagementReadAll,
+        RecordsManagementReadWriteAll,
         ReportsReadAll,
         RoleAssignmentScheduleReadDirectory,
         RoleEligibilityScheduleReadDirectory,
         RoleManagementReadAll,
         RoleManagementReadDirectory,
         RoleManagementPolicyReadDirectory,
+        RoleManagementReadExchange,
         RoleAssignmentScheduleReadWriteDirectory,
         RoleEligibilityScheduleReadWriteDirectory,
         RoleManagementReadWriteDirectory,
         RoleManagementPolicyReadWriteDirectory,
+        RoleManagementReadWriteExchange,
         ScheduleReadWriteAll,
         ScheduleReadAll,
         WorkforceIntegrationReadWriteAll,
@@ -237,12 +294,19 @@ namespace HigLabo.Net.Microsoft
         ExternalItemReadAll,
         ExternalItemReadWriteAll,
         ExternalItemReadWriteOwnedBy,
+        AcronymReadAll,
+        BookmarkReadAll,
+        QnAReadAll,
         SearchConfigurationReadAll,
         SearchConfigurationReadWriteAll,
-        SecurityEventsReadAll,
-        SecurityEventsReadWriteAll,
+        AttackSimulationReadAll,
+        AttackSimulationReadWriteAll,
         SecurityActionsReadAll,
         SecurityActionsReadWriteAll,
+        SecurityAlertReadAll,
+        SecurityAlertReadWriteAll,
+        SecurityEventsReadAll,
+        SecurityEventsReadWriteAll,
         ThreatIndicatorsReadWriteOwnedBy,
         ThreatIndicatorsReadAll,
         ServiceHealthReadAll,
@@ -261,10 +325,14 @@ namespace HigLabo.Net.Microsoft
         TasksReadShared,
         TasksReadWrite,
         TasksReadWriteShared,
+        TasksReadAll,
+        TasksReadWriteAll,
         TermStoreReadAll,
         TermStoreReadWriteAll,
         TeamReadBasicAll,
         TeamCreate,
+        TeamTemplatesRead,
+        TeamTemplatesReadAll,
         TeamSettingsReadAll,
         TeamSettingsReadWriteAll,
         TeamsActivityRead,
@@ -278,12 +346,22 @@ namespace HigLabo.Net.Microsoft
         TeamsAppInstallationReadForTeam,
         TeamsAppInstallationReadWriteForTeam,
         TeamsAppInstallationReadWriteSelfForTeam,
+        TeamsAppInstallationReadWriteAndConsentForChat,
+        TeamsAppInstallationReadWriteAndConsentForTeam,
+        TeamsAppInstallationReadWriteAndConsentSelfForChat,
+        TeamsAppInstallationReadWriteAndConsentSelfForTeam,
         TeamsAppInstallationReadForUserAll,
         TeamsAppInstallationReadWriteForUserAll,
         TeamsAppInstallationReadWriteSelfForUserAll,
         TeamsAppInstallationReadForTeamAll,
         TeamsAppInstallationReadWriteForTeamAll,
         TeamsAppInstallationReadWriteSelfForTeamAll,
+        TeamsAppInstallationReadWriteAndConsentForChatAll,
+        TeamsAppInstallationReadWriteAndConsentForTeamAll,
+        TeamsAppInstallationReadWriteAndConsentSelfForChatAll,
+        TeamsAppInstallationReadWriteAndConsentSelfForTeamAll,
+        TeamworkAppSettingsReadAll,
+        TeamworkAppSettingsReadWriteAll,
         TeamworkDeviceReadAll,
         TeamworkDeviceReadWriteAll,
         TeamMemberReadAll,
@@ -308,16 +386,25 @@ namespace HigLabo.Net.Microsoft
         TeamsTabReadAll,
         TeamsTabReadWriteAll,
         TeamsTabCreate,
+        TeamsTabReadWriteSelfForChat,
+        TeamsTabReadWriteSelfForTeam,
+        TeamsTabReadWriteSelfForUser,
+        TeamsTabReadWriteSelfForChatAll,
+        TeamsTabReadWriteSelfForTeamAll,
+        TeamsTabReadWriteSelfForUserAll,
         TeamworkTagReadWrite,
         TeamworkTagRead,
         TeamworkTagReadWriteAll,
         TeamworkTagReadAll,
+        CrossTenantInformationReadBasicAll,
         AgreementReadAll,
         AgreementReadWriteAll,
         AgreementAcceptanceRead,
         AgreementAcceptanceReadAll,
         ThreatAssessmentReadWriteAll,
         ThreatAssessmentReadAll,
+        ThreatHuntingReadAll,
+        ThreatIntelligenceReadAll,
         PrinterCreate,
         PrinterFullControlAll,
         PrinterReadAll,
@@ -346,8 +433,11 @@ namespace HigLabo.Net.Microsoft
         UserReadAll,
         UserReadWriteAll,
         UserInviteAll,
+        UserEnableDisableAccountAll,
         UserExportAll,
         UserManageIdentitiesAll,
+        UserLifeCycleInfoReadAll,
+        UserLifeCycleInfoReadWriteAll,
         UserActivityReadWriteCreatedByApp,
         UserAuthenticationMethodRead,
         UserAuthenticationMethodReadAll,
@@ -382,10 +472,14 @@ namespace HigLabo.Net.Microsoft
                 case Scope.BookingsAppointmentReadWriteAll: return "BookingsAppointment.ReadWrite.All";
                 case Scope.BookingsReadWriteAll: return "Bookings.ReadWrite.All";
                 case Scope.BookingsManageAll: return "Bookings.Manage.All";
+                case Scope.BrowserSiteListsReadAll: return "BrowserSiteLists.Read.All";
+                case Scope.BrowserSiteListsReadWriteAll: return "BrowserSiteLists.ReadWrite.All";
                 case Scope.CalendarsRead: return "Calendars.Read";
                 case Scope.CalendarsReadShared: return "Calendars.Read.Shared";
                 case Scope.CalendarsReadWrite: return "Calendars.ReadWrite";
                 case Scope.CalendarsReadWriteShared: return "Calendars.ReadWrite.Shared";
+                case Scope.CalendarsReadBasic: return "Calendars.ReadBasic";
+                case Scope.CalendarsReadBasicAll: return "Calendars.ReadBasic.All";
                 case Scope.CallsInitiateAll: return "Calls.Initiate.All";
                 case Scope.CallsInitiateGroupCallAll: return "Calls.InitiateGroupCall.All";
                 case Scope.CallsJoinGroupCallAll: return "Calls.JoinGroupCall.All";
@@ -408,9 +502,20 @@ namespace HigLabo.Net.Microsoft
                 case Scope.ChatRead: return "Chat.Read";
                 case Scope.ChatReadBasic: return "Chat.ReadBasic";
                 case Scope.ChatReadWrite: return "Chat.ReadWrite";
+                case Scope.ChatManageDeletionAll: return "Chat.ManageDeletion.All";
+                case Scope.ChatReadWhereInstalled: return "Chat.Read.WhereInstalled";
                 case Scope.ChatReadAll: return "Chat.Read.All";
+                case Scope.ChatReadBasicWhereInstalled: return "Chat.ReadBasic.WhereInstalled";
                 case Scope.ChatReadBasicAll: return "Chat.ReadBasic.All";
                 case Scope.ChatUpdatePolicyViolationAll: return "Chat.UpdatePolicyViolation.All";
+                case Scope.ChatReadWriteWhereInstalled: return "Chat.ReadWrite.WhereInstalled";
+                case Scope.ChatReadWriteAll: return "Chat.ReadWrite.All";
+                case Scope.ChatMemberRead: return "ChatMember.Read";
+                case Scope.ChatMemberReadWrite: return "ChatMember.ReadWrite";
+                case Scope.ChatMemberReadWhereInstalled: return "ChatMember.Read.WhereInstalled";
+                case Scope.ChatMemberReadAll: return "ChatMember.Read.All";
+                case Scope.ChatMemberReadWriteWhereInstalled: return "ChatMember.ReadWrite.WhereInstalled";
+                case Scope.ChatMemberReadWriteAll: return "ChatMember.ReadWrite.All";
                 case Scope.ChatSettingsReadChat: return "ChatSettings.Read.Chat";
                 case Scope.ChatSettingsReadWriteChat: return "ChatSettings.ReadWrite.Chat";
                 case Scope.ChatMessageReadChat: return "ChatMessage.Read.Chat";
@@ -430,6 +535,10 @@ namespace HigLabo.Net.Microsoft
                 case Scope.CloudPCReadWriteAll: return "CloudPC.ReadWrite.All";
                 case Scope.ConsentRequestReadAll: return "ConsentRequest.Read.All";
                 case Scope.ConsentRequestReadWriteAll: return "ConsentRequest.ReadWrite.All";
+                case Scope.CrossTenantUserProfileSharingRead: return "CrossTenantUserProfileSharing.Read";
+                case Scope.CrossTenantUserProfileSharingReadAll: return "CrossTenantUserProfileSharing.Read.All";
+                case Scope.CrossTenantUserProfileSharingReadWrite: return "CrossTenantUserProfileSharing.ReadWrite";
+                case Scope.CrossTenantUserProfileSharingReadWriteAll: return "CrossTenantUserProfileSharing.ReadWrite.All";
                 case Scope.ContactsRead: return "Contacts.Read";
                 case Scope.ContactsReadShared: return "Contacts.Read.Shared";
                 case Scope.ContactsReadWrite: return "Contacts.ReadWrite";
@@ -438,6 +547,8 @@ namespace HigLabo.Net.Microsoft
                 case Scope.CustomSecAttributeAssignmentReadWriteAll: return "CustomSecAttributeAssignment.ReadWrite.All";
                 case Scope.CustomSecAttributeDefinitionReadAll: return "CustomSecAttributeDefinition.Read.All";
                 case Scope.CustomSecAttributeDefinitionReadWriteAll: return "CustomSecAttributeDefinition.ReadWrite.All";
+                case Scope.DeviceLocalCredentialReadBasicAll: return "DeviceLocalCredential.ReadBasic.All";
+                case Scope.DeviceLocalCredentialReadAll: return "DeviceLocalCredential.Read.All";
                 case Scope.DelegatedAdminRelationshipReadAll: return "DelegatedAdminRelationship.Read.All";
                 case Scope.DelegatedAdminRelationshipReadWriteAll: return "DelegatedAdminRelationship.ReadWrite.All";
                 case Scope.DeviceRead: return "Device.Read";
@@ -447,6 +558,8 @@ namespace HigLabo.Net.Microsoft
                 case Scope.DirectoryReadAll: return "Directory.Read.All";
                 case Scope.DirectoryReadWriteAll: return "Directory.ReadWrite.All";
                 case Scope.DirectoryAccessAsUserAll: return "Directory.AccessAsUser.All";
+                case Scope.DirectoryRecommendationsReadAll: return "DirectoryRecommendations.Read.All";
+                case Scope.DirectoryRecommendationsReadWriteAll: return "DirectoryRecommendations.ReadWrite.All";
                 case Scope.DomainReadAll: return "Domain.Read.All";
                 case Scope.DomainReadWriteAll: return "Domain.ReadWrite.All";
                 case Scope.EDiscoveryReadAll: return "eDiscovery.Read.All";
@@ -469,6 +582,16 @@ namespace HigLabo.Net.Microsoft
                 case Scope.EduRosterReadBasicAll: return "EduRoster.ReadBasic.All";
                 case Scope.EduRosterReadAll: return "EduRoster.Read.All";
                 case Scope.EduRosterReadWriteAll: return "EduRoster.ReadWrite.All";
+                case Scope.LearningContentReadAll: return "LearningContent.Read.All";
+                case Scope.LearningContentReadWriteAll: return "LearningContent.ReadWrite.All";
+                case Scope.LearningProviderRead: return "LearningProvider.Read";
+                case Scope.LearningProviderReadWrite: return "LearningProvider.ReadWrite";
+                case Scope.LearningAssignedCourseRead: return "LearningAssignedCourse.Read";
+                case Scope.LearningSelfInitiatedCourseRead: return "LearningSelfInitiatedCourse.Read";
+                case Scope.LearningAssignedCourseReadAll: return "LearningAssignedCourse.Read.All";
+                case Scope.LearningSelfInitiatedCourseReadAll: return "LearningSelfInitiatedCourse.Read.All";
+                case Scope.LearningAssignedCourseReadWriteAll: return "LearningAssignedCourse.ReadWrite.All";
+                case Scope.LearningSelfInitiatedCourseReadWriteAll: return "LearningSelfInitiatedCourse.ReadWrite.All";
                 case Scope.EntitlementManagementReadWriteAll: return "EntitlementManagement.ReadWrite.All";
                 case Scope.EntitlementManagementReadAll: return "EntitlementManagement.Read.All";
                 case Scope.FilesRead: return "Files.Read";
@@ -484,7 +607,6 @@ namespace HigLabo.Net.Microsoft
                 case Scope.GroupMemberReadAll: return "GroupMember.Read.All";
                 case Scope.GroupMemberReadWriteAll: return "GroupMember.ReadWrite.All";
                 case Scope.UnifiedGroupMemberReadAsGuest: return "UnifiedGroupMember.Read.AsGuest";
-                case Scope.GroupSelected: return "Group.Selected";
                 case Scope.GroupCreate: return "Group.Create";
                 case Scope.IdentityProviderReadAll: return "IdentityProvider.Read.All";
                 case Scope.IdentityProviderReadWriteAll: return "IdentityProvider.ReadWrite.All";
@@ -495,6 +617,20 @@ namespace HigLabo.Net.Microsoft
                 case Scope.IdentityRiskyServicePrincipalReadWriteAll: return "IdentityRiskyServicePrincipal.ReadWrite.All";
                 case Scope.IdentityUserFlowReadAll: return "IdentityUserFlow.Read.All";
                 case Scope.IdentityUserFlowReadWriteAll: return "IdentityUserFlow.ReadWrite.All";
+                case Scope.SecurityIncidentReadAll: return "SecurityIncident.Read.All";
+                case Scope.SecurityIncidentReadWriteAll: return "SecurityIncident.ReadWrite.All";
+                case Scope.IndustryDataReadBasicAll: return "IndustryData.ReadBasic.All";
+                case Scope.IndustryDataDataConnectorReadAll: return "IndustryData-DataConnector.Read.All";
+                case Scope.IndustryDataDataConnectorReadWriteAll: return "IndustryData-DataConnector.ReadWrite.All";
+                case Scope.IndustryDataDataConnectorUpload: return "IndustryData-DataConnector.Upload";
+                case Scope.IndustryDataInboundFlowReadAll: return "IndustryData-InboundFlow.Read.All";
+                case Scope.IndustryDataInboundFlowReadWriteAll: return "IndustryData-InboundFlow.ReadWrite.All";
+                case Scope.IndustryDataReferenceDefinitionReadAll: return "IndustryData-ReferenceDefinition.Read.All";
+                case Scope.IndustryDataRunReadAll: return "IndustryData-Run.Read.All";
+                case Scope.IndustryDataSourceSystemReadAll: return "IndustryData-SourceSystem.Read.All";
+                case Scope.IndustryDataSourceSystemReadWriteAll: return "IndustryData-SourceSystem.ReadWrite.All";
+                case Scope.IndustryDataTimePeriodReadAll: return "IndustryData-TimePeriod.Read.All";
+                case Scope.IndustryDataTimePeriodReadWriteAll: return "IndustryData-TimePeriod.ReadWrite.All";
                 case Scope.InformationProtectionPolicyRead: return "InformationProtectionPolicy.Read";
                 case Scope.InformationProtectionPolicyReadAll: return "InformationProtectionPolicy.Read.All";
                 case Scope.DeviceManagementAppsReadAll: return "DeviceManagementApps.Read.All";
@@ -508,6 +644,8 @@ namespace HigLabo.Net.Microsoft
                 case Scope.DeviceManagementRBACReadWriteAll: return "DeviceManagementRBAC.ReadWrite.All";
                 case Scope.DeviceManagementServiceConfigReadAll: return "DeviceManagementServiceConfig.Read.All";
                 case Scope.DeviceManagementServiceConfigReadWriteAll: return "DeviceManagementServiceConfig.ReadWrite.All";
+                case Scope.LifecycleWorkflowsReadAll: return "LifecycleWorkflows.Read.All";
+                case Scope.LifecycleWorkflowsReadWriteAll: return "LifecycleWorkflows.ReadWrite.All";
                 case Scope.MailRead: return "Mail.Read";
                 case Scope.MailReadBasic: return "Mail.ReadBasic";
                 case Scope.MailReadWrite: return "Mail.ReadWrite";
@@ -534,6 +672,7 @@ namespace HigLabo.Net.Microsoft
                 case Scope.OnlineMeetingsRead: return "OnlineMeetings.Read";
                 case Scope.OnlineMeetingsReadWrite: return "OnlineMeetings.ReadWrite";
                 case Scope.OnlineMeetingArtifactReadAll: return "OnlineMeetingArtifact.Read.All";
+                case Scope.OnlineMeetingTranscriptReadAll: return "OnlineMeetingTranscript.Read.All";
                 case Scope.OnlineMeetingsReadAll: return "OnlineMeetings.Read.All";
                 case Scope.OnlineMeetingsReadWriteAll: return "OnlineMeetings.ReadWrite.All";
                 case Scope.Email: return "email";
@@ -548,6 +687,10 @@ namespace HigLabo.Net.Microsoft
                 case Scope.PrivilegedAccessReadWriteAzureAD: return "PrivilegedAccess.ReadWrite.AzureAD";
                 case Scope.PrivilegedAccessReadWriteAzureADGroup: return "PrivilegedAccess.ReadWrite.AzureADGroup";
                 case Scope.PrivilegedAccessReadWriteAzureResources: return "PrivilegedAccess.ReadWrite.AzureResources";
+                case Scope.PrivilegedAssignmentScheduleReadAzureADGroup: return "PrivilegedAssignmentSchedule.Read.AzureADGroup";
+                case Scope.PrivilegedEligibilityScheduleReadAzureADGroup: return "PrivilegedEligibilitySchedule.Read.AzureADGroup";
+                case Scope.PrivilegedAssignmentScheduleReadWriteAzureADGroup: return "PrivilegedAssignmentSchedule.ReadWrite.AzureADGroup";
+                case Scope.PrivilegedEligibilityScheduleReadWriteAzureADGroup: return "PrivilegedEligibilitySchedule.ReadWrite.AzureADGroup";
                 case Scope.PrivilegedAccessReadAzureAD: return "PrivilegedAccess.Read.AzureAD";
                 case Scope.PrivilegedAccessReadAzureADGroup: return "PrivilegedAccess.Read.AzureADGroup";
                 case Scope.PrivilegedAccessReadAzureResources: return "PrivilegedAccess.Read.AzureResources";
@@ -574,16 +717,20 @@ namespace HigLabo.Net.Microsoft
                 case Scope.PresenceReadWriteAll: return "Presence.ReadWrite.All";
                 case Scope.ProgramControlReadAll: return "ProgramControl.Read.All";
                 case Scope.ProgramControlReadWriteAll: return "ProgramControl.ReadWrite.All";
+                case Scope.RecordsManagementReadAll: return "RecordsManagement.Read.All";
+                case Scope.RecordsManagementReadWriteAll: return "RecordsManagement.ReadWrite.All";
                 case Scope.ReportsReadAll: return "Reports.Read.All";
                 case Scope.RoleAssignmentScheduleReadDirectory: return "RoleAssignmentSchedule.Read.Directory";
                 case Scope.RoleEligibilityScheduleReadDirectory: return "RoleEligibilitySchedule.Read.Directory";
                 case Scope.RoleManagementReadAll: return "RoleManagement.Read.All";
                 case Scope.RoleManagementReadDirectory: return "RoleManagement.Read.Directory";
                 case Scope.RoleManagementPolicyReadDirectory: return "RoleManagementPolicy.Read.Directory";
+                case Scope.RoleManagementReadExchange: return "RoleManagement.Read.Exchange";
                 case Scope.RoleAssignmentScheduleReadWriteDirectory: return "RoleAssignmentSchedule.ReadWrite.Directory";
                 case Scope.RoleEligibilityScheduleReadWriteDirectory: return "RoleEligibilitySchedule.ReadWrite.Directory";
                 case Scope.RoleManagementReadWriteDirectory: return "RoleManagement.ReadWrite.Directory";
                 case Scope.RoleManagementPolicyReadWriteDirectory: return "RoleManagementPolicy.ReadWrite.Directory";
+                case Scope.RoleManagementReadWriteExchange: return "RoleManagement.ReadWrite.Exchange";
                 case Scope.ScheduleReadWriteAll: return "Schedule.ReadWrite.All";
                 case Scope.ScheduleReadAll: return "Schedule.Read.All";
                 case Scope.WorkforceIntegrationReadWriteAll: return "WorkforceIntegration.ReadWrite.All";
@@ -594,12 +741,19 @@ namespace HigLabo.Net.Microsoft
                 case Scope.ExternalItemReadAll: return "ExternalItem.Read.All";
                 case Scope.ExternalItemReadWriteAll: return "ExternalItem.ReadWrite.All";
                 case Scope.ExternalItemReadWriteOwnedBy: return "ExternalItem.ReadWrite.OwnedBy";
+                case Scope.AcronymReadAll: return "Acronym.Read.All";
+                case Scope.BookmarkReadAll: return "Bookmark.Read.All";
+                case Scope.QnAReadAll: return "QnA.Read.All";
                 case Scope.SearchConfigurationReadAll: return "SearchConfiguration.Read.All";
                 case Scope.SearchConfigurationReadWriteAll: return "SearchConfiguration.ReadWrite.All";
-                case Scope.SecurityEventsReadAll: return "SecurityEvents.Read.All";
-                case Scope.SecurityEventsReadWriteAll: return "SecurityEvents.ReadWrite.All";
+                case Scope.AttackSimulationReadAll: return "AttackSimulation.Read.All";
+                case Scope.AttackSimulationReadWriteAll: return "AttackSimulation.ReadWrite.All";
                 case Scope.SecurityActionsReadAll: return "SecurityActions.Read.All";
                 case Scope.SecurityActionsReadWriteAll: return "SecurityActions.ReadWrite.All";
+                case Scope.SecurityAlertReadAll: return "SecurityAlert.Read.All";
+                case Scope.SecurityAlertReadWriteAll: return "SecurityAlert.ReadWrite.All";
+                case Scope.SecurityEventsReadAll: return "SecurityEvents.Read.All";
+                case Scope.SecurityEventsReadWriteAll: return "SecurityEvents.ReadWrite.All";
                 case Scope.ThreatIndicatorsReadWriteOwnedBy: return "ThreatIndicators.ReadWrite.OwnedBy";
                 case Scope.ThreatIndicatorsReadAll: return "ThreatIndicators.Read.All";
                 case Scope.ServiceHealthReadAll: return "ServiceHealth.Read.All";
@@ -618,10 +772,14 @@ namespace HigLabo.Net.Microsoft
                 case Scope.TasksReadShared: return "Tasks.Read.Shared";
                 case Scope.TasksReadWrite: return "Tasks.ReadWrite";
                 case Scope.TasksReadWriteShared: return "Tasks.ReadWrite.Shared";
+                case Scope.TasksReadAll: return "Tasks.Read.All";
+                case Scope.TasksReadWriteAll: return "Tasks.ReadWrite.All";
                 case Scope.TermStoreReadAll: return "TermStore.Read.All";
                 case Scope.TermStoreReadWriteAll: return "TermStore.ReadWrite.All";
                 case Scope.TeamReadBasicAll: return "Team.ReadBasic.All";
                 case Scope.TeamCreate: return "Team.Create";
+                case Scope.TeamTemplatesRead: return "TeamTemplates.Read";
+                case Scope.TeamTemplatesReadAll: return "TeamTemplates.Read.All";
                 case Scope.TeamSettingsReadAll: return "TeamSettings.Read.All";
                 case Scope.TeamSettingsReadWriteAll: return "TeamSettings.ReadWrite.All";
                 case Scope.TeamsActivityRead: return "TeamsActivity.Read";
@@ -635,12 +793,22 @@ namespace HigLabo.Net.Microsoft
                 case Scope.TeamsAppInstallationReadForTeam: return "TeamsAppInstallation.ReadForTeam";
                 case Scope.TeamsAppInstallationReadWriteForTeam: return "TeamsAppInstallation.ReadWriteForTeam";
                 case Scope.TeamsAppInstallationReadWriteSelfForTeam: return "TeamsAppInstallation.ReadWriteSelfForTeam";
+                case Scope.TeamsAppInstallationReadWriteAndConsentForChat: return "TeamsAppInstallation.ReadWriteAndConsentForChat";
+                case Scope.TeamsAppInstallationReadWriteAndConsentForTeam: return "TeamsAppInstallation.ReadWriteAndConsentForTeam";
+                case Scope.TeamsAppInstallationReadWriteAndConsentSelfForChat: return "TeamsAppInstallation.ReadWriteAndConsentSelfForChat";
+                case Scope.TeamsAppInstallationReadWriteAndConsentSelfForTeam: return "TeamsAppInstallation.ReadWriteAndConsentSelfForTeam";
                 case Scope.TeamsAppInstallationReadForUserAll: return "TeamsAppInstallation.ReadForUser.All";
                 case Scope.TeamsAppInstallationReadWriteForUserAll: return "TeamsAppInstallation.ReadWriteForUser.All";
                 case Scope.TeamsAppInstallationReadWriteSelfForUserAll: return "TeamsAppInstallation.ReadWriteSelfForUser.All";
                 case Scope.TeamsAppInstallationReadForTeamAll: return "TeamsAppInstallation.ReadForTeam.All";
                 case Scope.TeamsAppInstallationReadWriteForTeamAll: return "TeamsAppInstallation.ReadWriteForTeam.All";
                 case Scope.TeamsAppInstallationReadWriteSelfForTeamAll: return "TeamsAppInstallation.ReadWriteSelfForTeam.All";
+                case Scope.TeamsAppInstallationReadWriteAndConsentForChatAll: return "TeamsAppInstallation.ReadWriteAndConsentForChat.All";
+                case Scope.TeamsAppInstallationReadWriteAndConsentForTeamAll: return "TeamsAppInstallation.ReadWriteAndConsentForTeam.All";
+                case Scope.TeamsAppInstallationReadWriteAndConsentSelfForChatAll: return "TeamsAppInstallation.ReadWriteAndConsentSelfForChat.All";
+                case Scope.TeamsAppInstallationReadWriteAndConsentSelfForTeamAll: return "TeamsAppInstallation.ReadWriteAndConsentSelfForTeam.All";
+                case Scope.TeamworkAppSettingsReadAll: return "TeamworkAppSettings.Read.All";
+                case Scope.TeamworkAppSettingsReadWriteAll: return "TeamworkAppSettings.ReadWrite.All";
                 case Scope.TeamworkDeviceReadAll: return "TeamworkDevice.Read.All";
                 case Scope.TeamworkDeviceReadWriteAll: return "TeamworkDevice.ReadWrite.All";
                 case Scope.TeamMemberReadAll: return "TeamMember.Read.All";
@@ -665,16 +833,25 @@ namespace HigLabo.Net.Microsoft
                 case Scope.TeamsTabReadAll: return "TeamsTab.Read.All";
                 case Scope.TeamsTabReadWriteAll: return "TeamsTab.ReadWrite.All";
                 case Scope.TeamsTabCreate: return "TeamsTab.Create";
+                case Scope.TeamsTabReadWriteSelfForChat: return "TeamsTab.ReadWriteSelfForChat";
+                case Scope.TeamsTabReadWriteSelfForTeam: return "TeamsTab.ReadWriteSelfForTeam";
+                case Scope.TeamsTabReadWriteSelfForUser: return "TeamsTab.ReadWriteSelfForUser";
+                case Scope.TeamsTabReadWriteSelfForChatAll: return "TeamsTab.ReadWriteSelfForChat.All";
+                case Scope.TeamsTabReadWriteSelfForTeamAll: return "TeamsTab.ReadWriteSelfForTeam.All";
+                case Scope.TeamsTabReadWriteSelfForUserAll: return "TeamsTab.ReadWriteSelfForUser.All";
                 case Scope.TeamworkTagReadWrite: return "TeamworkTag.ReadWrite";
                 case Scope.TeamworkTagRead: return "TeamworkTag.Read";
                 case Scope.TeamworkTagReadWriteAll: return "TeamworkTag.ReadWrite.All";
                 case Scope.TeamworkTagReadAll: return "TeamworkTag.Read.All";
+                case Scope.CrossTenantInformationReadBasicAll: return "CrossTenantInformation.ReadBasic.All";
                 case Scope.AgreementReadAll: return "Agreement.Read.All";
                 case Scope.AgreementReadWriteAll: return "Agreement.ReadWrite.All";
                 case Scope.AgreementAcceptanceRead: return "AgreementAcceptance.Read";
                 case Scope.AgreementAcceptanceReadAll: return "AgreementAcceptance.Read.All";
                 case Scope.ThreatAssessmentReadWriteAll: return "ThreatAssessment.ReadWrite.All";
                 case Scope.ThreatAssessmentReadAll: return "ThreatAssessment.Read.All";
+                case Scope.ThreatHuntingReadAll: return "ThreatHunting.Read.All";
+                case Scope.ThreatIntelligenceReadAll: return "ThreatIntelligence.Read.All";
                 case Scope.PrinterCreate: return "Printer.Create";
                 case Scope.PrinterFullControlAll: return "Printer.FullControl.All";
                 case Scope.PrinterReadAll: return "Printer.Read.All";
@@ -703,8 +880,11 @@ namespace HigLabo.Net.Microsoft
                 case Scope.UserReadAll: return "User.Read.All";
                 case Scope.UserReadWriteAll: return "User.ReadWrite.All";
                 case Scope.UserInviteAll: return "User.Invite.All";
+                case Scope.UserEnableDisableAccountAll: return "User.EnableDisableAccount.All";
                 case Scope.UserExportAll: return "User.Export.All";
                 case Scope.UserManageIdentitiesAll: return "User.ManageIdentities.All";
+                case Scope.UserLifeCycleInfoReadAll: return "User-LifeCycleInfo.Read.All";
+                case Scope.UserLifeCycleInfoReadWriteAll: return "User-LifeCycleInfo.ReadWrite.All";
                 case Scope.UserActivityReadWriteCreatedByApp: return "UserActivity.ReadWrite.CreatedByApp";
                 case Scope.UserAuthenticationMethodRead: return "UserAuthenticationMethod.Read";
                 case Scope.UserAuthenticationMethodReadAll: return "UserAuthenticationMethod.Read.All";

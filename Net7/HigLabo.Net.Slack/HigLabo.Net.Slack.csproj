@@ -14,9 +14,19 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Response\**" />
+	  <EmbeddedResource Remove="Response\**" />
+	  <None Remove="Response\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 		<ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
 		<ProjectReference Include="..\HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Generated\" />
 	</ItemGroup>
 
 </Project>

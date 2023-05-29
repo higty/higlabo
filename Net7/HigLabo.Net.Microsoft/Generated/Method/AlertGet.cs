@@ -24,35 +24,40 @@ namespace HigLabo.Net.Microsoft
 
         public enum Field
         {
-            ActorDisplayName,
-            AlertWebUrl,
+            ActivityGroupName,
             AssignedTo,
+            AzureSubscriptionId,
+            AzureTenantId,
             Category,
-            Classification,
+            ClosedDateTime,
+            CloudAppStates,
             Comments,
+            Confidence,
             CreatedDateTime,
             Description,
-            DetectionSource,
-            DetectorId,
-            Determination,
-            Evidence,
-            FirstActivityDateTime,
+            DetectionIds,
+            EventDateTime,
+            Feedback,
+            FileStates,
+            HostStates,
             Id,
-            IncidentId,
-            IncidentWebUrl,
-            LastActivityDateTime,
-            LastUpdateDateTime,
-            MitreTechniques,
-            ProviderAlertId,
+            IncidentIds,
+            LastModifiedDateTime,
+            MalwareStates,
+            NetworkConnections,
+            Processes,
             RecommendedActions,
-            ResolvedDateTime,
-            ServiceSource,
+            RegistryKeyStates,
+            SecurityResources,
             Severity,
+            SourceMaterials,
             Status,
-            TenantId,
-            ThreatDisplayName,
-            ThreatFamilyName,
+            Tags,
             Title,
+            Triggers,
+            UserStates,
+            VendorInformation,
+            VulnerabilityStates,
         }
         public enum ApiPath
         {
@@ -79,90 +84,63 @@ namespace HigLabo.Net.Microsoft
     }
     public partial class AlertGetResponse : RestApiResponse
     {
-        public enum SecurityAlertSecurityAlertClassification
+        public enum AlertAlertFeedback
         {
             Unknown,
-            FalsePositive,
             TruePositive,
+            FalsePositive,
             BenignPositive,
-            UnknownFutureValue,
         }
-        public enum SecurityAlertSecurityAlertDetermination
-        {
-            Unknown,
-            Apt,
-            Malware,
-            SecurityPersonnel,
-            SecurityTesting,
-            UnwantedSoftware,
-            Other,
-            MultiStagedAttack,
-            CompromisedUser,
-            Phishing,
-            MaliciousUserActivity,
-            Clean,
-            InsufficientData,
-            ConfirmedUserActivity,
-            LineOfBusinessApplication,
-            UnknownFutureValue,
-        }
-        public enum SecurityAlertSecurityServiceSource
-        {
-            MicrosoftDefenderForEndpoint,
-            MicrosoftDefenderForIdentity,
-            MicrosoftCloudAppSecurity,
-            MicrosoftDefenderForOffice365,
-            Microsoft365Defender,
-            AadIdentityProtection,
-            AppGovernance,
-            DataLossPrevention,
-        }
-        public enum SecurityAlertSecurityAlertSeverity
+        public enum AlertAlertSeverity
         {
             Unknown,
             Informational,
             Low,
             Medium,
             High,
-            UnknownFutureValue,
         }
-        public enum SecurityAlertSecurityAlertStatus
+        public enum AlertAlertStatus
         {
-            New,
+            Unknown,
+            NewAlert,
             InProgress,
             Resolved,
-            UnknownFutureValue,
         }
 
-        public string? ActorDisplayName { get; set; }
-        public string? AlertWebUrl { get; set; }
+        public string? ActivityGroupName { get; set; }
         public string? AssignedTo { get; set; }
+        public string? AzureSubscriptionId { get; set; }
+        public string? AzureTenantId { get; set; }
         public string? Category { get; set; }
-        public SecurityAlertSecurityAlertClassification Classification { get; set; }
-        public AlertComment[]? Comments { get; set; }
+        public DateTimeOffset? ClosedDateTime { get; set; }
+        public CloudAppSecurityState[]? CloudAppStates { get; set; }
+        public String[]? Comments { get; set; }
+        public Int32? Confidence { get; set; }
         public DateTimeOffset? CreatedDateTime { get; set; }
         public string? Description { get; set; }
-        public SecurityDetectionSource? DetectionSource { get; set; }
-        public string? DetectorId { get; set; }
-        public SecurityAlertSecurityAlertDetermination Determination { get; set; }
-        public AlertEvidence[]? Evidence { get; set; }
-        public DateTimeOffset? FirstActivityDateTime { get; set; }
+        public String[]? DetectionIds { get; set; }
+        public DateTimeOffset? EventDateTime { get; set; }
+        public AlertAlertFeedback Feedback { get; set; }
+        public FileSecurityState[]? FileStates { get; set; }
+        public HostSecurityState[]? HostStates { get; set; }
         public string? Id { get; set; }
-        public string? IncidentId { get; set; }
-        public string? IncidentWebUrl { get; set; }
-        public DateTimeOffset? LastActivityDateTime { get; set; }
-        public DateTimeOffset? LastUpdateDateTime { get; set; }
-        public string[]? MitreTechniques { get; set; }
-        public string? ProviderAlertId { get; set; }
-        public string? RecommendedActions { get; set; }
-        public DateTimeOffset? ResolvedDateTime { get; set; }
-        public SecurityAlertSecurityServiceSource ServiceSource { get; set; }
-        public SecurityAlertSecurityAlertSeverity Severity { get; set; }
-        public SecurityAlertSecurityAlertStatus Status { get; set; }
-        public string? TenantId { get; set; }
-        public string? ThreatDisplayName { get; set; }
-        public string? ThreatFamilyName { get; set; }
+        public String[]? IncidentIds { get; set; }
+        public DateTimeOffset? LastModifiedDateTime { get; set; }
+        public MalwareState[]? MalwareStates { get; set; }
+        public NetworkConnection[]? NetworkConnections { get; set; }
+        public Process[]? Processes { get; set; }
+        public String[]? RecommendedActions { get; set; }
+        public RegistryKeyState[]? RegistryKeyStates { get; set; }
+        public SecurityResource[]? SecurityResources { get; set; }
+        public AlertAlertSeverity Severity { get; set; }
+        public String[]? SourceMaterials { get; set; }
+        public AlertAlertStatus Status { get; set; }
+        public String[]? Tags { get; set; }
         public string? Title { get; set; }
+        public AlertTrigger[]? Triggers { get; set; }
+        public UserSecurityState[]? UserStates { get; set; }
+        public SecurityVendorInformation? VendorInformation { get; set; }
+        public VulnerabilityState[]? VulnerabilityStates { get; set; }
     }
     /// <summary>
     /// https://learn.microsoft.com/en-us/graph/api/alert-get?view=graph-rest-1.0

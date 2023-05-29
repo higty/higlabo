@@ -92,7 +92,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             var t = this.Table;
             var p = new Property("String", "TableName");
             p.Modifier.Polymophism = MethodPolymophism.Override;
-            p.Get.Body.Add(SourceCodeLanguage.CSharp, "return {0}.Name;", t.Name);
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return {0}.Name;", t.Name);
             p.Set = null;
             return p;
         }
@@ -295,25 +295,30 @@ namespace HigLabo.DbSharp.CodeGenerator
         public IEnumerable<CodeBlock> CreateSetOutputParameterValueMethodBody()
         {
             var t = this.Table;
-            CodeBlock cb = null;
 
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "var spInsert = storedProcedure as {0}Insert;", t.Name);
-            cb = new CodeBlock(SourceCodeLanguage.CSharp, "if (spInsert != null)");
-            cb.CurlyBracket = true;
-            foreach (var column in t.Columns.FindAll(el => el.IsServerAutomaticallyInsertValueColumn()))
+
             {
-                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "record.{0} = spInsert.{0};", column.Name));
+                var cb = new CodeBlock(SourceCodeLanguage.CSharp, "if (spInsert != null)");
+                cb.CurlyBracket = true;
+                foreach (var column in t.Columns.FindAll(el => el.IsServerAutomaticallyInsertValueColumn()))
+                {
+                    cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "record.{0} = spInsert.{0};", column.Name));
+                }
+                yield return cb;
             }
-            yield return cb;
 
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "var spUpdate = storedProcedure as {0}Update;", t.Name);
-            cb = new CodeBlock(SourceCodeLanguage.CSharp, "if (spUpdate != null)");
-            cb.CurlyBracket = true;
-            foreach (var column in t.Columns.FindAll(el => el.IsServerAutomaticallyInsertValueColumn()))
+
             {
-                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "record.{0} = spUpdate.{0};", column.Name));
+                var cb = new CodeBlock(SourceCodeLanguage.CSharp, "if (spUpdate != null)");
+                cb.CurlyBracket = true;
+                foreach (var column in t.Columns.FindAll(el => el.IsServerAutomaticallyInsertValueColumn()))
+                {
+                    cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "record.{0} = spUpdate.{0};", column.Name));
+                }
+                yield return cb;
             }
-            yield return cb;
         }
 
         public Method CreateCreateStoredProcedureWithResultSetMethod()

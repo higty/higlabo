@@ -12,19 +12,19 @@ namespace HigLabo.DbSharp.MetaData
         public Boolean IsPrimaryKey { get; set; }
         public Boolean IsIdentity { get; set; }
         public Boolean IsRowGuidCol { get; set; }
-        public DefaultCostraint DefaultCostraint { get; set; }
+        public DefaultCostraint? DefaultCostraint { get; set; }
         public String Clustered { get; set; } = "";
-        public ForeignKeyColumn ForeignKey { get; set; }
+        public ForeignKeyColumn? ForeignKey { get; set; }
 
         public Boolean IsServerAutomaticallyInsertValueColumn()
         {
-            return this.DbType.IsTimestamp() == true ||
+            return this.DbType!.IsTimestamp() == true ||
                 this.IsIdentity == true ||
                 this.IsRowGuidCol == true;
         }
         public Boolean CanUpdateValueColumn()
         {
-            return this.DbType.IsTimestamp() == false &&
+            return this.DbType!.IsTimestamp() == false &&
                 this.IsIdentity == false;
         }
     }

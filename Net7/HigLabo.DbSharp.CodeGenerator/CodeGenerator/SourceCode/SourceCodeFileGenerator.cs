@@ -11,8 +11,9 @@ namespace HigLabo.DbSharp.CodeGenerator
 {
     public class SourceCodeFileGenerator
     {
-        public event EventHandler<SourceCodeFileGeneratedEventArgs> FileGenerated;
-        public event EventHandler Completed;
+        public event EventHandler<SourceCodeFileGeneratedEventArgs>? FileGenerated;
+        public event EventHandler? Completed;
+
         private Int32 _SourceCodeCount = 0;
         private Int32 _GeneratedCount = 0;
         public List<SourceCodeFile> SourceCodes { get; private set; }
@@ -28,11 +29,9 @@ namespace HigLabo.DbSharp.CodeGenerator
         }
         private void Execute(SourceCodeFile file)
         {
-            CSharpSourceCodeGenerator cs = null;
-
             using (var stm = new StreamWriter(file.FilePath, false, Encoding.UTF8))
             {
-                cs = new CSharpSourceCodeGenerator(stm);
+                var cs = new CSharpSourceCodeGenerator(stm);
                 cs.Write(file.SourceCode);
                 this.OnFileGenerated(new SourceCodeFileGeneratedEventArgs(file, DateTime.Now));
             }

@@ -14,7 +14,7 @@ namespace HigLabo.DbSharp
         where T: StoredProcedureResultSet, new()
         where TResultSetList: new()
     {
-        protected static Action<TResultSetList, TResultSetList> _MergeMethod;
+        protected static Action<TResultSetList, TResultSetList>? _MergeMethod;
         protected List<Func<DbDataReader, StoredProcedureResultSet>> _CreateResultSetMethodList = new List<Func<DbDataReader, StoredProcedureResultSet>>();
 
         protected abstract void SetResultSetsList(TResultSetList resultSetList, List<List<StoredProcedureResultSet>> list);
@@ -35,7 +35,7 @@ namespace HigLabo.DbSharp
         {
             var rsl = new TResultSetList();
             List<List<StoredProcedureResultSet>> l = new List<List<StoredProcedureResultSet>>();
-            DbDataReader dr = null;
+            DbDataReader? dr = null;
             var previousState = database.ConnectionState;
 
             try
@@ -46,7 +46,7 @@ namespace HigLabo.DbSharp
                 while (true)
                 {
                     l.Add(new List<StoredProcedureResultSet>());
-                    while (dr.Read())
+                    while (dr!.Read())
                     {
                         var rs = _CreateResultSetMethodList[index](dr);
                         l[index].Add(rs);
@@ -111,7 +111,7 @@ namespace HigLabo.DbSharp
         {
             var rsl = new TResultSetList();
             List<List<StoredProcedureResultSet>> l = new List<List<StoredProcedureResultSet>>();
-            DbDataReader dr = null;
+            DbDataReader? dr = null;
             var previousState = database.ConnectionState;
 
             try
@@ -122,7 +122,7 @@ namespace HigLabo.DbSharp
                 while (true)
                 {
                     l.Add(new List<StoredProcedureResultSet>());
-                    while (dr.Read())
+                    while (dr!.Read())
                     {
                         var rs = _CreateResultSetMethodList[index](dr);
                         l[index].Add(rs);
@@ -164,7 +164,8 @@ namespace HigLabo.DbSharp
             var result = new TResultSetList();
             foreach (var item in await Task.WhenAll(tt).ConfigureAwait(false))
             {
-                _MergeMethod(item, result);
+                //Set by generated code.
+                _MergeMethod!(item, result);
             }
             return result;
         }

@@ -21,6 +21,7 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Directory_DeletedItems_Microsoftgraphuser: return $"/directory/deletedItems/microsoft.graph.user";
                     case ApiPath.Directory_DeletedItems_MicrosoftgraphadministrativeUnit: return $"/directory/deletedItems/microsoft.graph.administrativeUnit";
                     case ApiPath.Ttps__Graphmicrosoftcom_Beta_Directory_DeletedItems_Microsoftgraphgroup: return $"/ttps://graph.microsoft.com/beta/directory/deletedItems/microsoft.graph.group";
+                    case ApiPath.Ventual: return $"/ventual";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -39,6 +40,7 @@ namespace HigLabo.Net.Microsoft
             Directory_DeletedItems_Microsoftgraphuser,
             Directory_DeletedItems_MicrosoftgraphadministrativeUnit,
             Ttps__Graphmicrosoftcom_Beta_Directory_DeletedItems_Microsoftgraphgroup,
+            Ventual,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

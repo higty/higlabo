@@ -25,6 +25,10 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Me_Drive_Items_ItemId: return $"/me/drive/items/{ItemId}";
                     case ApiPath.Sites_SiteId_Drive_Items_ItemId: return $"/sites/{SiteId}/drive/items/{ItemId}";
                     case ApiPath.Users_UserId_Drive_Items_ItemId: return $"/users/{UserId}/drive/items/{ItemId}";
+                    case ApiPath.RaphClient: return $"/raphClient ";
+                    case ApiPath.Ptions: return $"/ptions ";
+                    case ApiPath.Lient: return $"/lient ";
+                    case ApiPath.Lientapi: return $"/lient.api";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -37,6 +41,10 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Items_ItemId,
             Sites_SiteId_Drive_Items_ItemId,
             Users_UserId_Drive_Items_ItemId,
+            RaphClient,
+            Ptions,
+            Lient,
+            Lientapi,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

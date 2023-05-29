@@ -14,6 +14,16 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="ResouceUrlMapping.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Generated\ResouceUrlMapping.txt">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 		<ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
 		<ProjectReference Include="..\HigLabo.Net.OAuth\HigLabo.Net.OAuth.csproj" />

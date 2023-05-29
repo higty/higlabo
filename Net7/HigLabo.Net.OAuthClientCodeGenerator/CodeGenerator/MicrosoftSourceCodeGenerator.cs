@@ -191,7 +191,7 @@ namespace HigLabo.Net.CodeGenerator
             while (true)
             {
                 var hasElement = false;
-                foreach (var li in _Driver.FindElements(By.CssSelector("[id='title-8-1'] > ul li.tree-item")).Reverse())
+                foreach (var li in _Driver.FindElements(By.CssSelector("[id='affixed-left-container'] > ul li.tree-item")).Reverse())
                 {
                     if (li.GetAttribute("class").Contains("is-expanded")) { continue; }
 
@@ -206,11 +206,11 @@ namespace HigLabo.Net.CodeGenerator
 
             var parser = new HtmlParser();
             var doc = parser.ParseDocument(this.GetHtml());
-            var linkList = doc.QuerySelectorAll("[id='title-8-1'] li > a");
+            var linkList = doc.QuerySelectorAll("[id='affixed-left-container'] li > a");
 
             foreach (var item in linkList)
             {
-                var url = item.GetAttribute("href").ToString();
+                var url = item.GetAttribute("href")!.ToString();
                 if (this.IsAvailabelUrl(url) == false) { continue; }
                 if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
                 {
@@ -228,28 +228,28 @@ namespace HigLabo.Net.CodeGenerator
                 var div = document.QuerySelector("[id='properties']");
                 if (div != null)
                 {
-                    divList.Add(div.ParentElement);
+                    divList.Add(div.ParentElement!);
                 }
             }
             {
                 var div = document.QuerySelector("[id='relationships']");
                 if (div != null)
                 {
-                    divList.Add(div.ParentElement);
+                    divList.Add(div.ParentElement!);
                 }
             }
 
-            IElement tbl = null;
+            IElement? tbl = null;
             foreach (var item in divList)
             {
                 IElement div = item;
                 while (div != null)
                 {
-                    div = div.NextElementSibling;
+                    div = div.NextElementSibling!;
                     if (div == null) { break; }
                     if (div.QuerySelector("#methods") != null) { break; }
 
-                    tbl = div.QuerySelector($"table[aria-label]");
+                    tbl = div.QuerySelector($"table[aria-label]")!;
                     if (tbl != null)
                     {
                         foreach (var parameter in await this.GetParameterList(document, tbl))
@@ -288,7 +288,7 @@ namespace HigLabo.Net.CodeGenerator
             while (true)
             {
                 var hasElement = false;
-                foreach (var li in _Driver.FindElements(By.CssSelector("[id='title-8-1'] > ul li.tree-item"))
+                foreach (var li in _Driver.FindElements(By.CssSelector("[id='affixed-left-container'] > ul li.tree-item"))
                     .Reverse())
                 {
                     if (li.GetAttribute("class").Contains("is-expanded")) { continue; }
@@ -304,11 +304,11 @@ namespace HigLabo.Net.CodeGenerator
 
             var parser = new HtmlParser();
             var doc = parser.ParseDocument(this.GetHtml());
-            var linkList = doc.QuerySelectorAll("[id='title-8-1'] li > a");
+            var linkList = doc.QuerySelectorAll("[id='affixed-left-container'] li > a");
 
             foreach (var item in linkList)
             {
-                var url = item.GetAttribute("href").ToString();
+                var url = item.GetAttribute("href")!.ToString();
                 if (this.IsAvailabelUrl(url) == false) { continue; }
                 if (url.StartsWith("https://learn.microsoft.com/en-us/graph/api/intune-", StringComparison.OrdinalIgnoreCase) == true) { continue; }
 
@@ -325,7 +325,7 @@ namespace HigLabo.Net.CodeGenerator
             var l = new List<ApiParameter>();
             var h2 = doc.QuerySelector("#request-body");
             if (h2 == null) { return Task.FromResult(l); }
-            var node = h2.ParentElement.NextElementSibling;
+            var node = h2.ParentElement!.NextElementSibling;
             IElement? tbl = null;
 
             while (node != null)
@@ -345,8 +345,8 @@ namespace HigLabo.Net.CodeGenerator
             var context = new CreateEntityClassContext();
 
             var cParameter = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Parameter");
-            cParameter.Comment = url;
-            var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response");
+            cParameter!.Comment = url;
+            var cResponse = sc.Namespaces[0].Classes.Find(el => el.Name == className + "Response")!;
             var rx = new Regex("{[^}]*}");
 
             var entityUrl = "";
@@ -360,7 +360,7 @@ namespace HigLabo.Net.CodeGenerator
                 }
             }
 
-            var httpMethod = cParameter.Properties.Find(el => el.Name == "IRestApiParameter.HttpMethod").Initializer.Replace("\"", "");
+            var httpMethod = cParameter.Properties.Find(el => el.Name == "IRestApiParameter.HttpMethod")!.Initializer.Replace("\"", "");
             if (httpMethod == "GET")
             {
                 var cField = new HigLabo.CodeGenerator.Enum(AccessModifier.Public, "Field");
@@ -383,7 +383,7 @@ namespace HigLabo.Net.CodeGenerator
                 if (pValueList != null && pValueList.TypeName.Name.Contains("[]"))
                 {
                     var responseListClassName = pValueList.TypeName.Name.Replace("[]?", "");
-                    var responseListUrl = this._UrlClassNameMappingList.Find(el => el.ClassName == responseListClassName)?.Url;
+                    var responseListUrl = this._UrlClassNameMappingList.Find(el => el.ClassName == responseListClassName)?.Url!;
                     if (responseListUrl.IsNullOrEmpty() == false)
                     {
                         var cValue = await this.CreateEntityClass(responseListUrl, context);
@@ -491,14 +491,14 @@ namespace HigLabo.Net.CodeGenerator
                 cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);"));
             }
 
-            var pApiPath = cParameter.Properties.Find(el => el.Name == "IRestApiParameter.ApiPath");
-            pApiPath.Get.IsAutomaticProperty = false;
-            pApiPath.Get.Body.Clear();
-            pApiPath.Get.Body.Add(SourceCodeLanguage.CSharp, "return this.ApiPathSetting.GetApiPath();");
+            var pApiPath = cParameter.Properties.Find(el => el.Name == "IRestApiParameter.ApiPath")!;
+            pApiPath.Get!.IsAutomaticProperty = false;
+            pApiPath.Get!.Body.Clear();
+            pApiPath.Get!.Body.Add(SourceCodeLanguage.CSharp, "return this.ApiPathSetting.GetApiPath();");
 
             if (hasBinaryMethod == true)
             {
-                var cClient = sc.Namespaces[0].Classes.Find(el => el.Name == "MicrosoftClient");
+                var cClient = sc.Namespaces[0].Classes.Find(el => el.Name == "MicrosoftClient")!;
                 var md = new Method(MethodAccessModifier.Public, className + "StreamAsync");
                 md.Comment = url;
                 md.Parameters.Add(new MethodParameter(className + "Parameter", "parameter"));
@@ -569,7 +569,7 @@ namespace HigLabo.Net.CodeGenerator
                 if (p.Name.Equals("Group@odata.bind", StringComparison.OrdinalIgnoreCase)) { continue; }
                 if (p.Name == "@odata.id" || p.Name == "@odata.etag" || p.Name == "@odata.type") { continue; }
 
-                var td2 = row.QuerySelector("> td:nth-child(2)");
+                var td2 = row.QuerySelector("> td:nth-child(2)")!;
                 p.TypeName = td2.TextContent.Trim();
                 if (p.TypeName.StartsWith("microsoft.graph.", StringComparison.OrdinalIgnoreCase))
                 {
@@ -580,9 +580,9 @@ namespace HigLabo.Net.CodeGenerator
                 if (p.TypeName.Contains("Default. Enforces the legal minimum. This means parental consent is required for minors in the European Union and Korea")) { break; }
 
                 var hp = td2.QuerySelector("a");
-                if (hp != null && hp.GetAttribute("href").StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
+                if (hp != null && hp.GetAttribute("href")!.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/"))
                 {
-                    var url = hp.GetAttribute("href");
+                    var url = hp.GetAttribute("href")!;
                     if (this.IsAvailabelUrl(url))
                     {
                         p.EntityUrl = url;
@@ -728,7 +728,7 @@ namespace HigLabo.Net.CodeGenerator
             else if (type.Equals("SharepointIds", StringComparison.OrdinalIgnoreCase)) { type = "SharePointIds"; }
             else if (type.Equals("TeamFunSettingsString (enum)", StringComparison.OrdinalIgnoreCase)) { type = "GiphyContentRating"; }
             else if (type.Equals("EducationTeacher", StringComparison.OrdinalIgnoreCase)) { type = "Teacher"; }
-            else if (type.Equals("Collection(microsoft.graph.displayNameLocalization)", StringComparison.OrdinalIgnoreCase)) { return "string"; }
+            else if (type.Equals("Collection(microsoft.graph.displayNameLocalization)", StringComparison.OrdinalIgnoreCase)) { return "string[]?"; }
             else if (type == "Collection(recipient)") { type = "Recipient[]"; }
             else if (type == "Collection(keyValuePair)") { type = "KeyValuePair<string, string>[]"; }
             else if (type == "appHostedMediaConfig or serviceHostedMediaConfig") { type = "MediaConfig"; }
@@ -782,7 +782,6 @@ namespace HigLabo.Net.CodeGenerator
         {
             if (className.Equals("AccesspackageassignmentpolicyUpdate") && propertyName.Equals("AccessPackageReviewSettings", StringComparison.OrdinalIgnoreCase)) { return "AccessPackageAssignmentReviewSettings"; }
             if (propertyName == "InvitationParticipantInfo") { return "ParticipantInfo"; }
-            if (propertyName == "PasswordProfile") { return propertyName; }
             return "";
         }
         protected override string GetEnumName(string className, string propertyName)
@@ -824,20 +823,20 @@ namespace HigLabo.Net.CodeGenerator
         {
             var doc = document;
             var l = new List<ApiRequestPath>();
-            var h2 = doc.QuerySelector("[id='http-request']");
+            var h2 = doc.QuerySelector("[id='http-request']")!;
             if (h2 == null) { return new ApiRequestPath[0]; }
-            IElement node = h2.ParentElement.NextElementSibling;
+            IElement node = h2.ParentElement!.NextElementSibling!;
             while (true)
             {
                 foreach (var code in node.QuerySelectorAll("[data-author-content]"))
                 {
-                    var apiText = code.GetAttribute("data-author-content");
+                    var apiText = code.GetAttribute("data-author-content")!;
                     using (var reader = new StringReader(apiText))
                     {
                         while (reader.Peek() > -1)
                         {
-                            var line = reader.ReadLine();
-                            if (line.IsNullOrEmpty()) { continue; }
+                            var line = reader.ReadLine()!;
+                            if (line.IsNullOrEmpty()!) { continue; }
                             var httpMethod = line.ExtractString(null, ' ');
                             var apiPath = line.Replace(httpMethod, "").Trim();
                             //https://learn.microsoft.com/en-us/graph/api/user-list-calendarview?view=graph-rest-1.0&tabs=http
@@ -846,17 +845,22 @@ namespace HigLabo.Net.CodeGenerator
                             apiPath = apiPath.ExtractString(null, '[');
                             //https://learn.microsoft.com/en-us/graph/api/user-reminderview?view=graph-rest-1.0&tabs=http
                             apiPath = apiPath.ExtractString(null, '(');
+
+                            //https://learn.microsoft.com/en-us/graph/api/workbook-closesession?view=graph-rest-1.0
+                            //https://learn.microsoft.com/en-us/graph/api/workbook-refreshsession?view=graph-rest-1.0
+                            if (apiPath == "{session-id}") { continue; }
                             if (apiPath.IsNullOrEmpty()) { continue; }
                             l.Add(new ApiRequestPath(httpMethod, apiPath));
                         }
                     }
                 }
-                node = node.NextElementSibling;
+                node = node.NextElementSibling!;
                 if (node == null) { break; }
-                var requestBodyNode = node.QuerySelector("h2#request-body");
-                if (requestBodyNode != null) { break; }
-                var responseNode = node.QuerySelector("h2#response");
-                if (responseNode != null) { break; }
+                if (node.QuerySelector("#optional-query-parameters") != null) { break; }
+                if (node.QuerySelector("#example") != null) { break; }
+                if (node.QuerySelector("#examples") != null) { break; }
+                if (node.QuerySelector("#request-body") != null) { break; }
+                if (node.QuerySelector("#response") != null) { break; }
             }
             return l.ToArray();
         }
@@ -870,13 +874,13 @@ namespace HigLabo.Net.CodeGenerator
             var node = document.QuerySelector("[id='response']");
             if (node != null)
             {
-                var pNode = node.ParentElement.NextElementSibling;
+                var pNode = node.ParentElement!.NextElementSibling;
                 if (pNode != null)
                 {
                     var hp = pNode.QuerySelector("a");
                     if (hp != null)
                     {
-                        var href = hp.GetAttribute("href").ToString();
+                        var href = hp.GetAttribute("href")!.ToString();
                         if (href.StartsWith("https://learn.microsoft.com/en-us/graph/api/resources/", StringComparison.OrdinalIgnoreCase))
                         {
                             if (pNode.TextContent.Contains("collection of") ||

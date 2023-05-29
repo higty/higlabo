@@ -8,17 +8,12 @@ namespace HigLabo.DbSharp
 {
     public abstract class StoredProcedureResultSet : DatabaseRecord
     {
-        protected StoredProcedure _StoredProcedureResultSet_StoredProcedure = null;
-        /// <summary>
-        /// 
-        /// </summary>
-        public StoredProcedure GetStoredProcedure()
+        protected StoredProcedure? _StoredProcedureResultSet_StoredProcedure = null;
+
+        public StoredProcedure? GetStoredProcedure()
         {
             return _StoredProcedureResultSet_StoredProcedure;
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public string GetStoredProcedureName()
         {
             var sp = this.GetStoredProcedure();

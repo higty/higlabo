@@ -9,7 +9,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class DatabaseObject : INotifyPropertyChanged
     {
-        public virtual event PropertyChangedEventHandler PropertyChanged;
+        public virtual event PropertyChangedEventHandler? PropertyChanged;
 
         private DatabaseObjectType _ObjectType = DatabaseObjectType.Unknown;
         private String _Name = "";

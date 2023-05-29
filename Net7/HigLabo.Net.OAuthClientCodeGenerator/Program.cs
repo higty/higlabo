@@ -4,8 +4,6 @@
     {
         static async Task Main(string[] args)
         {
-            var text = T.Text.ActualTime;
-
             var startTime = DateTime.Now;
             try
             {
@@ -19,22 +17,25 @@
         }
         private static async Task Execute()
         {
-            if (false)
-            {
-                var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Slack\\");
-                //await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/views.open");
-                await g.Execute();
-            }
             if (true)
+            {
+                var g = new SlackSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Slack\\Generated\\");
+                //await g.CreateEntitySourceCodeFile("", new CreateEntityClassContext());
+                await g.CreateMethodSourceCodeFile("https://api.slack.com/methods/reminders.add");
+                //await g.Execute();
+            }
+            if (false)
             {
                 var g = new MicrosoftSourceCodeGenerator("C:\\GitHub\\higty\\HigLabo\\Net7\\HigLabo.Net.Microsoft\\Generated\\");
                 g.HtmlCacheFolderPath = "C:\\Data\\MicrosoftGraphApi";
                 //await g.CreateResourceUrlMappingFile();
                 await g.LoadUrlClassNameMappingList();
 
-                //await g.CreateEntitySourceCodeFile("https://learn.microsoft.com/en-us/graph/api/driveitem-createuploadsession?view=graph-rest-1.0", new CreateEntityClassContext());
-                //await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/security-ediscoveryreviewset-addtoreviewset?view=graph-rest-1.0");
-                await g.Execute();
+                //await g.CreateEntitySourceCodeFile("https://learn.microsoft.com/en-us/graph/api/resources/educationuser?view=graph-rest-1.0", new CreateEntityClassContext());
+                await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/educationuser-post?view=graph-rest-1.0");
+                await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/user-post-users?view=graph-rest-1.0");
+                await g.CreateMethodSourceCodeFile("https://learn.microsoft.com/en-us/graph/api/user-update?view=graph-rest-1.0");
+                //await g.Execute();
             }
         }
     }

@@ -16,7 +16,6 @@ namespace HigLabo.Net.Microsoft
                 switch (this.ApiPath)
                 {
                     case ApiPath.Sites: return $"/sites";
-                    case ApiPath.Ttps__Graphmicrosoftcom_V10_Sites: return $"/ttps://graph.microsoft.com/v1.0/sites";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -52,7 +51,6 @@ namespace HigLabo.Net.Microsoft
         public enum ApiPath
         {
             Sites,
-            Ttps__Graphmicrosoftcom_V10_Sites,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

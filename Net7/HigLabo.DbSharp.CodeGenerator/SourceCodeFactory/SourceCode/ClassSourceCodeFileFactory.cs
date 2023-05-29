@@ -31,22 +31,22 @@ namespace HigLabo.DbSharp.CodeGenerator
                         f.Initializer = "\"\"";
                     }
                 }
-                else if (parameter.DbType.IsUserDefinedTableType() == true)
+                else if (parameter.DbType!.IsUserDefinedTableType() == true)
                 {
                     f.Initializer = String.Format("new {0}()", parameter.GetClassName());
                 }
                 c.Fields.Add(f);
 
                 var p = new Property(parameter.GetClassName(), pName);
-                p.Get.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", pName);
+                p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", pName);
 
                 if (f.TypeName.Name == "String" && parameter.AllowNull == false)
                 {
-                    p.Set.Body.Add(SourceCodeLanguage.CSharp, "_{0} = value ?? \"\";", pName);
+                    p.Set!.Body.Add(SourceCodeLanguage.CSharp, "_{0} = value ?? \"\";", pName);
                 }
                 else
                 {
-                    p.Set.Body.Add(SourceCodeLanguage.CSharp, "_{0} = value;", pName);
+                    p.Set!.Body.Add(SourceCodeLanguage.CSharp, "_{0} = value;", pName);
                 }
 
                 c.Properties.Add(p);

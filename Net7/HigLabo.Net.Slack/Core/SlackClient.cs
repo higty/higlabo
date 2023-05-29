@@ -40,12 +40,12 @@ namespace HigLabo.Net.Slack
 
         public override async Task<TResponse> SendAsync<TParameter, TResponse>(TParameter parameter, CancellationToken cancellationToken)
         {
-            Func<Task<TResponse>> f = null;
+            Func<Task<TResponse>>? f = null;
             if (string.Equals(parameter.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase))
             {
                 //Use POST method with FormUrlEncodedContent for GET endpoint.
                 var d = parameter.Map(new Dictionary<string, string>());
-                if (parameter is RemindersAddParameter p)
+                if (parameter is RemindersAddParameter p && p.Recurrence != null)
                 {
                     d["Recurrence"] = p.Recurrence.ToString();
                 }
@@ -63,8 +63,8 @@ namespace HigLabo.Net.Slack
             var result = await this.UpdateAccessTokenAsync();
             if (result.Ok)
             {
-                this.AccessToken = result.Authed_User.Access_Token;
-                this.RefreshToken = result.Authed_User.Refresh_Token;
+                this.AccessToken = result.Authed_User!.Access_Token;
+                this.RefreshToken = result.Authed_User!.Refresh_Token;
             }
         }
         public async Task<RequestCodeResponse> RequestCodeAsync(string code)

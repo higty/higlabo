@@ -21,7 +21,7 @@ namespace HigLabo.DbSharp.CodeGenerator
         }
         protected override void ExecuteCommand(Database database, string query)
         {
-            var db = database as MySqlDatabase;
+            var db = (MySqlDatabase)database;
             var script = new MySqlScript();
             script.Delimiter = "//";
             script.Query = query;
@@ -55,13 +55,13 @@ namespace HigLabo.DbSharp.CodeGenerator
         public override String CreateQueryOfTableNameInsert(Table table)
         {
             StringBuilder sb = new StringBuilder(32);
-            Column isIdentityColumn = null;
-            Column timestampColumn = null;
+            Column? isIdentityColumn = null;
+            Column? timestampColumn = null;
 
             foreach (var column in table.Columns)
             {
                 if (column.IsIdentity == true) isIdentityColumn = column;
-                if (column.DbType.IsTimestamp() == true) timestampColumn = column;
+                if (column.DbType!.IsTimestamp() == true) timestampColumn = column;
             }
 
             sb.AppendFormat("Create Procedure {0}Insert", table.Name);
@@ -114,13 +114,12 @@ namespace HigLabo.DbSharp.CodeGenerator
         public override String CreateQueryOfTableNameUpdate(Table table)
         {
             StringBuilder sb = new StringBuilder(32);
-            List<Column> columns = null;
-            Column timestampColumn = null;
+            Column? timestampColumn = null;
             String whereQuery = this.CreateWhereQuery(table.GetPrimaryKeyOrTimestampColumns(), "T01.", true);
 
             foreach (var column in table.Columns)
             {
-                if (column.DbType.IsTimestamp() == true) timestampColumn = column;
+                if (column.DbType!.IsTimestamp() == true) timestampColumn = column;
             }
 
             sb.AppendFormat("Create Procedure {0}Update", table.Name);
@@ -152,7 +151,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             sb.Append(CreateText(table.GetPrimaryKeyColumns(), column => String.Format("{0} = PK_{0}", column.Name), "and ", true));
             sb.AppendLine(") Then");
 
-            columns = table.GetColumns(false, null, false, false).ToList();
+            var columns = table.GetColumns(false, null, false, false).ToList();
             if (columns.Count == 0)
             {
                 sb.AppendFormat("Set {0} = {0};", table.Columns[0].Name);

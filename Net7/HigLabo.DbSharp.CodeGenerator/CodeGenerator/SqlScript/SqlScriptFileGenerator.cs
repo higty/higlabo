@@ -12,11 +12,13 @@ namespace HigLabo.DbSharp.CodeGenerator
 {
     public class SqlScriptFileGenerator
     {
+        public event EventHandler<SqlScriptFileGeneratedEventArgs>? FileGenerated;
+        public event EventHandler? Completed;
+
         public TableStoredProcedureFactory Factory { get; private set; }
         public List<Table> Tables { get; private set; }
-        public String FolderPath { get; set; }
-        public event EventHandler<SqlScriptFileGeneratedEventArgs> FileGenerated;
-        public event EventHandler Completed;
+        public String FolderPath { get; set; } = "";
+
         public SqlScriptFileGenerator(TableStoredProcedureFactory factory)
         {
             this.Factory = factory;
@@ -32,13 +34,12 @@ namespace HigLabo.DbSharp.CodeGenerator
         }
         private void Execute()
         {
-            SqlScriptFile sql = null;
             String filePath = "";
 
             this.CreateTableStoredProcedureSqlScriptFile();
 
             filePath = this.FolderPath + "DataConvert.sql";
-            sql = new DataConvertSqlScriptFile(this.Factory.DatabaseServer);
+            var sql = new DataConvertSqlScriptFile(this.Factory.DatabaseServer);
             sql.Tables.AddRange(this.Tables);
             sql.WriteAllText(filePath, Encoding.UTF8);
             this.OnFileGenerated(new SqlScriptFileGeneratedEventArgs(filePath));

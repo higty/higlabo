@@ -59,7 +59,7 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             var sp = this.StoredProcedure;
             Class c = new Class(AccessModifier.Public, sp.Name);
-            StoredProcedureResultSetColumn rs = null;
+            StoredProcedureResultSetColumn? rs = null;
 
             c.Modifier.Partial = true;
             if (sp.ResultSets.Count > 0)
@@ -140,17 +140,17 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             Property p = new Property("String", "DatabaseKey");
             p.Modifier.AccessModifier = MethodAccessModifier.Public;
-            p.Get.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).DatabaseKey;");
-            p.Set.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = value;");
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).DatabaseKey;");
+            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).DatabaseKey = value;");
 
             return p;
         }
         public Property CreateTransactionKeyProperty()
         {
-            Property p = new Property("String", "TransactionKey");
+            var p = new Property("String", "TransactionKey");
             p.Modifier.AccessModifier = MethodAccessModifier.Public;
-            p.Get.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).TransactionKey;");
-            p.Set.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).TransactionKey = value;");
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((IDatabaseContext)this).TransactionKey;");
+            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((IDatabaseContext)this).TransactionKey = value;");
 
             return p;
         }
@@ -217,9 +217,9 @@ namespace HigLabo.DbSharp.CodeGenerator
                     pName = parameter.GetNameWithoutAtmark();
 
                     yield return new CodeBlock(SourceCodeLanguage.CSharp, "p = db.CreateParameter(\"{0}\", {1}, {2}, {3});"
-                        , parameter.Name, parameter.DbType.GetDbTypeCodeBlock()
-                        , parameter.Precision.HasValue ? parameter.Precision.ToString() : "null"
-                        , parameter.Scale.HasValue ? parameter.Scale.ToString(): "null");
+                        , parameter.Name, parameter.DbType!.GetDbTypeCodeBlock()
+                        , parameter.Precision.HasValue ? parameter.Precision.ToString()! : "null"
+                        , parameter.Scale.HasValue ? parameter.Scale.ToString()!: "null");
                     yield return new CodeBlock(SourceCodeLanguage.CSharp, "p.SourceColumn = p.ParameterName;");
                     switch (parameter.ParameterDirection)
                     {
@@ -328,7 +328,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 {
                     case SqlParameterConvertType.Default:
                         if (sp.DatabaseServer == DatabaseServer.MySql &&
-                            parameter.DbType.MySqlServerDbType == MetaData.MySqlDbType.Bit)
+                            parameter.DbType!.MySqlServerDbType == MetaData.MySqlDbType.Bit)
                         {
                             yield return new CodeBlock(SourceCodeLanguage.CSharp, "if (p.Value != DBNull.Value && p.Value != null) this.{0} = ((UInt64)p.Value != 0);"
                                 , parameter.GetNameWithoutAtmark());
@@ -388,49 +388,53 @@ namespace HigLabo.DbSharp.CodeGenerator
         public IEnumerable<CodeBlock> CreateSetResultSetMethodBody(StoredProcedureResultSetColumn resultSet)
         {
             var sp = this.StoredProcedure;
-            CodeBlock cb = null;
-            CodeBlock setCode = null;
             String code = "";
 
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "var r = resultSet;");
             yield return new CodeBlock(SourceCodeLanguage.CSharp, "Int32 index = -1;");
 
-            cb = new CodeBlock(SourceCodeLanguage.CSharp, "try");
-            cb.CurlyBracket = true;
-            foreach (var parameter in resultSet.Columns)
             {
-                code = "index += 1; ";
-                if (parameter.AllowNull == true)
+                var cb = new CodeBlock(SourceCodeLanguage.CSharp, "try");
+                cb.CurlyBracket = true;
+                foreach (var parameter in resultSet.Columns)
                 {
-                    code += "if (reader[index] != DBNull.Value) ";
-                }
-                if (parameter.DbType.IsUdt() == true)
-                {
-                    code += String.Format("r.{0} = ({1})reader[index];", parameter.Name, parameter.GetClassNameText());
-                    setCode = new CodeBlock(SourceCodeLanguage.CSharp, code);
-                }
-                else
-                {
-                    switch (parameter.ConvertType)
+                    code = "index += 1; ";
+                    if (parameter.AllowNull == true)
                     {
-                        case SqlParameterConvertType.Default: code += String.Format("r.{0} = {1};", parameter.Name, this.CreateDataReaderCastCSharpCode(parameter)); break;
-                        case SqlParameterConvertType.Enum: code += String.Format("r.{0} = StoredProcedure.ToEnum<{1}>(reader[index] as String) ?? r.{0};", parameter.Name, parameter.EnumName); break;
-                        default: throw new InvalidOperationException();
+                        code += "if (reader[index] != DBNull.Value) ";
                     }
-                    setCode = new CodeBlock(SourceCodeLanguage.CSharp, code);
-                }
-                cb.CodeBlocks.Add(setCode);
-            }
-            yield return cb;
 
-            cb = new CodeBlock(SourceCodeLanguage.CSharp, "catch (Exception ex)");
-            cb.CurlyBracket = true;
-            cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "throw new StoredProcedureSchemaMismatchedException(this, index, ex);"));
-            yield return cb;
+                    CodeBlock? setCode = null;
+                    if (parameter.DbType!.IsUdt() == true)
+                    {
+                        code += String.Format("r.{0} = ({1})reader[index];", parameter.Name, parameter.GetClassNameText());
+                        setCode = new CodeBlock(SourceCodeLanguage.CSharp, code);
+                    }
+                    else
+                    {
+                        switch (parameter.ConvertType)
+                        {
+                            case SqlParameterConvertType.Default: code += String.Format("r.{0} = {1};", parameter.Name, this.CreateDataReaderCastCSharpCode(parameter)); break;
+                            case SqlParameterConvertType.Enum: code += String.Format("r.{0} = StoredProcedure.ToEnum<{1}>(reader[index] as String) ?? r.{0};", parameter.Name, parameter.EnumName); break;
+                            default: throw new InvalidOperationException();
+                        }
+                        setCode = new CodeBlock(SourceCodeLanguage.CSharp, code);
+                    }
+                    cb.CodeBlocks.Add(setCode);
+                }
+                yield return cb;
+            }
+
+            {
+                var cb = new CodeBlock(SourceCodeLanguage.CSharp, "catch (Exception ex)");
+                cb.CurlyBracket = true;
+                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "throw new StoredProcedureSchemaMismatchedException(this, index, ex);"));
+                yield return cb;
+            }
         }
         public String CreateDataReaderCastCSharpCode(DataType type)
         {
-            switch (type.DbType.DatabaseServer)
+            switch (type.DbType!.DatabaseServer)
             {
                 case DatabaseServer.SqlServer: return this.CreateDataReaderCastCSharpCodeSqlServer(type);
                 case DatabaseServer.MySql: return this.CreateDataReaderCastCSharpCodeMySql(type);
@@ -441,7 +445,7 @@ namespace HigLabo.DbSharp.CodeGenerator
         }
         private String CreateDataReaderCastCSharpCodeSqlServer(DataType type)
         {
-            switch (type.DbType.SqlServerDbType)
+            switch (type.DbType!.SqlServerDbType)
             {
                 case SqlServer2022DbType.BigInt:
                     return "reader.GetInt64(index)";
@@ -513,7 +517,7 @@ namespace HigLabo.DbSharp.CodeGenerator
         }
         private String CreateDataReaderCastCSharpCodeMySql(DataType type)
         {
-            switch (type.DbType.MySqlServerDbType.Value)
+            switch (type.DbType!.MySqlServerDbType!.Value)
             {
                 case MetaData.MySqlDbType.Blob:
                 case MetaData.MySqlDbType.TinyBlob:

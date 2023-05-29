@@ -15,7 +15,6 @@ namespace HigLabo.Net.Microsoft
             public string? GroupId { get; set; }
             public string? SiteId { get; set; }
             public string? UserId { get; set; }
-            public string? PathRelativeToRoot { get; set; }
 
             public string GetApiPath()
             {
@@ -26,8 +25,6 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Me_Drive_Items_ItemId_Children: return $"/me/drive/items/{ItemId}/children";
                     case ApiPath.Sites_SiteId_Drive_Items_ItemId_Children: return $"/sites/{SiteId}/drive/items/{ItemId}/children";
                     case ApiPath.Users_UserId_Drive_Items_ItemId_Children: return $"/users/{UserId}/drive/items/{ItemId}/children";
-                    case ApiPath.Me_Drive_Root_Children: return $"/me/drive/root/children";
-                    case ApiPath.Drives_DriveId_Root_PathRelativeToRoot_Children: return $"/drives/{DriveId}/root:/{PathRelativeToRoot}:/children";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -88,8 +85,6 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Items_ItemId_Children,
             Sites_SiteId_Drive_Items_ItemId_Children,
             Users_UserId_Drive_Items_ItemId_Children,
-            Me_Drive_Root_Children,
-            Drives_DriveId_Root_PathRelativeToRoot_Children,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

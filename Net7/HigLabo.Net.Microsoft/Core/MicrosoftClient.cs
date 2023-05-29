@@ -119,7 +119,7 @@ namespace HigLabo.Net.Microsoft
             { throw new InvalidOperationException("AuthorizationUrlBuilder property is null. Please set SlackClient.OAuthSetting property."); }
 
             var cl = this;
-            var b = this.OAuthSetting as OAuthSetting;
+            var b = (OAuthSetting)this.OAuthSetting;
             var req = new HttpRequestMessage(HttpMethod.Post, "https://login.microsoftonline.com/common/oauth2/v2.0/token");
 
             var d = new Dictionary<string, string>();

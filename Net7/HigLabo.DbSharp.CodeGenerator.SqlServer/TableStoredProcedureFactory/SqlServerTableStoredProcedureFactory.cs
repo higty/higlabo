@@ -131,7 +131,6 @@ namespace HigLabo.DbSharp.CodeGenerator
         public override String CreateQueryOfTableNameUpdate(Table table)
         {
             StringBuilder sb = new StringBuilder(32);
-            List<Column> columns = null;
             List<Column> outputColumns = new List<Column>();
             String whereQuery = this.CreateWhereQuery(table.GetPrimaryKeyOrTimestampColumns(), true);
 
@@ -166,7 +165,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             sb.Append(CreateText(table.GetPrimaryKeyColumns(), column => String.Format("@{0} = @PK_{0}", column.Name), "and ", true));
             sb.AppendLine(")");
 
-            columns = table.GetColumns(false, false).ToList();
+            var columns = table.GetColumns(false, false).ToList();
             sb.AppendLine("begin");
             if (columns.Count == 0)
             {

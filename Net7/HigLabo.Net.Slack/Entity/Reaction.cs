@@ -9,7 +9,7 @@ namespace HigLabo.Net.Slack
     public class Reaction
     {
         public Int32 Count { get; set; }
-        public string Name { get; set; }
-        public string[] Users { get; set; }
+        public string? Name { get; set; }
+        public string[]? Users { get; set; }
     }
 }

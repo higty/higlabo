@@ -54,7 +54,7 @@ namespace DbSharpApplication
                 try
                 {
                     var cv = new XmlConverter();
-                    return cv.Deserialize<ConfigData>(xmlText);
+                    return cv.Deserialize<ConfigData>(xmlText)!;
                 }
                 catch
                 {

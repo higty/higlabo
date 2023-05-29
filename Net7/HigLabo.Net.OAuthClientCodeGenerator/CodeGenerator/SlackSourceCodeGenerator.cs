@@ -62,8 +62,8 @@ namespace HigLabo.Net.CodeGenerator
             foreach (var row in doc.QuerySelectorAll(".apiReferenceFilterableList__listItem"))
             {
                 if (row.ClassList.Contains("apiReferenceFilterableList__listItem--deprecated")) { continue; }
-                var hp = row.QuerySelector(".apiReferenceFilterableList__listItemLink");
-                var scope = hp.GetAttribute("href").Replace("/scopes/", "");
+                var hp = row.QuerySelector(".apiReferenceFilterableList__listItemLink")!;
+                var scope = hp.GetAttribute("href")!.Replace("/scopes/", "");
                 if (DeprecatedScopeList.Contains(scope)) { continue; }
                 var eName = CreateScopeName(scope);
                 em.Values.Add(new EnumValue(eName));
@@ -72,6 +72,7 @@ namespace HigLabo.Net.CodeGenerator
             }
             block.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "default: throw new SwitchStatementNotImplementException<Scope>(value);"));
 
+            Directory.CreateDirectory(Path.Combine(FolderPath, "Enum"));
             var filePath = Path.Combine(FolderPath, "Enum", "Scope.cs");
             using (var stream = new StreamWriter(filePath, false, Encoding.UTF8))
             {
@@ -151,9 +152,10 @@ namespace HigLabo.Net.CodeGenerator
             foreach (var row in doc.QuerySelectorAll(".apiMethodPage__argumentRow"))
             {
                 var p = new ApiParameter();
-                p.Name = row.QuerySelector(".apiMethodPage__argument code").TextContent;
+                p.Name = row.QuerySelector(".apiMethodPage__argument code")!.TextContent;
                 if (p.Name == "token") { continue; }
-                p.TypeName = row.QuerySelector(".apiMethodPage__argumentType").TextContent;
+                p.TypeName = row.QuerySelector(".apiMethodPage__argumentType")!.TextContent;
+
                 p.Required = row.QuerySelector(".apiMethodPage__argumentOptionality")?.TextContent.Contains("required", StringComparison.OrdinalIgnoreCase) == true;
                 l.Add(p);
             }
@@ -203,7 +205,7 @@ namespace HigLabo.Net.CodeGenerator
 
         protected override string GetClassName(string className, string propertyName)
         {
-            if (propertyName == "Recurrence") { return propertyName; }
+            if (propertyName == "Recurrence") { return "Recurrence?"; }
             return "";
         }
         protected override String GetEnumName(string className, string propertyName)
@@ -236,7 +238,7 @@ namespace HigLabo.Net.CodeGenerator
         protected override Property CreateHttpMethodProperty(string url, IDocument document)
         {
             var doc = document;
-            var httpMethod = doc.QuerySelector(".apiMethodPage__method").TextContent;
+            var httpMethod = doc.QuerySelector(".apiMethodPage__method")!.TextContent;
 
             var p = new Property("string", "IRestApiParameter.HttpMethod", true);
             p.Modifier.AccessModifier = MethodAccessModifier.None;

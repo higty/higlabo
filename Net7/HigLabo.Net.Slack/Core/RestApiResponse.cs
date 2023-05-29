@@ -10,7 +10,7 @@ namespace HigLabo.Net.Slack
     {
         public bool Ok { get; set; }
         public string Error { get; set; } = "";
-        public ResponseMetadata Response_MetaData { get; set; }
+        public ResponseMetadata? Response_MetaData { get; set; }
 
         public override string GetNextPageToken()
         {

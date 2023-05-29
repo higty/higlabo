@@ -16,6 +16,7 @@ namespace HigLabo.DbSharp.MetaData
 {
     public class PostgreSqlDatabaseSchemaReader : DatabaseSchemaReader
     {
+        public override DatabaseSchemaQueryBuilder QueryBuilder => new PostgreSqlDatabaseSchemaQueryBuilder();
         public override DatabaseServer DatabaseServer
         {
             get { return DatabaseServer.PostgreSql; }
@@ -24,9 +25,9 @@ namespace HigLabo.DbSharp.MetaData
         {
             get { return false; }
         }
+     
         public PostgreSqlDatabaseSchemaReader(String connectionString)
         {
-            this.QueryBuilder = new PostgreSqlDatabaseSchemaQueryBuilder();
             this.ConnectionString = connectionString;
         }
         public override Database CreateDatabase()
@@ -37,9 +38,7 @@ namespace HigLabo.DbSharp.MetaData
         public override async Task SetResultSetsListAsync(StoredProcedure sp, Dictionary<String, Object> values)
         {
             List<StoredProcedureResultSetColumn> resultSetsList = new List<StoredProcedureResultSetColumn>();
-            StoredProcedureResultSetColumn resultSets = null;
             List<DataTable> schemaDataTableList = new List<DataTable>();
-            DataType c = null;
             var cm = CreateTestSqlCommand<NpgsqlCommand>(sp, values);
 
             //処理の実行によってデータの変更などの副作用が起きないようにRollBackする。
@@ -50,9 +49,9 @@ namespace HigLabo.DbSharp.MetaData
                     db.Open();
                     db.BeginTransaction(IsolationLevel.ReadCommitted);
 
-                    using (IDataReader r = await db.ExecuteReaderAsync(cm))
+                    using (var r = await db.ExecuteReaderAsync(cm))
                     {
-                        var schemaDataTable = r.GetSchemaTable();
+                        var schemaDataTable = r!.GetSchemaTable();
                         if (schemaDataTable == null) return;
                         schemaDataTableList.Add(schemaDataTable);
                         //TableNameSelectAllストアドの場合はスキップ
@@ -61,7 +60,7 @@ namespace HigLabo.DbSharp.MetaData
                         {
                             while (r.NextResult())
                             {
-                                schemaDataTableList.Add(r.GetSchemaTable());
+                                schemaDataTableList.Add(r.GetSchemaTable()!);
                             }
                         }
                     }
@@ -85,20 +84,18 @@ namespace HigLabo.DbSharp.MetaData
             Int32 index = 0;
             foreach (var schemaDataTable in schemaDataTableList)
             {
-                if (index == 0)
+                var resultSets = index switch
                 {
-                    resultSets = new StoredProcedureResultSetColumn("ResultSet");
-                }
-                else
-                {
-                    resultSets = new StoredProcedureResultSetColumn("ResultSet" + index);
-                }
+                    0 => new StoredProcedureResultSetColumn("ResultSet"),
+                    _ => new StoredProcedureResultSetColumn("ResultSet" + index),
+                };
+
                 for (var i = 0; i < schemaDataTable.Rows.Count; i++)
                 {
                     var row = schemaDataTable.Rows[i];
 
-                    c = new DataType();
-                    c.Name = row["ColumnName"].ToString();
+                    var c = new DataType();
+                    c.Name = row["ColumnName"].ToString()!;
                     c.Ordinal = resultSets.Columns.Count;
                     c.DbType = this.CreateDbType(row["ProviderType"]);
                     if (c.DbType.IsUdt() == true)
@@ -149,7 +146,7 @@ namespace HigLabo.DbSharp.MetaData
         }
         protected override IDbDataParameter CreateParameter(String name, DataType dataType)
         {
-            var p = new NpgsqlParameter(name, dataType.DbType.PostgreSqlServerDbType.Value);
+            var p = new NpgsqlParameter(name, dataType.DbType!.PostgreSqlServerDbType!.Value);
             if (dataType is SqlInputParameter dType)
             {
                 p.Direction = dType.ParameterDirection;
@@ -160,7 +157,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             return p;
         }
-        protected override Object GetParameterValue(DataType dataType, Object sqlDbType)
+        protected override Object? GetParameterValue(DataType dataType, Object sqlDbType)
         {
             switch ((NpgsqlDbType)sqlDbType)
             {

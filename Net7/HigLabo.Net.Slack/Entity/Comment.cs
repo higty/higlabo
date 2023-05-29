@@ -8,12 +8,12 @@ namespace HigLabo.Net.Slack
 {
     public partial class SlackComment
     {
-        public string Type { get; set; }
-        public string Comment { get; set; }
+        public string? Type { get; set; }
+        public string? Comment { get; set; }
         public Int32 Created { get; set; }
-        public string Id { get; set; }
-        public Reaction[] Reactions { get; set; }
+        public string? Id { get; set; }
+        public Reaction[]? Reactions { get; set; }
         public Int32 Timestamp { get; set; }
-        public String User { get; set; }
+        public string? User { get; set; }
     }
 }

@@ -71,9 +71,9 @@ namespace HigLabo.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String? ToPascalCase(this String value)
+        public static String ToPascalCase(this String value)
         {
-            if (value == null) { return value; }
+            if (value == null) { return ""; }
 
             var sb = new StringBuilder(value.Length);
 
@@ -95,9 +95,9 @@ namespace HigLabo.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String? ToCamelCase(this String value)
+        public static String ToCamelCase(this String value)
         {
-            if (value == null) { return value; }
+            if (value == null) { return ""; }
 
             var sb = new StringBuilder(value.Length);
 
@@ -119,9 +119,9 @@ namespace HigLabo.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String? ToSnakeCase(this String value)
+        public static String ToSnakeCase(this String value)
         {
-            if (value == null) { return value; }
+            if (value == null) { return ""; }
 
             var sb = new StringBuilder(value.Length + 4);
 
@@ -140,9 +140,9 @@ namespace HigLabo.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String? ToTrainCase(this String value)
+        public static String ToTrainCase(this String value)
         {
-            if (value == null) { return value; }
+            if (value == null) { return ""; }
 
             var sb = new StringBuilder(value.Length + 4);
 
@@ -161,9 +161,9 @@ namespace HigLabo.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String? ToKebabCase(this String value)
+        public static String ToKebabCase(this String value)
         {
-            if (value == null) { return value; }
+            if (value == null) { return ""; }
 
             var sb = new StringBuilder(value.Length + 4);
             var previousCharIsUpperCase = false;
@@ -188,7 +188,7 @@ namespace HigLabo.Core
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static String? ToLispCase(this String value)
+        public static String ToLispCase(this String value)
         {
             return ToKebabCase(value);
         }

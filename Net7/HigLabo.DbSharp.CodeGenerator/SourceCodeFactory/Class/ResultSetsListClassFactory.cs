@@ -39,7 +39,7 @@ namespace HigLabo.DbSharp.CodeGenerator
             c.Fields.Add(f);
 
             var p = new Property(f.TypeName, rs.Name + "List");
-            p.Get.Body.Add(SourceCodeLanguage.CSharp, String.Format("return {0};", f.Name));
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, String.Format("return {0};", f.Name));
 
             p.Set = null;
 

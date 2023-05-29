@@ -8,6 +8,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -23,7 +24,7 @@ namespace HigLabo.Net.CodeGenerator
 
         public virtual Boolean UseSelenium { get; } = false;
         public string FolderPath { get; init; } = "";
-        public string HtmlCacheFolderPath { get; set; }
+        public string HtmlCacheFolderPath { get; set; } = "";
         public string ServiceName { get; init; } = "";
         public IBrowsingContext Context { get; init; }
         public string UserAgent { get; init; } = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36";
@@ -33,10 +34,7 @@ namespace HigLabo.Net.CodeGenerator
             this.FolderPath = folderPath;
             this.ServiceName = serviceName;
             this.Context = BrowsingContext.New(Configuration.Default.WithDefaultLoader());
-            this.SetChromeDriver();
-        }
-        private void SetChromeDriver()
-        {
+
             var options = new ChromeOptions();
             options.AddArguments("--user-agent=" + this.UserAgent);
             _Driver = new ChromeDriver(options);
@@ -105,20 +103,19 @@ namespace HigLabo.Net.CodeGenerator
         public async Task Execute()
         {
             var random = new Random();
-            //var text = File.ReadAllText(Environment.CurrentDirectory + "v1.0_metadata.xml");
-            //var xml = XElement.Parse(text);
-
-            //foreach (var item in xml.Elements("DataSource"))
-            //{
-
-            //}
-
             await CreateScopeSourceCode();
 
             _CreatedUrlList.Clear();
             foreach (var url in this.GetEntiryUrlList())
             {
-                await CreateEntitySourceCodeFile(url, new CreateEntityClassContext());
+                try
+                {
+                    await CreateEntitySourceCodeFile(url, new CreateEntityClassContext());
+                }
+                catch (Exception ex)
+                {
+                    ConsoleWriteText(ex.ToString());
+                }
             }
 
             foreach (var url in GetMethodUrlList())
@@ -130,7 +127,7 @@ namespace HigLabo.Net.CodeGenerator
                 }
                 catch (Exception ex)
                 {
-                    var s = ex.ToString();
+                    ConsoleWriteText(ex.ToString());
                 }
             }
             ConsoleWriteText("Completed!");
@@ -210,6 +207,7 @@ namespace HigLabo.Net.CodeGenerator
             var doc = await this.GetDocumentAsync(url);
             var cName = this.GetClassName(url, doc);
             var sc = await this.CreateMethodSourceCode(url, doc, cName);
+            Directory.CreateDirectory(Path.Combine(FolderPath, "Method"));
             var filePath = Path.Combine(FolderPath, "Method", cName + ".cs");
             this.WriteFile(filePath, sc);
 
@@ -225,10 +223,11 @@ namespace HigLabo.Net.CodeGenerator
             sc.UsingNamespaces.Add("HigLabo.Net.OAuth");
             sc.Namespaces.Add(new Namespace($"HigLabo.Net.{this.ServiceName}"));
 
-            var c = new Class(AccessModifier.Public, cName + "Parameter");
-            c.Modifier.Partial = true;
-            c.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
-            sc.Namespaces[0].Classes.Add(c);
+            var cParameter = new Class(AccessModifier.Public, cName + "Parameter");
+            cParameter.Comment = url;
+            cParameter.Modifier.Partial = true;
+            cParameter.ImplementInterfaces.Add(new TypeName("IRestApiParameter"));
+            sc.Namespaces[0].Classes.Add(cParameter);
 
             sc.Namespaces[0].Classes.Add(CreateResponseClass(document, cName + "Response", context));
 
@@ -252,8 +251,8 @@ namespace HigLabo.Net.CodeGenerator
                 cClient.Methods.Add(md1);
             }
 
-            c.Properties.Add(this.CreateApiPathProperty(url, doc));
-            c.Properties.Add(this.CreateHttpMethodProperty(url, doc));
+            cParameter.Properties.Add(this.CreateApiPathProperty(url, doc));
+            cParameter.Properties.Add(this.CreateHttpMethodProperty(url, doc));
 
             var mdAsync = new Method(MethodAccessModifier.Public, cName + "Async");
             mdAsync.ReturnTypeName.Name = "async Task";
@@ -262,7 +261,7 @@ namespace HigLabo.Net.CodeGenerator
 
             foreach (var parameter in await this.GetMethodParameterList(doc))
             {
-                var property = await this.AddProperty(c, cName, parameter);
+                var property = await this.AddProperty(cParameter, cName, parameter);
 
                 if (parameter.EntityUrl.IsNullOrEmpty() == false)
                 {
@@ -271,15 +270,15 @@ namespace HigLabo.Net.CodeGenerator
 
                 if (this.IsNextPageTokenProperty(property))
                 {
-                    c.ImplementInterfaces.Add(new TypeName("IRestApiPagingParameter"));
+                    cParameter.ImplementInterfaces.Add(new TypeName("IRestApiPagingParameter"));
 
-                    var pPaging = new Property("string", "IRestApiPagingParameter.NextPageToken");
+                    var pPaging = new Property("string?", "IRestApiPagingParameter.NextPageToken");
                     pPaging.Modifier.AccessModifier = MethodAccessModifier.None;
                     pPaging.Get = new PropertyBody(PropertyBodyType.Get);
                     pPaging.Get.Body.Add(SourceCodeLanguage.CSharp, $"return this.{property.Name};");
                     pPaging.Set = new PropertyBody(PropertyBodyType.Set);
                     pPaging.Set.Body.Add(SourceCodeLanguage.CSharp, $"this.{property.Name} = value;");
-                    c.Properties.Add(pPaging);
+                    cParameter.Properties.Add(pPaging);
                 }
 
                 if (parameter.Required)
@@ -298,7 +297,7 @@ namespace HigLabo.Net.CodeGenerator
             mdAsync1.Body.Add(SourceCodeLanguage.CSharp, $"return await this.SendAsync<{cName}Parameter, {cName}Response>(p, CancellationToken.None);");
             cClient.Methods.Add(mdAsync1);
 
-            if (c.ImplementInterfaces.Exists(el => el.Name == "IRestApiPagingParameter"))
+            if (cParameter.ImplementInterfaces.Exists(el => el.Name == "IRestApiPagingParameter"))
             {
                 var mdBatch = cClient.Methods[0].Copy();
                 mdBatch.Parameters.Insert(1, new MethodParameter($"PagingContext<{cName}Response>", "context"));
@@ -356,7 +355,8 @@ namespace HigLabo.Net.CodeGenerator
                     property.TypeName.Name = entityClassName + "?";
                 }
             }
-            if (typeName.IsNullOrEmpty() == false)
+            if (property.TypeName.Name.IsNullOrEmpty() == false &&
+                typeName.IsNullOrEmpty() == false)
             {
                 property.TypeName.Name = typeName;
             }

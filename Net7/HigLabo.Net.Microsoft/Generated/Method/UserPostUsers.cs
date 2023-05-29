@@ -70,7 +70,7 @@ namespace HigLabo.Net.Microsoft
         public string? DisplayName { get; set; }
         public string? OnPremisesImmutableId { get; set; }
         public string? MailNickname { get; set; }
-        public PasswordProfile PasswordProfile { get; set; }
+        public PasswordProfile? PasswordProfile { get; set; }
         public string? UserPrincipalName { get; set; }
         public string? AboutMe { get; set; }
         public UserAgeGroup AgeGroup { get; set; }

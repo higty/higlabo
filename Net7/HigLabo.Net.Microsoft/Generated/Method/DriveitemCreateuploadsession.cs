@@ -16,8 +16,6 @@ namespace HigLabo.Net.Microsoft
             public string? FileName { get; set; }
             public string? SiteId { get; set; }
             public string? UserId { get; set; }
-            public string? ItemPath { get; set; }
-            public string? Path_to_parent { get; set; }
 
             public string GetApiPath()
             {
@@ -29,10 +27,6 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Me_Drive_Items_ItemId_FileName_CreateUploadSession: return $"/me/drive/items/{ItemId}:/{FileName}:/createUploadSession";
                     case ApiPath.Sites_SiteId_Drive_Items_ItemId_CreateUploadSession: return $"/sites/{SiteId}/drive/items/{ItemId}/createUploadSession";
                     case ApiPath.Users_UserId_Drive_Items_ItemId_CreateUploadSession: return $"/users/{UserId}/drive/items/{ItemId}/createUploadSession";
-                    case ApiPath.Me_Drive_Root_ItemPath_CreateUploadSession: return $"/me/drive/root:/{ItemPath}:/createUploadSession";
-                    case ApiPath.Ttps__Sn3302up1drvcom_Up_Fe6987415ace7X4e1eF866337: return $"/ttps://sn3302.up.1drv.com/up/fe6987415ace7X4e1eF866337";
-                    case ApiPath.Ttps__Sn3302up1drvcom_Up_Fe6987415ace7X4e1eF86633784148bb98a1zjcUhf7b0mpUadahs: return $"/ttps://sn3302.up.1drv.com/up/fe6987415ace7X4e1eF86633784148bb98a1zjcUhf7b0mpUadahs";
-                    case ApiPath.Me_Drive_Root_Path_to_parent: return $"/me/drive/root:/{Path_to_parent}";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -46,10 +40,6 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Items_ItemId_FileName_CreateUploadSession,
             Sites_SiteId_Drive_Items_ItemId_CreateUploadSession,
             Users_UserId_Drive_Items_ItemId_CreateUploadSession,
-            Me_Drive_Root_ItemPath_CreateUploadSession,
-            Ttps__Sn3302up1drvcom_Up_Fe6987415ace7X4e1eF866337,
-            Ttps__Sn3302up1drvcom_Up_Fe6987415ace7X4e1eF86633784148bb98a1zjcUhf7b0mpUadahs,
-            Me_Drive_Root_Path_to_parent,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

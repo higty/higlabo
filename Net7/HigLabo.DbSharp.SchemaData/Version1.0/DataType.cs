@@ -11,11 +11,11 @@ namespace HigLabo.DbSharp.MetaData
     public class DataType : INotifyPropertyChanged
     {
         public static readonly String[] KeywordList = new[] { "when", "case" };
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private String _Name = "";
         private Double _Ordinal = 0;
-        private DbType _DbType = null;
+        private DbType? _DbType = null;
         private Int32? _Length = null;
         private Int32? _Precision = null;
         private Int32? _Scale = null;
@@ -34,7 +34,7 @@ namespace HigLabo.DbSharp.MetaData
             get { return this._Ordinal; }
             set { this.SetPropertyValue(ref _Ordinal, value, PropertyChanged); }
         }
-        public DbType DbType
+        public DbType? DbType
         {
             get { return this._DbType; }
             set { this.SetPropertyValue(ref _DbType, value, PropertyChanged); }
@@ -103,7 +103,7 @@ namespace HigLabo.DbSharp.MetaData
         public String GetDeclareParameterText()
         {
             var name = this.Name;
-            switch (this.DbType.DatabaseServer)
+            switch (this.DbType!.DatabaseServer)
             {
                 case DatabaseServer.SqlServer:
                     #region
@@ -165,7 +165,7 @@ namespace HigLabo.DbSharp.MetaData
                         {
                             return String.Format("{0} {1} unsigned", name, this.GetDeclareTypeName());
                         }
-                        if (tp.MySqlServerDbType.Value == MySqlDbType.Year)
+                        if (tp.MySqlServerDbType!.Value == MySqlDbType.Year)
                         {
                             return String.Format("{0} year(4)", name);
                         }
@@ -184,11 +184,11 @@ namespace HigLabo.DbSharp.MetaData
         }
         protected virtual String GetDeclareTypeName()
         {
-            switch (this.DbType.DatabaseServer)
+            switch (this.DbType!.DatabaseServer)
             {
                 case DatabaseServer.SqlServer:
                     {
-                        var tp = this.DbType.SqlServerDbType.Value;
+                        var tp = this.DbType.SqlServerDbType!.Value;
                         if (tp == SqlServer2022DbType.Structured)
                         {
                             throw new InvalidOperationException("DataType.DbType must not be DbType.Structured.");
@@ -200,10 +200,10 @@ namespace HigLabo.DbSharp.MetaData
                         else if (tp == SqlServer2022DbType.Variant) { return "sql_variant"; }
                         return tp.ToString();
                     }
-                case DatabaseServer.Oracle: return this.DbType.OracleServerDbType.ToString();
+                case DatabaseServer.Oracle: return this.DbType.OracleServerDbType.ToString()!;
                 case DatabaseServer.MySql:
                     {
-                        var tp = this.DbType.MySqlServerDbType.Value;
+                        var tp = this.DbType.MySqlServerDbType!.Value;
                         if (tp == MySqlDbType.String) return "char";
                         if (tp == MySqlDbType.Byte) return "tinyint";
                         if (tp == MySqlDbType.Int16) return "smallint";
@@ -216,9 +216,9 @@ namespace HigLabo.DbSharp.MetaData
                         if (tp == MySqlDbType.UInt24) return "mediumint";
                         if (tp == MySqlDbType.UInt32) return "int";
                         if (tp == MySqlDbType.UInt64) return "bigint";
-                        return this.DbType.MySqlServerDbType.ToString().ToLower();
+                        return this.DbType.MySqlServerDbType.ToString()!.ToLower();
                     }
-                case DatabaseServer.PostgreSql: return this.DbType.PostgreSqlServerDbType.ToString();
+                case DatabaseServer.PostgreSql: return this.DbType.PostgreSqlServerDbType.ToString()!;
                 default: throw new InvalidOperationException();
             }
         }
@@ -256,11 +256,11 @@ namespace HigLabo.DbSharp.MetaData
         public ClassNameType GetClassNameType()
         {
             var type = this.DbType;
-            switch (type.DatabaseServer)
+            switch (type!.DatabaseServer)
             {
-                case DatabaseServer.SqlServer: return GetClassNameType(type.SqlServerDbType.Value);
-                case DatabaseServer.Oracle: return GetClassNameType(type.OracleServerDbType.Value);
-                case DatabaseServer.MySql: return GetClassNameType(type.MySqlServerDbType.Value);
+                case DatabaseServer.SqlServer: return GetClassNameType(type.SqlServerDbType!.Value);
+                case DatabaseServer.Oracle: return GetClassNameType(type.OracleServerDbType!.Value);
+                case DatabaseServer.MySql: return GetClassNameType(type.MySqlServerDbType!.Value);
                 case DatabaseServer.PostgreSql:
                 default: throw new InvalidOperationException();
             }
@@ -485,7 +485,7 @@ namespace HigLabo.DbSharp.MetaData
                     return ClassNameType.Object;
             }
         }
-        protected PropertyChangedEventHandler GetPropertyChangedEventHandler()
+        protected PropertyChangedEventHandler? GetPropertyChangedEventHandler()
         {
             return this.PropertyChanged;
         }

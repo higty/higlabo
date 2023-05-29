@@ -92,8 +92,8 @@ namespace HigLabo.DbSharp.CodeGenerator
         {
             var t = this.Table;
             var p = new Property("SaveMode", "SaveMode");
-            p.Get.Body.Add(SourceCodeLanguage.CSharp, "return ((ISaveMode)this).SaveMode;");
-            p.Set.Body.Add(SourceCodeLanguage.CSharp, "((ISaveMode)this).SaveMode = value;");
+            p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return ((ISaveMode)this).SaveMode;");
+            p.Set!.Body.Add(SourceCodeLanguage.CSharp, "((ISaveMode)this).SaveMode = value;");
             return p;
         }
 
@@ -239,8 +239,6 @@ namespace HigLabo.DbSharp.CodeGenerator
             cb.CurlyBracket = true;
 
             Int32 index = 0;
-            CodeBlock cbIf = null;
-            CodeBlock cbElse = null;
             Boolean useCast = false;
             foreach (var item in t.Columns)
             {
@@ -252,7 +250,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                     tp == ClassNameType.MySqlGeometry);
 
                 cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, "case {0}:", index));
-                cbIf = new CodeBlock(SourceCodeLanguage.CSharp, "if (value == null)");
+                var cbIf = new CodeBlock(SourceCodeLanguage.CSharp, "if (value == null)");
                 cbIf.IndentLevel = 1;
                 cbIf.CurlyBracket = true;
                 if (item.AllowNull == true)
@@ -266,7 +264,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 }
                 cb.CodeBlocks.Add(cbIf);
 
-                cbElse = new CodeBlock(SourceCodeLanguage.CSharp, "else");
+                var cbElse = new CodeBlock(SourceCodeLanguage.CSharp, "else");
                 cbElse.IndentLevel = 1;
                 cbElse.CurlyBracket = true;
 

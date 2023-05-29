@@ -24,7 +24,6 @@ namespace HigLabo.Net.Microsoft
                     case ApiPath.Me_Drive_Root_Search: return $"/me/drive/root/search";
                     case ApiPath.Sites_SiteId_Drive_Root_Search: return $"/sites/{SiteId}/drive/root/search";
                     case ApiPath.Users_UserId_Drive_Root_Search: return $"/users/{UserId}/drive/root/search";
-                    case ApiPath.Me_Drive_Search: return $"/me/drive/search";
                     default:throw new HigLabo.Core.SwitchStatementNotImplementException<ApiPath>(this.ApiPath);
                 }
             }
@@ -85,7 +84,6 @@ namespace HigLabo.Net.Microsoft
             Me_Drive_Root_Search,
             Sites_SiteId_Drive_Root_Search,
             Users_UserId_Drive_Root_Search,
-            Me_Drive_Search,
         }
 
         public ApiPathSettings ApiPathSetting { get; set; } = new ApiPathSettings();

@@ -3,7 +3,7 @@
 namespace HigLabo.Net.Microsoft
 {
     /// <summary>
-    /// https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0
+    /// https://learn.microsoft.com/en-us/graph/api/resources/user?view=graph-rest-1.0#consentprovidedforminor-values
     /// </summary>
     public partial class User
     {

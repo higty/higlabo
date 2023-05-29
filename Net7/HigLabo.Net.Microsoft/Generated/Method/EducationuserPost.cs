@@ -75,7 +75,7 @@ namespace HigLabo.Net.Microsoft
         public string? MobilePhone { get; set; }
         public EducationOnPremisesInfo? OnPremisesInfo { get; set; }
         public string? PasswordPolicies { get; set; }
-        public PasswordProfile PasswordProfile { get; set; }
+        public PasswordProfile? PasswordProfile { get; set; }
         public string? PreferredLanguage { get; set; }
         public EducationUserPostParameterEducationUserRole PrimaryRole { get; set; }
         public ProvisionedPlan[]? ProvisionedPlans { get; set; }

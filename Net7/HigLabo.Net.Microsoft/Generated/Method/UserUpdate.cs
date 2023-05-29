@@ -77,7 +77,7 @@ namespace HigLabo.Net.Microsoft
         public string? OnPremisesImmutableId { get; set; }
         public String[]? OtherMails { get; set; }
         public string? PasswordPolicies { get; set; }
-        public PasswordProfile PasswordProfile { get; set; }
+        public PasswordProfile? PasswordProfile { get; set; }
         public String[]? PastProjects { get; set; }
         public string? PostalCode { get; set; }
         public string? PreferredLanguage { get; set; }

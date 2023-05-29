@@ -12,8 +12,8 @@ namespace HigLabo.CodeGenerator
         public MethodModifier Modifier { get; private set; }
         public TypeName TypeName { get; set; }
         public String Name { get; set; }
-        public PropertyBody Get { get; set; }
-        public PropertyBody Set { get; set; }
+        public PropertyBody? Get { get; set; }
+        public PropertyBody? Set { get; set; }
         public String Initializer { get; set; } = "";
 
         public Property(String typeName, String name)

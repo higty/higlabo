@@ -8,8 +8,8 @@ namespace HigLabo.DbSharp
 {
     public class TableRecordNotFoundException : Exception
     {
-        public String TableName { get; private set; }
-        public Object[] Values { get; private set; }
+        public String TableName { get; private set; } = "";
+        public Object[]? Values { get; private set; }
 
         public TableRecordNotFoundException(String tableName)
             : base("TableName=" + tableName)

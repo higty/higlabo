@@ -14,7 +14,7 @@ namespace HigLabo.DbSharp
     {
         public static NpgsqlTypes.NpgsqlDbType GetNpgsqlDbType(this HigLabo.DbSharp.MetaData.NpgsqlDbType type)
         {
-            return type.ToStringFromEnum().ToEnum<NpgsqlTypes.NpgsqlDbType>().Value;
+            return type.ToStringFromEnum().ToEnum<NpgsqlTypes.NpgsqlDbType>()!.Value;
         }
     }
 }

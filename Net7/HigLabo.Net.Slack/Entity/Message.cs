@@ -10,50 +10,50 @@ namespace HigLabo.Net.Slack
     {
         public class EditedUser
         {
-            public String User { get; set; }
-            public String Ts { get; set; }
+            public string? User { get; set; }
+            public string? Ts { get; set; }
             public DateTimeOffset? Ts_DateTimeOffset
             {
                 get { return this.Ts.GetDateTimeOffsetFromTs(); }
             }
         }
-        public String Id { get; set; }
-        public String Type { get; set; }
-        public String Channel { get; set; }
-        public String User { get; set; }
-        public String Text { get; set; }
-        public String Ts { get; set; }
+        public string? Id { get; set; }
+        public string? Type { get; set; }
+        public string? Channel { get; set; }
+        public string? User { get; set; }
+        public string? Text { get; set; }
+        public string? Ts { get; set; }
         public DateTimeOffset? Ts_DateTimeOffset
         {
             get { return this.Ts.GetDateTimeOffsetFromTs(); }
         }
-        public String Deleted_Ts { get; set; }
+        public string? Deleted_Ts { get; set; }
         public DateTimeOffset? Deleted_Ts_DateTimeOffset
         {
             get { return this.Deleted_Ts.GetDateTimeOffsetFromTs(); }
         }
-        public String Event_Ts { get; set; }
+        public string? Event_Ts { get; set; }
         public DateTimeOffset? Event_Ts_DateTimeOffset
         {
             get { return this.Event_Ts.GetDateTimeOffsetFromTs(); }
         }
 
-        public String Parent_User_Id { get; set; }
-        public String Thread_Ts { get; set; }
+        public string? Parent_User_Id { get; set; }
+        public string? Thread_Ts { get; set; }
         public DateTimeOffset? Thread_Ts_DateTimeOffset
         {
             get { return this.Thread_Ts.GetDateTimeOffsetFromTs(); }
         }
         public int Reply_Count { get; set; }
-        public String Last_Read { get; set; }
+        public string? Last_Read { get; set; }
         public Int32 Unread_Count { get; set; }
-        public EditedUser Edited { get; set; }
+        public EditedUser? Edited { get; set; }
 
-        public File[] Files { get; set; }
-        public Attachment[] Attachments { get; set; }
+        public File[]? Files { get; set; }
+        public Attachment[]? Attachments { get; set; }
 
         public Boolean? IsStarred { get; set; }
-        public String[] Pinned_To { get; set; }
-        public (String Name, Int32 Count, String[] Users)[] Reactions { get; set; }
+        public String[]? Pinned_To { get; set; }
+        public (string? Name, Int32 Count, String[]? Users)[]? Reactions { get; set; }
     }
 }

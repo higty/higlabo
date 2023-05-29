@@ -14,9 +14,9 @@ namespace HigLabo.DbSharp.MetaData
     public abstract class DatabaseSchemaReader
     {
         public TypeConverter TypeConverter { get; init; } = new TypeConverter();
-        public DatabaseSchemaQueryBuilder QueryBuilder { get; protected set; }
+        public abstract DatabaseSchemaQueryBuilder QueryBuilder { get; }
         public abstract DatabaseServer DatabaseServer { get; }
-        public String ConnectionString { get; protected set; }
+        public String ConnectionString { get; protected set; } = "";
         public abstract Boolean SupportUserDefinedTableType { get; }
 
         public abstract Database CreateDatabase();
@@ -27,7 +27,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetTables());
-                while (reader.Read())
+                while (reader!.Read())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.Table);
                     o.Name = reader.GetString(0);
@@ -45,7 +45,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = db.ExecuteReader(this.QueryBuilder.GetTable(name));
-                if (await reader.ReadAsync() == false) { throw new InvalidOperationException(String.Format("Table {0} does not exist.", name)); }
+                if (reader == null || await reader.ReadAsync() == false) { throw new InvalidOperationException(String.Format("Table {0} does not exist.", name)); }
                 t.Name = reader.GetString(0);
                 t.CreateTime = reader.GetDateTime(1);
                 t.LastAlteredTime = reader.GetDateTime(2);
@@ -58,6 +58,7 @@ namespace HigLabo.DbSharp.MetaData
             foreach (var item in await this.GetPrimaryKeyAsync(name))
             {
                 var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                if (c == null) { continue; }
                 c.IsPrimaryKey = true;
                 c.Clustered = item.Clustered;
             }
@@ -66,7 +67,7 @@ namespace HigLabo.DbSharp.MetaData
                 var columnList = new List<Column>();
                 foreach (var indexColumn in item.Columns)
                 {
-                    var c = t.Columns.Find(el => el.Name == indexColumn.Name);
+                    var c = t.Columns.First(el => el.Name == indexColumn.Name);
                     columnList.Add(c);
                 }
                 item.Columns.Clear();
@@ -75,7 +76,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             foreach (var item in await this.GetForeignKeyColumnAsync(name))
             {
-                var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                var c = t.Columns.First(el => el.Name == item.ColumnName);
                 c.ForeignKey = item;
             }
             foreach (var item in await this.GetCheckConstraintAsync(name))
@@ -84,7 +85,7 @@ namespace HigLabo.DbSharp.MetaData
             }
             foreach (var item in await this.GetDefaultCostraintAsync(name))
             {
-                var c = t.Columns.Find(el => el.Name == item.ColumnName);
+                var c = t.Columns.First(el => el.Name == item.ColumnName);
                 c.DefaultCostraint = item;
             }
             return t;
@@ -96,7 +97,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetPrimaryKey(tableName));
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var c = new PrimaryKeyConstraint();
                     c.Name = reader.GetString(0);
@@ -116,11 +117,10 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetIndex(tableName));
-                Index ix = null;
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var indexName = reader.GetString(0);
-                    ix = l.Find(el => el.Name == indexName);
+                    var ix = l.Find(el => el.Name == indexName);
                     if (ix == null)
                     {
                         ix = new Index();
@@ -145,7 +145,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetDefaultConstraints(tableName));
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var c = new DefaultCostraint();
                     c.Name = reader.GetString(0) ?? "";
@@ -165,7 +165,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetForeignKeys(tableName));
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var c = new ForeignKeyColumn();
                     c.ForeignKeyName = reader.GetString(0);
@@ -188,7 +188,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetCheckConstraints(tableName));
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var c = new CheckConstraint();
                     c.Name = reader.GetString(0);
@@ -208,7 +208,7 @@ namespace HigLabo.DbSharp.MetaData
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetColumns(tableName));
 
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var c = new Column();
                     c.Name = reader.GetString(1);
@@ -232,10 +232,10 @@ namespace HigLabo.DbSharp.MetaData
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetPrimaryKey(tableName));
 
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var columnName = reader.GetString(2);
-                    var c = l.Find(el => el.Name == columnName);
+                    var c = l.First(el => el.Name == columnName);
                     c.IsPrimaryKey = true;
                     c.Clustered = reader.GetString(3);
                 }
@@ -251,7 +251,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetViews());
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.View);
                     o.Name = reader.GetString(0);
@@ -271,7 +271,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredProcedures());
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.StoredProcedure);
                     o.Name = reader.GetString(0);
@@ -290,7 +290,7 @@ namespace HigLabo.DbSharp.MetaData
             using (var db = this.CreateDatabase())
             {
                 var dr = await db.ExecuteReaderAsync(q.GetStoredProcedure(name));
-                while (await dr.ReadAsync())
+                while (await dr!.ReadAsync())
                 {
                     return true;
                 }
@@ -305,7 +305,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredProcedure(name));
-                if (await reader.ReadAsync() == false) { throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name)); }
+                if (await reader!.ReadAsync() == false) { throw new InvalidOperationException(String.Format("Stored procedure {0} does not exist.", name)); }
                 sp.Name = reader.GetString(0);
                 if (reader[1] != DBNull.Value)
                 {
@@ -323,7 +323,6 @@ namespace HigLabo.DbSharp.MetaData
         public virtual async Task<List<SqlInputParameter>> GetParametersAsync(String storedProcedureName)
         {
             var l = new List<SqlInputParameter>();
-            SqlInputParameter p = null;
             Int32 name = 1;
             Int32 dbType = 2;
             Int32 parameterLength = 3;
@@ -337,9 +336,9 @@ namespace HigLabo.DbSharp.MetaData
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetParameters(storedProcedureName));
 
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
-                    p = new SqlInputParameter();
+                    var p = new SqlInputParameter();
                     p.Name = reader.GetString(name);
                     p.Ordinal = l.Count;
                     p.DbType = this.CreateDbType(reader[dbType]);
@@ -379,7 +378,7 @@ namespace HigLabo.DbSharp.MetaData
             using (Database db = this.CreateDatabase())
             {
                 var reader = await db.ExecuteReaderAsync(this.QueryBuilder.GetStoredFunctions());
-                while (await reader.ReadAsync())
+                while (await reader!.ReadAsync())
                 {
                     var o = new DatabaseObject(DatabaseObjectType.StoredFunction);
                     o.Name = reader.GetString(0);
@@ -424,7 +423,7 @@ namespace HigLabo.DbSharp.MetaData
             return cm;
         }
         protected abstract IDbDataParameter CreateParameter(String name, DataType dataType);
-        protected abstract Object GetParameterValue(DataType dataType, Object dbType);
+        protected abstract Object? GetParameterValue(DataType dataType, Object dbType);
 
         public abstract String GetDefinitionText(Table table);
     }

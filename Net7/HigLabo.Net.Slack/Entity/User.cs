@@ -8,16 +8,16 @@ namespace HigLabo.Net.Slack
 {
     public class User
     {
-        public String Id { get; set; }
-        public String Team_Id { get; set; }
-        public String Name { get; set; }
+        public string? Id { get; set; }
+        public string? Team_Id { get; set; }
+        public string? Name { get; set; }
         public Boolean Deleted { get; set; }
-        public String Color { get; set; }
-        public String Real_Name { get; set; }
-        public String Tz { get; set; }
-        public String Tz_Label { get; set; }
+        public string? Color { get; set; }
+        public string? Real_Name { get; set; }
+        public string? Tz { get; set; }
+        public string? Tz_Label { get; set; }
         public Int32 Tz_Offset { get; set; }
-        public Profile Profile { get; set; }
+        public Profile? Profile { get; set; }
         public Boolean Is_Admin { get; set; }
         public Boolean Is_Owner { get; set; }
         public Boolean Is_Primary_Owner { get; set; }
@@ -29,6 +29,6 @@ namespace HigLabo.Net.Slack
         public Boolean Is_App_User { get; set; }
         public Boolean Is_Invited_User { get; set; }
         public Boolean Has_2fa { get; set; }
-        public String Locale { get; set; }
+        public string? Locale { get; set; }
     }
 }

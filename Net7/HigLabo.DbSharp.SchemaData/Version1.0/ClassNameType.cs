@@ -59,7 +59,7 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.DateTimeOffset: return typeof(DateTimeOffset);
                 case ClassNameType.DateOnly: return typeof(DateTime);
                 case ClassNameType.TimeOnly: return typeof(TimeSpan);
-                case ClassNameType.MySqlGeometry: return Type.GetType("global::MySql.Data.Types.MySqlGeometry");
+                case ClassNameType.MySqlGeometry: return Type.GetType("global::MySql.Data.Types.MySqlGeometry")!;
                 default: throw new ArgumentException();
             }
         }

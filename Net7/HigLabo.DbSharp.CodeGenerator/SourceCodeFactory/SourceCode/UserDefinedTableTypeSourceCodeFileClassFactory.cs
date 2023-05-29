@@ -64,12 +64,12 @@ namespace HigLabo.DbSharp.CodeGenerator
             for (int i = 0; i < this.UserDefinedTableType.Columns.Count; i++)
             {
                 var column = this.UserDefinedTableType.Columns[i];
-                switch (column.DbType.SqlServerDbType.Value)
+                switch (column.DbType!.SqlServerDbType!.Value)
                 {
                     case SqlServer2022DbType.Decimal:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2}, {3}, {4});"
-                            , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Precision, column.Scale);
+                            , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Precision!, column.Scale!);
                         break;
                     case SqlServer2022DbType.Binary:
                     case SqlServer2022DbType.VarBinary:
@@ -80,13 +80,13 @@ namespace HigLabo.DbSharp.CodeGenerator
                     case SqlServer2022DbType.NVarChar:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2}, {3});"
-                            , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Length);
+                            , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Length!);
                         break;
                     case SqlServer2022DbType.DateTime2:
                     case SqlServer2022DbType.DateTimeOffset:
                         yield return new CodeBlock(SourceCodeLanguage.CSharp
                             , "metaData[{0}] = new SqlMetaData(\"{1}\", {2}, 0, {3});"
-                            , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Scale);
+                            , i, column.Name, column.DbType.GetDbTypeCodeBlock(), column.Scale!);
                         break;
                     case SqlServer2022DbType.Bit:
                     case SqlServer2022DbType.TinyInt:

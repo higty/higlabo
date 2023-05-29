@@ -140,7 +140,7 @@ namespace HigLabo.LanguageTextApplication
                 p.Modifier.AccessModifier = MethodAccessModifier.Protected;
                 p.Modifier.Polymophism = MethodPolymophism.Override;
                 var languageArrayCode = String.Join(",", languageList.Select(el => $"\"{el}\""));
-                p.Get.Body.Add(SourceCodeLanguage.CSharp, "return new string[] { " + languageArrayCode + " };");
+                p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return new string[] { " + languageArrayCode + " };");
                 p.Set = null;
             }
 
@@ -150,10 +150,10 @@ namespace HigLabo.LanguageTextApplication
                 var p = new Property("string", key);
                 cText.Properties.Add(p);
 
-                p.Get.Body.Add(SourceCodeLanguage.CSharp, "var language = this.GetLanguage();");
+                p.Get!.Body.Add(SourceCodeLanguage.CSharp, "var language = this.GetLanguage();");
                 var cb = new CodeBlock(SourceCodeLanguage.CSharp, "switch (language)");
                 cb.CurlyBracket = true;
-                p.Get.Body.Add(cb);
+                p.Get!.Body.Add(cb);
                 p.Set = null;
 
                 foreach (var language_Value in kv.GroupBy(el => el.Language))
