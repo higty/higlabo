@@ -37,9 +37,10 @@ namespace LanguageTextApplication
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            this.EditPanel.DataContext = new FolderSetting();
-            this.EditPanel.Visibility = Visibility.Visible;
-            this.FolderListPanel.Visibility = Visibility.Hidden;
+            var setting = new FolderSetting();
+            setting.SourceFolderPath = Environment.CurrentDirectory;
+            ConfigData.Current.FolderList.Add(setting);
+            this.FolderListView.SelectedItem = setting;
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
@@ -54,22 +55,6 @@ namespace LanguageTextApplication
                 ConfigData.Current.FolderList.Remove(c);
                 this.UpdateFolderListView();
             }
-        }
-
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            var c = this.EditPanel.DataContext as FolderSetting;
-            if (c == null) { return; }
-            ConfigData.Current.FolderList.Add(c);
-            this.UpdateFolderListView();
-
-            this.EditPanel.Visibility = Visibility.Hidden;
-            this.FolderListPanel.Visibility = Visibility.Visible;
-        }
-        private void CancelButton_Click(object sender, RoutedEventArgs e)
-        {
-            this.EditPanel.Visibility = Visibility.Hidden;
-            this.FolderListPanel.Visibility = Visibility.Visible;
         }
 
         private void ExecuteButton_Click(object sender, RoutedEventArgs e)
@@ -88,10 +73,18 @@ namespace LanguageTextApplication
                 return;
             }
 
+            this.SettingPanel.Visibility = Visibility.Hidden;
+            this.LogPanel.Visibility = Visibility.Visible;
+
             this.LogList.Clear();
             var cm = new ClassGenerateCommand(c);
             cm.Executed += ClassGenerateCommand_Executed;
             App.BackgroundService.AddCommand(cm);
+        }
+        private void ShowSettingPanelButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.SettingPanel.Visibility = Visibility.Visible;
+            this.LogPanel.Visibility = Visibility.Hidden;
         }
 
         private void ClassGenerateCommand_Executed(object? sender, ClassGenerateCommand.ExecutedEventArgs e)

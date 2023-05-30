@@ -7,60 +7,75 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" Height="800" Width="800" MinHeight="600" MinWidth="500">
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" MinHeight="250"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid x:Name="FolderListPanel">
-                <ListView x:Name="FolderListView" Margin="10,10,10,56">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <TextBlock Text="{Binding SourceFolderPath}"></TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <StackPanel Orientation="Horizontal" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,15">
-                    <Button x:Name="AddButton" Click="AddButton_Click" Content="Add" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
-                    <Button x:Name="DeleteButton" Click="DeleteButton_Click" Content="Delete" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
-                    <Button x:Name="ExecuteButton" Click="ExecuteButton_Click" Content="Execute" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="100"/>
+        <Grid Grid.Row="0" x:Name="SettingPanel" 
+              DataContext="{Binding Path=StoredProcedure}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="ParameterGridRow" Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Name="ResultSetGridRow" Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid x:Name="FolderListPanel">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <Button x:Name="AddButton" Click="AddButton_Click" Content="Add" Width="100"/>
+                        <Button x:Name="DeleteButton" Click="DeleteButton_Click" Content="Delete" Height="30" Width="100"/>
+                    </StackPanel>
+                    <ListView Grid.Row="1" x:Name="FolderListView" Margin="0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <TextBlock Text="{Binding SourceFolderPath}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+            <GridSplitter Name="ParameterResultSetSplitter" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" 
+                      ShowsPreview="true" ResizeDirection="Columns" Width="5" />
+            <Grid Grid.Column="2" Margin="0,0,0,0">
+                <StackPanel Orientation="Vertical" DataContext="{Binding ElementName=FolderListView, Path=SelectedItem}">
+                    <Grid VerticalAlignment="Top" Height="60">
+                        <Label Content="Source folder path" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
+                        <TextBox Text="{Binding SourceFolderPath}" VerticalContentAlignment="Center" 
+                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
+                    </Grid>
+                    <Grid VerticalAlignment="Top" Height="60">
+                        <Label Content="C# file name" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
+                        <TextBox Text="{Binding CSharpFileName}" VerticalContentAlignment="Center" 
+                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
+                    </Grid>
+                    <Grid VerticalAlignment="Top" Height="60">
+                        <Label Content="Root namespace" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
+                        <TextBox Text="{Binding RootNamespaceName}" VerticalContentAlignment="Center" 
+                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
+                    </Grid>
+                    <Grid VerticalAlignment="Top" Height="60">
+                        <Label Content="Class name" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
+                        <TextBox Text="{Binding ClassName}" VerticalContentAlignment="Center" 
+                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
+                    </Grid>
                 </StackPanel>
             </Grid>
-
-            <StackPanel Orientation="Vertical" x:Name="EditPanel" Visibility="Hidden">
-                <Grid VerticalAlignment="Top" Height="60">
-                    <Label Content="Source folder path" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
-                    <TextBox Text="{Binding SourceFolderPath}" VerticalContentAlignment="Center" 
-                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
-                </Grid>
-                <Grid VerticalAlignment="Top" Height="60">
-                    <Label Content="C# file name" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
-                    <TextBox Text="{Binding CSharpFileName}" VerticalContentAlignment="Center" 
-                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
-                </Grid>
-                <Grid VerticalAlignment="Top" Height="60">
-                    <Label Content="Root namespace" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
-                    <TextBox Text="{Binding RootNamespaceName}" VerticalContentAlignment="Center" 
-                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
-                </Grid>
-                <Grid VerticalAlignment="Top" Height="60">
-                    <Label Content="Class name" Height="30" Margin="10,0,10,0" VerticalAlignment="Top"></Label>
-                    <TextBox Text="{Binding ClassName}" VerticalContentAlignment="Center" 
-                         Margin="10,30,10,0" Height="30" VerticalAlignment="Top"></TextBox>
-                </Grid>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Height="60">
-                    <Button x:Name="SaveButton" Click="SaveButton_Click" Content="Save" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
-                    <Button x:Name="CancelButton" Click="CancelButton_Click" Content="Cancel" Margin="0,0,10,10" Height="30" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100"/>
-                </StackPanel>
-            </StackPanel>
         </Grid>
+        <Grid Grid.Row="0" x:Name="LogPanel" Visibility="Hidden" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="1">
-            <ListView x:Name="LogListView" Margin="10,0,10,10" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListView Grid.Row="0" x:Name="LogListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="0">
@@ -69,6 +84,11 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Grid.Row="1" x:Name="ShowSettingPanelButton" Click="ShowSettingPanelButton_Click" Content="Back" HorizontalAlignment="Stretch" />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Button x:Name="ExecuteButton" Click="ExecuteButton_Click" Content="Execute" Margin="0,0,0,0"/>
         </Grid>
     </Grid>
 </Window>

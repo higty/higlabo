@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using HigLabo.Core;
 
 namespace LanguageTextApplication.Core
 {
@@ -21,7 +22,7 @@ namespace LanguageTextApplication.Core
     {
         public static ConfigData Current { get; set; } = new ConfigData();
 
-        public List<FolderSetting> FolderList { get; init; } = new();
+        public ObservableCollection<FolderSetting> FolderList { get; init; } = new();
 
         public ConfigData() { }
 

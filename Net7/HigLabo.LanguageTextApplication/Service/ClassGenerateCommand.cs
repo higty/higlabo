@@ -81,10 +81,6 @@ namespace HigLabo.LanguageTextApplication
                                 }
 
                                 this.Executed?.Invoke(this, new ExecutedEventArgs(r.ToString()));
-                                if (l.Count % 100 == 0)
-                                {
-                                    Thread.Sleep(100);
-                                }
                             }
                         }
                     }
