@@ -43,8 +43,4 @@
 	  <ProjectReference Include="..\HigLabo.ObjectModel\HigLabo.ObjectModel.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="ViewModel\" />
-	</ItemGroup>
-
 </Project>

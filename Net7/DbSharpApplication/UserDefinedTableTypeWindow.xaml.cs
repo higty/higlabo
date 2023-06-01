@@ -46,8 +46,8 @@ namespace DbSharpApplication
             this.OutputFolderPathLabel.Content = T.Text.OutputFolder;
             this.NamespaceNameLabel.Content = T.Text.Namespace;
             this.DatabaseKeyLabel.Content = T.Text.DatabaseKey;
-            this.GenerateButton.Content = T.Text.Generate;
-            this.CloseButton.Content = T.Text.Close;
+            this.GenerateButton.Content = T.Text.Generate + "(_G)";
+            this.CloseButton.Content = T.Text.Close + "(_C)";
         }
         private void SetParameterProperty()
         {

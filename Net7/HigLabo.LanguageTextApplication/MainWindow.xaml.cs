@@ -7,13 +7,9 @@ using T = HigLabo.Core.LanguageText<HigLabo.Core.HigLaboText>;
 
 namespace LanguageTextApplication
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public HigLabo.Core.ObservableCollection<ClassGenerateCommand.ExecutedEventArgs> LogList { get; init; } = new();
-
 
         public MainWindow()
         {

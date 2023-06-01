@@ -1,30 +1,38 @@
 /*-------------------------------------
-Dates
+GuidTable
 -------------------------------------*/
-Create Table Dates
-([Date] Date Not Null
-,Constraint Dates_PrimaryKey Primary Key Clustered([Date])
-) 
-Go
-
-With T0 As 
-(
-	select cast('2000/1/1' As DateTime) As [Date]
-	union all
-	select DateAdd(Day, 1, [Date])From T0
-	where T0.[Date] < '2100/12/31'
+Create Type GuidTable As Table
+([Value] Uniqueidentifier Not Null
 )
-insert into dbo.Dates
-select * from T0 Option(MaxRecursion 0);
 
 Go
 
 
 /*-------------------------------------
-GuidTable
+Nvarchar32Table
 -------------------------------------*/
-Create Type GuidTable As Table
-([Value] Uniqueidentifier Not Null
+Create Type Nvarchar32Table As Table
+([Value] Nvarchar(32) Not Null
+)
+
+Go
+
+
+/*-------------------------------------
+Nvarchar64Table
+-------------------------------------*/
+Create Type Nvarchar64Table As Table
+([Value] Nvarchar(64) Not Null
+)
+
+Go
+
+
+/*-------------------------------------
+Nvarchar128Table
+-------------------------------------*/
+Create Type Nvarchar128Table As Table
+([Value] Nvarchar(128) Not Null
 )
 
 Go
@@ -55,6 +63,27 @@ NvarcharMaxTable
 -------------------------------------*/
 Create Type NvarcharMaxTable As Table
 ([Value] Nvarchar(max) Not Null
+)
+
+Go
+
+
+/*-------------------------------------
+IntTable
+-------------------------------------*/
+Create Type IntTable As Table
+([Value] Int Not Null
+)
+
+Go
+
+
+/*-------------------------------------
+GuidGuidTable
+-------------------------------------*/
+Create Type GuidGuidTable As Table
+(Value0 Uniqueidentifier Not Null
+,Value1 Uniqueidentifier Not Null
 )
 
 Go

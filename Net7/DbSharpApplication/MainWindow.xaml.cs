@@ -76,13 +76,13 @@ namespace DbSharpApplication
             this.AddPanelConnectionStringLabel.Content = T.Text.Name;
             this.AddPanelConnectionStringLabel.Content = T.Text.ConnectionString;
             
-            this.SaveButton.Content = T.Text.Save;
-            this.CancelButton.Content = T.Text.Cancel;
+            this.SaveButton.Content = T.Text.Save + "(_S)";
+            this.CancelButton.Content = T.Text.Cancel + "(_C)";
 
             this.OpenOutputFolderButton.Content = T.Text.OpenOutputFolder;
             this.LoadStoredProcedureButton.Content = T.Text.LoadStoredProcedure;
             this.LoadUserDefinedTypeButton.Content = T.Text.LoadUserDefinedType;
-            this.GenerateButton.Content = T.Text.Generate;
+            this.GenerateButton.Content = T.Text.Generate + "(_G)";
         }
         private void GenerateSettingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
