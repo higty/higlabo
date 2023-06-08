@@ -5,73 +5,84 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HigLabo.Core;
+using HigLabo.Data;
+using Azure.Core;
 
 namespace HigLabo.DbSharp
 {
-    public abstract class TableCache
+    public interface ITableCache
     {
-        private static Object _LockObject = new object();
-        private static Hashtable _TableList = new();
-
-        public static void Add(String tableName, TableCache table)
-        {
-            lock (_LockObject)
-            {
-                _TableList.Add(tableName, table);
-            }
-        }
-        public static TableCache Get(String tableName)
-        {
-            return _TableList[tableName] as TableCache;
-        }
-        public static async Task LoadData(String tableName)
-        {
-            var t = _TableList[tableName] as TableCache;
-            if (t == null) { throw new ArgumentException($"{tableName} is not found."); }
-            await t.LoadDataAsync();
-        }
-
-        public abstract Task LoadDataAsync();
-        public abstract Int32 GetRecordCount();
+        int GetRecordCount();
+        Task LoadDataAsync();
+        Task LoadDataAsync(Database database);
+        Task LoadDataAsync(IEnumerable<Database> databaseList);
+        List<object> SelectAll();
+        object SelectByPrimaryKey(object primaryKey);
+        object? SelectByPrimaryKeyOrNull(object primaryKey);
+        IEnumerable<object> Where(Func<object, Boolean> func);
+        object? FirstOrDefault(Func<object, Boolean> func);
+        void InsertOrReplace(object record);
+        void Delete(object value);
     }
-    public class TableCache<T, TPrimaryKey, TStoredProcedure, TResultSet> : TableCache
-        where T : class, new()
+
+    public class TableCache<TPrimaryKey, TStoredProcedure, TResultSet> : ITableCache
         where TPrimaryKey: notnull
         where TStoredProcedure : StoredProcedureWithResultSet, new()
-        where TResultSet : class
+        where TResultSet : class, new()
     {
         private Int32 _RecordCount = 0;
-        private ConcurrentDictionary<TPrimaryKey, T> _Records = new();
-        private Func<T, TPrimaryKey> _SelectByPrimaryKeySelector;
+        private ConcurrentDictionary<TPrimaryKey, TResultSet> _Records = new();
+        private Func<TResultSet, TPrimaryKey> _SelectByPrimaryKeySelector;
 
         public String TableName { get; set; }
 
-        public TableCache(String tableName, Func<T, TPrimaryKey> selectByPrimaryKeySelector)
+        public TableCache(String tableName, Func<TResultSet, TPrimaryKey> selectByPrimaryKeySelector)
         {
-            TableCache.Add(tableName, this);
             this.TableName = tableName;
             _SelectByPrimaryKeySelector = selectByPrimaryKeySelector;
         }
 
-        public override int GetRecordCount()
+        public int GetRecordCount()
         {
             return _RecordCount;
         }
 
-        public override async Task LoadDataAsync()
+        protected virtual void SetProperty(TStoredProcedure storedProcedure)
         {
-            var l = new List<T>();
+
+        }
+        public async Task LoadDataAsync()
+        {
+            var l = new List<TResultSet>();
             var sp = new TStoredProcedure();
+            this.SetProperty(sp);
             foreach (var item in await sp.GetResultSetsAsync())
             {
-                var r = (item as TResultSet).Map(new T());
+                var r = item.Map(new TResultSet());
                 l.Add(r);
             }
-            this.LoadData(l);
+            this.ReplaceRecordList(l);
         }
-        protected void LoadData(IEnumerable<T> records)
+        public async Task LoadDataAsync(Database database)
         {
-            var d = new ConcurrentDictionary<TPrimaryKey, T>();
+            await this.LoadDataAsync(new Database[] { database });
+        }
+        public async Task LoadDataAsync(IEnumerable<Database> databaseList)
+        {
+            var l = new List<TResultSet>();
+            var sp = new TStoredProcedure();
+            this.SetProperty(sp);
+            foreach (var item in await sp.GetResultSetsAsync(databaseList))
+            {
+                var r = item.Map(new TResultSet());
+                l.Add(r);
+            }
+            this.ReplaceRecordList(l);
+        }
+        private void ReplaceRecordList(IEnumerable<TResultSet> records)
+        {
+            var d = new ConcurrentDictionary<TPrimaryKey, TResultSet>();
             _RecordCount = 0;
             foreach (var item in records)
             {
@@ -83,42 +94,85 @@ namespace HigLabo.DbSharp
             Interlocked.Exchange(ref _Records, d);
         }
 
-        public virtual IReadOnlyList<T> SelectAll()
+        List<object> ITableCache.SelectAll()
         {
-            return _Records.Values.ToArray();
+            return this.SelectAll().Select(el => (object)el).ToList();
         }
-        public T SelectByPrimaryKey(TPrimaryKey value)
+        public virtual List<TResultSet> SelectAll()
+        {
+            return _Records.Values.Select(el => el.Map(new TResultSet())).ToList();
+        }
+        object ITableCache.SelectByPrimaryKey(object primaryKey)
+        {
+            if (primaryKey is TPrimaryKey)
+            {
+                return this.SelectByPrimaryKey((TPrimaryKey)primaryKey) as object;
+            }
+            throw new TableRecordNotFoundException(this.TableName, primaryKey);
+        }
+        public TResultSet SelectByPrimaryKey(TPrimaryKey value)
         {
             var r = this.SelectByPrimaryKeyOrNull(value);
             if (r == null) { throw new TableRecordNotFoundException(this.TableName, value); }
             return r;
         }
-        public T SelectByPrimaryKeyOrNull(TPrimaryKey value)
+        object? ITableCache.SelectByPrimaryKeyOrNull(object primaryKey)
         {
-            T r = default(T);
+            if (primaryKey is TPrimaryKey)
+            {
+                return this.SelectByPrimaryKeyOrNull((TPrimaryKey)primaryKey) as object;
+            }
+            return null;
+        }
+        public TResultSet? SelectByPrimaryKeyOrNull(TPrimaryKey value)
+        {
+            TResultSet? r = default(TResultSet);
             _Records.TryGetValue(value, out r);
             if (r == null) { return null; }
-            return r.Map(new T());
+            return r.Map(new TResultSet());
         }
-        public IEnumerable<T> Where(Func<T, Boolean> func)
+
+        IEnumerable<object> ITableCache.Where(Func<object, Boolean> func)
         {
-            return _Records.Values.Where(func).Select(el => el.Map(new T()));
+            return this.Where(func).Select(el => (object)el);
         }
-        public T First(Func<T, Boolean> func)
+        public IEnumerable<TResultSet> Where(Func<TResultSet, Boolean> func)
         {
-            return _Records.Values.First(func).Map(new T());
+            return _Records.Values.Where(func).Select(el => el.Map(new TResultSet()));
         }
-        public T? FirstOrDefault(Func<T, Boolean> func)
+        public TResultSet First(Func<TResultSet, Boolean> func)
+        {
+            return _Records.Values.First(func).Map(new TResultSet());
+        }
+        object? ITableCache.FirstOrDefault(Func<object, Boolean> func)
+        {
+            return this.FirstOrDefault(func) as object;
+        }
+        public TResultSet? FirstOrDefault(Func<TResultSet, Boolean> func)
         {
             var r = _Records.Values.FirstOrDefault(func);
             if (r == null) { return null; }
-            return r.Map(new T());
+            return r.Map(new TResultSet());
         }
-        public void InsertOrReplace(T record)
+        void ITableCache.InsertOrReplace(object record)
+        {
+            if (record is TResultSet)
+            {
+                this.InsertOrReplace((TResultSet)record);
+            }
+        }
+        public void InsertOrReplace(TResultSet record)
         {
             var pk = _SelectByPrimaryKeySelector(record);
             _Records.TryRemove(pk, out _);
             _Records.TryAdd(pk, record);
+        }
+        void ITableCache.Delete(object value)
+        {
+            if (value is TPrimaryKey)
+            {
+                this.Delete((TPrimaryKey)value);
+            };
         }
         public void Delete(TPrimaryKey value)
         {

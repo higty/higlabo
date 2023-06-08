@@ -26,13 +26,9 @@ namespace HigLabo.DbSharp.CodeGenerator
             var sp = this.StoredProcedure;
             var sc = new SourceCode();
 
-            sc.UsingNamespaces.Add("System");
             sc.UsingNamespaces.Add("System.Data");
             sc.UsingNamespaces.Add("System.Data.Common");
             sc.UsingNamespaces.Add("System.Text");
-            sc.UsingNamespaces.Add("System.Collections.Generic");
-            sc.UsingNamespaces.Add("System.IO");
-            sc.UsingNamespaces.Add("System.ComponentModel");
             sc.UsingNamespaces.Add("HigLabo.Core");
             sc.UsingNamespaces.Add("HigLabo.Data");
             sc.UsingNamespaces.Add("HigLabo.DbSharp");
@@ -466,7 +462,14 @@ namespace HigLabo.DbSharp.CodeGenerator
                 case SqlServer2022DbType.Text:
                 case SqlServer2022DbType.VarChar:
                 case SqlServer2022DbType.Xml:
-                    return "reader[index] as String";
+                    if (type.AllowNull)
+                    {
+                        return "reader[index] as String";
+                    }
+                    else
+                    {
+                        return "(String)reader[index]";
+                    }
 
                 case SqlServer2022DbType.DateTime:
                 case SqlServer2022DbType.SmallDateTime:
@@ -579,7 +582,14 @@ namespace HigLabo.DbSharp.CodeGenerator
                 case MetaData.MySqlDbType.TinyText:
                 case MetaData.MySqlDbType.MediumText:
                 case MetaData.MySqlDbType.LongText:
-                    return "reader[index] as String";
+                    if (type.AllowNull)
+                    {
+                        return "reader[index] as String";
+                    }
+                    else
+                    {
+                        return "(String)reader[index]";
+                    }
 
                 case MetaData.MySqlDbType.Geometry:
                     return "((MySqlDataReader)reader).GetMySqlGeometry(index)";

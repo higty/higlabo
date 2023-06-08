@@ -24,6 +24,7 @@ namespace DbSharpApplication
     /// </summary>
     public partial class StoredProcedureWindow : Window
     {
+        private Boolean _IsResultSetLoaded = false;
         public StoredProcedureWindowViewModel ViewModel { get; set; }
         public GenerateSetting GenerateSetting
         {
@@ -71,6 +72,27 @@ namespace DbSharpApplication
             }
         }
 
+        protected override async void OnActivated(EventArgs e)
+        {
+            base.OnActivated(e);
+
+            if (_IsResultSetLoaded == false)
+            {
+                _IsResultSetLoaded = true;
+                var sp = this.ViewModel.GenerateSetting.StoredProcedureList.FirstOrDefault(el => el.Name == this.StoredProcedure.Name);
+                if (sp != null && sp.ResultSets.Count > 0)
+                {
+                    try
+                    {
+                        await this.LoadResultSet();
+                    }
+                    catch
+                    {
+                        MessageBox.Show(T.Text.LoadResultSetFailed);
+                    }
+                }
+            }
+        }
         private async void LoadResultSetButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -88,6 +110,37 @@ namespace DbSharpApplication
             var d = this.StoredProcedure.Parameters.Where(el => String.IsNullOrEmpty(el.ValueForTest) == false)
                 .ToDictionary(el => el.Name, el => el.ValueForTest as Object);
             await reader.SetResultSetsListAsync(this.StoredProcedure, d);
+
+            var sp = this.ViewModel.GenerateSetting.StoredProcedureList.FirstOrDefault(el => el.Name == this.StoredProcedure.Name);
+            if (sp != null)
+            {
+                foreach (var c in this.StoredProcedure.Parameters)
+                {
+                    var currentColumn = sp.Parameters.Find(el => el.Name == c.Name);
+                    if (currentColumn != null)
+                    {
+                        c.AllowNull = currentColumn.AllowNull;
+                        c.EnumName = currentColumn.EnumName;
+                    }
+                }
+                for (int i = 0; i < this.StoredProcedure.ResultSets.Count; i++)
+                {
+                    if (i < sp.ResultSets.Count)
+                    {
+                        this.StoredProcedure.ResultSets[i].Name = sp.ResultSets[i].Name;
+                        foreach (var c in this.StoredProcedure.ResultSets[i].Columns)
+                        {
+                            var currentColumn = sp.ResultSets[i].Columns.Find(el => el.Name == c.Name);
+                            if (currentColumn != null)
+                            {
+                                c.AllowNull = currentColumn.AllowNull;
+                                c.EnumName = currentColumn.EnumName;
+                            }
+                        }
+                    }
+                }
+            }
+
             if (this.StoredProcedure.ResultSets.Count > 0)
             {
                 this.ResultSetListBox.SelectedItem = this.StoredProcedure.ResultSets[0];

@@ -105,19 +105,19 @@ namespace HigLabo.DbSharp
             }
             return l;
         }
-        public new async Task<IEnumerable<T>> GetResultSetsAsync(IEnumerable<Database> databases)
+        public new async Task<List<T>> GetResultSetsAsync(IEnumerable<Database> databases)
         {
             return await this.GetResultSetsAsync(databases, CommandBehavior.Default, CancellationToken.None);
         }
-        public new async Task<IEnumerable<T>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
+        public new async Task<List<T>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(databases, commandBehavior, CancellationToken.None);
         }
-        public new async Task<IEnumerable<T>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        public new async Task<List<T>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(databases, CommandBehavior.Default, cancellationToken);
         }
-        public new async Task<IEnumerable<T>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public new async Task<List<T>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var l = new List<T>();
             foreach (var item in await base.GetResultSetsAsync(databases, commandBehavior, cancellationToken))

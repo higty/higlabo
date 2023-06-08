@@ -70,7 +70,7 @@ namespace HigLabo.DbSharp.MetaData
                 case ClassNameType.Object: return "Object?";
                 case ClassNameType.Boolean: return "Boolean";
                 case ClassNameType.ByteArray: return "Byte[]?";
-                case ClassNameType.String: return "String?";
+                case ClassNameType.String: return "String";
                 case ClassNameType.SByte: return "SByte";
                 case ClassNameType.Int16: return "Int16";
                 case ClassNameType.Int32: return "Int32";

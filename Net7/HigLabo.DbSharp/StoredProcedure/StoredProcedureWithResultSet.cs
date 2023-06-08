@@ -145,27 +145,29 @@ namespace HigLabo.DbSharp
             StoredProcedure.OnExecuted(new StoredProcedureExecutedEventArgs(this));
             return resultsets;
         }
-        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases)
         {
             return await this.GetResultSetsAsync(databases, CancellationToken.None);
         }
-        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior)
         {
             return await this.GetResultSetsAsync(databases, commandBehavior, CancellationToken.None);
         }
-        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CancellationToken cancellationToken)
         {
             return await this.GetResultSetsAsync(databases, CommandBehavior.Default, cancellationToken);
         }
-        public async Task<IEnumerable<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
+        public async Task<List<StoredProcedureResultSet>> GetResultSetsAsync(IEnumerable<Database> databases, CommandBehavior commandBehavior, CancellationToken cancellationToken)
         {
             var tt = new List<Task<List<StoredProcedureResultSet>>>();
             foreach (var db in databases)
             {
                 tt.Add(this.GetResultSetsAsync(db, commandBehavior, cancellationToken));
             }
+            if (tt.Count == 0) { return Array.Empty<StoredProcedureResultSet>().ToList(); }
+
             var results = await Task.WhenAll(tt).ConfigureAwait(false);
-            return results.SelectMany(el => el);
+            return results.SelectMany(el => el).ToList();
         }
 
         public IEnumerable<StoredProcedureResultSet> EnumerateResultSets()

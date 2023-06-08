@@ -17,6 +17,7 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
+	  <ProjectReference Include="..\HigLabo.Mapper\HigLabo.Mapper.csproj" />
 	</ItemGroup>
 
 </Project>

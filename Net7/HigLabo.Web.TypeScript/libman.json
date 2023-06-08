@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "linq.js@4.0.1",
+      "destination": "lib/linq.js/"
+    }
+  ]
+}

@@ -52,11 +52,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Net.Slack", "HigLab
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.LanguageTextApplication", "HigLabo.LanguageTextApplication\HigLabo.LanguageTextApplication.csproj", "{71D1A82F-BD50-4734-BE57-A01465B6C8EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLaboVueExamples", "HigLaboVueExamples\HigLaboVueExamples.csproj", "{06F1B2AE-2220-48FE-BE8A-16DBA5774011}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLaboVueExamples", "HigLaboVueExamples\HigLaboVueExamples.csproj", "{06F1B2AE-2220-48FE-BE8A-16DBA5774011}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Web", "HigLabo.Web\HigLabo.Web.csproj", "{11ACA12F-46EF-4659-B33D-3C88B6D7C36A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web", "HigLabo.Web\HigLabo.Web.csproj", "{11ACA12F-46EF-4659-B33D-3C88B6D7C36A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.Data.Mapper", "HigLabo.Data.Mapper\HigLabo.Data.Mapper.csproj", "{B675FBFB-3712-49E7-92D9-11C7BEE9FFBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Data.Mapper", "HigLabo.Data.Mapper\HigLabo.Data.Mapper.csproj", "{B675FBFB-3712-49E7-92D9-11C7BEE9FFBD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Web.TypeScript", "HigLabo.Web.TypeScript\HigLabo.Web.TypeScript.csproj", "{454227DA-8B09-4559-89B3-5DB2AD99F5A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.NewtonsoftJson", "HigLabo.NewtonsoftJson\HigLabo.NewtonsoftJson.csproj", "{EB50DD4B-770C-4DC6-B62A-BD804E3BBA7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -164,6 +168,14 @@ Global
 		{B675FBFB-3712-49E7-92D9-11C7BEE9FFBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B675FBFB-3712-49E7-92D9-11C7BEE9FFBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B675FBFB-3712-49E7-92D9-11C7BEE9FFBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{454227DA-8B09-4559-89B3-5DB2AD99F5A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{454227DA-8B09-4559-89B3-5DB2AD99F5A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{454227DA-8B09-4559-89B3-5DB2AD99F5A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{454227DA-8B09-4559-89B3-5DB2AD99F5A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB50DD4B-770C-4DC6-B62A-BD804E3BBA7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB50DD4B-770C-4DC6-B62A-BD804E3BBA7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB50DD4B-770C-4DC6-B62A-BD804E3BBA7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB50DD4B-770C-4DC6-B62A-BD804E3BBA7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,7 +39,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbSharpApplication", "DbSha
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.ObjectModel", "HigLabo.ObjectModel\HigLabo.ObjectModel.csproj", "{B22BA8D5-8072-4E0F-A5CE-D4166A04B24E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.UserDefinedTableType", "HigLabo.UserDefinedTableType\HigLabo.UserDefinedTableType.csproj", "{FED75CE3-2284-4D42-A87E-BBC46F77BA6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.UserDefinedTableType", "HigLabo.UserDefinedTableType\HigLabo.UserDefinedTableType.csproj", "{FED75CE3-2284-4D42-A87E-BBC46F77BA6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HigLabo.DbSharp.Cache", "HigLabo.DbSharp.Cache\HigLabo.DbSharp.Cache.csproj", "{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HigLabo.Mapper", "HigLabo.Mapper\HigLabo.Mapper.csproj", "{9635C84D-9DB5-4ECF-8A38-6239BBA85025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -279,6 +283,30 @@ Global
 		{FED75CE3-2284-4D42-A87E-BBC46F77BA6B}.Release|arm64.Build.0 = Release|Any CPU
 		{FED75CE3-2284-4D42-A87E-BBC46F77BA6B}.Release|x86.ActiveCfg = Release|Any CPU
 		{FED75CE3-2284-4D42-A87E-BBC46F77BA6B}.Release|x86.Build.0 = Release|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Debug|arm64.Build.0 = Debug|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Debug|x86.Build.0 = Debug|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Release|arm64.ActiveCfg = Release|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Release|arm64.Build.0 = Release|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Release|x86.ActiveCfg = Release|Any CPU
+		{2FF174A5-7E03-473B-B2C6-7BD4F3ABE9F7}.Release|x86.Build.0 = Release|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Debug|arm64.ActiveCfg = Debug|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Debug|arm64.Build.0 = Debug|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Debug|x86.Build.0 = Debug|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Release|arm64.ActiveCfg = Release|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Release|arm64.Build.0 = Release|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Release|x86.ActiveCfg = Release|Any CPU
+		{9635C84D-9DB5-4ECF-8A38-6239BBA85025}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

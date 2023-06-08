@@ -14,6 +14,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="TableStoredProcedureFactory\**" />
+	  <EmbeddedResource Remove="TableStoredProcedureFactory\**" />
+	  <None Remove="TableStoredProcedureFactory\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="CodeGenerator\SqlScript\SqlScriptFileGeneratedEventArgs.cs" />
+	  <Compile Remove="CodeGenerator\SqlScript\SqlScriptFileGenerator.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\HigLabo.CodeGenerator\HigLabo.CodeGenerator.csproj" />
 		<ProjectReference Include="..\HigLabo.Core\HigLabo.Core.csproj" />
 		<ProjectReference Include="..\HigLabo.Data\HigLabo.Data.csproj" />

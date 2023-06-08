@@ -76,12 +76,12 @@ namespace DbSharpApplication
             this.AddPanelConnectionStringLabel.Content = T.Text.Name;
             this.AddPanelConnectionStringLabel.Content = T.Text.ConnectionString;
             
-            this.SaveButton.Content = T.Text.Save + "(_S)";
-            this.CancelButton.Content = T.Text.Cancel + "(_C)";
+            this.SaveButton.Content = T.Text.Save;
+            this.CancelButton.Content = T.Text.Cancel;
 
-            this.OpenOutputFolderButton.Content = T.Text.OpenOutputFolder;
-            this.LoadStoredProcedureButton.Content = T.Text.LoadStoredProcedure;
-            this.LoadUserDefinedTypeButton.Content = T.Text.LoadUserDefinedType;
+            this.LoadStoredProcedureButton.Content = T.Text.LoadStoredProcedure + "(_S)";
+            this.LoadUserDefinedTypeButton.Content = T.Text.LoadUserDefinedType + "(_U)";
+            this.OpenOutputFolderButton.Content = T.Text.OpenOutputFolder + "(_F)";
             this.GenerateButton.Content = T.Text.Generate + "(_G)";
         }
         private void GenerateSettingListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -211,7 +211,7 @@ namespace DbSharpApplication
             var o = this.DatabaseObjectListView.SelectedItem as DatabaseObject;
             if (o == null)
             {
-                MessageBox.Show("Please select object.");
+                MessageBox.Show(T.Text.PleaseSelect);
                 return;
             }
 

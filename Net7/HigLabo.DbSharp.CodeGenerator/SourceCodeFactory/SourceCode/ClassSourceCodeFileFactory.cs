@@ -24,6 +24,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 {
                     if (parameter.AllowNull)
                     {
+                        f.TypeName.Name = "String?";
                         f.Initializer = "null";
                     }
                     else
@@ -37,7 +38,7 @@ namespace HigLabo.DbSharp.CodeGenerator
                 }
                 c.Fields.Add(f);
 
-                var p = new Property(parameter.GetClassName(), pName);
+                var p = new Property(f.TypeName.Name, pName);
                 p.Get!.Body.Add(SourceCodeLanguage.CSharp, "return _{0};", pName);
 
                 if (f.TypeName.Name == "String" && parameter.AllowNull == false)
