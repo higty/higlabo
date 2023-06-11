@@ -93,6 +93,7 @@ namespace HigLabo.LanguageTextApplication
 
                 }
             }
+            this.GenerateFile(this.FolderSetting.SourceFolderPath, l);
             this.GenerateFile(copyFolderPath, l);
         }
         private string EnsureFolder()
