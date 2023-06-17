@@ -14,7 +14,12 @@ export class HttpClient {
             if (req.contentType != "") {
                 xReq.setRequestHeader("Content-Type", req.contentType);
             }
-            xReq.send(req.data);
+            if (req instanceof HttpPostJsonRequest) {
+                xReq.send(JSON.stringify(req.data));
+            }
+            else {
+                xReq.send(req.data);
+            }
         }
     }
     get(url, callback, errorCallback, context) {
@@ -91,7 +96,7 @@ export class HttpRequest {
 export class HttpPostJsonRequest extends HttpRequest {
     constructor(url, data, callback, errorCallback) {
         super("post", url, callback, errorCallback);
-        this.data = JSON.stringify(data);
+        this.data = data;
         this.contentType = "application/json; charset=utf-8";
     }
 }
@@ -124,5 +129,19 @@ export class HttpResponse {
             console.log("JSON parse error. \r\n" + this.responseText);
         }
     }
+    createWebApiResult() {
+        try {
+            return JSON.parse(this.responseText);
+        }
+        catch (ex) {
+            console.log("JSON parse error. \r\n" + this.responseText);
+        }
+    }
+}
+export class WebApiResult {
+    HttpStatusCode;
+    HttpStatus;
+    DataType;
+    Data;
 }
 //# sourceMappingURL=HttpClient.js.map

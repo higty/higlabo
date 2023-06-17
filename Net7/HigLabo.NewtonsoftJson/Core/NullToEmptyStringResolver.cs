@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TinyBetter.Core
+namespace HigLabo.Core
 {
     public class NullToEmptyStringResolver : Newtonsoft.Json.Serialization.DefaultContractResolver
     {

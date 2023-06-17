@@ -178,7 +178,7 @@ namespace HigLabo.LanguageTextApplication
                     var key = kv.Key;
                     cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"case \"{key}\": return this.{key};"));
                 }
-                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"default: return \"\";"));
+                cb.CodeBlocks.Add(new CodeBlock(SourceCodeLanguage.CSharp, $"default: return key;"));
             }
 
             var filePath = Path.Combine(copyFolderPath, this.FolderSetting.CSharpFileName);

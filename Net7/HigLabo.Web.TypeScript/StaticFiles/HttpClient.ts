@@ -16,7 +16,12 @@
             if (req.contentType != "") {
                 xReq.setRequestHeader("Content-Type", req.contentType);
             }
-            xReq.send(req.data);
+            if (req instanceof HttpPostJsonRequest) {
+                xReq.send(JSON.stringify(req.data));
+            }
+            else {
+                xReq.send(req.data);
+            }
         }
     }
 
@@ -88,13 +93,13 @@ export class HttpRequest {
         if (errorCallback != null) {
             this.errorCallback.push(errorCallback);
         }
-  }
+    }
 }
 
 export class HttpPostJsonRequest extends HttpRequest {
     constructor(url: string, data: any, callback?: HttpRequestCallback, errorCallback?: HttpRequestCallback) {
         super("post", url, callback, errorCallback);
-        this.data = JSON.stringify(data);
+        this.data = data;
         this.contentType = "application/json; charset=utf-8";
     }
 }
@@ -130,8 +135,25 @@ export class HttpResponse {
             console.log("JSON parse error. \r\n" + this.responseText);
         }
     }
+    public createWebApiResult(): WebApiResult {
+        try {
+            return JSON.parse(this.responseText) as WebApiResult;
+        }
+        catch (ex) {
+            console.log("JSON parse error. \r\n" + this.responseText);
+        }
+    }
 }
 export interface HttpRequestCallback {
     (response: HttpResponse): void;
 }
+
+export class WebApiResult {
+    public HttpStatusCode: number;
+    public HttpStatus: string;
+    public DataType: string;
+    public Data: any;
+}
+
+
 
